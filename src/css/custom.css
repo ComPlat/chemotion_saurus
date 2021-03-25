@@ -1,0 +1,134 @@
+/* stylelint-disable docusaurus/copyright-header */
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-color-primary: #337ab7;
+  --ifm-color-secondary-darker:  #606770;
+
+  --ifm-button-color: #fff;
+
+  --ifm-code-font-size: 95%;
+
+  --ifm-footer-color: #606770;
+  --ifm-navbar-background-color: #f5f6f7;
+  --ifm-navbar-link-color: #606770;
+  --ifm-navbar-link-hover-color: #000;
+  --ifm-footer-link-hover-color: #000;
+  --ifm-link-hover-decoration: none;
+
+  /*sidebar*/
+  --ifm-menu-color-active: #000;
+}
+
+.docusaurus-highlight-code-line {
+  background-color: rgb(72, 77, 91);
+  display: block;
+  margin: 0 calc(-1 * var(--ifm-pre-padding));
+  padding: 0 var(--ifm-pre-padding);
+}
+
+a{
+  color: black;
+}
+
+footer{
+  bottom: 0;
+  width: 100%;
+}
+
+.navbar__title{
+  color: #606770;
+}
+
+.button--primary:hover{
+  color: #337ab7;
+}
+
+.row{
+  width: 100%;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: center;
+  -webkit-justify-content: center;
+  margin: auto;
+  max-width: calc(95vw);
+}
+
+.card__info {
+  z-index: 2;
+  border-bottom-left-radius: 0.75rem;
+  border-bottom-right-radius: 0.75rem;
+  height: 23.5rem;
+}
+
+@media screen and (max-width: 966px) {
+  .card_u {
+    margin: 1rem;
+    width: 70%;
+  }
+}
+
+/*Google Maps*/
+#gmap_canvas {
+  overflow:hidden;
+  background:none!important;
+  height:500px;
+  width:600px;
+}
+
+#mapouter{
+  position:relative;
+  text-align:right;
+  height:500px;
+  width:600px;
+}
+
+.table-of-contents__link--active{
+  color: black;
+}
+
+.table-of-contents__link:hover,
+.pagination-nav__link:hover,
+a:hover
+{
+  background-color: #efeff0;
+  color: #606770;
+}
+
+.fund{
+  color: #dcddde;
+  font-weight: bolder !important;
+  padding-left: 1rem;
+  margin-left: 1rem;
+  font-size: 300%;
+}
+
+main{
+  background-color: #f5f6f7;
+}
+
+/*sidebar*/
+/*li:nth-of-type(2){*/
+/*.menu__list:nth-child(1){*/
+/*!*.menu__list-item:nth-of-type(2){*!*/
+/*  background-color: red;*/
+/*}*/
+
+/*.menu__list-item:nth-child(2){*/
+/*  !*.menu__list-item:nth-of-type(2){*!*/
+/*  background-color: red;*/
+/*}*/
+
+/*admin*/
+.footer__col:nth-of-type(4) a.footer__link-item:nth-of-type(1){
+  color: lightgrey;
+}
+
+/*.footer__col:nth-of-type(1) a.footer__link-item:nth-of-type(1){*/
+/*  color: lightgrey;*/
+/*}*/

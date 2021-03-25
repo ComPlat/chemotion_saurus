@@ -1,0 +1,31 @@
+---
+title: Request physical samples
+slug: request_physical_samples
+author: Nicole Jung
+---
+
+Information on samples in the repository Chemotion is now assigned to the physical availability of compounds in the Molecule Archive of the Compound Platform. Not all submissions to the repository have a physical equivalent in form of a compound that can be provided, the availability is indicated by the sentence "**A physical sample of this molecule was registered to the Molecule Archive of the Compound Platform**" and the X-Vial symbol in the sample list. 
+
+Information on how to request a sample are given additionally on YouTube. 
+
+![](/img/docs/how-to-request-samples/cf3ede44-b09a-400a-b0d4-b067735e4262_image_20200723-2865-kgd7we.png)
+
+<!--truncate-->
+
+
+
+Requirements to request a sample: To request samples, you have to be registered and logged in.
+
+Requirements to obtain a sample: the samples are only provided for academic use. Standard applications are the need for a reference sample or other re-use cases such as the intention to include the compound to a biological study. The request of compounds is discussed with the provider of the compound, therefore, an answer may take a few days.
+
+Costs: the compounds are provided for free, with the intention to collaborate depending on the use-case. If shipping costs are high, we might request to bear the costs.
+
+
+
+(1) use the button to contact the Compound Platform
+
+(2) enter your need and intended use or other information
+
+(3) confirm the academic use by adding a sentence such as: The compound will be used only for academic use without any commercial interest
+
+(4) send the request
