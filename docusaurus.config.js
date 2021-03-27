@@ -1,5 +1,7 @@
 require('dotenv').config()
 
+console.log(process.env);
+
 module.exports = {
   title: 'Chemotion',
   tagline:
