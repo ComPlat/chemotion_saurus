@@ -1,19 +1,16 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI
 
 # todo
 # set container globally
+
 # Controls when the action will run.
 on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
     branches: [ master ]
-# todo?
-#  pull_request:
-#    branches: [ master ]
 
-  # Allows you to run this workflow manually from the Actions tab
 #  todo?
 #  workflow_dispatch:
 
@@ -21,29 +18,30 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   build:
-#    name: pages
+    # name: pages
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     container: node:12.18.3
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: run
-        run:
-          - npm install
-          - npm run build
-          - mkdir chemotion_saurus
-          - mv ./build ./public
-
-      - name: paths
-  #      uses: actions/upload-artifact@v2
-        with:
-          name: path
-          path: public
-
-        # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
 #      - uses: actions/checkout@v2
+      - uses: actions/checkout
+        with:
+          node-version: 12
+      - run: npm ci
+#      - run: npm install
+      - run: npm run build
+#      - run: mkdir chemotion_saurus
+#      - run: mv ./build ./public
 #
+#      - name: paths
+#  #      uses: actions/upload-artifact@v2
+#        with:
+#          name: path
+#          path: public
+
 #      # Runs a single command using the runners shell
 #      - name: Run a one-line script
 #        run: echo Hello, world!
@@ -53,18 +51,23 @@ jobs:
 #        run: |
 #          echo Add other actions to build,
 #          echo test, and deploy your project.
-  deploy:
-#    name: deploying
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-    container: node:12.18.3
-    steps:
-      run:
-        - |
-          { . $DEPLOY ; } 1> /dev/null
-    branches:
-      - master
+#    branches:
+#      - master
+#  # or publish?
+#  deploy:
+#    needs: build
+#    # The type of runner that the job will run on
+#    runs-on: ubuntu-latest
+#    container: node:12.18.3
+#    steps:
+#      run: |
+#          { . $DEPLOY ; } 1> /dev/null
+#    branches:
+#      - master
 
 
+
+
+# ${{secrets.ABC}}
 
 
