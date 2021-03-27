@@ -19,15 +19,16 @@ jobs:
     steps:
 # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      - run: |
-          npm ci
-          npm run build --if-present
-#          takes too long
-#          npm run serve
-        env:
+      - env:
           ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
           ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
           ALGOLIA_SEARCH_API_KEY: ${{ secrets.ALGOLIA_SEARCH_API_KEY }}
           INDEX_NAME: ${{ secrets.INDEX_NAME }}
+        run: |
+          npm ci
+          npm run build --if-present
+#          takes too long
+#          npm run serve
+
 
 

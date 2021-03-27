@@ -1,6 +1,6 @@
 require('dotenv').config()
 
-console.log(process.env);
+console.log(process.env.ALGOLIA_APP_ID);
 
 module.exports = {
   title: 'Chemotion',
