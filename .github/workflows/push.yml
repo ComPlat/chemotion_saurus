@@ -23,7 +23,6 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      # error
 #      - uses: actions/checkout@master
 #        with:
 #          node-version: 12
@@ -31,6 +30,7 @@ jobs:
       - run: |
           npm ci
           npm run build --if-present
+          npm run serve
 #      - run: mkdir chemotion_saurus
 #      - run: mv ./build ./public
 #
