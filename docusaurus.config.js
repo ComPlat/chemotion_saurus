@@ -46,12 +46,12 @@ module.exports = {
     },
     hideableSidebar: true,
     // comment out algolia if you don't want to have a search function
-    // algolia: {
-    //   apiKey: process.env.ALGOLIA_READ_API_KEY,
-    //   indexName: process.env.INDEX_NAME,
-    //   appId: process.env.ALGOLIA_APP_ID,
-    //   //... other Algolia params
-    // },
+    algolia: {
+      apiKey: process.env.ALGOLIA_SEARCH_API_KEY,
+      indexName: process.env.INDEX_NAME,
+      appId: process.env.ALGOLIA_APP_ID,
+      //... other Algolia params
+    },
     footer: {
       style: 'light',
       links: [
