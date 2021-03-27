@@ -1,5 +1,6 @@
 require('dotenv').config()
 
+console.log('env vars:')
 console.log(process.env.ALGOLIA_APP_ID);
 
 module.exports = {
