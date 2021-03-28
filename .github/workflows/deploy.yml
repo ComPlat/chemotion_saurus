@@ -1,0 +1,25 @@
+name: deploy CI
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  push:
+#  pull_request:
+    branches: [ master ]
+jobs:
+  # This workflow contains a single job called "build"
+  deploy:
+    needs: build
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Server
+        uses: easingthemes/ssh-deploy@v2
+#        env:
+#          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+#          ARGS: "-rltgoDzvO --delete"
+#          SOURCE: "dist/"
+#          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+#          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+#          TARGET: ${{ secrets.REMOTE_TARGET }}
+#          EXCLUDE: "/dist/, /node_modules/"
+
