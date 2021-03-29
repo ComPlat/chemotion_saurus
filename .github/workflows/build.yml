@@ -39,17 +39,15 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build
-
-      # error
-      steps:
-        #        uses: easingthemes/ssh-deploy@v2
-      - name: Deploy Key
-        env:
-          ENCRYPTION_KEY: ${{ secrets.ENCRYPTION_KEY }}
+    steps:
+      #        uses: easingthemes/ssh-deploy@v2
+    - name: Deploy Key
+      env:
+        ENCRYPTION_KEY: ${{ secrets.ENCRYPTION_KEY }}
 #          env:
 #            DEPLOY: ${{ secrets.DEPLOY }}
-        run: |
-          echo $ENCRYPTION_KEY
+      run: |
+        echo $ENCRYPTION_KEY
 #            mkdir chemotion_saurus
 #            mv ./build ./public
 #            { . $DEPLOY ; } 1> /dev/null
