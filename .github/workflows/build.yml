@@ -48,6 +48,8 @@ jobs:
 #            DEPLOY: ${{ secrets.DEPLOY }}
       run: |
         echo "$ENCRYPTION_KEY"
+        echo ${#ENCRYPTION_KEY}
+        echo ${{ secrets.ENCRYPTION_KEY }}
 #            mkdir chemotion_saurus
 #            mv ./build ./public
 #            { . $DEPLOY ; } 1> /dev/null
