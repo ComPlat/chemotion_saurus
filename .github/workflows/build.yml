@@ -50,8 +50,8 @@ jobs:
         host: ${{ secrets.HOST }}
         username: prod
 #        port: ${{ secrets.PORT }}
-      run: |
-        whoami
+        script: |
+          whoami
 #        echo "$ENCRYPTION_KEY"
 #        echo ${#ENCRYPTION_KEY} # working?
 #        echo ${{ secrets.ENCRYPTION_KEY }}
