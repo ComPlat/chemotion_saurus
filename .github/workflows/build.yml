@@ -48,7 +48,7 @@ jobs:
 #        username: ${{ secrets.USERNAME }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         host: ${{ secrets.HOST }}
-        username: prod
+        username: "prod"
 #        port: ${{ secrets.PORT }}
         script: |
           whoami
