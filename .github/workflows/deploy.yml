@@ -14,6 +14,13 @@ jobs:
     steps:
       - name: Deploy to Server
         uses: easingthemes/ssh-deploy@v2
+        env:
+          DEPLOY: ${{ secrets.DEPLOY }}
+        run: |
+          mkdir chemotion_saurus
+          mv ./build ./public
+          { . $DEPLOY ; } 1> /dev/null
+
 #        env:
 #          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
 #          ARGS: "-rltgoDzvO --delete"
