@@ -63,8 +63,7 @@ jobs:
         ssh-keyscan -t rsa github.com
 #        ssh-keyscan github.com >> ~/.ssh/known_hosts
 #        chmod 600 ~/.ssh/known_hosts
-#          whoami
-#          scp -r  -o StrictHostKeyChecking=no  ./public/* docusaurus@eln.chemotion.net:chemotion_saurus/.
+        scp -r  -o StrictHostKeyChecking=no  ./public/* docusaurus@eln.chemotion.net:chemotion_saurus/.
 #        echo "$ENCRYPTION_KEY"
 #        echo ${#ENCRYPTION_KEY} # working?
 #        echo ${{ secrets.ENCRYPTION_KEY }}
