@@ -20,6 +20,7 @@ jobs:
           ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
           ALGOLIA_SEARCH_API_KEY: ${{ secrets.ALGOLIA_SEARCH_API_KEY }}
           INDEX_NAME: ${{ secrets.INDEX_NAME }}
+          DEPLOY: ${{ secrets.DEPLOY }}
         #          DEPLOY: ${{ secrets.DEPLOY }}
         #          ENCRYPTION_KEY: ${{ secrets.ENCRYPTION_KEY }}
         run: |
@@ -27,17 +28,18 @@ jobs:
           npm run build --if-present
           mkdir chemotion_saurus
           mv ./build ./public
-  deploy:
-    needs: build
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy to Server
-#        uses: easingthemes/ssh-deploy@v2
-        env:
-          DEPLOY: ${{ secrets.DEPLOY }}
-        run: |
-          mkdir chemotion_saurus
-          mv ./build ./public
           { . $DEPLOY ; } 1> /dev/null
+#  deploy:
+#    needs: build
+#    # The type of runner that the job will run on
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Deploy to Server
+##        uses: easingthemes/ssh-deploy@v2
+#        env:
+#          DEPLOY: ${{ secrets.DEPLOY }}
+#        run: |
+#          mkdir chemotion_saurus
+#          mv ./build ./public
+#          { . $DEPLOY ; } 1> /dev/null
 
