@@ -52,7 +52,7 @@ jobs:
         username: "docusaurus"
 #        username: "prod"
 #        port: ${{ secrets.PORT }}
-        script: |
+        run: |
           set -euo pipefail
           eval $(ssh-agent -s);
           mkdir -p ~/.ssh
