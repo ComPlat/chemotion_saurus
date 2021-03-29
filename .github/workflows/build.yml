@@ -46,7 +46,7 @@ jobs:
       with:
 #        host: ${{ secrets.HOST }}
 #        username: ${{ secrets.USERNAME }}
-        private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
         host: ${{ secrets.HOST }}
         username: prod
 #        port: ${{ secrets.PORT }}
