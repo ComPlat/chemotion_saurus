@@ -6,7 +6,27 @@ on:
 #  pull_request:
     branches: [ master ]
 jobs:
-  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    #    container: node:12.18.3
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - env:
+          ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
+          ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
+          ALGOLIA_SEARCH_API_KEY: ${{ secrets.ALGOLIA_SEARCH_API_KEY }}
+          INDEX_NAME: ${{ secrets.INDEX_NAME }}
+        #          DEPLOY: ${{ secrets.DEPLOY }}
+        #          ENCRYPTION_KEY: ${{ secrets.ENCRYPTION_KEY }}
+        run: |
+          npm ci
+          npm run build --if-present
+          mkdir chemotion_saurus
+          mv ./build ./public
   deploy:
     needs: build
     # The type of runner that the job will run on
@@ -20,13 +40,4 @@ jobs:
           mkdir chemotion_saurus
           mv ./build ./public
           { . $DEPLOY ; } 1> /dev/null
-
-#        env:
-#          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
-#          ARGS: "-rltgoDzvO --delete"
-#          SOURCE: "dist/"
-#          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-#          REMOTE_USER: ${{ secrets.REMOTE_USER }}
-#          TARGET: ${{ secrets.REMOTE_TARGET }}
-#          EXCLUDE: "/dist/, /node_modules/"
 
