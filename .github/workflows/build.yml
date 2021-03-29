@@ -59,8 +59,9 @@ jobs:
         chmod 700 ~/.ssh
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh
-        ssh-keyscan github.com >> ~/.ssh/known_hosts
-        chmod 600 ~/.ssh/known_hosts
+        ssh-keyscan -t rsa github.com
+#        ssh-keyscan github.com >> ~/.ssh/known_hosts
+#        chmod 600 ~/.ssh/known_hosts
 #          whoami
 #          scp -r  -o StrictHostKeyChecking=no  ./public/* docusaurus@eln.chemotion.net:chemotion_saurus/.
 #        echo "$ENCRYPTION_KEY"
