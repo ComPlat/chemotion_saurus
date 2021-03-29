@@ -42,16 +42,27 @@ jobs:
     steps:
       #        uses: easingthemes/ssh-deploy@v2
     - name: Deploy
-      uses: appleboy/ssh-action@master
+#      uses: appleboy/ssh-action@master
       with:
 #        host: ${{ secrets.HOST }}
 #        username: ${{ secrets.USERNAME }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         host: ${{ secrets.HOST }}
-        username: "prod"
+
+        username: "docusaurus"
+#        username: "prod"
 #        port: ${{ secrets.PORT }}
         script: |
-          whoami
+          set -euo pipefail
+          eval $(ssh-agent -s);
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+#          whoami
+#          scp -r  -o StrictHostKeyChecking=no  ./public/* docusaurus@eln.chemotion.net:chemotion_saurus/.
 #        echo "$ENCRYPTION_KEY"
 #        echo ${#ENCRYPTION_KEY} # working?
 #        echo ${{ secrets.ENCRYPTION_KEY }}
