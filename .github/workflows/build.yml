@@ -10,27 +10,27 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-#    container: node:12.18.3
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-# Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-      - env:
-          ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
-          ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
-          ALGOLIA_SEARCH_API_KEY: ${{ secrets.ALGOLIA_SEARCH_API_KEY }}
-          INDEX_NAME: ${{ secrets.INDEX_NAME }}
-#          DEPLOY: ${{ secrets.DEPLOY }}
-#          ENCRYPTION_KEY: ${{ secrets.ENCRYPTION_KEY }}
-        run: |
-          npm ci
-          npm run build --if-present
-          mkdir chemotion_saurus
-          mv ./build ./public
+#  build:
+#    # The type of runner that the job will run on
+#    runs-on: ubuntu-latest
+##    container: node:12.18.3
+#
+#    # Steps represent a sequence of tasks that will be executed as part of the job
+#    steps:
+## Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+#      - uses: actions/checkout@v2
+#      - env:
+#          ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
+#          ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
+#          ALGOLIA_SEARCH_API_KEY: ${{ secrets.ALGOLIA_SEARCH_API_KEY }}
+#          INDEX_NAME: ${{ secrets.INDEX_NAME }}
+##          DEPLOY: ${{ secrets.DEPLOY }}
+##          ENCRYPTION_KEY: ${{ secrets.ENCRYPTION_KEY }}
+#        run: |
+#          npm ci
+#          npm run build --if-present
+#          mkdir chemotion_saurus
+#          mv ./build ./public
 #          { . $DEPLOY ; } 1> /dev/null
 #          mkdir chemotion_saurus
 #          mv ./build ./public
@@ -38,18 +38,23 @@ jobs:
 #          npm run serve
   deploy:
     runs-on: ubuntu-latest
-    needs: build
+#    needs: build
     steps:
       #        uses: easingthemes/ssh-deploy@v2
-    - name: Deploy Key
-      env:
-        ENCRYPTION_KEY: ${{ secrets.ENCRYPTION_KEY }}
-#          env:
-#            DEPLOY: ${{ secrets.DEPLOY }}
+    - name: Deploy
+      uses: appleboy/ssh-action@master
+      with:
+#        host: ${{ secrets.HOST }}
+#        username: ${{ secrets.USERNAME }}
+        private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+        host: ${{ secrets.HOST }}
+        username: prod
+#        port: ${{ secrets.PORT }}
       run: |
-        echo "$ENCRYPTION_KEY"
-        echo ${#ENCRYPTION_KEY}
-        echo ${{ secrets.ENCRYPTION_KEY }}
+        whoami
+#        echo "$ENCRYPTION_KEY"
+#        echo ${#ENCRYPTION_KEY} # working?
+#        echo ${{ secrets.ENCRYPTION_KEY }}
 #            mkdir chemotion_saurus
 #            mv ./build ./public
 #            { . $DEPLOY ; } 1> /dev/null
