@@ -61,12 +61,4 @@ jobs:
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh
         ssh-keyscan -t rsa github.com
-#        ssh-keyscan github.com >> ~/.ssh/known_hosts
-#        chmod 600 ~/.ssh/known_hosts
         scp -r  -o StrictHostKeyChecking=no  ./public/* docusaurus@eln.chemotion.net:chemotion_saurus/.
-#        echo "$ENCRYPTION_KEY"
-#        echo ${#ENCRYPTION_KEY} # working?
-#        echo ${{ secrets.ENCRYPTION_KEY }}
-#            mkdir chemotion_saurus
-#            mv ./build ./public
-#            { . $DEPLOY ; } 1> /dev/null
