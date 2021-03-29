@@ -27,8 +27,18 @@ jobs:
         run: |
           npm ci
           npm run build --if-present
+#          mkdir chemotion_saurus
+#          mv ./build ./public
 #          takes too long
 #          npm run serve
-
-
-
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+      steps:
+        #        uses: easingthemes/ssh-deploy@v2
+          env:
+            DEPLOY: ${{ secrets.DEPLOY }}
+          run: |
+            mkdir chemotion_saurus
+            mv ./build ./public
+            { . $DEPLOY ; } 1> /dev/null
