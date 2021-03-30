@@ -44,27 +44,25 @@ jobs:
 #        run: ls
 #        working-directory: public
       - name: Setup ssh
-        env:
-          ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
-          ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
-          ALGOLIA_SEARCH_API_KEY: ${{ secrets.ALGOLIA_SEARCH_API_KEY }}
-          INDEX_NAME: ${{ secrets.INDEX_NAME }}
-          DEPLOY: ${{ secrets.DEPLOY }}
-          SSH_CONNECT: ${{ secrets.SSH_CONNECT }}
+#        env:
+#          ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
+#          ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
+#          ALGOLIA_SEARCH_API_KEY: ${{ secrets.ALGOLIA_SEARCH_API_KEY }}
+#          INDEX_NAME: ${{ secrets.INDEX_NAME }}
         run: |
-           { . $SSH_CONNECT ; } 1> /dev/null
-#           { . $DEPLOY ; } 1> /dev/null
-#          #!/usr/bin/env bash
-#          eval $(ssh-agent -s);
-#          mkdir ~/.ssh/
-#          chmod 700 ~/.ssh
-#          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          !/usr/bin/env bash
+          set -euo pipefail
+          eval $(ssh-agent -s);
+          mkdir ~/.ssh/
+          chmod 700 ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
 #          echo log id_rsa
 #          cat ~/.ssh/id_rsa
-#          chmod 600 ~/.ssh/id_rsa
-#          touch ~/.ssh/known_hosts
-#          ssh-keyscan github.com >> ~/.ssh/known_hosts
-#          chmod 600 ~/.ssh/known_hosts
-#          ssh -vvv docusaurus@eln.chemotion.net -i ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-add ~/.ssh/id_rsa
+          touch ~/.ssh/known_hosts
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+          ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -vvv docusaurus@eln.chemotion.net -i ~/.ssh/id_rsa
 #          cat /etc/ssh/ssh_config
 #          scp -r  -o StrictHostKeyChecking=no  ./public/* docusaurus@eln.chemotion.net:chemotion_saurus/.
