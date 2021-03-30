@@ -50,7 +50,7 @@ jobs:
 #          ALGOLIA_SEARCH_API_KEY: ${{ secrets.ALGOLIA_SEARCH_API_KEY }}
 #          INDEX_NAME: ${{ secrets.INDEX_NAME }}
         run: |
-          !/usr/bin/env bash
+          #!/usr/bin/env bash
           set -euo pipefail
           eval $(ssh-agent -s);
           mkdir ~/.ssh/
