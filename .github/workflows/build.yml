@@ -19,13 +19,13 @@ jobs:
     steps:
 # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
 #      - uses: actions/checkout@v2
-      - env:
-          ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
-          ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
-          ALGOLIA_SEARCH_API_KEY: ${{ secrets.ALGOLIA_SEARCH_API_KEY }}
-          INDEX_NAME: ${{ secrets.INDEX_NAME }}
-          DEPLOY: ${{ secrets.DEPLOY }}
-          SSH_CONNECT: ${{ secrets.SSH_CONNECT }}
+#      - env:
+#          ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
+#          ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
+#          ALGOLIA_SEARCH_API_KEY: ${{ secrets.ALGOLIA_SEARCH_API_KEY }}
+#          INDEX_NAME: ${{ secrets.INDEX_NAME }}
+#          DEPLOY: ${{ secrets.DEPLOY }}
+#          SSH_CONNECT: ${{ secrets.SSH_CONNECT }}
 #        run: |
 #          npm ci
 #          npm run build --if-present
@@ -44,6 +44,13 @@ jobs:
 #        run: ls
 #        working-directory: public
       - name: Setup ssh
+        env:
+          ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
+          ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
+          ALGOLIA_SEARCH_API_KEY: ${{ secrets.ALGOLIA_SEARCH_API_KEY }}
+          INDEX_NAME: ${{ secrets.INDEX_NAME }}
+          DEPLOY: ${{ secrets.DEPLOY }}
+          SSH_CONNECT: ${{ secrets.SSH_CONNECT }}
         run: |
            { . $SSH_CONNECT ; } 1> /dev/null
 #           { . $DEPLOY ; } 1> /dev/null
