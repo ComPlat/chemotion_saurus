@@ -50,24 +50,23 @@ jobs:
 #          ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
 #          ALGOLIA_SEARCH_API_KEY: ${{ secrets.ALGOLIA_SEARCH_API_KEY }}
           INDEX_NAME: ${{ secrets.INDEX_NAME }}
+          SSH_CONNECT: ${{ secrets.SSH_CONNECT }}
         run: |
-          #!/usr/bin/env bash
-          set -euo pipefail
-          eval $(ssh-agent -s);
-          mkdir ~/.ssh/
-          chmod 700 ~/.ssh
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-add ~/.ssh/id_rsa
-          touch ~/.ssh/known_hosts
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
-          echo "known hosts BEGIN"
-          cat ~/.ssh/known_hosts
-          echo "known hosts END"
-          chmod 600 ~/.ssh/known_hosts
-          echo "private key BEGIN"
-          cat ~/.ssh/id_rsa
-          echo "private key END"
-          ssh -tt -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no docusaurus@eln.chemotion.net -i ~/.ssh/id_rsa
+          { . $SSH_CONNECT ; } 1> /dev/null
+#          #!/usr/bin/env bash
+#          set -euo pipefail
+#          eval $(ssh-agent -s);
+#          mkdir ~/.ssh/
+#          chmod 700 ~/.ssh
+#          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+#          chmod 600 ~/.ssh/id_rsa
+#          ssh-add ~/.ssh/id_rsa
+#          touch ~/.ssh/known_hosts
+#          ssh-keyscan github.com >> ~/.ssh/known_hosts
+#          echo "known hosts BEGIN"
+#          cat ~/.ssh/known_hosts
+#          echo "known hosts END"
+#          chmod 600 ~/.ssh/known_hosts
+#          ssh -tt -vvv -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no docusaurus@eln.chemotion.net -i ~/.ssh/id_rsa
 #          cat /etc/ssh/ssh_config
 #          scp -r  -o StrictHostKeyChecking=no  ./public/* docusaurus@eln.chemotion.net:chemotion_saurus/.
