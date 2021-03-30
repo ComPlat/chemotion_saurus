@@ -50,34 +50,7 @@ jobs:
           touch ~/.ssh/known_hosts
           ssh-keyscan github.com >> ~/.ssh/known_hosts
 
-          cat /etc/ssh/ssh_config
+#          cat /etc/ssh/ssh_config
 
-          ssh -v docusaurus@eln.chemotion.net
+          ssh -vvv docusaurus@eln.chemotion.net
 #          scp -r  -o StrictHostKeyChecking=no  ./public/* docusaurus@eln.chemotion.net:chemotion_saurus/.
-
-
-#  deploy:
-#    runs-on: ubuntu-latest
-#    needs: build
-#    steps:
-##      https://github.community/t/github-actions-ci-how-to-use-store-deploy-key-to-download-from-another-private-repo/16113/6
-#      #        uses: easingthemes/ssh-deploy@v2
-#    - name: Deploy
-##      uses: appleboy/ssh-action@master
-##      with:
-###        host: ${{ secrets.HOST }}
-###        username: ${{ secrets.USERNAME }}
-##        key: ${{ secrets.SSH_PRIVATE_KEY }}
-##        host: ${{ secrets.HOST }}
-##
-##        username: "docusaurus"
-##        username: "prod"
-##        port: ${{ secrets.PORT }}
-#      run: |
-#        set -euo pipefail
-#        eval $(ssh-agent -s);
-#        mkdir -p ~/.ssh
-#        chmod 700 ~/.ssh
-#        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-#        chmod 600 ~/.ssh
-#        ssh-keyscan -t rsa github.com
