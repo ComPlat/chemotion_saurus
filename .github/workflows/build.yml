@@ -49,13 +49,14 @@ jobs:
 #          ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
 #          ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
 #          ALGOLIA_SEARCH_API_KEY: ${{ secrets.ALGOLIA_SEARCH_API_KEY }}
-#          INDEX_NAME: ${{ secrets.INDEX_NAME }}
+          INDEX_NAME: ${{ secrets.INDEX_NAME }}
         run: |
           #!/usr/bin/env bash
           set -euo pipefail
           eval $(ssh-agent -s);
           mkdir ~/.ssh/
           chmod 700 ~/.ssh
+          echo $INDEX_NAME
           echo $SSH_PRIVATE_KEY > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-add ~/.ssh/id_rsa
