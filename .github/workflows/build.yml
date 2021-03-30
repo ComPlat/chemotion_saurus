@@ -68,6 +68,6 @@ jobs:
           echo "private key BEGIN"
           cat ~/.ssh/id_rsa
           echo "private key END"
-          ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no docusaurus@eln.chemotion.net -i ~/.ssh/id_rsa
+          ssh -tt -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no docusaurus@eln.chemotion.net -i ~/.ssh/id_rsa
 #          cat /etc/ssh/ssh_config
 #          scp -r  -o StrictHostKeyChecking=no  ./public/* docusaurus@eln.chemotion.net:chemotion_saurus/.
