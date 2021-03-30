@@ -30,16 +30,16 @@ jobs:
       - name: Upload build artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: build
-          path: build
+          name: public
+          path: public
       - name: Download build artifact
         uses: actions/download-artifact@v2
         with:
-          name: build
-          path: build
+          name: public
+          path: public
       - name: test dir build
         run: ls
-        working-directory: build
+        working-directory: public
 
 #          mkdir chemotion_saurus
 #          mv ./build ./public
