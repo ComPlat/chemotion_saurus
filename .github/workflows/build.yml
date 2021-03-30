@@ -49,7 +49,7 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           touch ~/.ssh/known_hosts
           ssh-keyscan github.com >> ~/.ssh/known_hosts
-          ssh docusaurus@eln.chemotion.net
+          ssh -v docusaurus@eln.chemotion.net
 #          scp -r  -o StrictHostKeyChecking=no  ./public/* docusaurus@eln.chemotion.net:chemotion_saurus/.
 
 

@@ -32,3 +32,7 @@ GIT_USER=<Your GitHub username> USE_SSH=true yarn deploy
 ```
 
 If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+
+## GitHub Ations CI
+### Setup SSH
+https://insights.project-a.com/how-we-set-up-a-production-ci-workflow-with-github-actions-cc1e2aacd9da
