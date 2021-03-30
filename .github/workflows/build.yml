@@ -19,7 +19,7 @@ jobs:
     steps:
 # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-        env:
+      - env:
           ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
           ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
           ALGOLIA_SEARCH_API_KEY: ${{ secrets.ALGOLIA_SEARCH_API_KEY }}
@@ -31,12 +31,12 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: build
-          path: |
-            build
+          path: build
       - name: Download build artifact
         uses: actions/download-artifact@v2
         with:
           name: build
+          path: build
       - name: test dir build
         run: ls
         working-directory: build
