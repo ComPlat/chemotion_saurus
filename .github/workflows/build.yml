@@ -62,8 +62,8 @@ jobs:
           touch ~/.ssh/known_hosts
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           chmod 600 ~/.ssh/known_hosts
-          echo "ssh config:"
-          cat /etc/ssh/ssh_config
+          echo "private key:"
+          cat ~/.ssh/id_rsa
           ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -vvv docusaurus@eln.chemotion.net -i ~/.ssh/id_rsa
 #          cat /etc/ssh/ssh_config
 #          scp -r  -o StrictHostKeyChecking=no  ./public/* docusaurus@eln.chemotion.net:chemotion_saurus/.
