@@ -18,55 +18,47 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
 # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-#      - uses: actions/checkout@v2
-#      - env:
-#          ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
-#          ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
-#          ALGOLIA_SEARCH_API_KEY: ${{ secrets.ALGOLIA_SEARCH_API_KEY }}
-#          INDEX_NAME: ${{ secrets.INDEX_NAME }}
-#          DEPLOY: ${{ secrets.DEPLOY }}
-#          SSH_CONNECT: ${{ secrets.SSH_CONNECT }}
-#        run: |
-#          npm ci
-#          npm run build --if-present
-#      - name: Upload build artifacts
-#        uses: actions/upload-artifact@v2
-#        with:
-#          name: public
-#          path: build
-##      todo skip download?
-#      - name: Download build artifact
-#        uses: actions/download-artifact@v2
-#        with:
-#          name: public
-#          path: public
-#      - name: test dir build
-#        run: ls
-#        working-directory: public
+      - uses: actions/checkout@v2
+      - env:
+          ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
+          ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
+          ALGOLIA_SEARCH_API_KEY: ${{ secrets.ALGOLIA_SEARCH_API_KEY }}
+          INDEX_NAME: ${{ secrets.INDEX_NAME }}
+        run: |
+          npm ci
+          npm run build --if-present
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: public
+          path: build
+#      todo skip download?
+      - name: Download build artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: public
+          path: public
+      - name: test dir build
+        run: ls
+        working-directory: public
       - name: Setup ssh
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-#          ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
-#          ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
-#          ALGOLIA_SEARCH_API_KEY: ${{ secrets.ALGOLIA_SEARCH_API_KEY }}
-          INDEX_NAME: ${{ secrets.INDEX_NAME }}
-          SSH_CONNECT: ${{ secrets.SSH_CONNECT }}
         run: |
-          { . $SSH_CONNECT ; } 1> /dev/null
-#          #!/usr/bin/env bash
-#          set -euo pipefail
-#          eval $(ssh-agent -s);
-#          mkdir ~/.ssh/
-#          chmod 700 ~/.ssh
-#          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-#          chmod 600 ~/.ssh/id_rsa
-#          ssh-add ~/.ssh/id_rsa
-#          touch ~/.ssh/known_hosts
-#          ssh-keyscan github.com >> ~/.ssh/known_hosts
-#          echo "known hosts BEGIN"
-#          cat ~/.ssh/known_hosts
-#          echo "known hosts END"
-#          chmod 600 ~/.ssh/known_hosts
-#          ssh -tt -vvv -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no docusaurus@eln.chemotion.net -i ~/.ssh/id_rsa
+          #!/usr/bin/env bash
+          set -euo pipefail
+          eval $(ssh-agent -s);
+          mkdir ~/.ssh/
+          chmod 700 ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-add ~/.ssh/id_rsa
+          touch ~/.ssh/known_hosts
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          echo "known hosts BEGIN"
+          cat ~/.ssh/known_hosts
+          echo "known hosts END"
+          chmod 600 ~/.ssh/known_hosts
+          ssh -tt -vvv -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no docusaurus@eln.chemotion.net -i ~/.ssh/id_rsa 1> /dev/null
 #          cat /etc/ssh/ssh_config
 #          scp -r  -o StrictHostKeyChecking=no  ./public/* docusaurus@eln.chemotion.net:chemotion_saurus/.
