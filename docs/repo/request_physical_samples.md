@@ -1,4 +1,5 @@
 ---
+id: request_physical_samples
 title: Request physical samples
 slug: request_physical_samples
 author: Nicole Jung

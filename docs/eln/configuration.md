@@ -1,5 +1,5 @@
 ---
-id: doceln2
+id: settings
 title: Configuration
 sidebar_label: Configuration
 slug: settings
@@ -136,8 +136,6 @@ hint: Turbomols license needed
 settings the computed-properties can be done directly from the Admin-UI, and are saved in the DB
 
 Application will need to be restarted
-
-Test
 
 
 

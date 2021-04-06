@@ -1,10 +1,11 @@
 ---
+id: embargo_topics
 title: Embargo topics
 slug: embargo_topics
 author: Nicole Jung
 ---
 
-Embargos can be used to prepare data at any time and release the data at any time that is desired. The setting of an embargo is described in the pages [Publication and Review](2019-06-13-publication-preview-process.mdx). The release of embargos can only be done by the person who submitted the data to the repository. In principle, the release of data can be done at any time. For data that are part of a scientific publication, the release of the embargo is recommended be done either in parallel to the review process of the manuscript or after the acceptance of the manuscript. If reviewers should have access to the data, a reviewer-access to the embargo bundle can be requested. 
+Embargos can be used to prepare data at any time and release the data at any time that is desired. The setting of an embargo is described in the pages [Publication and Review](publication_review.mdx). The release of embargos can only be done by the person who submitted the data to the repository. In principle, the release of data can be done at any time. For data that are part of a scientific publication, the release of the embargo is recommended be done either in parallel to the review process of the manuscript or after the acceptance of the manuscript. If reviewers should have access to the data, a reviewer-access to the embargo bundle can be requested. 
 
 <!--truncate-->
 

@@ -1,5 +1,7 @@
 require('dotenv').config()
 
+console.log(process.env);
+
 module.exports = {
   title: 'Chemotion',
   tagline:
@@ -47,7 +49,7 @@ module.exports = {
     hideableSidebar: true,
     // comment out algolia if you don't want to have a search function
     algolia: {
-      apiKey: process.env.ALGOLIA_SEARCH_API_KEY,
+      apiKey: process.env.ALGOLIA_READ_API_KEY,
       indexName: process.env.INDEX_NAME,
       appId: process.env.ALGOLIA_APP_ID,
       //... other Algolia params
@@ -109,7 +111,7 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
-            'https://git.scc.kit.edu/complat/chemotion_saurus/edit/development-v2/',
+            'https://github.com/ComPlat/chemotion_saurus',
         },
         blog: {
           showReadingTime: true
