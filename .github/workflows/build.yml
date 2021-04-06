@@ -11,20 +11,24 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build:
+    if: ${{ true }}
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    env:
-       # define which steps to run
-       #PATHS: ${{ true }}
-       BUILD: ${{ true }}
-       DEPLOY: ${{ false }}
+    push:
+      # pull_request:
+      branches: [ master ]
+    # env:
+    #    # define which steps to run
+    #    #PATHS: ${{ true }}
+    #    BUILD: ${{ true }}
+    #    DEPLOY: ${{ false }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
 # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       - name: build
-        if: env.BUILD == 'true'
+        # if: env.BUILD == 'true'
         env:
           ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
           ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
@@ -34,8 +38,15 @@ jobs:
           npm ci
           npm run build --if-present
           mv ./build ./public
+
+    deploy:
+      if: ${{ false }}
+  	  needs: build
+      push:
+        branches: [ master ]
+      steps:
       - name: Setup ssh
-        if: env.DEPLOY == 'true'
+        # if: env.DEPLOY == 'true'
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
