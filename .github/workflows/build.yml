@@ -14,7 +14,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: build
-        # if: env.BUILD == 'true'
         env:
           ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
           ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
@@ -23,7 +22,11 @@ jobs:
         run: |
           npm ci
           npm run build --if-present
-          mv ./build ./public
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: public
+          path: build
 
   deploy:
     if: |
@@ -32,6 +35,14 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+    - name: Download build artifacts
+      uses: actions/download-artifact@v2
+      with:
+        name: public
+        path: public
+    - name: test dir build
+      run: ls
+      working-directory: public
     - name: Setup ssh
       env:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
