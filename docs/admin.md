@@ -15,5 +15,3 @@ slug: /
 [Edit Left Sidebar](https://github.com/ComPlat/chemotion_saurus/edit/master/sidebars.js)
 
 [Edit Start Page](https://github.com/ComPlat/chemotion_saurus/edit/master/src/pages/index.js)
-
-Test
