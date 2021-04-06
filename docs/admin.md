@@ -6,12 +6,12 @@ slug: /
 
 # GitLab
 
-[Create New ELN Documentation Page](https://git.scc.kit.edu/ComPlat/chemotion_saurus/-/new/development-v2/docs/eln)
+[Create New ELN Documentation Page](https://github.com/ComPlat/chemotion_saurus/new/master/docs/eln)
 
-[Create New REPO Documentation Page](https://git.scc.kit.edu/ComPlat/chemotion_saurus/-/new/development-v2/docs/repo)
+[Create New REPO Documentation Page](https://github.com/ComPlat/chemotion_saurus/new/master/docs/repo)
 
-[Create New Newsroom Page](https://git.scc.kit.edu/ComPlat/chemotion_saurus/-/new/development-v2/blog)
+[Create New Newsroom Page](https://github.com/ComPlat/chemotion_saurus/new/master/blog)
 
-[Edit Left Sidebar](https://git.scc.kit.edu/ComPlat/chemotion_saurus/-/edit/development-v2/sidebars.js)
+[Edit Left Sidebar](https://github.com/ComPlat/chemotion_saurus/edit/master/sidebars.js)
 
-[Edit Start Page](https://git.scc.kit.edu/ComPlat/chemotion_saurus/-/edit/development-v2/src/pages/index.js)
+[Edit Start Page](https://github.com/ComPlat/chemotion_saurus/edit/master/src/pages/index.js)

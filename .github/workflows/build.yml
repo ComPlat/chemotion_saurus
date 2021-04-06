@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-  pull_request:
+# pull_request:
     branches: [ master ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -13,13 +13,19 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-#    container: node:12.18.3
+    env:
+       # define which steps to run
+       #PATHS: ${{ true }}
+       BUILD: ${{ true }}
+       DEPLOY: ${{ false }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
 # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      - env:
+      - name: build
+        if: env.BUILD == 'true'
+        env:
           ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
           ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
           ALGOLIA_SEARCH_API_KEY: ${{ secrets.ALGOLIA_SEARCH_API_KEY }}
@@ -27,21 +33,9 @@ jobs:
         run: |
           npm ci
           npm run build --if-present
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: public
-          path: build
-#      todo skip download?
-      - name: Download build artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: public
-          path: public
-      - name: test dir build
-        run: ls
-        working-directory: public
+          mv ./build ./public
       - name: Setup ssh
+        if: env.DEPLOY == 'true'
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
@@ -55,10 +49,5 @@ jobs:
           ssh-add ~/.ssh/id_rsa
           touch ~/.ssh/known_hosts
           ssh-keyscan github.com >> ~/.ssh/known_hosts
-          echo "known hosts BEGIN"
-          cat ~/.ssh/known_hosts
-          echo "known hosts END"
           chmod 600 ~/.ssh/known_hosts
-          ssh -tt -vvv -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no docusaurus@eln.chemotion.net -i ~/.ssh/id_rsa 1> /dev/null
-#          cat /etc/ssh/ssh_config
-#          scp -r  -o StrictHostKeyChecking=no  ./public/* docusaurus@eln.chemotion.net:chemotion_saurus/.
+          scp -r -o StrictHostKeyChecking=no  ./public/* docusaurus@eln.chemotion.net:chemotion_saurus/.

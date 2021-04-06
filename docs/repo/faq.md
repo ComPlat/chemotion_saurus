@@ -1,4 +1,5 @@
 ---
+id: faq
 title: Fequently Asked Questions (FAQ)
 slug: faq
 sidebar_label: FAQ
@@ -145,6 +146,4 @@ Metadata support is provided for information like analysis types and reaction na
 
 ## How are data accessible if one set is an embargo?
 The embargo can only be released by the submitter of the datasets. Only if all data that belong to the embargo bundle are complete and reviewed, the release is possible. Please see also the Usage Pages for further information.
-
-
 

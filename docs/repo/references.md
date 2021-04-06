@@ -1,4 +1,5 @@
 ---
+id: references
 title: References
 slug: references
 author: Nicole Jung
