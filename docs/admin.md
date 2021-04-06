@@ -4,7 +4,7 @@ title: Admin
 slug: /
 ---
 
-# GitLab
+# GitHub
 
 [Create New ELN Documentation Page](https://github.com/ComPlat/chemotion_saurus/new/master/docs/eln)
 

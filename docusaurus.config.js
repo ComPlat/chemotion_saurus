@@ -109,7 +109,9 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
-            'https://github.com/ComPlat/chemotion_saurus',
+            'https://github.com/ComPlat/chemotion_saurus/edit/master/',
+            // 'https://github.com/ComPlat/chemotion_saurus',
+          
         },
         blog: {
           showReadingTime: true
