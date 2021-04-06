@@ -5,7 +5,6 @@ on:
   push:
 # pull_request:
     branches: [ master ]
-  # page_build:
 
 jobs:
   build:
@@ -40,9 +39,9 @@ jobs:
       with:
         name: public
         path: public
-    - name: test dir build
-      run: ls
-      working-directory: public
+    # - name: test dir build
+    #   run: ls
+    #   working-directory: public
     - name: Setup ssh
       env:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
@@ -58,4 +57,4 @@ jobs:
         touch ~/.ssh/known_hosts
         ssh-keyscan github.com >> ~/.ssh/known_hosts
         chmod 600 ~/.ssh/known_hosts
-        scp -r -o StrictHostKeyChecking=no  ./public/* docusaurus@eln.chemotion.net:chemotion_saurus/.
+        rsync -a --delete ./public/ docusaurus@eln.chemotion.net:chemotion_saurus/.
