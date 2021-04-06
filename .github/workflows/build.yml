@@ -7,6 +7,7 @@ on:
   push:
 # pull_request:
     branches: [ master ]
+  # page_build:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -14,9 +15,6 @@ jobs:
     if: ${{ true }}
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    push:
-      # pull_request:
-      branches: [ master ]
     # env:
     #    # define which steps to run
     #    #PATHS: ${{ true }}
@@ -38,27 +36,3 @@ jobs:
           npm ci
           npm run build --if-present
           mv ./build ./public
-
-    deploy:
-      if: ${{ false }}
-  	  needs: build
-      push:
-        branches: [ master ]
-      steps:
-      - name: Setup ssh
-        # if: env.DEPLOY == 'true'
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        run: |
-          #!/usr/bin/env bash
-          set -euo pipefail
-          eval $(ssh-agent -s);
-          mkdir ~/.ssh/
-          chmod 700 ~/.ssh
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-add ~/.ssh/id_rsa
-          touch ~/.ssh/known_hosts
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
-          chmod 600 ~/.ssh/known_hosts
-          scp -r -o StrictHostKeyChecking=no  ./public/* docusaurus@eln.chemotion.net:chemotion_saurus/.
