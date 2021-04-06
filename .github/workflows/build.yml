@@ -48,13 +48,4 @@ jobs:
       run: |
         #!/usr/bin/env bash
         set -euo pipefail
-        eval $(ssh-agent -s);
-        mkdir ~/.ssh/
-        chmod 700 ~/.ssh
-        echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
-        ssh-add ~/.ssh/id_rsa
-        touch ~/.ssh/known_hosts
-        ssh-keyscan github.com >> ~/.ssh/known_hosts
-        chmod 600 ~/.ssh/known_hosts
         rsync -e "ssh -o StrictHostKeyChecking=no" -a --delete ./public/ docusaurus@eln.chemotion.net:chemotion_saurus/.
