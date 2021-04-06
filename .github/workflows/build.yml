@@ -57,4 +57,4 @@ jobs:
         touch ~/.ssh/known_hosts
         ssh-keyscan github.com >> ~/.ssh/known_hosts
         chmod 600 ~/.ssh/known_hosts
-        rsync -a --delete ./public/ docusaurus@eln.chemotion.net:chemotion_saurus/.
+        rsync -e "ssh -o StrictHostKeyChecking=no" -a --delete ./public/ docusaurus@eln.chemotion.net:chemotion_saurus/.
