@@ -1,0 +1,16 @@
+name: download
+
+on:
+  push:
+    branches: [ github-actions ]
+
+  workflow_dispatch:
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: build
