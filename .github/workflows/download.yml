@@ -1,10 +1,9 @@
 name: download
 
 on:
-  push:
-    branches: [ github-actions ]
-
   workflow_dispatch:
+  push:
+    branches: [ master ]
 
 jobs:
   download:
