@@ -14,7 +14,7 @@ module.exports = {
           'eln/intro',
           'eln/browser',
           'eln/structure',
-          // 'eln/firststeps',
+          'eln/firststeps',
           'eln/problems',
         ]
       },
