@@ -1,0 +1,63 @@
+---
+id: instrunctions
+title: How To Markdown
+slug: instrunctions
+---
+
+## New Pages
+- insert .mdx as filename in GitHub
+- At the top of every page:
+
+``` 
+---
+id: videos_eln
+slug: videos_eln
+title: Introduction Videos
+---
+```
+
+`id:`  The unique document id. By default, a document id is the name of the document (without the extension) relative to the root docs directory. It can be used in the left TOC.  
+`slug:` Optional. Defines the last part of the URL.  
+`title:`  Optional. Prompted on the page.
+
+## Markdown
+All pages are creted with Markdown with JavaScript (JSX).
+
+### Images
+Images can be inserted as Markdown or as HTML for special configurations (resizing etc.) or if the image is inside an HTML tag:
+``` 
+![Management Level Button](/img/mgmt_level_btn.png)  
+<img src={"/chemotionsaurus/img/mgmt_level_btn.png"} width={"20px"} alt={"Management Level Button"}/>
+``` 
+There should be no /static in src.
+
+### Info Boxes
+Highlighted info boxes with further informations are called "Admonitions" in docusaurus. [See here.](https://docusaurus.io/docs/markdown-features/admonitions)
+
+### Line Breaks
+Insert two white spaces at the end of the line.
+
+### Links
+```
+[alt tag](link)
+```
+
+#### extern
+```
+[www.chemotion.net](http://www.chemotion.net)
+```
+
+#### intern
+```
+[Instructions for Creating Pages](./instructions.mdx)
+```
+
+### Table
+```
+| header 1 | header 2 |
+|---|---|
+| field 1  |  field 2 |
+```
+
+## TOC
+The TOC on the left of every documentation page must be manual updated via sidebars.js. If you have inserted a new page or want to change the order, change it in sidebars.js.

@@ -4,6 +4,7 @@ import uuid
 import json
 
 # todo hierarchy h2-h6
+# generators
 
 stopwords = pickle.load(open("stopwords.p", "rb"))
 stopwords.add('')
@@ -11,7 +12,7 @@ records = []
 
 root_dir = r'../docs'
 url = "https://eln.chemotion.net/chemotionsaurus/"
-ignore_files = ('admin.md')
+ignore_files = ('admin.md', 'instructions.mdx')
 
 def remove_words(words):
     clean_words = ''
@@ -106,4 +107,3 @@ read_files(root_dir)
 
 with open('browse_new.json', 'w', encoding="utf-8") as outfile:
     json.dump(records, outfile, ensure_ascii=False)
-
