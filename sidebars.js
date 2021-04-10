@@ -11,10 +11,12 @@ module.exports = {
       'eln/settings',
       {
         Usage: [
+          'eln/about',
           'eln/intro',
           'eln/browser',
           'eln/structure',
           'eln/firststeps',
+          'eln/collections',
           'eln/problems',
         ]
       },

@@ -5,12 +5,13 @@ slug: instrunctions
 ---
 
 ## New Pages
-- insert .mdx as filename in GitHub
+- use .mdx as filename in GitHub
 - At the top of every page:
 
 ``` 
 ---
 id: videos_eln
+sidebar_label: Videos
 slug: videos_eln
 title: Introduction Videos
 ---
@@ -23,6 +24,15 @@ title: Introduction Videos
 ## Markdown
 All pages are creted with Markdown with JavaScript (JSX).
 
+### Icon Buttons
+For icon buttons the library Font Awesome is used. Import it in the page and get icons from here: [https://fontawesome.com/](https://fontawesome.com/)
+```
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
+
+<button className="button button--sm  button--success" style={{width: "10%", height: "30%"}}><FontAwesomeIcon icon={faPlus} size="lg"/></button>
+```
+
 ### Images
 Images can be inserted as Markdown or as HTML for special configurations (resizing etc.) or if the image is inside an HTML tag:
 ``` 
@@ -32,7 +42,7 @@ Images can be inserted as Markdown or as HTML for special configurations (resizi
 There should be no /static in src.
 
 ### Info Boxes
-Highlighted info boxes with further informations are called "Admonitions" in docusaurus. [See here.](https://docusaurus.io/docs/markdown-features/admonitions)
+Highlighted info boxes ([like in the eln intro page](./eln/intro.mdx)) with further informations are called "Admonitions" in docusaurus. [See here.](https://docusaurus.io/docs/markdown-features/admonitions)
 
 ### Line Breaks
 Insert two white spaces at the end of the line.
@@ -49,7 +59,7 @@ Insert two white spaces at the end of the line.
 
 #### intern
 ```
-[Instructions for Creating Pages](./instructions.mdx)
+[Instructions for ELN](./eln/intro.mdx)
 ```
 
 ### Table

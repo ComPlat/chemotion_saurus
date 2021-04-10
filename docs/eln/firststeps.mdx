@@ -5,18 +5,21 @@ sidebar_label: First Steps
 slug: firststeps
 ---
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCog, faPlus } from '@fortawesome/free-solid-svg-icons'
+
 ## Registration
 Registration is a necessary step towards your own laboratory notebook. Please register on your first visit to the electronic laboratory notebook. Then use this access data for each subsequent login. The registration page or the login page will always be the first page accessed. 
 
 ## SciFinder Setup
-The SciFinder function is currently only available at the ELN instance at KIT in Karlsruhe. A rework of the API to meet the requirement of SciFinderN will be provided as soon as possible
+The SciFinder function is currently only available at the ELN instance at KIT in Karlsruhe. A rework of the API to meet the requirement of SciFinderN will be provided as soon as possible.  
 
+## The First Collection
 
+![Collection View](/img/collection_panel.png) 
 
-## The first Collection
-
-A "collection" is a collection of elements (molecules, reactions, screens, well plates and others) that is assigned to a project or subproject. Two collections are given per default, Chemotion.net and All. The "Chemotion.net" collection is a connector to the chemotion repository and should not be used in the first ELN trials. The collection "All" is installed as backup, it contains all entries of the ELN independent of other assignments. The creation of the first own collection is usually the first step in the ELN and allows to store own elements.
-For the creation of collections please use the collection management via the red collection button in the collection bar. Please create a new entry **new collection** under **My collections** by pressing [ ]. Please rename the collection and save it by pressing update.
+A **collection** is a collection of elements (**Sample**, **Reaction**, **Wellplate**, **Screen**, **Research Plan** and others) that is assigned to a project or subproject. Two collections are given per default: **chemotion.net** and **All**. The **chemotion.net** collection is a connector to the chemotion repository and should not be used in the first ELN trials. The collection **All** is installed as backup, it contains all entries of the ELN independent of other assignments. The creation of the first own collection is usually the first step in the ELN and allows to store own elements.
+For the creation of collections please use the collection management via the red button <button className="button button--sm button--danger" style={{width: "10%", height: "30%"}}><FontAwesomeIcon icon={faCog}  size="lg"/></button> in the collection bar. Please create a new entry **New Collection** under **My Collections** by pressing <button className="button button--sm  button--success" style={{width: "10%", height: "30%"}}><FontAwesomeIcon icon={faPlus} size="lg"/></button>. Please rename the collection and save it by pressing update <button className="button button--sm button--warning">Update</button>.
 
 :::danger Caution
 To use the ELN functions, a first user-defined collection has to be created!
