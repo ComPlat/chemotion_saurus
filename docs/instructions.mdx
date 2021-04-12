@@ -24,13 +24,19 @@ title: Introduction Videos
 ## Markdown
 All pages are creted with Markdown with JavaScript (JSX).
 
-### Icon Buttons
-For icon buttons the library Font Awesome is used. Import it in the page and get icons from here: [https://fontawesome.com/](https://fontawesome.com/)
+### Buttons
+#### with Icons
+For icon buttons the library Font Awesome is used. Get icons from here: [https://fontawesome.com/](https://fontawesome.com/) and import them in the page together with a button function. The color palette is from the [Infima library](https://infima.dev/docs/components/button).
 ```
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { Btn } from '../btn.js'
 
-<button className="button button--sm  button--success" style={{width: "10%", height: "30%"}}><FontAwesomeIcon icon={faPlus} size="lg"/></button>
+<Btn icon={faPlus} color={"success"}/> 
+```
+
+#### with Text
+```
+<button className="button button--sm button--warning">Update</button>
 ```
 
 ### Images
@@ -69,5 +75,15 @@ Insert two white spaces at the end of the line.
 | field 1  |  field 2 |
 ```
 
+### Text Formatting
+**bold**
+```
+**bold**
+<b>bold</b>
+```
+`highlight elements, e. g. UI elements` 
+```
+`Collection Bar`
+```
 ## TOC
-The TOC on the left of every documentation page must be manual updated via sidebars.js. If you have inserted a new page or want to change the order, change it in sidebars.js.
+The TOC on the left of every documentation page must be manual updated via **sidebars.js**. If you have inserted a new page or want to change the order, change it in **sidebars.js**.

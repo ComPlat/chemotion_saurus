@@ -4,15 +4,15 @@ title: Structure of the ELN
 slug: structure
 ---
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClone, faCog } from '@fortawesome/free-solid-svg-icons'
+import {Btn} from '../btn.js'
 
 The ELN consists of different panels that are combined in the main application page:
 ## Main Page
 ![whole window](/img/screen.png)
 `Action Bar`: The action bar on the top contains symbols for essential actions that are either very important for setting up the ELN or for using it. The action bar is located just below the browser window.  
  `Collection Bar`: The collection bar is located on the left below the action bar and used to navigate through the collections. It can be toggled on/off.  
- `Management Level`: The management level can be opened using the button <button className="button button--sm button--danger" style={{width: "10%", height: "30%"}}><FontAwesomeIcon icon={faCog} size="lg"/></button> in the collection bar. The management level enables the creation, deletion and organization of collections.  
+ `Management Level`: The management level can be opened using the button <Btn icon={faCog} color={"danger"}/> in the collection bar. The management level enables the creation, deletion and organization of collections.  
  ![Management Level](/img/mgmt_lvl.png)
 `Element Bar`: The element bar is to the right of the collection bar. It shows the elements ** Sample **, ** Reaction **, ** Wellplate **,  ** Screen ** and **Research Plan** assigned to the selected collection. 
 
@@ -33,4 +33,4 @@ Samples are the smallest organizational unit of this ELN. They describe the phys
 
 ## Actions
 -  `Split` :** Split ** is an action that can be carried out according to the physical division of a sample into subsets (a certain amount of a chemical compound). A ** split ** represents the removal of a subset from a sample and depicts this by generating a new sample with the same properties as the original sample. The split action can be traced by numbering the newly created sample based on the original sample.
--  `Copy`<button className="button button--sm button--success" style={{width: "10%", height: "30%"}}><FontAwesomeIcon icon={faClone} size="lg"/></button>: In contrast to the ** Split **, the ** Copy ** action means that a copy of only the molecular structure (including the parameters dependent on the molecular structure such as molecular weight) is made. The copy has no relation to the original sample and can be saved under a new name.
+-  `Copy`<Btn icon={faClone} color={"success"}/>: In contrast to the ** Split **, the ** Copy ** action means that a copy of only the molecular structure (including the parameters dependent on the molecular structure such as molecular weight) is made. The copy has no relation to the original sample and can be saved under a new name.
