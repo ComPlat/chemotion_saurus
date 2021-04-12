@@ -1,4 +1,4 @@
-name: build CI
+name: CI
 
 on:
   workflow_dispatch:

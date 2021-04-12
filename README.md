@@ -38,4 +38,5 @@ If you are using GitHub pages for hosting, this command is a convenient way to b
 https://insights.project-a.com/how-we-set-up-a-production-ci-workflow-with-github-actions-cc1e2aacd9da  
 https://github.community/t/github-actions-ci-how-to-use-store-deploy-key-to-download-from-another-private-repo/16113/5
 
-[![Deploy Status](https://github.com/ComPlat/chemotion_saurus/actions/workflows/build.yml/badge.svg)](https://github.com/ComPlat/chemotion_saurus/actions/workflows/build.yml/badge.svg)
+## Code Status
+[(https://github.com/ComPlat/chemotion_saurus/actions/workflows/build.yml/badge.svg)](https://github.com/ComPlat/chemotion_saurus/actions/workflows/build.yml/badge.svg)
