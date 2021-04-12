@@ -39,32 +39,22 @@ jobs:
       with:
         name: public
         path: public
-    - name: Deploy to Server
-      uses: easingthemes/ssh-deploy@v2.1.5
-      env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          ARGS: '-e "ssh -o StrictHostKeyChecking=no" -az --delete'
-          SOURCE: "./public/"
-          REMOTE_HOST: eln.chemotion.net
-          REMOTE_USER: docusaurus
-          TARGET: chemotion_saurus/.
-          # EXCLUDE: "/dist/, /node_modules/"
     # - name: test dir build
     #   run: ls
     #   working-directory: public
-    # - name: Setup ssh
-    #   env:
-    #     SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-    #   run: |
-    #     #!/usr/bin/env bash
-    #     set -euo pipefail
-    #     eval $(ssh-agent -s);
-    #     mkdir ~/.ssh/
-    #     chmod 700 ~/.ssh
-    #     echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-    #     chmod 600 ~/.ssh/id_rsa
-    #     ssh-add ~/.ssh/id_rsa
-    #     touch ~/.ssh/known_hosts
-    #     ssh-keyscan github.com >> ~/.ssh/known_hosts
-    #     chmod 600 ~/.ssh/known_hosts
-    #     rsync -e "ssh -o StrictHostKeyChecking=no" -az --delete ./public/ docusaurus@eln.chemotion.net:chemotion_saurus/.
+    - name: Setup ssh and deploy2
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      run: |
+        #!/usr/bin/env bash
+        set -euo pipefail
+        eval $(ssh-agent -s);
+        mkdir ~/.ssh/
+        chmod 700 ~/.ssh
+        echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-add ~/.ssh/id_rsa
+        touch ~/.ssh/known_hosts
+        ssh-keyscan github.com >> ~/.ssh/known_hosts
+        chmod 600 ~/.ssh/known_hosts
+        rsync -e "ssh -o StrictHostKeyChecking=no" -az --delete ./public/ docusaurus@eln.chemotion.net:chemotion_saurus/.
