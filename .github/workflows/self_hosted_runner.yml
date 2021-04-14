@@ -14,7 +14,7 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: docker
-        uses: docker://complat/complat-ubuntu-runner:0.10.20
+      - uses: docker://complat/complat-ubuntu-runner:0.10.20
         run: |
             ls
         working-directory: /github/home/
