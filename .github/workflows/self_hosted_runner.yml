@@ -14,6 +14,8 @@ jobs:
       - name: docker
        # uses: docker://complat/complat-ubuntu-runner:0.10.20
         run: |
+            container_id=$(docker ps --all --format "{{.ID}}")
+            docker exec -i $container_id bash
             ls
-        # working-directory: /github/home
+        working-directory: /github/home
         
