@@ -7,6 +7,8 @@ on:
 
 jobs:
   docker:
+    if: |
+      ${{ false }} 
     container: 
       image: complat/complat-ubuntu-runner:0.10.20
     runs-on: self-hosted
@@ -18,4 +20,14 @@ jobs:
             docker exec -i $container_id bash
             ls
         working-directory: /github/home
+
+  testbox:
+    if: |
+      ${{ true }} 
+    runs-on: self-hosted
+    container:
+      image: azul/zulu-openjdk-alpine:8-jre
+    steps:  
+    - name: What java version do we have
+      run: java -version
         
