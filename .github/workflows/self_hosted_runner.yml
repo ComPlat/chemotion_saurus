@@ -8,22 +8,20 @@ on:
 jobs:
   docker:
     if: |
-      ${{ false }} 
+      ${{ true }} 
     container: 
       image: complat/complat-ubuntu-runner:0.10.20
     runs-on: self-hosted
     steps:
       - name: docker
-       # uses: docker://complat/complat-ubuntu-runner:0.10.20
+        uses: docker://complat/complat-ubuntu-runner:0.10.20
         run: |
-            container_id=$(docker ps --all --format "{{.ID}}")
-            docker exec -i $container_id bash
             ls
         working-directory: /github/home
 
   testbox:
     if: |
-      ${{ true }} 
+      ${{ false }} 
     runs-on: self-hosted
     container:
       image: azul/zulu-openjdk-alpine:8-jre
