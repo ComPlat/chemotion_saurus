@@ -15,4 +15,5 @@ jobs:
             # docker run -it -d complat/complat-ubuntu-runner:0.10.20
             # todo just last container_id
             docker exec -i $(docker ps --filter status=running | grep "complat/complat-ubuntu-runner:0.10.20" | awk '{ print $1 }') bash
+            pwd
             ls
