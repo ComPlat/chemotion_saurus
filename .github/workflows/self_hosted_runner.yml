@@ -12,7 +12,6 @@ jobs:
     runs-on: self-hosted
     container: 
       image: complat/complat-ubuntu-runner:0.10.20
-      volumes: 
     steps:
       - name: docker
         uses: docker://complat/complat-ubuntu-runner:0.10.20
