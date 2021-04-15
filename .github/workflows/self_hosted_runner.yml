@@ -12,8 +12,7 @@ jobs:
     runs-on: self-hosted
     steps:
       - run: |
-            docker run -it -d complat/complat-ubuntu-runner:0.10.20
+            # docker run -it -d complat/complat-ubuntu-runner:0.10.20
             # todo just last container_id
-            container_id=$(docker ps --filter status=running | grep "complat/complat-ubuntu-runner:0.10.20" | awk '{ print $1 }')
-            docker exec -i $container_id bash
+            docker exec -i $(docker ps --filter status=running | grep "complat/complat-ubuntu-runner:0.10.20" | awk '{ print $1 }') bash
             ls
