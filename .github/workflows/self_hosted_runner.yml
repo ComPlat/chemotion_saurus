@@ -8,24 +8,16 @@ on:
 jobs:
   docker:
     if: |
-      ${{ true }} 
+      ${{ true }}
+    runs-on: self-hosted
     container: 
       image: complat/complat-ubuntu-runner:0.10.20
-    runs-on: self-hosted
+      volumes: 
     steps:
       - name: docker
-      - uses: docker://complat/complat-ubuntu-runner:0.10.20
-        run: |
-            ls
-        working-directory: /github/home/
-
-  testbox:
-    if: |
-      ${{ false }} 
-    runs-on: self-hosted
-    container:
-      image: azul/zulu-openjdk-alpine:8-jre
-    steps:  
-    - name: What java version do we have
-      run: java -version
-        
+        uses: docker://complat/complat-ubuntu-runner:0.10.20
+      - run: |
+            docker images
+            ls -la $GITHUB_WORKSPACE
+            la - la /home/ira/actions-runner/chemotion_saurus_github/_temp/_github_home
+            
