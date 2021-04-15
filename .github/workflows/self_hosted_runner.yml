@@ -19,5 +19,5 @@ jobs:
         working-directory: /github/  
       - run: |      
             pwd    
-            cat event.json
-        working-directory: /github/workflow
+            ls -la
+        working-directory: /__w/chemotion_saurus/chemotion_saurus
