@@ -10,17 +10,8 @@ jobs:
     if: |
       ${{ true }}
     runs-on: self-hosted
-    container: 
-      image: complat/complat-ubuntu-runner:0.10.20
     steps:
-      - name: env
-        run: |
-         echo ${{job}}
-      - run: |      
-            pwd    
-            ls -la
-        working-directory: /github/  
-      - run: |      
-            pwd    
-            ls -la
-        working-directory: /__w/chemotion_saurus/chemotion_saurus
+    - name: docker
+      uses: docker://complat/complat-ubuntu-runner:0.10.20
+      with:
+         args: docker images
