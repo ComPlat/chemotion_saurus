@@ -15,6 +15,11 @@ jobs:
     steps:
       - name: docker
         uses: docker://complat/complat-ubuntu-runner:0.10.20
-      - run: |          
+      - run: |      
+            pwd    
             ls -la
-        working-directory: /workspace
+        working-directory: /github/
+      - run: |      
+            pwd    
+            ls -la
+        working-directory: /github/workspace
