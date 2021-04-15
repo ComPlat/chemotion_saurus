@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: env
         run: |
-         ${{ job.container}}
+         echo ${{job}}
       - run: |      
             pwd    
             ls -la
