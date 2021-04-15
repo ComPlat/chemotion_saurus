@@ -23,5 +23,5 @@ jobs:
         working-directory: /github/workflow
       - run: |      
             pwd    
-            ls -la
+            cat event.json
         working-directory: /github/home
