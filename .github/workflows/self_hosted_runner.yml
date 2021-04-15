@@ -16,10 +16,6 @@ jobs:
       - run: |      
             pwd    
             ls -la
-        working-directory: /workspace/
-      - run: |      
-            pwd    
-            ls -la
         working-directory: /github/  
       - run: |      
             pwd    
