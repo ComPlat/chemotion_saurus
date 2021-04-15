@@ -15,6 +15,7 @@ jobs:
       volumes: 
        - ${{ github.workspace }}:/workspace
     steps:
-      - run: |
-            echo ${{ github.workspace }}
+      - run: |          
             ls
+        with:
+          working-directory: /workspace
