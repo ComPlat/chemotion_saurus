@@ -22,4 +22,8 @@ jobs:
       - run: |      
             pwd    
             ls -la
-        working-directory: /github/workspace
+        working-directory: /github/home
+      - run: |      
+            pwd    
+            ls -la
+        working-directory: /github/workflow
