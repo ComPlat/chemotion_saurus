@@ -16,7 +16,7 @@ jobs:
       - name: docker
         uses: docker://complat/complat-ubuntu-runner:0.10.20
       - run: |
-            #!/usr/bin/env bash
+            which docker
             docker images
             ls -la $GITHUB_WORKSPACE
             la - la /home/ira/actions-runner/chemotion_saurus_github/_temp/_github_home
