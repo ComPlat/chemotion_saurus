@@ -19,9 +19,5 @@ jobs:
         working-directory: /github/  
       - run: |      
             pwd    
-            ls -la
-        working-directory: /github/workflow
-      - run: |      
-            pwd    
             cat event.json
-        working-directory: /github/home
+        working-directory: /github/workflow
