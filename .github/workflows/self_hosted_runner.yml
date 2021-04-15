@@ -13,6 +13,9 @@ jobs:
     container: 
       image: complat/complat-ubuntu-runner:0.10.20
     steps:
+      - name: env
+        run: |
+         ${{ job.container}}
       - run: |      
             pwd    
             ls -la
