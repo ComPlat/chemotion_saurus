@@ -10,10 +10,11 @@ jobs:
     if: |
       ${{ true }}
     runs-on: self-hosted
+    container: 
+      image: complat/complat-ubuntu-runner:0.10.20
+      volumes: 
+       - ${{ github.workspace }}:/workspace
     steps:
       - run: |
-            # docker run -it -d complat/complat-ubuntu-runner:0.10.20
-            # todo just last container_id
-            docker exec -i $(docker ps --filter status=running | grep "complat/complat-ubuntu-runner:0.10.20" | awk '{ print $1 }') bash
-            pwd
+            ${{ job.container.complat/complat-ubuntu-runner:0.10.20.id }}
             ls
