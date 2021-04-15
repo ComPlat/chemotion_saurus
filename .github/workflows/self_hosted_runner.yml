@@ -10,11 +10,7 @@ jobs:
     if: |
       ${{ true }}
     runs-on: self-hosted
-    container: 
-      image: complat/complat-ubuntu-runner:0.10.20
     steps:
-      - name: docker
-        uses: docker://complat/complat-ubuntu-runner:0.10.20
       - run: |
             which docker
             docker images
