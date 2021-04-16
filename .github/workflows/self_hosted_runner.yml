@@ -10,10 +10,12 @@ jobs:
     if: ${{ true }}
     runs-on: self-hosted
     steps:
-      - name: docker native
-        run: |
-          docker cp $(docker run -it -d complat/complat-ubuntu-runner:0.10.20):/home/gitlab-runner .   
-          docker ps -q       
-      - run: |
-            ls
-        working-directory: /home/ira/actions-runner/chemotion_saurus_github/chemotion_saurus/chemotion_saurus/
+    - uses: actions/checkout@v2
+    - name: Run box version	    
+      uses: docker://complat/complat-ubuntu-runner:0.10.20
+      with:
+        args: docker exec -i $(docker run -it -d complat/complat-ubuntu-runner:0.10.20) bash
+    - run: |
+          ls
+      working-directory: ${{GITHUB_WORKSPACE}}
+      # working-directory: /home/ira/actions-runner/chemotion_saurus_github/chemotion_saurus/chemotion_saurus/
