@@ -12,6 +12,6 @@ jobs:
     steps:
       - name: docker native
         run: |
-          docker images
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
+          docker run -it -d complat/complat-ubuntu-runner:0.10.20
+          docker exec -i $(docker ps --filter status=running | grep "complat/complat-ubuntu-runner:0.10.20" | awk '{ print $1 }') bash
+          ls
