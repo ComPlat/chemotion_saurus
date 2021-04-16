@@ -25,5 +25,3 @@ jobs:
         working-directory: /__w/chemotion_saurus/chemotion_saurus
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
-        with:
-          sudo: false
