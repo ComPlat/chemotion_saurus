@@ -7,7 +7,7 @@ on:
 
 jobs:
   docker_pull:
-    if: ${{hashFiles('gitlab-runner/Gemfile')}} == ''
+    if: test -d gitlab-runner && echo exists == ''
     runs-on: self-hosted
     steps:
     - run: |
