@@ -6,19 +6,10 @@ on:
     branches: [ master ]
 
 jobs:
-  docker_pull:
-    if: ${{ hashFiles('gitlab-runner/*') }} == ''
-    runs-on: self-hosted
-    steps:
-    - run: |
-        docker pull complat/complat-ubuntu-runner:0.10.20
-        docker cp $(docker run -it -d complat/complat-ubuntu-runner:0.10.20):/home/gitlab-runner .
-
   db:
     runs-on: self-hosted
     steps:
-      - name: The job has succeeded
-        if: ${{ hashFiles('gitlab-runner/*') }} != ''
+      - if: ${{ hashFiles('gitlab-runner/*') }} != ''
         run: |
             pwd
             ls
