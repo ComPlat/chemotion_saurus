@@ -11,8 +11,6 @@ jobs:
     runs-on: self-hosted
     steps:
     - uses: docker://complat/complat-ubuntu-runner:0.10.20
-      with:
-        args: version
     - run: |
           pwd
           ls
