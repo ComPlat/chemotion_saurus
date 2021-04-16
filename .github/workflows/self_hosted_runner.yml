@@ -6,18 +6,28 @@ on:
     branches: [ master ]
 
 jobs:
-  docker:
-    if: |
-      ${{ true }}
-    runs-on: self-hosted
-    container: 
-      image: complat/complat-ubuntu-runner:0.10.20
-      volumes: 
-      - ${{ github.workspace }}:/workspace
-    steps:
-      - name: env
-        run: |
-          echo $job
-        working-directory: /__w/chemotion_saurus/chemotion_saurus
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
+  testbox:
+    runs-on: ubuntu-latest
+    container:
+      image: azul/zulu-openjdk-alpine:8-jre
+    steps:  
+    - name: What OS is running
+      run: uname -a
+    - name: What java version do we have
+      run: java -version
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v3
+  # docker:
+  #   if: ${{ true }}
+  #   runs-on: self-hosted
+  #   container: 
+  #     image: complat/complat-ubuntu-runner:0.10.20
+  #     volumes: 
+  #     - ${{ github.workspace }}:/workspace
+  #   steps:
+  #     - name: env
+  #       run: |
+  #         echo $job
+  #       working-directory: /__w/chemotion_saurus/chemotion_saurus
+  #     - name: Setup tmate session
+  #       uses: mxschmitt/action-tmate@v3
