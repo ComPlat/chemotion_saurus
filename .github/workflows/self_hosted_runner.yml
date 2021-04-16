@@ -9,12 +9,14 @@ jobs:
   testbox:
     runs-on: self-hosted
     container:
-      image: azul/zulu-openjdk-alpine:8-jre
+      image: local
+      volumes: 
+        - /
     steps:  
-    - name: What java version do we have
+    - name: local volume
       run: |
-        java -version
-        echo $job
+        pwd
+        ls
     - name: Setup tmate session
       uses: mxschmitt/action-tmate@v3
   
@@ -24,7 +26,8 @@ jobs:
   #   container: 
   #     image: complat/complat-ubuntu-runner:0.10.20
   #     volumes: 
-  #     - ${{ github.workspace }}:/workspace
+  #     - ${{ github.workspace }}:/absolute path in the container
+        # - ${{ github.workspace }}:/home/gitlab-runner
   #   steps:
   #     - name: env
   #       run: |
