@@ -19,7 +19,7 @@ jobs:
     steps:
       - name: The job has succeeded
         if: ${{ hashFiles('gitlab-runner/*') }} != ''
-      - run: |
+        run: |
             pwd
             ls
       #working-directory: ${{github.workspace}}
