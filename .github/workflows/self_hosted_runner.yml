@@ -9,14 +9,9 @@ jobs:
   docker:
     if: ${{ true }}
     runs-on: self-hosted
-    container: 
-      image: complat/complat-ubuntu-runner:0.10.20
-      volumes: 
-        - /home/gitlab-runner:${{ github.workspace }}
     steps:
-      - name: volume
+      - name: docker native
         run: |
-          ls
-        working-directory: ${{ github.workspace }}
+          docker images
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
