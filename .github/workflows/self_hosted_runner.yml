@@ -12,8 +12,9 @@ jobs:
     steps:
       - name: docker native
         run: |
-          docker cp $(docker run -it -d complat/complat-ubuntu-runner:0.10.20):/home/gitlab-runner .   
-          docker ps -q       
+          pwd
+          # docker cp $(docker run -it -d complat/complat-ubuntu-runner:0.10.20):/home/gitlab-runner .   
+          # docker ps -q       
       - run: |
             ls
         working-directory: /.
