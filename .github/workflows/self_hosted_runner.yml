@@ -13,4 +13,4 @@ jobs:
       - name: docker native
         run: |
           docker exec -i $(docker run -it -d complat/complat-ubuntu-runner:0.10.20) bash
-          docker images
+          docker ps -a
