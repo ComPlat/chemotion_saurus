@@ -7,16 +7,17 @@ on:
 
 jobs:
   testbox:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     container:
       image: azul/zulu-openjdk-alpine:8-jre
     steps:  
-    - name: What OS is running
-      run: uname -a
     - name: What java version do we have
-      run: java -version
+      run: |
+        java -version
+        echo $job
     - name: Setup tmate session
       uses: mxschmitt/action-tmate@v3
+  
   # docker:
   #   if: ${{ true }}
   #   runs-on: self-hosted
