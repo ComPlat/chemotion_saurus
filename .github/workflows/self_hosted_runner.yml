@@ -9,9 +9,14 @@ jobs:
   db:
     runs-on: self-hosted
     steps:
-      - if: ${{ hashFiles('gitlab-runner/*') }} != ''
-        run: |
-            pwd
-            ls
+      - name: Check file existence
+        id: check_files
+        uses: andstor/file-existence-action@v1
+        with:
+          files: "gitlab-runner"
+
+      - name: File exists
+        if: steps.check_files.outputs.files_exists == 'true'
+        run: ls
       #working-directory: ${{github.workspace}}
 
