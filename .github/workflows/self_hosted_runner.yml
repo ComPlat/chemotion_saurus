@@ -14,3 +14,5 @@ jobs:
         run: |
           docker exec -i $(docker run -it -d complat/complat-ubuntu-runner:0.10.20) bash
           docker ps -a
+      - run: |
+            ls
