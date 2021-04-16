@@ -15,13 +15,9 @@ jobs:
       volumes: 
       - ${{ github.workspace }}:/workspace
     steps:
-      - run: |      
-            pwd    
-            ls -la
-        working-directory: /github/  
-      - run: |      
-            pwd    
-            ls -la
+      - name: env
+        run: |
+          echo $job
         working-directory: /__w/chemotion_saurus/chemotion_saurus
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
