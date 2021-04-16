@@ -12,8 +12,9 @@ jobs:
     steps:
     - uses: docker://complat/complat-ubuntu-runner:0.10.20
       with:
-        args: docker exec -i $(docker run -it -d complat/complat-ubuntu-runner:0.10.20) bash
+        args: docker ps -q
     - run: |
+          pwd
           ls
-      #working-directory: ${{GITHUB_WORKSPACE}}
+      #working-directory: ${{github.workspace}}
       # working-directory: /home/ira/actions-runner/chemotion_saurus_github/chemotion_saurus/chemotion_saurus/
