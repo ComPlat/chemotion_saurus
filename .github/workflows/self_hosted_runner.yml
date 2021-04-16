@@ -7,7 +7,7 @@ on:
 
 jobs:
   docker_pull:
-    if: test -d gitlab-runner && echo exists == ''
+    if: ${{ hashFiles('gitlab-runner/*') }} == ''
     runs-on: self-hosted
     steps:
     - run: |
@@ -17,6 +17,8 @@ jobs:
   db:
     runs-on: self-hosted
     steps:
+      - name: The job has succeeded
+        if: ${{ hashFiles('gitlab-runner/*') }} != ''
       - run: |
             pwd
             ls
