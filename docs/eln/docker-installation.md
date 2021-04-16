@@ -1,6 +1,6 @@
 ---
 id: dockerinstall
-title: Chemotion ELN - installation using Docker
+title: Docker Installation
 sidebar_label: Docker installation
 slug: docker_installation
 ---

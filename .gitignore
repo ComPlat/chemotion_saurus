@@ -21,5 +21,6 @@ yarn-debug.log*
 yarn-error.log*
 website/node_modules/*
 
-# IntelliJ IDEs
+# IDEs
 .idea/
+.vscode/
