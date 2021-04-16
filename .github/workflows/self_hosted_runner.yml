@@ -6,7 +6,7 @@ on:
     branches: [ master ]
 
 jobs:
-  db:
+  docker:
     runs-on: self-hosted
     steps:
       - name: Check file existence
@@ -16,7 +16,9 @@ jobs:
           files: "gitlab-runner"
 
       - name: File exists
-        if: steps.check_files.outputs.files_exists == 'true'
-        run: ls
+        if: steps.check_files.outputs.files_exists == 'false'
+        run: |
+          docker pull complat/complat-ubuntu-runner:0.10.20
+          docker cp $(docker run -it -d complat/complat-ubuntu-runner:0.10.20):/home/gitlab-runner .
       #working-directory: ${{github.workspace}}
 
