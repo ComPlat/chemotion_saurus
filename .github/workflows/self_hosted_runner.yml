@@ -6,32 +6,17 @@ on:
     branches: [ master ]
 
 jobs:
-  testbox:
+  docker:
+    if: ${{ true }}
     runs-on: self-hosted
-    container:
-      image: local
+    container: 
+      image: complat/complat-ubuntu-runner:0.10.20
       volumes: 
-        - /
-    steps:  
-    - name: local volume
-      run: |
-        pwd
-        ls
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v3
-  
-  # docker:
-  #   if: ${{ true }}
-  #   runs-on: self-hosted
-  #   container: 
-  #     image: complat/complat-ubuntu-runner:0.10.20
-  #     volumes: 
-  #     - ${{ github.workspace }}:/absolute path in the container
-        # - ${{ github.workspace }}:/home/gitlab-runner
-  #   steps:
-  #     - name: env
-  #       run: |
-  #         echo $job
-  #       working-directory: /__w/chemotion_saurus/chemotion_saurus
-  #     - name: Setup tmate session
-  #       uses: mxschmitt/action-tmate@v3
+        - /home/gitlab-runner:${{ github.workspace }}
+    steps:
+      - name: volume
+        run: |
+          ls
+        working-directory: ${{ github.workspace }}
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
