@@ -5,9 +5,9 @@ on:
   push:
     branches: [ master ]
 
-env:
+#env:
     #ELN_DIR: true
-    ELN_DIR: false
+    #ELN_DIR: false
 
 jobs:
   check_dir:
@@ -28,6 +28,9 @@ jobs:
       - name: log
         run: |
           echo "${ELN_DIR}"
+          echo "$GITHUB_ENV"
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
 
   # docker:
   #   runs-on: self-hosted
