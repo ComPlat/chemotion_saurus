@@ -57,14 +57,8 @@ jobs:
     runs-on: self-hosted
     needs: [checkout, docker]
     steps:
-    - name: bundle
-      run: |
-        bundle list
-    - name: gem
-      run: |
-        gem list
-    - name: rails
-      run: rails -v
+    - run: |      
+            pwd   
     - name: Setup tmate session
       uses: mxschmitt/action-tmate@v3
 
