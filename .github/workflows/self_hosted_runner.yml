@@ -54,11 +54,11 @@ jobs:
       - name: change config files
         if: steps.check_files.outputs.files_exists == 'true' 
         run: |
+            cd chemotion_ELN/config
             pwd
-            # cd chemotion_ELN/config
-            # cp database.yml.gitlab database.yml
-            # cp -f storage.yml.example storage.yml
-            # touch datacollectors.yml
+            cp database.yml.gitlab database.yml
+            cp -f storage.yml.example storage.yml
+            touch datacollectors.yml
         #working-directory: /chemotion_ELN/config
 
   # db:
