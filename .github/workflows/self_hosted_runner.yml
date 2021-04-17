@@ -18,23 +18,24 @@ jobs:
         with:
           files: "gitlab-runner"
 
-  docker:
-    runs-on: self-hosted
-    steps:
-      - name: docker pull
-        if: ${{ELN_DIR}} == 'false'
-        # if: steps.check_files.outputs.files_exists == 'false'
-        run: |
-          docker pull complat/complat-ubuntu-runner:0.10.20
-          docker cp $(docker run -it -d complat/complat-ubuntu-runner:0.10.20):/home/gitlab-runner .
-      #working-directory: ${{github.workspace}}
-
   testbox:
     runs-on: self-hosted
     steps:
       - name: log
         run: |
+          echo "${ELN_DIR}"
           echo ${{github.ref}}
+
+  docker:
+    runs-on: self-hosted
+    steps:
+      - name: docker pull
+        if: ${ELN_DIR} == 'false'
+        # if: steps.check_files.outputs.files_exists == 'false'
+        run: |
+          docker pull complat/complat-ubuntu-runner:0.10.20
+          docker cp $(docker run -it -d complat/complat-ubuntu-runner:0.10.20):/home/gitlab-runner .
+      #working-directory: ${{github.workspace}}
 
   # db:
   #   runs-on: self-hosted
