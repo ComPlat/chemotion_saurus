@@ -6,7 +6,6 @@ on:
     branches: [ master ]
 
 jobs:
-
   docker:
     runs-on: self-hosted
     steps:
@@ -36,12 +35,13 @@ jobs:
         with:
           repository: ComPlat/chemotion_ELN
           path: chemotion_ELN
+      - name: change config files
+        if: steps.check_files.outputs.files_exists == 'true' 
         run: |
-            cp chemotion_ELN/config/database.yml.gitlab config/database.yml
-            cp -f chemotion_ELN/config/storage.yml.example config/storage.yml
-            touch chemotion_ELN/config/datacollectors.yml
-
-        # working-directory: /chemotion_ELN
+            cp config/database.yml.gitlab config/database.yml
+            cp -f config/storage.yml.example config/storage.yml
+            touch config/datacollectors.yml
+        working-directory: /chemotion_ELN
 
   # db:
   #   runs-on: self-hosted
@@ -54,7 +54,3 @@ jobs:
   #         POSTGRES_DB: chemotion_test
   #         POSTGRES_USER: chemotion_test
   #         POSTGRES_PASSWORD: "123456"
-
-
-
-
