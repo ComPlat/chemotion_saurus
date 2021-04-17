@@ -49,14 +49,14 @@ jobs:
         run: |
             pwd
             ls
-        working-directory: /chemotion_ELN/config
-      - name: change config files
-        if: steps.check_files.outputs.files_exists == 'true' 
-        run: |
-            cd /chemotion_ELN/config
-            cp database.yml.gitlab database.yml
-            cp -f storage.yml.example storage.yml
-            touch datacollectors.yml
+        # working-directory: ${{github.workspace}}/chemotion_ELN/config
+      # - name: change config files
+      #   if: steps.check_files.outputs.files_exists == 'true' 
+      #   run: |
+      #       cd /chemotion_ELN/config
+      #       cp database.yml.gitlab database.yml
+      #       cp -f storage.yml.example storage.yml
+      #       touch datacollectors.yml
         #working-directory: /chemotion_ELN/config
 
   # db:
