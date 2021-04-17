@@ -7,7 +7,7 @@ on:
 
 env:
     #ELN_DIR: true
-    ELN_DIR: steps.check_files.outputs.files_exists 
+    ELN_DIR: false
 
 jobs:
   check_dir:
@@ -18,6 +18,9 @@ jobs:
         uses: andstor/file-existence-action@v1
         with:
           files: "gitlab-runner"
+      - if: steps.check_files.outputs.files_exists == 'true'
+        run: |
+            echo "ELN_DIR=true" >> "$GITHUB_ENV"
 
   testbox:
     runs-on: self-hosted
@@ -25,7 +28,6 @@ jobs:
       - name: log
         run: |
           echo "${ELN_DIR}"
-          echo ${{github.ref}}
 
   # docker:
   #   runs-on: self-hosted
