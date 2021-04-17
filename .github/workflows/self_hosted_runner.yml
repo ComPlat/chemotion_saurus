@@ -74,7 +74,7 @@ jobs:
       - name: testbox
         run: |
           ruby -v
-          rails -v
+          #rails -v
           npm -v
           nvm --version
           node -v
