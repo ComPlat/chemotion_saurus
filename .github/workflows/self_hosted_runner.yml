@@ -5,12 +5,9 @@ on:
   push:
     branches: [ master ]
 
-#env:
-    #ELN_DIR: true
-    #ELN_DIR: false
-
 jobs:
-  check_dir:
+
+  docker:
     runs-on: self-hosted
     steps:
       - name: Check file existence
@@ -18,30 +15,33 @@ jobs:
         uses: andstor/file-existence-action@v1
         with:
           files: "gitlab-runner"
-      - if: steps.check_files.outputs.files_exists == 'true'
+      - name: docker pull
+        if: steps.check_files.outputs.files_exists == 'false'
         run: |
-            echo "ELN_DIR=true" >> "$GITHUB_ENV"
+          docker pull complat/complat-ubuntu-runner:0.10.20
+          docker cp $(docker run -it -d complat/complat-ubuntu-runner:0.10.20):/home/gitlab-runner .
+        #working-directory: ${{github.workspace}}
 
-  testbox:
+  checkout:
     runs-on: self-hosted
     steps:
-      - name: log
+      - name: Check file existence
+        id: check_files
+        uses: andstor/file-existence-action@v1
+        with:
+          files: "chemotion-ELN"
+      - name: init checkout ELN
+        if: steps.check_files.outputs.files_exists == 'false' 
+        uses: actions/checkout@v2
+        with:
+          repository: ComPlat/chemotion_ELN
+          path: chemotion_ELN
         run: |
-          echo "${ELN_DIR}"
-          echo "$GITHUB_ENV"
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
+            cp chemotion_ELN/config/database.yml.gitlab config/database.yml
+            cp -f chemotion_ELN/config/storage.yml.example config/storage.yml
+            touch chemotion_ELN/config/datacollectors.yml
 
-  # docker:
-  #   runs-on: self-hosted
-  #   steps:
-  #     - name: docker pull
-  #       if: env.ELN_DIR == 'false'
-  #       # if: steps.check_files.outputs.files_exists == 'false'
-  #       run: |
-  #         docker pull complat/complat-ubuntu-runner:0.10.20
-  #         docker cp $(docker run -it -d complat/complat-ubuntu-runner:0.10.20):/home/gitlab-runner .
-      #working-directory: ${{github.workspace}}
+        # working-directory: /chemotion_ELN
 
   # db:
   #   runs-on: self-hosted
@@ -54,24 +54,7 @@ jobs:
   #         POSTGRES_DB: chemotion_test
   #         POSTGRES_USER: chemotion_test
   #         POSTGRES_PASSWORD: "123456"
-  #   steps:
-  #     - name: checkout ELN
-  #       if: |
-  #         steps.check_files.outputs.files_exists == 'false' ||
-  #         steps.check_files.outputs.files_exists == 'true' &&
-  #         git tag | tail -1 != curl --silent https://api.github.com/repos/ComPlat/chemotion_ELN/releases/latest | grep -Po '"tag_name": "\K.*?(?=")'
-  #       uses: actions/checkout@v2
-  #       with:
-  #         repository: ComPlat/chemotion_ELN
-  #         path: chemotion_ELN
-  #     - name: test checkout ELN
-  #       run: |
-  #           ls
-  #     - name: rename files
-  #       run: |
-  #           cp config/database.yml.gitlab config/database.yml
-  #           cp -f config/storage.yml.example config/storage.yml
-  #           touch config/datacollectors.yml
-  #       working-directory: /chemotion_ELN
+
+
 
 
