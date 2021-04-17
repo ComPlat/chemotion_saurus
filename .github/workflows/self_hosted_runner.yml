@@ -21,33 +21,34 @@ jobs:
           docker cp $(docker run -it -d complat/complat-ubuntu-runner:0.10.20):/home/gitlab-runner .
 
   checkout:
+    needs: docker
     runs-on: self-hosted
     steps:
       - name: Check file existence
         id: check_files
         uses: andstor/file-existence-action@v1
         with:
-          files: "chemotion_ELN"
+          files: "gitlab-runner/Gemfile"
       - name: init checkout ELN
         if: steps.check_files.outputs.files_exists == 'false' 
         uses: actions/checkout@v2
         with:
           repository: ComPlat/chemotion_ELN
-          path: chemotion_ELN
+          path: gitlab-runner
 
   config_files:
     needs: checkout
     runs-on: self-hosted
     steps:
-      - name: Check file existence
-        id: check_files
-        uses: andstor/file-existence-action@v1
-        with:
-          files: "chemotion_ELN"
+      # - name: Check file existence
+      #   id: check_files
+      #   uses: andstor/file-existence-action@v1
+      #   with:
+      #     files: "chemotion_ELN"
       - name: change config files
-        if: steps.check_files.outputs.files_exists == 'true' 
+        # if: steps.check_files.outputs.files_exists == 'true' 
         run: |
-            cd chemotion_ELN/config
+            cd gitlab-runner/config
             cp database.yml.gitlab database.yml
             cp -f storage.yml.example storage.yml
             touch datacollectors.yml
@@ -56,15 +57,26 @@ jobs:
   db:
     runs-on: self-hosted
     services:
-      # https://docs.github.com/en/actions/guides/creating-postgresql-service-containers
+      # https://docs.github.com/en/actions/guides/creating-postgresql-service-containers#running-jobs-directly-on-the-runner-machine
       # Label used to access the service container
       postgres:
         # Docker Hub image
-        image: postgres
+        image: postgres:12-alpine
         env:
           POSTGRES_DB: chemotion_test
           POSTGRES_USER: chemotion_test
           POSTGRES_PASSWORD: "123456"
+        # ports: 5432:5432
     steps:
+      - name: testbox
+        run: |
+          ruby -v
+          rails -v
+          npm -v
+          nvm --version
+          node -v
+          bundle list
+          npm test
+          rake -v
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
