@@ -49,7 +49,7 @@ jobs:
         run: |
             pwd
             ls
-        #working-directory: /chemotion_ELN/config
+        working-directory: /chemotion_ELN/config
       - name: change config files
         if: steps.check_files.outputs.files_exists == 'true' 
         run: |
