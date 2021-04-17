@@ -56,7 +56,14 @@ jobs:
   tmate:
     runs-on: self-hosted
     steps:
-    - uses: actions/checkout@v2
+    - name: bundle
+      run: |
+        bundle list
+    - name: gem
+      run: |
+        gem list
+    - name: rails
+      run: rails -v
     - name: Setup tmate session
       uses: mxschmitt/action-tmate@v3
 
