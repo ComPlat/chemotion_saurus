@@ -44,11 +44,15 @@ jobs:
         uses: andstor/file-existence-action@v1
         with:
           files: "chemotion_ELN"
-      - name: change config files
-        if: steps.check_files.outputs.files_exists == 'true' 
+      - name: test
+        if: steps.check_files.outputs.files_exists == 'true'
         run: |
             pwd
             ls
+        working-directory: /chemotion_ELN/config
+      - name: change config files
+        if: steps.check_files.outputs.files_exists == 'true' 
+        run: |
             cp database.yml.gitlab database.yml
             cp -f storage.yml.example storage.yml
             touch datacollectors.yml
