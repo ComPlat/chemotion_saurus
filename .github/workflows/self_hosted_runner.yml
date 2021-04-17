@@ -6,19 +6,19 @@ on:
     branches: [ master ]
 
 jobs:
-  docker:
-    runs-on: self-hosted
-    steps:
-      - name: Check file existence
-        id: check_files
-        uses: andstor/file-existence-action@v1
-        with:
-          files: "gitlab-runner"
-      - name: docker pull
-        if: steps.check_files.outputs.files_exists == 'false'
-        run: |
-          docker pull complat/complat-ubuntu-runner:0.10.20
-          docker cp $(docker run -it -d complat/complat-ubuntu-runner:0.10.20):/home/gitlab-runner .
+  # docker:
+  #   runs-on: self-hosted
+  #   steps:
+  #     - name: Check file existence
+  #       id: check_files
+  #       uses: andstor/file-existence-action@v1
+  #       with:
+  #         files: "gitlab-runner"
+  #     - name: docker pull
+  #       if: steps.check_files.outputs.files_exists == 'false'
+  #       run: |
+  #         docker pull complat/complat-ubuntu-runner:0.10.20
+  #         docker cp $(docker run -it -d complat/complat-ubuntu-runner:0.10.20):/home/gitlab-runner .
 
   checkout:
     runs-on: self-hosted
@@ -49,7 +49,7 @@ jobs:
         run: |
             pwd
             ls
-        working-directory: /chemotion_ELN/config
+        #working-directory: /chemotion_ELN/config
       - name: change config files
         if: steps.check_files.outputs.files_exists == 'true' 
         run: |
