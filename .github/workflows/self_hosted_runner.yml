@@ -47,10 +47,12 @@ jobs:
       - name: change config files
         if: steps.check_files.outputs.files_exists == 'true' 
         run: |
-            cp config/database.yml.gitlab config/database.yml
-            cp -f config/storage.yml.example config/storage.yml
-            touch config/datacollectors.yml
-        working-directory: /chemotion_ELN/
+            pwd
+            ls
+            cp database.yml.gitlab database.yml
+            cp -f storage.yml.example storage.yml
+            touch datacollectors.yml
+        working-directory: /chemotion_ELN/config
 
   # db:
   #   runs-on: self-hosted
