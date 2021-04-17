@@ -14,11 +14,29 @@ jobs:
         uses: andstor/file-existence-action@v1
         with:
           files: "gitlab-runner"
-
-      - name: File exists
+      - name: docker pull
         if: steps.check_files.outputs.files_exists == 'false'
         run: |
           docker pull complat/complat-ubuntu-runner:0.10.20
           docker cp $(docker run -it -d complat/complat-ubuntu-runner:0.10.20):/home/gitlab-runner .
       #working-directory: ${{github.workspace}}
 
+  db:
+    runs-on: self-hosted
+    services:
+      # Label used to access the service container
+      postgres:
+        # Docker Hub image
+        image: postgres
+        # Provide the password for postgres
+        env:
+          POSTGRES_DB: chemotion_test
+          POSTGRES_USER: chemotion_test
+          POSTGRES_PASSWORD: "123456"
+    steps:
+      - name: checkout ELN
+        uses: actions/checkout@development
+        with:
+          repository: ComPlat/chemotion_ELN
+      - run: |
+            ls
