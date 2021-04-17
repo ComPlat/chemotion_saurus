@@ -73,6 +73,7 @@ jobs:
     steps:
       - name: testbox
         run: |
+          cd gitlab-runner
           pwd
           ruby -v
           #rails -v
@@ -84,3 +85,5 @@ jobs:
           # rake -v
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
+        with:
+          args: -S
