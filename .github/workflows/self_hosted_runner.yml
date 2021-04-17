@@ -35,7 +35,7 @@ jobs:
           POSTGRES_PASSWORD: "123456"
     steps:
       - name: checkout ELN
-        uses: actions/checkout@development
+        uses: actions/checkout@v2
         with:
           repository: ComPlat/chemotion_ELN
       - run: |
