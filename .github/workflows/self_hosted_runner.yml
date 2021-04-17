@@ -44,22 +44,22 @@ jobs:
         uses: andstor/file-existence-action@v1
         with:
           files: "chemotion_ELN"
-      - name: test
-        if: steps.check_files.outputs.files_exists == 'true'
-        run: |
-            cd chemotion_ELN/config
-            pwd
-            ls
-        # working-directory: ${{github.workspace}}/chemotion_ELN/config
       - name: change config files
         if: steps.check_files.outputs.files_exists == 'true' 
         run: |
             cd chemotion_ELN/config
-            pwd
             cp database.yml.gitlab database.yml
             cp -f storage.yml.example storage.yml
             touch datacollectors.yml
         #working-directory: /chemotion_ELN/config
+    
+  tmate:
+    runs-on: self-hosted
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v3
+
 
   # db:
   #   runs-on: self-hosted
