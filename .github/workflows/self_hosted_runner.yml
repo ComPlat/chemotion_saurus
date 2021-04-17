@@ -55,6 +55,7 @@ jobs:
         #working-directory: /chemotion_ELN/config
 
   db:
+    needs: config_files
     runs-on: self-hosted
     services:
       # https://docs.github.com/en/actions/guides/creating-postgresql-service-containers#running-jobs-directly-on-the-runner-machine
