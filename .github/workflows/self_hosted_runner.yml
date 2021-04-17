@@ -48,6 +48,7 @@ jobs:
       - name: change config files
         # if: steps.check_files.outputs.files_exists == 'true' 
         run: |
+            pwd
             cd gitlab-runner/config
             cp database.yml.gitlab database.yml
             cp -f storage.yml.example storage.yml
