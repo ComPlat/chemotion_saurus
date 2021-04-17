@@ -47,6 +47,7 @@ jobs:
       - name: test
         if: steps.check_files.outputs.files_exists == 'true'
         run: |
+            cd chemotion_ELN
             pwd
             ls
         # working-directory: ${{github.workspace}}/chemotion_ELN/config
