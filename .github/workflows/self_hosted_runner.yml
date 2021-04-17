@@ -73,13 +73,14 @@ jobs:
     steps:
       - name: testbox
         run: |
+          pwd
           ruby -v
           #rails -v
           npm -v
-          nvm --version
-          node -v
-          bundle list
-          npm test
-          rake -v
+          #nvm --version
+          # node -v
+          # bundle list
+          # npm test
+          # rake -v
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
