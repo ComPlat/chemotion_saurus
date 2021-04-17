@@ -19,7 +19,6 @@ jobs:
         run: |
           docker pull complat/complat-ubuntu-runner:0.10.20
           docker cp $(docker run -it -d complat/complat-ubuntu-runner:0.10.20):/home/gitlab-runner .
-        #working-directory: ${{github.workspace}}
 
   checkout:
     runs-on: self-hosted
@@ -28,7 +27,7 @@ jobs:
         id: check_files
         uses: andstor/file-existence-action@v1
         with:
-          files: "chemotion-ELN"
+          files: "chemotion_ELN"
       - name: init checkout ELN
         if: steps.check_files.outputs.files_exists == 'false' 
         uses: actions/checkout@v2
@@ -37,20 +36,21 @@ jobs:
           path: chemotion_ELN
 
   config_files:
+    needs: checkout
     runs-on: self-hosted
     steps:
       - name: Check file existence
         id: check_files
         uses: andstor/file-existence-action@v1
         with:
-          files: "chemotion-ELN"
+          files: "chemotion_ELN"
       - name: change config files
         if: steps.check_files.outputs.files_exists == 'true' 
         run: |
             cp config/database.yml.gitlab config/database.yml
             cp -f config/storage.yml.example config/storage.yml
             touch config/datacollectors.yml
-        working-directory: /chemotion_ELN
+        working-directory: /chemotion_ELN/
 
   # db:
   #   runs-on: self-hosted
