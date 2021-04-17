@@ -44,6 +44,7 @@ jobs:
         uses: andstor/file-existence-action@v1
         with:
           files: "chemotion-ELN"
+      - name: change config files
         if: steps.check_files.outputs.files_exists == 'true' 
         run: |
             cp config/database.yml.gitlab config/database.yml
