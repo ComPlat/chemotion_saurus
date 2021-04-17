@@ -5,8 +5,11 @@ on:
   push:
     branches: [ master ]
 
+env:
+    ELN_DIR: steps.check_files.outputs.files_exists 
+
 jobs:
-  docker:
+  check_dir:
     runs-on: self-hosted
     steps:
       - name: Check file existence
@@ -14,29 +17,54 @@ jobs:
         uses: andstor/file-existence-action@v1
         with:
           files: "gitlab-runner"
+
+  docker:
+    runs-on: self-hosted
+    steps:
       - name: docker pull
-        if: steps.check_files.outputs.files_exists == 'false'
+        if: ${{ELN_DIR}} == 'false'
+        # if: steps.check_files.outputs.files_exists == 'false'
         run: |
           docker pull complat/complat-ubuntu-runner:0.10.20
           docker cp $(docker run -it -d complat/complat-ubuntu-runner:0.10.20):/home/gitlab-runner .
       #working-directory: ${{github.workspace}}
 
-  db:
+  testbox:
     runs-on: self-hosted
-    services:
-      # Label used to access the service container
-      postgres:
-        # Docker Hub image
-        image: postgres
-        # Provide the password for postgres
-        env:
-          POSTGRES_DB: chemotion_test
-          POSTGRES_USER: chemotion_test
-          POSTGRES_PASSWORD: "123456"
     steps:
-      - name: checkout ELN
-        uses: actions/checkout@v2
-        with:
-          repository: ComPlat/chemotion_ELN
-      - run: |
-            ls
+      - name: log
+        run: |
+          echo ${{github.ref}}
+
+  # db:
+  #   runs-on: self-hosted
+  #   services:
+  #     # Label used to access the service container
+  #     postgres:
+  #       # Docker Hub image
+  #       image: postgres
+  #       env:
+  #         POSTGRES_DB: chemotion_test
+  #         POSTGRES_USER: chemotion_test
+  #         POSTGRES_PASSWORD: "123456"
+  #   steps:
+  #     - name: checkout ELN
+  #       if: |
+  #         steps.check_files.outputs.files_exists == 'false' ||
+  #         steps.check_files.outputs.files_exists == 'true' &&
+  #         git tag | tail -1 != curl --silent https://api.github.com/repos/ComPlat/chemotion_ELN/releases/latest | grep -Po '"tag_name": "\K.*?(?=")'
+  #       uses: actions/checkout@v2
+  #       with:
+  #         repository: ComPlat/chemotion_ELN
+  #         path: chemotion_ELN
+  #     - name: test checkout ELN
+  #       run: |
+  #           ls
+  #     - name: rename files
+  #       run: |
+  #           cp config/database.yml.gitlab config/database.yml
+  #           cp -f config/storage.yml.example config/storage.yml
+  #           touch config/datacollectors.yml
+  #       working-directory: /chemotion_ELN
+
+
