@@ -52,25 +52,19 @@ jobs:
             cp -f storage.yml.example storage.yml
             touch datacollectors.yml
         #working-directory: /chemotion_ELN/config
-    
-  tmate:
+
+  db:
     runs-on: self-hosted
-    needs: [checkout, docker]
+    services:
+      # https://docs.github.com/en/actions/guides/creating-postgresql-service-containers
+      # Label used to access the service container
+      postgres:
+        # Docker Hub image
+        image: postgres
+        env:
+          POSTGRES_DB: chemotion_test
+          POSTGRES_USER: chemotion_test
+          POSTGRES_PASSWORD: "123456"
     steps:
-    - run: |      
-            pwd   
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v3
-
-
-  # db:
-  #   runs-on: self-hosted
-  #   services:
-  #     # Label used to access the service container
-  #     postgres:
-  #       # Docker Hub image
-  #       image: postgres
-  #       env:
-  #         POSTGRES_DB: chemotion_test
-  #         POSTGRES_USER: chemotion_test
-  #         POSTGRES_PASSWORD: "123456"
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
