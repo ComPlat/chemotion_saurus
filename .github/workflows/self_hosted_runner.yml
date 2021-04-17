@@ -6,7 +6,8 @@ on:
     branches: [ master ]
 
 env:
-    ELN_DIR: steps.check_files.outputs.files_exists 
+    ELN_DIR: true
+    # ELN_DIR: steps.check_files.outputs.files_exists 
 
 jobs:
   check_dir:
@@ -30,7 +31,7 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: docker pull
-        if: ${ELN_DIR} == 'false'
+        if: env.ELN_DIR == 'false'
         # if: steps.check_files.outputs.files_exists == 'false'
         run: |
           docker pull complat/complat-ubuntu-runner:0.10.20
