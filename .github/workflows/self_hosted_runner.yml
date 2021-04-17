@@ -59,17 +59,16 @@ jobs:
   db:
     needs: config_files
     runs-on: self-hosted
-    services:
-      # https://docs.github.com/en/actions/guides/creating-postgresql-service-containers#running-jobs-directly-on-the-runner-machine
-      # Label used to access the service container
-      postgres:
-        # Docker Hub image
-        image: postgres:12-alpine
-        env:
-          POSTGRES_DB: chemotion_test
-          POSTGRES_USER: chemotion_test
-          POSTGRES_PASSWORD: "123456"
-        # ports: 5432:5432
+    # services:
+    #   # https://docs.github.com/en/actions/guides/creating-postgresql-service-containers#running-jobs-directly-on-the-runner-machine
+    #   # Label used to access the service container
+    #   postgres:
+    #     image: postgres:12-alpine
+    #     env:
+    #       POSTGRES_DB: chemotion_test
+    #       POSTGRES_USER: chemotion_test
+    #       POSTGRES_PASSWORD: "123456"
+    #     # ports: 5432:5432
     steps:
       - name: testbox
         run: |
@@ -85,5 +84,3 @@ jobs:
           # rake -v
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
-        with:
-          args: -S
