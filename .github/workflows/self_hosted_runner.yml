@@ -40,13 +40,7 @@ jobs:
     needs: checkout
     runs-on: self-hosted
     steps:
-      # - name: Check file existence
-      #   id: check_files
-      #   uses: andstor/file-existence-action@v1
-      #   with:
-      #     files: "chemotion_ELN"
       - name: change config files
-        # if: steps.check_files.outputs.files_exists == 'true' 
         run: |
             pwd
             ls
@@ -59,28 +53,28 @@ jobs:
   db:
     needs: config_files
     runs-on: self-hosted
-    # services:
-    #   # https://docs.github.com/en/actions/guides/creating-postgresql-service-containers#running-jobs-directly-on-the-runner-machine
-    #   # Label used to access the service container
-    #   postgres:
-    #     image: postgres:12-alpine
-    #     env:
-    #       POSTGRES_DB: chemotion_test
-    #       POSTGRES_USER: chemotion_test
-    #       POSTGRES_PASSWORD: "123456"
-    #     # ports: 5432:5432
+    services:
+      # https://docs.github.com/en/actions/guides/creating-postgresql-service-containers#running-jobs-directly-on-the-runner-machine
+      # Label used to access the service container
+      postgres:
+        image: postgres:12-alpine
+        env:
+          POSTGRES_DB: chemotion_test
+          POSTGRES_USER: chemotion_test
+          POSTGRES_PASSWORD: "123456"
+          ports: 5432:5432
     steps:
       - name: testbox
         run: |
           cd gitlab-runner
           pwd
-          ruby -v
+          #ruby -v
           #rails -v
-          npm -v
+          #npm -v
           #nvm --version
           # node -v
           # bundle list
-          # npm test
+          npm test
           # rake -v
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
