@@ -74,7 +74,7 @@ jobs:
           #nvm --version
           # node -v
           # bundle list
-          npm install
+          #npm install
           npm test
           # rake -v
       - name: Setup tmate session
