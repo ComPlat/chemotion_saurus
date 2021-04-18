@@ -74,6 +74,7 @@ jobs:
           #nvm --version
           # node -v
           # bundle list
+          /bin/bash -l -c "source ~/.nvm/nvm.sh && nvm use && npm install"
           npm test
           # rake -v
       - name: Setup tmate session
