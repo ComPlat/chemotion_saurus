@@ -15,10 +15,11 @@ jobs:
         with:
           files: "gitlab-runner"
       - name: docker pull
-        if: steps.check_files.outputs.files_exists == 'false'
+        #if: steps.check_files.outputs.files_exists == 'false'
         run: |
           docker pull complat/complat-ubuntu-runner:0.10.20
           docker cp $(docker run -it -d complat/complat-ubuntu-runner:0.10.20):/home/gitlab-runner .
+          # todo check if all copied
 
   checkout:
     needs: docker
@@ -68,6 +69,7 @@ jobs:
         run: |
           cd gitlab-runner
           pwd
+          #gem install bundler -v 1.17.3 --no-document && bundle install -j 3 --path 
           RAILS_ENV=test bundle exec rake db:test:prepare
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
+      # - name: Setup tmate session
+      #   uses: mxschmitt/action-tmate@v3
