@@ -64,18 +64,10 @@ jobs:
           POSTGRES_PASSWORD: "123456"
           ports: 5432:5432
     steps:
-      - name: testbox
+      - name: testjs
         run: |
           cd gitlab-runner
           pwd
-          #ruby -v
-          #rails -v
-          #npm -v
-          #nvm --version
-          # node -v
-          # bundle list
-          #npm install
-          npm test
-          # rake -v
+          RAILS_ENV=test bundle exec rake db:test:prepare
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
