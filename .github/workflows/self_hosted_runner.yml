@@ -50,7 +50,6 @@ jobs:
             cp database.yml.gitlab database.yml
             cp -f storage.yml.example storage.yml
             touch datacollectors.yml
-        #working-directory: /chemotion_ELN/config
 
   db:
     needs: config_files
