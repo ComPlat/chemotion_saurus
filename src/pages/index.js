@@ -80,7 +80,9 @@ function Home() {
         </div>
 
       </header>
-      <video style={{display: "block", margin: "2rem auto 0 auto"}} src="videos/2021-02-24_CHEMOTION_FINALE_low.m4v#t=12"  controls playsInline></video>
+      <div style={{ margin: "2rem auto 0 auto", textAlign: "center"}}>
+      <iframe width="640" height="360" src="https://www.youtube.com/embed/tZHaP6DW-Dw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
       <main style={{ backgroundColor: "#f5f6f7"}}>
         {features && features.length > 0 && (
           <section className={styles.features}>
