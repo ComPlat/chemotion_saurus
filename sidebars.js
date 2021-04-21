@@ -15,9 +15,21 @@ module.exports = {
           'eln/intro',
           'eln/browser',
           'eln/structure',
+          'eln/view',
           'eln/firststeps',
           'eln/collections',
+          'eln/lists',
+          'eln/details',
+          'eln/toolbar',
+          'eln/ketcher',
+          'eln/inventory',
+          'eln/analysis',
           'eln/problems'
+        ]
+      },
+      {
+        Administration: [
+          'eln/generic_element'
         ]
       },
     ],
