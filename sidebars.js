@@ -17,10 +17,10 @@ module.exports = {
           'eln/structure',
           'eln/firststeps',
           'eln/collections',
-          'eln/problems',
+          'eln/problems'
         ]
       },
-      ],
+    ],
   },
 
   repoSidebar: {
