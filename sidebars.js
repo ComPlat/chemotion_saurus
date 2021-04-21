@@ -29,7 +29,7 @@ module.exports = {
       },
       {
         Administration: [
-          'eln/generic_element'
+          'eln/generic_element',
           'eln/adjust_analysis'
         ]
       },
