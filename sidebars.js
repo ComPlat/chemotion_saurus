@@ -30,6 +30,7 @@ module.exports = {
       {
         Administration: [
           'eln/generic_element'
+          'eln/adjust_analysis'
         ]
       },
     ],
