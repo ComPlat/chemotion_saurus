@@ -1,7 +1,7 @@
 # Website
 
 This website is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
-See it live ![here](https://www.chemotion.net/chemotionsaurus/)
+See it live [https://www.chemotion.net/chemotionsaurus/](https://www.chemotion.net/chemotionsaurus/)
 
 ## Installation
 Instead of yarn you can also use npm.
