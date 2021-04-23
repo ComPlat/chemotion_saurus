@@ -1,6 +1,6 @@
 # Website
 
-This website is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
+This website is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.  
 See it live [https://www.chemotion.net/chemotionsaurus/](https://www.chemotion.net/chemotionsaurus/)
 
 ## Installation
