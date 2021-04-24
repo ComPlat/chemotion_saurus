@@ -5,7 +5,8 @@ module.exports = {
       {
         Installation: [
           'eln/native_installation',
-          'eln/dockerinstall'
+          'eln/dockerinstall', 
+          'eln/system_check'
         ]
       },
       'eln/settings',
