@@ -9,20 +9,28 @@ slug: toolbar_functions
 ### Import samples to a certain ELN-collection
 
 Samples can be imported easily using an excel template that contains Smiles-Strings. To enable the import into a collection, the desired target collection has to be selected. 
-Please see the following example which can be used as a template to import data to the ELN. 
+Please see the following example which can be used as a template to import data to the ELN. The template file can be used as test file to check the functions of the ELN, for a specific import, please delete the current content.
 
 [Download XLSX Template here](https://github.com/ComPlat/chemotion_saurus/blob/master/static/files/template%20_sample_import.xlsx) 
 
-Requirements: 
-(1) The data are assigned to the ELN contents according to the givem headers. Please don't change the header of the template file. The template file can be used as test file to check the functions of the ELN, for a specific import, please delete the current content.
-(2) the columns "stereo_abs" and "stereo_rel" are predefined. Valid values are: 
-
-stereo_abs: any, rac, meso, (S), (R), (Sp), (Rp), (Sa)
-
+:::caution Recommendation
+Please don't change the header of the template file. 
+:::
+ 
+:::info
+the columns "stereo_abs" and "stereo_rel" are predefined. Valid values are: 
+stereo_abs: any, rac, meso, (S), (R), (Sp), (Rp), (Sa); 
 stereo_rel: any, syn, anti, p-geminal, p-ortho, p-meta, p-para, cis, trans, fac
+:::
 
 ![Collection View](/img/import_samples.gif)
 
+:::caution Recommendation
+Please add either molfile or Smiles-Code to the import template. The import process will fail of both is entered.
+:::
+
+
+  
 
 ## Export Data from the ELN
 
