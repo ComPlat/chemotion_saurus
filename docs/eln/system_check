@@ -1,0 +1,17 @@
+---
+id: system_check
+title: System check
+slug: system_check
+sidebar_label: system check
+---
+
+1	Create collection	
+2	Create and copy sample		
+3	Create and copy reaction	
+4	Add attachment to sample	fail		
+5	Generate a report
+6	Share and sync collection	
+7	Export a collection, export		
+8	Send data to repo
+9 Add a jcamp file to the analysis section in sample
+
