@@ -57,3 +57,40 @@ Each collection can be organized by creating subcollections. These, in turn, can
 
 Sorting and organizing your collections and subcollections is always feasible. The function assignment as collection or subcollection can also be changed at any time via collection management. In  addition to the ability to organize your own created collections through **My Collections**, collection management also enables you to sort your own collections that have been shared with other people. This can  be done within the **My  shared  Collections** tab. The meaning of this function will become clear in the  page Sharing. Organizing  synchronized collections through collection management is not possible because they directly represent the original collections. This is explained in more detail in chapter [https://eln.chemotion.net/chemotionsaurus/docs/eln/collections#synchronized-collections](#synchronized-collections) 
 
+###  Shared Collections 
+![Collection Sharing](/img/collection_sharing.gif) 
+Shared collections are collections that can be created by users if they want to share their data with a specific person or a group, so **Sharing** will make the data available to that person or group. 
+
+The definition of this access and the associated functions is decided by the user of the ENL (the original owner of the data). A detailed explanation of the functions and possibilities of the **Sharing** action  is given in the page Sharing.  Collections shared by the user appear as **My shared Collections** in the collections bar and can be sorted through collection management. An ELN user who receives information in the form of a shared collection from another ELN user cannot sort that shared  collection. 
+
+Collections that an ELN user has obtained as shared collections from another user are subject to a rights system, which is always defined by the original owner. According to these definitions, the recipient of the  shared collection can perform certain actions on it (such as reading and editing). 
+
+An important feature of the shared collections that the user, whether a creator or a recipient of the  shared  collection, must be aware of:  Changes to the  shared collection can only be made to existing elements. When new elements are added within the original collection, this is not reflected in the shared  collection. Only changes within existing elements are transferred to the shared collection. This is a significant difference from the synchronized  collections (see  chapter [https://eln.chemotion.net/chemotionsaurus/docs/eln/collections#synchronized-collections](#synchronized-collections)). 
+
+:::caution Recommendation 
+In a shared collection, only changes to existing elements are displayed to users. Elements added after sharing to the original collection will not be considered.
+::: 
+
+###  Synchronized Collections 
+![Collection Sync](/img/collection_sync.gif) 
+Synchronized collections are very similar to shared  collections in many respects, e.g. information can be shared with other groups or people after selecting the rights system. The available gradations show no difference from shared collections.  
+Shared and  synchronized  collections differ only in a few aspects: 
+1. A synchronized collection is not created by a synchronizing action from the action bar, but through collection management (see later in this chapter).   
+2. It is not possible to organize synchronized collections through collection management because they directly represent the original collection. 
+3. Since the synchronized collections are identical to the original ones, the creation of new elements and their processing are also displayed in the synchronized collection. 
+
+:::caution Recommendation 
+A synchronized collection also displays the creation of new elements.
+::: 
+
+#### Create a synchronized collection: 
+Synchronized collections can be created in the collection management. In **My Collections** management, in the chosen collection to be synchronized, use the <button className={"button button--sm button--danger"} style={{padding:"0.5rem"}}> 
+<FontAwesomeIcon icon={faPlus} size="lg"/> 
+<FontAwesomeIcon icon={faShareAlt} size="lg"/> 
+</button> to initiate a corresponding assignment and define the assignment of rights. 
+
+The successful creation of a synchronized collection can be indicated by the assignment within the management. After the update, a reference is set within the collection bar so that the user can understand which of his collections (with corresponding rights assignment) are directly visible to others. 
+
+### Visibility 
+Own collections are always visible directly in the collection bar. The collections shared by a user are listed separately again in order to increase their visibility and thus transparency. Synchronized collections are directly marked by the icon <Btn icon={faShareAlt} color={"secondary"}/> in the collection bar (see chapter [https://eln.chemotion.net/chemotionsaurus/docs/eln/collections#synchronized-collections](#synchronized-collections)). 
+
