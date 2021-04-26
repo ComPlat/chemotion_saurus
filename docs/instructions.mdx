@@ -27,13 +27,24 @@ title: Introduction Videos
 ## Markdown
 
 ### Buttons
-#### with Icons
+#### with Icon
 For icon buttons the library Font Awesome is used. Get icons from here: [https://fontawesome.com/](https://fontawesome.com/) and import them in the page together with a button function. The color palette is from the [Infima library](https://infima.dev/docs/components/button).
 ```
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { Btn } from '../btn.js'
 
 <Btn icon={faPlus} color={"success"}/> 
+```
+
+##### with multiple Icons
+```
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus, faShareAlt } from '@fortawesome/free-solid-svg-icons'
+
+<button className={"button button--sm button--success"} style={{padding:"0.5rem"}}>
+<FontAwesomeIcon icon={faPlus} size="lg"/>
+<FontAwesomeIcon icon={faShareAlt} size="lg"/>
+</button>
 ```
 
 #### with Text
