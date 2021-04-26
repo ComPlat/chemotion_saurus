@@ -23,3 +23,7 @@ In addition to the naming options, an external label can be saved for each sampl
 Solvent can be specified from a predefined drop-down. The amount can be provided either as mass or in mols, where providing one of them leads to automatic calculation of the other based on the purity (1 by default but can be modified). Mass unit can be either g or mg, while amount unit is either mol or mmol. Volume data can’t be edited until the density is specified.  When the density is specified (g/ml), the volume is automatically calculated. Changing the volume manually leads to automatic changes in the mass. 
 
 Both** Boiling point** and **Melting point** can be provided manually in Celsius **°C**. The user can additionally provide any desired information as free text in the **Description** field and specify the location of the samples (e.g. institute, warehouse, etc.) in the **Location**  field. 
+
+The **Elemental composition** is automatically calculated based on the formula, but the user can still provide their experimental numbers in fields that correspond to each atom in the molecule. 
+
+The information required for chemical use is supplemented by **Chemical identifiers** such as **InChI** , **Canonical SMILLES** and **CAS** number. Molecular structure is also provided in the **Molfile** format.  You can provide the **Canonical SMILLES** to create a new **Sample**, but you can’t modify the SMILES after creation. The other identifiers can only be copied after a **Sample** is created, and they can’t be used to generate Samples. 
