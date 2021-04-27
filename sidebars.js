@@ -9,7 +9,7 @@ module.exports = {
         ]
       },
       {
-        Configuration & Tests: [
+        Configuration: [
       'eln/settings',
       'eln/system_check'
         ]
