@@ -5,13 +5,17 @@ module.exports = {
       {
         Installation: [
           'eln/native_installation',
-          'eln/dockerinstall', 
-          'eln/system_check'
+          'eln/dockerinstall'
         ]
       },
-      'eln/settings',
       {
-        Usage: [
+        Configuration & Tests: [
+      'eln/settings',
+      'eln/system_check'
+        ]
+      },
+      {
+        Use: [
           'eln/about',
           'eln/intro',
           'eln/browser',
