@@ -36,7 +36,7 @@ import { Btn } from '../btn.js'
 <Btn icon={faPlus} color={"success"}/> 
 ```
 
-##### with multiple Icons
+#### with multiple Icons
 ```
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faShareAlt } from '@fortawesome/free-solid-svg-icons'
@@ -44,6 +44,15 @@ import { faPlus, faShareAlt } from '@fortawesome/free-solid-svg-icons'
 <button className={"button button--sm button--success"} style={{padding:"0.5rem"}}>
 <FontAwesomeIcon icon={faPlus} size="lg"/>
 <FontAwesomeIcon icon={faShareAlt} size="lg"/>
+</button>
+```
+#### with Icon and Text
+```
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
+
+<button className={"button button--sm button--success"} style={{padding:"0.5rem"}}>
+Add analysis  <FontAwesomeIcon icon={faPlus} size="lg"/>
 </button>
 ```
 
