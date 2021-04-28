@@ -6,7 +6,7 @@ slug: details_modal
 ---
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faChartBar, faCheck, faSave, faChevronSquareRight } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faChartBar, faCheck, faSave, faAngleRight, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import {Btn} from '../btn.js'
 
 The  details modal or details window is opened by clicking on the desired element from element lists. It shows the information stored or available through databases about the element. The modal/window  can be set to full screen mode. Tabs were introduced to organize the information within the details modals. They enable information structuring and displaying as in folders. Different tabs are available based on the type of the element. This will become clear in the later chapters. 
@@ -53,4 +53,4 @@ The analysis methods, from which you can choose, are given by the drop-down menu
 
 The **Literature** tab allows you to manage your literature and link it to your **Sample**. You can specify as many references as you find needed. It is possible to specify the reference either by its DOI or ISBN, or by giving it a title and a URL.  In both cases you can add whether this reference is citing you or being cited by you. When all details of a reference are entered, press <Btn icon={faPlus} color={"success"}/>. Once a reference is created, it cannot be edited, it can only be deleted, so if you need to edite a reference, delete it and create a new one.  
 
-The created references are added to a list and they are shown in blue to indicate their functionality in linking to some resources by clicking on them.  Additional details about the reference, as by whom it was created and whether it is referring to or citing the experiment,  can be shown by pressing the button <Btn icon={faChevronSquareRight} color={"secondary"}/> 
+The created references are added to a list and they are shown in blue to indicate their functionality in linking to some resources by clicking on them.  Additional details about the reference, as by whom it was created and whether it is referring to or citing the experiment,  can be shown by pressing the button <Btn icon={faAngleRight} color={"secondary"}/>, which also shows the delete button <Btn icon={faTrashAlt} color={"danger"}/> 
