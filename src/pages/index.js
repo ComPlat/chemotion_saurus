@@ -17,6 +17,7 @@ const features = [
     imageUrl: 'img/chemrepo.png',
     title: 'Repository',
     mainLink: 'https://www.chemotion-repository.net/welcome',
+    btnText: 'Enter',
   },
 
   {
@@ -39,7 +40,7 @@ const features = [
   },
 ];
 
-function Feature({imageUrl, title, mainLink}) {
+function Feature({imageUrl, title, mainLink, btnText = 'Demo Version'}) {
   const {siteConfig = {}} = useDocusaurusContext();
   const imgUrl = useBaseUrl(imageUrl);
   return (
@@ -47,7 +48,7 @@ function Feature({imageUrl, title, mainLink}) {
       <h3 style={{textAlign: "center", color:"#337ab7"}}>
         {/*comment out to disable Chemotion icon over software tool images*/}
         {/*<img src={siteConfig.favicon} alt="Chemotion Icon" style={{verticalAlign: "bottom", width: "26px"}}/>*/}
-        {' '+title}</h3>
+        {' '+ title}</h3>
         {imgUrl && (
             <img className={styles.featureImage} src={imgUrl} alt={title} />
         )}
@@ -55,7 +56,7 @@ function Feature({imageUrl, title, mainLink}) {
         <Link className={clsx('button button--primary button--lg')}
               to={mainLink}
         >
-          Demo Version
+          { btnText }
         </Link>
       </div>
     </div>
