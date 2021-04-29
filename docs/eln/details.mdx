@@ -79,13 +79,3 @@ The following figure shows a typical reaction scheme with a reagent table. No so
 ![Reagents_table](/img/reaction_details_modal.png)
 The used  samples are divided into **Starting materials**, **Reactants** and **Products**. The samples can be moved flexibly from one category to another with drag & drop symbol <Btn icon={faArrowsAlt} color={"secondary"}/>. In addition to the difference in names, this grouping also causes functional differences:
 
-'Starting materials': Starting materials can be defined as a reference using the **Ref** switch. As a result, the selected starting material is automatically assigned the equivalent of 1.000. The amount of all other reagents are then calculated according to this definition. Several starting materials can be selected, only one can be marked as reference material.
-
-'Products': The table fields of the products can only be used to a limited extent to avoid misuse of the journal. Certain fields that can be obtained from the received quantity of the product are not open for input. The **Products** have a special treatment within the reaction, for example the analyses of the corresponding samples are stored and can be found in the **Analyzes** tab. 
-
-A reaction can be populated with samples in two different ways: 
-1. The user can create new samples by pressing <Btn icon={faPlus} color={"success"}/>  in the corresponding category **Starting materials**, **Reactants** or **Products**.  
-2. The user can select samples from the sample list if they are already there and drag and drop them using  <Btn icon={faArrowsAlt} color={"secondary"}/> symbol next to a sample in the sample list, and place the sample in the reaction.
-For using samples from the sample list, there are again two possibilities here: 
-1. If you want to carry out a subsequent reaction that uses use a **product** from a previous reaction as **starting material**, a **split** of the sample is generated internally in the system (recognizable by the generation of the sample number). This procedure is not possible for **products**, as they always have to be regenerated. The next variant is available for products. 
-1. If you only want to adopt the molecular structure that is not a product from a previous reaction, then the internal process here corresponds to the **copy** action.  
