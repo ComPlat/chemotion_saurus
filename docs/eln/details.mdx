@@ -78,4 +78,8 @@ Changing a reaction is not possible by changing its scheme, rather it must be ca
 The following figure shows a typical reaction scheme with a reagent table. No solvents have yet been added and no reaction temperature has yet been set. In general, you cannot edit gray fields in the reaction table.  
 ![Reagents_table](/img/reaction_details_modal.png)
 The used  samples are divided into **Starting materials**, **Reactants** and **Products**. The samples can be moved flexibly from one category to another with drag & drop symbol <Btn icon={faArrowsAlt} color={"secondary"}/>. In addition to the difference in names, this grouping also causes functional differences:
-‘Starting materials’: Starting materials can be defined as a reference using the **Ref** switch. As a result, the selected starting material is automatically assigned the equivalent of 1.000. The amount of all other reagents are then calculated according to this definition. Several starting materials can be selected, only one can be marked as reference material. 
+‘Starting materials’: Starting materials can be defined as a reference using the **Ref** switch. As a result, the selected starting material is automatically assigned the equivalent of 1.000. The amount of all other reagents are then calculated according to this definition. Several starting materials can be selected, only one can be marked as reference material.
+
+‘Products’: The table fields of the products can only be used to a limited extent to avoid misuse of the journal. Certain fields that can be obtained from the received quantity of the product are not open for input. The **Products** have a special treatment within the reaction, for example the analyses of the corresponding samples are stored and can be found in the **Analyzes** tab. 
+
+A reaction can be populated with samples in two different ways: 
