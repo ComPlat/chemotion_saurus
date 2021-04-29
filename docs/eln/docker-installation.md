@@ -10,13 +10,13 @@ To setup the Chemotion ELN using Docker, Docker and Docker-Compose have to be in
 
 In addition you need that latest version of our Docker-Compose service description. This file can be found here:
 
-  [docker-compose.yml](https://github.com/ComPlat/chemotion_saurus/blob/13496d0d8e4daff2bb3a3aa7a2e77ee69928c803/static/files/docker-compose.yml)
+  [docker-compose.yml](https://github.com/ComPlat/chemotion_saurus/blob/master/static/files/docker-compose.yml)
 
 Download this file and place it in a separate folder (further referred to as `CHEMOTION_PATH` as it will contain all the service description but also Chemotion's configuration and data files):
 
 ```
 cd $CHEMOTION_PATH
-curl -L -o docker-compose.yml https://github.com/ComPlat/chemotion_saurus/blob/13496d0d8e4daff2bb3a3aa7a2e77ee69928c803/static/files/docker-compose.yml
+curl -L -o docker-compose.yml https://github.com/ComPlat/chemotion_saurus/blob/master/static/files/docker-compose.yml
 ```
 
 As a next step, create the necessary folders for configuration, data sharing and the database:
