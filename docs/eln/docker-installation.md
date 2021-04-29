@@ -5,91 +5,58 @@ sidebar_label: Docker installation
 slug: docker_installation
 ---
 
-To setup the Chemotion ELN using Docker, Docker and Docker-compose have to be installed on the host machine. Please refer to your distributions documentation on how this can be achieved. For Ubuntu-based machines, this can be found [here](https://docs.docker.com/engine/install/ubuntu/).
+## Preparation
+To setup the Chemotion ELN using Docker, Docker and Docker-Compose have to be installed on the host machine. Please refer to your distributions documentation on how this can be achieved. For Ubuntu-based machines, this can be found [here](https://docs.docker.com/engine/install/ubuntu/).
 
-In addition you need that latest version of our Docker build files. They can be found here:
+In addition you need that latest version of our Docker-Compose service description. This file can be found here:
 
--   [Dockerfile](https://ptrxyz.github.io/chemotion-docs/data/Dockerfile)
--   [docker-compose.yml](https://ptrxyz.github.io/chemotion-docs/data/docker-compose.yml)
+  [docker-compose.yml](https://github.com/ComPlat/chemotion_saurus/blob/13496d0d8e4daff2bb3a3aa7a2e77ee69928c803/static/files/docker-compose.yml)
 
-Download those files and place them in a separate folder (further referred to as `CES_DOCKER_PATH` as it should contain all the files to build and run the container).
-
-In a next step checkout the Chemotion ELN main repository and change to the latest branch:
+Download this file and place it in a separate folder (further referred to as `CHEMOTION_PATH` as it will contain all the service description but also Chemotion's configuration and data files):
 
 ```
-git clone https://git.scc.kit.edu/ComPlat/chemotion_eln_server.git
-cd chemotion_eln_server
-git checkout development
+cd $CHEMOTION_PATH
+curl -L -o docker-compose.yml https://github.com/ComPlat/chemotion_saurus/blob/13496d0d8e4daff2bb3a3aa7a2e77ee69928c803/static/files/docker-compose.yml
 ```
 
-In this documentation we refer to the folder containing the source files as `CES_HOST_PATH`. These paths are used by the Docker files and thus they need to exported to the shell as environment variables:
+As a next step, create the necessary folders for configuration, data sharing and the database:
 
 ```
-export CES_HOST_PATH=/{change this}/chemotion_eln_server
-export CES_DOCKER_PATH=/{change this}/chemotion-docker
+cd $CHEMOTION_PATH
+mkdir config shared db-data
+chown 1000:1000 config shared db-data
 ```
+Note: Make sure that the folders are read and writeable by UID 1000:1000.
 
-Now, we can start the build process for the container:
-
-```
-cd $CES_DOCKER_PATH
-echo "CES_HOST_PATH=${CES_HOST_PATH}\nCES_DOCKER_PATH=${CES_DOCKER_PATH}" > .env
-
-docker-compose build --no-cache
-```
-
-After the container has been built, the ELN service has to be configured using it's configuration files. The configuration files are all present in `CES_HOST_PATH` with a `.example` extension. Please make sure to edit them according to your needs and save them without the `.example` extension. Most configuration files should be self-explanatory but further explanation can be found on the [Chemotion ELN repository](https://github.com/ComPlat/chemotion_ELN/-/blob/development/INSTALL.md).
-
-If you just want to use the example configuration, you can copy the example files:
+## First run
+You are now ready to run the initialization. Please note that this will create a new database and delete any old database that might exist. Therefore it is curical that you do only run this command if you want to create a new instance of Chemotion.
 
 ```
-cp ${CES_HOST_PATH}/config/datacollectors.yml.example ${CES_HOST_PATH}/config/datacollectors.yml
-cp ${CES_HOST_PATH}/config/storage.yml.example ${CES_HOST_PATH}/config/storage.yml
+cd $CHEMOTION_PATH
+docker-compose run eln init
 ```
 
-With the application being configured, `docker-compose` can be used to initialize the database:
+As the previous command finishes, you are ready to start Chemotion:
 
 ```
-docker-compose run app bundle exec rake db:create
-docker-compose run app bundle exec rake db:migrate
-docker-compose run app bundle exec rake db:seed
+docker-compose up
 ```
 
-Here, the last line is optional but highly recommended, since it does create a demo user `template.moderator@eln.edu` with the password `@eln.edu`.
+You will see the system logs in your terminal and after the start-up you can access your fresh instance using a browser. The application is running on `http://localhost:4000`, the seeded administration account is `ADM` (all caps!) with password `PleaseChangeYourPassword`.
 
-The next step is to install dependencies that are needed by the application and are not present in the container:
+## Managing your instance
 
-```
-docker-compose run app /bin/bash -c '/usr/local/nvm/versions/node/v12.18.3/bin/npm i'
-
-docker-compose run app /bin/bash -c 'source /usr/local/nvm/nvm.sh;\
- cd node_modules/@novnc/noVNC;\
- npx babel-upgrade --write; npm i; npm i pako; npm i @babel/preset-env;\
- mkdir -p utils;\
- curl https://raw.githubusercontent.com/novnc/noVNC/master/utils/use_require.js > utils/use_require.js;\
- node utils/use_require.js --clean; true'
-```
-
-After this, the next commands precreate static assets. This is also a good test to make sure everything went as expected:
+To get basic information about your instance, run:
 
 ```
-docker-compose run app rake ketcherails:import:common_templates
-docker-compose run app bundle exec rake assets:precompile
+docker-compose run eln info
 ```
 
-With the last command exiting with error code 0, the service should be setup correctly and is ready to be used. This can be done by starting the services with `docker-compose`:
-
-```
-cd ${CES_DOCKER_PATH}
-docker-compose up -d
-```
-
-The services are now up and running and will be available on [localhost:3000](http://localhost:3000).
-To simplify this installation process, the steps are all gathered in a single shell script that can be found [here](https://ptrxyz.github.io/chemotion-docs/data/install.sh). Feel free to use this, yet this does not consider any user specific configuration and is thus not meant to be used in a production environment. Further, the script does not check if any files in the target folders `$(pwd)/chemotion_eln_server` and `$(pwd)/chemotion-docker` exist. Files might be overwritten, so handle with care!
+This will output storage, memory as well as several version information and ensure the fundamentally required runtime is correct.
 
 ### Setting up a Reverse-Proxy
 
-To make the installation available to the public, the container's ports have to be forwarded.
+To make the installation available to the public, the container's ports should to be forwarded. We suggest to run NGINX as a reverse-proxy either in docker (by extending the Docker-Compose service description file) or stand-alone on the host. The application is (by default) listening on '0.0.0.0:4000'.
 
 ```
 Todo: NGinx as Revers-Proxy goes here. Mb LE certificates for SSL?
