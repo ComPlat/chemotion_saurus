@@ -16,7 +16,7 @@ Download this file and place it in a separate folder (further referred to as `CH
 
 ```
 cd $CHEMOTION_PATH
-curl -L -o docker-compose.yml https://github.com/ComPlat/chemotion_saurus/blob/master/static/files/docker-compose.yml
+curl -L -o docker-compose.yml https://raw.githubusercontent.com/ComPlat/chemotion_saurus/master/static/files/docker-compose.yml
 ```
 
 As a next step, create the necessary folders for configuration, data sharing and the database:
