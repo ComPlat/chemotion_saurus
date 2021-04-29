@@ -41,10 +41,11 @@ For more users, one can start to split the services onto distinct machines.
 To install on a single machine for few users below is the minimum hardware requirement.
 * 3GB RAM
 * Dual Core
-* 50GB hard disk 
+* 50-100GB hard disk 
 * Ubuntu 20.04LTS or 18.04 LTS
 
 For multiple machine configuration and splitting the services onto different machines below is the hardware requirement:
+
 **ELN web server and worker server**:
 * 3GB RAM
 * Dual Core
@@ -54,7 +55,7 @@ For multiple machine configuration and splitting the services onto different mac
 **DB server**:
 * 2GB RAM
 * Dual Core
-* 500GB hard disk or larger(depending upon the size of the metadata)
+* 500GB hard disk or smaller(depending upon the size of the metadata)
 * Ubuntu 20.04LTS or 18.04 LTS
 
 **ELN proxy server**:
@@ -288,9 +289,9 @@ Connection to the DB is set in _config/database.yml_.
 
 ## Multiple Machine Configuration
 
-When splitting the tasks on several machines  ensure that the following is accessible to any web-app or worker-app instance
+When splitting the tasks on several machines make sure you meet the above [harware requirement](#hardware-requirement) and ensure that the 
+following is accessible to any web-app or worker-app instance
 
 - DB
 - uploaded user files
 - images
-- 
