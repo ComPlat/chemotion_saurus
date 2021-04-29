@@ -28,7 +28,8 @@ chown 1000:1000 config shared db-data
 ```
 Note: Make sure that the folders are read and writeable by UID 1000:1000.
 
-## First run
+## Running Chemotion
+
 You are now ready to run the initialization. Please note that this will create a new database and delete any old database that might exist. Therefore it is curical that you do only run this command if you want to create a new instance of Chemotion.
 
 ```
@@ -43,6 +44,23 @@ docker-compose up
 ```
 
 You will see the system logs in your terminal and after the start-up you can access your fresh instance using a browser. The application is running on `http://localhost:4000`, the seeded administration account is `ADM` (all caps!) with password `PleaseChangeYourPassword`.
+
+To start your instance in background mode, use `docker-compose up -d`.
+To automagically start your services when the host machine boots, extend the compose file to contain the property `restart`, for example:
+
+```docker-compose.yml
+services:
+  db:
+    ...
+    
+  eln:
+    ...
+    restart: unless-stopped
+    ...   
+```
+
+Please refer to the Docker documentation on how this property works: https://docs.docker.com/config/containers/start-containers-automatically/
+
 
 ## Managing your instance
 
