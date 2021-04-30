@@ -295,10 +295,11 @@ When splitting the tasks on several machines make sure you meet the above [harwa
 - uploaded user files
 - images
 
-**DB Setup**:
+### DB Setup:
 
-Follow the below steps to setup the DB.
-1. [Install Postgres](#install-postgres)
+Chemotion runs on PostgreSQL relational database (version >10).In order to setup DB server we have to install PostgreSQL and create necessary role,DB and extension.
+Follow below steps to setup the DB server.
+1.Install Postgres (#install-postgres)
 ```sh
 sudo apt-get update
 sudo apt-get -y install postgresql-12
@@ -310,41 +311,42 @@ service postgresql status
 ```
 3. Allow remote connection to postgres.To help doing this you can follow [link here](https://www.thegeekstuff.com/2014/02/enable-remote-postgresql-connection/)
   
-4. ###Create DB, Role and Extension(#db-role-extension)
+4. Create DB, Role and Extension
+   
    _NOTE: Perform this step after Step 3 of ELN Web App Setup._
-   * Create DB
+   * Create Role:
    ```sh
    sudo -u postgres psql -c " CREATE ROLE $DB_ROLE LOGIN CREATEDB NOSUPERUSER PASSWORD '$DB_PW';"
    ```
-   * Create Role
+   * Create DB:
    ```sh
    sudo -u postgres psql -c " CREATE DATABASE $DB_NAME OWNER $DB_ROLE;"
    ```
-   * Create Extension
+   * Create Extension:
    ```sh
    sudo -u postgres psql -d $DB_NAME -c ' CREATE EXTENSION IF NOT EXISTS "pg_trgm"; CREATE EXTENSION IF NOT EXISTS "hstore";  CREATE EXTENSION IF NOT EXISTS "uuid-ossp";'
    ```
    _NOTE : replace $DB_NAME, $DB_PW and $DB_ROLE by the values  saved in .env file of app_server (/var/www/chemotion_ELN/shared/.env)_
   
 
-**ELN Web App Setup**:
+### ELN Web App Setup:
 
 Follow the below steps to install the ELN application.
-1. Copy the installation script on a ubuntu server 18.04 or 20.04 LTS
+1. Copy the installation script on a Ubuntu server 18.04 or 20.04 LTS
    ```sh
    curl -o chemotion_ELN_install.sh -L https://git.scc.kit.edu/complat/chemotion_ELN_server/raw/development/scripts/install_production.sh
    ```
    Check the variables at the beginning of the file, but also check the whole script to see what it is doing.
    This will basically install evrything on one machine but configuration within can be reworked to just serve one purpose.
-   The script will
-           * install OS package dependencies
-           * install passenger
-           * create a new user
-           * install ruby and nodejs for the user
-           * create a postgresql DB
-           * copy the chemotion_ELN code and prepare basic config files
-           * do a capistrano app deploy
-           * config nginx (NB: no ssl set) and UFW
+   The script will...
+   * install OS package dependencies
+   * install passenger
+   * create a new user
+   * install ruby and nodejs for the user
+   * create a postgresql DB
+   * copy the chemotion_ELN code and prepare basic config files
+   * do a capistrano app deploy
+   * config nginx (NB: no ssl set) and UFW
 
    You can also comment out the part from script which you want to skip during the installation.
 
@@ -353,25 +355,28 @@ Follow the below steps to install the ELN application.
    chmod 700 chemotion_ELN_install.sh
    sudo ./chemotion_ELN_install.sh
    ```
-  The whole installation process may take more than an hour to complete. Once done the system should reboot and the application should be up and running at the ip of the machine   (http://...) An admin account should have been created (email: eln-admin@kit.edu, pw: PleaseChangeYourPassword)
+  The whole installation process may take approximately an hour to complete. Once done the system should reboot and the application should be up and running at the 
+  IP of the   machine   (http://...). An admin account should have been created (email: eln-admin@kit.edu, pw: PleaseChangeYourPassword)
 
-3. Connect to remote DB server by updating the HOST and PORT in database.yml(/var/www/chemotion_ELN/shared/config/database.yml) file or instead update the parameter at 
-  .env file (/var/www/chemotion_ELN/shared/.env). 
-4. Once connection is succesfully established follow step 4 of DB Setup to [Create DB,Role and Extension](#db-role-extension).
-5. Migrate the DB and restart the app by running below command in app server as production user.
+3. Connect to remote DB server by updating the HOST and PORT in database.yml file (_/var/www/chemotion_ELN/shared/config/database.yml_) or instead update the parameter at 
+  .env file (_/var/www/chemotion_ELN/shared/.env_). 
+4. Once connection is succesfully established follow step 4 of DB Setup to Create DB,Role and Extension.
+5. After sucessfully completing the DB configuration migrate the DB and restart the app by running below command in app server as production user.
    ```sh
    sudo su production
    source ~/.profile && cd /var/www/chemotion_ELN/current && RAILS_ENV=production bundle exec rake db:migrate
    touch /var/www/chemotion_ELN/current/tmp/restart.txt
    ```
 6. Once the application is setup, technically we can uninstall the postgres and stop the worker job from this server.
-7. To uninstall Postgres from the app server you can follow the [link here](#https://askubuntu.com/questions/32730/how-to-remove-postgres-from-my-installation)
+7. To uninstall PostgreSQL from the app server you can follow the [link here](https://askubuntu.com/questions/32730/how-to-remove-postgres-from-my-installation)
 8. The worker app (_delayed_job_) and  the web app (_passenger instance_) are  started at machine-reboot  through crontab of the production user.
-   Crontab will execute at reboot a script located  at /home/production/boot-ELN.sh. In ordee to stop the worker job comment out the job on the script 
-   section (/home/production/boot-ELN.sh) and quit the job(_delayed_job_) from the process manager as well(_htop_).
+   Crontab will execute at reboot a script located  at _/home/production/boot-ELN.sh_. In ordee to stop the worker job comment out the job on the script 
+   section (_/home/production/boot-ELN.sh_) and quit the job(_delayed_job_) from the process manager as well(_htop_).
   
-**ELN Web Worker Setup**:
-1. In order to install worker download and exceute the installation script as done in Step 1 of app setup. This time you can execute the script by 
+### ELN Web Worker Setup:
+
+Follow the below steps to configure the worker.
+1. Download and exceute the installation script as done in Step 1 of app setup. This time you can execute the script by 
    commenting out the Part 2,6,71,81,82 and 11. 
    ```sh
    PART_0='update OS'
@@ -391,7 +396,7 @@ Follow the below steps to install the ELN application.
    PART_10='configure UFW'
    #PART_11='configure NGINX'
    ```
-2. Once installation done succesfully you can configure the DB server .env (/var/www/chemotion_ELN/shared/.env) file.
+2. Once installation done succesfully you can configure the DB server at .env file (_/var/www/chemotion_ELN/shared/.env_).
 3. To check if installation was successful login as production user and perform below action.
    ```sh
    source ~/.profile && cd /var/www/chemotion_ELN/current && RAILS_ENV=production bundle exec rails c#then run some ruby rails command:
@@ -412,8 +417,8 @@ Follow the below steps to install the ELN application.
    /var/www/chemotion_ELN/shared/config/
    /var/www/chemotion_ELN/shared/.env
    ````
-**ELN Web Proxy Setup**:
-1. Install nginx 
+### ELN Web Proxy Setup:
+1. Install Nginx 
    ```sh
    sudo apt-get update
    sudo apt-get install nginx
