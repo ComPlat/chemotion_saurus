@@ -114,15 +114,24 @@ In the gray area **Conditions**, the user can give their reaction a **Name**, an
 |---|---| 
 
 | <Btn icon={faClock} color={"warning"}/>  |  Planned | 
+
 | <Btn icon={faHourglassHalf} color={"warning"}/> | Running | 
+
 | <Btn icon={faHourglassEnd} color={"primary"}/> | Done | 
+
 | <Btn icon={faEllipsisH} color={"primary"}/> | Analyses Pending | 
+
+| <Btn icon={faCheckCircle} color={"success"}/> | Successful | 
+
+| <Btn icon={faTimesCircle} color={"success"}/> | Not Successful | 
 
 The temperature of a reaction is inserted via the **Temperature** field. If a **Temperature** has been defined, it is also displayed on the reaction arrow. When entering the temperature, you can choose between the Kelvin **K**, Celsius **°C** and Fahrenheit **°F** scale. Enter the temperature in the given scale and switch to the desired unit. You can also enter a complex temperature profile by selecting the graph symbol for the temperature field <Btn icon={faChartArea} color={"secondary"}/>. A window opens that allows you to enter temperature changes with time, and it displays those changes in a chart. Use + to add a temperature change and – to remove it.  
 
 The user can specify the **Duration** of the reaction by adding its **Start** time and **Stop** time with the following format: DD/MM/YYYY hh:mm:ss or DD.MM.YYYY hh:mm:ss, then the **Duration** is automatically calculated. The user can also input current time with the <Btn icon={faClock} color={"secondary"}/> button. The calculated **Duration** can be copied with <Btn icon={faPaste} color={"secondary"}/>, or rounded to the next field either in **Week(s)**, **Day(s)**, **Hour(s)**, **Minute(s)**, or **Second(s)**. 
 
-you can also choose the **Type** of your reactions from the **Name Reaction Ontology** drop-down.  And you can assign a **Role** to the reaction, such as a **General Procedure**, **Parts of GB**, and **Single**. The **Description** field is intended for recording your reaction implementation. Please give a detailed description of how you carried out the reaction. The **Description** field is mirrored within the second **Properties** tab (and vice versa) to give the user the freedom in which tab they would like to maintain the description of the reaction. The same applies to the **Name**  and **Temperature** fields. You can specify the **Purification** method from a drop-down. ** Purification Solvents** can be added, and they are treated exactly the same way as the reaction **Solvents**. Description of the purification process can be included in the field **Additional information for publication and purification details**. 
+you can also choose the **Type** of your reactions from the **Name Reaction Ontology** drop-down.  And you can assign a **Role** to the reaction, such as a **General Procedure**, **Parts of GB**, and **Single**. The **Description** field is intended for recording your reaction implementation. Please give a detailed description of how you carried out the reaction. The **Description** field is mirrored within the second **Properties** tab (and vice versa) to give the user the freedom in which tab they would like to maintain the description of the reaction. The same applies to the **Name**  and **Temperature** fields. 
+
+For a quick overview of the **Purification** methods that you have used to isolate your target compound,  a drop-down menu has been introduced in which you can list the purification methods used. The methods Flash-Chromatography, TLC, HPLC, Extraction, Distillation, Sublimation and Crystallization are available. The selected methods are lined up as a list. **Purification Solvents** can be added, and they are treated exactly the same way as the reaction **Solvents**. Description of the purification process can be included in the field **Additional information for publication and purification details**. 
 
  
 Finally, the user can <button className="button button--sm button--warning">Save</button> the reaction, <button className="button button--sm button--primary">Close</button> without saving, or <button className="button button--sm button--info">Export samples</button> as an xlsx file.  
