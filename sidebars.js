@@ -15,7 +15,7 @@ module.exports = {
         ]
       },
       {
-        Use: [
+        Users' guide: [
           'eln/about',
           'eln/intro',
           'eln/browser',
