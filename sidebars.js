@@ -38,6 +38,12 @@ module.exports = {
           'eln/adjust_analysis'
         ]
       },
+      {
+        Devices: [
+          'eln/devices',
+          'eln/devices_nmr'
+        ]
+      },
     ],
   },
 
