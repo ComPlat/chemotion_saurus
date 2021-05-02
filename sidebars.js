@@ -39,7 +39,7 @@ module.exports = {
         ]
       },
       {
-        Devices: [
+        Device_integration: [
           'eln/devices',
           'eln/devices_nmr'
         ]
