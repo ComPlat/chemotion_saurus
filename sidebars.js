@@ -35,7 +35,6 @@ module.exports = {
       {
         Administration: [
           'eln/generic_config',
-          'eln/generic_element',
           'eln/adjust_analysis'
         ]
       },
