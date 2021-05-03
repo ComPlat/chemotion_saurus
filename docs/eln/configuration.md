@@ -33,24 +33,34 @@ stored in **.env** file
 For sending users account email confirmation request, reset password instructions, or other notifications.
  
 Email configuration parameters are set as environment variables in the **.env** file. 
-belwo a list of available parameters
+below a list of available parameters:
 
 ```sh
-# address of your ELN for url-links in emails:
+# default url of your ELN for http links in emails:
 SMTP_HOST='sld.tld' 
 # senders email:
 DEVISE_SENDER='no-reply@sld.tld' 
+
+## SMTP config 
+# Remote mail server
 SMTP_ADDRESS='smtp.sld.tld'
 SMTP_PORT=587
-# login email:
+# login user name & password:
 SMTP_USERNAME='no-reply@sld.tld' 
 SMTP_PASSWORD='s3cr3tPW'
+# optional, HELO domain
 SMTP_DOMAIN='sld.tld'
+# detect STARTTLS
 SMTP_TLS=true
+# authentication type ('plain' 'login' (Base64 encoded) or 'cram_md5')
 SMTP_AUTH='plain'
+# how OpenSSL checks the certificate  ('none' or 'peer') 
 SMTP_SSL_MODE='none'
 
+
 ```
+
+See [rails docs](https://guides.rubyonrails.org/action_mailer_basics.html#action-mailer-configuration) for an explanation of the parameters.
 
 
 ## File collector (doi: )
@@ -67,6 +77,8 @@ If login credentials are needed, those are set in the configuration file as well
 Each collection job should be associated to a device account through the administrator interface
 
 ![adminui-datacollector](../../static/img/adminui-datacollector.png)
+
+
 
 
 ## External services 
