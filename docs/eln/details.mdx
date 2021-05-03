@@ -148,3 +148,15 @@ In order to be able to reproduce the control of a reaction via thin-layer chroma
 The ** References ** tab of a reaction is identical to the **Literature** tab of a sample. It allows you to manage your literature and link it to your reaction. You can specify as many references as you find needed. It is possible to specify the reference either by its DOI or ISBN, or by giving it a title and a URL. In both cases, you can add whether this reference is citing you or cited by you. When all details of a reference are entered, press <Btn icon={faPlus} color={"success"}/>. Once a reference is created, it cannot be edited, it can only be deleted, so if you need to edit a reference, delete it and create a new one.  
 
 The created references are added to a list and they are shown in blue to indicate their functionality in linking to some resources by clicking on them. Each reference can by copied using <Btn icon={faPaste} color={"secondary"}/>, which will copy the information provided in the list. Additional details about the reference, as by whom it was created and whether it is referring to or cited by you,  can be shown by pressing the button <Btn icon={faAngleRight} color={"secondary"}/>, which also shows the delete button <Btn icon={faTrashAlt} color={"danger"}/>. Don’t forget to save your changes with <button className="button button--sm button--warning">Save</button>. 
+
+### Analyses tab 
+
+The analyses tab of the reaction view differs from the analysis tab of the sample view in essential ways. While a samples can always have analyses, reaction **Analyses** can only contain **Products** samples that are supported by analyses. The **Analyses** tab of the reactions therefore only shows analyses by means of a link. To edit the data, the link (name of the product sample) to the analysis of the sample must be followed. 
+
+### Green Chemistry tab 
+
+This tab contains fields for green chemistry metrics to quantify the environmental performance of your reaction. Those fields are **Simple E factor (sEF)**, **Complete E factor (cEF) **, Custom E factor**, **Atom economy (AE)**, **Custom Atom economy**. Those metrics are calculated automatically based on the masses of the samples in your reaction, and the waste produced through it. All the reaction samples are shown again in the ** Green Chemistry** tab, with directly unmodifiable details about their **Mass**, **Volume**, **Moles**, equivalents **Eguiv**, and coefficients **Coeff**. To modify those fields you need to go back to the corresponding sample and update the numbers. The specify whether the **Starting Materials** and the **Reactants** are **Recyclable**, and to specify whether their **Products** are **Waste** with a checkbox. If you are facing any problems with ticking the checkbox, make sure that you are using Chrome, and try to save the reaction and reload the page. 
+
+### SciFinder tab 
+
+Not available at the moment. 
