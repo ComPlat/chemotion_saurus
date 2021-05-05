@@ -21,6 +21,7 @@ title: Introduction Videos
 ```
 
 `id:`  The unique document id. By default, a document id is the name of the document (without the extension) relative to the root docs directory. It can be used in the left TOC.  
+`sidebar_label:` Name displayed in the table of content (TOC).  
 `slug:` Optional. Defines the last part of the URL.  
 `title:`  Optional. Prompted on the page.
 
@@ -61,6 +62,24 @@ Add analysis  <FontAwesomeIcon icon={faPlus} size="lg"/>
 <button className="button button--sm button--warning">Update</button>
 ```
 
+#### change size of button
+You can change the size of a button in its style attribute with values in %, pixel (px), rem or em.
+
+```
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus, faShareAlt } from '@fortawesome/free-solid-svg-icons'
+
+<button className={"button button--sm button--success"} style={{padding:"0.5rem", height: "50%", width: "50%"}}>
+<FontAwesomeIcon icon={faPlus} size="lg"/>
+</button>
+
+<button className={"button button--sm button--success"} style={{padding:"0.5rem", height: "5px", width: "5px"}}>
+<FontAwesomeIcon icon={faPlus} size="lg"/>
+</button>
+```
+### Headings
+To create a heading, add number signs # in front of a word or phrase. The number of # you use should correspond to the heading level. A lot of # indicates a low level.
+
 ### Images
 Images can be inserted as Markdown or as HTML for special configurations (resizing etc.) or if the image is inside an HTML tag:
 ``` 
@@ -73,7 +92,7 @@ There should be no /static in src.
 Highlighted info boxes ([like in the eln intro page](./eln/intro.mdx)) with further informations are called "Admonitions" in docusaurus. [See here.](https://docusaurus.io/docs/markdown-features/admonitions)
 
 ### Line Breaks
-Insert two white spaces at the end of the line.
+Insert **two white spaces** at the end of the line.
 
 ### Links
 ```
@@ -133,4 +152,4 @@ random number with a dot
 `Collection Bar`
 ```
 ## TOC
-The TOC on the left of every documentation page must be manual updated via **sidebars.js**. If you have inserted a new page or want to change the order, change it in **sidebars.js**.
+The TOC on the left of every documentation page must be manual updated via [**sidebars.js**](https://github.com/ComPlat/chemotion_saurus/edit/master/sidebars.js) on GitHub. If you have inserted a new page or want to change the order, change it here.
