@@ -74,17 +74,16 @@ several options are available:
 Email collection: the ELN-app is given access to an email account in which it will regularly check for incoming emails and collect the attachments.
 The addressees should be the email address set for the ELN, and the user for which the attachment is addressed. The sender's email address should also be a ELN-registered device.
 
-:::danger
-If the sender and addresssees are not those of ELN-registered devices, then the email will be discarded.
+:::danger 
+All new incoming emails are processed and discarded
+If the sender and other addresssees are unknown to the ELN (emails registered to ELN accounts), then the email will be directly deleted.
 :::
-
 
 File collection: File can be collected from remote storages and distributed to specific user based on the file-name matching the user's name abbreviation.
 
 Configure the frequency for collecting the files, as well as the email access in the config/datacollectors.yml file.
 The background worker will collect the files at the frequencies set.
 If login credentials are needed, those are set in the configuration file as well.
-
 
 ```sh
 ### example of configdatacollector.yml 
@@ -129,6 +128,9 @@ production:
     - :path: '<%= Rails.root.join(*%w[tmp datacollector]).to_s %>'
 ```
 
+:::info After editing the datacollectors.yml the worker (DelayedJob) needs to be restarted.
+:::
+
 For each register Device, a collection job can be set up through the administrator interface:
 
 ![adminui-datacollector](../../static/img/adminui-datacollector.png)
@@ -138,7 +140,7 @@ For each register Device, a collection job can be set up through the administrat
 
 ## External services 
 
-## Chemspectra-App
+### Chemspectra-App
 
 source: https://github.com/complat/chem-spectra-app
 
@@ -161,21 +163,23 @@ mv config/spectra.yml /var/www/chemotion_ELN/shared/config/spectra.yml
 ln -s  /var/www/chemotion_ELN/shared/config/spectra.yml /var/www/chemotion_ELN/current/config/spectra.yml
 ```
 
-## VNC
+### VNC
 Access  remote Desktop with VNC using websockify
-install https://github.com/novnc/websockify
 
-setting through the Administrator-interface
+installation: https://github.com/novnc/websockify
+
+setting: through the Administrator-interface
+
 ![adminui-vnc](../../static/img/adminui-vnc.png)
 
 Access to the remote can then be given to a user by associating it and the device within a user-group.
-Administrator can assign devices and users to exisiting group.
+Administrators can assign devices and users to exisiting group.
 ![adminui-group](../../static/img/adminui-group.png)
 
 User can assign others to the groups they manage.
 
 
-## Onlyoffice
+### Onlyoffice
 
 install  [OnlyOffice](https://helpcenter.onlyoffice.com/installation/docs-community-install-ubuntu.aspx?_ga=2.2091185.1060566386.1612303438-123622021.1612303437) instance on a server
 
@@ -194,7 +198,7 @@ mv config/editors.yml /var/www/chemotion_ELN/shared/config/editors.yml
 ln -s  /var/www/chemotion_ELN/shared/config/editors.yml /var/www/chemotion_ELN/current/config/editors.yml
 ```
 
-## Computed properties 
+### Computed properties 
 
 source:
 installation:  
