@@ -71,15 +71,27 @@ several options are available:
 - collecting attachment files from emails.
 - collecting file or folder from local drives or over scp
 
-Email collection: the ELN-app is given access to an email account in which it will regularly check for incoming emails and collect the attachments.
+### Email-attachement collection 
+
+The ELN-app is given access to an email account in which it will regularly check for incoming emails and collect the attachments.
 The addressees should be the email address set for the ELN, and the user for which the attachment is addressed. The sender's email address should also be a ELN-registered device.
 
 :::danger 
-All new incoming emails are processed and discarded
+All new incoming emails are processed and discarded. 
 If the sender and other addresssees are unknown to the ELN (emails registered to ELN accounts), then the email will be directly deleted.
 :::
 
-File collection: File can be collected from remote storages and distributed to specific user based on the file-name matching the user's name abbreviation.
+
+### File collection
+
+Files can be collected from remote storages and distributed to specific user based on the file-name matching the user's name abbreviation.
+
+:::danger 
+The directories watched by the collector service will be emptied at each collection i.e. all files within the watched directories will be removed.
+:::
+
+
+### Data-collector settings
 
 Configure the frequency for collecting the files, as well as the email access in the config/datacollectors.yml file.
 The background worker will collect the files at the frequencies set.
@@ -128,13 +140,13 @@ production:
     - :path: '<%= Rails.root.join(*%w[tmp datacollector]).to_s %>'
 ```
 
-:::info After editing the datacollectors.yml the worker (DelayedJob) needs to be restarted.
+:::info NB
+After editing the datacollectors.yml the worker service (DelayedJob) needs to be restarted.
 :::
 
-For each register Device, a collection job can be set up through the administrator interface:
+For each registered Device, a collection job can be set up through the administrator interface:
 
 ![adminui-datacollector](../../static/img/adminui-datacollector.png)
-
 
 
 
@@ -146,7 +158,7 @@ source: https://github.com/complat/chem-spectra-app
 
 installation: https://github.com/ComPlat/chem-spectra-app/blob/master/INSTALL.md
 
--- setting
+setting: 
 
 ```sh
 # from the application dir (/var/www/chemotion_ELN/current) copy the config file 
