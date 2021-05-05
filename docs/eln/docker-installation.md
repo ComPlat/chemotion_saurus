@@ -62,7 +62,6 @@ services:
 
 Please refer to the Docker documentation on how this property works: https://docs.docker.com/config/containers/start-containers-automatically/
 
-
 ## Managing your instance
 
 To get basic information about your instance, run:
@@ -80,3 +79,6 @@ To make the installation available to the public, the container's ports should t
 ```
 Todo: NGinx as Revers-Proxy goes here. Mb LE certificates for SSL?
 ```
+
+## Video
+Really short video showing the installation process can be found here: https://asciinema.org/a/lrUMbOEVjEMMZXaJdDUVZrYfV
