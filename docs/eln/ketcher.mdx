@@ -15,8 +15,11 @@ The Ketcher structure editor offers all the basic functions that are necessary f
 In the left side of the image above, some functions have a small balck arrow in the lower right corner. This arrow indicates the possibility to change to other similar function e.g. single bond to double bond. This will become clear later in this page. 
 
 ### Atoms
+
 ![Ketcher bonds](/img/ketcher_bonds.gif)
+
 Atoms can be added to the structure from the column in the right side of the above image. The most frequently used atoms are already displayed in the column using their symbols, while less frequently used ones can be accessed from the <FontAwesomeIcon icon={faEllipsisH} size="lg"/> icon, which displays the **Periodic table** to pick from. The user can either pick a **Single** atom,  a **List**, or **Not List**.  The user can also use **Generics Groups** to add one of **Reaxys Generics**. For more details about Reaxys Generics, please follow this [link](https://www.elsevier.com/__data/assets/pdf_file/0007/818638/FAQ_GenericsGroup.pdf). When an atom is added, it is assumed to be attached with a number of Hydrogen atoms based on its minimum covalency, so if you add a Carbon atom **C**, you get CH4. 
  
-### Bonds 
+### Bonds
+
 Alongside the usual **Single**, **Double**, **Triple** bonds, Ketcher editor offers a variety of bonds to express coordination, stereochemistry, and aromaticity.  If you draw an independent bond (not starting from an atom), it will be assumed to be between two Carbon atoms. If it starts from an atom, the end is assumed to be a Carbon atom. However those Carbon atoms can be replaced with the right ones from the atoms column. A bond can also be used to connect two atoms or to change the type of an already existing bond to another one. If the bond is asymmetric, such as with stereochemistry bonds, you can change its direction by re-clicking on the bond, make sure that the right bond type is selected, otherwise you will change the bond type instead of changing its direction.  
