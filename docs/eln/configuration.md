@@ -63,18 +63,28 @@ SMTP_SSL_MODE='none'
 See [rails docs](https://guides.rubyonrails.org/action_mailer_basics.html#action-mailer-configuration) for an explanation of the parameters.
 
 
-## File collector (doi: )
+## File collector 
 
-data files can be collected from remote storages and distributed to specific user based on the filename matching the user's name abbreviation.
+(see [eln/devices](https://www.chemotion.net/chemotionsaurus/docs/eln/devices) or [doi: 10.1016/j.acax.2019.100007 ](https://doi.org/10.1016/j.acax.2019.100007 ))
 
 several options are available:
-- collecting attachments from emails
+- collecting attachment files from emails.
 - collecting file or folder from local drives or over scp
 
+Email collection: the ELN-app is given access to an email account in which it will regularly check for incoming emails and collect the attachments.
+The addressees should be the email address set for the ELN, and the user for which the attachment is addressed. The sender's email address should also be a ELN-registered device.
+
+:::danger
+If the sender and addresssees are not those of ELN-registered devices, then the email will be discarded.
+:::
+
+
+File collection: File can be collected from remote storages and distributed to specific user based on the file-name matching the user's name abbreviation.
+
+Configure the frequency for collecting the files, as well as the email access in the config/datacollectors.yml file.
 The background worker will collect the files at the frequencies set.
 If login credentials are needed, those are set in the configuration file as well.
 
-Configure the frequency for collecting the files, as well as the email access in the config/datacollectors.yml file:
 
 ```sh
 ### example of configdatacollector.yml 
@@ -93,6 +103,7 @@ production:
     - :name: 'filewatcherlocal'
       :every: 2 # minutes
 
+  ## ELN email account
   :mailcollector:
     :server: 'imap.server.de'
     :mail_address: "service@mail"
@@ -102,7 +113,8 @@ production:
     :aliases:
       - 'alias_one@kit.edu'
       - 'alias_two@kit.edu'
-
+  
+  ## File collection over ssh with password 
   :sftpusers:
     - :user: 'user1'
       :password: 'pass'
