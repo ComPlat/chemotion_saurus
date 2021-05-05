@@ -5,7 +5,7 @@ sidebar_label: Configuration
 slug: settings
 ---
 
-## user name_abbreviation
+## User name_abbreviation
 Name abbreviation, like emails, are unique in the DB and can be used for sign in.
 the length of if can be defined in the user_props.yml config file
 
@@ -25,11 +25,12 @@ ln -s  /var/www/chemotion_ELN/shared/config/user_props.yml /var/www/chemotion_EL
 ```
 
 
-## secret key 
+## Secret key 
 used for cookie encryption.
 stored in **.env** file
 
-## Email-service
+## Email-service (optional)
+
 For sending users account email confirmation request, reset password instructions, or other notifications.
  
 Email configuration parameters are set as environment variables in the **.env** file. 
@@ -65,16 +66,18 @@ See [rails docs](https://guides.rubyonrails.org/action_mailer_basics.html#action
 
 ## File collector 
 
+This is an optional service to collect data files and distribute them to the ELN inbox of the respective users.
+
 (see [eln/devices](https://www.chemotion.net/chemotionsaurus/docs/eln/devices) or [doi: 10.1016/j.acax.2019.100007 ](https://doi.org/10.1016/j.acax.2019.100007 ))
 
-several options are available:
+Two options are available:
 - collecting attachment files from emails.
 - collecting file or folder from local drives or over scp
 
 ### Email-attachement collection 
 
-The ELN-app is given access to an email account in which it will regularly check for incoming emails and collect the attachments.
-The addressees should be the email address set for the ELN, and the user for which the attachment is addressed. The sender's email address should also be a ELN-registered device.
+The ELN-app should be given access to an email account in which it will regularly check for incoming emails and collect the attachments.
+The attachments are then distributed to ELN user by matching the additional addressee present in the __To:__ or __CC:__ fied of the email. The sender's email address should also one of an ELN-registered device. 
 
 :::danger 
 All new incoming emails are processed and discarded. 
