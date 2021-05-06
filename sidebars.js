@@ -44,6 +44,7 @@ module.exports = {
           'eln/devices_nmr'
         ]
       },
+      'eln/contact',
     ],
   },
 
