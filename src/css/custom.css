@@ -33,6 +33,16 @@
 }
 
 a{
+  color: #337ab7;
+}
+
+/* next chapter buttons */
+.pagination-nav__label{
+  color: black;
+}
+
+/* author */
+.avatar__intro{
   color: black;
 }
 
