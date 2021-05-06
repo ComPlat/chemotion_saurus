@@ -4,6 +4,10 @@ title: How To Markdown
 slug: instructions
 ---
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChartBar, faCheck, faPlus } from '@fortawesome/free-solid-svg-icons' 
+import {Btn} from './btn.js'
+
 This website is based on the docusaurus framework, that uses Markdown with JavaScript (JSX). The most important and used components are explained below. More information about Markdown in docusaurus can be found [here.](https://docusaurus.io/docs/markdown-features)
 
 ## New Page
@@ -28,55 +32,42 @@ title: Introduction Videos
 ## Markdown
 
 ### Buttons
-#### with Icon
-For icon buttons the library Font Awesome is used. Get icons from here: [https://fontawesome.com/](https://fontawesome.com/) and import them in the page together with a button function. The color palette is from the [Infima library](https://infima.dev/docs/components/button).
+#### regular buttons with text and icon content
+For creating buttons use a button function and import it in the page. Every button gets a **color** and can have multiple text elements and icons **mixed** in its content.  
+For icon buttons the library Font Awesome is used. Get icons from here: [https://fontawesome.com/](https://fontawesome.com/) and import them in the page, too. The color palette is from the [Infima library](https://infima.dev/docs/components/button).  
+For example following code snippet...
 ```
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
-import { Btn } from '../btn.js'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChartBar, faCheck } from '@fortawesome/free-solid-svg-icons' 
+import {Btn} from '../btn.js'
 
-<Btn icon={faPlus} color={"success"}/> 
+<Btn mixed={[faChartBar, " 1", faCheck]} color={"secondary"}/>
 ```
+...produces <Btn mixed={[faChartBar, " 1", faCheck]} color={"warning"}/>
 
-#### with multiple Icons
+#### special buttons
+To create a button diffrent from the regular one, e. g. with a different size, you need to use a React button with `<button></button>` tags.   
+You can change the size of a button in its style attribute with values in `%`, pixel (`px`), `rem` or `em`. Common icon sizes inside buttons are `xs`, `sm` and `lg`.
 ```
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faShareAlt } from '@fortawesome/free-solid-svg-icons'
 
-<button className={"button button--sm button--success"} style={{padding:"0.5rem"}}>
-<FontAwesomeIcon icon={faPlus} size="lg"/>
-<FontAwesomeIcon icon={faShareAlt} size="lg"/>
-</button>
-```
-#### with Icon and Text
-```
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
-
-<button className={"button button--sm button--success"} style={{padding:"0.5rem"}}>
-Add analysis  <FontAwesomeIcon icon={faPlus} size="lg"/>
-</button>
-```
-
-#### with Text
-```
-<button className="button button--sm button--warning">Update</button>
-```
-
-#### change size of button
-You can change the size of a button in its style attribute with values in %, pixel (px), rem or em.
-
-```
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faShareAlt } from '@fortawesome/free-solid-svg-icons'
-
-<button className={"button button--sm button--success"} style={{padding:"0.5rem", height: "50%", width: "50%"}}>
+<button className={"button button--sm button--success"} style={{padding:"2px", height: "50%", width: "50%"}}>
 <FontAwesomeIcon icon={faPlus} size="lg"/>
 </button>
 
-<button className={"button button--sm button--success"} style={{padding:"0.5rem", height: "5px", width: "5px"}}>
-<FontAwesomeIcon icon={faPlus} size="lg"/>
+<button className={"button button--sm button--success"} style={{padding:"2px", height: "40px", width: "40px"}}>
+<FontAwesomeIcon icon={faPlus} size="sm"/>
 </button>
 ```
+<button className={"button button--sm button--success"} style={{padding:"2px", height: "50%", width: "50%"}}>
+<FontAwesomeIcon icon={faPlus} size="lg"/> long text
+</button>
+
+<button className={"button button--sm button--success"} style={{padding:"2px", height: "40px", width: "40px"}}>
+<FontAwesomeIcon icon={faPlus} size="sm"/> tall
+</button>
+
 ### Headings
 To create a heading, add number signs # in front of a word or phrase. The number of # you use should correspond to the heading level. A lot of # indicates a low level.
 

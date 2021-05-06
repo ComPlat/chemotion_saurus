@@ -13,7 +13,7 @@ The ELN consists of different panels that are combined in the main application p
 ![whole window](/img/screen.png)
 `Action Bar`: The action bar on the top contains symbols for essential actions that are either very important for setting up the ELN or for using it. The action bar is located just below the browser window.  
  `Collection Bar`: The collection bar is located on the left below the action bar and used to navigate through the collections. It can be toggled on/off.  
- `Management Level`: The management level can be opened using the button <Btn icon={faCog} color={"danger"}/> in the collection bar. The management level enables the creation, deletion and organization of collections.  
+ `Management Level`: The management level can be opened using the button <Btn mixed={[faCog]} color={"danger"}/> in the collection bar. The management level enables the creation, deletion and organization of collections.  
  ![Management Level](/img/mgmt_lvl.png)
 `Element Bar`: The element bar is to the right of the collection bar. It shows the elements ** Sample **, ** Reaction **, ** Wellplate **,  ** Screen ** and **Research Plan** assigned to the selected collection. 
 
@@ -32,11 +32,11 @@ Samples are the smallest organizational unit of this ELN. They describe the phys
 Several samples can be arranged in wellplates so that they can be combined according to an application in biology.
 - `Screens`<img src={"/chemotionsaurus/img/screen.svg"} width={"30px"} alt={"Screen"}/>:   
 A screen is the overview of a biological experiment that is carried out with several samples (usually organized by wellplates).
-- `Research Plan` <FontAwesomeIcon icon={ faFileAlt } size="lg"/> :   
+- `Research Plan` <FontAwesomeIcon icon={faFileAlt} size="lg"/> :   
 A research plan is a generic element that can be used in a flexible manner to describe in particular processes. The reserach plan combines functions for text, tables, images and other information and allows the assignement of other elements such as molecules and reactions.  
 - `Others`:   
 The ELN in its first pure chemistry version included only the Elements as decribed above. In the meantime, a more flexible use of the ELN allows the definition of additional elements which can be defined and added to the ELN by the admin of each instance.
 
 ## Actions
 -  `Split` :** Split ** is an action that can be carried out according to the physical division of a sample into subsets (a certain amount of a chemical compound). A ** split ** represents the removal of a subset from a sample and depicts this by generating a new sample with the same properties as the original sample. The split action can be traced by numbering the newly created sample based on the original sample.
--  `Copy`<Btn icon={faClone} color={"success"}/>: In contrast to the ** Split **, the ** Copy ** action means that a copy of only the molecular structure (including the parameters dependent on the molecular structure such as molecular weight) is made. The copy has no relation to the original sample and can be saved under a new name.
+-  `Copy`<Btn mixed={[faClone]} color={"success"}/>: In contrast to the ** Split **, the ** Copy ** action means that a copy of only the molecular structure (including the parameters dependent on the molecular structure such as molecular weight) is made. The copy has no relation to the original sample and can be saved under a new name.

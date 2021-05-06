@@ -15,11 +15,11 @@ The collection bar is used to organize the ELN. Some symbols are defined below:
 
 | symbol | meaning |
 |---|---|
-| <FontAwesomeIcon icon={faList} size="lg"/>  |  Toggle Collections on/of  |
-| <Btn icon={faCog} color={"danger"}/> | switch between Collection and Element View |
-| <Btn icon={faPlus} color={"success"}/> | open subcollections |
-| <Btn icon={faMinus} color={"success"}/> | close subcollections |
-| <Btn icon={faShareAlt} color={"secondary"}/> | Your own collections are listed in the collection bar. Collections that you have shared with other researchers (**My shared collections**) or that have been shared with you (**Shared with me**) are also listed. Collections can also be created that are permanently accessible by several users (**Synchronized collections**). |
+| <FontAwesomeIcon icon={faList} size="sm"/>  |  Toggle Collections on/of  |
+| <Btn mixed={[faCog]} color={"danger"}/> | switch between Collection and Element View |
+| <Btn mixed={[faPlus]} color={"success"}/> | open subcollections |
+| <Btn mixed={[faMinus]} color={"success"}/> | close subcollections |
+| <Btn mixed={[faShareAlt]} color={"secondary"}/> | Your own collections are listed in the collection bar. Collections that you have shared with other researchers (**My shared collections**) or that have been shared with you (**Shared with me**) are also listed. Collections can also be created that are permanently accessible by several users (**Synchronized collections**). |
 
 ### Standard Collections All and chemotion.net
 Users find the two pre-installed collections **All** and **chemotion.net** in their ELN. These are not meant to be removed as they represent an important functionality.
@@ -45,15 +45,15 @@ The **chemotion.net** collection should be used when the ELN user wants to make 
 ###  Sorting and Organizing
 ![First](/img/collection_organisation.gif)
 
-Creating, sorting, and organizing collections are carried out in collection management (accessible via the collection button <Btn icon={faCog} color={"danger"}/> in the collection bar). A new collection can be generated through collection management. By pressing <Btn icon={faPlus} color={"success"}/>, a new entry **New Collection** is created under **My Collections**. Give your collection a name and save it by pressing **update** <button className="button button--sm button--warning">Update</button>.
+Creating, sorting, and organizing collections are carried out in collection management (accessible via the collection button <Btn mixed={[faCog]} color={"danger"}/> in the collection bar). A new collection can be generated through collection management. By pressing <Btn mixed={[faPlus]} color={"success"}/>, a new entry **New Collection** is created under **My Collections**. Give your collection a name and save it by pressing **update** <Btn mixed={["Update"]} color={"warning"}/>.
 
 :::danger Caution
-Without the creation of collections, the use of the ELN is not possible! Remember to **update** <button className="button button--sm button--warning">Update</button>! Without this confirmation, no collection will be generated
+Without the creation of collections, the use of the ELN is not possible! Remember to **update** <Btn mixed={["Update"]} color={"warning"}/>! Without this confirmation, no collection will be generated
 :::
 
 Think about a meaningful structuring and create your collections accordingly. You can create as many collections as you want, but the overview of your journal should be in the foreground. As a rule, it makes sense to initially have a collection as your electronic journal, and possibly a second collection e.g. to reproduce your chemical database. Another way to structure your ELN is to create sub-collections. Each collection can be organized by creating subcollections which, in turn, can include subcollections. This allows you to create a folder system that is very similar to Windows folder system. Please note: Subcollections are suitable for structuring, but the contents of a subcollection are not available to the collection. This fact must be taken into account in particular when carrying out actions such as **Sharing**. 
 
-The creation of a subcollection is done in the same way as the creation of a collection. The collection obtains the function assignment as a subfolder within collection management by manually indenting the folder to the right. Drag & Drop can turn the collection into a subcollection. Again, this change will not take effect until the action is confirmed by **update** <button className="button button--sm button--warning">Update</button>. 
+The creation of a subcollection is done in the same way as the creation of a collection. The collection obtains the function assignment as a subfolder within collection management by manually indenting the folder to the right. Drag & Drop can turn the collection into a subcollection. Again, this change will not take effect until the action is confirmed by **update** <Btn mixed={["Update"]} color={"warning"}/>. 
 
 :::info 
 Each collection can be organized by creating subcollections. These, in turn, can include subcollections. Subcollections are not mirrored in the upper collection, they are rather just an optical structuring tool. 
@@ -89,10 +89,9 @@ A synchronized collection also displays the creation of new elements.
 
 #### Create a synchronized collection: 
 Synchronized collections can be created in the collection management. In **My Collections** management, in the chosen collection to be synchronized,
-use the button <button className={"button button--sm button--primary"} style={{padding:"0.5rem"}}><FontAwesomeIcon icon={faPlus} size="lg"/>  <FontAwesomeIcon icon={faShareAlt} size="lg"/></button> to initiate a corresponding assignment and define the assignment of rights. 
+use the button <Btn mixed={[faPlus, faShareAlt]} color={"primary"}/>to initiate a corresponding assignment and define the assignment of rights. 
 
 The successful creation of a synchronized collection can be indicated by the assignment within the management. After the update, a reference is set within the collection bar so that the user can understand which of his collections (with corresponding rights assignment) are directly visible to others. 
 
 ### Visibility 
-Own collections are always visible directly in the collection bar. The collections shared by a user are listed separately again in order to increase their visibility and thus transparency. Synchronized collections are directly marked by the icon <Btn icon={faShareAlt} color={"secondary"}/> in the collection bar (see chapter [Synchronized Collections](#synchronized-collections)). 
-
+Own collections are always visible directly in the collection bar. The collections shared by a user are listed separately again in order to increase their visibility and thus transparency. Synchronized collections are directly marked by the icon <Btn mixed={[faShareAlt]} color={"secondary"}/> in the collection bar (see chapter [Synchronized Collections](#synchronized-collections)). 
