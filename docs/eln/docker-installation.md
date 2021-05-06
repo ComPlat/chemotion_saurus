@@ -6,7 +6,7 @@ slug: docker_installation
 ---
 
 :::info
-Documentation and processes are being reworked and improved at the moment. It may happen that you miss information. If you face problems, please let as know, we are there to support you. You may also contact us directly if you plan to install Chemotion. 
+Documentation and processes are being reworked and improved at the moment. It may happen that you miss information. If you face problems, please let us know, we are there to support you. You may also contact us directly if you plan to install Chemotion. 
 https://github.com/ComPlat/chemotion_saurus/blob/master/docs/eln/contact.mdx
 :::
 
