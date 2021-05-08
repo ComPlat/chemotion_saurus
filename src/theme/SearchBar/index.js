@@ -34,7 +34,6 @@
    const {generateSearchPageLink} = useSearchQuery();
    console.log('query',state.query);
    console.log(generateSearchPageLink(state.query))
-   debugger;
  
    return (
      <Link to={generateSearchPageLink(state.query)} onClick={onClose}>

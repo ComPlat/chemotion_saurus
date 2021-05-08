@@ -7,8 +7,14 @@
 
 /* You can override the default Infima variables here. */
 :root {
+  --ifm-color-primary-lightest: #c3daee;
   --ifm-color-primary: #337ab7;
+  --ifm-color-secondary-light: #eef0f2;
+  --ifm-color-secondary: #ebedf0;
+  --ifm-color-secondary-dark: #d3d8de;
+  /* --ifm-color-secondary-dark: #d4d5d8; */
   --ifm-color-secondary-darker:  #606770;
+  --ifm-color-grey:grey;
 
   --ifm-button-color: #fff;
 

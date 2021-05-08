@@ -6,8 +6,12 @@
  */
 
  :root {
-    --docsearch-primary-color: var(--ifm-color-primary);
-    --docsearch-text-color: var(--ifm-font-color-base);
+    --docsearch-primary-color: var(--ifm-color-primary-lightest);
+    /* --docsearch-primary-color: var(--ifm-color-secondary-light); */
+    --docsearch-text-color: var(--ifm-color-secondary-darker);
+    /* ELN or Repository: */
+    --docsearch-highlight-color: var(--ifm-color-secondary-dark);
+
   }
   
   .DocSearch-Button {
