@@ -51,6 +51,26 @@ module.exports = {
       indexName: process.env.INDEX_NAME,
       appId: process.env.ALGOLIA_APP_ID,
       //... other Algolia params
+      debug: true,
+      placeholder: "Search Documentation"
+      // handleSelected: function(input, event, suggestion, datasetNumber, context) {
+      //   // Prevents the default behavior on click and rather opens the suggestion
+      //   // in a new tab.
+      //   console.log('algolia');
+      //   if (context.selectionMethod === 'click') {
+      //     console.log('click search hit');
+      //     input.setVal('');
+    
+      //     const windowReference = window.open(suggestion.url, '_blank');
+      //     windowReference.focus();
+      //   }
+      // },
+      // queryHook: function(query) {
+      //   console.log('query hook', query);
+      // },
+      // // algoliaOptions: {
+      //   hitsPerPage: 2
+      // }
     },
     footer: {
       style: 'light',

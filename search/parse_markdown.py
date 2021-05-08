@@ -3,14 +3,19 @@ import os
 import uuid
 import json
 import string
+import os
 
-# todo generators
+os.system("nodejs sidebars_to_json.js")
 
-stopwords = pickle.load(open("stopwords.p", "rb"))
+with open("sidebars.json", "r") as read_file:
+    toc = json.load(read_file)
+
+stopwords = pickle.load(open("search/stopwords.p", "rb"))
 stopwords.add('')
 records = []
 
-root_dir = r'../docs'
+root_dir = r'docs'
+# root_dir = r'../docs'
 url = "https://eln.chemotion.net/chemotionsaurus/"
 ignore_files = ('admin.md', 'instructions.mdx')
 
@@ -31,18 +36,48 @@ def get_attribute(lines, attr):
         attr = lines[attr_idx].replace(attr, '')
         del lines[attr_idx]
     else:
-        attr = ''
+        attr = ' '
     return lines, attr
 
 def get_lvls(line):
     splits = line.split(" ", 1)
-    lvl = len(splits[0])
+    lvl = len(splits[0])+2 # because if lvl1 => toc, lvl2 => title
     return lvl, splits[1].strip()
+
+# search for entry in dictionary
+def search_toc(toc_list, entry):
+    lvl = None
+    for k in toc_list:
+        if k == entry: 
+            break
+        if type(k) is dict:
+            for v in k.values():
+                if entry in v:
+                    lvl = list(k.keys())[0]
+    return lvl
+ 
+def get_lvl_toc(id, dir_name):
+    subdir = dir_name.split('/')[1]
+    entry = subdir+'/'+id
+    if subdir == 'eln':
+        lvl = search_toc(toc['elnSidebar']['ELN'], entry)
+    if subdir == 'repo':
+        lvl = search_toc(toc['repoSidebar']['REPO'], entry)
+    return lvl
 
 def get_anchor(line):
     anchor = line.translate(str.maketrans('', '', string.punctuation))
     anchor = anchor.replace(' ', '-')
     return anchor.lower()
+
+def get_dir(dirname):
+    sub_dir = dirname.split('/')
+    if sub_dir[1] == 'eln':
+        return 'ELN'
+    elif sub_dir[1] == 'repo':
+        return 'Repository'
+    else:
+        return None
 
 # input: attributes of single file
 # todo **kwargs
@@ -65,6 +100,7 @@ def split_file(filepath, dir_name):
         lines, slug = get_attribute(lines, 'slug: ')
         lines, title = get_attribute(lines, 'title: ')
         lines, author = get_attribute(lines, 'author: ')
+        lines, id = get_attribute(lines, 'id: ')
 
         headings = [lines.index(i) for i in lines if i.startswith('#')] # indices
         headings = headings+[len(lines)+1]
@@ -72,16 +108,18 @@ def split_file(filepath, dir_name):
             try:
                 for i, h in enumerate(headings):
                     kwargs = {"hierarchy":
-                    {"lvl0":title,
-                          "lvl1": None,
-                          "lvl2": None,
-                          "lvl3": None,
-                          "lvl4": None,
-                          "lvl5": None,
-                          "lvl6": None
+                    {"lvl0":get_dir(dir_name), # ELN or Repository
+                        "lvl1": get_lvl_toc(id, dir_name),
+                        "lvl2": title,
+                        "lvl3": None,
+                        "lvl4": None,
+                        "lvl5": None,
+                        "lvl6": None
                     }
                     }
+
                     kwargs["author"] = author
+                    kwargs["title"] = title
                     kwargs["url"] = url+dir_name.replace('../', '')+'/'+slug
                     kwargs["content"] = remove_words(lines[h:headings[i+1]])
                     lvl, line = get_lvls(lines[h])
@@ -94,14 +132,15 @@ def split_file(filepath, dir_name):
                    KeyError
         else:
             kwargs = {"anchor": None}
+            kwargs["title"] = title
             kwargs = {"hierarchy":
-            {"lvl0":title,
-                  "lvl1": None,
-                  "lvl2": None,
-                  "lvl3": None,
-                  "lvl4": None,
-                  "lvl5": None,
-                  "lvl6": None}
+            {"lvl0":get_dir(dir_name),
+                "lvl1": get_lvl_toc(id, dir_name),
+                "lvl2": title,
+                "lvl3": None,
+                "lvl4": None,
+                "lvl5": None,
+                "lvl6": None}
             }
             kwargs["author"] = author
             kwargs["url"] = url+dir_name.replace('../', '')+'/'+slug
@@ -117,5 +156,5 @@ def read_files(dir_name):
 
 read_files(root_dir)
 
-with open('browse_new.json', 'w', encoding="utf-8") as outfile:
+with open('search/browse_new.json', 'w', encoding="utf-8") as outfile:
     json.dump(records, outfile, ensure_ascii=False)
