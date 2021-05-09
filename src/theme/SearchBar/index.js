@@ -24,17 +24,19 @@
  
  function Hit({hit, children}) {
   // console.log('children',children);
-  // console.log('hit',hit);
+  console.log('hit',hit);
   let title = hit.hierarchy.lvl2
   return <Link to={hit.url}>{title}</Link>;
   //  return <Link to={hit.url}>{children}</Link>;
  }
  
  function ResultsFooter({state, onClose}) {
+
    const {generateSearchPageLink} = useSearchQuery();
-   console.log('query',state.query);
-   console.log(generateSearchPageLink(state.query))
- 
+  //  debugger;
+  //  console.log(generateSearchPageLink);
+   console.log('query', state);
+    // TODO
    return (
      <Link to={generateSearchPageLink(state.query)} onClick={onClose}>
        See all {state.context.nbHits} results
@@ -43,6 +45,12 @@
  }
  
  function DocSearch({contextualSearch, ...props}) {
+     /**
+   *
+   * @contextualSearch {boolean} 
+   * @props {object} Algolia configs
+   */
+  //  console.log("props",props);
    const {siteMetadata} = useDocusaurusContext();
  
    const contextualSearchFacetFilters = useAlgoliaContextualFacetFilters();
@@ -67,6 +75,7 @@
    const searchButtonRef = useRef(null);
    const [isOpen, setIsOpen] = useState(false);
    const [initialQuery, setInitialQuery] = useState(null);
+  //  debugger;
  
    const importDocSearchModalIfNeeded = useCallback(() => {
      if (DocSearchModal) {
@@ -129,6 +138,7 @@
      });
    }).current;
  
+  //  TODO
    const resultsFooterComponent = useMemo(
      () => (footerProps) => <ResultsFooter {...footerProps} onClose={onClose} />,
      [onClose],
