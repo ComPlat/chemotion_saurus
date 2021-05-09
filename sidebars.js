@@ -27,6 +27,7 @@ module.exports = {
           'eln/details',
           'eln/toolbar',
           'eln/ketcher',
+          'eln/barcodes',
           'eln/inventory',
           'eln/analysis',
           'eln/problems'
