@@ -23,8 +23,6 @@
  let DocSearchModal = null;
  
  function Hit({hit, children}) {
-  // console.log('children',children);
-  console.log('hit',hit);
   let title = hit.hierarchy.lvl2
   return <Link to={hit.url}>{title}</Link>;
   //  return <Link to={hit.url}>{children}</Link>;
@@ -33,10 +31,6 @@
  function ResultsFooter({state, onClose}) {
 
    const {generateSearchPageLink} = useSearchQuery();
-  //  debugger;
-  //  console.log(generateSearchPageLink);
-   console.log('query', state);
-    // TODO
    return (
      <Link to={generateSearchPageLink(state.query)} onClick={onClose}>
        See all {state.context.nbHits} results
@@ -50,7 +44,6 @@
    * @contextualSearch {boolean} 
    * @props {object} Algolia configs
    */
-  //  console.log("props",props);
    const {siteMetadata} = useDocusaurusContext();
  
    const contextualSearchFacetFilters = useAlgoliaContextualFacetFilters();
@@ -138,7 +131,6 @@
      });
    }).current;
  
-  //  TODO
    const resultsFooterComponent = useMemo(
      () => (footerProps) => <ResultsFooter {...footerProps} onClose={onClose} />,
      [onClose],
@@ -206,7 +198,6 @@
              hitComponent={Hit}
              resultsFooterComponent={resultsFooterComponent}
              transformSearchClient={transformSearchClient}
-            //  {console.log('DocSearchModal props', ...props)}
              {...props}
              searchParameters={searchParameters}
            />,

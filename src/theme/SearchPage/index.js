@@ -173,13 +173,17 @@ function SearchPage() {
     },
     initialSearchResultState,
   );
-  //TODO
+
   const algoliaClient = algoliaSearch(appId, apiKey);
   const algoliaHelper = algoliaSearchHelper(algoliaClient, indexName, {
     hitsPerPage: 15,
     advancedSyntax: true,
     disjunctiveFacets: ['language', 'docusaurus_tag'],
   });
+  // added
+  algoliaHelper.setQuery(searchQuery);
+  algoliaHelper.search();
+  // added end
 
   algoliaHelper.on(
     'result',
@@ -463,7 +467,6 @@ function SearchPage() {
           </section>
         ) : (
           [
-             // TODO
             searchQuery && !searchResultState.loading && (
               <p key="no-results">
                 <Translate
