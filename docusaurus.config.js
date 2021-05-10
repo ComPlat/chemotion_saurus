@@ -42,19 +42,20 @@ module.exports = {
           label: 'Newsroom',
           position: 'left',
         }
-      ],
+      ]
     },
     hideableSidebar: true,
+
     // comment out algolia if you don't want to have a search function
-    algolia: {
-      apiKey: process.env.ALGOLIA_READ_API_KEY,
-      indexName: process.env.INDEX_NAME,
-      appId: process.env.ALGOLIA_APP_ID,
-      //... other Algolia params
-      debug: true,
-      placeholder: "Search Documentation",
-      // contextualSearch: true --> no results in search bar
-    },
+    // algolia: {
+    //   apiKey: process.env.ALGOLIA_READ_API_KEY,
+    //   indexName: process.env.INDEX_NAME,
+    //   appId: process.env.ALGOLIA_APP_ID,
+    //   //... other Algolia params
+    //   debug: true,
+    //   placeholder: "Search Documentation",
+    //   // contextualSearch: true --> no results in search bar
+    // },
     footer: {
       style: 'light',
       links: [
