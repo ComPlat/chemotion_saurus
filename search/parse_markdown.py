@@ -7,7 +7,7 @@ import os
 
 os.system("nodejs sidebars_to_json.js")
 
-with open("sidebars.json", "r") as read_file:
+with open("search/sidebars.json", "r") as read_file:
     toc = json.load(read_file)
 
 stopwords = pickle.load(open("search/stopwords.p", "rb"))

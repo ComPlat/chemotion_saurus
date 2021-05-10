@@ -52,7 +52,8 @@ module.exports = {
       appId: process.env.ALGOLIA_APP_ID,
       //... other Algolia params
       debug: true,
-      placeholder: "Search Documentation"
+      placeholder: "Search Documentation",
+      // contextualSearch: true --> no results in search bar
     },
     footer: {
       style: 'light',

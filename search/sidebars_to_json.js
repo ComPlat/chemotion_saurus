@@ -1,6 +1,6 @@
 fs = require('fs');
 
-let sidebarJS = require('./sidebars.js')
+let sidebarJS = require('../sidebars.js')
 
 sidebarJSON = JSON.stringify(sidebarJS)
 
