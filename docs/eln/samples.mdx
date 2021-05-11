@@ -6,7 +6,7 @@ slug: samples
 ---
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome' 
-import { faChevronDown, faArrowsAlt, faList } from '@fortawesome/free-solid-svg-icons' 
+import { faChevronDown, faArrowsAlt, faList, faSortDown } from '@fortawesome/free-solid-svg-icons' 
 import {Btn} from '../btn.js' 
 
 :::danger Caution 
@@ -33,6 +33,25 @@ In addition to the naming options, an external label can be saved for each sampl
 If you provide samples, references, or screening material via the Compound Platform, please use the **External label** field to enter the X-Vial number. 
 Please enter the X before the serial number. 
 ::: 
+
+## Generation  
+
+Samples can be generated in various ways at various points in the ELN. The way in which samples are generated is important for the order within the ELN, which is why this chapter goes into more details about the individual options.  
+
+There are three basic ways of generating samples: 
+- Drawing and creating a new substance. 
+- Creating from an existing sample or molecule. 
+- Importing it from an external source. 
+
+### Generation of samples by drawing  
+
+The fastest and easiest method of generating a sample at the beginning of ELN use is to create a new one by drawing a molecular structure in [Ketcher editor](https://eln.chemotion.net/chemotionsaurus/docs/eln/sketcher). Please note that samples can only be created if a target [collection](https://eln.chemotion.net/chemotionsaurus/docs/eln/collections) has been selected beforehand. First select the collection to which your sample should belong in the collection bar. After selecting a collection, go to the action bar and select the <Btn mixed={[faSortDown]} color={"primary"}/> button and choose **Create Sample**.   
+
+:::danger Caution  
+Samples can be created only when a target collection has been selected first. 
+::: 
+
+    
 
 ## Samples in the element bar 
 
