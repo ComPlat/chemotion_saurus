@@ -50,11 +50,16 @@ module.exports = {
     algolia: {
       apiKey: process.env.ALGOLIA_SEARCH_API_KEY,
       indexName: process.env.INDEX_NAME,
-      appId: process.env.ALGOLIA_APP_ID,
+      // appId: process.env.ALGOLIA_APP_ID,
       //... other Algolia params
       debug: true,
       placeholder: "Search Documentation",
+      facetFilters: [],
       // contextualSearch: true --> no results in search bar
+      transformData: function(hits) {
+        // TODO hide # in search results
+        // Transform the list of hits
+      }
     },
     footer: {
       style: 'light',
