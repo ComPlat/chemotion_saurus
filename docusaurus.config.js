@@ -56,10 +56,9 @@ module.exports = {
       placeholder: "Search Documentation",
       facetFilters: [],
       // contextualSearch: true --> no results in search bar
-      transformData: function(hits) {
-        // TODO hide # in search results
-        // Transform the list of hits
-      }
+      // transformData: function(hits) {
+      //   // Transform the list of hits; not working in docusaurus
+      // }
     },
     footer: {
       style: 'light',

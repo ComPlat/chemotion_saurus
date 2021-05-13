@@ -23,31 +23,27 @@
  let DocSearchModal = null;
  
  function Hit({hit, children}) {
-  // console.log('children',children);
-  console.log('hit',hit);
-  let title = hit.hierarchy.lvl2
+  // let title = hit.hierarchy.lvl2
   // return <Link to={hit.url}>{title}</Link>;
    return <Link to={hit.url}>{children}</Link>;
  }
  
  function ResultsFooter({state, onClose}) {
-
    const {generateSearchPageLink} = useSearchQuery();
-   console.log('query', state);
    return (
      <Link to={generateSearchPageLink(state.query)} onClick={onClose}>
-       See all {state.context.nbHits} results
+       See all results 
+       {/* See all {state.context.nbHits} results  */}
      </Link>
    );
  }
  
  function DocSearch({contextualSearch, ...props}) {
-     /**
+  /**
    *
    * @contextualSearch {boolean} 
    * @props {object} Algolia configs
    */
-  //  console.log("props",props);
    const {siteMetadata} = useDocusaurusContext();
  
    const contextualSearchFacetFilters = useAlgoliaContextualFacetFilters();
@@ -72,7 +68,6 @@
    const searchButtonRef = useRef(null);
    const [isOpen, setIsOpen] = useState(false);
    const [initialQuery, setInitialQuery] = useState(null);
-  //  debugger;
  
    const importDocSearchModalIfNeeded = useCallback(() => {
      if (DocSearchModal) {
@@ -121,7 +116,23 @@
    }).current;
  
    const transformItems = useRef((items) => {
-     return items.map((item) => {
+     let filterItems = []; // no duplicate urls without #
+
+     // set of urls without #
+     const uniqueUrls = new Set(items.map(item => item.url.split('#')[0]));
+
+      // filter urls with multiple results per page for showing every single page max. 1x in the results
+     items.map((item) => { 
+      const itemURL = item.url.split('#')[0] 
+      uniqueUrls.forEach((uniURL) => {
+        if (itemURL == uniURL){
+          filterItems.push(item);
+          uniqueUrls.delete(uniURL);
+        }
+      });
+    });
+
+     return filterItems.map((item) => {
        // We transform the absolute URL into a relative URL.
        // Alternatively, we can use `new URL(item.url)` but it's not
        // supported in IE.
@@ -130,12 +141,13 @@
  
        return {
          ...item,
-         url: withBaseUrl(`${a.pathname}${a.hash}`),
+         url: withBaseUrl(`${a.pathname}`),
+        //  url: withBaseUrl(`${a.pathname}${a.hash}`),
        };
      });
    }).current;
  
-  //  TODO
+  // useMemo depends on "onClose"
    const resultsFooterComponent = useMemo(
      () => (footerProps) => <ResultsFooter {...footerProps} onClose={onClose} />,
      [onClose],
@@ -147,7 +159,6 @@
          'docusaurus',
          siteMetadata.docusaurusVersion,
        );
- 
        return searchClient;
      },
      [siteMetadata.docusaurusVersion],
@@ -203,7 +214,6 @@
              hitComponent={Hit}
              resultsFooterComponent={resultsFooterComponent}
              transformSearchClient={transformSearchClient}
-            //  {console.log('DocSearchModal props', ...props)}
              {...props}
              searchParameters={searchParameters}
            />,
