@@ -7,7 +7,8 @@ module.exports = {
     'Repository for Research Data\n',
   url: 'https://chemotion.net',
   baseUrl: '/chemotionsaurus/',
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'log',
+  // onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'Complat', // Usually your GitHub org/user name.

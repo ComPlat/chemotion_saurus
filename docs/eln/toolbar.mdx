@@ -5,18 +5,21 @@ sidebar_label: Toolbar functions
 slug: toolbar_functions
 ---
 
+import {DownloadBtn} from '../download_files.js'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faDownload} from '@fortawesome/free-solid-svg-icons'
+
 ## Import Data to the ELN
 ### Import samples to a certain ELN-collection
 
 Samples can be imported easily using an excel template that contains Smiles-Strings. To enable the import into a collection, the desired target collection has to be selected. 
 Please see the following example which can be used as a template to import data to the ELN. The template file can be used as test file to check the functions of the ELN, for a specific import, please delete the current content.
 
- 
+<!-- [Download XLSX Template here](/chemotionsaurus/files/template%20_sample_import.xlsx) -->
+<p><a target="_blank" href="/chemotionsaurus/files/template%20_sample_import.xlsx" download="template_sample_import.xlsx">Download XLSX Template here <FontAwesomeIcon icon={faDownload}/></a><br></br>Please don't change the header of the template file. </p>
 
-:::caution Recommendation
-[Download XLSX Template here](https://github.com/ComPlat/chemotion_saurus/blob/master/static/files/template%20_sample_import.xlsx). Please don't change the header of the template file. 
-:::
- 
+<!--  <p><DownloadBtn text={"Download XLSX Template here "} files={['/chemotionsaurus/files/template%20_sample_import.xlsx', '/chemotionsaurus/files/docker-compose.yml']}/></p> -->
+   
 Information on the columns and requirements: 
 The columns "stereo_abs" and "stereo_rel" are predefined. Valid values are: 
 stereo_abs: any, rac, meso, (S), (R), (Sp), (Rp), (Sa); 
