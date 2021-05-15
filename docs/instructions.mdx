@@ -68,6 +68,13 @@ import { faPlus, faShareAlt } from '@fortawesome/free-solid-svg-icons'
 <FontAwesomeIcon icon={faPlus} size="sm"/> tall
 </button>
 
+### Downloadable Files
+If you want to provide one or multiple file(s) to download directly form the manual, then upload them to the files folder in [GitHub](https://github.com/ComPlat/chemotion_saurus/upload/master/static/files) and insert a Downlaod Button with the filepath(s) - separated by comma - in `files` and the button text in `text` :  
+``` 
+import { DownloadBtn } from '../download_files.js'
+
+<p><DownloadBtn files={['/chemotionsaurus/files/template%20_sample_import.xlsx, docker-compose.yml']}  text={"Download XLSX Template here "}/></p>
+``` 
 ### Headings
 To create a heading, add number signs # in front of a word or phrase. The number of # you use should correspond to the heading level. A lot of # indicates a low level.
 
