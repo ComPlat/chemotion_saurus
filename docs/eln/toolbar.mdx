@@ -6,7 +6,7 @@ slug: toolbar_functions
 ---
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome' 
-import { faSortDown, faPen, faTimes, faArrowRight} from '@fortawesome/free-solid-svg-icons' 
+import { faSortDown, faPen, faTimes, faArrowRight, faMinusSquare} from '@fortawesome/free-solid-svg-icons' 
 import {Btn} from '../btn.js' 
 import { DownloadBtn } from '../download_files.js'
 
@@ -32,9 +32,27 @@ Although the **Advanced Search** states **Sample** in its menus, e.g. **Sample N
 
 ## Organizing elements in collections 
 
+### Add elements from one collection to another 
+
 Elements from one collection can be added to another one by means of moving or assigning. The elements added to the target collection have the same properties of the original ones. If some elements already exist in the target collection with the same short label of added elements, only the added elements are kept, i.e. the properties of already existing elements will be updated based on the added ones. 
 
-The abovementioned action could be done by selecting the chosen elements, and pressing <Btn mixed={[faArrowRight,faSortDown]} color={"success"}/>. A menu  opens with two options: **Move to Collection** and **Assign to Collection**. Both options will open the following window to **Select a Collection** as a target from a drop-down menu, **or Create a new Collection** by inserting its name in the corresponding field.  When the user is done, they are to press <Btn mixed={["Submit"]} color={"warning"}/>.
+The abovementioned action could be done by selecting the chosen elements, and pressing <Btn mixed={[faArrowRight, faSortDown]} color={"success"}/>. A menu  opens with two options: **Move to Collection** and **Assign to Collection**. Both options will open the following window to **Select a Collection** as a target from a drop-down menu, **or Create a new Collection** by inserting its name in the corresponding field.  When the user is done, they are to press <Btn mixed={["Submit"]} color={"warning"}/>.  
+
+<img src={"/chemotionsaurus/img/move_to_collection.png"} alt={"Move to Collection"}/> 
+
+Please note that if the user chooses to **Assign to Collection**, the title of the window will be **Assign to Collection**. 
+
+`Move to Collection`: This action results in moving the selected elements from the selected collection to the target one, this means that the moved elements will no longer appear in the original collection. 
+
+`Assign to Collection`: This action results in creating a copy of the selected elements in the target collection, this means that the assigned elements will be present in both collections. 
+
+### Remove elements from a collection 
+
+This action can be performed by pressing <Btn mixed={[faMinusSquare]} color={"warning"}/>. A menu  opens with two options: **Remove from current Collection** and **Remove from all Collections**. When the user removes samples that are associated with other elements such as reactions, the other elements still stand, but the deleted samples will not be accessible, e.g. from within a reaction, anymore, and there will be no way to edit them. 
+
+`Remove from current Collection`: This action removes the selected elements only from the selected collection, but a copy is kept in the back up collection **All**. The user is asked to confirm their decision via a pop-up window by pressing <Btn mixed={["Remove"]} color={"warning"}/>, or otherwise to press <Btn mixed={["Cancel"]} color={"primary"}/>. 
+
+`Remove from all Collections`: This action removes all the copies there are of the selected elements. The user is asked to confirm their decision via a pop-up window by pressing <Btn mixed={["Delete"]} color={"warning"}/>, or otherwise to press <Btn mixed={["Cancel"]} color={"primary"}/>. An option is provided in case the user is trying to remove reactions, which is to choose whether to delete the samples associated with the reactions, if the user chooses not to, then only the reactants and solvents associated with the deleted reaction are deleted too. 
 
 ## Import Data to the ELN
 ### Import samples to a certain ELN-collection
