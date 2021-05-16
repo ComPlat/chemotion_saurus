@@ -7,15 +7,16 @@ slug: toolbar_functions
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome' 
 import { faSortDown, faPen, faTimes} from '@fortawesome/free-solid-svg-icons' 
+import {Btn} from '../btn.js' 
 import { DownloadBtn } from '../download_files.js'
 
 ![whole window](/img/screen.png) 
 
-The toolbar provides a variety of functions to control the ELN elements. Those functions include adding, copying, deleting, moving, filtering, importing and exporting.
+The toolbar (or action bar) provides a variety of functions to control the ELN elements. Those functions include adding, copying, deleting, moving, filtering, importing and exporting.
 
 ## Filtering
 
-The user can filter a selected collection or even the **All** collection with the filtering bar <img src={"/chemotionsaurus/img/filter.png"} width={"20"} alt={"Filter bar"}/>. The user can search the entire collection or selected elements of it by clicking on <Btn mixed={["All", faSortDown]} color={"secondary"}/> and choosing the desired element (**Samples**, **Reactions**, **Wellplates**, **Screens**) from the menu to appear, where the <Btn mixed={["All", faSortDown]} color={"secondary"}/> is replaced by the corresponding symbol of the element. The menu also shows the option of **Advanced Search**, which will be clarified later on in this chapter. 
+The user can filter a selected collection or even the **All** collection with the filtering bar <img src={"/chemotionsaurus/img/filter.png"} alt={"Filter bar"}/>. The user can search the entire collection or selected elements of it by clicking on <Btn mixed={["All", faSortDown]} color={"secondary"}/> and choosing the desired element (**Samples**, **Reactions**, **Wellplates**, **Screens**) from the menu to appear, where the <Btn mixed={["All", faSortDown]} color={"secondary"}/> is replaced by the corresponding symbol of the element. The menu also shows the option of **Advanced Search**, which will be clarified later on in this chapter. 
 
 Possible search terms are **IUPAC** names, **InChI**, **SMILES**, **RInChI**. The user can also use the element **Name** or **Short Label**. Enter the search term and press "Enter", which shows a list of filtered results. While the user is typing their search term, a menu of suggestions appear, and it keeps getting updated throughout typing.  Another option will be to use Ketcher editor, which opens when pressing <Btn mixed={[faPen]} color={"primary"}/>, and to draw a structure to perform **Similarity Search** or **Substructure Search** and to decide the degree of similarity too. When the structure is ready to be used, the user can choose <Btn mixed={["Search"]} color={"primary"}/> or simply <Btn mixed={["Cancel"]} color={"warning"}/>. To cancel the search process or delete the current search term, press <Btn mixed={[faTimes]} color={"danger"}/> 
 
