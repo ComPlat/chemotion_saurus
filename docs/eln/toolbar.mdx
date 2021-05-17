@@ -6,7 +6,7 @@ slug: toolbar_functions
 ---
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome' 
-import { faSortDown, faPen, faTimes, faArrowRight, faMinusSquare, faShare} from '@fortawesome/free-solid-svg-icons' 
+import { faSortDown, faPen, faTimes, faArrowRight, faMinusSquare, faShareAlt} from '@fortawesome/free-solid-svg-icons' 
 import {Btn} from '../btn.js' 
 import { DownloadBtn } from '../download_files.js'
 
@@ -68,10 +68,39 @@ An important feature of the shared collections that the user, whether a creator 
 In a shared collection, only changes to existing elements are displayed to users. Elements added after sharing to the original collection will not be considered. 
 ::: 
 
-To share a collection, press <Btn mixed={[faShare]} color={"info"}/>, this will open the following window. 
+To share a collection, press <Btn mixed={[faShareAlt]} color={"info"}/>, this will open the following window. 
 
 <img src={"/chemotionsaurus/img/sharing.png"} alt={"Sharing"}/> 
 
+Collections that an ELN user has obtained as shared collections from another user are subject to a rights system, which is always defined by the original owner. According to these system, the recipient of the shared collection can perform certain actions on it. The original owner can optionally set a **Role** to the recipient. Each role corresponds to a default **Permission level**, and means that **Everything** is being shared when it comes to the detail level for samples, reactions, wellplates, and screens. The original owner can still change those **Permission level**s and detail levels, but in this case the **Role** already set will be removed. The following table shows the possible **Role**s with the corresponding **Permission level**s.
+
+| Role | Permission level | 
+
+|---|---| 
+
+| User | Delete | 
+
+| Partner | Write | 
+
+| Collaborator |Read | 
+
+| Reviewer | Read | 
+
+| Supervisor | Import Elements | 
+
+The **Permission level**s are sorted in a hierarchy, where every higher level includes all the permissions of the lower ones. 
+
+`Read`: The lowest of **Permission level**s where the recipient can only see the details of the shared collection without being able to modify anything. 
+
+`Write`: The recipient can additionally modify the shared elements through the details modal. 
+
+`Share`: The recipient can additionally share the elements with a third party. 
+
+`Delete`: 
+
+`Import Elements`: Both the owner and the recipient can’t create new samples in a shared collection. However this ** Permission level ** allows the recipient to additionally import new samples into the collection, a right that is always granted to the original owner. 
+
+`Pass ownership`: 
 
 
 ## Import Data to the ELN
