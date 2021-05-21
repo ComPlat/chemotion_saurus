@@ -61,7 +61,8 @@ footer{
   color: #606770;
 }
 
-.button--primary:hover{
+button[name="downloadBtn"]:hover{
+  background: white;
   color: #337ab7;
 }
 
@@ -114,6 +115,10 @@ a:hover
 {
   background-color: #efeff0;
   color: #606770;
+}
+
+.button button--primary:hover{
+  /* color: white */
 }
 
 .fund{

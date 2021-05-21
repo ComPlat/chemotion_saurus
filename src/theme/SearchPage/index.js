@@ -173,10 +173,11 @@ function SearchPage() {
     },
     initialSearchResultState,
   );
-  //TODO
+
   const algoliaClient = algoliaSearch(appId, apiKey);
   const algoliaHelper = algoliaSearchHelper(algoliaClient, indexName, {
-    hitsPerPage: 15,
+    hitsPerPage: 1000,
+    // hitsPerPage: 15,
     advancedSyntax: true,
     disjunctiveFacets: ['language', 'docusaurus_tag'],
   });
@@ -196,7 +197,23 @@ function SearchPage() {
         );
       };
 
-      const items = hits.map(
+      // filter urls with multiple results per page for showing every single page max. 1x in the results
+      let filterItems = []; // no duplicate urls without #
+
+      // set of urls without #
+      const uniqueUrls = new Set(hits.map(item => item.url_without_anchor));
+
+      hits.map((item) => { 
+        uniqueUrls.forEach((uniURL) => {
+          if (item.url_without_anchor == uniURL){
+            filterItems.push(item);
+            uniqueUrls.delete(uniURL);
+          }
+        });
+      });
+      
+      // const items = hits.map(
+        const items = filterItems.map(
         ({
           url,
           _highlightResult: {hierarchy},
@@ -209,7 +226,8 @@ function SearchPage() {
 
           return {
             title: titles.pop(),
-            url: pathname + hash,
+            // url: pathname + hash,
+            url: pathname,
             summary: snippet.content
               ? `${sanitizeValue(snippet.content.value)}...`
               : '',
@@ -300,6 +318,7 @@ function SearchPage() {
     };
   }, [loaderRef]);
 
+  // TODO
   useEffect(() => {
     updateSearchPath(searchQuery);
 
@@ -463,7 +482,6 @@ function SearchPage() {
           </section>
         ) : (
           [
-             // TODO
             searchQuery && !searchResultState.loading && (
               <p key="no-results">
                 <Translate

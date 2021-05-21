@@ -15,7 +15,7 @@ This page is still being edited.
 
 ![Ketcher](/img/ketcher.png)
 
-The main way to enter chemical structures into the ELN is the Ketcher Editor. The editor is available via the sample detail modal and can be opened by clicking on the area framed in light blue. The Ketcher Editor is not a product of the Chemotion programming group, but it has been modified so that it can be used flexibly for a wide variety of applications. After the additions made, the structure editor integrated within the ELN is now unique in its functionality and, in addition to the input of small chemical molecules, it also enables the mapping of polymeric carrier materials (beads). The editor will also be supplemented by further developments in the future. 
+The main way to enter chemical structures into the ELN is the Ketcher Editor. The editor is available via the sample detail modal and can be opened by clicking on the area framed in light blue. The Ketcher Editor is not a product of the Chemotion programming group, but it has been modified so that it can be used flexibly for a wide variety of applications. After the additions made, the structure editor integrated within the ELN is now unique in its functionality and, in addition to the input of small chemical molecules, it also enables the illustration of polymeric carrier materials (beads). The editor will also be supplemented by further developments in the future. 
 
 ## Basic functions 
 
@@ -78,12 +78,37 @@ The tool <img src={"/chemotionsaurus/img/clear.png"} width={"20px"} alt={"Clear"
 
 ### Open 
 
-The user can use the tool <img src={"/chemotionsaurus/img/open.png"} width={"20px"} alt={"Open"}/> to open files, either by inserting the content of a mol file directly as **input** in the window **Open File**, or by browsing for a **File** (the later one is not available right now). In both cases, the user can load the file as a fragment and copy it to the clipboard
+The user can use the tool <img src={"/chemotionsaurus/img/open.png"} width={"20px"} alt={"Open"}/> to open files, either by inserting the content of a Molfile directly as **input** in the window **Open File**, or by browsing for a **File** (the later one is not available right now). In both cases, the user can also load the file as a fragment and copy it to the clipboard
 
+### Save As 
 
+The user can use the tool **Save As** <img src={"/chemotionsaurus/img/save_as.png"} width={"20px"} alt={"Save As"}/> to save their provided structures in one of three **Format**s: MDL/Symyx Molfile, Daylight SMILES, and InChI String (The latest is not ready right now). The chosen format is then displayed so that the user can copy it to a file. 
+
+### Undo/Redo 
+
+Any action done in the editor can be undone with **Undo** <img src={"/chemotionsaurus/img/undo.png"} width={"20px"} alt={"Undo"}/>, and the undone action can be redone with **Redo** <img src={"/chemotionsaurus/img/redo.png"} width={"20px"} alt={"Redo"}/> 
+
+### Cut/Copy/Paste 
+
+Any structure (or substructure) can be cut  <img src={"/chemotionsaurus/img/cut.png"} width={"20px"} alt={"Cut"}/>, copied <img src={"/chemotionsaurus/img/copy.png"} width={"20px"} alt={"Copy"}/>, and pasted <img src={"/chemotionsaurus/img/paste.png"} width={"20px"} alt={"Paste"}/> somewhere else in the editor. 
+
+### Zoom In/Out 
+
+The user can use the tools **Zoom In** <img src={"/chemotionsaurus/img/zoom_in.png"} width={"20px"} alt={"ZoomIn"}/> and **Zoom Out** <img src={"/chemotionsaurus/img/zoom_out.png"} width={"20px"} alt={"ZoomOut"}/> to adjust the view, or they could set their preferred zoom directly as a percentage 
+
+### Clean 
+
+The tool **Clean** <img src={"/chemotionsaurus/img/clean.png"} width={"20px"} alt={"Clean"}/> provides a better view of the provided elements by aligning them, adjusting the distances among them, adjusting the rotations, and adjusting the bonds’ lengthes.  
+
+### Show Molecule Info 
+
+<img src={"/chemotionsaurus/img/molecule_info.png"} alt={"sMolecule Infohow_molecule_info"}/> 
+
+This tool <img src={"/chemotionsaurus/img/show_molecule_info.png"} width={"20px"} alt={"Show Info"}/>  shows information about all the provided molecules, e.g. the displayed molecular weight is the sum of the molecular weight of all the molecules. However, the user can select desired  elements to get their details.  
 
 ## Standard templates 
 Not available at the moment.
 
 :::danger Caution  
-When creating chiral compounds, the configuration of the unique structure is observed and registered accordingly. Planar chiral compounds are unfortunately not recognized as such yet, and therefore, they are not differentiated in lists and names, even if they were drawn accordingly by the Ketcher editor.   An example is the Paracyclophanes. Please note the chirality of your samples in the **Description** field. ::: 
+When creating chiral compounds, the configuration of the unique structure is observed and registered accordingly. Planar chiral compounds are unfortunately not recognized as such yet, and therefore, they are not differentiated in lists and names, even if they were drawn accordingly by the Ketcher editor.   An example is the Paracyclophanes. Please note the chirality of your samples in the **Description** field. 
+::: 

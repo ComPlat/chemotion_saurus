@@ -5,7 +5,7 @@ sidebar_label: Details Modal
 slug: details_modal
 ---
 :::danger Caution 
-This page is still being edited.
+This page is still being edited and reviewed.
 ::: 
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -15,6 +15,11 @@ import {Btn} from '../btn.js'
 The  details modal or details window is opened by clicking on the desired element from element lists. It shows the information stored or available through databases about the element. The modal/window  can be set to full screen mode. Its frame is identified by two colors: a dark blue and a light blue. The color light blue means that changes have been made within the modal, but they have not been saved yet. If this is the case, a small save symbol also appears in the modal bar <Btn mixed={[faSave]} color={"warning"}/>. As soon as you have saved all the entered data, the frame color changes to dark blue and the symbol disappears.
 
 ![Frame](/img/frame.gif)
+
+There are three different types of fields within the details modal:
+- Fields for freely entering either text or numbers. Example: sample's **Name** and **Description**.
+- Fields with predefined drop-down menus to pick from. Example **Solvents**
+- Fields with data made available from other databases and applications based on your structural input. Example: The calculation of the sum formula or the generation of the SMILES
 
 Tabs were introduced to organize the information within the details modals. They enable information structuring and displaying as in folders. Different tabs are available based on the type of the element. This will become clear in the later chapters. 
 
@@ -29,7 +34,7 @@ The first tab that allows the description of samples is the **Properties** tab. 
 If you want to assign a name (e.g. a trivial name) to a sample, you can do this by making an entry in the **Name** or **Description** fields. Please note that the **Name** field for samples from reactions is overwritten by additional information. Your created sample will have the selected name, but when a new sample is created by dragging and dropping it into a reaction scheme, the Name field will be overwritten. If you want to save a second or more names for your sample permanently, use the **Description** field. 
 
 :::danger Caution 
-The **Name** field within the Sample **Properties** tab is overwritten for samples that represent products in  a reaction, because the product **Name** is required.  
+The **Name** field within the Sample **Properties** tab is overwritten for samples that represent products in  a reaction, because it is required to generate a product name.  
 ::: 
 
 In addition to the naming options, an external label can be saved for each sample. This external label should be used to enable your sample to be assigned to another storage system. For example, if you make a sample available for a reference database or send it to a cooperation partner who renames your sample, your sample will receive a sequential number that is not determined by you. Enter this number in the **External label** field. For participants in the [Compound Platform](https://www.complat.kit.edu/), the **External label** field is reserved for the X-Vial numbers of the samples. 

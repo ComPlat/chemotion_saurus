@@ -24,6 +24,8 @@ module.exports = {
           'eln/firststeps',
           'eln/collections',
           'eln/lists',
+          'eln/samples',
+          'eln/reactions',
           'eln/details',
           'eln/toolbar',
           'eln/ketcher',

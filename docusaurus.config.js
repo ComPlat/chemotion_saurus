@@ -7,7 +7,8 @@ module.exports = {
     'Repository for Research Data\n',
   url: 'https://chemotion.net',
   baseUrl: '/chemotionsaurus/',
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'log',
+  // onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'Complat', // Usually your GitHub org/user name.
@@ -47,15 +48,19 @@ module.exports = {
     hideableSidebar: true,
 
     // comment out algolia if you don't want to have a search function
-    // algolia: {
-    //   apiKey: process.env.ALGOLIA_READ_API_KEY,
-    //   indexName: process.env.INDEX_NAME,
-    //   appId: process.env.ALGOLIA_APP_ID,
-    //   //... other Algolia params
-    //   debug: true,
-    //   placeholder: "Search Documentation",
-    //   // contextualSearch: true --> no results in search bar
-    // },
+    algolia: {
+      apiKey: process.env.ALGOLIA_SEARCH_API_KEY,
+      indexName: process.env.INDEX_NAME,
+      // appId: process.env.ALGOLIA_APP_ID,
+      //... other Algolia params
+      debug: true,
+      placeholder: "Search Documentation",
+      facetFilters: [],
+      // contextualSearch: true --> no results in search bar
+      // transformData: function(hits) {
+      //   // Transform the list of hits; not working in docusaurus
+      // }
+    },
     footer: {
       style: 'light',
       links: [
