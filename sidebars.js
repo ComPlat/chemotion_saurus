@@ -48,6 +48,7 @@ module.exports = {
         ]
       },
       'eln/contact',
+      'eln/faq_eln',
     ],
   },
 
