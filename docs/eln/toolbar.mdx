@@ -6,7 +6,7 @@ slug: toolbar_functions
 ---
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome' 
-import { faSortDown, faPen, faTimes, faArrowRight, faMinusSquare, faShareAlt} from '@fortawesome/free-solid-svg-icons' 
+import { faSortDown, faPen, faTimes, faArrowRight, faMinusSquare, faShareAlt, faSortUp} from '@fortawesome/free-solid-svg-icons' 
 import {Btn} from '../btn.js' 
 import { DownloadBtn } from '../download_files.js'
 
@@ -96,8 +96,29 @@ The **Permission level**s are sorted in a hierarchy, where every higher level in
 
 `Pass ownership`: 
 
-## Import Data to the ELN
-### Import samples to a certain ELN-collection
+## Import and Export Data to and from the ELN 
+
+Importing and exporting data can be done using the icon <img src={"/chemotionsaurus/img/advance_search.png"} width={"30px"} alt={"Advancd search"}/>. 
+
+### Exporting data from the ELN 
+
+The user can export either selected elements from a collection in the form of files, or export collections as zip.  
+
+To export elements, go to the collection that contains them, and select the desired elements. From the exporting icon in the toolbar, pick **Export samples from selection**. Please pay attention that not only samples can be exported with this option but also reactions, wellplates, and analyses. If multiple types of elements were to be exported as an XLSX, they are sorted in different sheets in the file. 
+
+<img src={"/chemotionsaurus/img/expot_samples.png"}  alt={"Expot samples"}/> 
+
+The window above opens where the user picks the properties to be exported with the elements. If they want to proceed, they press <Btn mixed={["XLSX/SDF Export", faSortUp]} color={"caution"}/>, which enables the user to choose either **XLSX Export**, or **SDF Export**. Otherwise, press <Btn mixed={["Cancel"]} color={"primary"}/>. Follow this [link](https://www.youtube.com/watch?v=Vr3_006Zr-s&t=30s) for a video on exporting samples as xlsx file. 
+
+<img src={"/chemotionsaurus/img/expot_reactions.png"}  alt={"Expot reactions"}/> 
+
+To export reactions, the user has two options. Either to use the abovementioned **Export samples from selection**, where details about the samples included in the reaction are exported. Or to use **Export reactions from selection**. In this case, only the SMILES are extracted. The window above opens where the user can pick which parts of the reaction to extract (starting materials, reactants, products, solvents). They could also choose the format of ordering those SMILES.  If they want to proceed, they press <Btn mixed={["Smiles Export", faSortUp]} color={"caution"}/>. Otherwise, press <Btn mixed={["Cancel"]} color={"primary"}/>. 
+
+:::caution Recommendation  
+To export reactions, wellplates, or analyses, you can use **Export samples from selection**
+::: 
+
+### Importind Data to the ELN
 
 Samples can be imported easily using an excel template that contains Smiles-Strings. To enable the import into a collection, the desired target collection has to be selected. 
 Please see the following example which can be used as a template to import data to the ELN. The template file can be used as test file to check the functions of the ELN, for a specific import, please delete the current content.
@@ -115,11 +136,4 @@ After downloading the XLSX Template you can import it in your ELN as shown below
 :::caution Recommendation
 Please add either molfile or Smiles-Code to the import template. The import process will fail if both is entered.
 :::
-
-
-  
-
-## Export Data from the ELN
-
-The export of data can be done in different ways, all functions are embedded to the main toolbar.
 
