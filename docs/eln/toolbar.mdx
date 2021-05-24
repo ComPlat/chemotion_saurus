@@ -6,7 +6,7 @@ slug: toolbar_functions
 ---
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome' 
-import { faSortDown, faPen, faTimes, faArrowRight, faMinusSquare, faShareAlt, faSortUp } from '@fortawesome/free-solid-svg-icons' 
+import { faSortDown, faPen, faTimes, faArrowRight, faMinusSquare, faShareAlt, faSortUp, faDownload, faWindowClose, faEraser, faArrowsAlt, faFileAlt} from '@fortawesome/free-solid-svg-icons' 
 import {Btn} from '../btn.js' 
 import { DownloadBtn } from '../download_files.js'
 
@@ -137,3 +137,8 @@ After downloading the XLSX Template you can import it in your ELN as shown below
 Please add either molfile or Smiles-Code to the import template. The import process will fail if both is entered.
 :::
 
+## Reporting
+This icon <Btn mixed={[faFileAlt, faPen, faPercentage, faSortDown,]} color={"success"}/> helps the user to produce reports and organize the literature in their data. 
+<img src={"/chemotionsaurus/img/report.png"} alt={"Report"}/>
+You can report the elements you have by selecting them and clicking on **Report**, this will open the window above. From **config** tab, choose from **Template selection**. This choice affects the fields in the other tabs and the **File Name** that is given to the file by default. This ** File Name** includes the date of report generation, which can still be edited by the user. In all the templates a field for **File description** is provided. In the **Setting** tab you can choose what properties to add to the report. In the **Order** tab you can resort your elements using symbol <Btn mixed={[faArrowsAlt]}/>, and you can also delete elements from the report with <Btn mixed={[faWindowClose] color={"danger"}}/>. Before generating the report, you can see a **Preview** in the corresponding tab. When your report is ready, press <Btn mixed={[faFileAlt, "Generate"] color={"primary"}}/> at the top of the report window. You can reset everything to its default and start a new report by pressing <Btn mixed={[faEraser, "Reset"] color={"info"}}/>, or you can leave the report by pressing <Btn mixed={[faWindowClose] color={"danger"}}/>.
+ The **Archive** tab contains all the generated reports (except the deleted ones). Here the user can reuse previous reports to generate new ones using <Btn mixed={[faPen] color={"caution"}}/>. They can download the generated reports with <Btn mixed={[faDownload] color={"primary"}}/>
