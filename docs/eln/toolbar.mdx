@@ -6,7 +6,7 @@ slug: toolbar_functions
 ---
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome' 
-import { faSortDown, faPen, faArrowRight, faMinusSquare, faShareAlt, faSortUp, faDownload, faTimes, faEraser, faArrowsAlt, faFileAlt, faPercentage} from '@fortawesome/free-solid-svg-icons' 
+import { faSortDown, faPen, faArrowRight, faMinusSquare, faShareAlt, faSortUp, faDownload, faTimes, faEraser, faArrowsAlt, faFileAlt, faPercentage, faPLus} from '@fortawesome/free-solid-svg-icons' 
 import {Btn} from '../btn.js' 
 import { DownloadBtn } from '../download_files.js'
 
@@ -148,3 +148,9 @@ This icon <Btn mixed={[faFileAlt, faPen, faPercentage, faSortDown,]} color={"suc
 You can report the elements you have by selecting them and clicking on **Report**, this will open the window above. From **config** tab, choose from **Template selection**. This choice affects the fields in the other tabs and the **File Name** that is given to the file by default. This ** File Name** includes the date of report generation, which can still be edited by the user. In all the templates a field for **File description** is provided. In the **Setting** tab you can choose what properties to add to the report. In the **Order** tab you can resort your elements using symbol <Btn mixed={[faArrowsAlt]} color={"secondary"}/>, and you can also delete elements from the report with <Btn mixed={[faTimes]} color={"danger"}/>.
 
 The **Archive** tab contains all the generated reports (except the deleted ones). Here the user can reuse previous reports to generate new ones using <Btn mixed={[faPen]} color={"warning"}/>. They can download the generated reports with <Btn mixed={[faDownload]} color={"primary"}/>
+
+## Creating Elements
+There are two buttons to create elements: <Btn mixed={[faPLus]} color={"primary"}/>, which changes its appearance based on the selected element in the element bar, e.g., if the user is already in the reactions list from the element bar, the button will look like <Btn mixed={[faFlask, faPlus]} color={"primary"}/>. And the other button is in the shape of an arrow <Btn mixed={[faSortDown]} color={"primary"}/> 
+If you are using the arrow button, it opens a menu with the following options: **Create Sample**, **Create Reaction**, **Create Wellplate**, **Create Screen**, **Create Research Plan**. It doesn’t matter in which list you are as long as you are in the right collection, choose any of the above options and the corresponding element will be created.
+To populate wellplates, the user has to drag and drop samples, and to populate screens, the user has to drag and drop wellplates. The arrow button menu enables the user to avoid this repetitive drag and drop process by offering the two functions: **Create Wellplate from Samples**, and **Create Screen from Wellplates**. To use either of them, go to the target collection, select the elements (samples or wellplates) to be added to the newly to be created element (wellplate or screen respectively), and choose the corresponding function (**Create Wellplate from Samples** or **Create Screen from Wellplates**). Please note that you will not be able to create an element with this method from elements coming from another collection. However, you can still add them to the created element with the classical drag and drop.
+
