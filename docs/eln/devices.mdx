@@ -16,6 +16,19 @@ Referring to the diverse origin of data in chemistry labs, we implemented three 
 General requirements concern in general the device and ELN specific adaptations, therefore, the following documentation contains always aspects of ELN setting adaptation and device specific settings. 
 The ELN specific adjustments depend on the use of a mail-collector (used to collect data transferred by email to a mail-server) or a datacollector (used to collect data transferred to a server)  as a basic process for the desired data transfer. 
 
+### Name conventions
+
+To be able to transfer data and assign data to a users ELN-account, users have to follow a strict rules regarding the labels/names of maeasurements.  
+Measurements have to be submitted in a form: 
+(1) "UserShortLabel"-"number""additional" or (2) "groupID""UserShortLabel"-"number""additional"
+"UserShortLabel" = Label for each user given by registration to the ELN
+"number" = any integer 
+"additional" = any additional information. Valid are numbers, letters (case insensitive), hyphens. 
+"groupID" = number given as identifier for a distinct user group in the ELN
+Examples for (1): NJ-101; NJ-101-A; NJ-101-5; NJ-101_pure; ABCD-1234-B
+Also, if many groups are using the ELN, a groupID may help to sort users and therefore their measurements according to a group ID. The measurements should then be named according to examples (2): 2NJ-101; 2NJ-101-A; 2NJ-101-5; 2NJ-101_pure; 2ABCD-1234-B. 
+Please take care that the hyphen is included!
+
 ### Mail-Collector 
 One of the easiest possibilities to transfer data to a management systemsuch as the Chemotion-ELN is to send data per email. The software of some analytical devices support the mailing of measurements to a user defined email address by default. This allows to implement storage routines that are independent of any additional software or hardware on the instrument’s side. The only prerequisite for a use of the MailCollector routine is fulfilled if one can set the email to be send to two addresses, to the ELN server associated email ad-dress and to the user’s email address registered with the corresponding ELN account (Figure 2). This is necessary to identify the target of the mailed information and the corresponding account in the ELN. In short, four configuration steps are necessary to fetch the information via email: 
 •	First, it is necessary to have an email account for the ELN with any provider or server that supports Internet Message Access Protocol (IMAP) to centrally collect the emailed data.
