@@ -24,7 +24,7 @@ The chemotion_ELN is a web-application that needs the following elements:
 
 The code for the web-application (server- and client- sides) and the workers is what we provide.
 
-For a few users, all this components can be installed on a single machine (2 cpu s, 3GB memory) using the [installation script](https://git.scc.kit.edu/ComPlat/chemotion_eln_server/-/blob/development/scripts/install_production.sh) that will set up all these components and basic configurations.
+For a few users, all this components can be installed on a single machine (2 cpu s, 3GB memory) using the [installation script](https://github.com/ComPlat/chemotion_ELN/blob/development/scripts/install_production.sh) that will set up all these components and basic configurations.
 
 ![architecture_ELN](../../static/img/architecture_ELN_base.svg)
 
@@ -341,7 +341,7 @@ service postgresql status
 Follow the below steps to install the ELN application.
 1. Copy the installation script on a Ubuntu server 18.04 or 20.04 LTS
    ```sh
-   curl -o chemotion_ELN_install.sh -L https://git.scc.kit.edu/complat/chemotion_ELN_server/raw/development/scripts/install_production.sh
+   curl -o chemotion_ELN_install.sh -L https://raw.githubusercontent.com/ComPlat/chemotion_ELN/development/scripts/install_production.sh
    ```
    Check the variables at the beginning of the file, but also check the whole script to see what it is doing.
    This will basically install evrything on one machine but configuration within can be reworked to just serve one purpose.
