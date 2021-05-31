@@ -6,7 +6,7 @@ slug: generic_config
 ---
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome' 
-import { faChevronDown, faArrowsAlt, faList, faSortDown } from '@fortawesome/free-solid-svg-icons' 
+import { faPlus, faChartBar, faCheck, faSave, faAngleRight, faTrashAlt, faPaste, faArrowsAlt, faSyncAlt, faChartArea, faClock, faHourglassHalf, faHourglassEnd, faEllipsisH,faCheckCircle, faTimesCircle, faDownload } from '@fortawesome/free-solid-svg-icons' 
 import {Btn} from '../btn.js' 
 
 :::danger Caution 
@@ -23,14 +23,25 @@ Generic elements and segments are structured according to the different levels *
 
 Generic segment can be embedded in different elements, such as sample, reaction...etc., it can also be embedded in generic element.
 
-###  attributes 
+After clicking on menu item **Generic Segment**, a button <Btn mixed={["New Segment", faPlus]} color={"primary"}/> is shown as default and the segment list is displayed if any data exists. 
+
+### create
+
+You can create as many segments as possible for an element, e.g., sample, reaction, or any generic element. Please note, once the segment is created, it can not be re-assigned to another element.
+
+To create a segment, press the button <Btn mixed={["New Segment", faPlus]} color={"primary"}/>, fill in the data of segment attributes, and then press <Btn mixed={[“Create", faSave]} color={“primary"}/> to save the data into database or <Btn mixed={[“Cancel"]} color={“warning"}/> to cancel the operation.
+
+<div align="center">
+  <img src="../../static/img/generic_segment_new.png">
+</div>
+
+the definition of each attributes:
 
 | attribute | explanation |
 |---|---|
-| Label |---|
-| Description |---|
-| Assign to Klass |---|
-| Sequential position |---|
+| Segment Label | the name used to display on the UI |
+| Description | used to describe the segment, like its purpose, usage...etc. |
+| Assign to Element | define which element this segment belongs to |
 
 ## Generic Elements
 
