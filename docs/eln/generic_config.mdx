@@ -6,7 +6,7 @@ slug: generic_config
 ---
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome' 
-import { faPlus, faChartBar, faCheck, faSave, faAngleRight, faTrashAlt, faPaste, faArrowsAlt, faSyncAlt, faChartArea, faClock, faHourglassHalf, faHourglassEnd, faEllipsisH,faCheckCircle, faTimesCircle, faDownload } from '@fortawesome/free-solid-svg-icons' 
+import { faClone, faPencilSquareO, faPlus, faChartBar, faCheck, faSave, faAngleRight, faTrashAlt, faPaste, faArrowsAlt, faSyncAlt, faChartArea, faClock, faHourglassHalf, faHourglassEnd, faEllipsisH,faCheckCircle, faTimesCircle, faDownload } from '@fortawesome/free-solid-svg-icons' 
 import {Btn} from '../btn.js' 
 
 :::danger Caution 
@@ -26,6 +26,15 @@ Generic segment can be embedded in different elements, such as sample, reaction.
 After clicking on menu item **Generic Segment**, a button <Btn mixed={["New Segment", faPlus]} color={"primary"}/> is shown as default and the segment list is displayed if any data exists. 
 
 ![generic_segment_admin](../../static/img/generic_segment_admin.png)
+
+The segment list includes all the segments, and it shows the attribute data and provides further functions, such as “copy”, “edit template” and so on. The segments are sorted  alphabetically by the status (active first), segment label and description.
+
+![generic_segment_list_tip](../../static/img/generic_segment_list_tips.png)
+
+| symbol | explanation |
+|---|---|
+| <FontAwesomeIcon icon={faClone} size="lg"/> | |
+| <FontAwesomeIcon icon={faPencilSquareO} size="lg"/> | |
 
 ### create
 
