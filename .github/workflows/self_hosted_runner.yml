@@ -50,6 +50,9 @@ jobs:
             cp database.yml.gitlab database.yml
             cp -f storage.yml.example storage.yml
             touch datacollectors.yml
+            # new
+            cp -f config/profile_default.yml.example config/profile_default.yml
+            touch config/klasses.json
 
   db:
     needs: config_files
