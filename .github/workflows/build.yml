@@ -11,10 +11,6 @@ jobs:
     if: ${{ true }}
     runs-on: ubuntu-latest
     steps:
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
-        with:
-          sudo: false
       - uses: actions/checkout@v2
       - uses: actions/cache@v2
         with:
