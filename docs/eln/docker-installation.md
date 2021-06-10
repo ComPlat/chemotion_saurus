@@ -81,6 +81,31 @@ docker-compose run eln info
 
 This will output storage, memory as well as several version information and ensure the fundamentally required runtime is correct.
 
+To get access to the inside of the container, i.e to perform tasks based on the Rails console, one can use the following command:
+
+```
+docker-compose run eln bash
+```
+
+This will drop you to a root shell inside the container. You are now free to perform any administrative tasks in the container context, but be aware that all changes are ephemeral and lost when the container is stopped. To access the host file system, a mount point has to be used, i.e. such as the already configured `/config` (which maps to `./config` on the host) or `/shared` (which maps to `./shared` on the host).
+
+To change to the Chemotion user context, `sudo` can be used. The Chemotion user context is uid 1000, "chemotion", also stored in the environment variable ${PROD}.
+Note: It is important to source the user environment using `source $HOME/.profile` to make sure the right versions of ruby and node are used for any further commands.
+
+The following command will change to the user context and setup user's profile in an easy way:
+
+```
+source /etc/init/functions.sh     # source helper functions, i.e. odus
+odus bash                         # "opposite of sudo", changes to user context and
+                                  # makes sure environment is set up properly
+```
+
+As of version 21.06-3 and later, a build-in command is available to simplify this process:
+
+```
+docker-compose eln run (user-shell|shell)   # use shell for a root shell, user-shell for a user shell.
+```
+
 ### Setting up a Reverse-Proxy
 
 To make the installation available to the public, the container's ports should to be forwarded. We suggest to run NGINX as a reverse-proxy either in docker (by extending the Docker-Compose service description file) or stand-alone on the host. The application is (by default) listening on '0.0.0.0:4000'.
