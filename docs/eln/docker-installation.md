@@ -149,5 +149,3 @@ To make the installation available to the public, the container's ports should t
 
 A demo service description as well as some sample configuration files for NGINX can be found in the Docker-Chemotion-Monorepo (https://github.com/ptrxyz/chemotion) in the sub-folder `reverse-proxy`.
 
-## Video
-Really short video showing the installation process can be found here: https://asciinema.org/a/lrUMbOEVjEMMZXaJdDUVZrYfV
