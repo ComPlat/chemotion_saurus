@@ -73,6 +73,8 @@ Please refer to the Docker documentation on how this property works: https://doc
 
 ## Managing your instance
 
+### Basic Information
+
 To get basic information about your instance, run:
 
 ```
@@ -80,6 +82,10 @@ docker-compose run eln info
 ```
 
 This will output storage, memory as well as several version information and ensure the fundamentally required runtime is correct.
+
+### Getting a shell inside the container
+
+#### Pre-v21.06-3
 
 To get access to the inside of the container, i.e to perform tasks based on the Rails console, one can use the following command:
 
@@ -100,6 +106,8 @@ odus bash                         # "opposite of sudo", changes to user context 
                                   # makes sure environment is set up properly
 ```
 
+#### v21.06-3 and later
+
 As of version 21.06-3 and later, a build-in command is available to simplify this process:
 
 ```
@@ -110,9 +118,7 @@ docker-compose eln run (user-shell|shell)   # use shell for a root shell, user-s
 
 To make the installation available to the public, the container's ports should to be forwarded. We suggest to run NGINX as a reverse-proxy either in docker (by extending the Docker-Compose service description file) or stand-alone on the host. The application is (by default) listening on '0.0.0.0:4000'.
 
-```
-Todo: NGinx as Revers-Proxy goes here. Mb LE certificates for SSL?
-```
+A demo service description as well as some sample configuration files for NGINX can be found in the Docker-Chemotion-Monorepo (https://github.com/ptrxyz/chemotion) in the sub-folder `reverse-proxy`.
 
 ## Video
 Really short video showing the installation process can be found here: https://asciinema.org/a/lrUMbOEVjEMMZXaJdDUVZrYfV
