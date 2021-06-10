@@ -114,6 +114,35 @@ As of version 21.06-3 and later, a build-in command is available to simplify thi
 docker-compose eln run (user-shell|shell)   # use shell for a root shell, user-shell for a user shell.
 ```
 
+## Backing up your data
+
+To backup your data, it is sufficient to run the following command in the folder, where your Compose file resides:
+
+```
+sudo tar cfvz backup.tar.gz config shared db-data
+```
+
+ > Note: It is adviced to setup a automaticly execute system task (i.e. cron job) to backup regularly. This is highly system specific and thus out of the scope of this documentation. Please refer to your OS's manual to find out how to setup cron job/scheduled tasks.
+ > In addition, you should always backup before upgradeing your installation.
+
+
+## Upgrading
+
+ > Note: Before upgrading anything, we highly advice to create a backup (see above)! No backup? no pity!
+ 
+To upgrade your instance, change the version number of the Chemotion containers you are using in the `docker-compose.yml`:
+if you open the file, you will find the settings `image: ` for the services `eln` and `worker`. Change them to the version you want to use.
+
+ > Note: downgrading is not supported.
+
+Then stop the services: `docker-compose stop`
+As a next step, run the upgrade script in the ELN context coming with your new container images: `docker-compose run eln upgrade`
+This will make sure files are properly configured and the database schemes are adjusted if necessary.
+
+ > Note: Without this step, the containers will refuse to start to prevent any possible damage to your installation.
+
+Now, restart the services: `docker-compose restart`
+
 ### Setting up a Reverse-Proxy
 
 To make the installation available to the public, the container's ports should to be forwarded. We suggest to run NGINX as a reverse-proxy either in docker (by extending the Docker-Compose service description file) or stand-alone on the host. The application is (by default) listening on '0.0.0.0:4000'.
