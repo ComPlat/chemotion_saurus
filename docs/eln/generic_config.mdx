@@ -65,11 +65,16 @@ For an admin to create a new generic element, go to the page **Generic Elements*
 | attribute | required | explanation |
 |---|:---:|---|
 | Klass | Yes | The name used to identify the element in the system |
-| Prefix | Yes | A prefix for naming the generated objects that belong to the generic element, e.g., if the user name abbreviation is "user" and the **Prefix** is "t", then generating new "Mixture" objects will lead to the following names: "user-t1 New Mixture", "user-t2 New Mixture", etc.|
+| Prefix | Yes | A prefix for naming the generated objects that belong to the generic element, e.g., if the user name abbreviation is "user" and the **Prefix** is "t", then generating new "Mixture" objects will lead to the following names: "user-t1 New Mixture", "user-t2 New Mixture", etc |
 | Label | Yes | the name displayed in the UI, e.g., the labels **Sample**, **Reaction**, **Wellplate** |
-| Icon | Yes | The icon to be displayed in the elements list and in the toolbar for creating new objects. Icons can be obtained from https://fontawesome.com/v4.7/icons/ 
+| Icon | Yes | The icon to be displayed in the elements list and in the toolbar for creating new objects. Icons can be obtained from [Font Awesome 4]( https://fontawesome.com/v4.7/icons/) | 
 | Description | No | Explanation of the intended functionality of the element |
 
+When all the required attributes are provided, press <Btn mixed={["Create", faFloppyO]} color={"primary"}/> to create the element, or cancel the process with <Btn mixed={["Cancel", faFloppyO]} color={"warning"}/>. 
+
+<img src={"/chemotionsaurus/img/show_element.gif"} alt={"Create generic element"}/>
+
+After an element is created, it can either be added to the ELN interfaces of all the users' , or only to specific users. This option is also controlled by the administration.  For the users that can access the element, they have to add it manually to their accounts. To do so, they have to go to their **Account & Profile**, and go to the **Element Counter**,  and update the counter of the specific element with with <Btn mixed={["Update counter"]} color={"primary"}/>. Still, the element will be hidden by default, and it will not appear in the element bar unless the user manually adds them.
 
                                                                                   
 
