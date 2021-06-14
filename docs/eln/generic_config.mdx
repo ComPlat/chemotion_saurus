@@ -6,7 +6,7 @@ slug: generic_config
 ---
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome' 
-import { faClone, faPenSquare, faFileAlt, faFileCode, faPlus, faChartBar, faCheck, faSave, faAngleRight, faTrashAlt, faPaste, faArrowsAlt, faSyncAlt, faChartArea, faClock, faHourglassHalf, faHourglassEnd, faEllipsisH,faCheckCircle, faTimesCircle, faDownload, faTrash, faPlusCircle} from '@fortawesome/free-solid-svg-icons' 
+import { faClone, faPenSquare, faFileAlt, faFileCode, faPlus, faChartBar, faCheck, faSave, faAngleRight, faTrashAlt, faPaste, faArrowsAlt, faSyncAlt, faChartArea, faClock, faHourglassHalf, faHourglassEnd, faEllipsisH,faCheckCircle, faTimesCircle, faDownload, faTrash, faPlusCircle, faPen} from '@fortawesome/free-solid-svg-icons' 
 import {Btn} from '../btn.js' 
 
 :::danger Caution 
@@ -111,6 +111,14 @@ Choosing to edit the element's template enables adding new layers and lists to t
 <img src={"/chemotionsaurus/img/add_layer.gif"} alt={"Add Layer"}/>
 
 After a new layer is created, it appears in the layers list, where its Name, Display name, the number of columns per row, and the number of **fields** can be found. A number of buttons allow the following functions:
+
+| symbol | explanation |
+|---|---|
+| <FontAwesomeIcon icon={faPen} size="lg"/> | to edit the layer's attributes |
+| <FontAwesomeIcon icon={faTrash} size="lg"/> | to delete the layer |
+| <FontAwesomeIcon icon={faPlus} size="lg"/> | to add new fields|
+| <FontAwesomeIcon icon={faPlusCircle} size="lg"/> | to add dummy fields |
+
 
 
 ## Fields
