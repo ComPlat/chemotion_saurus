@@ -94,6 +94,20 @@ Choosing to edit the element's template enables adding new layers and lists to t
 
 **Layers** are the fundamental building block that contains the content of generic elements/segments/datasets. They enable organization of the fields related to a certain topic into groups, along with their layout and appearance. **Layers** can be added to elements and segments by clicking on **edit element/segment template** <FontAwesomeIcon icon={faFileAlt} size="lg"/> in the elements/segments list, and then clicking <Btn mixed={["Add new layer", faPlus]} color={"secondary"}/>.
 
+<img src={"/chemotionsaurus/img/add_layer.gif"} alt={"Add Layer"}/>
+
+###  attributes 
+
+| attribute | required | explanation |
+|---|:---:|---|
+| Name | yes | The name used to identify the layer in the system, must be unique in the template |
+| Display name | No | The name displayed in the details modal |
+| Columns per row | Yes | The maximum number of fields to be aligned in one row (default is 1) |
+| Sequential position | No | A number added to sort the layers, if left empty, they are ordered by the order of creation |
+| Restriction | No | A number that can set a maximum for certain fields |
+| Header color | No | A color for the Display name and its surrounding |
+| Style Option | Yes | Styling the Display name, "bold" is the default |
+
 
 ## Fields
 
