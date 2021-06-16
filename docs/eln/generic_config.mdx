@@ -102,9 +102,9 @@ Choosing to edit the element's template enables adding new layers and lists to t
 |---|:---:|---|
 | Name | yes | The name used to identify the layer in the system, must be unique in the template |
 | Display name | No | The name displayed in the details modal |
-| Columns per row | Yes | The maximum numer of fields to be aligned in one row (default is 1) |
-| Sequential position | No | A numer added to sort the layers, if left empty, they are ordered by the order of creation |
-| Restriction | No | A numer that can set a maximum for certain fields |
+| Columns per row | Yes | The maximum number of fields to be aligned in one row (default is 1) |
+| Sequential position | No | A number added to sort the layers, if left empty, they are ordered by the order of creation |
+| Restriction | No | A number that can set a maximum for certain fields |
 | Header color | No | A color for the Display name and its surrounding |
 | Style Option | Yes | Styling the Display name, "bold" is the default |
 
@@ -118,6 +118,9 @@ After a new layer is created, it appears in the layers list, where its Name, Dis
 | <FontAwesomeIcon icon={faTrash} size="lg"/> | to delete the layer |
 | <FontAwesomeIcon icon={faPlus} size="lg"/> | to add new fields|
 | <FontAwesomeIcon icon={faPlusCircle} size="lg"/> | to add dummy fields |
+
+Whenever a new layer is added, or an existing one is edited, changes need to be saved with <Btn mixed={["Save", faSave]} color={"primary"}/>, at this point, if the user that already has access to the element or segment reload the page in their user account, and then press the button <Btn mixed={["Reload"]} color={"danger"}/>,  they will be able to see the new layer.  By having layers, the admins can add fields there. More details on the **Fields** in the next chapter.
+
 
 ## Fields
 
