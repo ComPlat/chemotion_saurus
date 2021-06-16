@@ -66,6 +66,12 @@ button[name="downloadBtn"]:hover{
   color: #337ab7;
 }
 
+.center_space_between{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .row{
   width: 100%;
   display: flex;

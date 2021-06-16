@@ -1,0 +1,179 @@
+{
+  "version-0.8/elnID": [
+
+    {
+      "Versions":[
+        {
+          "type": "link",
+          "label": "0.9.x",
+          "href": "/docs/eln/videos_eln"
+        },
+        {
+          "type": "doc",
+          "label": "0.8.x",
+          "id": "version-0.8/videos_eln"
+        },
+      {
+        "type": "link",
+        "label": "Release Notes", 
+        "href": "https://github.com/ComPlat/chemotion_ELN/releases"
+      }
+      ]
+    },
+
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "ELN",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-0.8/videos_eln"
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Installation",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-0.8/native_installation"
+            },
+            {
+              "type": "doc",
+              "id": "version-0.8/dockerinstall"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Configuration",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-0.8/settings"
+            },
+            {
+              "type": "doc",
+              "id": "version-0.8/system_check"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Manual",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-0.8/about"
+            },
+            {
+              "type": "doc",
+              "id": "version-0.8/intro"
+            },
+            {
+              "type": "doc",
+              "id": "version-0.8/browser"
+            },
+            {
+              "type": "doc",
+              "id": "version-0.8/structure"
+            },
+            {
+              "type": "doc",
+              "id": "version-0.8/view"
+            },
+            {
+              "type": "doc",
+              "id": "version-0.8/firststeps"
+            },
+            {
+              "type": "doc",
+              "id": "version-0.8/collections"
+            },
+            {
+              "type": "doc",
+              "id": "version-0.8/lists"
+            },
+            {
+              "type": "doc",
+              "id": "version-0.8/samples"
+            },
+            {
+              "type": "doc",
+              "id": "version-0.8/reactions"
+            },
+            {
+              "type": "doc",
+              "id": "version-0.8/details"
+            },
+            {
+              "type": "doc",
+              "id": "version-0.8/toolbar"
+            },
+            {
+              "type": "doc",
+              "id": "version-0.8/ketcher"
+            },
+            {
+              "type": "doc",
+              "id": "version-0.8/barcodes"
+            },
+            {
+              "type": "doc",
+              "id": "version-0.8/inventory"
+            },
+            {
+              "type": "doc",
+              "id": "version-0.8/analysis"
+            },
+            {
+              "type": "doc",
+              "id": "version-0.8/problems"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Administration",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-0.8/generic_config"
+            },
+            {
+              "type": "doc",
+              "id": "version-0.8/adjust_analysis"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Device_integration",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-0.8/devices"
+            },
+            {
+              "type": "doc",
+              "id": "version-0.8/devices_nmr"
+            }
+          ]
+        },
+        {
+          "type": "doc",
+          "id": "version-0.8/contact"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.8/faq_eln"
+        }
+      ]
+    }
+  ]
+}

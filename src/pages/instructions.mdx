@@ -1,12 +1,14 @@
 ---
 id: instructions
 title: How To Markdown
-slug: instructions
+slug: /instructions
 ---
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChartBar, faCheck, faPlus } from '@fortawesome/free-solid-svg-icons' 
-import {Btn} from './btn.js'
+import { Btn } from '@site/docs/btn.js'
+
+<h1><font size="40">Instructions</font></h1>
 
 This website is based on the docusaurus framework, that uses Markdown with JavaScript (JSX). The most important and used components are explained below. More information about Markdown in docusaurus can be found [here.](https://docusaurus.io/docs/markdown-features)
 
@@ -87,7 +89,7 @@ Images can be inserted as Markdown or as HTML for special configurations (resizi
 There should be no /static in src.
 
 ### Info Boxes
-Highlighted info boxes ([like in the eln intro page](./eln/intro.mdx)) with further informations are called "Admonitions" in docusaurus. [See here.](https://docusaurus.io/docs/markdown-features/admonitions)
+Highlighted info boxes ([like in the eln intro page](./docs/eln/intro)) with further informations are called "Admonitions" in docusaurus. [See here.](https://docusaurus.io/docs/markdown-features/admonitions)
 
 ### Line Breaks
 Insert **two white spaces** at the end of the line.
@@ -105,7 +107,7 @@ Insert **two white spaces** at the end of the line.
 #### intern
 link to another page in the docu:
 ```
-[Instructions for ELN](./eln/intro.mdx)
+[Instructions for ELN](./docs/eln/intro)
 ```
 link to another chapter in the same page with the last segement of the URL:  
 e. g. URL: eln.chemotion.net/chemotionsaurus/docs/instructions <b>#toc</b>  
@@ -151,3 +153,12 @@ random number with a dot
 ```
 ## TOC
 The TOC on the left of every documentation page must be manual updated via [**sidebars.js**](https://github.com/ComPlat/chemotion_saurus/edit/master/sidebars.js) on GitHub. If you have inserted a new page or want to change the order, change it here.
+
+## Versioning
+Currently versioning is enabled for the ELN part of the documentation. This includes major and minor releases, but not bug fixes. To create a new documentation version based on the latest content in the ```docs/eln``` directory follow these steps:  
+1. Pull the GitHub repo of chemotion_saurus locally. This is necessary, because a lot of files and folders through npm will be added.  
+1. In ```docusaurus.config.js```: Change the ```current``` version to the new version and add the former current version to the other versions below.
+1. in ```sidebarsELN.js```: Add the new version to the ```Versions``` category.
+1. After the first three steps, you can create a new version with ```npm run docusaurus docs:version:elnID <former version number>```, e. g. ```npm run docusaurus docs:version:elnID 0.9``` The version number should be the **last** version, but not the latest/current. The latest version will be stored in ```docs/eln``` folder and should be the version, that is currently under construction. The ```npm run docusaurus docs:version ...``` creates a new folder with the version number, that should not be edited anymore. Nevertheless it is possible to edit it.   
+For example: you are planning a new version 0.10, that is already the current version of the code. Then you probably have a version 0.8 and a current version with the label 0.9 (but not with a versioned folder 0.9) in docusaurus. Now you create a version 0.9 through the npm command. Your current version gets 0.10 and is stored in ```docs/eln``` and you will have one more versioned folders: 0.9 and 0.8.  
+If you want to version the repository part of the documenation, then add the ```lastVersion``` and ```versions``` keys to the ```"@docusaurus/plugin-content-docs"``` plugin with the ```id: "repoID"``` in ```docusaurus.config.js``` and follow the steps above.
