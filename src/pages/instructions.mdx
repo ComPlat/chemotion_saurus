@@ -41,7 +41,7 @@ For example following code snippet...
 ```
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChartBar, faCheck } from '@fortawesome/free-solid-svg-icons' 
-import {Btn} from '../btn.js'
+import {Btn} from '@site/docs/btn.js'
 
 <Btn mixed={[faChartBar, " 1", faCheck]} color={"secondary"}/>
 ```
@@ -73,7 +73,7 @@ import { faPlus, faShareAlt } from '@fortawesome/free-solid-svg-icons'
 ### Downloadable Files
 If you want to provide one or multiple file(s) to download directly form the manual, then upload them to the files folder in [GitHub](https://github.com/ComPlat/chemotion_saurus/upload/master/static/files) and insert a Downlaod Button with the filepath(s) - separated by comma - in `files` and the button text in `text` :  
 ``` 
-import { DownloadBtn } from '../download_files.js'
+import { DownloadBtn } from '@site/docs/download_files.js'
 
 <p><DownloadBtn files={['/chemotionsaurus/files/template%20_sample_import.xlsx, docker-compose.yml']}  text={"Download XLSX Template here "}/></p>
 ``` 
@@ -144,7 +144,6 @@ random number with a dot
 ### Text Formatting
 **bold**
 ```
-**bold**
 <b>bold</b>
 ```
 `highlight elements, e. g. UI elements` 
@@ -152,7 +151,7 @@ random number with a dot
 `Collection Bar`
 ```
 ## TOC
-The TOC on the left of every documentation page must be manual updated via [**sidebars.js**](https://github.com/ComPlat/chemotion_saurus/edit/master/sidebars.js) on GitHub. If you have inserted a new page or want to change the order, change it here.
+The TOC on the left of every documentation page must be manually updated via [**sidebarsELN.js**](https://github.com/ComPlat/chemotion_saurus/edit/master/sidebarsELN.js) or [**sidebarsREPO.js**](https://github.com/ComPlat/chemotion_saurus/edit/master/sidebarsREPO.js) on GitHub. If you have inserted a new page or want to change the order, change it here.
 
 ## Versioning
 Currently versioning is enabled for the ELN part of the documentation. This includes major and minor releases, but not bug fixes. To create a new documentation version based on the latest content in the ```docs/eln``` directory follow these steps:  
