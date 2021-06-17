@@ -128,12 +128,12 @@ Whenever a new layer is added, or an existing one is edited, changes need to be 
 
 ###  attributes 
 
-| attribute | explanation |
-|---|---|
-| Field Name | --- |
-| Display Name | --- |
-| Hover Info | --- |
-| Type | --- |
+| attribute | required | explanation |
+|---|:---:|---|
+| Field Name | Yes | the name given by the admin when first creating the field. It is the name used to identify the field in the system. It must be unique in the template  |
+| Display Name | No | the name displayed in the details modal. It has the same value as the "Field Name" by default, but the admin can still modify it or delete it to create a field without a displayed name. |
+| Hover Info | No | an explanatory text to be shown when the mouse hovers over the "display name" |
+| Type | Yes | to specify the type of the field (more details about it in the next paragraph). Its value is "text" by default, but can be modified by the admin |
 
 ###  Field types 
 
