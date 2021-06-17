@@ -154,8 +154,8 @@ module.exports = {
     "@docusaurus/plugin-content-docs",
     {
       id: "elnID",
-      showLastUpdateTime: true,
-      showLastUpdateAuthor: true,
+      // showLastUpdateTime: true,
+      // showLastUpdateAuthor: true,
       editUrl:
             'https://github.com/ComPlat/chemotion_saurus/edit/master/',
       sidebarPath: require.resolve('./sidebarsELN.js'),
@@ -178,8 +178,8 @@ module.exports = {
     "@docusaurus/plugin-content-docs",
     {
       id: "repoID",
-      showLastUpdateTime: true,
-      showLastUpdateAuthor: true,
+      // showLastUpdateTime: true,
+      // showLastUpdateAuthor: true,
       editUrl:
             'https://github.com/ComPlat/chemotion_saurus/edit/master/',
       sidebarPath: require.resolve('./sidebarsREPO.js'),
