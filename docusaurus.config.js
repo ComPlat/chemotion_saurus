@@ -167,7 +167,7 @@ module.exports = {
             label: 'ELN 0.9',
           },
           '0.8': {
-            label: 'ELN Version 0.8',
+            label: 'ELN 0.8',
             path: 'version-0.8',
           },
         }
