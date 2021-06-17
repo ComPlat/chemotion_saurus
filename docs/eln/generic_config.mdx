@@ -6,7 +6,7 @@ slug: generic_config
 ---
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome' 
-import { faPlusCircle, faClone, faPen, faPenSquare, faFileAlt, faFileCode, faPlus, faChartBar, faCheck, faSave, faAngleRight, faTrashAlt, faPaste, faArrowsAlt, faSyncAlt, faChartArea, faClock, faHourglassHalf, faHourglassEnd, faEllipsisH,faCheckCircle, faTimesCircle, faDownload, faTrash} from '@fortawesome/free-solid-svg-icons' 
+import { faPlusCircle, faClone, faPen, faPenSquare, faFileAlt, faFileCode, faPlus, faChartBar, faCheck, faSave, faAngleRight, faTrashAlt, faPaste, faArrowsAlt, faSyncAlt, faChartArea, faClock, faHourglassHalf, faHourglassEnd, faEllipsisH,faCheckCircle, faTimesCircle, faDownload, faTrash, faArrowRight} from '@fortawesome/free-solid-svg-icons' 
 import {Btn} from '@site/docs/btn.js' 
 
 :::danger Caution 
@@ -139,10 +139,10 @@ Whenever a new layer is added, or an existing one is edited, changes need to be 
 
 | type | availability | dependencies | explanation |
 |---|---|---|---|
-| checkbox | v0.9.0+ |---| a checkbox is shown as a small square box to let user to make a binary choice |
-| drag molecule | v0.9.0+ |---| an icon with drag-and-drop function to let user to add a molecule into a generic element/segment by drag-and-drop operation; it will display the molecule image after adding successfully |
-| drag sample | v0.9.0+ (generic element only) |---| an icon with drag-and-drop function to let user to add a sample into a generic element by drag-and-drop operation; it will display the sample image after adding successfully |
-| formula field | v0.9.0+ |---| a calculation field; define the formula and system do the calculation automatically |
+| checkbox | v0.9.0+ |---| a checkbox is shown as a small square box to let the user make a binary choice |
+| drag molecule | v0.9.0+ |---| an icon with drag-and-drop function to let user to add a molecule into a generic element/segment by drag-and-drop operation; it will display the molecule image after being added successfully |
+| drag sample | v0.9.0+ (generic element only) |---| an icon with drag-and-drop function to let the user add a sample into a generic element by drag-and-drop operation; it will display the sample image after adding successfully. It also enables using the exact dragge-and-dropped sample, a split of it, or a copy |
+| formula field | v0.9.0+ |---| a calculation field; as an admin, define a formula using other fields, which are supposed to be either "integer" or "System-Defined", and system do the calculation automatically. The result appears in the corresponding field, and it keeps getting updated instantly as long as the values used to calculate it are being updated. When the user finish updating the values, they could press **adjust** <Btn mixed={[faArrowRight]} color={"secondary"}/> to adapt the final result, and they could also edit the final result manually |
 | input group | v0.9.0+ |---| a group of fields; the fields can be 'label', 'text', or 'integer', which 'label' is used for display only, 'text' and 'integer' are used as an input field|
 | integer | v0.9.0+ |---| an input field for number entries |
 | select | v0.9.0+ |---| a dropdown list to let user to select |
