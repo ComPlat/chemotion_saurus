@@ -151,11 +151,6 @@ Whenever a new layer is added, or an existing one is edited, changes need to be 
 | text area | v0.9.0+ |---| an input field with adaptable size to let user to enter multi-line text |
 | text formula | v0.9.0+ |---| a combine(display only) field to let user to combine other fields or necessary descriptions together |
 
-###  Field-Type: Formula-Field
-<img src={"/chemotionsaurus/img/formula.gif"} alt={"Formula field"}/>
-
-The field type **Formula-Field** enables automatic calculations based on a formula. The admin can use either "Integer" or "System-Defined" **Field Name**s as input values in the **Formula** field in the adminstration page. For instance, if there are two already defined **Integer** fields that are **a** and **b**, a possible definition of the formula for the field **c** can be **a+b**. For the user, the result of that addition appears in the corresponding field **c**, which appears in gray as it is uneditable, and it keeps getting updated instantly as long as the values used to calculate it are being updated. When the user finishes updating the values, they could press **adjust** <Btn mixed={[faArrowRight]} color={"secondary"}/> to adapt the final result, and they could also edit the final result manually, and give it values that don't correspond to the input values. This action doesn't affect the values used to calculate the result (**a** and **b**)
-
 
 ###  Field-Type: System-defined 
 
