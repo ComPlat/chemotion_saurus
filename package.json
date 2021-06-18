@@ -1,6 +1,6 @@
 {
   "name": "chemotion-saurus",
-  "version": "2.0.0-beta.0",
+  "version": "2.0.0-alpha.75",
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
@@ -12,8 +12,8 @@
     "clear": "docusaurus clear"
   },
   "dependencies": {
-    "@docusaurus/core": "2.0.0-beta.0",
-    "@docusaurus/preset-classic": "2.0.0-beta.0",
+    "@docusaurus/core": "2.0.0-alpha.75",
+    "@docusaurus/preset-classic": "2.0.0-alpha.75",
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/react-fontawesome": "^0.1.14",
