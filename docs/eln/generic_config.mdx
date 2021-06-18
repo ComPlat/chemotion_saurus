@@ -142,7 +142,7 @@ Whenever a new layer is added, or an existing one is edited, changes need to be 
 | checkbox | v0.9.0+ |---| a checkbox is shown as a small square box to let the user make a binary choice |
 | drag molecule | v0.9.0+ |---| an icon with drag-and-drop function to let user to add a molecule into a generic element/segment by drag-and-drop operation; it will display the molecule image after being added successfully |
 | drag sample | v0.9.0+ (generic element only) |---| an icon with drag-and-drop function to let the user add a sample into a generic element by drag-and-drop operation; it will display the sample image after adding successfully. It also enables using the exact dragge-and-dropped sample, a split of it, or a copy |
-| formula field | v0.9.0+ |---| a calculation field; as an admin, define a formula using other fields, which are supposed to be either "integer" or "System-Defined", and system do the calculation automatically. The result appears in the corresponding field, and it keeps getting updated instantly as long as the values used to calculate it are being updated. When the user finish updating the values, they could press **adjust** <Btn mixed={[faArrowRight]} color={"secondary"}/> to adapt the final result, and they could also edit the final result manually, and give it values that don't correspond to the calculated results. This action doesn't affect the values used to calculate the result |
+| formula field | v0.9.0+ |---| a calculation field; as an admin, define a formula using other fields, and the system does the calculation automatically ([details](#field-type-formula-field)) |
 | input group | v0.9.0+ |---| a group of fields; the fields can be 'label', 'text', or 'number'. 'label' is used for display only, and the user can't modify its default value, while 'text' and 'integer' are used as an input field, but still the admins can give them a default value ar first|
 | integer | v0.9.0+ |---| an input field for number entries |
 | select | v0.9.0+ |---| a dropdown list to let user to select |
@@ -150,6 +150,12 @@ Whenever a new layer is added, or an existing one is edited, changes need to be 
 | text | v0.9.0+ |---| an input field to let user to enter a single editable line of text |
 | text area | v0.9.0+ |---| an input field with adaptable size to let user to enter multi-line text |
 | text formula | v0.9.0+ |---| a combine(display only) field to let user to combine other fields or necessary descriptions together |
+
+###  Field-Type: Formula-Field
+<img src={"/chemotionsaurus/img/formula.gif"} alt={"Formula field"}/>
+
+The field type **Formula-Field** enables automatic calculations based on a formula. The admin can use either "Integer" or "System-Defined" **Field Name**s as input values in the **Formula** field in the adminstration page. For instance, if there are two already defined **Integer** fields that are **a** and **b**, a possible definition of the formula for the field **c** can be **a+b**. For the user, the result of that addition appears in the corresponding field **c**, which appears in gray as it is uneditable, and it keeps getting updated instantly as long as the values used to calculate it are being updated. When the user finishes updating the values, they could press **adjust** <Btn mixed={[faArrowRight]} color={"secondary"}/> to adapt the final result, and they could also edit the final result manually, and give it values that don't correspond to the input values. This action doesn't affect the values used to calculate the result (**a** and **b**)
+
 
 ###  Field-Type: System-defined 
 
