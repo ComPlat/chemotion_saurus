@@ -6,7 +6,8 @@ module.exports = {
     'Electronic Laboratory Notebook (ELN) &\n' +
     'Repository for Research Data\n',
   url: 'https://chemotion.net',
-  baseUrl: '/chemotionsaurus/',
+  baseUrl: '/',
+  // baseUrl: '/chemotionsaurus/',
   onBrokenLinks: 'log',
   // onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
