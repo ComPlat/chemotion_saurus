@@ -4,7 +4,7 @@ module.exports = {
         // Internal Versions
         {
           type: 'link',
-          label: '0.9.x',
+          label: '0.9.x (current)',
           href: 'videos_eln',
         },
         {
