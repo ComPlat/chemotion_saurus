@@ -32,7 +32,7 @@ module.exports = {
                 {
                   label: 'ELN',
                   to: 'docs/eln/videos_eln',
-                  docsPluginId: 'elnID',
+                  // docsPluginId: 'elnID',
                   // items:[
                   //   {
                   //     type: 'docsVersionDropdown',
@@ -43,7 +43,7 @@ module.exports = {
                 {
                   label: 'Repository',
                   to: 'docs/repo/videos_repo',
-                  docsPluginId: 'repoID',
+                  // docsPluginId: 'repoID',
                 },
               ],
             },
@@ -129,13 +129,13 @@ module.exports = {
     [
       '@docusaurus/preset-classic',
       {
-        docs:false,
-        // docs: {
-        //   sidebarPath: require.resolve('./sidebars.js'),
-        //   editUrl:
-        //     'https://github.com/ComPlat/chemotion_saurus/edit/master/',
+        // docs:false,
+        docs: {
+          sidebarPath: require.resolve('./sidebars.js'),
+          editUrl:
+            'https://github.com/ComPlat/chemotion_saurus/edit/master/',
           
-        // },
+        },
         blog: {
           showReadingTime: true
         },
@@ -147,43 +147,43 @@ module.exports = {
   ]
   ,
 
-  plugins: [
-  [
-    "@docusaurus/plugin-content-docs",
-    {
-      id: "elnID",
-      showLastUpdateTime: true,
-      showLastUpdateAuthor: true,
-      editUrl:
-            'https://github.com/ComPlat/chemotion_saurus/edit/master/',
-      sidebarPath: require.resolve('./sidebarsELN.js'),
-      path: "docs/eln",
-      routeBasePath: "docs/eln",
-      lastVersion: "current",
-        versions: {
-          current: {
-            label: 'ELN 0.9',
-          },
-          '0.8': {
-            label: 'ELN 0.8',
-            path: 'version-0.8',
-          },
-        }
-      }
-  ]
-  ,
-  [
-    "@docusaurus/plugin-content-docs",
-    {
-      id: "repoID",
-      showLastUpdateTime: true,
-      showLastUpdateAuthor: true,
-      editUrl:
-            'https://github.com/ComPlat/chemotion_saurus/edit/master/',
-      sidebarPath: require.resolve('./sidebarsREPO.js'),
-      path: "docs/repo",
-      routeBasePath: "/docs/repo",
-    },
-  ],
-]
+//   plugins: [
+//   [
+//     "@docusaurus/plugin-content-docs",
+//     {
+//       id: "elnID",
+//       showLastUpdateTime: true,
+//       showLastUpdateAuthor: true,
+//       editUrl:
+//             'https://github.com/ComPlat/chemotion_saurus/edit/master/',
+//       sidebarPath: require.resolve('./sidebarsELN.js'),
+//       path: "docs/eln",
+//       routeBasePath: "docs/eln",
+//       lastVersion: "current",
+//         versions: {
+//           current: {
+//             label: 'ELN 0.9',
+//           },
+//           '0.8': {
+//             label: 'ELN 0.8',
+//             path: 'version-0.8',
+//           },
+//         }
+//       }
+//   ]
+//   ,
+//   [
+//     "@docusaurus/plugin-content-docs",
+//     {
+//       id: "repoID",
+//       showLastUpdateTime: true,
+//       showLastUpdateAuthor: true,
+//       editUrl:
+//             'https://github.com/ComPlat/chemotion_saurus/edit/master/',
+//       sidebarPath: require.resolve('./sidebarsREPO.js'),
+//       path: "docs/repo",
+//       routeBasePath: "/docs/repo",
+//     },
+//   ],
+// ]
 };
