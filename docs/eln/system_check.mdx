@@ -4,6 +4,7 @@ title: System check
 slug: system_check
 sidebar_label: System check
 ---
+import { DownloadBtn } from '@site/docs/download_files.js'
 
 ### 1	Create collection
 
@@ -23,12 +24,11 @@ sidebar_label: System check
 
 Samples can be imported easily using an excel template that contains Smiles-Strings. To enable the import into a collection, the desired target collection has to be selected. 
 Please see the following example which can be used as a template to import data to the ELN. 
-
-[Download XLSX Template here](https://github.com/ComPlat/chemotion_saurus/blob/master/static/files/template%20_sample_import.xlsx) 
+<p><DownloadBtn files={['/chemotionsaurus/files/template%20_sample_import.xlsx']}  text={"Download XLSX Template here "}/></p>
 
 ![Collection View](/img/import_samples.gif)
 
-See further information in section https://www.chemotion.net/chemotionsaurus/docs/eln/toolbar_functions
+See further information in the section about [toolbar functions.](toolbar_functions)
 
 ### 9	Send data to repo
 

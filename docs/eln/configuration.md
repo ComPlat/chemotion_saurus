@@ -68,7 +68,7 @@ See [rails docs](https://guides.rubyonrails.org/action_mailer_basics.html#action
 
 This is an optional service to collect data files and distribute them to the ELN inbox of the respective users.
 
-(see [eln/devices](https://www.chemotion.net/chemotionsaurus/docs/eln/devices) or [doi: 10.1016/j.acax.2019.100007 ](https://doi.org/10.1016/j.acax.2019.100007 ))
+(see the [devices overview](devices) or [doi: 10.1016/j.acax.2019.100007 ](https://doi.org/10.1016/j.acax.2019.100007 ))
 
 Two options are available:
 - collecting attachment files from emails.
