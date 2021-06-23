@@ -63,18 +63,18 @@ module.exports = {
     hideableSidebar: true,
 
     // comment out algolia if you don't want to have a search function
-    // algolia: {
-    //   apiKey: process.env.ALGOLIA_SEARCH_API_KEY,
-    //   indexName: process.env.INDEX_NAME,
-    //   // appId: process.env.ALGOLIA_APP_ID,
-    //   debug: true,
-    //   placeholder: "Search Documentation",
-    //   facetFilters: [],
-    //   // contextualSearch: true --> no results in search bar
-    //   // transformData: function(hits) {
-    //   //   // Transform the list of hits; not working in docusaurus
-    //   // }
-    // },
+    algolia: {
+      apiKey: process.env.ALGOLIA_SEARCH_API_KEY,
+      indexName: process.env.INDEX_NAME,
+      // appId: process.env.ALGOLIA_APP_ID,
+      debug: true,
+      placeholder: "Search Under Construction",
+      facetFilters: [],
+      // contextualSearch: true --> no results in search bar
+      // transformData: function(hits) {
+      //   // Transform the list of hits; not working in docusaurus
+      // }
+    },
 
     footer: {
       style: 'light',
