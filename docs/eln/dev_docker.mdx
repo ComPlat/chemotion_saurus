@@ -106,10 +106,11 @@ To start an instance of ChemotionELN, the file ```~/chemotion/client-chemotion/d
 
 ```
 cd ~/chemotion/client-chemotion
-mkdir -p config shared db_data
+mkdir -p shared db-data
 docker-compose run eln init
+docker container prune
 docker-compose up
 ```
 
-For a real production mode environment additional steps would be required (e.g. setup of a HTTP proxy), which is beyond the scope of this guide.
+The third command will prompt you to authorize a potentially destructive initialization of a fresh database by typing ```continue```. The fourth command will prompt prior to the removal of stopped containers. For a real production mode environment additional steps would be required (e.g. setup of a HTTP proxy), which is beyond the scope of this guide.
 
