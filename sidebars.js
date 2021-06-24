@@ -6,7 +6,12 @@ module.exports = {
         Installation: [
           'eln/native_installation',
           'eln/dockerinstall',
-          'eln/development'
+          {
+            Development: [
+              'eln/development',
+              'eln/dev_docker'
+            ]
+          }
         ]
       },
       {

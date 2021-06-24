@@ -26,7 +26,12 @@ module.exports = {
           Installation: [
             'native_installation',
             'dockerinstall', 
-            'development'
+            {
+              Development: [
+                'development',
+                'dev_docker',
+              ]
+            }
           ]
         },
         {
