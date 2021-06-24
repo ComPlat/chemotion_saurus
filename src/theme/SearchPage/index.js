@@ -373,8 +373,8 @@ function SearchPage() {
               className={styles.searchQueryInput}
               placeholder={translate({
                 id: 'theme.SearchPage.inputPlaceholder',
-                message: 'Search Under Construction',
-                // message: 'Search Documentation',
+                // message: 'Search Under Construction',
+                message: 'Search Documentation',
                 description: 'The placeholder for search page input',
               })}
               aria-label={translate({

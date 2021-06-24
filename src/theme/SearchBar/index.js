@@ -177,9 +177,8 @@
 
    const translatedSearchLabel = translate({
      id: 'theme.SearchBar.label',
-     message: 'Search Under Construction',
-    // message: {{<FontAwesomeIcon icon={faConstruction}/>}},
-    //  message: ['Search Documentation'],
+    //  message: 'Search Under Construction',
+     message: 'Search Documentation',
      description: 'The ARIA label and placeholder for search button',
    });
  

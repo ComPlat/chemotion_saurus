@@ -68,7 +68,7 @@ module.exports = {
       indexName: process.env.INDEX_NAME,
       // appId: process.env.ALGOLIA_APP_ID,
       debug: true,
-      placeholder: "Search Under Construction",
+      placeholder: "Search Documentation",
       facetFilters: [],
       // contextualSearch: true --> no results in search bar
       // transformData: function(hits) {

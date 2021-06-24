@@ -70,11 +70,13 @@ module.exports = {
           ]
         },
         {
-          Device_integration: [
+          type: 'category',
+          label: "Device Integration",
+          items: [
             'devices',
             'devices_nmr'
-          ]
-        },
+              ]
+          },
         'contact',
         'faq_eln',
       ],
