@@ -65,7 +65,8 @@ In addition to the naming options, an **External label** can be saved for each s
 The Molecule Archive of the Compound Platform is an infrastructure that supports scientists to store their compounds centrally and provide the compounds for diverse re-use cases. If you are interested, please have a look at the website of the Molecule Archive and get in contact to the Compound Platform team. Its free for all chemists from academia. 
 :::
 
-Both **Boiling point** and **Melting point** can be provided manually in Celsius **°C**. The user can additionally provide any desired information as free text in the **Description** field and specify the location of the samples (e.g. institute, warehouse, etc.) in the **Location**  field. 
+Both **Boiling point** and **Melting point** can be provided manually in Celsius **°C**. If the melting or boiling point is to be added as range, please add the first value, space and second value, e.g. "50 60". this is automatically set to 50 - 60 °C by the system.  
+The user can additionally provide any desired information as free text in the **Description** field and specify the location of the samples (e.g. institute, warehouse, etc.) in the **Location**  field. 
 
 **Values affecting the reaction calculation table:** 
 The **Amount** can be provided either as mass or in mols, where providing one of them leads to automatic calculation of the other based on the **Purity** (1 by default but can be modified). Mass unit can be either g or mg, while amount unit is either mol or mmol. Volume data can’t be edited until **Density** or **Molarity** are specified, then the volume is automatically calculated. Changing the volume manually leads to automatic changes in the mass and amount. 
@@ -132,7 +133,7 @@ You can delete your datasets from your analysis by clicking <Btn mixed={[faTrash
 
 The **Literature** tab allows you to manage your literature and link it to your **Sample**. You can specify as many references as you find needed. It is possible to specify the reference either by its DOI or ISBN, or by giving it a title and a URL. In both cases, you can add whether this reference is citing you or cited by you. When all details of a reference are entered, press <Btn mixed={[faPlus]} color={"success"}/>. Once a reference is created, it cannot be edited, it can only be deleted, so if you need to edit a reference, delete it and create a new one.  
 
-The created references are added to a list and they are shown in blue to indicate their functionality in linking to some resources by clicking on them. Each reference can by copied using <Btn mixed={[faPaste]} color={"secondary"}/>, which will copy the information provided in the list. Additional details about the reference, as by whom it was created and whether it is referring to or cited by you,  can be shown by pressing the button <Btn mixed={[faAngleRight]} color={"secondary"}/>, which also shows the delete button <Btn mixed={[faTrashAlt]} color={"danger"}/>. Don’t forget to save your changes with <Btn mixed={["Save"]} color={"warning"}/>. 
+The created references are added to a list and they are shown in blue to indicate their functionality in linking to some resources by clicking on them. Each reference can by copied using <Btn mixed={[faPaste]} color={"secondary"}/>, which will copy the information provided in the list. Additional details about the reference, as by whom it was created and whether it is referring to or cited by you, can be shown by pressing the button <Btn mixed={[faAngleRight]} color={"secondary"}/>, which also shows the delete button <Btn mixed={[faTrashAlt]} color={"danger"}/>. Don’t forget to save your changes with <Btn mixed={["Save"]} color={"warning"}/>. 
 
 ### SciFinder tab 
 Not available at the moment. The function is available for members of Karlsruhe Institute of Technology only due to technical and legal reasons. 
@@ -163,6 +164,8 @@ A reaction can be populated with samples in two different ways:
 
 The user can create new samples by pressing <Btn mixed={[faPlus]} color={"success"}/>  in the corresponding category **Starting materials**, **Reactants** or **Products**.  In this case, the **Starting materials** and the **Products** samples will be added to the samples list. The **Reactants** will be saved as samples, and they are initially displayed in the samples list, but when you save the reaction and reload the page, all **Reactants** are not displayed in the list anymore in order to avoid unnecessary accumulation of samples, which are very often used as reactants. The **Reactants**  samples are still accessible from within the reaction **Scheme** by pressing the reactant name. The **Reactants** can be selected from the drop-down menu **Reagents**, and they are also not added to the samples list.
 
+The creation of samples does not directly result in a representation in the reaction scheme. Please save the reactin once after adding samples to it. After saving the reaction, all added samples appear also in the image of the reaction scheme.
+
 :::caution Recommendation 
 If you want to see a reactant displayed in the samples list, change its status from Reactants to Starting materials. By definition, Reactants are not displayed in the samples list. 
 ::: 
@@ -188,11 +191,15 @@ The calculation and display of the volume can only be correct if the molarity of
 An additional function is included within the reaction table, allowing to differentiate between reaction planning and implementation. You can find the function under the title **T/R**. <button className={"button button--xs button--success"} style={{padding:"2px", width:"27px", height:"27px"}}>t</button> means that you can enter/ calculate inputs according to the reaction planning. If you switch from <button className={"button button--xs button--primary"} style={{padding:"2px", width:"27px", height:"27px"}}>r</button>, you can enter the quantities actually received. This function was created so that in the event of a deviation (e.g. due to accuracy in the dosage) from the planned experiments, the values of both procedures are still available. 
 
 ![Reaction solvents](/img/reaction_solvents.png)
-The solvents can be introduced by expanding the gray area **Solvents**. The user can either pick a solvent from the drop-down **Default solvents**,  or they can use a sample as a solvent, and in this case the sample will be treated the same way as a reactant sample, i.e. it can be created with <Btn mixed={[faPlus]} color={"success"}/>, but it will not be displayed in the samples list, or if the sample is already in the samples list, it can be dragged and dropped with <Btn mixed={[faArrowsAlt]} color={"secondary"}/>, but no **copy** or **split** will occur here.  
+The solvents can be introduced by expanding the grey area **Solvents**. The user can either pick a solvent from the drop-down **Default solvents**,  or  can use a sample as a solvent. Solvents added as a sample are stored as a reactant sample, i.e. the solvent can be created with <Btn mixed={[faPlus]} color={"success"}/>, but it is not displayed in the samples list.  If the sample is already in the samples list, it can be dragged and dropped with <Btn mixed={[faArrowsAlt]} color={"secondary"}/>, but no **copy** or **split** happens.  
 
-The solvent can be given a **Label** which is transferred to the reaction arrow when updated by the symbol <Btn mixed={[faSyncAlt]} color={"secondary"}/>. When specifying the solvents volumes **Vol** (in l, ml, or μl), the molarity of the solution **Conc** is automatically calculated based on the individual samples in the reaction table. You can add as many solvents as you want. If you are using more than one solvent, the volume ratio **Vol ratio** of the solvents to each other is displayed. You can also distinguish between solvent details in the planned and implemented reaction with <button className={"button button--xs button--success"} style={{padding:"2px", width:"27px", height:"27px"}}>t</button> (planned) and <button className={"button button--xs button--primary"} style={{padding:"2px", width:"27px", height:"27px"}}>r</button> (implemented). Samples and solvents in a reaction can be removed from the reaction using the button <Btn mixed={[faTrashAlt]} color={"danger"}/>. 
+The solvent can be given a **Label** which is transferred to the reaction arrow when updated by the symbol <Btn mixed={[faSyncAlt]} color={"secondary"}/>. When specifying the solvents volumes **Vol** (in l, ml, or μl), the molarity of the reaction mixture **Conc** is automatically calculated based on the individual samples in the reaction table. You can add as many solvents as you want. If you are using more than one solvent, the volume ratio **Vol ratio** of the solvents to each other is displayed. You can also distinguish between solvent details in the planned and implemented reaction with <button className={"button button--xs button--success"} style={{padding:"2px", width:"27px", height:"27px"}}>t</button> (planned) and <button className={"button button--xs button--primary"} style={{padding:"2px", width:"27px", height:"27px"}}>r</button> (implemented). Samples and solvents in a reaction can be removed from the reaction using the button <Btn mixed={[faTrashAlt]} color={"danger"}/>. 
 
 In the gray area **Conditions**, the user can **Select** special conditions required for the reaction from a drop-down menu. Those conditions include **UV**, **microwave**, **ultrasound**, **visible light**. The selected conditions are added to a field where the user can additionally add other conditions as free text.
+
+:::info
+Internal remark TO DO: showing the conditions in a gif would be great
+:::
 
 Out of the  **Conditions** area, the user can give their reaction a **Name** and describe it with a **Status** from a drop-down. The **Status** is reflected in the list of reactions by a symbol, so you can see at a glance your evaluation of the reactions. The following table shows all the possible **Status** and the corresponding symbols. 
 
@@ -217,10 +224,11 @@ The temperature of a reaction is inserted via the **Temperature** field. If a **
 
 The user can specify the **Duration** of the reaction by adding its **Start** time and **Stop** time with the following format: DD/MM/YYYY hh:mm:ss or DD.MM.YYYY hh:mm:ss, then the **Duration** is automatically calculated. The user can also input current time with the <Btn mixed={[faClock]} color={"secondary"}/> button. The calculated **Duration** can be copied with <Btn mixed={[faPaste]} color={"secondary"}/>, or rounded to the next field either in **Week(s)**, **Day(s)**, **Hour(s)**, **Minute(s)**, or **Second(s)**. 
 
-you can also choose the **Type** of your reactions from the **Name Reaction Ontology** drop-down.  And you can assign a **Role** to the reaction, such as a **General Procedure**, **Parts of GB**, and **Single**. The **Description** field is intended for recording your reaction implementation. Please give a detailed description of how you carried out the reaction. The **Description** field is mirrored within the second **Properties** tab (and vice versa) to give the user the freedom in which tab they would like to maintain the description of the reaction. The same applies to the  **Name**, **Status**  **Temperature**,  and **Type** fields.  
+The **Type** of reactions can be chosen from the **Name Reaction Ontology** drop-down. The selection of an ontology is required if the data should be added to the repository chemotion, it is also recommended for all other reactions. Also the a **Role** can be assigned to a reaction. Available options are **General Procedure**, **Parts of GB**, and **Single**. The assignment of a role gives first of all an information that is reflected in the reaction list and allows an easy identification of e.g. general procedures in the list. the role assignment is also important for the use of the reporting function. The reporting function separates general procedures from reactions that were done according to a general procedure and reactions that are described as single (independent) reactions without assignment to a general procedure. For reactions that are **Parts of GP** (Parts of General Procedures), the description is not added to the reporting as it is assumed that the description of the reaction is the same for reactions done according to general procedures. In these cases, it is important to add the purification details to the field "additional information for publication and purification details" as this information is given in the reporting anyhow.
+
+The **Description** field is intended for recording your reaction implementation.   
 
 For a quick overview of the **Purification** methods that you have used to isolate your target compound, a drop-down menu **Purification** has been introduced. The methods **Flash-Chromatography**, **TLC**, **HPLC**, **Extraction**, **Distillation**, **Sublimation** and **Crystallization** are available. The selected methods are lined up as a list. **Purification Solvents** can be added, and they are treated exactly the same way as the reaction **Solvents**. Description of the purification process can be included in the field **Additional information for publication and purification details**. 
-
  
 Finally, the user can <Btn mixed={["Save"]} color={"warning"}/> the reaction, <Btn mixed={["Close"]} color={"primary"}/> without saving, or <Btn mixed={["Export samples"]} color={"info"}/> as an xlsx file. This applies to all the other tabs.
 
@@ -285,7 +293,16 @@ So far, only a rudimentary structure for entering the screens has been programme
 
 ## Detail modal for research plan 
 ![Reseach plan](/img/research_plan.png)
-A research plan is a generic element that can be used in a flexible manner to describe a particular processes. The research plan be given a **Name**, and there are plenty of fields that can be added in the form of text (**Add Text Editor**), tables(**Add Table Editor**), images (either a molecular structure with **Add Ketcher Editor**, or a regular image with **Add Image** where you can control its **Zoom** ). You can add other elements such as samples (**Add Sample**) and reactions (**Add Reaction**) with drag and drop. 
+
+A research plan is a generic element that can be used in a flexible manner to describe a particular process. The research plan contains a **Name**, and there are plenty of fields that can be added in the form of text (**Add Text Editor**), tables (**Add Table Editor**), images (either a molecular structure with **Add Ketcher Editor**, or a regular image with **Add Image** where you can control its **Zoom** ). You can add other elements such as samples (**Add Sample**) and reactions (**Add Reaction**) with drag and drop. 
+The order of the segments added to the research plan ccan be changed by drag and drop. 
+
+The reserach plan has an edit and a view mode. The view mode offers options to export the information to different file formats (.docx, .odt, HTML, Markdown, LaTeX). 
+
+:::info
+Internal remark TO DO: gif showing export functions
+:::
+
 
 ### Research plan table functions
 
