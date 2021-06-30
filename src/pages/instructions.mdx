@@ -10,12 +10,13 @@ import { Btn } from '@site/docs/btn.js'
 
 <h1><font size="40">Instructions</font></h1>
 
-This website is based on the docusaurus framework, that uses Markdown with JavaScript (JSX). The most important and used components are explained below. More information about Markdown in docusaurus can be found [here.](https://docusaurus.io/docs/markdown-features)
+This website is based on the docusaurus framework, that uses Markdown with JavaScript (JSX). Therefore the content is stored as a mixture mainly containing Markdwon with elements from HTML and from the JavaScript Framework React. The most important and used components are explained below. More information about Markdown in docusaurus can be found [here.](https://docusaurus.io/docs/markdown-features)
 
 ## Editing
-For changing the documentation you need a GitHUb Account and then you can use the ```Edit this page``` Button at the left bottom of every page. This will leads you to an Editor on GitHub, where you can directly edit the page and make a Pull Request afterwards.  
+For changing the documentation you need a GitHub Account and then you can use the ```Edit this page``` Button at the left bottom of every page. This will leads you to an Editor on GitHub, where you can directly edit the page and make a Pull Request afterwards or commit your changes directly, if you have write access.   
 For advanced usage of chemotion_saurus, you can also clone the repository and push to it, if you have write access. Therefore follow the instructions in the [README](https://github.com/ComPlat/chemotion_saurus#readme).  
-You can check [GitHub Actions](https://github.com/ComPlat/chemotion_saurus/actions), to see if your changes are succesfully merged in the master branch.
+Succesfull changes are directly deployed and went online. 
+You can check [GitHub Actions](https://github.com/ComPlat/chemotion_saurus/actions/workflows/build.yml), to see if your changes are succesfully merged in the web page.
 
 ## New Page
 - use .mdx as filename ending in GitHub
@@ -40,7 +41,7 @@ title: Introduction Videos
 
 ### Buttons
 #### regular buttons with text and icon content
-For creating buttons use a button function and import it in the page. Every button gets a **color** and can have multiple text elements and icons **mixed** in its content.  
+For creating buttons use a button function and import it in the page. Every button gets a <b>color</b> and can have multiple text elements and icons <b>mixed</b> in its content.  
 For icon buttons the library Font Awesome is used. Get icons from here: [https://fontawesome.com/](https://fontawesome.com/) and import them in the page, too. The color palette is from the [Infima library](https://infima.dev/docs/components/button).  
 For example following code snippet...
 ```
@@ -97,9 +98,10 @@ There should be no /static in src.
 Highlighted info boxes ([like in the eln intro page](./docs/eln/intro)) with further informations are called "Admonitions" in docusaurus. [See here.](https://docusaurus.io/docs/markdown-features/admonitions)
 
 ### Line Breaks
-Insert **two white spaces** at the end of the line.
+Insert <b>two white spaces</b> at the end of the line.
 
 ### Links
+
 ```
 [alt tag](link)
 ```
@@ -147,7 +149,8 @@ random number with a dot
 ```
 
 ### Text Formatting
-**bold**
+<b>bold</b>  
+
 ```
 <b>bold</b>
 ```
@@ -163,6 +166,6 @@ Currently versioning is enabled for the ELN part of the documentation. This incl
 1. Pull the GitHub repo of chemotion_saurus locally. This is necessary, because a lot of files and folders through npm will be added.  
 1. In ```docusaurus.config.js```: Change the ```current``` version to the new version and add the former current version to the other versions below.
 1. in ```sidebarsELN.js```: Add the new version to the ```Versions``` category.
-1. After the first three steps, you can create a new version with ```npm run docusaurus docs:version:elnID <former version number>```, e. g. ```npm run docusaurus docs:version:elnID 0.9``` The version number should be the **last** version, but not the latest/current. The latest version will be stored in ```docs/eln``` folder and should be the version, that is currently under construction. The ```npm run docusaurus docs:version ...``` creates a new folder with the version number, that should not be edited anymore. Nevertheless it is possible to edit it.   
+1. After the first three steps, you can create a new version with ```npm run docusaurus docs:version:elnID <former version number>```, e. g. ```npm run docusaurus docs:version:elnID 0.9``` The version number should be the <b>last</b> version, but not the latest/current. The latest version will be stored in ```docs/eln``` folder and should be the version, that is currently under construction. The ```npm run docusaurus docs:version ...``` creates a new folder with the version number, that should not be edited anymore. Nevertheless it is possible to edit it.   
 For example: you are planning a new version 0.10, that is already the current version of the code. Then you probably have a version 0.8 and a current version with the label 0.9 (but not with a versioned folder 0.9) in docusaurus. Now you create a version 0.9 through the npm command. Your current version gets 0.10 and is stored in ```docs/eln``` and you will have one more versioned folders: 0.9 and 0.8.  
 If you want to version the repository part of the documenation, then add the ```lastVersion``` and ```versions``` keys to the ```"@docusaurus/plugin-content-docs"``` plugin with the ```id: "repoID"``` in ```docusaurus.config.js``` and follow the steps above.
