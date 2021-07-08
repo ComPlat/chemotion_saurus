@@ -27,7 +27,8 @@ For a few users, all this components can be installed on a single machine (2 cpu
 
 
 :::info
-Additional remarks and recomendations.
+We should be more precise here and make a recommendation up to what number of users the installation on a machine is good for
+Installation with root or sudi user
 :::
 
 ![architecture_ELN](../../static/img/architecture_ELN_base.svg)
@@ -44,6 +45,14 @@ In short the installation, will:
 * config nginx (NB: no ssl set) and UFW
 
 For more users, one can start to split the services onto distinct machines.
+
+:::info
+From how many users does this make sense? What advantages do I have?
+
+The link to the installation scipts for the different machines is missing. On the end of the page are important information -> link possible?
+
+How do I install Chemotion if several working groups at one university / from different universities want to access Chemotion? Does each working group have to install everything completely? Can I save the data of the working groups on different computers? 
+:::
 
 ![architecture_ELN_dist](../../static/img/architecture_ELN_dist.svg)
 
@@ -65,7 +74,7 @@ For multiple machine configuration and splitting the services onto different mac
 **DB server**:
 * 2GB RAM
 * Dual Core
-* 500GB hard disk or smaller(depending upon the size of the metadata)
+* 500GB hard disk or smaller (depending upon the size of the metadata)
 * Ubuntu 20.04LTS or 18.04 LTS
 
 **ELN proxy server**:
@@ -74,8 +83,17 @@ For multiple machine configuration and splitting the services onto different mac
 * 8GB hard disk
 * Ubuntu 20.04LTS or 18.04 LTS
 
+:::info
+Where are the research data and entries stored in Chemotion? If the installation is done on multiple machines, Chemotion will have more users and consequently more data. Shouldn't the DB server have more hard disk or at least 500 GB?
+:::
+
 
 ## Nginx - Phusion passenger
+
+:::info
+The information density here is very high, and i think that single subheadings would help, e.g. "Use of SSL" here.
+Another point, e.g. Use of a server name
+:::
 
 The configuration files are at /etc/nginx/sites-enabled/ (symlinked from ../sites-available).
 SSL use is recommended and should be set there.
