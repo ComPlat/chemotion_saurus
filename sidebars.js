@@ -4,11 +4,20 @@ module.exports = {
       'eln/videos_eln',
       {
         Installation: [
-          'eln/native_installation',
-          'eln/dockerinstall',
+          {
+            Production: [
+            'eln/native_installation',
+            'eln/dockerinstall',
+          ]
+        },
           {
             Development: [
-              'eln/development',
+              'eln/dev_native_install',
+              'eln/development'
+            ]
+          },
+          {
+            Docker: [
               'eln/dev_docker'
             ]
           }

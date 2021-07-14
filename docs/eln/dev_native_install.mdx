@@ -1,0 +1,147 @@
+---
+id: dev_native_install
+title: Native Installation
+sidebar_label: Native installation
+slug: development_native_installation
+---
+
+:::info
+Documentation and processes are being reworked and improved at the moment. It may happen that you miss information. If you face problems, please let us know, we are there to support you. You may also [contact](specific_contact) us directly if you plan to install Chemotion. 
+:::
+
+## Initial Installation
+:::caution
+Needs to be proofed in real environment.
+:::
+This documentation describes an installation solution example of the the chemotion_ELN system for development purposes with Rails 5 on Ubuntu 20.04.  
+### Requirements
+OpenSSH Server is needed:
+```sh
+sudo apt-get install openssh-server
+```
+### Get installation script
+Download the current development installation script (14.07.2021) from [GitHub](https://github.com/ComPlat/chemotion_ELN/tree/development-5/scripts) and make it executable:
+```sh
+curl -o install_development.sh -L https://raw.githubusercontent.com/ComPlat/chemotion_ELN/development-5/scripts/install_development.sh
+chmod 700 install_development.sh
+sudo ./install_development.sh
+```
+Or install the current script directly via curl:
+```sh
+sudo curl -o- https://raw.githubusercontent.com/ComPlat/chemotion_ELN/development-5/scripts/install_development.sh | bash
+```
+### Change configuration files
+After installation you have to change some configurations. Change to the root folder of your ELN (e. g. `cd ~/chemotion_ELN`) and paste the following commands in your terminal:
+```sh
+cp Gemfile.plugin.example Gemfile.plugin
+
+cp .ruby-gemset.example .ruby-gemset
+
+cp .ruby-version.example .ruby-version
+
+cp ./config/database.yml.example ./config/database.yml
+
+cp ./config/datacollectors.yml.example ./config/datacollectors.yml
+
+cp ./config/editors.yml.example ./config/editors.yml
+
+cp ./config/inference.yml.example ./config/inference.yml
+
+cp ./config/spectra.yml.example ./config/spectra.yml
+
+cp ./config/storage.yml.example ./config/storage.yml
+
+cp ./config/user_props.yml.example ./config/user_props.yml
+```
+### Common errors during installation
+#### “You need to run "nvm install vxx.xx.x" to install it before using it.”
+```sh
+nvm install vxx.xx.x
+```
+Run again installation script:
+```sh
+sudo ./install_development.sh
+```
+Another solution could be to comment out PART_5 in the installation script, where nvm and Node will be installed and run again:
+```sh
+sudo ./install_development.sh
+```
+### Install Ruby libraries
+Change to the root folder of your ELN (e. g. `cd ~/chemotion_ELN`) where the `Gemfile` is located and type:
+```sh
+bundle install
+```
+#### Common errors:
+<b>You might have to install separate package for the ruby development environment, ruby-dev or ruby-devel for example:</b>
+
+
+```sh
+sudo apt-get install ruby-full
+```
+### Update database
+```sh
+sudo -u postgres psql
+ALTER USER postgres PASSWORD ‘<your password>’;
+```
+Open file `./config/databse.yml`, change host in development to `localhost` and update your password that you set above.
+### Migrate data
+```sh
+bundle exec rake db:create RAILS_ENV=development
+bundle exec rake db:migrate RAILS_ENV=development
+```
+### Run the app
+You need to run two servers simultaneously in two different terminals: one for the rails app and one for webpack:
+```sh
+bundle exec rails s
+bundle exec bin/webpack-dev-server
+```
+Potentially a restart of the Rails server is needed because changes in JavaScript files below app/… are monitored by the webpack server process.
+#### Common errors:
+<b>Undefined method `new' for BigDecimal:Class (NoMethodError)</b>
+
+    
+Open `Gemfile` and add:
+```sh
+gem 'bigdecimal', '1.3.5'
+```
+Run again:
+```sh
+bundle install
+```
+Restart the servers.  
+<b>Unable to run node_modules/.bin/browserify. Ensure you have installed it with npm. (BrowserifyRails::BrowserifyError)</b>
+
+
+```sh
+yarn install
+```
+Restart the servers. 
+### Update test data
+Open web browser, signup and login. Download and import data from [here](https://bwsyncandshare.kit.edu/s/kzpd8B5XdjMQ8gw) #TODO  
+Run:  
+```sh
+bundle exec bin/delayed_job start
+```  
+## Upgrade from Rails 4 to Rails 5
+If you have an existing installation and want to upgrade to Rails 5 you need to "update" your Ruby gems and node modules with yarn after checking out the development-5 branch:
+```sh
+bundle install
+```
+```sh
+source ~/.nvm/nvm.sh && nvm install 14.16.0
+source ~/.nvm/nvm.sh && nvm use 14.16.0 && npm install -g npm && npm install -g yarn && yarn install
+```
+If `npm install -g yarn` does not work close your terminal or restart your system.  
+For a clean install it might be helpful - but not always required - to remove the previous packages that were installed by npm, only need to be done once:
+```sh
+rm -rf node_modules
+```
+```sh
+yarn install
+```
+You need to run two servers simultaneously in two different terminals: one for the rails app and one for webpack:
+```sh
+bundle exec rails s
+bundle exec bin/webpack-dev-server
+```
+Potentially a restart of the Rails server is needed because changes in JavaScript files below app/… are monitored by the webpack server process.
