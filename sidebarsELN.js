@@ -69,7 +69,7 @@ module.exports = {
             'adjust_analysis'
           ]
         },
-            'coming',
+            'coming_soon',
         {
           type: 'category',
           label: "Device Integration",
