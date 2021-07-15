@@ -6,7 +6,7 @@ slug: WSL-2 installation
 ---
 
 
-This guide will help you get started developing with containers by setting up Docker Desktop for Windows with WSL 2 (Windows Subsystem for Linux). By enabling the WSL 2 based engine, you can run both Linux and Windows containers in Docker Desktop on the same machine
+This guide will help you get started developing with containers by setting up Docker Desktop for Windows with WSL 2 (Windows Subsystem for Linux). By enabling the WSL-2 based engine, you can run both Linux and Windows containers in Docker Desktop on the same machine
 
 
 This documentation detailed an installation solution of the chemotion_ELN system. We will used Microsoft Subsystem for Linux.The instructions have been tested on Windows 10. Depending on your base operating system, the following packages must be installed:
@@ -46,7 +46,7 @@ With the WSL 2 backend supported in Docker Desktop for Windows, you can work in 
 
 Set docker desktop setting (Docker Desktop Stable 2.3.0.2 https://docs.docker.com/docker-for-windows/wsl/)
 -	From the Docker menu, select Settings > General.
--	Select the Use WSL 2 based engine check box.
+-	Select the Use WSL-2 based engine check box.
 -	Enable integration with additional distro: ubuntu
 -	Select Ubuntu distributions you must enable the Docker-WSL integration on.
 
@@ -63,17 +63,17 @@ cd c:\chemotion\...
 ```
 
 Testing Docker in WSL
-Now, I can test Docker in my “WSL – Ubuntu 20.04“ console session. Open PowerShell Core console, and execute the following command to check the Docker version
+Now, I can test Docker in my “WSL–2 Ubuntu 20.04“ console session. Open PowerShell Core console, and execute the following command to check the Docker version
 
 ```
 
 docker --version
 
 ```
-Once docker has been running on WSL. you could switch to ubutun 20.04 to clone the project https://github.com/ptrxyz/chemotion 
+Once docker has been running on WSL-2. you could switch to ubutun 20.04 to clone the project https://github.com/ptrxyz/chemotion 
 
 
-To mount a disk, open a ubuntu with and run:
+To mount a disk, open a ubuntu and run:
 
 ```
 
