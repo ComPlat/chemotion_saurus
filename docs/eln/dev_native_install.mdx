@@ -131,13 +131,12 @@ bundle install
 source ~/.nvm/nvm.sh && nvm install 14.16.0
 source ~/.nvm/nvm.sh && nvm use 14.16.0 && npm install -g npm && npm install -g yarn && yarn install
 ```
-If `npm install -g yarn` does not work close your terminal or restart your system.  
 For a clean install it might be helpful - but not always required - to remove the previous packages that were installed by npm, only need to be done once:
 ```sh
 rm -rf node_modules
 ```
 ```sh
-yarn install
+source ~/.nvm/nvm.sh && nvm use 14.16.0 && yarn install
 ```
 You need to run two servers simultaneously in two different terminals: one for the rails app and one for webpack:
 ```sh
