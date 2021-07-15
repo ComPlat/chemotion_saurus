@@ -1,19 +1,20 @@
 ---
-id:  Windows Subsytem for Linux and Docker
-title: Windows Subsytem for Linux and Docker
+id:  WSL and Docker
+title: WSLand Docker
 sidebar_label: WSL with Docker
 slug: WSL_installation
 ---
 
 
-# Prerequisites
+This documenation will help you get started developing with containers by setting up Docker Desktop for Windows with WSL 2 (Windows Subsystem for Linux). By enabling the WSL 2 based engine, you can run both Linux and Windows containers in Docker Desktop on the same machine
 
 
-This manual detailed an installation solution of the chemotion_ELN system. We will used Microsoft Subsystem for Linux.The instructions in this manual have been tested on Windows 10. Depending on your base operating system, the following packages must be installed:
+This manual detailed an installation solution of the chemotion_ELN system. We will used Microsoft Subsystem for Linux.The instructions in this guide have been tested on Windows 10. Depending on your base operating system, the following packages must be installed:
 
 
 ### Dependencies
 
+Ensure your machine is running Windows 10, updated to version 2004, Build 18362 or higher.
 - Install ubuntu (20.04.2) on windows 
 - Install Desktop Docker (https://hub.docker.com/editions/community/docker-ce-desktop-windows/)
 
@@ -22,18 +23,26 @@ This manual detailed an installation solution of the chemotion_ELN system. We wi
 ## Tools recommended for development
 
 Visual Studio Code 
-• Install Visual studio code with linters set up (es and ruby-rubocop):
+- Install Visual studio code with linters set up (es and ruby-rubocop):
   https://marketplace.visualstudio.com/items?itemName=rebornix.Ruby && https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
 
-visual studio code with Version control 
+
+- Install verstion control extension
 https://code.visualstudio.com/docs/editor/github
 https://code.visualstudio.com/docs/editor/versioncontrol
+
+- Install the VS Code Docker extension. This extension adds the functionality to build, manage, and deploy containerized applications from inside VS Code. (You need the Remote-Container extension to actually use the container as your dev environment.)
 
 when Vim 
 check https://github.com/dense-analysis/ale
 
 
+
+
 # Setup
+
+With the WSL 2 backend supported in Docker Desktop for Windows, you can work in a Linux-based development environment and build Linux-based containers, while using Visual Studio Code for code editing and debugging, and running your container in the Microsoft Edge browser on Windows.
+
 
 Set docker desktop setting (Docker Desktop Stable 2.3.0.2 https://docs.docker.com/docker-for-windows/wsl/)
 -	From the Docker menu, select Settings > General.
