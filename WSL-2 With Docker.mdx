@@ -1,15 +1,15 @@
 ---
-id:  WSL and Docker
-title: WSLand Docker
-sidebar_label: WSL with Docker
-slug: WSL_installation
+id:  WSL-2 and Docker
+title:WSL-2 and Docker
+sidebar_label: WSL-2 with Docker
+slug: WSL-2 installation
 ---
 
 
-This documenation will help you get started developing with containers by setting up Docker Desktop for Windows with WSL 2 (Windows Subsystem for Linux). By enabling the WSL 2 based engine, you can run both Linux and Windows containers in Docker Desktop on the same machine
+This guide will help you get started developing with containers by setting up Docker Desktop for Windows with WSL 2 (Windows Subsystem for Linux). By enabling the WSL 2 based engine, you can run both Linux and Windows containers in Docker Desktop on the same machine
 
 
-This manual detailed an installation solution of the chemotion_ELN system. We will used Microsoft Subsystem for Linux.The instructions in this guide have been tested on Windows 10. Depending on your base operating system, the following packages must be installed:
+This documentation detailed an installation solution of the chemotion_ELN system. We will used Microsoft Subsystem for Linux.The instructions have been tested on Windows 10. Depending on your base operating system, the following packages must be installed:
 
 
 ### Dependencies
@@ -33,7 +33,7 @@ https://code.visualstudio.com/docs/editor/versioncontrol
 
 - Install the VS Code Docker extension. This extension adds the functionality to build, manage, and deploy containerized applications from inside VS Code. (You need the Remote-Container extension to actually use the container as your dev environment.)
 
-when Vim 
+Vim 
 check https://github.com/dense-analysis/ale
 
 
@@ -55,14 +55,25 @@ The setup continues with the following steps:
 
 
       
-Set path on PowerShell (Windows)
+Set a path on PowerShell (Windows) 
 
 ```
 cd c:\chemotion\...
 
 ```
 
-Set path on terminal (Ubuntu)
+Testing Docker in WSL
+Now, I can test Docker in my “WSL – Ubuntu 20.04“ console session. Open PowerShell Core console, and execute the following command to check the Docker version
+
+```
+
+docker --version
+
+```
+Once docker has been running on WSL. you could switch to ubutun 20.04 to clone the project https://github.com/ptrxyz/chemotion 
+
+
+To mount a disk, open a ubuntu with and run:
 
 ```
 
