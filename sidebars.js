@@ -13,7 +13,8 @@ module.exports = {
           {
             Development: [
               'eln/dev_native_install',
-              'eln/development'
+              'eln/development',
+              'eln/Windows Subsytem for Linux and Docker'
             ]
           },
           {
