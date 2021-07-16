@@ -8,7 +8,7 @@ module.exports = {
             Production: ['eln/native_installation', 'eln/dockerinstall'],
           },
           {
-            Development: ['eln/dev_native_install', 'eln/development'],
+            Development: ['eln/dev_native_install', 'eln/dev_docker_install'],
           },
           {
             Docker: ['eln/dev_docker'],
@@ -42,11 +42,11 @@ module.exports = {
       {
         Administration: ['eln/generic_config', 'eln/adjust_analysis'],
       },
-      'coming_soon',
+      'eln/coming_soon',
       {
         type: 'category',
         label: 'Device Integration',
-        items: ['devices', 'devices_nmr'],
+        items: ['eln/devices', 'eln/devices_nmr'],
       },
       'eln/contact',
       'eln/faq_eln',
