@@ -5,30 +5,18 @@ module.exports = {
       {
         Installation: [
           {
-            Production: [
-            'eln/native_installation',
-            'eln/dockerinstall',
-          ]
-        },
-          {
-            Development: [
-              'eln/dev_native_install',
-              'eln/development',
-              'eln/WSL with Docker'
-            ]
+            Production: ['eln/native_installation', 'eln/dockerinstall'],
           },
           {
-            Docker: [
-              'eln/dev_docker'
-            ]
-          }
-        ]
+            Development: ['eln/dev_native_install', 'eln/development'],
+          },
+          {
+            Docker: ['eln/dev_docker'],
+          },
+        ],
       },
       {
-        Configuration: [
-      'eln/settings',
-      'eln/system_check'
-        ]
+        Configuration: ['eln/settings', 'eln/system_check'],
       },
       {
         Manual: [
@@ -48,20 +36,17 @@ module.exports = {
           'eln/barcodes',
           'eln/inventory',
           'eln/analysis',
-          'eln/problems'
-        ]
+          'eln/problems',
+        ],
       },
       {
-        Administration: [
-          'eln/generic_config',
-          'eln/adjust_analysis'
-        ]
+        Administration: ['eln/generic_config', 'eln/adjust_analysis'],
       },
+      'coming_soon',
       {
-        Device_integration: [
-          'eln/devices',
-          'eln/devices_nmr'
-        ]
+        type: 'category',
+        label: 'Device Integration',
+        items: ['devices', 'devices_nmr'],
       },
       'eln/contact',
       'eln/faq_eln',
@@ -81,10 +66,10 @@ module.exports = {
           'repo/format_descriptions',
           'repo/references',
           'repo/embargo_topics',
-          'repo/request_physical_samples'
-        ]
+          'repo/request_physical_samples',
+        ],
       },
-      'repo/faq'
+      'repo/faq',
     ],
   },
-}
+};
