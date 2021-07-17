@@ -22,7 +22,7 @@ Or install the current script directly via curl:
 sudo curl -o- https://raw.githubusercontent.com/ComPlat/chemotion_ELN/development-5/scripts/install_development.sh | bash
 ```
 
-#### Common errors during installation
+#### Errors during installation
 
 <div class="boxBorder">
 You need to run "nvm install vxx.xx.x" to install it before using it.
@@ -55,7 +55,7 @@ curl: (23) Failed writing body (0 != 1369)
 000:09 removing tmp repo..
 000:09 An error has occured
 ```
-This error may occure if you install chemotion_ELN for multiple users on the same machine, because global packages to be installed already exists, so either comment out the installation of the package which causes the problem or delete them.
+This may occure if you install chemotion_ELN for multiple users on the same machine, because global packages to be installed already exists, so either comment out the installation of the package which causes the problem or delete it.
 
 ## After Installation
 ### Git clone
@@ -79,7 +79,7 @@ Change to the root folder of your ELN (e. g. `cd ~/chemotion_ELN`) where the `Ge
 ```sh
 source ~/.rvm/scripts/rvm && bundle install
 ```
-#### Common errors
+#### Errors
 <div class="boxBorder">
 You might have to install separate package for the ruby development environment, ruby-dev or ruby-devel for example
 </div>
@@ -92,7 +92,7 @@ sudo apt-get install ruby-full
 ```sh
 source ~/.nvm/nvm.sh && yarn install
 ```
-#### Common errors
+#### Errors
 <div class="boxBorder">
 ERROR: [Errno 2] No such file or directory: 'install'
 </div>
@@ -110,11 +110,12 @@ ALTER USER postgres PASSWORD '<your password>';
 ```
 Open file `./config/databse.yml`, change host in development to `localhost` and update your password that you set above.
 
-#### Common errors
+#### Errors
 <div class="boxBorder">
 FATAL:  database "chemotion_dev" does not exist (ActiveRecord::NoDatabaseError)
 </div>
-Either the database name in the yml configuration file needs to be changed or the database needs to be created in Postgres.
+
+Either the database settings in the [yml configuration file](https://github.com/ComPlat/chemotion_ELN/blob/development-5/config/database.yml.example) needs to be changed or the database needs to be created in Postgres.
 
 ### Migrate data
 ```sh
@@ -127,9 +128,9 @@ You need to run two servers simultaneously in two different terminals: one for t
 bundle exec rails s
 bundle exec bin/webpack-dev-server
 ```
-Potentially a restart of the Rails server is needed because changes in JavaScript files below app/… are monitored by the webpack server process.
+Potentially a restart of the Rails server is needed because changes in JavaScript files below `app/` are monitored by the webpack server process.
 
-#### Common errors
+#### Errors
 <div class="boxBorder">
 Undefined method `new' for BigDecimal:Class (NoMethodError)
 </div>    
@@ -154,7 +155,7 @@ yarn install
 ```
 Restart the servers. 
 ### Update test data
-Open web browser, signup and login. Download and import data from [here](https://bwsyncandshare.kit.edu/s/kzpd8B5XdjMQ8gw)  
+Open web browser, signup and login. Download and import data from [here](https://bwsyncandshare.kit.edu/s/kzpd8B5XdjMQ8gw).  
 Run:  
 ```sh
 bundle exec bin/delayed_job start
@@ -180,4 +181,4 @@ You need to run two servers simultaneously in two different terminals: one for t
 bundle exec rails s
 bundle exec bin/webpack-dev-server
 ```
-Potentially a restart of the Rails server is needed because changes in JavaScript files below app/… are monitored by the webpack server process.
+Potentially a restart of the Rails server is needed because changes in JavaScript files below `app/` are monitored by the webpack server process.
