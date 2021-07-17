@@ -5,21 +5,12 @@ sidebar_label: Native installation
 slug: development_native_installation
 ---
 
-:::info
-Documentation and processes are being reworked and improved at the moment. It may happen that you miss information. If you face problems, please let us know, we are there to support you. You may also [contact](specific_contact) us directly if you plan to install Chemotion. 
-:::
-
-## Initial Installation
-:::caution
-Needs to be proofed in real environment.
-:::
 This documentation describes an installation solution example of the the chemotion_ELN system for development purposes with Rails 5 on Ubuntu 20.04.  
-### Requirements
-OpenSSH Server is needed:
-```sh
-sudo apt-get install openssh-server
-```
-### Get installation script
+## Before Installation
+The installation script installs ELN through a default user, which is created during the installation. If you want to use another user or use an existing user, download the installation script (see [Get installation script](#get-installation-script)) and change the varibale PROD at the top of the script.  
+The default user gets also a random generated password when newly created. If you want to login to the user after installation you can change password in the script. For that search for the command `chpasswd` in the script.
+
+## Get installation script
 Download the current development installation script (14.07.2021) from [GitHub](https://github.com/ComPlat/chemotion_ELN/tree/development-5/scripts) and make it executable:
 ```sh
 curl -o install_development.sh -L https://raw.githubusercontent.com/ComPlat/chemotion_ELN/development-5/scripts/install_development.sh
@@ -30,31 +21,13 @@ Or install the current script directly via curl:
 ```sh
 sudo curl -o- https://raw.githubusercontent.com/ComPlat/chemotion_ELN/development-5/scripts/install_development.sh | bash
 ```
-### Change configuration files
-After installation you have to change some configurations. Change to the root folder of your ELN (e. g. `cd ~/chemotion_ELN`) and paste the following commands in your terminal:
-```sh
-cp Gemfile.plugin.example Gemfile.plugin
 
-cp .ruby-gemset.example .ruby-gemset
+#### Common errors during installation
 
-cp .ruby-version.example .ruby-version
+<div class="boxBorder">
+You need to run "nvm install vxx.xx.x" to install it before using it.
+</div>
 
-cp ./config/database.yml.example ./config/database.yml
-
-cp ./config/datacollectors.yml.example ./config/datacollectors.yml
-
-cp ./config/editors.yml.example ./config/editors.yml
-
-cp ./config/inference.yml.example ./config/inference.yml
-
-cp ./config/spectra.yml.example ./config/spectra.yml
-
-cp ./config/storage.yml.example ./config/storage.yml
-
-cp ./config/user_props.yml.example ./config/user_props.yml
-```
-### Common errors during installation
-#### “You need to run "nvm install vxx.xx.x" to install it before using it.”
 ```sh
 nvm install vxx.xx.x
 ```
@@ -66,24 +39,83 @@ Another solution could be to comment out PART_5 in the installation script, wher
 ```sh
 sudo ./install_development.sh
 ```
+
+<div class="boxBorder">
+curl: (23) Failed writing body
+</div>
+
+
+Extended error message:
+```
+Warning: Failed to create the file /tmp/x.x.x: Permission 
+Warning: denied
+  0 13.6M    0  1369    0     0   8398      0  0:28:19 --:--:--  0:28:19  8398
+curl: (23) Failed writing body (0 != 1369)
+000:09 removing tmp files..
+000:09 removing tmp repo..
+000:09 An error has occured
+```
+This error may occure if you install chemotion_ELN for multiple users on the same machine, because global packages to be installed already exists, so either comment out the installation of the package which causes the problem or delete them.
+
+## After Installation
+### Git clone
+After the installation of the desired libraries to use chemotion ELN you need to clone the source code from [GitHub](https://github.com/ComPlat/chemotion_ELN).
+### Change configuration files
+Before using you have to change some configurations. Change to the root folder of your ELN (e. g. `cd ~/chemotion_ELN`) and paste the following commands at once in your terminal:
+```sh
+cp Gemfile.plugin.example Gemfile.plugin ;
+cp .ruby-gemset.example .ruby-gemset ;
+cp .ruby-version.example .ruby-version ;
+cp ./config/database.yml.example ./config/database.yml ;
+cp ./config/datacollectors.yml.example ./config/datacollectors.yml ;
+cp ./config/editors.yml.example ./config/editors.yml ;
+cp ./config/inference.yml.example ./config/inference.yml ;
+cp ./config/spectra.yml.example ./config/spectra.yml ;
+cp ./config/storage.yml.example ./config/storage.yml ;
+cp ./config/user_props.yml.example ./config/user_props.yml
+```
 ### Install Ruby libraries
 Change to the root folder of your ELN (e. g. `cd ~/chemotion_ELN`) where the `Gemfile` is located and type:
 ```sh
-bundle install
+source ~/.rvm/scripts/rvm && bundle install
 ```
-#### Common errors:
-<b>You might have to install separate package for the ruby development environment, ruby-dev or ruby-devel for example:</b>
-
+#### Common errors
+<div class="boxBorder">
+You might have to install separate package for the ruby development environment, ruby-dev or ruby-devel for example
+</div>
 
 ```sh
 sudo apt-get install ruby-full
 ```
+
+### Install node_modules
+```sh
+source ~/.nvm/nvm.sh && yarn install
+```
+#### Common errors
+<div class="boxBorder">
+ERROR: [Errno 2] No such file or directory: 'install'
+</div>
+
+
+```sh
+sudo apt-get remove --purge cmdtest
+source ~/.nvm/nvm.sh && nvm use 14.16.0 && npm install -g yarn && yarn install
+```
+
 ### Update database
 ```sh
 sudo -u postgres psql
-ALTER USER postgres PASSWORD ‘<your password>’;
+ALTER USER postgres PASSWORD '<your password>';
 ```
 Open file `./config/databse.yml`, change host in development to `localhost` and update your password that you set above.
+
+#### Common errors
+<div class="boxBorder">
+FATAL:  database "chemotion_dev" does not exist (ActiveRecord::NoDatabaseError)
+</div>
+Either the database name in the yml configuration file needs to be changed or the database needs to be created in Postgres.
+
 ### Migrate data
 ```sh
 bundle exec rake db:create RAILS_ENV=development
@@ -96,10 +128,13 @@ bundle exec rails s
 bundle exec bin/webpack-dev-server
 ```
 Potentially a restart of the Rails server is needed because changes in JavaScript files below app/… are monitored by the webpack server process.
-#### Common errors:
-<b>Undefined method `new' for BigDecimal:Class (NoMethodError)</b>
 
-    
+#### Common errors
+<div class="boxBorder">
+Undefined method `new' for BigDecimal:Class (NoMethodError)
+</div>    
+
+
 Open `Gemfile` and add:
 ```sh
 gem 'bigdecimal', '1.3.5'
@@ -109,8 +144,10 @@ Run again:
 bundle install
 ```
 Restart the servers.  
-<b>Unable to run node_modules/.bin/browserify. Ensure you have installed it with npm. (BrowserifyRails::BrowserifyError)</b>
 
+<div class="boxBorder">
+Unable to run node_modules/.bin/browserify. Ensure you have installed it with npm. (BrowserifyRails::BrowserifyError)
+</div>
 
 ```sh
 yarn install
@@ -122,8 +159,8 @@ Run:
 ```sh
 bundle exec bin/delayed_job start
 ```  
-## Upgrade from Rails 4 to Rails 5
-If you have an existing installation and want to upgrade to Rails 5 you need to "update" your Ruby gems and node modules with yarn after checking out the development-5 branch:
+### For old installations: Upgrade from Rails 4 to Rails 5
+If you have an existing installation with Rails 4 and want to upgrade to Rails 5 you need to "update" your Ruby gems and node modules with yarn after checking out the development-5 branch:
 ```sh
 bundle install
 ```

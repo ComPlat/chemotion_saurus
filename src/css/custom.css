@@ -42,6 +42,13 @@ a{
   color: #337ab7;
 }
 
+.boxBorder {
+  border: 1px solid red;
+  border-radius: 0.5rem;
+  margin: 0.625rem;
+  padding: 0.625rem;
+}
+
 /* next chapter buttons */
 .pagination-nav__label{
   color: black;
