@@ -9,7 +9,7 @@ This page is still being edited and reviewed.
 ::: 
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faChartBar, faCheck, faSave, faAngleRight, faTrashAlt, faPaste, faArrowsAlt, faSyncAlt, faChartArea, faClock, faHourglassHalf, faHourglassEnd, faEllipsisH,faCheckCircle, faTimesCircle, faDownload } from '@fortawesome/free-solid-svg-icons' 
+import { faPlus, faChartBar, faCheck, faSave, faAngleRight, faTrashAlt, faPaste, faArrowsAlt, faSyncAlt, faChartArea, faClock, faHourglassHalf, faHourglassEnd, faEllipsisH,faCheckCircle, faTimesCircle, faDownload, faSlidersH } from '@fortawesome/free-solid-svg-icons' 
 import { Btn } from '@site/docs/btn.js'
 
 The  details modal or details window is opened by clicking on the desired element from element lists. It shows the information about the element that is stored or available through external databases such as PubChem. The modal/window can be set to full screen mode. Its frame is identified by two colors:  dark blue and light blue. The color light blue means that changes have been made within the modal, but they have not been saved yet. If this is the case, a small save symbol also appears in the modal bar <Btn mixed={[faSave]} color={"warning"}/>. As soon as you have saved all the entered data, the frame color changes to dark blue and the symbol disappears.
@@ -21,11 +21,11 @@ There are three different types of fields within the details modal:
 - Fields with predefined drop-down menus to pick from. Example **Solvents**.
 - Fields with data made available from other databases and applications based on your structural input. Example: The calculation of the sum formula or the generation of the SMILES.
 
-Tabs were introduced to organize the information within the details modals. They enable information structuring and displaying as in folders. Different tabs are available based on the type of the element. Tabs can be made visible and invisible. This will become clear in the later chapters. 
+Tabs were introduced to organize the information within the details modals. They enable information structuring and displaying as in folders. Different tabs are available based on the type of the element. Tabs can be made visible and invisible. This will become clear in the later chapters.
 
-:::info
-Internal remark TO DO: Info to be added: changes of tabs
-::: 
+Users can config their own tabs, these tabs can be hidden or shown in user's preferred ordering. By clicking the small blue symbol <Btn mixed={[faSlidersH]} color={"info"}/> on the right of tabs, drag and drop the tab to change the ordering or in the dark block to hide the tab.
+
+![Change_Tabs](change_tabs.gif)
 
 ## Details modal for samples 
 ![Details modal](/img/details_modal_samp.png)
