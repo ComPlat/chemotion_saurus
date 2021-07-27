@@ -9,7 +9,7 @@ This page is still being edited and reviewed.
 ::: 
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faChartBar, faCheck, faSave, faAngleRight, faTrashAlt, faPaste, faArrowsAlt, faSyncAlt, faChartArea, faClock, faHourglassHalf, faHourglassEnd, faEllipsisH,faCheckCircle, faTimesCircle, faDownload } from '@fortawesome/free-solid-svg-icons' 
+import { faPlus, faChartBar, faCheck, faSave, faAngleRight, faTrashAlt, faPaste, faArrowsAlt, faSyncAlt, faChartArea, faClock, faHourglassHalf, faHourglassEnd, faEllipsisH,faCheckCircle, faTimesCircle, faDownload, faSlidersH } from '@fortawesome/free-solid-svg-icons' 
 import { Btn } from '@site/docs/btn.js'
 
 The  details modal or details window is opened by clicking on the desired element from element lists. It shows the information about the element that is stored or available through external databases such as PubChem. The modal/window can be set to full screen mode. Its frame is identified by two colors:  dark blue and light blue. The color light blue means that changes have been made within the modal, but they have not been saved yet. If this is the case, a small save symbol also appears in the modal bar <Btn mixed={[faSave]} color={"warning"}/>. As soon as you have saved all the entered data, the frame color changes to dark blue and the symbol disappears.
@@ -21,11 +21,11 @@ There are three different types of fields within the details modal:
 - Fields with predefined drop-down menus to pick from. Example **Solvents**.
 - Fields with data made available from other databases and applications based on your structural input. Example: The calculation of the sum formula or the generation of the SMILES.
 
-Tabs were introduced to organize the information within the details modals. They enable information structuring and displaying as in folders. Different tabs are available based on the type of the element. Tabs can be made visible and invisible. This will become clear in the later chapters. 
+Tabs were introduced to organize the information within the details modals. They enable information structuring and displaying as in folders. Different tabs are available based on the type of the element. Tabs can be made visible and invisible. This will become clear in the later chapters.
 
-:::info
-Internal remark TO DO: Info to be added: changes of tabs
-::: 
+Users can config their own tabs, these tabs can be hidden or shown in user's preferred ordering. By clicking the small blue symbol <Btn mixed={[faSlidersH]} color={"info"}/> on the right of tabs, drag and drop the tab to change the ordering or in the dark block to hide the tab.
+
+![Change_Tabs](/img/change_tabs.gif)
 
 ## Details modal for samples 
 ![Details modal](/img/details_modal_samp.png)
@@ -44,12 +44,13 @@ The first tab (in the standard ELN configuration) that allows the description of
 - materials that contain compound mixtures 
 
 :::info
-The decoupled mode can help to add undefined strucutres to the ELN. Please add "unknown" as **Sum formula** if the structure is not known. 
+The decoupled mode can help to add undefined strucutres to the ELN. Please add "undefined structure" (default) as **Sum formula** if the structure is not known. 
 :::
 
-:::info
-Internal remark TO DO: Show decoupled mode properties field to compare it with the standard one
-:::
+**decoupled mode properties**
+
+![Decoupled_sample](/img/decoupled_sample.png)
+
 
 **Top secret** mode: In the properties tab, the users can mark their confidential data as **Top secret**. The top secret mode affects the sharing of data with others. **Top secret** samples cannot be shared with full information. 
 
@@ -83,9 +84,8 @@ The **Elemental composition** is automatically calculated based on the formula, 
 
 The information required for chemical use is supplemented by **Chemical identifiers** such as **InChI** and **InChIKey** (clicking on the InCHI/InChIkey button alows to switch), **Canonical SMILES** and **CAS** number. Molecular structure is also provided in the **Molfile** format.  You can provide the **Canonical SMILES** to create a new **Sample**, but you can’t modify the SMILES after creation (vice versa, SMILES is changed of the molecular structure changes). The other identifiers can only be copied after a **Sample** is created, and they can’t be used to generate Samples. 
 
-:::info
-Internal remark TO DO: Show interconversion of InChI to IncHIKey by pressing the grey buttons
-:::
+![InChI_IncHIKey](/img/InChI_IncHIKey.gif)
+
 
 ### Analyses tab 
 ![Analyses](/img/analyses_tab.gif)
@@ -98,11 +98,18 @@ The content of 1H NMR and 13C NMR analyses id checked by screening the informati
 
 For mass spec, the expected molecular mass is used for a comparison with the data given in the **Content** of the analysis.  
 
-If the **Content** of the analysis fits to the expected data (calculated from the molecular structure) a gree hook is indicating the fitting content. 
+If the **Content** of the analysis fits to the expected data (calculated from the molecular structure) a green hook is indicating the fitting content. 
 
-:::info
-Internal remark TO DO: Show analysis with green hook
-:::
+**1H NMR analysis**
+
+![1H Green Hook](/img/sample_analysis_green_hook.gif)
+
+**13C NMR analysis**
+
+![13C Green Hook](/img/sample_analysis_13c.gif)
+
+Reference: https://dx.doi.org/10.14272/HGMIATOQJCNPOO-UHFFFAOYSA-N.1
+
 
 You can create as many analyses for a sample as you need with the button <Btn mixed={[faPlus, "Add analysis"]} color={"success"}/>, and for each analysis you can upload as many datasets (files) as you want with the button <Btn mixed={[faPlus]} color={"success"}/>. Please pay attention to the structure of the data storage and take care of the input fields, this will allow you to search your results quickly. Any information that you define through the created fields is available to the ELN for processing and this data can be displayed or summarized in lists.  
 
@@ -204,20 +211,13 @@ Internal remark TO DO: showing the conditions in a gif would be great
 
 Out of the  **Conditions** area, the user can give their reaction a **Name** and describe it with a **Status** from a drop-down. The **Status** is reflected in the list of reactions by a symbol, so you can see at a glance your evaluation of the reactions. The following table shows all the possible **Status** and the corresponding symbols. 
 
-| symbol | Status| 
-
+| symbol | Status | 
 |--------|--------| 
-
 | <FontAwesomeIcon icon={faClock} size="lg"/> |  Planned | 
-
 | <FontAwesomeIcon icon={faHourglassHalf} size="lg"/> |  Running | 
-
 | <FontAwesomeIcon icon={faHourglassEnd} size="lg"/> |  Done | 
-
 | <FontAwesomeIcon icon={faEllipsisH} size="lg"/> | Analyses Pending | 
-
 | <FontAwesomeIcon icon={faCheckCircle} size="lg"/> | Successful | 
-
 | <FontAwesomeIcon icon={faTimesCircle} size="lg"/> | Not Successful | 
 
 
