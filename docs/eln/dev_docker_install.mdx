@@ -12,9 +12,10 @@ Documentation and processes are being reworked and improved at the moment. Pleas
 
 
 ## Introduction
-Containers enable the use of isolated, consistent, and portable development enviromnents. When using containers for development you will not have to install ELN dependencies locally on your machine.
-Instead, depencencies and configurations regarding the ELN installation are limited to the container (or more specifically, the underlying image, more on that later).
-This can keep your machine free of clutter, and more importantly, ensure consistent development environments across contributors (i.e., avoiding "works on my machine" scenarios).
+Containers enable the use of isolated, consistent, and portable development enviromnents. When using containers for development you will not have to install and configure the ELN locally on your machine.
+Instead, depencencies and configurations are maintained in container-images which you can run on your machine using Docker.
+This keeps your machine free of clutter, and more importantly, it can ensure consistent development environments across contributors (i.e., avoiding "works on my machine" scenarios).
+Have a look at this [tutorial](https://carpentries-incubator.github.io/docker-introduction/01-introduction/index.html) for an accessible introduction to containers.
 
 ## Windows
 This guide will help you getting started developing with containers on Windows using `Docker Desktop` along with [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/about) (referred to as `WSL 2` in the following).
@@ -45,7 +46,9 @@ you could store them in your home directory (`~`).
 Also, make sure that you're running all commands from a `WSL 2` terminal (`$` command prompt), i.e., from within `Ubuntu`, not Windows PowerShell (`>` command prompt).
 You won't be able to run bash scripts from PowerShell.
 
-On your Windows machine, [open a `WSL 2` terminal](https://docs.microsoft.com/en-us/windows/wsl/wsl-config#ways-to-run-wsl) and proceed with the setup as outlined [here](DevDocker#Setup).
+On your Windows machine, [open a `WSL 2` terminal](https://docs.microsoft.com/en-us/windows/wsl/wsl-config#ways-to-run-wsl).
+Next, start `Docker Desktop`. You can confirm that `Docker Desktop` is running by typing `docker --version` in the `WSL 2` terminal.
+If you get a response you're now ready to proceed with the setup as outlined [here](DevDocker#Setup).
 
 
 ## Linux
