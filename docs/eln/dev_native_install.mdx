@@ -144,14 +144,21 @@ Run again:
 ```sh
 bundle install
 ```
-Restart the servers.  
+Restart the servers. 
 
+<div class="boxBorder">
+yarn run v1.22.10
+
+error Command "webpack" not found.
+
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+</div>
 <div class="boxBorder">
 Unable to run node_modules/.bin/browserify. Ensure you have installed it with npm. (BrowserifyRails::BrowserifyError)
 </div>
 
 ```sh
-yarn install
+source ~/.nvm/nvm.sh && nvm use 14.16.0 && yarn install
 ```
 Restart the servers. 
 ### Update test data

@@ -1,0 +1,40 @@
+---
+id: github_actions
+title: Testing Code
+sidebar_label: Testing
+slug: testing_code
+---
+
+## Common Errors
+### Random seed numbers
+The most common error for failing ruby unit tests are caused by seed numbers. Just run the tests multiple times again, until a suitable seed number is found.
+
+### Yarn packages
+A lot of errors are caused by a wrong Node or npm version or missing yarn packages:
+<div class="boxBorder">
+> test  
+
+> mocha --require '@babel/register' './spec/javascripts/helper/setup.js' './spec/javascripts/**/*.spec.js'
+
+sh: 1: mocha: not found
+</div>
+
+```sh
+source ~/.nvm/nvm.sh && nvm use 14.16.0 && yarn install
+```
+
+### Database
+After `bundle exec db:migrate RAILS_ENV=test` this error occurs:
+<div class="boxBorder">
+bundle exec rake db: migrate failed
+
+rake aborted!
+StandardError: An error has occurred, this and all later migrations canceled:
+
+undefined method `id' for nil:NilClass
+</div>
+
+```sh
+bundle exec rake db:reset
+bundle exec db:migrate RAILS_ENV=test
+```
