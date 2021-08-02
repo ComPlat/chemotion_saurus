@@ -1,14 +1,13 @@
 ---
-id: instructions
-title: How To Markdown
-slug: /instructions
+id: use_docuasaurus
+title: Use Docusaurus
+sidebar_label: Usage
+slug: use_docusaurus
 ---
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChartBar, faCheck, faPlus } from '@fortawesome/free-solid-svg-icons' 
 import { Btn } from '@site/docs/btn.js'
-
-<h1><font size="40">Instructions</font></h1>
 
 This website is based on the docusaurus framework, that uses Markdown with JavaScript (JSX). Therefore the content is stored as a mixture mainly containing Markdwon with elements from HTML and from the JavaScript Framework React. The most important and used components are explained below. More information about Markdown in docusaurus can be found [here.](https://docusaurus.io/docs/markdown-features)
 
@@ -16,7 +15,8 @@ This website is based on the docusaurus framework, that uses Markdown with JavaS
 For changing the documentation you need a GitHub Account and then you can use the ```Edit this page``` Button at the left bottom of every page. This will leads you to an Editor on GitHub, where you can directly edit the page and make a Pull Request afterwards or commit your changes directly, if you have write access.   
 For advanced usage of chemotion_saurus, you can also clone the repository and push to it, if you have write access. Therefore follow the instructions in the [README](https://github.com/ComPlat/chemotion_saurus#readme).  
 Succesfull changes are directly deployed and went online. 
-You can check [GitHub Actions](https://github.com/ComPlat/chemotion_saurus/actions/workflows/build.yml), to see if your changes are succesfully merged in the web page.
+You can check [GitHub Actions](https://github.com/ComPlat/chemotion_saurus/actions/workflows/build.yml), to see if your changes are succesfully merged in the web page.  
+The landing (start) page can be edited [here](https://github.com/ComPlat/chemotion_saurus/edit/master/src/pages/index.js)
 
 ## New Page
 - use .mdx as filename ending in GitHub
@@ -36,6 +36,13 @@ title: Introduction Videos
 `slug:` Optional. Defines the last part of the URL.  
 `title:`  Optional. Prompted on the page.
 - After you have inserted a new page, add its `id` from the metadata section at the top of the file to the [TOC (table of contents)](#toc) so that it will be visible on the page.
+
+- short links for insert a new page (= create a new file on GitHub):
+[Create New ELN Documentation Page](https://github.com/ComPlat/chemotion_saurus/new/master/docs/eln)
+
+[Create New REPO Documentation Page](https://github.com/ComPlat/chemotion_saurus/new/master/docs/repo)
+
+[Create New Newsroom Page](https://github.com/ComPlat/chemotion_saurus/new/master/blog)
 
 ## Markdown
 
