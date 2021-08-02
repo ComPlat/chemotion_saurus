@@ -1,0 +1,82 @@
+---
+id: set_up_docuasaurus
+title: Set Up Docusaurus
+sidebar_label: Set Up
+slug: Set Up
+---
+
+## Installation Process
+### Prerequirements
+- Install [NodeJS](https://nodejs.org/en/download/)
+- Install npm or [yarn](https://classic.yarnpkg.com/en/docs/install)
+- On Ubuntu: Install [NVM](https://github.com/nvm-sh/nvm#installing-and-updating) to install Node and npm. If you prefer yarn over npm, you can install yarn through npm, if you have npm already installed.
+
+### Installation
+Docusaurus can then be installed via npm. For detailed explanation have a look at the [official Docusaurus Documentation](https://docusaurus.io/docs/installation).
+
+### Configuration File
+All important configurations are placed in `docusaurus.config.js` at the root directory of your Docusaurus installation. For further explanations look at the [official documentation](https://docusaurus.io/docs/docusaurus.config.js).
+
+### Update
+See the [official documentation](https://docusaurus.io/docs/installation#updating-your-docusaurus-version).
+
+## Development
+There are two main ways to contribute to Docusaurus instance: either develop within a local Docusaurus installation or change the content of an online Docusaurus website via GitHub. One of the important features of Docusaurus is the ability to edit a Documentation page via a Version Control System (e. g. GitHub or GitLab) without the need of a locally installed Docusaurus and advanced programming knowledge.
+
+### Local installation
+The Docusaurus development is based on npm. To change the configurations or script some JSX you need to install or clone Docusaurus locally and install the necessary things from the [prerequirements](#prerequirements). 
+There are to possible ways: either your are the creator and maybe admin of an Docusaurus instance or you are a developer contributer to an existing Docusaurus instance.
+#### creator (or admin) of an Docusaurus instance
+If you are a creator than you have probably the task to set up a new Docusaurus instance. A common workflow could be this:
+- Install Docusaurus locally on your developer machine: See [here](#installation).
+- Configure and develop the Docusaurus instance
+- Create a repository of your favorite VCS
+- Push the <b>whole</b> locally developed Docusaurus instance to your VCS. It is very important to push the whole code of the instance because then other developers can easily clone the code and it is also helpful for [deployment](#deployment).
+#### developer of an Docusaurus instance
+If you are a normal developer than probably a creator or an admin has already set up Docusaurus and pushed to a VCS. A common workflow could be this:
+- Clone a repository that contains a Docusaurus instance to your local developer machine
+- Maybe it necessary to install the [prerequirements](#prerequirements)
+- Change code or write documentation or blog content
+- Commit and push
+
+#### develop and run
+To check your local development for your Docusaurus instance you can use common npm commands.   
+To run Docusaurus instance on localhost:
+```sh
+npm start
+```
+To check if your Docusaurus instance could be build correct. That command is also helpful before you push and/or deploy code to solve errors and a hint if your links are solved correctly:
+```sh
+npm run build
+```
+#### clear cache
+```sh
+npm run clear
+```
+### Contribution to online version via Verison Control System
+Every documentation page can be edited online without deeper knowledge of Docusaurus via an `Edit this page` button. To enable this, insert a link for editions in your VCS (e. g. `https://github.com/ComPlat/chemotion_saurus/edit/master/`) in the [configuration file](#configuration-file), usually under `presets/docs/editUrl` or `plugins/<instance>/editUrl`.
+
+## Structure
+### Documentation and/or Blog based
+
+## Search bar
+Additionally there can be a search function added to docusaurus. You can install it after you have fully set up docusaurus and your Docusaurus went online. The default search function is offered by Algolia and that is probably the easiest way to add a search function. 
+With this option it is not possible to change or request the index directly. The index is stored totally on the Algolia servers.
+### Advanced: configure display of search results
+
+## Themes
+:::info Info 
+This page is still being edited and reviewed.
+::: 
+
+## Versioning
+
+
+## GitHub
+
+## Deployment
+### via GitHub Actions
+An example workflwo for Continious Deployment via SSH can be found on [GitHub](https://github.com/ComPlat/chemotion_saurus/blob/master/.github/workflows/build.yml).
+
+## Common Errors
+
