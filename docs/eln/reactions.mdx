@@ -43,3 +43,25 @@ The view of the reactions list differs from the view of samples list manly by th
 The user can filter their reaction either by creation date, or update day. The image above shows a calendar icon <img src={"/chemotionsaurus/img/creation_date.png"} width={"30px"} alt={"Creation date calendar"}/> which corresponds to a **filter by creation date**. Next to the calendar are the fields **From** and **To**. Clicking on them opens a calendar for the user to pick the desired days. Pressing on the calendar icon switches to **filter by update date**, and here the calendar appears like this <img src={"/chemotionsaurus/img/update_date.png"} width={"30px"} alt={"Update date calendar"}/>. 
 
 Another method for filtering is using text search or structure search from the toolbar. More details about those methods to be found in the page [Toolbar functions](https://eln.chemotion.net/chemotionsaurus/docs/eln/toolbar_functions). 
+
+By clicking on the reaction list, a reaction detail window will open up on the right side. This tab allows one to edit the reaction as illustrated below. 
+
+## Reaction detail window
+
+This reaction detail model includes 5 main tabs named `Scheme`, `Properties`, `Analyses`, `References`, `Green Chemistry`. All of which share the reaction panel, which includes the reaction equation. 
+The order and the visibility of these tabs can be changed by clicking on the sky-blue tabs layout button <img src={"/static/img/tabs_layout.png"} width={"20px"} alt={"tabs layout"}/> on the right side. When the tabs layout button is clicked, a small table window pops up.
+The order of any tab can be changed simply by clicking and dropping it to the position where the user wants. To hide a tab, the user has to click and drag it to the far right side of the table.
+To make it visible, drag and drop it again at the desired position.   
+
+The reaction equation can be zoomed in or out by hovering with the mouse anywhere over the reaction panel and scrolling the mouse cursor up or down. 
+
+## Export sample from selection   
+
+Export sample from selection is a property which allows the user to export sample data from the selected reaction, sample, or else.
+To export sample data, navigate to the action bar and click the dropdown export menu <img src={"/static/img/dropdown_menu.png"} width={"50px"} alt={"dropdown menu"}/>. A window modal **Select Data to Export** will open up when **Export samples from selection** in the dropdown export menu is clicked. 
+This window offers the user a set of data about the sample to select for export. The data, which can be exported are devided into 5 main types as shown in the image below. 
+The Export of the data is offered into 2 data formats (XLSX/SDF) by clicking on the orange export button at the end of the window. 
+
+<center>
+<img src={"/static/img/export_menu.png"} alt={"export_menu"}/>
+</center>
