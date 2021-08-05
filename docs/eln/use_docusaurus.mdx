@@ -177,3 +177,8 @@ Currently versioning is not enabled for the ELN part of the documentation, but t
 For example: you are planning a new version 0.10, that is already the current version of the code. Then you probably have a version 0.8 and a current version with the label 0.9 (but not with a versioned folder 0.9) in docusaurus. Now you create a version 0.9 through the npm command. Your current version gets 0.10 and is stored in ```docs/eln``` and you will have one more versioned folders: 0.9 and 0.8.  
 If you want to version the repository part of the documenation, then add the ```lastVersion``` and ```versions``` keys to the ```"@docusaurus/plugin-content-docs"``` plugin with the ```id: "repoID"``` in ```docusaurus.config.js``` and follow the steps above.
 1. If versioning is enabled, you have to use two different TOCs for each part of the documenation, instead of one TOC. Use  [**sidebarsELN.js**](https://github.com/ComPlat/chemotion_saurus/edit/master/sidebarsELN.js) for the ELN part and [**sidebarsREPO.js**](https://github.com/ComPlat/chemotion_saurus/edit/master/sidebarsREPO.js) for the Repository part instead of [**sidebars.js**](https://github.com/ComPlat/chemotion_saurus/edit/master/sidebars.js) for all parts. Before that, the different TOCs needs probably been updated.
+1. After enabling versioning it is important to change your relative imports - if this was used before - to absolut iports, because with versioning a lot more roots will be added to your Docusaurus:
+```js
+- import Foo from '../src/components/Foo';
++ import Foo from '@site/src/components/Foo';
+```
