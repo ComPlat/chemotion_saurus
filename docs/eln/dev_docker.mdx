@@ -24,7 +24,7 @@ Operation of the docker subsystem normally requires elevated privileges. Althoug
 ```
 sudo bash
 groupadd --system docker
-usermod -G docker user1
+usermod -aG docker user1
 snap disable docker
 snap enable docker
 exit
