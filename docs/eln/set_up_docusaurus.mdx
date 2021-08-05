@@ -5,15 +5,15 @@ sidebar_label: Set Up
 slug: Set Up
 ---
 
-:::info Info 
-This page is still being edited and reviewed.
-::: 
+:::info
+This page contains general information how to set up a Docusaurus instance everywhere. It follows the workflow used at KIT using Linux (Ubuntu), GitHub and npm, but the principles can also be adapted to other hosts and OS etc.
+:::
 
 ## Installation Process
 ### Requirements
 - Install [NodeJS](https://nodejs.org/en/download/)
 - Install npm or [yarn](https://classic.yarnpkg.com/en/docs/install)
-- On Ubuntu: Install [NVM](https://github.com/nvm-sh/nvm#installing-and-updating) to install Node and npm. If you prefer yarn over npm, you can install yarn through npm, if you have npm already installed.
+- On Linux, macOS or WSL: Install [NVM](https://github.com/nvm-sh/nvm#installing-and-updating) to install Node and npm. If you prefer yarn over npm, you can install yarn through npm, if you have npm already installed.
 
 ### Installation
 Docusaurus can then be installed via npm. For detailed explanation have a look at the [official Docusaurus Documentation](https://docusaurus.io/docs/installation).
@@ -24,53 +24,46 @@ All important configurations are placed in `docusaurus.config.js` at the root di
 ### Update
 See the [official documentation](https://docusaurus.io/docs/installation#updating-your-docusaurus-version).
 
-## Development
-There are two main ways to contribute to Docusaurus instance: either develop within a local Docusaurus installation or change the content of an online Docusaurus website via GitHub. One of the important features of Docusaurus is the ability to edit a Documentation page via a Version Control System (e. g. GitHub or GitLab) without the need of a locally installed Docusaurus and advanced programming knowledge.
-
-### Local installation
-The Docusaurus development is based on npm. To change the configurations or script some JSX you need to install or clone Docusaurus locally and install the necessary things from the [requirements](#requirements). 
-There are to possible ways: either your are the creator and maybe admin of an Docusaurus instance or you are a developer contributer to an existing Docusaurus instance.
-#### creator (or admin) of an Docusaurus instance
-If you are a creator than you have probably the task to set up a new Docusaurus instance. A common workflow could be this:
-- Install Docusaurus locally on your developer machine: See [here](#installation).
-- Configure and develop the Docusaurus instance
-- Create a repository of your favorite VCS
-- Push the <b>whole</b> locally developed Docusaurus instance to your VCS. It is very important to push the whole code of the instance because then other developers can easily clone the code and it is also helpful for [deployment](#deployment).
-#### developer of an Docusaurus instance
-If you are a normal developer than probably a creator or an admin has already set up Docusaurus and pushed to a VCS. A common workflow could be this:
-- Clone a repository that contains a Docusaurus instance to your local developer machine
-- Maybe it necessary to install the [requirements](#requirements)
-- Run `npm install` or `yarn install`
-- Change code or write documentation or blog content
-- Commit and push
-
-#### develop and run
-To check your local development for your Docusaurus instance you can use common npm commands.   
-To run Docusaurus instance on localhost:
-```sh
-npm start
-```
-To check if your Docusaurus instance could be build correct. That command is also helpful before you push and/or deploy code to solve errors and a hint if your links are solved correctly:
-```sh
-npm run build
-```
-#### clear cache
-```sh
-npm run clear
-```
-### Contribution to online version via Verison Control System
-Every documentation page can be edited online without deeper knowledge of Docusaurus via an `Edit this page` button. To enable this, insert a link for editions in your VCS (e. g. `https://github.com/ComPlat/chemotion_saurus/edit/master/`) in the [configuration file](#configuration-file), usually under `presets/docs/editUrl` or `plugins/<instance>/editUrl`.
-
 ## Structure
 ### Assets
+Assets (images, gifs, videos, files in general) are typically stored inside the `static` directory. Look at the [usage chapter](use_docusaurus#assets) to see how to import them. Video links from YouTube can also be embedded with HTML with a provided preview etc.
+### CSS
+Custom CSS (also for SCSS) can be placed in `src/css` and must be named in the [configuration file](#configuration-file). The CSS is then automatically imported in every content page.
+```js
+module.exports = {
+  presets: [
+    [
+      '@docusaurus/preset-classic',
+      {
+        docs:false,
+        blog: {
+          showReadingTime: true
+        },
+        theme: {
+          customCss: require.resolve('./src/css/custom.css'),
+        },
+      },
+    ],
+  ]
+```
+
+### Markdown 
+The main content of Docusaurus is stored in Markdown files. There are `.md` or `.mdx` file endings possible. `.mdx`is recommended, because it also supports the usage of React. For detailed description look into the [usage chapter](use_docusauru). 
+
+### React/JavaScript
+React is the main frontend framework in Docusaurus. Beside React components in MarkdownX you can create your own React or pure JavaScript snippets in `.js` files saved in every directory, where content pages in MarkdownX can occur. Namely in:
+- `docs`
+- `blog`
+- `src/pages`
 
 ### Table of contents
+The TOC (`sidebars.js`) is a JavaScript module, that must contain every single page, that should be visible. If you create a new page, add its `slug` or `id` here. The structure of a nested TOC is also defined here.
 
 ## Search bar
 ### Set Up
-Additionally there can be a search function added to docusaurus. It is integrated in the `@docusaurus/preset-classic`. If another preset or plugins are used, there may be additionally steps needed for setting up a search function. The search can be isntalled after Docusaurus is fully set up and went online or during the first set up. The default search function is offered by Algolia and that is probably the easiest way to add a search function. If you plan to use a more customized search (e. g. with your own index) than look at the [Docusaurus official documentation](https://docusaurus.io/docs/search). Algolia itself offers different options to use it. One of them is totally free, if you have a non-profit documentation website and the website is publicly available (i. e. not behind a firewall). It is also recommended to have a fixed URL that do not chenage, otherwise you have to tell Algolia your new URL. Algolia needs the URL to crawl your website every 24 hours. The built index is then stored on the Algolia servers.  
+Additionally there can be a search function added to docusaurus. It is integrated in the `@docusaurus/preset-classic`. If another preset or plugins are used, there may be additionally steps needed for setting up a search function. The search can be isntalled after Docusaurus is fully set up and went online or during the first set up. The default search function is offered by Algolia and that is probably the easiest way to add a search function. If you plan to use a more customized search (e. g. with your own index) than look at the [Docusaurus official documentation](https://docusaurus.io/docs/search) or for an example [Python script to build an index](https://github.com/ComPlat/chemotion_saurus/blob/master/search/parse_markdown.py). Algolia itself offers different options to use it. One of them is totally free, if you have a non-profit documentation website and the website is publicly available (i. e. not behind a firewall). It is also recommended to have a fixed URL that do not change, otherwise you have to tell Algolia your new URL. Algolia needs the URL to crawl your website every 24 hours. The built index is then stored on the Algolia servers.  
 
-For the free plan you must [register your website for DocSearch provided by Algolia](https://docsearch.algolia.com/apply/). After that it could take several days until Algolia has checked your website and sent you an e-mail with instructions how to set up their search function. It is important to know that the instructions from the e-mail are general for clients and more complicated than it is needed for Docusaurus. It is mostly just necessary to insert a key and the index name in `docusaurus.config.js` and save the inserted values (key and index name) as environment variables:
+For the free plan you must [register your website for DocSearch provided by Algolia](https://docsearch.algolia.com/apply/). After that it could take several days until Algolia has checked your website and sent you an e-mail with instructions how to set up their search function. It is important to know that the instructions from the e-mail are general for clients and more complicated than it is necessary and useful(!) for Docusaurus. It is mostly just necessary to insert a key and the index name in `docusaurus.config.js` and save the inserted values (key and index name) as environment variables:
 ```js
 module.exports = {
   // ...
@@ -87,7 +80,7 @@ module.exports = {
 Do not insert another app id provided by Algolia if you are using the free plan from Algolia. Otherwise you search may not work because Algolia itself inserts the app id.
 :::
 Algolia also provides the ability to create an account for accessing statistics and configurating their products: [Algolia Sign Up](https://www.algolia.com/users/sign_up). But if you are using a free plan it is not necessary to use an account because you are very limited in configurations and your configuration possibilities are on the Docusaurus site.  
-If you encounter problems with your search you can directly access the [Algolia API](https://www.algolia.com/doc/api-client/getting-started/what-is-the-api-client/javascript/?client=javascript) accessable in different programming languages. Here are small snippets in JavaScript and Python to check if your search do not throw errors:
+If you encounter problems with your search you can directly access the [Algolia API](https://www.algolia.com/doc/api-client/getting-started/what-is-the-api-client/javascript/?client=javascript) written in different programming languages or write the Algolia customer service. Here are small snippets in JavaScript and Python to check if your search do not throw errors:
 ```js
 // npm install algoliasearch
 
@@ -105,13 +98,14 @@ client = SearchClient.create('YOUR_APP_ID', 'YOUR_API_KEY');
 index = client.init_index('YOUR_INDEX_NAME');
 index.search('YOUR_SEARCH_WORD');
 ```
-### Advanced: configure display of search results
-If you want to modify how Docusaurus displays the search results retrieved from the Algolia API you can change the [ALgolia Search Code in React](https://github.com/facebook/docusaurus/tree/master/packages/docusaurus-theme-search-algolia/src/theme) by creating the directories and adding the code into it `src/theme/SearchBar` and `src/theme/SearchPage`. For example if you want to display every pages with multiple hits just one time in the search results then get an inspiration for that [here](https://github.com/ComPlat/chemotion_saurus/tree/master/src/theme).
+Error messages are also disṕlayed in the Browser console of an production Docusaurus.  
+### Advanced: configure display of search results etc.
+If you want to modify how Docusaurus displays the search results retrieved from the Algolia API you can change the [Algolia Search Code in React](https://github.com/facebook/docusaurus/tree/master/packages/docusaurus-theme-search-algolia/src/theme) by creating the directories and adding the code into it `src/theme/SearchBar` and `src/theme/SearchPage`. For example if you want to display every pages with multiple hits just once in the search results then get an inspiration for that from [GitHub](https://github.com/ComPlat/chemotion_saurus/tree/master/src/theme). Of course you can also modify other functions of the Algolia React code in Docusaurus.
 
 ## Presets, Plugins and Themes
-Presets are a bundle of thmees and plugins, define the layout and offer functionalities like the search bar. More information about [presets](https://docusaurus.io/docs/presets). The default preset is the classic one. A preset maintains one docs and one blog instance. If you want to serve multiple docs instance, e. g. for [versioning](#versioning) you need to replace this property in the preset with multiple plugins in the [configuration file](#configuration-file). 
+Presets are a bundle of themes and plugins, define the layout and offer functionalities like the search bar. More information about [presets](https://docusaurus.io/docs/presets). The default preset is the classic one. A preset maintains one docs and one blog instance. If you want to serve multiple docs instance, e. g. for [versioning](#versioning) you need to replace this property in the preset with multiple plugins in the [configuration file](#configuration-file). 
 
-For example you want to install two versions of the documentation for manual A, one for version 0.8 the other for version 0.9, then you set `docs:false` in the `preset` property and add a property `@docusaurus/plugin-content-docs` under the `plugins` property on the level of the preset. If you also want to serve another manual B in the same docusaurus instance, you need to add a second property `@docusaurus/plugin-content-docs`.
+For example you want to install two versions of the documentation for manual A, one for version 0.8 the other for version 0.9, then set `docs:false` in the `preset` property and add a property `@docusaurus/plugin-content-docs` under the `plugins` property on the level of the preset. If you also want to serve another manual B in the same docusaurus instance, you need to add a second property `@docusaurus/plugin-content-docs`. The blog instance is still initialized in the classic preset.
 ```js
 module.exports = {
   presets: [
@@ -167,14 +161,14 @@ plugins: [
 }
 ```
 Themes are an addition to presets and plugins, but define more the layout than the underlying structure.
-For more options look in the [official Docusaurus Documentation](https://docusaurus.io/docs/using-themes).
+For more options look in the [official Docusaurus Documentation](https://docusaurus.io/docs/using-themes). You can also create your own themes under `src/theme`.
 ## Layout
 See the [official Docusaurus Documentation](https://docusaurus.io/docs/styling-layout).
 ## Versioning
-To add multiple versions of one documentation to Docusaurus look at the [plugin chapter](#presets-plugins-and-themes) to see how it is conifgured in the [configuration file](#configuration-file). To knwo how to install see an example in the [usage chapter](use_docusaurus#versioning).
+For adding multiple versions of one documentation to Docusaurus look at the [plugin chapter](#presets-plugins-and-themes) to see how it is configured in the [configuration file](#configuration-file). To know how to install it look at the example in the [usage chapter](use_docusaurus#versioning).
 
 ## Version Control System (e. g. GitHub)
-The Docusaurus instance can be saved in a VCS to enable development by multiple people. A VCS is also needed to enable [online editing](#contribution-to-online-version-via-verison-control-system).
+The Docusaurus instance can be saved in a VCS to enable development by multiple people. A VCS is also needed to enable [online editing](#contribution-to-online-version-via-verison-control-system) and online Continuous Integration/Deployment.
 Docusaurus supports the usage of the `dotenv` npm package. For that, import it in the [configuration file](#configuration-file). Environment variables are typically used there.
 ```js
 require('dotenv').config()
@@ -182,16 +176,63 @@ module.exports = {
   ...
 }
 ```
-Environment variables can be safed in a `.env` file or stored as secrets in [GitHub](https://docs.github.com/en/actions/reference/encrypted-secrets) or GitLab. The last option is also useful for [Continuous Deployment](#via-github-actions). If Docusaurus is developed locally in addition to Continuous Deployment on GitHub or GitLab, it is necessary, that every developer has access to the `.env` file, which is usually not shared via a VCS. For that, save it in another place or create dummy environment variables.
+Environment variables can be safed in a `.env` file or stored as [secrets in GitHub](https://docs.github.com/en/actions/reference/encrypted-secrets) or GitLab. The last option is also useful for [Continuous Deployment](#via-github-actions). If Docusaurus is developed locally in addition to Continuous Deployment on GitHub or GitLab, it is necessary, that every developer has access to the `.env` file, which is usually not shared via a VCS. For that, save it in another place or create dummy environment variables.
+
+## Development
+There are two main ways to contribute to Docusaurus instance: either develop within a local Docusaurus installation or change the content of an online Docusaurus website via Version Control System (e. g. GitHub or GitLab). One of the important features of Docusaurus is the ability to edit a Documentation page via a VCS without the need of a locally installed Docusaurus and advanced programming knowledge.
+
+### Local installation
+The Docusaurus development is based on npm. To change the configurations or script some JSX it is needed to install or clone Docusaurus locally and install the necessary things from the [requirements](#requirements). 
+There are to possible ways: either your are the creator and maybe admin of an Docusaurus instance or you are a developer contributer to an existing Docusaurus instance.
+#### creator (or admin) of an Docusaurus instance
+If you are a creator than you have probably the task to set up a new Docusaurus instance. A common workflow could be this:
+- Install Docusaurus locally on your developer machine: See the [installation chapter](#installation).
+- Configure and develop the Docusaurus instance
+- Create a repository of your favorite VCS
+- Push the <b>whole</b> locally developed Docusaurus instance to your VCS. It is very important to push the whole code of the instance because then other developers can easily clone the code and it is also helpful for [deployment](#deployment).  
+Normally hidden files, node, yarn or Docusaurus packages, build directories and maybe additional files are in the `.gitignore` (or corresponding configurations for other VCSs), so they will not be pushed. But they can also be created easily locally or for deployment and it is also not useful to share them.
+#### developer of an Docusaurus instance
+If you are a normal developer than probably a creator or an admin has already set up Docusaurus and pushed to a VCS. A common workflow could be this:
+- Clone a repository that contains a Docusaurus instance to your local developer machine
+- Maybe it is necessary to install the [requirements](#requirements)
+- Run `npm install` or `yarn install`
+- Change code or write documentation or blog content
+- Commit and push
+
+#### develop and run
+To check your local development for your Docusaurus instance you can use common npm commands.   
+To run a Docusaurus instance on localhost on default port 3000:
+```sh
+npm start
+```
+To run Docusaurus instance on localhost on port 3001 or another port number, if 3000 is already in use:
+```sh
+npm start -- --port 3001
+```
+Check if your Docusaurus instance could be build correctly. That command is also helpful before you push code to solve errors and a hint if your links are solved correctly:
+```sh
+npm run build
+```
+
+#### clear cache
+Sometimes useful if you encouter errors, e. g. during build process:
+```sh
+npm run clear
+```
+
+#### debug
+Because Docusaurus is a high level framework, there is no dedicated way of live debugging. You can use the [debug plugin](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-debug) to get some static information of your docusaurus site. Another solution is to look into the `.docusaurus` folder. For debugging the JSX code you can use the normal Browser console or other debugger for JavaScript/React.
+
+### Contribution to online version via Verison Control System
+Every documentation page can be edited online without deeper knowledge of Docusaurus via an `Edit this page` button. To enable this, insert a link for editions in your VCS (e. g. `https://github.com/ComPlat/chemotion_saurus/edit/master/`) in the [configuration file](#configuration-file), usually under `presets/docs/editUrl` or `plugins/<instance>/editUrl`.
+
 ## Deployment
 A static Docusaurus website can easily be build with the npm or yarn command:
 ```sh
 npm run build --if-present
 ```
 ### Via GitHub Actions
-Docusaurus can be fully built and deployed via GitHub or GitLab. For that a workflow file in yml is needed, where the current code is checked out (e. g. on every push), build via npm or yarn and the so created build directory pushed to a server via SSH. An example workflow for Continious Deployment via SSH can be found on [GitHub](https://github.com/ComPlat/chemotion_saurus/blob/master/.github/workflows/build.yml). 
-
-A status badge per workflow can also be added to the `README` file. For quickly getting the Markdown code for a status badge go to the Actions tab on the GitHUb repository, click on the workflow, click on the dots on the right upper corner and click on `Create status badge`.
+Docusaurus can be fully built and deployed via GitHub or GitLab. For that a workflow file in yml is needed, where the current code is checked out (e. g. on every push), build via npm or yarn and the so created build directory pushed to a server via SSH. An example workflow for Continious Deployment via SSH can be found on [GitHub](https://github.com/ComPlat/chemotion_saurus/blob/master/.github/workflows/build.yml). For detailed explanations see the [testing chapter](testing_code).
 
 ## Common Errors
 
