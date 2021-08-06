@@ -19,7 +19,7 @@ This website is based on the Docusaurus framework, that uses Markdown with JavaS
 For changing the documentation you need a GitHub Account and then you can use the ```Edit this page``` button at the left bottom of every page. This will leads you to an Editor on GitHub, where you can directly edit the page and make a Pull Request afterwards or commit your changes directly, if you have write access.   
 For advanced usage of chemotion_saurus, you can also clone the repository and push to it, if you have write access. Therefore follow the instructions in the [set up chapter](Set%20Up#development).  
 Succesfull changes are directly deployed and went online. 
-You can check [GitHub Actions](https://github.com/ComPlat/chemotion_saurus/actions/workflows/build.yml), to see if your changes are succesfully merged in the web page. More information about GitHub Actions (in general and for the ELN) are in the [testing chapter](testing_code).
+You can check [GitHub Actions](https://github.com/ComPlat/chemotion_saurus/actions/workflows/build.yml), to see if your changes are succesfully merged in the web page. More information about GitHub Actions (in general and for the ELN) are in the [testing chapter](development/testing_code).
 The landing (start) page can be edited [on GitHub](https://github.com/ComPlat/chemotion_saurus/edit/master/src/pages/index.js).
 
 ## New Page
@@ -53,12 +53,23 @@ title: Introduction Videos
 ### Assets 
 #### images, gifs, videos, files
 
-Images can be inserted as Markdown or as HTML for special configurations (resizing etc.) or if the image is inside an HTML tag:
+Images can be inserted as Markdown or as HTML for special configurations (optional width and height etc.) or if the image is inside an HTML tag. The `![]` in Markdown or `alt={...}` in HTML/React creates an alt tag for an additional title, if the image loading failures. Keep in mind, that the image paths for Markdown and HTML differs, which is caused by different treatment of Markdown and React (which creates the HTML) in Docusaurus.   
+Inserting an image in Markdown:
+``` md
+![Export Menu](/img/export_menu.png)  
+
 ``` 
-![Management Level Button](/img/mgmt_level_btn.png)  
-<img src={"/img/mgmt_level_btn.png"} width={"20px"} alt={"Management Level Button"}/>
-``` 
-There should be no /static in the image path.
+Inserting an image in HTML (React):
+``` js
+<img src={require('@site/static/img/export_menu.png').default} width={"30px"} height={"30px"} alt={"replacement_title"} />
+```
+#### SVG
+SVGs need a special treatment. First import them as React component and then insert them in your text with `className="logo"`:
+``` js
+import Sample from '@site/static/img/sample.svg'
+// more content here
+<Sample title="Sample" className="logo" width={"30px"} height={"30px"} />
+```
 
 ### Buttons
 #### regular buttons with text and icon content

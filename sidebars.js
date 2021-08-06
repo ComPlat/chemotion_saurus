@@ -15,7 +15,7 @@ module.exports = {
         ],
       },
       {
-        Development: ['eln/github_actions', 'eln/swagger', 'eln/dev_problems'],
+        Development: ['eln/development/development', 'eln/development/github_actions', 'eln/development/swagger'],
       },
       {
         Configuration: ['eln/settings', 'eln/system_check'],

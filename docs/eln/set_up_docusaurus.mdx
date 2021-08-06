@@ -48,7 +48,11 @@ module.exports = {
 ```
 
 ### Markdown 
-The main content of Docusaurus is stored in Markdown files. There are `.md` or `.mdx` file endings possible. `.mdx` is recommended, because it also supports the usage of React. For detailed description look into the [usage chapter](use_docusauru). 
+The main content of Docusaurus is stored in Markdown files. There are `.md` or `.mdx` file endings possible. `.mdx` is recommended, because it also supports the usage of React. For detailed description look into the [usage chapter](use_docusaurus). 
+
+### Paths 
+Setting paths can get complicated, when you are [deploying](#deployment) your website under another directory on the server or if you are using [versioning](#versioning).
+Detailed informations can be found in the [Docusaurus documentation about assets](https://docusaurus.io/docs/static-assets) and [versioning](https://docusaurus.io/docs/versioning#use-absolute-import-within-the-docs) and in the [usage chapter](use_docusaurus).
 
 ### React/JavaScript
 React is the main frontend framework in Docusaurus. Beside React components in MarkdownX you can create your own React or pure JavaScript snippets in `.js` files saved in every directory, where content pages in MarkdownX can occur. Namely in:
@@ -232,8 +236,11 @@ A static Docusaurus website can easily be build with a npm or yarn command and t
 ```sh
 npm run build --if-present
 ```
+:::caution Recommendation
+If you are serving your Docusaurus website under another directory than the default `/` you may encounter problems with paths for assets (images, files etc.). Look in the Docusaurus documenation for solutions: [https://docusaurus.io/docs/static-assets](https://docusaurus.io/docs/static-assets).
+:::
 ### Via GitHub Actions
-Docusaurus can be fully built and deployed via GitHub or GitLab. For that a workflow file in yml is needed, where the current code is checked out (e. g. on every push), build via npm or yarn and the so created build directory pushed to a server via SSH. An example workflow for Continious Deployment via SSH can be found on [GitHub](https://github.com/ComPlat/chemotion_saurus/blob/master/.github/workflows/build.yml). For detailed explanations see the [testing chapter](testing_code).
+Docusaurus can be fully built and deployed via GitHub or GitLab. For that a workflow file in yml is needed, where the current code is checked out (e. g. on every push), build via npm or yarn and the so created build directory pushed to a server via SSH. An example workflow for Continious Deployment via SSH can be found on [GitHub](https://github.com/ComPlat/chemotion_saurus/blob/master/.github/workflows/build.yml). For detailed explanations see the [testing chapter](development/testing_code).
 
 ## Common Errors
 
