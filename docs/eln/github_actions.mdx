@@ -8,9 +8,44 @@ slug: testing_code
 :::info Info 
 This page is still being edited and reviewed.
 ::: 
+:::info Info 
+The code described in this page is made for future development and currently not yet available on the development-5 branch in the ELN GitHub repository.
+::: 
 
-## Status badge
+There are three test classes for ELN available: JavaScript (npm) and Ruby unit tests and Feature (Acceptance) tests.
+
+## Local Testing for ELN 
+For locally testing ELN on a developer machine, nearly the same commands from the GitHub Actions workflow files can be used. Change to the root directory of your ELN code and type following commands:
+### JavaScript (npm) unit tests 
+```sh
+source ~/.rvm/scripts/rvm && source ~/.nvm/nvm.sh && nvm use && RAILS_ENV=test bundle exec rake db:test:prepare && npm test
+```
+
+### Ruby unit tests 
+```sh
+source ~/.rvm/scripts/rvm && RAILS_ENV=test bundle exec rake db:test:prepare && bundle exec rspec --exclude-pattern spec/{features}/**/*_spec.rb
+```
+
+### Acceptance tests 
+```sh
+source ~/.rvm/scripts/rvm && source ~/.nvm/nvm.sh && nvm use  && RAILS_ENV=test bundle exec rake db:test:prepare && bundle exec rake assets:precompile  && bundle exec rspec spec/features
+```
+
+## Remote Testing with GitHub Actions 
+GitHub Actions are the Continuous Integration and Deployment tool of GitHub. They are used for testing newly created code in development and activated on every push to the default branch on the [ELN GitHub repository](https://github.com/ComPlat/chemotion_ELN). The following text describes shortly how to develop and use GitHub Actions especially for the ELN. For deeper and broader information look at the official GitHub documentation.
+
+### GitHub Actions in General
+
+#### Workflows
+##### Delete multiple workflows
+
+#### Status badge
 A status badge per workflow can also be added to the `README` file. For quickly getting the Markdown code for a status badge go to the Actions tab on the GitHUb repository, click on the workflow, click on the dots on the right upper corner and click on `Create status badge`.
+
+#### Tools 
+### CLI 
+
+### GitHub Actions for ELN
 
 ## Common Errors
 ### Random seed numbers
@@ -21,7 +56,7 @@ A lot of errors are caused by a wrong Node or npm version or missing yarn packag
 <div class="boxBorder">
 > test  
 
-> mocha --require '@babel/register' './spec/javascripts/helper/setup.js' './spec/javascripts/**/*.spec.js'
+\> mocha --require '@babel/register' './spec/javascripts/helper/setup.js' './spec/javascripts/**/*.spec.js'
 
 sh: 1: mocha: not found
 </div>
@@ -44,4 +79,26 @@ undefined method `id' for nil:NilClass
 ```sh
 bundle exec rake db:reset
 bundle exec db:migrate RAILS_ENV=test
+```
+
+### Memory
+in acceptance tests:  
+<div class="boxBorder">
+Compiling...
+Compilation failed:
+
+<--- Last few GCs --->
+
+[2363:0x59c7170]   144557 ms: Mark-sweep (reduce) 2030.2 (2054.6) -> 2029.8 (2055.1) MB, 2075.9 / 0.0 ms  (average mu = 0.115, current mu = 0.006) allocation failure scavenge might not succeed
+[2363:0x59c7170]   147210 ms: Mark-sweep (reduce) 2030.9 (2052.1) -> 2030.3 (2053.1) MB, 2326.8 / 0.0 ms  (average mu = 0.119, current mu = 0.123) allocation failure scavenge might not succeed
+
+
+<--- JS stacktrace --->
+
+FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory
+</div>
+Solved with seeting a Node flag to increase memory size. Setting this flag as environment variable in GH actions script:  
+
+```sh
+--max_old_space_size=4096
 ```

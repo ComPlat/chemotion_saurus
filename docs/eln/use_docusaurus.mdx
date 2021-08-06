@@ -50,6 +50,16 @@ title: Introduction Videos
 
 ## Markdown
 
+### Assets 
+#### images, gifs, videos, files
+
+Images can be inserted as Markdown or as HTML for special configurations (resizing etc.) or if the image is inside an HTML tag:
+``` 
+![Management Level Button](/img/mgmt_level_btn.png)  
+<img src={"/chemotionsaurus/img/mgmt_level_btn.png"} width={"20px"} alt={"Management Level Button"}/>
+``` 
+There should be no /static in src.
+
 ### Buttons
 #### regular buttons with text and icon content
 For creating buttons use a button function and import it in the page. Every button gets a <b>color</b> and can have multiple text elements and icons <b>mixed</b> in its content.  
@@ -94,18 +104,11 @@ import { DownloadBtn } from '@site/docs/download_files.js'
 
 <p><DownloadBtn files={['/chemotionsaurus/files/template%20_sample_import.xlsx, docker-compose.yml']}  text={"Download XLSX Template here "}/></p>
 ``` 
+### Escape signs
+To show signs, that are specified in the Markdown syntax, escape them with `\`.
+
 ### Headings
 To create a heading, add number signs # in front of a word or phrase. The number of # you use should correspond to the heading level. A lot of # indicates a low level.
-
-### Assets 
-#### images, gifs, videos, files
-
-Images can be inserted as Markdown or as HTML for special configurations (resizing etc.) or if the image is inside an HTML tag:
-``` 
-![Management Level Button](/img/mgmt_level_btn.png)  
-<img src={"/chemotionsaurus/img/mgmt_level_btn.png"} width={"20px"} alt={"Management Level Button"}/>
-``` 
-There should be no /static in src.
 
 ### Info Boxes
 Highlighted info boxes ([like in the eln intro page](intro)) with further informations are called `Admonitions` in [Docusaurus](https://docusaurus.io/docs/markdown-features/admonitions).
