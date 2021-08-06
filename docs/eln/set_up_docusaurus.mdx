@@ -48,7 +48,7 @@ module.exports = {
 ```
 
 ### Markdown 
-The main content of Docusaurus is stored in Markdown files. There are `.md` or `.mdx` file endings possible. `.mdx`is recommended, because it also supports the usage of React. For detailed description look into the [usage chapter](use_docusauru). 
+The main content of Docusaurus is stored in Markdown files. There are `.md` or `.mdx` file endings possible. `.mdx` is recommended, because it also supports the usage of React. For detailed description look into the [usage chapter](use_docusauru). 
 
 ### React/JavaScript
 React is the main frontend framework in Docusaurus. Beside React components in MarkdownX you can create your own React or pure JavaScript snippets in `.js` files saved in every directory, where content pages in MarkdownX can occur. Namely in:
@@ -61,9 +61,9 @@ The TOC (`sidebars.js`) is a JavaScript module, that must contain every single p
 
 ## Search bar
 ### Set Up
-Additionally there can be a search function added to docusaurus. It is integrated in the `@docusaurus/preset-classic`. If another preset or plugins are used, there may be additionally steps needed for setting up a search function. The search can be isntalled after Docusaurus is fully set up and went online or during the first set up. The default search function is offered by Algolia and that is probably the easiest way to add a search function. If you plan to use a more customized search (e. g. with your own index) than look at the [Docusaurus official documentation](https://docusaurus.io/docs/search) or for an example [Python script to build an index](https://github.com/ComPlat/chemotion_saurus/blob/master/search/parse_markdown.py). Algolia itself offers different options to use it. One of them is totally free, if you have a non-profit documentation website and the website is publicly available (i. e. not behind a firewall). It is also recommended to have a fixed URL that do not change, otherwise you have to tell Algolia your new URL. Algolia needs the URL to crawl your website every 24 hours. The built index is then stored on the Algolia servers.  
+Additionally there can be a search function added to docusaurus. It is integrated in the `@docusaurus/preset-classic`. If another preset or plugins are used, there may be additionally steps needed for setting up a search function. The search can be installed after Docusaurus is fully set up and went online or during the first set up. The default search function is offered by Algolia and that is probably the easiest way to add a search function. If you plan to use a more customized search (e. g. with your own index) than look at the [Docusaurus official documentation](https://docusaurus.io/docs/search) or the Algolia and DocSearch documentations. Algolia itself offers different options to use it. One of them is totally free, if you have a non-profit documentation website and the website is publicly available (i. e. not behind a firewall). It is also recommended to have a fixed URL that do not change, otherwise you have to tell Algolia your new URL. Algolia needs the URL to crawl your website every 24 hours. The built index is then stored on the Algolia servers.  
 
-For the free plan you must [register your website for DocSearch provided by Algolia](https://docsearch.algolia.com/apply/). After that it could take several days until Algolia has checked your website and sent you an e-mail with instructions how to set up their search function. It is important to know that the instructions from the e-mail are general for clients and more complicated than it is necessary and useful(!) for Docusaurus. It is mostly just necessary to insert a key and the index name in `docusaurus.config.js` and save the inserted values (key and index name) as environment variables:
+For the free plan you must [register your website for DocSearch provided by Algolia](https://docsearch.algolia.com/apply/). After that it could take several days until Algolia has checked your website and sent you an e-mail with instructions how to set up their search function. It is important to know that the instructions from the e-mail are general for clients and more complicated than it is necessary and useful(!) for Docusaurus. <b>Do not follow all instructions from Algolia when using Docusaurus!</b> It is mostly just necessary to insert a key and the index name in `docusaurus.config.js` and save the inserted values (key and index name) as environment variables:
 ```js
 module.exports = {
   // ...
@@ -76,8 +76,9 @@ module.exports = {
   },
 };
 ```
-:::danger Caution
-Do not insert another app id provided by Algolia if you are using the free plan from Algolia. Otherwise you search may not work because Algolia itself inserts the app id.
+
+:::caution Warning
+Do not insert another app id provided by Algolia if you are using the free plan from Algolia. Otherwise the search does not work because Algolia itself inserts the app id. There is no need for an app id with free plan.
 :::
 Algolia also provides the ability to create an account for accessing statistics and configurating their products: [Algolia Sign Up](https://www.algolia.com/users/sign_up). But if you are using a free plan it is not necessary to use an account because you are very limited in configurations and your configuration possibilities are on the Docusaurus site.  
 If you encounter problems with your search you can directly access the [Algolia API](https://www.algolia.com/doc/api-client/getting-started/what-is-the-api-client/javascript/?client=javascript) written in different programming languages or write the Algolia customer service. Here are small snippets in JavaScript and Python to check if your search do not throw errors:
@@ -227,7 +228,7 @@ Because Docusaurus is a high level framework, there is no dedicated way of live 
 Every documentation page can be edited online without deeper knowledge of Docusaurus via an `Edit this page` button. To enable this, insert a link for editions in your VCS (e. g. `https://github.com/ComPlat/chemotion_saurus/edit/master/`) in the [configuration file](#configuration-file), usually under `presets/docs/editUrl` or `plugins/<instance>/editUrl`.
 
 ## Deployment
-A static Docusaurus website can easily be build with the npm or yarn command:
+A static Docusaurus website can easily be build with a npm or yarn command and then only this `build` directory needs to be pushed to a server:
 ```sh
 npm run build --if-present
 ```
