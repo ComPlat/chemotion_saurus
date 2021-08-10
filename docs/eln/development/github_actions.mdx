@@ -46,6 +46,24 @@ A status badge per workflow can also be added to the `README` file. For quickly 
 ### CLI 
 
 ### GitHub Actions for ELN
+#### Docker
+[Dockerimage for ELN](https://hub.docker.com/r/complat/complat-ubuntu-runner)
+#### PostGres
+
+#### Skip Tests
+If you only want to test a single or two test classes or commit without tests, you can use skip commands. Multiple skip commands can be combined. Insert one or more from the following skip commands in your commit message, where they are parsed by GitHub:
+```sh
+skip unit js
+``` 
+```sh
+skip unit rb
+``` 
+```sh
+skip acceptance
+``` 
+```sh
+skip all
+``` 
 
 ## Common Errors
 ### Random seed numbers
