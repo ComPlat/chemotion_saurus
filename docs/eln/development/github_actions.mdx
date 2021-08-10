@@ -32,20 +32,51 @@ source ~/.rvm/scripts/rvm && source ~/.nvm/nvm.sh && nvm use  && RAILS_ENV=test 
 ```
 
 ## Remote Testing with GitHub Actions 
-GitHub Actions are the Continuous Integration and Deployment tool of GitHub. They are used for testing newly created code in development and activated on every push to the default branch on the [ELN GitHub repository](https://github.com/ComPlat/chemotion_ELN). The following text describes shortly how to develop and use GitHub Actions especially for the ELN. For deeper and broader information look at the official GitHub documentation.
+GitHub Actions are the Continuous Integration and Deployment tool of GitHub. They are used for testing newly created code in development and activated on every push to the default branch on the [ELN GitHub repository](https://github.com/ComPlat/chemotion_ELN). The following text describes shortly how to develop and use GitHub Actions especially for the ELN. For deeper and broader information look at the official [GitHub documentation for Actions](https://docs.github.com/en/actions).
 
 ### GitHub Actions in General
+//TODO views
 
 #### Workflows
+yml files under 
+Workflows are repeatable. To repeat a workflow without commiting the code again click on the `Re-run jobs` button.
 ##### Delete multiple workflows
+
+#### Jobs
+Jobs are in the current GH version - in opposite to GitLab CI - not repeatable. To create repeatable tests you have to choose workflows instead of jobs for your tests.
+
+#### Steps
 
 #### Status badge
 A status badge per workflow can also be added to the `README` file. For quickly getting the Markdown code for a status badge go to the Actions tab on the GitHUb repository, click on the workflow, click on the dots on the right upper corner and click on `Create status badge`.
 
+#### Docker 
+
+
 #### Tools 
-### CLI 
+##### CLI 
+##### GitHub API
+##### tmate
 
 ### GitHub Actions for ELN
+#### Docker
+[Dockerimage for ELN](https://hub.docker.com/r/complat/complat-ubuntu-runner)
+#### PostGres
+
+#### Skip Tests
+If you only want to test a single or two test classes or commit without tests, you can use skip commands. Multiple skip commands can be combined. Insert one or more from the following skip commands in your commit message, where they are parsed by GitHub:
+```sh
+skip unit js
+``` 
+```sh
+skip unit rb
+``` 
+```sh
+skip acceptance
+``` 
+```sh
+skip all
+``` 
 
 ## Common Errors
 ### Random seed numbers
@@ -66,6 +97,7 @@ source ~/.nvm/nvm.sh && nvm use 14.16.0 && yarn install
 ```
 
 ### Database
+#### Migration error
 After `bundle exec db:migrate RAILS_ENV=test` this error occurs:
 <div class="boxBorder">
 bundle exec rake db: migrate failed
@@ -76,10 +108,18 @@ StandardError: An error has occurred, this and all later migrations canceled:
 undefined method `id' for nil:NilClass
 </div>
 
+Reset the database and migrate again:  
+
 ```sh
 bundle exec rake db:reset
 bundle exec db:migrate RAILS_ENV=test
 ```
+#### npm test
+In JavaScript unit tests:
+<div class="boxBorder">
+Error: Cannot find module '../extra/ElementStoreXlisteners'
+</div>
+One possible source for that can be an error in your PostGres set up. Check if databases etc. exist and are correct configured.
 
 ### Memory
 in acceptance tests:  
@@ -97,7 +137,7 @@ Compilation failed:
 
 FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory
 </div>
-Solved with seeting a Node flag to increase memory size. Setting this flag as environment variable in GH actions script:  
+Solved with setting a Node flag to increase memory size. Setting this flag as environment variable in GH actions script. Maybe the value in MB needs to be adjusted.
 
 ```sh
 --max_old_space_size=4096
