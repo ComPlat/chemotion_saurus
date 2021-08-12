@@ -74,6 +74,12 @@ Runners are applications provided by GitHub to execute the workflows. You can in
 - [GitHub-hosted runners](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners)
 - [self-hosted runners](https://docs.github.com/en/actions/hosting-your-own-runners/about-self-hosted-runners)
 
+##### self-hosted runners
+After installation (or restart of the system?#TODO) you have to start the service of the runner:
+- cd actions-runner
+- (sudo ./svc.sh install)
+- sudo ./svc.sh start
+
 #### Workflows
 Workflows are a bundle of `jobs` and `steps` for creating tests. One workflow is defined in one yml file, there can not be multiple workflows defined within one yml file.
 Workflows are repeatable. To repeat a workflow without commiting the code again click on the `Re-run jobs` button (see the [UI](#ui)).
@@ -131,7 +137,10 @@ Each of the three test classes (Ruby unit tests, JS unit test, acceptance tests)
 Because of the large Ruby and npm libraries used in ELN the jobs are running inside a Docker container with prebuilt libraries inside the `shared` directory. This [Dockerimage](https://hub.docker.com/r/complat/complat-ubuntu-runner) is used. The `WORKDIR` of the Docker image is set to `/home/gitlab-runner` therefore all `working-directory` attributes in the workflows are set to that. This is also the case for the `USER gitlab-runner`.
 
 #### PostGres
-#TODO warning PG image version?
+:::caution Do not use 12 alpine version
+Do not use `image: postgres:12-alpine` in the ELN workflows. Otherwise there will be permission problems.
+Use `image: postgres` as a postgres service.
+:::
 
 ## Common Errors
 ### Random seed numbers
