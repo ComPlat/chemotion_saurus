@@ -70,15 +70,27 @@ The following text describes shortly how to develop and use GitHub Actions espec
 ### GitHub Actions in General
 
 #### Runners
-Runners are applications provided by GitHub to execute the workflows. You can install you own `self-hosted` runner on your system or use runners hosted on GitHub servers. GitHub-hosted runners are specified by the keyword for the OS they are running on: `ubuntu-latest`, `windows-latest`, `macos-latest` etc. For more information see the GitHub documentation:
+Runners are applications provided by GitHub to execute the workflows. You can install you own `self-hosted` runner on your system or use runners hosted on GitHub servers. GitHub-hosted runners are specified by the keyword for the OS they are running on: `ubuntu-latest`, `windows-latest`, `macos-latest` etc. For more informations see the GitHub documentation:
 - [GitHub-hosted runners](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners)
 - [self-hosted runners](https://docs.github.com/en/actions/hosting-your-own-runners/about-self-hosted-runners)
 
-##### self-hosted runners
-After installation (or restart of the system?#TODO) you have to start the service of the runner:
-- cd actions-runner
-- (sudo ./svc.sh install)
-- sudo ./svc.sh start
+##### Self-hosted Runners
+You need at least admin rights on a repository to add self-hosted runners. GitHub-hosted runners can be already invoked with write access. Self-hosted runners must be linked to a repository (under `Settings/Actions/Runners`) and installed as a service on a computer. The GitHub repository then invokes the service if a workflow is triggered and the actions are executed through the service on the computer. See the [GitHub documentation](https://docs.github.com/en/actions/hosting-your-own-runners/adding-self-hosted-runners) how to install runners. Runners have their own root directory `actions-runner`. 
+
+After installation you have to install the service of the runner:
+```sh 
+cd actions-runner ;
+sudo ./svc.sh install ;
+sudo ./svc.sh start ;
+```
+
+The status of a self-hosted runner can be checked on both sides: 
+- in the repository where all self-hsoted runners are listed under `Settings/Actions/Runners`
+- on the computer:
+  ```sh 
+  cd actions-runner ;
+  sudo ./svc.sh status ;
+  ```
 
 #### Workflows
 Workflows are a bundle of `jobs` and `steps` for creating tests. One workflow is defined in one yml file, there can not be multiple workflows defined within one yml file.
