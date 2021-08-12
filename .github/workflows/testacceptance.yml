@@ -20,7 +20,7 @@ jobs:
       postgres:
         image: postgres
         ports:
-          - 5432:5432
+          - 5433:5432
         env:
           POSTGRES_PASSWORD: postgres
           #NODE_OPTIONS: '--max_old_space_size=6000'
@@ -37,7 +37,7 @@ jobs:
         # TODO rm?
         env:
           POSTGRES_HOST: postgres
-          POSTGRES_PORT: 5432
+          POSTGRES_PORT: 5433
           POSTGRES_DB: chemotion_test
           POSTGRES_USER: chemotion_test
           POSTGRES_PASSWORD: 123456
