@@ -1,7 +1,6 @@
 module.exports = {
   elnSidebar: {
     ELN: [
-      'eln/videos_eln',
       {
         Installation: [
           {
@@ -16,12 +15,19 @@ module.exports = {
         ],
       },
       {
+        Development: ['eln/development/development', 'eln/development/github_actions', 'eln/development/swagger'],
+      },
+      {
         Configuration: ['eln/settings', 'eln/system_check'],
+      },
+      {
+        Documentation: ['eln/set_up_docuasaurus', 'eln/use_docuasaurus'],
       },
       {
         Manual: [
           'eln/about',
           'eln/intro',
+          'eln/videos_eln',
           'eln/browser',
           'eln/structure',
           'eln/view',

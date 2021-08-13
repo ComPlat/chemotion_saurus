@@ -16,18 +16,18 @@ The toolbar (or action bar) provides a variety of functions to control the ELN e
 
 ## Filtering
 
-The user can filter a selected collection or even the **All** collection with the filtering bar. <img src={"/chemotionsaurus/img/filter.png"} alt={"Filter bar"}/>. 
+The user can filter a selected collection or even the <b>All</b> collection with the filtering bar <img src={require('@site/static/img/filter.png').default} alt={"Filter bar"} />. 
 
-The user can search the entire collection or selected elements of it by clicking on <Btn mixed={["All", faSortDown]} color={"secondary"}/> and choosing the desired element ( <b>Samples</b> , <b>Reactions</b> , <b>Wellplates</b> , <b>Screens</b>) from the menu to appear, where the <Btn mixed={["All", faSortDown]} color={"secondary"}/> is replaced by the corresponding symbol of the element. The menu also shows the option of **Advanced Search**, which will be clarified later on in this chapter. 
+The user can search the entire collection or selected elements of it by clicking on <Btn mixed={["All", faSortDown]} color={"secondary"}/> and choosing the desired element ( <b>Samples</b> , <b>Reactions</b> , <b>Wellplates</b> , <b>Screens</b>) from the menu to appear, where the <Btn mixed={["All", faSortDown]} color={"secondary"}/> is replaced by the corresponding symbol of the element. The menu also shows the option of <b>Advanced Search</b>, which will be clarified later on in this chapter. 
 
-Possible search terms are **IUPAC** names, **InChI**, **SMILES**, **RInChI**. The user can also use the element **Name** or **Short Label**. Enter the search term and press "Enter", which shows a list of filtered results. While the user is typing their search term, a menu of suggestions appear, and it keeps getting updated throughout typing.  Another option will be to use Ketcher editor, which opens when pressing <Btn mixed={[faPen]} color={"primary"}/>, and to draw a structure to perform <b>Similarity Search</b> or <b>Substructure Search</b>, and to decide the degree of similarity too. When the structure is ready to be used, the user can choose <Btn mixed={["Search"]} color={"primary"}/> or simply <Btn mixed={["Cancel"]} color={"warning"}/>. To cancel the search process or delete the current search term, press <Btn mixed={[faTimes]} color={"danger"}/> 
+Possible search terms are <b>IUPAC</b> names, <b>InChI</b>, <b>SMILES</b>, <b>RInChI</b>. The user can also use the element <b>Name</b> or <b>Short Label</b>. Enter the search term and press "Enter", which shows a list of filtered results. While the user is typing their search term, a menu of suggestions appear, and it keeps getting updated throughout typing.  Another option will be to use Ketcher editor, which opens when pressing <Btn mixed={[faPen]} color={"primary"}/>, and to draw a structure to perform <b>Similarity Search</b> or <b>Substructure Search</b>, and to decide the degree of similarity too. When the structure is ready to be used, the user can choose <Btn mixed={["Search"]} color={"primary"}/> or simply <Btn mixed={["Cancel"]} color={"warning"}/>. To cancel the search process or delete the current search term, press <Btn mixed={[faTimes]} color={"danger"}/> 
 
-<img src={"/chemotionsaurus/img/advance_search.png"}  alt={"Advancd search"}/> 
+<img src={require('@site/static/img/advance_search.png').default} alt={"Advancd search"} />
 
-In the **Advanced Search**, the user can **Select search type** which opens a menu to pick from looking up the **EXACT** term, or entering a substring to look up for, and here the substring can either be included for the search (**LIKE (case insensitive substring)**) or excluded (**NOT LIKE (case insensitive substring)**). In both cases, more strict case sensitive search can be done with **LIKE (substring)** and **NOT LIKE (substring)**. Another menu enables the user to choose the term type. Available options are **Sample Name**, **Sample Short Label**, **Sample External Label**, and **CAS**. Finally, there is the field for the **Search value**. When the user enters all the entries, they should choose <Btn mixed={["Search"]} color={"primary"}/>. If they want to cancel the search, they could choose <Btn mixed={["Close"]} color={"warning"}/>. 
+In the <b>Advanced Search</b>, the user can <b>Select search type</b> which opens a menu to pick from looking up the <b>EXACT</b> term, or entering a substring to look up for, and here the substring can either be included for the search (<b>LIKE (case insensitive substring)</b>) or excluded (<b>NOT LIKE (case insensitive substring)</b>). In both cases, more strict case sensitive search can be done with <b>LIKE (substring)</b> and <b>NOT LIKE (substring)</b>. Another menu enables the user to choose the term type. Available options are <b>Sample Name</b>, <b>Sample Short Label</b>, <b>Sample External Label</b>, and <b>CAS</b>. Finally, there is the field for the <b>Search value</b>. When the user enters all the entries, they should choose <Btn mixed={["Search"]} color={"primary"}/>. If they want to cancel the search, they could choose <Btn mixed={["Close"]} color={"warning"}/>. 
 
 :::danger Caution 
-Although the **Advanced Search** states **Sample** in its menus, e.g. **Sample Name**, it could actually be applied to other elements too. 
+Although the <b>Advanced Search</b> states <b>Sample</b> in its menus, e.g. <b>Sample Name</b>, it could actually be applied to other elements too. 
 ::: 
 
 ## Organizing elements in collections 
@@ -38,9 +38,9 @@ Elements from one collection can be added to another one by means of moving or a
 
 The abovementioned action could be done by selecting the chosen elements, and pressing <Btn mixed={[faArrowRight, faSortDown]} color={"success"}/>. A menu  opens with two options: <b>Move to Collection</b> and <b>Assign to Collection</b>. Both options will open the following window to <b>Select a Collection</b> as a target from a drop-down menu, <b>or Create a new Collection</b> by inserting its name in the corresponding field.  When the user is done, they are to press <Btn mixed={["Submit"]} color={"warning"}/>.  
 
-<img src={"/chemotionsaurus/img/move_to_collection.png"} alt={"Move to Collection"}/> 
+<img src={require('@site/static/img/move_to_collection.png').default} alt={"Move to Collection"}/> 
 
-Please note that if the user chooses to **Assign to Collection**, the title of the window will be **Assign to Collection**. 
+Please note that if the user chooses to <b>Assign to Collection</b>, the title of the window will be <b>Assign to Collection</b>. 
 
 `Move to Collection`: This action results in moving the selected elements from the selected collection to the target one, this means that the moved elements will no longer appear in the original collection. 
 
@@ -48,9 +48,9 @@ Please note that if the user chooses to **Assign to Collection**, the title of t
 
 ### Remove elements from a collection 
 
-This action can be performed by pressing <Btn mixed={[faMinusSquare]} color={"warning"}/>. A menu  opens with two options: **Remove from current Collection** and **Remove from all Collections**. When the user removes samples that are associated with other elements such as reactions, the other elements still stand, but the deleted samples will not be accessible, e.g. from within a reaction, anymore, and there will be no way to edit them. 
+This action can be performed by pressing <Btn mixed={[faMinusSquare]} color={"warning"}/>. A menu  opens with two options: <b>Remove from current Collection</b> and <b>Remove from all Collections</b>. When the user removes samples that are associated with other elements such as reactions, the other elements still stand, but the deleted samples will not be accessible, e.g. from within a reaction, anymore, and there will be no way to edit them. 
 
-`Remove from current Collection`: This action removes the selected elements only from the selected collection, but a copy is kept in the back up collection **All**. The user is asked to confirm their decision via a pop-up window by pressing <Btn mixed={["Remove"]} color={"warning"}/>, or otherwise to press <Btn mixed={["Cancel"]} color={"primary"}/>. 
+`Remove from current Collection`: This action removes the selected elements only from the selected collection, but a copy is kept in the back up collection <b>All</b>. The user is asked to confirm their decision via a pop-up window by pressing <Btn mixed={["Remove"]} color={"warning"}/>, or otherwise to press <Btn mixed={["Cancel"]} color={"primary"}/>. 
 
 `Remove from all Collections`: This action removes all the copies there are of the selected elements. The user is asked to confirm their decision via a pop-up window by pressing <Btn mixed={["Delete"]} color={"warning"}/>, or otherwise to press <Btn mixed={["Cancel"]} color={"primary"}/>. An option is provided in case the user is trying to remove reactions, which is to choose whether to delete the samples associated with the reactions, if the user chooses not to, then only the reactants and solvents associated with the deleted reaction are deleted too. 
 
@@ -58,9 +58,9 @@ This action can be performed by pressing <Btn mixed={[faMinusSquare]} color={"wa
 
 ![Collection Sharing](/img/collection_sharing.gif)  
 
-Shared collections are collections that can be created by users if they want to share their data with a specific person or a group, so **Sharing** will make the data available to that person or group.  
+Shared collections are collections that can be created by users if they want to share their data with a specific person or a group, so <b>Sharing</b> will make the data available to that person or group.  
 
-Collections shared by the user appear as **My project with** owner/recipient in **My shared Collections** in the collections bar and can be sorted through collection management. An ELN user who receives information in the form of a shared collection from another ELN user cannot sort that shared collection.  
+Collections shared by the user appear as <b>My project with</b> owner/recipient in <b>My shared Collections</b> in the collections bar and can be sorted through collection management. An ELN user who receives information in the form of a shared collection from another ELN user cannot sort that shared collection.  
 
 An important feature of the shared collections that the user, whether a creator or a recipient of the shared collection, must be aware of: Changes to the shared collection can only be made to existing elements. When new elements are added within the original collection, this is not reflected in the shared collection. Only changes within existing elements are transferred to the shared collection. This is a significant difference from the synchronized collections.  
 
@@ -70,9 +70,9 @@ In a shared collection, only changes to existing elements are displayed to users
 
 To share a collection, press <Btn mixed={[faShareAlt]} color={"info"}/>, this will open the following window. 
 
-<img src={"/chemotionsaurus/img/sharing.png"} alt={"Sharing"}/> 
+<img src={require('@site/static/img/sharing.png').default} width={"30px"} height={"30px"} alt={"Sharing"} />
 
-Collections that an ELN user has obtained as shared collections from another user are subject to a rights system, which is always defined by the original owner. According to these system, the recipient of the shared collection can perform certain actions on it. The original owner can optionally set a **Role** to the recipient. Each role corresponds to a default **Permission level**, and means that **Everything** is being shared when it comes to the detail level for samples, reactions, wellplates, and screens. The original owner can still change those **Permission level**s and detail levels, but in this case the **Role** already set will be removed. The following table shows the possible **Role**s with the corresponding **Permission level**s.
+Collections that an ELN user has obtained as shared collections from another user are subject to a rights system, which is always defined by the original owner. According to these system, the recipient of the shared collection can perform certain actions on it. The original owner can optionally set a <b>Role</b> to the recipient. Each role corresponds to a default <b>Permission level</b>, and means that <b>Everything</b> is being shared when it comes to the detail level for samples, reactions, wellplates, and screens. The original owner can still change those <b>Permission level</b>s and detail levels, but in this case the <b>Role</b> already set will be removed. The following table shows the possible <b>Role</b>s with the corresponding <b>Permission level</b>s.
 
 | Role | Permission level | 
 |---|---| 
@@ -82,9 +82,9 @@ Collections that an ELN user has obtained as shared collections from another use
 | Reviewer | Read | 
 | Supervisor | Import Elements | 
 
-The **Permission level**s are sorted in a hierarchy, where every higher level includes all the permissions of the lower ones. 
+The <b>Permission level</b>s are sorted in a hierarchy, where every higher level includes all the permissions of the lower ones. 
 
-`Read`: The lowest of **Permission level**s where the recipient can only see the details of the shared collection without being able to modify anything. 
+`Read`: The lowest of <b>Permission level</b>s where the recipient can only see the details of the shared collection without being able to modify anything. 
 
 `Write`: The recipient can additionally modify the shared elements through the details modal. 
 
@@ -92,13 +92,13 @@ The **Permission level**s are sorted in a hierarchy, where every higher level in
 
 `Delete`: 
 
-`Import Elements`: Both the owner and the recipient can’t create new samples in a shared collection. However this ** Permission level ** allows the recipient to additionally import new samples into the collection, a right that is always granted to the original owner. 
+`Import Elements`: Both the owner and the recipient can’t create new samples in a shared collection. However this <b> Permission level </b> allows the recipient to additionally import new samples into the collection, a right that is always granted to the original owner. 
 
 `Pass ownership`: 
 
 ## Import and Export Data to and from the ELN 
 
-Importing and exporting data can be done using the icon <img src={"/chemotionsaurus/img/advance_search.png"} width={"30px"} alt={"Advancd search"}/>. 
+Importing and exporting data can be done using the icon <img src={require('@site/static/img/advance_search.png').default} width={"30px"} alt={"Advancd search"} />. 
 
 ### Exporting data from the ELN 
 
@@ -106,16 +106,16 @@ The user can export either selected elements from a collection in the form of fi
 
 To export elements, go to the collection that contains them, and select the desired elements. From the exporting icon in the toolbar, pick <b>Export samples from selection</b>. Please pay attention that not only samples can be exported with this option but also reactions, wellplates, and analyses. If multiple types of elements were to be exported as an XLSX, they are sorted in different sheets in the file. 
 
-<img src={"/chemotionsaurus/img/export_samples.png"}  alt={"Export samples"}/> 
+<img src={require('@site/static/img/export_samples.png').default} alt={"Export samples"} /> 
 
 The window above opens where the user picks the properties to be exported with the elements. If they want to proceed, they press <Btn mixed={["XLSX/SDF Export",faSortUp]} color={"warning"}/>, which enables the user to choose either <b>XLSX Export</b>, or <b>SDF Export</b>. Otherwise, press <Btn mixed={["Cancel"]} color={"primary"}/>. Follow this [link](https://www.youtube.com/watch?v=Vr3_006Zr-s&t=30s) for a video on exporting samples as xlsx file. 
 
-<img src={"/chemotionsaurus/img/export_reactions.png"}  alt={"Export reactions"}/> 
+<img src={require('@site/static/img/export_reactions.png').default} alt={"Export reactions"} /> 
 
-To export reactions, the user has two options. Either to use the abovementioned **Export samples from selection**, where details about the samples included in the reaction are exported. Or to use **Export reactions from selection**. In this case, only the SMILES are extracted. The window above opens where the user can pick which parts of the reaction to extract (starting materials, reactants, products, solvents). They could also choose the format of ordering those SMILES.  If they want to proceed, they press <Btn mixed={["Smiles Export",faSortUp]} color={"warning"}/>. Otherwise, press <Btn mixed={["Cancel"]} color={"primary"}/>. 
+To export reactions, the user has two options. Either to use the abovementioned <b>Export samples from selection</b>, where details about the samples included in the reaction are exported. Or to use <b>Export reactions from selection</b>. In this case, only the SMILES are extracted. The window above opens where the user can pick which parts of the reaction to extract (starting materials, reactants, products, solvents). They could also choose the format of ordering those SMILES.  If they want to proceed, they press <Btn mixed={["Smiles Export",faSortUp]} color={"warning"}/>. Otherwise, press <Btn mixed={["Cancel"]} color={"primary"}/>. 
 
 :::caution Recommendation  
-To export reactions, wellplates, or analyses, you can use **Export samples from selection**
+To export reactions, wellplates, or analyses, you can use <b>Export samples from selection</b>
 ::: 
 
 ### Importind Data to the ELN
@@ -123,7 +123,7 @@ To export reactions, wellplates, or analyses, you can use **Export samples from 
 Samples can be imported easily using an excel template that contains Smiles-Strings. To enable the import into a collection, the desired target collection has to be selected. 
 Please see the following example which can be used as a template to import data to the ELN. The template file can be used as test file to check the functions of the ELN, for a specific import, please delete the current content.
 
-<p><DownloadBtn text={"Download XLSX Template here "} files={['/chemotionsaurus/files/template%20_sample_import.xlsx']}/><br></br>Please don't change the header of the template file. </p>
+<p><DownloadBtn text={"Download XLSX Template here "} files={['@site/static/files/template%20_sample_import.xlsx']}/><br></br>Please don't change the header of the template file. </p>
 
 Information on the columns and requirements: 
 The columns "stereo_abs" and "stereo_rel" are predefined. Valid values are: 
@@ -143,24 +143,24 @@ Please add either molfile or Smiles-Code to the import template. The import proc
 
 This icon <Btn mixed={[faFileAlt, faPen, faPercentage, faSortDown,]} color={"success"}/> helps the user to produce reports and organize the literature in their data.
 
-<img src={"/chemotionsaurus/img/report.png"} alt={"Report"}/>
+<img src={require('@site/static/img/report.png').default} alt={"Report"} /> 
 
-You can report the elements you have by selecting them and clicking on **Report**, this will open the window above. From **config** tab, choose from **Template selection**. This choice affects the fields in the other tabs and the **File Name** that is given to the file by default. This ** File Name** includes the date of report generation, which can still be edited by the user. In all the templates a field for **File description** is provided. In the **Setting** tab you can choose what properties to add to the report. In the **Order** tab you can resort your elements using symbol <Btn mixed={[faArrowsAlt]} color={"secondary"}/>, and you can also delete elements from the report with <Btn mixed={[faTimes]} color={"danger"}/>. Before generating the report, you can see a <b>Preview</b> in the corresponding tab. When your report is ready, press <Btn mixed={[faFileAlt, "Generate"]} color={"primary"}/> at the top of the report window. You can reset everything to its default and start a new report by pressing <Btn mixed={[faEraser, "Reset"]} color={"info"}/>, or you can leave the report by pressing <Btn mixed={[faTimes]} color={"danger"}/>.
+You can report the elements you have by selecting them and clicking on <b>Report</b>, this will open the window above. From <b>config</b> tab, choose from <b>Template selection</b>. This choice affects the fields in the other tabs and the <b>File Name</b> that is given to the file by default. This <b> File Name</b> includes the date of report generation, which can still be edited by the user. In all the templates a field for <b>File description</b> is provided. In the <b>Setting</b> tab you can choose what properties to add to the report. In the <b>Order</b> tab you can resort your elements using symbol <Btn mixed={[faArrowsAlt]} color={"secondary"}/>, and you can also delete elements from the report with <Btn mixed={[faTimes]} color={"danger"}/>. Before generating the report, you can see a <b>Preview</b> in the corresponding tab. When your report is ready, press <Btn mixed={[faFileAlt, "Generate"]} color={"primary"}/> at the top of the report window. You can reset everything to its default and start a new report by pressing <Btn mixed={[faEraser, "Reset"]} color={"info"}/>, or you can leave the report by pressing <Btn mixed={[faTimes]} color={"danger"}/>.
 
-The **Archive** tab contains all the generated reports (except the deleted ones). Here the user can reuse previous reports to generate new ones using <Btn mixed={[faPen]} color={"warning"}/>. They can download the generated reports with <Btn mixed={[faDownload]} color={"primary"}/>, or delete them with <Btn mixed={[faTimes]} color={"danger"}/>.
+The <b>Archive</b> tab contains all the generated reports (except the deleted ones). Here the user can reuse previous reports to generate new ones using <Btn mixed={[faPen]} color={"warning"}/>. They can download the generated reports with <Btn mixed={[faDownload]} color={"primary"}/>, or delete them with <Btn mixed={[faTimes]} color={"danger"}/>.
 
 ## Creating Elements
 
 There are two buttons to create elements: <Btn mixed={[faPlus]} color={"primary"}/>, which changes its appearance based on the selected element in the element bar, e.g., if the user is already in the reactions list from the element bar, the button will look like <Btn mixed={[faFlask, faPlus]} color={"primary"}/>. If you press this button, a new reaction will be generated immediately in the collection you are already in.
 The other button is in the shape of an arrow <Btn mixed={[faSortDown]} color={"primary"}/> 
-If you are using the arrow button, it opens a menu with the following options: **Create Sample**, **Create Reaction**, **Create Wellplate**, **Create Screen**, **Create Research Plan**. It doesn’t matter in which list you are as long as you are in the right collection, choose any of the above options and the corresponding element will be created.
-To populate wellplates, the user has to drag and drop samples, and to populate screens, the user has to drag and drop wellplates. The arrow button menu enables the user to avoid this repetitive drag and drop process by offering the two functions: **Create Wellplate from Samples**, and **Create Screen from Wellplates**. To use either of them, go to the target collection, select the elements (samples or wellplates) to be added to the newly to be created element (wellplate or screen respectively), and choose the corresponding function (**Create Wellplate from Samples** or **Create Screen from Wellplates**). Please note that you will not be able to create an element with this method from elements coming from another collection. However, you can still add them to the created element with the classical drag and drop.
+If you are using the arrow button, it opens a menu with the following options: <b>Create Sample</b>, <b>Create Reaction</b>, <b>Create Wellplate</b>, <b>Create Screen</b>, <b>Create Research Plan</b>. It doesn’t matter in which list you are as long as you are in the right collection, choose any of the above options and the corresponding element will be created.
+To populate wellplates, the user has to drag and drop samples, and to populate screens, the user has to drag and drop wellplates. The arrow button menu enables the user to avoid this repetitive drag and drop process by offering the two functions: <b>Create Wellplate from Samples</b>, and <b>Create Screen from Wellplates</b>. To use either of them, go to the target collection, select the elements (samples or wellplates) to be added to the newly to be created element (wellplate or screen respectively), and choose the corresponding function (<b>Create Wellplate from Samples</b> or <b>Create Screen from Wellplates</b>). Please note that you will not be able to create an element with this method from elements coming from another collection. However, you can still add them to the created element with the classical drag and drop.
 
 In the last section of the menu, one can find the copy and split functions.
-Generation of new samples with molecular structures that are already used by another samples  can be carried out by two similar but not to be confused actions, **Split Sample** and **Copy Sample**. 
+Generation of new samples with molecular structures that are already used by another samples  can be carried out by two similar but not to be confused actions, <b>Split Sample</b> and <b>Copy Sample</b>. 
 
-To copy a sample, first select the sample whose structure you want to copy from the Samples list and then press <Btn mixed={[faSortDown]} color={"primary"}/> button in the action bar. The **Copy Sample** function is offered there in the lower area. When the function is selected, a details modal is opened for a new sample to be edited.  
+To copy a sample, first select the sample whose structure you want to copy from the Samples list and then press <Btn mixed={[faSortDown]} color={"primary"}/> button in the action bar. The <b>Copy Sample</b> function is offered there in the lower area. When the function is selected, a details modal is opened for a new sample to be edited.  
 :::danger Caution 
-With the **Copy sample** action you only copy the molecular structure of the sample, all other information is not available and will not be adopted. Only the general data available from the molecular structure are transferred. 
+With the <b>Copy sample</b> action you only copy the molecular structure of the sample, all other information is not available and will not be adopted. Only the general data available from the molecular structure are transferred. 
 ::: 
-When creating a new sample using the split function **Split Sample**, a new sample is created that is directly dependent on the original sample. In contrast to copy, with split not only the structure-dependent information of the original sample is taken over for the creation of a new sample. All available data are used to generate the new sample. The action is intended to represent those cases in the laboratory in which something is removed from a batch and used for a new purpose. Examples of a split action are therefore e.g., the removal from a chemical container or the further use of a product from a reaction. For more details on Samples generation, visit this [link](https://eln.chemotion.net/chemotionsaurus/docs/eln/samples#generation)
+When creating a new sample using the split function <b>Split Sample</b>, a new sample is created that is directly dependent on the original sample. In contrast to copy, with split not only the structure-dependent information of the original sample is taken over for the creation of a new sample. All available data are used to generate the new sample. The action is intended to represent those cases in the laboratory in which something is removed from a batch and used for a new purpose. Examples of a split action are therefore e.g., the removal from a chemical container or the further use of a product from a reaction. For more details on Samples generation, visit this [link](https://eln.chemotion.net/chemotionsaurus/docs/eln/samples#generation)

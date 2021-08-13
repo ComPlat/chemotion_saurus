@@ -31,7 +31,7 @@ module.exports = {
               items: [
                 {
                   label: 'ELN',
-                  to: 'docs/eln/videos_eln',
+                  to: 'docs/eln/intro',
                   // docsPluginId: 'elnID',
                   // items:[
                   //   {
@@ -148,7 +148,6 @@ module.exports = {
       },
     ],
   ]
-  ,
 
 //   plugins: [
 //   [

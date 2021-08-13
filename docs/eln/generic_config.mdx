@@ -15,7 +15,7 @@ This page is still being edited and reviewed.
 
 ## Generic Segments and Elements
 
-Generic elements and segments are structured according to the different levels **layer** and **field**. Each generic element or segment can contain different, multiple **layers** and each layer can consist of multiple and differnt **fields**. 
+Generic elements and segments are structured according to the different levels <b>layer</b> and <b>field</b>. Each generic element or segment can contain different, multiple <b>layers</b> and each layer can consist of multiple and differnt <b>fields</b>. 
 
 ![generic feature outline](../../static/img/generic_feature_outline.png)
 
@@ -23,7 +23,7 @@ Generic elements and segments are structured according to the different levels *
 
 Generic segment can be embedded in different elements, such as sample, reaction...etc., it can also be embedded in generic element.
 
-After clicking on menu item **Generic Segment**, a button <Btn mixed={["New Segment", faPlus]} color={"primary"}/> is shown as default and the segment list is displayed if any data exists. 
+After clicking on menu item <b>Generic Segment</b>, a button <Btn mixed={["New Segment", faPlus]} color={"primary"}/> is shown as default and the segment list is displayed if any data exists. 
 
 ![generic_segment_admin](../../static/img/generic_segment_admin.png)
 
@@ -42,7 +42,7 @@ The segment list includes all the segments, and it shows the attribute data and 
 
 You can create as many segments as possible for an element, e.g., sample, reaction, or any generic element. Please note, once the segment is created, it can not be re-assigned to another element.
 
-To create a segment, press the button <Btn mixed={[" New Segment ", faPlus]} color={"primary"}/>, fill in the data of segment attributes, and then press <Btn mixed={["Create", faSave]} color={"primary"}/> to save the data into database or <Btn mixed={["Cancel"]} color={"warning"}/> to cancel the operation.
+To create a segment, press the button <Btn mixed={[" New Segment ", faPlus]} color={"primary"}/>, fill in the data of segment attributes, and then press <Btn mixed={["Create", faSave]} color={"primary"} /> to save the data into database or <Btn mixed={["Cancel"]} color={"warning"} /> to cancel the operation.
 
 ![generic_segment_new](../../static/img/generic_segment_new.png)
 
@@ -56,29 +56,30 @@ the definition of each attributes:
 
 ## Generic Elements
 Chemotion ELN contains five original elements which are the samples, reactions, wellplates, screens, and research plans. However, other generic elements can be added as needed by the administration.
-<img src={"/chemotionsaurus/img/create_element.gif"} alt={"Create generic element"}/>
-     
-For an admin to create a new generic element, go to the page **Generic Elements** and press <Btn mixed={["New Element", faPlus]} color={"primary"}/>. This opens the window **New Element** to enter the attributes of your new generic element. Those attributes are shown in the next table:
+
+<img src={require("@site/static/img/create_element.gif").default} alt={"Create generic element"}/>
+
+For an admin to create a new generic element, go to the page <b>Generic Elements</b> and press <Btn mixed={["New Element", faPlus]} color={"primary"} />. This opens the window <b>New Element</b> to enter the attributes of your new generic element. Those attributes are shown in the next table:
 
 ###  attributes 
 
 | attribute | required | explanation |
 |---|:---:|---|
 | Klass | Yes | The name used to identify the element in the system |
-| Prefix | Yes | A prefix for naming the generated objects that belong to the generic element, e.g., if the user name abbreviation is "user" and the **Prefix** is "t", then generating new "Mixture" objects will lead to the following names: "user-t1 New Mixture", "user-t2 New Mixture", etc |
-| Label | Yes | the name displayed in the UI, e.g., the labels **Sample**, **Reaction**, **Wellplate** |
+| Prefix | Yes | A prefix for naming the generated objects that belong to the generic element, e.g., if the user name abbreviation is "user" and the <b>Prefix</b> is "t", then generating new "Mixture" objects will lead to the following names: "user-t1 New Mixture", "user-t2 New Mixture", etc |
+| Label | Yes | the name displayed in the UI, e.g., the labels <b>Sample</b>, <b>Reaction</b>, <b>Wellplate</b> |
 | Icon | Yes | The icon to be displayed in the elements list and in the toolbar for creating new objects. Icons can be obtained from [Font Awesome 4]( https://fontawesome.com/v4.7/icons/) | 
 | Description | No | Explanation of the intended functionality of the element |
 
 When all the required attributes are provided, press <Btn mixed={["Create", faSave]} color={"primary"}/> to create the element, or cancel the process with <Btn mixed={["Cancel"]} color={"warning"}/>. 
 
-<img src={"/chemotionsaurus/img/show_element.gif"} alt={"Create generic element"}/>
+<img src={require('@site/static/img/show_element.gif').default} alt={"Create generic element"} />
 
-After an element is created, it can either be added to the ELN interfaces of all the users , or only to specific users. This option is also controlled by the administration.  For the users that can access the element, they have to add it manually to their accounts. To do so, they have to go to their **Account & Profile**, and go to the **Element Counter**,  and update the counter of the specific element with with <Btn mixed={["Update counter"]} color={"primary"}/>. Still, the element will be hidden by default, and it will not appear in the element bar unless the user manually adds them.
+After an element is created, it can either be added to the ELN interfaces of all the users , or only to specific users. This option is also controlled by the administration.  For the users that can access the element, they have to add it manually to their accounts. To do so, they have to go to their <b>Account & Profile</b>, and go to the <b>Element Counter</b>,  and update the counter of the specific element with with <Btn mixed={["Update counter"]} color={"primary"}/>. Still, the element will be hidden by default, and it will not appear in the element bar unless the user manually adds them.
 
-In the administration account, in the **Generic Elements** page, after an element is created, it appears in the elements list (not to be confused with the elements list in the ELN).  The elements list includes all the elements generated by the admin’s account, and it shows the attribute data and provides further functions. The elements are sorted alphabetically by the status (active first), element label and description.
+In the administration account, in the <b>Generic Elements</b> page, after an element is created, it appears in the elements list (not to be confused with the elements list in the ELN).  The elements list includes all the elements generated by the admin’s account, and it shows the attribute data and provides further functions. The elements are sorted alphabetically by the status (active first), element label and description.
 
-<img src={"/chemotionsaurus/img/elements_list.png"} alt={"Elements list"}/>
+<img src={require("@site/static/img/elments_list.png").default} alt={"Elements list"}/>
 
 | symbol | explanation |
 |---|---|
@@ -86,15 +87,15 @@ In the administration account, in the **Generic Elements** page, after an elemen
 | <FontAwesomeIcon icon={faPenSquare} size="lg"/> | to edit element attributes, delete the element or deactivate it |
 | <FontAwesomeIcon icon={faFileAlt} size="lg"/> | to edit element template |
 | <FontAwesomeIcon icon={faFileCode} size="lg"/> | to edit element template in json format |
-                                                                                  
-Choosing to edit the element's template enables adding new layers and lists to the **Properties** tab of the element. More on that in the next chapter.
+
+Choosing to edit the element's template enables adding new layers and lists to the <b>Properties</b> tab of the element. More on that in the next chapter.
 
 
 ## Layers
 
-**Layers** are the fundamental building block that contains the content of generic elements/segments/datasets. They enable organization of the fields related to a certain topic into groups, along with their layout and appearance. **Layers** can be added to elements and segments by clicking on **edit element/segment template** <FontAwesomeIcon icon={faFileAlt} size="lg"/> in the elements/segments list, and then clicking <Btn mixed={["Add new layer", faPlus]} color={"secondary"}/>.
+<b>Layers</b> are the fundamental building block that contains the content of generic elements/segments/datasets. They enable organization of the fields related to a certain topic into groups, along with their layout and appearance. <b>Layers</b> can be added to elements and segments by clicking on <b>edit element/segment template</b> <FontAwesomeIcon icon={faFileAlt} size="lg"/> in the elements/segments list, and then clicking <Btn mixed={["Add new layer", faPlus]} color={"secondary"}/>.
 
-<img src={"/chemotionsaurus/img/add_layer.gif"} alt={"Add Layer"}/>
+<img src={require('@site/static/img/add_layer.gif').default} alt={"Add Layer"}/>
 
 ###  attributes 
 
@@ -108,9 +109,9 @@ Choosing to edit the element's template enables adding new layers and lists to t
 | Header color | No | A color for the Display name and its surrounding |
 | Style Option | Yes | Styling the Display name, "bold" is the default |
 
-<img src={"/chemotionsaurus/img/add_layer.gif"} alt={"Add Layer"}/>
+<img src={require('@site/static/img/add_layer.gif').default} alt={"Add Layer"}/>
 
-After a new layer is created, it appears in the layers list, where its Name, Display name, the number of columns per row, and the number of **fields** can be found. A number of buttons allow the following functions:
+After a new layer is created, it appears in the layers list, where its Name, Display name, the number of columns per row, and the number of <b>fields</b> can be found. A number of buttons allow the following functions:
 
 | symbol | explanation |
 |---|---|
@@ -119,12 +120,12 @@ After a new layer is created, it appears in the layers list, where its Name, Dis
 | <FontAwesomeIcon icon={faPlus} size="lg"/> | to add new fields|
 | <FontAwesomeIcon icon={faPlusCircle} size="lg"/> | to add dummy fields |
 
-Whenever a new layer is added, or an existing one is edited, changes need to be saved with <Btn mixed={["Save", faSave]} color={"primary"}/>, at this point, if the user that already has access to the element or segment reload the page in their user account, and then press the button <Btn mixed={["Reload"]} color={"danger"}/>,  they will be able to see the new layer.  By having layers, the admins can add fields there. More details on the **Fields** in the next chapter.
+Whenever a new layer is added, or an existing one is edited, changes need to be saved with <Btn mixed={["Save", faSave]} color={"primary"}/>, at this point, if the user that already has access to the element or segment reload the page in their user account, and then press the button <Btn mixed={["Reload"]} color={"danger"}/>,  they will be able to see the new layer.  By having layers, the admins can add fields there. More details on the <b>Fields</b> in the next chapter.
 
 
 ## Fields
 
-**Fields** are a wide variety of components with input, display, drag-and-drop functions, depends on the type. Use an appropriate type attribute to take advantage of these UI controls like formula field, system-defined, and more. 
+<b>Fields</b> are a wide variety of components with input, display, drag-and-drop functions, depends on the type. Use an appropriate type attribute to take advantage of these UI controls like formula field, system-defined, and more. 
 
 ###  attributes 
 
@@ -154,7 +155,7 @@ Whenever a new layer is added, or an existing one is edited, changes need to be 
 
 ###  Field-Type: System-defined 
 
-The field type **System-defined** allows to add values with a unit. Units are assigned to certain standards in the community of the research field but should meet common conventions and definitions. Depending on the unit that is used, different conversions are available. 
+The field type <b>System-defined</b> allows to add values with a unit. Units are assigned to certain standards in the community of the research field but should meet common conventions and definitions. Depending on the unit that is used, different conversions are available. 
 
 | unit name | unit default | interconversion 1 | interconversion 2 | interconversion 3 | interconversion 4 |
 |---|---|---|---|---|---|
