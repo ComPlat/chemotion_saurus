@@ -6,128 +6,72 @@ slug: development_docker_installation
 ---
 
 :::info
-Documentation and processes are being reworked and improved at the moment. Please [contact](specific_contact) us for installation of a development version of the ELN.    
+Documentation and processes are being reworked and improved at the moment. Please [contact](specific_contact) us for installation of a development version of the ELN.
 
 :::
 
-## Options
 
-Development for Mac: Development with Docker is recommended   
-Development for Windows: Development with `Windows Subsystem for Linux`. See chapter [WSL-2](#wsl-2).   
-Limitation: some tests are disabled with Docker development
+## Introduction
+Containers enable the use of isolated, consistent, and portable development enviromnents. When using containers for development you will not have to install and configure the ELN locally on your machine.
+Instead, depencencies and configurations are maintained in container-images which you can run on your machine using Docker.
+This keeps your machine free of clutter, and more importantly, it can ensure consistent development environments across contributors (i.e., avoiding "works on my machine" scenarios).
+Have a look at this [tutorial](https://carpentries-incubator.github.io/docker-introduction/01-introduction/index.html) for an accessible introduction to containers.
 
-## WSL-2
-This guide will help you getting started developing with containers by setting up Docker Desktop for Windows with WSL 2 (Windows Subsystem for Linux). By enabling the WSL-2 based engine, you can run both Linux and Windows containers in Docker Desktop on the same machine
-
- 
-
-
-This documentation details an installation solution of the chemotion_ELN system. We will used Windows Subsystem for Linux.The instructions have been tested on Windows 10. Depending on your base operating system, the following packages must be installed:
-
- 
-
+## Windows
+This guide will help you getting started developing with containers on Windows using `Docker Desktop` along with [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/about) (referred to as `WSL 2` in the following).
+With `Docker Desktop` you can work in a Linux-based development environment and run Linux-based containers while using an IDE on Windows for editing and debugging (e.g., Visual Studio Code).
+The instructions have been tested on Windows 10. Your machine should run Windows 10, version 2004, Build 18362 or higher.
 
 ### Dependencies
 
- 
+#### WSL 2
+Start by [installing `WSL 2`](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
+:::important
+While going through the `WSL 2` installation, make sure to install `WSL 2`, not `WSL 1`. Also, make sure to install `Ubuntu 20.04 LTS` (referred to as `Ubuntu` in the following) as your Linux distribution.
+:::
+Next, [open a `WSL 2` terminal](https://docs.microsoft.com/en-us/windows/wsl/wsl-config#ways-to-run-wsl) and [set up a user account](https://docs.microsoft.com/en-us/windows/wsl/user-support).
 
-Ensure your machine is running Windows 10, updated to version 2004, Build 18362 or higher.
-- install WSL-2 (https://docs.microsoft.com/en-us/windows/wsl/install-win10)
-- Install ubuntu (20.04.2) via the microsoft store
-- Install Desktop Docker (https://hub.docker.com/editions/community/docker-ce-desktop-windows/)
+#### Docker Desktop
+Once you have installed `WSL 2` you can [install `Docker Desktop` and enable the `WSL 2` backend in `Docker Desktop`](https://docs.docker.com/docker-for-windows/wsl/).
+For additional information and prerequisites regarding the installation of `Docker Desktop` also have a look [here](https://docs.docker.com/docker-for-windows/install/) (the instructions above should be sufficient though).
 
- 
+### Setup
+Once you have `WSL 2` and `Docker Desktop` installed, you can start setting up the ELN development enviromnent.
+The development enviromnent consists of the ELN source code as well as two Docker images containing all depencencies and configurations of the ELN runtime.
 
- 
+Make sure that all files you'll download in the following steps live in the Linux file system, *not* in your Windows file system ([here's why](https://docs.docker.com/docker-for-windows/wsl/#best-practices)).
+The Windows file system (e.g., C: drive) is mounted into `Ubuntu` under `/mnt`. Therefore, store your files somewhere else than `/mnt`. For example,
+you could store them in your home directory (`~`).
 
-### Tools recommended for development
+Also, make sure that you're running all commands from a `WSL 2` terminal (`$` command prompt), i.e., from within `Ubuntu`, not Windows PowerShell (`>` command prompt).
+You won't be able to run bash scripts from PowerShell.
 
- 
+On your Windows machine, [open a `WSL 2` terminal](https://docs.microsoft.com/en-us/windows/wsl/wsl-config#ways-to-run-wsl).
+Next, start `Docker Desktop`. You can confirm that `Docker Desktop` is running by typing `docker --version` in the `WSL 2` terminal.
+If you get a response you're now ready to proceed with the setup as outlined [here](DevDocker#Setup).
 
-Visual Studio Code 
+
+## Linux
+
+## macOS
+Development with `Docker Desktop` is recommended.
+
+## Tools recommended for development
+
+### Visual Studio Code
 - Install Visual studio code with linters set up (es and ruby-rubocop):
   https://marketplace.visualstudio.com/items?itemName=rebornix.Ruby && https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
-
- 
-
 
 - Install version control extension
 https://code.visualstudio.com/docs/editor/github
 https://code.visualstudio.com/docs/editor/versioncontrol
 
- 
-
 - Install the VS Code Docker extension. This extension adds the functionality to build, manage, and deploy containerized applications from inside VS Code. (You need the Remote-Container extension to actually use the container as your dev environment.)
 
- 
-
-Vim 
-check https://github.com/dense-analysis/ale
-
- 
-
- 
+### Vim
+Check https://github.com/dense-analysis/ale.
 
 
-### Setup
 
- 
-
-With the WSL 2 backend supported in Docker Desktop for Windows, you can work in a Linux-based development environment and build Linux-based containers, while using Visual Studio Code for code editing and debugging, and running your container in the Microsoft Edge browser on Windows.
-
- 
-
-
-Set docker desktop setting (Docker Desktop Stable 2.3.0.2 https://docs.docker.com/docker-for-windows/wsl/)
--    From the Docker menu, select Settings > General.
--    Select: Use WSL-2 based engine check box.
--    Go to > Resources > WSL INTEGRATION.
--    Select: Enable integration with additional distro
--    Enable: Ubuntu-20.04
-
- 
-
-
-The setup continues with the following steps:
-
- 
-
-
-      
-Set a path on PowerShell (Windows) 
-
- 
-
-```
-cd c:\chemotion\...
-```
-
- 
-
-Now, test Docker in your “WSL–2 Ubuntu 20.04“ console session. Open PowerShell console, and execute the following command to check the Docker version
-
- 
-
-```
-docker --version
-```
-Once docker has been running on WSL-2. you could switch to ubutun 20.04 to clone the project https://github.com/ptrxyz/chemotion 
-
- 
-
-
-Your C: drive is mounted to
-
- 
-
-```
-/mnt/c
-```
-### Optional
-Set a path of PostgreSQL on docker-compose.yml 
-db:
-- /home/chemotion/db-data:/var/lib/postgresql/data/
-
-You can proceed to the next step in the Docker installation by navigating [here](DevDocker).
-
-
+## Limitations
+Some tests are disabled with Docker development.

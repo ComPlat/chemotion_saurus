@@ -64,8 +64,9 @@ module.exports = {
 
     // comment out algolia if you don't want to have a search function
     algolia: {
-      apiKey: process.env.ALGOLIA_SEARCH_API_KEY= "580f6fa6069181a926937751804f6ded",
-      indexName: process.env.INDEX_NAME="chemotion",
+      // for development, put .env file containing ALGOLIA_SEARCH_API_KEY and INDEX_NAME in root of repo
+      apiKey: process.env.ALGOLIA_SEARCH_API_KEY,
+      indexName: process.env.INDEX_NAME,
       // appId: process.env.ALGOLIA_APP_ID,
       debug: true,
       placeholder: "Search Documentation",
