@@ -34,8 +34,11 @@ module.exports = {
           'eln/firststeps',
           'eln/collections',
           'eln/lists',
-          'eln/samples',
-          'eln/reactions',
+          {
+            type: 'category',
+            label: 'Elements',
+            items: ['eln/samples', 'eln/reactions',  'eln/wellplates'],
+          },
           'eln/details',
           'eln/toolbar',
           'eln/ketcher',

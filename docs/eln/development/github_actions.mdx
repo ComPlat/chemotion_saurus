@@ -146,7 +146,7 @@ When using some actions from the [GitHub Marketplace](https://github.com/marketp
 Each of the three test classes (Ruby unit tests, JS unit test, acceptance tests) has its own workflow yml file, because that is the only way to make single test classes repeatable in GH Actions. There are no prescripted actions from GH Marketplace used, because of the special version settings for `nvm` and `Node` and because prescripted actions are not easy to handle in self-written Docker containers.
 
 #### Docker
-Because of the large Ruby and npm libraries used in ELN the jobs are running inside a Docker container with prebuilt libraries inside the `shared` directory. This [Dockerimage](https://hub.docker.com/r/complat/complat-ubuntu-runner) is used. The `WORKDIR` of the Docker image is set to `/home/gitlab-runner` therefore all `working-directory` attributes in the workflows are set to that. This is also the case for the `USER gitlab-runner`.
+Because of the large Ruby and npm libraries used in ELN the jobs are running inside a Docker container with prebuilt libraries inside the `shared` directory. This [Dockerimage](https://hub.docker.com/r/complat/complat-ubuntu-runner) built from the Dockerfile `chemotion_ELN/Dockerfile.focal.gitlab-ci` is used. The `WORKDIR` of the Docker image is set to `/home/gitlab-runner` therefore all `working-directory` attributes in the workflows are set to that. This is also the case for the `USER gitlab-runner`.
 
 #### PostGres
 :::caution Do not use 12 alpine version
