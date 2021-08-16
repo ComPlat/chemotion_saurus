@@ -9,9 +9,6 @@ module.exports = {
           {
             Development: ['eln/dev_native_install', 'eln/dev_docker_install'],
           },
-          {
-            Docker: ['eln/dev_docker'],
-          },
         ],
       },
       {

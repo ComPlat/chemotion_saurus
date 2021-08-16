@@ -15,7 +15,7 @@ module.exports = {
         // external link
         {
           type: 'link',
-          label: 'Release Notes', 
+          label: 'Release Notes',
           href: 'https://github.com/ComPlat/chemotion_ELN/releases',
         },
 
@@ -25,11 +25,10 @@ module.exports = {
         {
           Installation: [
             'native_installation',
-            'dockerinstall', 
+            'dockerinstall',
             {
               Development: [
-                'development',
-                'dev_docker',
+                'development'
               ]
             }
           ]
