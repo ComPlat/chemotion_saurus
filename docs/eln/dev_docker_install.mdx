@@ -159,7 +159,7 @@ Additional possiblities to manage docker containers, images, networks and volume
 
 
 ### Production Mode Setup
-For manual installation in production mode (, a pre-built image from DockerHub is used.
+For manual installation in production mode, a pre-built image from DockerHub is used.
 The goal for this guide is to build our own production mode image instead.
 This means, a few manual adjustments are necessary, otherwise the pre-built image from DockerHub would be used.
 The procedure starts with checking out the containerization scripts (the repository checked out for a development mode setup can be re-used):
@@ -203,14 +203,5 @@ For a real production mode environment additional steps would be required (e.g. 
 ## Tools recommended for development
 
 ### Visual Studio Code
-- Install Visual studio code with linters set up (es and ruby-rubocop):
-  https://marketplace.visualstudio.com/items?itemName=rebornix.Ruby && https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
 
-- Install version control extension
-https://code.visualstudio.com/docs/editor/github
-https://code.visualstudio.com/docs/editor/versioncontrol
-
-- Install the VS Code Docker extension. This extension adds the functionality to build, manage, and deploy containerized applications from inside VS Code. (You need the Remote-Container extension to actually use the container as your dev environment.)
-
-### Vim
-Check https://github.com/dense-analysis/ale.
+In addition to the tools mentioned in the [development chapter](development) you can install the VS Code Docker extension. This extension adds the functionality to build, manage, and deploy containerized applications from inside VS Code. (You need the Remote-Container extension to actually use the container as your dev environment.)
