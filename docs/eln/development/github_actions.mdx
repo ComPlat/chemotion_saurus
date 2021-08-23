@@ -7,7 +7,7 @@ slug: testing_code
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCog } from '@fortawesome/free-solid-svg-icons' 
-import {Btn} from '@site/docs/btn.js'
+import { Btn } from '@site/docs/btn.js'
 
 :::info Info 
 This page is still being edited and reviewed.
@@ -40,7 +40,7 @@ cp public/welcome-message-sample.md public/welcome-message.md
 ```
 
 ## Remote Testing with GitHub Actions 
-GitHub Actions are the Continuous Integration and Deployment tool of GitHub. They are used for testing newly created code in development and activated on every push to the [ELN GitHub repository](https://github.com/ComPlat/chemotion_ELN). 
+GitHub Actions are the Continuous Integration and Deployment tool of GitHub. They are used for testing newly created code in development and activated on every push to the [ELN GitHub repository](https://github.com/ComPlat/chemotion_ELN). Every test class (JavaScript, Ruby and acceptance) has its own workflow.
 
 ### Skip Tests
 If you only want to test a single or two test classes or commit without tests, you can use skip commands. Multiple skip commands can be combined. Insert one or more from the following skip commands in your commit message, where they are parsed by GitHub:
@@ -59,7 +59,7 @@ skip all
 
 ### User Interface 
 Most of the interactions with GH actions can be done via the Web UI of GitHub.  
-![Workflows](/img/gh_actions_view_workflows.png) 
+![Workflows](/img/gh_actions_ui.gif) 
 To view the status of the GH Actions (passing, failed or skipped), click on the Actions Tab in the repository. On the left side are all workflows per single yml file grouped. You can click on a button to view the single workflow runs of a workflow. The name of a button corresponds to the `name` attribute in the yml file. 
 
 In the middle part are all workflow runs of a single workflow yml file listed. Click on the <b>`...`</b> button to <b>delete one workflow run</b>. Click on a single workflow to see the status (passing, failed or skipped) of the single jobs inside the workflow. Clicking on a job shows you the status of the single steps inside the job. In the steps view is a <Btn mixed={[faCog]} color={"secondary"}/> cog symbol in the upper right corner where you can get the <b> log files </b> of the corresponding job. In the job and steps view is also a button in the right upper corner to <b>`Re-run jobs`</b> and a <b>`...`</b> button  where you can <b>view the workflow yml file</b> or create a [status badge](#status-badge).
@@ -70,7 +70,7 @@ The following text describes shortly how to develop and use GitHub Actions espec
 ### GitHub Actions in General
 
 #### Runners
-Runners are applications provided by GitHub to execute the workflows. You can install you own `self-hosted` runner on your system or use runners hosted on GitHub servers. GitHub-hosted runners are specified by the keyword for the OS they are running on: `ubuntu-latest`, `windows-latest`, `macos-latest` etc. For more informations see the GitHub documentation:
+Runners are applications provided by GitHub to execute the workflows. You can install your own `self-hosted` runner on your system or use runners hosted on GitHub servers. GitHub-hosted runners are specified by the keyword for the OS they are running on: `ubuntu-latest`, `windows-latest`, `macos-latest` etc. For more informations see the GitHub documentation:
 - [GitHub-hosted runners](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners)
 - [self-hosted runners](https://docs.github.com/en/actions/hosting-your-own-runners/about-self-hosted-runners)
 
@@ -94,9 +94,29 @@ The status of a self-hosted runner can be checked on both sides:
 
 #### Workflows
 Workflows are a bundle of `jobs` and `steps` for creating tests. One workflow is defined in one yml file, there can not be multiple workflows defined within one yml file.
-Workflows are repeatable. To repeat a workflow without commiting the code again click on the `Re-run jobs` button (see the [UI](#ui)).
+Workflows are repeatable. To repeat a workflow without commiting the code again click on the `Re-run jobs` button (see the [UI](#user-interface)).
 ##### Delete multiple workflow runs at once
-TODO
+The easiest way to delete a whole workflow (= all runs of it) at once is to use the GH [CLI tool](#github-cli-command-line-tool). There is no option to delete a whole workflow through the UI at the moment. With the CLI you can get all workflows of a repository owned by a user or a an organisation, then pick a specific workflow by its id, get all runs of this workflow and delete them sequentially.  
+```sh
+ // GET all workflows
+gh api repos/{owner}/{repo}/actions/workflows
+
+// GET all runs from one workflow
+gh api repos/{owner}/{repo}/actions/{workflow_id}/runs
+
+// DELETE single run
+gh api repos/{owner}/{repo}/actions/runs/{run_id} -X DELETE
+```
+
+Combine the commands in a loop and edit outcoming JSON data with the tool `jq` (`sudo apt-get install jq `) for example on the chemotion_saurus repository:
+```sh 
+run_ids=( $(gh api repos/ComPlat/chemotion_saurus/actions/workflows/12327904/runs --paginate | jq '.workflow_runs[].id') )
+for run_id in "${run_ids[@]}"
+  do
+    echo "Deleting Run ID $run_id"
+    gh api repos/ComPlat/chemotion_saurus/actions/runs/$run_id -X DELETE
+  done
+```
 
 #### Jobs
 Jobs are in the current GH version - in opposite to GitLab CI - not repeatable. To create repeatable tests you have to choose workflows instead of jobs for your tests. You can choose different runners and services for each job and run multiple jobs inside one workflow. By default jobs can run in parallel. If dependencies between jobs are needed, it can be specified with the `needs` keyword. E. g.:
@@ -110,51 +130,57 @@ jobs:
 Steps are sequences of actions. Actions are the smallest unit in GitHub Continuous Integration. Here you can place the commands to execute your tests, e. g. `npm test`. You can script your own actions or use prescripted actions from [GitHub Marketplace](https://github.com/marketplace?type=actions). Because of their sequence character actions inside steps depend on each other and can not run in parallel.
 
 #### Status badge
-A status badge per workflow can also be added to the `README` file. For quickly getting the Markdown code for a status badge go to the Actions tab on the GitHUb repository, click on the workflow, click on the dots on the right upper corner and click on `Create status badge`.
+A status badge per workflow can also be added to the `README` file. For quickly getting the Markdown code for a status badge go to the Actions tab on the GitHub repository, click on the workflow, click on the dots on the right upper corner and click on `Create status badge`.
 
 #### Docker 
 GH actions can run inside a Docker container and can also create a Docker container. For furter information look at the official GitHub Documentation:
 - [run actions inside Docker container](https://docs.github.com/en/actions/creating-actions/dockerfile-support-for-github-actions)
 - [build Docker container inside actions](https://docs.github.com/en/actions/creating-actions/creating-a-docker-container-action)
 
-It is important to know that GitHub actions (for GitHub-hosted runners) automatically <b>mounts a Docker container at the `WORKDIR` of the Docker file, but not in the normal `workspace` of the GH actions.</b> Therefore if you have actions that are by default set up in the `workspace` (e. g. by using actions from the [GitHub Marketplace](https://github.com/marketplace?type=actions)) or if you want to access the files from the Docker container keep in mind to set your directories accordingly, for example with the `working-directory` attribute in yml or with simple unix commands (`cd`).
+It is important to know that GitHub actions (for GitHub-hosted runners) automatically <b>mount a Docker container at the `WORKDIR` of the Docker file, but not in the normal `workspace` of the GH actions.</b> Therefore if you have actions that are by default set up in the `workspace` (e. g. by using actions from the [GitHub Marketplace](https://github.com/marketplace?type=actions)) or if you want to access the files from the Docker container keep in mind to set your directories accordingly, for example with the `working-directory` attribute in yml or with simple unix commands (`cd`).
 
 The official documentation about running actions inside container can be a bit misleading because they suggest to not set the `USER`, because the default user in GH is root and the GH Actions `workspace` will not be available. Despite that you can handle that with setting the owners inside the Docker container in GH Actions again to the original `USER` defined in the Docker file with `chown` and avoid needing the GH `workspace` with self-scripted actions. 
 
 #### Tools 
 ##### GitHub CLI (command line tool)
-https://github.blog/2021-04-15-work-with-github-actions-in-your-terminal-with-github-cli/
+See here: https://github.blog/2021-04-15-work-with-github-actions-in-your-terminal-with-github-cli/
 ##### GitHub API
+GitHub offers two kind of APIs: REST and GraphQL. Here is the documentation for the [GitHub Actions REST API](https://docs.github.com/en/rest/reference/actions).
 ##### tmate
 To create an constant open SSH session until (the workflow run or the SSH session is) closed, you can use a [tmate action](https://github.com/marketplace/actions/debugging-with-tmate). It is useful for inspecting the server where the actions are running, for example check versions and paths, but the workflows itself can not be rerun.
+##### Visual Studio Code
+One good extension for syntax checking in the workflow yml files is the extension [GitHub Actions](https://marketplace.visualstudio.com/items?itemName=cschleiden.vscode-github-actions).
 
 #### Variables 
 GH offers different ways and levels to save variables: 
 - When you have the appropriate permissions you can save environment variables as so called `secrets` in your GH repository under `Settings/Secrets`. This has the advantage, that you can use them in different workflows or when set on organization level accross multiple repositories. Call them  with `${{ secrets.XXX }}`.
 - You can create environment variables inside a workflow file with the `env` keyoword on workflow, job or step level. Call them with `${{ env.XXX }}`. There are some [default environment variables](https://docs.github.com/en/actions/reference/environment-variables#default-environment-variables) set in GH.
 - On job level you can create a [`strategy.matrix`](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix). Call variables from that with `${{ matrix.XXX }}`
-- On job level you can create normal shell variables. Call them with `$XXX`.
+- On step level you can create normal shell variables. Call them with `$XXX`.
 
 #### Workspace
-GH by default creates a workspaces to run actions from the [GitHub Marketplace](https://github.com/marketplace?type=actions) inside of it. The path of the workspace can be read via `${{github.workspace}}`. You must pay attention on your workspace path when using Docker containers with a `WORKDIR`. See [Docker chapter](#docker). 
+GH by default creates a workspaces to run actions inside of it. The path of the workspace can be read via `${{github.workspace}}`. You must pay attention on your workspace path when using Docker containers with a `WORKDIR`. See [Docker chapter](#docker). 
 :::caution Recommendation
 When using some actions from the [GitHub Marketplace](https://github.com/marketplace?type=actions) e. g. the `checkout` action - the workspace is flushed before the action. So make sure to run every other commands after that action or replace the action with a self-scripted code. For example if you want to replace the `checkout` action use `git clone ...`.
 :::
 
 ### GitHub Actions for ELN
 #### Workflow files 
-Each of the three test classes (Ruby unit tests, JS unit test, acceptance tests) has its own workflow yml file, because that is the only way to make single test classes repeatable in GH Actions. There are no prescripted actions from GH Marketplace used, because of the special version settings for `nvm` and `Node` and because prescripted actions are not easy to handle in self-written Docker containers.
+Each of the three test classes (Ruby unit tests, JS unit test, acceptance tests) has its own workflow yml file, because that is the only way to make single test classes repeatable in GH Actions. There are just a few prescripted actions from GH Marketplace used, because of the special version settings for `nvm` and `Node` and because prescripted actions are not easy to handle in self-written Docker containers.
 
 #### Docker
-Because of the large Ruby and npm libraries used in ELN the jobs are running inside a Docker container with prebuilt libraries inside the `shared` directory. This [Dockerimage](https://hub.docker.com/r/complat/complat-ubuntu-runner) built from the Dockerfile `chemotion_ELN/Dockerfile.focal.gitlab-ci` is used. The `WORKDIR` of the Docker image is set to `/home/gitlab-runner` therefore all `working-directory` attributes in the workflows are set to that. This is also the case for the `USER gitlab-runner`.
+Because of the large Ruby and npm libraries used in ELN the jobs are running inside a Docker container with prebuilt libraries, This [Dockerimage](https://hub.docker.com/r/complat/complat-ubuntu-runner) built from the Dockerfile `chemotion_ELN/Dockerfile.focal.gitlab-ci` is used. The `WORKDIR` of the Docker image is set to `/home/gitlab-runner` therefore all `working-directory` attributes in the workflows are set to that and also the `HOME` environment variable inside the Docker container in the workflow. The default root user inside Docker containers in GH actions is changed to the `USER gitlab-runner` from the complat Docker image.
 
 #### PostGres
+For the database a [PostGres container](https://docs.github.com/en/actions/guides/creating-postgresql-service-containers) is used. The databases and users must be extra created.
 :::caution Do not use 12 alpine version
-Do not use `image: postgres:12-alpine` in the ELN workflows. Otherwise there will be permission problems.
+Do not use `image: postgres:12-alpine` in the ELN workflows. Otherwise there will be permission problems.  
 Use `image: postgres` as a postgres service.
 :::
 
 ## Common Errors
+### With GitHub Actions
+If some GitHub services are not working, may look at the [status page](https://www.githubstatus.com/).
 ### Random seed numbers
 The most common error for failing ruby unit and acceptance tests are caused by seed numbers. Just run the tests multiple times again, until a suitable seed number is found.
 
@@ -195,7 +221,7 @@ In JavaScript unit tests:
 <div class="boxBorder">
 Error: Cannot find module '../extra/ElementStoreXlisteners'
 </div>
-One possible source for that can be an error in your PostGres set up. Check if databases etc. exist and are correct configured.
+One possible source for that can be an error in your PostGres set up. Check if databases etc. exist and are properly configured.
 
 ### Acceptance Tests
 
