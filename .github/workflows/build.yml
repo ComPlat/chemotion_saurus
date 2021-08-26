@@ -16,7 +16,14 @@ jobs:
 
       - name: style guide parser
         run: |
-          git diff-tree --no-commit-id --name-only -r ${{ github.sha }}
+          echo "PWD";  pwd
+          files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | egrep '\.mdx')
+          if [ ! -z "$files" ] 
+          then 
+          python src/style_guide_parser.py ${files}
+          else
+          echo "no .mdx files"
+          fi
 
       # - uses: actions/cache@v2
       #   with:
