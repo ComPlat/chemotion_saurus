@@ -23,8 +23,6 @@ jobs:
 
       - name: build
         env:
-          # ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
-          # ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
           ALGOLIA_SEARCH_API_KEY: ${{ secrets.ALGOLIA_SEARCH_API_KEY }}
           INDEX_NAME: ${{ secrets.INDEX_NAME }}
         run: |

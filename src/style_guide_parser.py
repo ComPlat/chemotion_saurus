@@ -5,8 +5,10 @@ import sys
 from bs4 import BeautifulSoup
 
 def typos(f):
-    """
-    replace typos with correct words
+    """ replace typos with correct words
+
+    Args:
+        f ([type]): file object
     """
     text = f.read()
     text = re.sub(r"[Cc]hemotion.*ELN", 'Chemotion ELN', text)
@@ -14,10 +16,13 @@ def typos(f):
         f.seek(0)
         f.write(text)
         f.truncate()
+    print("\033[92m CHECK TYPOS")
 
 def capitalize_first(f):
-    """
-    correct title: capital letters only in first word
+    """correct titles: capital letters only in first word
+
+    Args:
+        f ([type]): file object
     """
     text = ""
     for line in f:
@@ -32,12 +37,13 @@ def capitalize_first(f):
         f.seek(0)
         f.write(text)
         f.truncate()
+    print("\033[92m CHECK TITLES")
 
 def tables(f, **kwargs):
     """ search for capitalized words in tables and lowercase them
 
     Args:
-        f ([type]): [file object]
+        f ([type]): file object
     """
     # docs/eln/test.mdx
     # build/docs/eln/test/index.html
@@ -57,13 +63,15 @@ def tables(f, **kwargs):
             f_html.truncate()
     if warning:
         print(warning)
+    else:
+        print("\033[92m CHECK TABLES")
 
 def toc(f, **kwargs):
-    """[summary]
+    """check if file slug or id in TOC (sidebars.js)
 
     Args:
-        f ([type]): [file object]
-        subdir ([type]): [eln or repo]
+        f ([type]): file object
+        subdir ([type]): eln or repo
 
     Returns:
         [type]: [0 or error message]
@@ -71,6 +79,7 @@ def toc(f, **kwargs):
     with open("sidebars.js", "r") as f_toc:
         try:
             if (kwargs["subdir"]+"/"+kwargs["slug"] or kwargs["subdir"]+"/"+kwargs["id"]) in f_toc.read():
+                print("\033[92m CHECK TOC")
                 return 0
         except IndexError:
             print("\033[91m" + "ERROR: Slug or id not in TOC (sidebars.js).")
