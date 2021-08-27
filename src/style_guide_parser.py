@@ -1,3 +1,4 @@
+import os
 import re
 import sys
 
@@ -32,7 +33,7 @@ def capitalize_first(f):
         f.write(text)
         f.truncate()
 
-def tables(f):
+def tables(f, **kwargs):
     """ search for capitalized words in tables and lowercase them
 
     Args:
@@ -41,22 +42,23 @@ def tables(f):
     # docs/eln/test.mdx
     # build/docs/eln/test/index.html
     warning = ""
-    build_file = "build/"+f.name.replace(".mdx", "")+"/index.html"
-    with open(build_file, "r+") as f_html:
-        soup = BeautifulSoup(f_html, "html.parser")
-        soup_th=soup.find_all("th")
-        soup_td=soup.find_all("td")
-        for s in soup_th+soup_td:
-            if s.string.istitle():
-                s.string.replace_with(s.string.lower())
-                warning="\033[93m" + "WARNING:  table has capitalized letters. See https://www.chemotion.net/chemotionsaurus/docs/eln/styleguide_docusaurus"
-        f_html.seek(0)
-        f_html.write(str(soup))
-        f_html.truncate()
+    build_file = "build/"+kwargs["slug"]+"/index.html"
+    if os.path.isfile(build_file):
+        with open(build_file, "r+") as f_html:
+            soup = BeautifulSoup(f_html, "html.parser")
+            soup_th=soup.find_all("th")
+            soup_td=soup.find_all("td")
+            for s in soup_th+soup_td:
+                if s.string.istitle():
+                    s.string.replace_with(s.string.lower())
+                    warning="\033[93m" + "WARNING: Table has capitalized letters. See Style Guide on www.chemotion.net"
+            f_html.seek(0)
+            f_html.write(str(soup))
+            f_html.truncate()
     if warning:
         print(warning)
 
-def toc(f, subdir):
+def toc(f, **kwargs):
     """[summary]
 
     Args:
@@ -66,30 +68,47 @@ def toc(f, subdir):
     Returns:
         [type]: [0 or error message]
     """
-    attr = [l.split(":") for l in f.readlines()[:10] if (l.startswith("slug") or l.startswith("id"))]
+    #attr = [l.split(":") for l in f.readlines()[:10] if (l.startswith("slug") or l.startswith("id"))]
     with open("sidebars.js", "r") as f_toc:
         try:
-            if subdir+"/"+attr[0][1].strip() in f_toc.read():
+            if (kwargs["subdir"]+"/"+kwargs["slug"] or kwargs["subdir"]+"/"+kwargs["id"]) in f_toc.read():
                 return 0
         except IndexError:
-            print("\033[91m" + "ERROR: Slug or id not in TOC (sidebars.js). See https://www.chemotion.net/chemotionsaurus/docs/eln/use_docusaurus#toc")
-            # TODO end step?
+            print("\033[91m" + "ERROR: Slug or id not in TOC (sidebars.js).")
+            # TODO exit step?
 
 for file in sys.argv[1:]:
     with open(file, "r+") as f:
         dirs = file.split("/")
+        lines = f.readlines()[:10]
+        kwargs = {}
+        slug = [l.split(":") for l in lines if (l.startswith("slug"))][0][1].strip()
+        id = [l.split(":") for l in lines if (l.startswith("id"))][0][1].strip()
+        if id:
+            kwargs["id"]=id
+        if slug:
+            kwargs["slug"]=slug
+        kwargs["subdir"]=dirs[1]
         typos(f)
         capitalize_first(f)
-        tables(f)
-        toc(f, dirs[1])
+        tables(f, **kwargs)
+        toc(f, **kwargs)
         
 if __name__ == "__main__":
     # for testing
     #with open("docs/eln/analysis.mdx", "r+") as f:
     with open("docs/eln/test.mdx", "r+") as f:
-        toc(f, "eln")
+        lines = f.readlines()[:10]
+        kwargs = {}
+        slug = [l.split(":") for l in lines if (l.startswith("slug"))][0][1].strip()
+        id = [l.split(":") for l in lines if (l.startswith("id"))][0][1].strip()
+        if id:
+            kwargs["id"]=id
+        if slug:
+            kwargs["slug"]=slug
+        kwargs["subdir"]="eln"
+        toc(f, **kwargs)
+        tables(f, **kwargs)
         typos(f)
         capitalize_first(f)
-        tables(f)
-        #tables(f)
-        #capitalize_first(f)
+        capitalize_first(f)
