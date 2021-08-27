@@ -110,4 +110,3 @@ if __name__ == "__main__":
         tables(f, **kwargs)
         typos(f)
         capitalize_first(f)
-        capitalize_first(f)
