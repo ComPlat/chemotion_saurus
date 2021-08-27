@@ -68,7 +68,6 @@ def toc(f, **kwargs):
     Returns:
         [type]: [0 or error message]
     """
-    #attr = [l.split(":") for l in f.readlines()[:10] if (l.startswith("slug") or l.startswith("id"))]
     with open("sidebars.js", "r") as f_toc:
         try:
             if (kwargs["subdir"]+"/"+kwargs["slug"] or kwargs["subdir"]+"/"+kwargs["id"]) in f_toc.read():
