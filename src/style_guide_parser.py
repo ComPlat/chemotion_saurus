@@ -53,7 +53,7 @@ def tables(f):
         f_html.write(str(soup))
         f_html.truncate()
     if warning:
-        return warning
+        print(warning)
 
 def toc(f, subdir):
     """[summary]
@@ -76,16 +76,17 @@ def toc(f, subdir):
 for file in sys.argv[1:]:
     with open(file, "r+") as f:
         dirs = file.split("/")
-        #print(f.read())
         typos(f)
         capitalize_first(f)
         tables(f)
-        toc(f, dir[1])
+        toc(f, dirs[1])
         
-
 if __name__ == "__main__":
-    # with open("docs/eln/analysis.mdx", "r+") as f:
-    with open("docs/eln/test.mdx", "r+") as f:
+    with open("docs/eln/analysis.mdx", "r+") as f:
+    #with open("docs/eln/test.mdx", "r+") as f:
         toc(f, "eln")
+        typos(f)
+        capitalize_first(f)
+        tables(f)
         #tables(f)
         #capitalize_first(f)
