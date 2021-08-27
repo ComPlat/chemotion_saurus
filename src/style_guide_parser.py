@@ -12,6 +12,7 @@ def typos(f):
     """
     text = f.read()
     text = re.sub(r"[Cc]hemotion.*ELN", 'Chemotion ELN', text)
+    # TODO ELN
     if text:
         f.seek(0)
         f.write(text)
@@ -97,25 +98,25 @@ for file in sys.argv[1:]:
         if slug:
             kwargs["slug"]=slug
         kwargs["subdir"]=dirs[1]
-        # typos(f)
-        # capitalize_first(f)
-        # tables(f, **kwargs)
-        # toc(f, **kwargs)
-        
-if __name__ == "__main__":
-    # for testing
-    #with open("docs/eln/analysis.mdx", "r+") as f:
-    with open("docs/eln/test.mdx", "r+") as f:
-        lines = f.readlines()[:10]
-        kwargs = {}
-        slug = [l.split(":") for l in lines if (l.startswith("slug"))][0][1].strip()
-        id = [l.split(":") for l in lines if (l.startswith("id"))][0][1].strip()
-        if id:
-            kwargs["id"]=id
-        if slug:
-            kwargs["slug"]=slug
-        kwargs["subdir"]="eln"
-        toc(f, **kwargs)
-        tables(f, **kwargs)
         typos(f)
         capitalize_first(f)
+        tables(f, **kwargs)
+        toc(f, **kwargs)
+        
+#if __name__ == "__main__":
+    # for testing
+    #with open("docs/eln/analysis.mdx", "r+") as f:
+    # with open("docs/eln/test.mdx", "r+") as f:
+    #     lines = f.readlines()[:10]
+    #     kwargs = {}
+    #     slug = [l.split(":") for l in lines if (l.startswith("slug"))][0][1].strip()
+    #     id = [l.split(":") for l in lines if (l.startswith("id"))][0][1].strip()
+    #     if id:
+    #         kwargs["id"]=id
+    #     if slug:
+    #         kwargs["slug"]=slug
+    #     kwargs["subdir"]="eln"
+    #     toc(f, **kwargs)
+    #     tables(f, **kwargs)
+    #     typos(f)
+    #     capitalize_first(f)
