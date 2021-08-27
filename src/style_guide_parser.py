@@ -49,7 +49,14 @@ def tables(f, **kwargs):
     # docs/eln/test.mdx
     # build/docs/eln/test/index.html
     warning = ""
-    build_file = "build/"+kwargs["slug"]+"/index.html"
+    if os.path.isfile("build/"+kwargs["filename"]+"/index.html"):
+        build_file = "build/"+kwargs["filename"]+"/index.html"
+    if os.path.isfile("build/"+kwargs["slug"]+"/index.html"):
+        build_file = "build/"+kwargs["slug"]+"/index.html"
+    if os.path.isfile("build/"+kwargs["id"]+"/index.html"):
+        build_file = "build/"+kwargs["id"]+"/index.html"
+    else:
+        build_file=""
     if os.path.isfile(build_file):
         with open(build_file, "r+") as f_html:
             soup = BeautifulSoup(f_html, "html.parser")
@@ -78,12 +85,12 @@ def toc(f, **kwargs):
         [type]: [0 or error message]
     """
     with open("sidebars.js", "r") as f_toc:
+        content = f_toc.read()
         try:
-            if (kwargs["subdir"]+"/"+kwargs["slug"] or kwargs["subdir"]+"/"+kwargs["id"]) in f_toc.read():
+            if (kwargs["subdir"]+"/"+kwargs["slug"] in content) or (kwargs["subdir"]+"/"+kwargs["id"] in content) or (kwargs["subdir"]+"/"+kwargs["filename"] in content):
                 print("\033[92m CHECK TOC")
-                return 0
             else:
-                print("\033[91m ERROR: Slug or id not in TOC (sidebars.js).")
+                print("\033[91m ERROR: Filename, slug or id of new file not in TOC (sidebars.js).")
         except: 
             IndexError
             # TODO exit step?
@@ -95,6 +102,7 @@ for file in sys.argv[1:]:
         kwargs = {}
         slug = [l.split(":") for l in lines if (l.startswith("slug"))][0][1].strip()
         id = [l.split(":") for l in lines if (l.startswith("id"))][0][1].strip()
+        kwargs["filename"]=dirs[2].replace(".mdx", "").strip()
         if id:
             kwargs["id"]=id
         if slug:
@@ -113,6 +121,7 @@ for file in sys.argv[1:]:
 #         kwargs = {}
 #         slug = [l.split(":") for l in lines if (l.startswith("slug"))][0][1].strip()
 #         id = [l.split(":") for l in lines if (l.startswith("id"))][0][1].strip()
+#         kwargs["filename"]="test"
 #         if id:
 #             kwargs["id"]=id
 #         if slug:
