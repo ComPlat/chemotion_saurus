@@ -1,4 +1,3 @@
-import os
 import re
 import sys
 
@@ -10,9 +9,10 @@ def typos(f):
     """
     text = f.read()
     text = re.sub(r"[Cc]hemotion.*ELN", 'Chemotion ELN', text)
-    f.seek(0)
-    f.write(text)
-    f.truncate()
+    if text:
+        f.seek(0)
+        f.write(text)
+        f.truncate()
 
 def capitalize_first(f):
     """
@@ -27,9 +27,10 @@ def capitalize_first(f):
             text = text + hashtags+" "+title[1].strip().capitalize() + "\n"
         else:
             text = text + line
-    f.seek(0)
-    f.write(text)
-    f.truncate()
+    if text:
+        f.seek(0)
+        f.write(text)
+        f.truncate()
 
 def tables(f):
     """ search for capitalized words in tables and lowercase them
@@ -48,7 +49,7 @@ def tables(f):
         for s in soup_th+soup_td:
             if s.string.istitle():
                 s.string.replace_with(s.string.lower())
-                warning='echo "::warning table has capitalized letters. See https://www.chemotion.net/chemotionsaurus/docs/eln/styleguide_docusaurus"'
+                warning="\033[93m" + "WARNING:  table has capitalized letters. See https://www.chemotion.net/chemotionsaurus/docs/eln/styleguide_docusaurus"
         f_html.seek(0)
         f_html.write(str(soup))
         f_html.truncate()
@@ -71,7 +72,8 @@ def toc(f, subdir):
             if subdir+"/"+attr[0][1].strip() in f_toc.read():
                 return 0
         except IndexError:
-            raise Exception("Slug or id not in TOC (sidebars.js)!")
+            print("\033[91m" + "ERROR: Slug or id not in TOC (sidebars.js). See https://www.chemotion.net/chemotionsaurus/docs/eln/use_docusaurus#toc")
+            # TODO end step?
 
 for file in sys.argv[1:]:
     with open(file, "r+") as f:
@@ -82,8 +84,9 @@ for file in sys.argv[1:]:
         toc(f, dirs[1])
         
 if __name__ == "__main__":
-    with open("docs/eln/analysis.mdx", "r+") as f:
-    #with open("docs/eln/test.mdx", "r+") as f:
+    # for testing
+    #with open("docs/eln/analysis.mdx", "r+") as f:
+    with open("docs/eln/test.mdx", "r+") as f:
         toc(f, "eln")
         typos(f)
         capitalize_first(f)
