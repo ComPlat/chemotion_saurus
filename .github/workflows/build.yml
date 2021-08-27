@@ -21,7 +21,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gems-
 
-      - name: build
+      - name: Build
         env:
           ALGOLIA_SEARCH_API_KEY: ${{ secrets.ALGOLIA_SEARCH_API_KEY }}
           INDEX_NAME: ${{ secrets.INDEX_NAME }}
@@ -50,7 +50,7 @@ jobs:
 
   deploy:
     if: |
-      ${{ false }} #TODO
+      ${{ true }} #TODO
       github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     needs: build
