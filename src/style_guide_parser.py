@@ -79,7 +79,7 @@ def toc(f, **kwargs):
     with open("sidebars.js", "r") as f_toc:
         try:
             if (kwargs["subdir"]+"/"+kwargs["slug"] or kwargs["subdir"]+"/"+kwargs["id"]) in f_toc.read():
-                print("\033[92m CHECK TOC")
+                print("\033[92m CHECK TOC") #TODO?
                 return 0
         except IndexError:
             print("\033[91m" + "ERROR: Slug or id not in TOC (sidebars.js).")
@@ -97,10 +97,10 @@ for file in sys.argv[1:]:
         if slug:
             kwargs["slug"]=slug
         kwargs["subdir"]=dirs[1]
-        typos(f)
-        capitalize_first(f)
-        tables(f, **kwargs)
-        toc(f, **kwargs)
+        # typos(f)
+        # capitalize_first(f)
+        # tables(f, **kwargs)
+        # toc(f, **kwargs)
         
 if __name__ == "__main__":
     # for testing
