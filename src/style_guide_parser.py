@@ -80,10 +80,12 @@ def toc(f, **kwargs):
     with open("sidebars.js", "r") as f_toc:
         try:
             if (kwargs["subdir"]+"/"+kwargs["slug"] or kwargs["subdir"]+"/"+kwargs["id"]) in f_toc.read():
-                print("\033[92m CHECK TOC") #TODO?
+                print("\033[92m CHECK TOC")
                 return 0
-        except IndexError:
-            print("\033[91m" + "ERROR: Slug or id not in TOC (sidebars.js).")
+            else:
+                print("\033[91m ERROR: Slug or id not in TOC (sidebars.js).")
+        except: 
+            IndexError
             # TODO exit step?
 
 for file in sys.argv[1:]:
@@ -102,21 +104,21 @@ for file in sys.argv[1:]:
         capitalize_first(f)
         tables(f, **kwargs)
         toc(f, **kwargs)
-        
-#if __name__ == "__main__":
-    # for testing
-    #with open("docs/eln/analysis.mdx", "r+") as f:
-    # with open("docs/eln/test.mdx", "r+") as f:
-    #     lines = f.readlines()[:10]
-    #     kwargs = {}
-    #     slug = [l.split(":") for l in lines if (l.startswith("slug"))][0][1].strip()
-    #     id = [l.split(":") for l in lines if (l.startswith("id"))][0][1].strip()
-    #     if id:
-    #         kwargs["id"]=id
-    #     if slug:
-    #         kwargs["slug"]=slug
-    #     kwargs["subdir"]="eln"
-    #     toc(f, **kwargs)
-    #     tables(f, **kwargs)
-    #     typos(f)
-    #     capitalize_first(f)
+
+#for testing
+# if __name__ == "__main__":
+#     #with open("docs/eln/analysis.mdx", "r+") as f:
+#     with open("docs/eln/test.mdx", "r+") as f:
+#         lines = f.readlines()[:10]
+#         kwargs = {}
+#         slug = [l.split(":") for l in lines if (l.startswith("slug"))][0][1].strip()
+#         id = [l.split(":") for l in lines if (l.startswith("id"))][0][1].strip()
+#         if id:
+#             kwargs["id"]=id
+#         if slug:
+#             kwargs["slug"]=slug
+#         kwargs["subdir"]="eln"
+#         toc(f, **kwargs)
+#         tables(f, **kwargs)
+#         typos(f)
+#         capitalize_first(f)
