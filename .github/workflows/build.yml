@@ -14,39 +14,41 @@ jobs:
         with:
           fetch-depth: 0
 
+      - uses: actions/cache@v2
+        with:
+          path: build
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+
+      - name: build
+        env:
+          ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
+          ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
+          ALGOLIA_SEARCH_API_KEY: ${{ secrets.ALGOLIA_SEARCH_API_KEY }}
+          INDEX_NAME: ${{ secrets.INDEX_NAME }}
+        run: |
+          npm i
+          npm run build --if-present
+
       - name: style guide parser
+        if: "!contains(github.event.commits[0].message, 'skip style guide')"
         run: |
           echo "PWD";  pwd
           files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | egrep '\.mdx')
           if [ ! -z "$files" ] 
           then 
-          python src/style_guide_parser.py ${files}
+          python3 -m pip install beautifulsoup4
+          python3 src/style_guide_parser.py ${files}
           else
           echo "no .mdx files"
           fi
 
-      # - uses: actions/cache@v2
-      #   with:
-      #     path: build
-      #     key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-gems-
-
-      # - name: build
-      #   env:
-      #     ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
-      #     ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
-      #     ALGOLIA_SEARCH_API_KEY: ${{ secrets.ALGOLIA_SEARCH_API_KEY }}
-      #     INDEX_NAME: ${{ secrets.INDEX_NAME }}
-      #   run: |
-      #     npm i
-      #     npm run build --if-present
-
-      # - name: Upload build artifacts
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     name: public
-      #     path: build
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: public
+          path: build
 
   deploy:
     if: |
