@@ -46,8 +46,6 @@ def tables(f, **kwargs):
     Args:
         f ([type]): file object
     """
-    # docs/eln/test.mdx
-    # build/docs/eln/test/index.html
     warning = ""
     path = "build/docs/"+kwargs["subdir"]+"/"
     build_file=""
@@ -65,7 +63,7 @@ def tables(f, **kwargs):
             for s in soup_th+soup_td:
                 if s.string.strip()[0].istitle():
                     #s.string.replace_with(s.string.lower())
-                    warning="\033[93m" + "WARNING: Table has capitalized letters. See Style Guide on www.chemotion.net"
+                    warning="\033[93m" + "WARNING: Table has capitalized letters. See Style Guide on chemotion.net"
             # f_html.seek(0)
             # f_html.write(str(soup))
             # f_html.truncate()
@@ -82,7 +80,7 @@ def toc(f, **kwargs):
         subdir ([type]): eln or repo
 
     Returns:
-        [type]: [0 or error message]
+        [string]: [success or error message]
     """
     with open("sidebars.js", "r") as f_toc:
         content = f_toc.read()
@@ -93,7 +91,6 @@ def toc(f, **kwargs):
                 print("\033[91m ERROR: Filename, slug or id of new file not in TOC (sidebars.js).")
         except: 
             IndexError
-            # TODO exit step?
 
 for file in sys.argv[1:]:
     with open(file, "r+") as f:
