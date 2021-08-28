@@ -34,6 +34,7 @@ jobs:
         run: |
           echo "PWD";  pwd
           files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | egrep '\.mdx')
+          echo ${files}
           if [ ! -z "$files" ] 
           then 
           python3 -m pip install beautifulsoup4
@@ -41,7 +42,6 @@ jobs:
           else
           echo "no .mdx files"
           fi
-          # TODO push again
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v2
