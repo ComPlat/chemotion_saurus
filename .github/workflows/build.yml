@@ -32,7 +32,8 @@ jobs:
       - name: Style Guide Parser
         if: "!contains(github.event.commits[0].message, 'skip style guide')"
         run: |
-          echo "PWD";  pwd
+          #echo "PWD";  pwd
+          echo ${{ github.sha }}
           files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | egrep '\.mdx')
           echo ${files}
           if [ ! -z "$files" ] 
