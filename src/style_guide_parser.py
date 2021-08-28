@@ -4,7 +4,7 @@ import sys
 
 from bs4 import BeautifulSoup
 
-def typos(f):
+def typos(text):
     """ replace typos with correct words
 
     Args:
@@ -17,7 +17,7 @@ def typos(f):
         f.seek(0)
         f.write(text)
         f.truncate()
-    print("\033[92m CHECK TYPOS")
+        print("\033[92m CHECK TYPOS")
 
 def capitalize_first(f):
     """correct titles: capital letters only in first word
@@ -38,7 +38,7 @@ def capitalize_first(f):
         f.seek(0)
         f.write(text)
         f.truncate()
-    print("\033[92m CHECK TITLES")
+        print("\033[92m CHECK TITLES")
 
 def tables(f, **kwargs):
     """ search for capitalized words in tables and lowercase them
@@ -49,26 +49,26 @@ def tables(f, **kwargs):
     # docs/eln/test.mdx
     # build/docs/eln/test/index.html
     warning = ""
-    if os.path.isfile("build/"+kwargs["filename"]+"/index.html"):
-        build_file = "build/"+kwargs["filename"]+"/index.html"
-    if os.path.isfile("build/"+kwargs["slug"]+"/index.html"):
-        build_file = "build/"+kwargs["slug"]+"/index.html"
-    if os.path.isfile("build/"+kwargs["id"]+"/index.html"):
-        build_file = "build/"+kwargs["id"]+"/index.html"
-    else:
-        build_file=""
+    path = "build/docs/"+kwargs["subdir"]+"/"
+    build_file=""
+    if os.path.isfile(path+kwargs["filename"]+"/index.html"):
+        build_file = path+kwargs["filename"]+"/index.html"
+    if os.path.isfile(path+kwargs["slug"]+"/index.html"):
+        build_file = path+kwargs["slug"]+"/index.html"
+    if os.path.isfile(path+kwargs["id"]+"/index.html"):
+        build_file = path+kwargs["id"]+"/index.html"
     if os.path.isfile(build_file):
         with open(build_file, "r+") as f_html:
             soup = BeautifulSoup(f_html, "html.parser")
             soup_th=soup.find_all("th")
             soup_td=soup.find_all("td")
             for s in soup_th+soup_td:
-                if s.string.istitle():
-                    s.string.replace_with(s.string.lower())
+                if s.string.strip()[0].istitle():
+                    #s.string.replace_with(s.string.lower())
                     warning="\033[93m" + "WARNING: Table has capitalized letters. See Style Guide on www.chemotion.net"
-            f_html.seek(0)
-            f_html.write(str(soup))
-            f_html.truncate()
+            # f_html.seek(0)
+            # f_html.write(str(soup))
+            # f_html.truncate()
     if warning:
         print(warning)
     else:
@@ -114,20 +114,25 @@ for file in sys.argv[1:]:
         toc(f, **kwargs)
 
 #for testing
-# if __name__ == "__main__":
-#     #with open("docs/eln/analysis.mdx", "r+") as f:
-#     with open("docs/eln/test.mdx", "r+") as f:
-#         lines = f.readlines()[:10]
-#         kwargs = {}
-#         slug = [l.split(":") for l in lines if (l.startswith("slug"))][0][1].strip()
-#         id = [l.split(":") for l in lines if (l.startswith("id"))][0][1].strip()
-#         kwargs["filename"]="test"
-#         if id:
-#             kwargs["id"]=id
-#         if slug:
-#             kwargs["slug"]=slug
-#         kwargs["subdir"]="eln"
-#         toc(f, **kwargs)
-#         tables(f, **kwargs)
-#         typos(f)
-#         capitalize_first(f)
+if __name__ == "__main__":
+    #with open("docs/eln/analysis.mdx", "r+") as f:
+    with open("docs/eln/test.mdx", "r+") as f:
+        f.seek(0)
+        lines = f.readlines()[:10]
+        kwargs = {}
+        slug = [l.split(":") for l in lines if (l.startswith("slug"))][0][1].strip()
+        id = [l.split(":") for l in lines if (l.startswith("id"))][0][1].strip()
+        kwargs["filename"]="test"
+        if id:
+            kwargs["id"]=id
+        if slug:
+            kwargs["slug"]=slug
+        kwargs["subdir"]="eln"
+        toc(f, **kwargs)
+        f.seek(0)
+        tables(f, **kwargs)
+        f.seek(0)
+        typos(f)
+        f.seek(0)
+        capitalize_first(f)
+        f.seek(0)
