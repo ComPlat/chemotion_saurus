@@ -41,6 +41,7 @@ jobs:
           else
           echo "no .mdx files"
           fi
+          # TODO push again
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v2
