@@ -47,9 +47,10 @@ jobs:
           fi
           echo "TEST"
           git status
-          # git add ${files}
-          # git commit -m "automatic: Style Guide changes"
+          git add ${files}
+          git commit -m "automatic: Style Guide changes"
           # git push
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/ComPlat/chemotion_saurus.git
           cat docs/eln/test.mdx
 
       - name: Push changes #ERROR
@@ -63,9 +64,7 @@ jobs:
         with:
           name: public
           path: build
-        run: |
-          git status
-          cat docs/eln/test.mdx
+
   # deploy:
   #   if: |
   #     ${{ false }} #TODO
