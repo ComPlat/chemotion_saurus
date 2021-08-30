@@ -36,8 +36,11 @@ jobs:
         env:
           FILES: "empty"
         run: |
-          FILES=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | egrep '\.mdx')
-          echo ${FILES}
+          echo $FILES
+          echo "git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | egrep '\.mdx'" >> $FILES
+          echo $FILES
+          # FILES=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | egrep '\.mdx')
+          
           #if [ "$files" ]; then 
           # echo ${files}
           #python3 -m pip install GitPython
