@@ -35,16 +35,16 @@ jobs:
           #echo "PWD";  pwd
           ls -la
           files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | egrep '\.mdx')
-          echo ${files}
           if [ ! -z "$files" ] 
           then 
+          echo ${files}
           python3 -m pip install beautifulsoup4
           python3 src/style_guide_parser.py ${files}
           else
           echo "no .mdx files"
           fi
           echo "TEST"
-          cat chemotion_saurus/docs/eln/test.mdx
+          cat docs/eln/test.mdx
 
       - name: Push changes
         uses: ad-m/github-push-action@master
@@ -60,7 +60,7 @@ jobs:
 
   deploy:
     if: |
-      ${{ true }} #TODO
+      ${{ false }} #TODO
       github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     needs: build
