@@ -34,16 +34,18 @@ jobs:
       - name: Style Guide Parser
         if: "!contains(github.event.commits[0].message, 'skip style guide')"
         run: |
+          files="empty"
           files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | egrep '\.mdx')
+          echo ${files}
+          #if [ "$files" ]; then 
           # echo ${files}
-          if [ "$files" ]; then 
-          # echo ${files}
-          python3 -m pip install beautifulsoup4
-          python3 src/style_guide_parser.py ${files}
-          git add ${files}
-          git commit -m "automatic: Style Guide changes"
-          git push
-          fi
+          #python3 -m pip install GitPython
+          # python3 -m pip install beautifulsoup4
+          # python3 src/style_guide_parser.py ${files}
+          # git add ${files}
+          # git commit -m "automatic: Style Guide changes"
+          # git push
+          #fi
 
       # - name: Push changes
       #   uses: ad-m/github-push-action@master
