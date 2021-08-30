@@ -62,7 +62,7 @@ def tables(f, **kwargs):
             for s in soup_th+soup_td:
                 if s.string.strip()[0].istitle():
                     #s.string.replace_with(s.string.lower())
-                    warning="\033[93m" + "WARNING: Table has capitalized letters. See Style Guide in chemotions_saurus."
+                    warning="\033[93m" + "WARNING: Table has capitalized letters. See Style Guide in the documentation."
             # f_html.seek(0)
             # f_html.write(str(soup))
             # f_html.truncate()
