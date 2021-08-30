@@ -31,7 +31,8 @@ jobs:
 
       - name: Style Guide Parser
         if: "!contains(github.event.commits[0].message, 'skip style guide')"
-        
+        # with:
+        #   repo-token: ${{ secrets.GITHUB_TOKEN }}
         run: |
           #echo "PWD";  pwd
           ls -la
@@ -46,9 +47,9 @@ jobs:
           fi
           echo "TEST"
           git status
-          git add ${files}
-          git commit -m "automatic: Style Guide changes"
-          git push
+          # git add ${files}
+          # git commit -m "automatic: Style Guide changes"
+          # git push
           cat docs/eln/test.mdx
 
       - name: Push changes #ERROR
@@ -62,7 +63,9 @@ jobs:
         with:
           name: public
           path: build
-
+        run: |
+          git status
+          cat docs/eln/test.mdx
   # deploy:
   #   if: |
   #     ${{ false }} #TODO
