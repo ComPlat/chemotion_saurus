@@ -31,6 +31,7 @@ jobs:
 
       - name: Style Guide Parser
         if: "!contains(github.event.commits[0].message, 'skip style guide')"
+        
         run: |
           #echo "PWD";  pwd
           ls -la
@@ -44,9 +45,10 @@ jobs:
           echo "no .mdx files"
           fi
           echo "TEST"
+          git push --branch ${{ github.ref }} https://github.com/ComPlat/chemotion_saurus.git
           cat docs/eln/test.mdx
 
-      - name: Push changes
+      - name: Push changes #ERROR
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
