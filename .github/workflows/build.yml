@@ -36,7 +36,7 @@ jobs:
         run: |
           #echo "PWD";  pwd
           #ls -la
-          git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | egrep '\.mdx'
+          sudo git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | egrep '\.mdx'
           files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | egrep '\.mdx')
           echo ${files}
           if [ ! -z "$files" ]; then 
