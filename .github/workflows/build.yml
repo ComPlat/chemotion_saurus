@@ -14,20 +14,20 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: actions/cache@v2
-        with:
-          path: build
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gems-
+      # - uses: actions/cache@v2
+      #   with:
+      #     path: build
+      #     key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-gems-
 
-      - name: Build
-        env:
-          ALGOLIA_SEARCH_API_KEY: ${{ secrets.ALGOLIA_SEARCH_API_KEY }}
-          INDEX_NAME: ${{ secrets.INDEX_NAME }}
-        run: |
-          npm i
-          npm run build --if-present
+      # - name: Build
+      #   env:
+      #     ALGOLIA_SEARCH_API_KEY: ${{ secrets.ALGOLIA_SEARCH_API_KEY }}
+      #     INDEX_NAME: ${{ secrets.INDEX_NAME }}
+      #   run: |
+      #     npm i
+      #     npm run build --if-present
 
       - uses: fregante/setup-git-user@v1
 
@@ -37,15 +37,14 @@ jobs:
           #echo "PWD";  pwd
           #ls -la
           files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | egrep '\.mdx')
-          if [ ! -z "$files" ] 
-          then 
-          #echo ${files}
+          if [ ! -z "$files" ]; then 
+          echo ${files}
           python3 -m pip install beautifulsoup4
           python3 src/style_guide_parser.py ${files}
           else
           echo "no .mdx files"
           fi
-          echo "TEST"
+          #echo "TEST"
           # echo ${{github.actor}}
           # git status
           # git add ${files}
