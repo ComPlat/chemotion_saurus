@@ -37,7 +37,9 @@ jobs:
           FILES1: ($(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | egrep '\.mdx'))
         run: |
           export FILES="$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | egrep '\.mdx')"
+          export FILESSTUB="$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})"
           echo $FILES
+          echo $FILESSTUB
           #echo $FILES1
           #echo "git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | egrep '\.mdx'" >> $FILES
           #echo $FILES
