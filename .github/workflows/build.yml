@@ -29,6 +29,8 @@ jobs:
           npm i
           npm run build --if-present
 
+      - uses: fregante/setup-git-user@v1
+
       - name: Style Guide Parser
         if: "!contains(github.event.commits[0].message, 'skip style guide')"
         # with:
@@ -49,7 +51,7 @@ jobs:
           git status
           git add ${files}
           git commit -m "automatic: Style Guide changes"
-          sudo git push
+          git push
           #git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/ComPlat/chemotion_saurus.git
           cat docs/eln/test.mdx
 
