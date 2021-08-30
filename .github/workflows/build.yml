@@ -37,6 +37,7 @@ jobs:
           #echo "PWD";  pwd
           #ls -la
           files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | egrep '\.mdx')
+          echo ${files}
           if [ ! -z "$files" ]; then 
           echo ${files}
           python3 -m pip install beautifulsoup4
