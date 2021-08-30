@@ -29,10 +29,36 @@ jobs:
           npm i
           npm run build --if-present
 
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: public
+          path: build
+
+  style_guide_parser:
+    if: "!contains(github.event.commits[0].message, 'skip style guide')"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - uses: actions/cache@v2
+        with:
+          path: build
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+              
+      - name: Download build artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: public
+          path: public
+
       - uses: fregante/setup-git-user@v1
 
       - name: Style Guide Parser
-        if: "!contains(github.event.commits[0].message, 'skip style guide')"
         run: |
           export FILES="$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | egrep '\.mdx')"
           export FILESSTUB="$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})"
@@ -46,20 +72,15 @@ jobs:
           git commit -m "automatic: Style Guide changes"
           git push
           # TODO deploy
+          # ${{ github.event.inputs.job == 'deploy'}}
           fi
-
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: public
-          path: build
 
   deploy:
     if: |
       ${{ true }}
       github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
-    needs: build
+    needs: [build, style_guide_parser]
     steps:
     - name: Download build artifacts
       uses: actions/download-artifact@v2
