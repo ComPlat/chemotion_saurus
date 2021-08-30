@@ -37,7 +37,7 @@ jobs:
           #echo "PWD";  pwd
           #ls -la
           #echo ${{github}}
-          git diff-tree --no-commit-id --name-only -r ${{ github.sha }}'
+          git diff-tree --no-commit-id --name-only -r ${{ github.sha }}
           files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | egrep '\.mdx')
           echo ${files}
           if [ ! -z "$files" ]; then 
