@@ -36,6 +36,7 @@ jobs:
         run: |
           #echo "PWD";  pwd
           #ls -la
+          git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | egrep '\.mdx'
           files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | egrep '\.mdx')
           echo ${files}
           if [ ! -z "$files" ]; then 
@@ -48,9 +49,6 @@ jobs:
           else
           echo "no .mdx files"
           fi
-
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
 
       # - name: Push changes
       #   uses: ad-m/github-push-action@master
