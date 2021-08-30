@@ -34,10 +34,10 @@ jobs:
       - name: Style Guide Parser
         if: "!contains(github.event.commits[0].message, 'skip style guide')"
         env:
-          FILES: "empty"
+          FILES: git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | egrep '\.mdx'
         run: |
           echo $FILES
-          echo "git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | egrep '\.mdx'" >> $FILES
+          #echo "git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | egrep '\.mdx'" >> $FILES
           echo $FILES
           # FILES=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | egrep '\.mdx')
           
