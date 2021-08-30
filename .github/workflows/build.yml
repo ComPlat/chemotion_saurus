@@ -45,7 +45,7 @@ jobs:
           echo "no .mdx files"
           fi
           echo "TEST"
-          git push --branch ${{ github.ref }} https://github.com/ComPlat/chemotion_saurus.git
+          git push
           cat docs/eln/test.mdx
 
       - name: Push changes #ERROR
