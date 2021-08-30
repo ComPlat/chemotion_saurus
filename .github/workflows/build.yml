@@ -36,7 +36,7 @@ jobs:
         run: |
           #echo "PWD";  pwd
           #ls -la
-          echo ${{github}}
+          #echo ${{github}}
           sudo git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | egrep '\.mdx'
           files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | egrep '\.mdx')
           echo ${files}
@@ -47,8 +47,6 @@ jobs:
           git add ${files}
           git commit -m "automatic: Style Guide changes"
           git push
-          else
-          echo "no .mdx files"
           fi
 
       # - name: Push changes
