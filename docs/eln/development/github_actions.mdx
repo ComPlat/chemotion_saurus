@@ -157,6 +157,11 @@ GH by default creates a workspaces to run actions inside of it. The path of the 
 When using some actions from the [GitHub Marketplace](https://github.com/marketplace?type=actions) e. g. the `checkout` action - the workspace is flushed before the action. So make sure to run every other commands after that action or replace the action with a self-scripted code. For example if you want to replace the `checkout` action use `git clone ...`.
 :::
 
+#### Authentication
+Some operations need a way to authenticate during a workflow run. GitHub provides an automatic token, which is only valid during a workflow run: [GITHUB_TOKEN](https://docs.github.com/en/actions/reference/authentication-in-a-workflow).  
+Another way to authenticate is creating an artificial user, e. g. by this action: [setup-git-user action](https://github.com/fregante/setup-git-user).
+This is useful if you want to push to a repository inside a workflow.
+
 ### GitHub Actions for ELN
 #### Workflow files 
 Each of the three test classes (Ruby unit tests, JS unit test, acceptance tests) has its own workflow yml file, because that is the only way to make single test classes repeatable in GH Actions. There are just a few prescripted actions from GH Marketplace used, because of the special version settings for `nvm` and `Node` and because prescripted actions are not easy to handle in self-written Docker containers.
