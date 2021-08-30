@@ -49,8 +49,8 @@ jobs:
           git status
           git add ${files}
           git commit -m "automatic: Style Guide changes"
-          # git push
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/ComPlat/chemotion_saurus.git
+          sudo git push
+          #git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/ComPlat/chemotion_saurus.git
           cat docs/eln/test.mdx
 
       - name: Push changes #ERROR
