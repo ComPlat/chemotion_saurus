@@ -33,12 +33,10 @@ jobs:
 
       - name: Style Guide Parser
         if: "!contains(github.event.commits[0].message, 'skip style guide')"
-        env:
-          FILES1: ($(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | egrep '\.mdx'))
         run: |
           export FILES="$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | egrep '\.mdx')"
           export FILESSTUB="$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})"
-          #echo $FILES
+          echo $FILES
           if [ "$FILES" ]; then 
           echo $FILES
           python3 -m pip install beautifulsoup4
@@ -48,12 +46,6 @@ jobs:
           git commit -m "automatic: Style Guide changes"
           git push
           fi
-
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v2
