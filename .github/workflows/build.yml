@@ -36,6 +36,7 @@ jobs:
           path: build
 
   style_guide_parser:
+    needs: build
     if: "!contains(github.event.commits[0].message, 'skip style guide')"
     runs-on: ubuntu-latest
     steps:
@@ -49,7 +50,7 @@ jobs:
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-gems-
-              
+
       - name: Download build artifacts
         uses: actions/download-artifact@v2
         with:
@@ -80,7 +81,7 @@ jobs:
       ${{ true }}
       github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
-    needs: [build, style_guide_parser]
+    needs: [style_guide_parser]
     steps:
     - name: Download build artifacts
       uses: actions/download-artifact@v2
