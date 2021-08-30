@@ -11,7 +11,7 @@ def typos(text):
         f ([type]): file object
     """
     text = f.read()
-    text = re.sub(r"([Cc]hemotion)?(.)ELN", ' Chemotion ELN', text)
+    text = re.sub(r"([Cc]hemotion)?(.)?ELN", ' Chemotion ELN', text)
     if text:
         f.seek(0)
         f.write(text)
