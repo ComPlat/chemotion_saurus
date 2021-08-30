@@ -48,7 +48,7 @@ jobs:
           echo "no .mdx files"
           fi
           echo "TEST"
-          echo ${{github.actor}}
+          # echo ${{github.actor}}
           # git status
           # git add ${files}
           # git commit -m "automatic: Style Guide changes"
@@ -57,17 +57,20 @@ jobs:
           # git status
           # cat docs/eln/test.mdx
 
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+
       # - name: Push changes
       #   uses: ad-m/github-push-action@master
       #   with:
       #     github_token: ${{ secrets.GITHUB_TOKEN }}
       #     branch: ${{ github.ref }}
 
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: public
-          path: build
+      # - name: Upload build artifacts
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: public
+      #     path: build
 
   # deploy:
   #   if: |
