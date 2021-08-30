@@ -29,20 +29,26 @@ jobs:
           npm i
           npm run build --if-present
 
-      # - name: Style Guide Parser
-      #   if: "!contains(github.event.commits[0].message, 'skip style guide')"
-      #   run: |
-      #     #echo "PWD";  pwd
-      #     echo ${{ github.sha }}
-      #     files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | egrep '\.mdx')
-      #     echo ${files}
-      #     if [ ! -z "$files" ] 
-      #     then 
-      #     python3 -m pip install beautifulsoup4
-      #     python3 src/style_guide_parser.py ${files}
-      #     else
-      #     echo "no .mdx files"
-      #     fi
+      - name: Style Guide Parser
+        if: "!contains(github.event.commits[0].message, 'skip style guide')"
+        run: |
+          #echo "PWD";  pwd
+          echo ${{ github.sha }}
+          files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | egrep '\.mdx')
+          echo ${files}
+          if [ ! -z "$files" ] 
+          then 
+          python3 -m pip install beautifulsoup4
+          python3 src/style_guide_parser.py ${files}
+          else
+          echo "no .mdx files"
+          fi
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v2
