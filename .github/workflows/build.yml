@@ -33,7 +33,7 @@ jobs:
         if: "!contains(github.event.commits[0].message, 'skip style guide')"
         run: |
           #echo "PWD";  pwd
-          echo ${{ github.sha }}
+          ls -la
           files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | egrep '\.mdx')
           echo ${files}
           if [ ! -z "$files" ] 
@@ -43,6 +43,8 @@ jobs:
           else
           echo "no .mdx files"
           fi
+          echo "TEST"
+          cat chemotion_saurus/docs/eln/test.mdx
 
       - name: Push changes
         uses: ad-m/github-push-action@master
