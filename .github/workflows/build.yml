@@ -41,18 +41,12 @@ jobs:
           echo ${files}
           python3 -m pip install beautifulsoup4
           python3 src/style_guide_parser.py ${files}
+          git add ${files}
+          git commit -m "automatic: Style Guide changes"
+          git push
           else
           echo "no .mdx files"
           fi
-          #echo "TEST"
-          # echo ${{github.actor}}
-          # git status
-          # git add ${files}
-          # git commit -m "automatic: Style Guide changes"
-          # git push
-          # #git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/ComPlat/chemotion_saurus.git
-          # git status
-          # cat docs/eln/test.mdx
 
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
