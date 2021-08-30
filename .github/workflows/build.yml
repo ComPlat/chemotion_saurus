@@ -37,11 +37,11 @@ jobs:
         #   repo-token: ${{ secrets.GITHUB_TOKEN }}
         run: |
           #echo "PWD";  pwd
-          ls -la
+          #ls -la
           files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | egrep '\.mdx')
           if [ ! -z "$files" ] 
           then 
-          echo ${files}
+          #echo ${files}
           python3 -m pip install beautifulsoup4
           python3 src/style_guide_parser.py ${files}
           else
