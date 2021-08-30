@@ -38,19 +38,19 @@ jobs:
         run: |
           export FILES="$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | egrep '\.mdx')"
           export FILESSTUB="$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})"
-          # echo $FILES
+          echo $FILES
           # echo $FILESSTUB
           #echo $FILES1
           #echo "git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | egrep '\.mdx'" >> $FILES
           #echo $FILES
           # FILES=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | egrep '\.mdx')
           if [ "$FILES" ]; then 
-          echo ${FILES}
-          python3 -m pip install GitPython
+          echo $FILES
+          #python3 -m pip install GitPython
           python3 -m pip install beautifulsoup4
-          python3 src/style_guide_parser.py ${FILES}
+          python3 src/style_guide_parser.py $FILES
           git status
-          git add ${FILES}
+          git add $FILES
           git commit -m "automatic: Style Guide changes"
           git push
           fi
