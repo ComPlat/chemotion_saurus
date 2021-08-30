@@ -1,0 +1,48 @@
+---
+id: project_overview
+title: Chemotion ELN Project Overview
+sidebar_label: Project Overview
+slug: project_overview
+---
+
+import Link from '@docusaurus/Link';
+
+:::info Info 
+This page is still being edited and reviewed.
+::: 
+
+Both the native and Docker installation for development will result in cloning the source code (or a fork of it) for Chemotion ELN project. The source code can be found on [GitHub](https://github.com/ComPlat/chemotion_ELN). The images in this chapter are provided from the Docker installation, where the source code can be found in `chemotion/client-chemotion-dev/src`.
+
+The project is built with the [Ruby on Rails](https://rubyonrails.org/) framework in version 5. It uses the Model-View-Controller (MVC) architectural pattern. However, this project differs from a typical [Ruby on Rails](https://rubyonrails.org/) project with the following points:
+- It is using JSON API.
+- Rails comes with built-in support for [SQLite](https://www.sqlite.org/index.html), but the project is using [PostgreSQL](https://www.postgresql.org/). [Redis](https://redis.io/) might be used in the future as well.
+- Front-end: Written in [React](https://reactjs.org/) framework. The main page is a single-page application (SPA) along with a few other pages.
+
+## app
+<b>app</b> is the main directory in a <Link to="https://rubyonrails.org/">Ruby on Rails</Link> application which contains the MVC structure. So it has the folders <b>models</b>, <b>views</b>, and <b>controllers</b>. As the architecture of the project is not the standard one, the controllers are mostly empty, instead, as JSON API is used, everything is taken care of in the <b>api</b> directory. Also, there are not many pages in the views directory.   
+
+For compiling assets <Link to="https://github.com/rails/webpacker">Webpacker</Link> is used in addition to (or in the future replacement of) the <Link to="https://guides.rubyonrails.org/asset_pipeline.html">Rails Asset Pipeline</Link>. There are currently multiple directories containing <b>assets</b> (e. g. under `app`, `public`, `vendor`, `tmp`). <del>The <b>assets</b> directory located here will be moved in the next <Link to="https://rubyonrails.org/">Ruby on Rails</Link> version. We are currently using version 4.</del> The <b>app/assets</b> directory will be moved in the next version. In this <b>app/assets</b> exists the javascripts directory which contains all <Link to="https://reactjs.org/">React</Link> components. It contains a directory for each single-page application (SPA) (4 single-page applications) where the main page seen by the user is the <b>components</b>. The stylesheet directory exists here too.
+
+## config
+It contains the configuration of the application. <b>database.yml</b> contains the configuration of the database. There is also the <b>environments</b> directory which contains the three environments provided by [Ruby on Rails](https://rubyonrails.org/) by default which are <b>development</b>, <b>production</b> and <b>test</b> environments. Another directory here is the <b>initializers</b> where the configuration of extensions is located. For instance, <b>devise</b> is a package for authentication where the configuration of the mail sender and passwords happen.
+
+## lib
+Modules related to the application are added to this directory, such as PubChem, DataCite, OpenBabel. It also has the <b>storage</b> directory where the files are uploaded. 
+
+## node_modules
+
+
+## public
+It contains the static files. The directory <b>images</b> contains the images of the molecules for instance, but it is difficult to query them as they have hexadecimal identifiers. When creating, e.g., a new reaction, the application will create an image for it and store it in the <b>images</b>/<b>reactions</b> directory.
+
+## spec
+It contains the tests such as unit test, acceptance test, and javascript test.
+
+## uploads
+It contains the attachments uploaded by the user.
+
+## .eslintrc
+It is advised to have ESLint linter (can be added to Visual Studio Code, check this [link](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)) for identifying problematic patterns found in JavaScript code. In the hidden file <b>.eslintrc</b>, there are the rules provided to the linter for JavaScript testing.
+
+## .rubocop.yml
+It is also advised to have RuboCop linter (can be added to Visual Studio Code through [Ruby extension](https://marketplace.visualstudio.com/items?itemName=rebornix.Ruby)). The file <b>.rubocop.yml</b> contains the rules for Ruby linting.
