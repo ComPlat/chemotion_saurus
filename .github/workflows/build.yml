@@ -36,6 +36,7 @@ jobs:
         run: |
           #echo "PWD";  pwd
           #ls -la
+          echo ${{github}}
           sudo git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | egrep '\.mdx'
           files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | egrep '\.mdx')
           echo ${files}
