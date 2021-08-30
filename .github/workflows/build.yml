@@ -33,10 +33,11 @@ jobs:
 
       - name: Style Guide Parser
         if: "!contains(github.event.commits[0].message, 'skip style guide')"
+        env:
+          FILES: "empty"
         run: |
-          files="empty"
-          files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | egrep '\.mdx')
-          echo ${files}
+          FILES=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | egrep '\.mdx')
+          echo ${FILES}
           #if [ "$files" ]; then 
           # echo ${files}
           #python3 -m pip install GitPython
