@@ -14,27 +14,25 @@ jobs:
         with:
           fetch-depth: 0
 
-      # - uses: actions/cache@v2
-      #   with:
-      #     path: build
-      #     key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-gems-
+      - uses: actions/cache@v2
+        with:
+          path: build
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
 
-      # - name: Build
-      #   env:
-      #     ALGOLIA_SEARCH_API_KEY: ${{ secrets.ALGOLIA_SEARCH_API_KEY }}
-      #     INDEX_NAME: ${{ secrets.INDEX_NAME }}
-      #   run: |
-      #     npm i
-      #     npm run build --if-present
+      - name: Build
+        env:
+          ALGOLIA_SEARCH_API_KEY: ${{ secrets.ALGOLIA_SEARCH_API_KEY }}
+          INDEX_NAME: ${{ secrets.INDEX_NAME }}
+        run: |
+          npm i
+          npm run build --if-present
 
       - uses: fregante/setup-git-user@v1
 
       - name: Style Guide Parser
         if: "!contains(github.event.commits[0].message, 'skip style guide')"
-        # with:
-        #   repo-token: ${{ secrets.GITHUB_TOKEN }}
         run: |
           #echo "PWD";  pwd
           #ls -la
