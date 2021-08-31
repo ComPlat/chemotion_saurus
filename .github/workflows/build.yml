@@ -35,7 +35,7 @@ jobs:
       - name: Style Guide Parser
         if: "!contains(github.event.commits[0].message, 'skip style guide')"
         run: |
-          export FILES="$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | egrep '\.mdx')"
+          export FILES="$(git diff-tree --no-commit-id --name-only -r --diff-filter=d ${{ github.sha }} | egrep '\.mdx')"
           export FILESSTUB="$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})"
           echo $FILES
           if [ "$FILES" ]; then 
@@ -46,7 +46,6 @@ jobs:
           git add $FILES
           git commit -m "automatic: Style Guide changes"
           git push
-          # TODO deploy?
           fi
 
       - name: Upload build artifacts
@@ -57,7 +56,7 @@ jobs:
 
   deploy:
     if: |
-      ${{ true }}
+      if: "!contains(github.event.commits[0].message, 'skip deploy')"
       github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     needs: build
