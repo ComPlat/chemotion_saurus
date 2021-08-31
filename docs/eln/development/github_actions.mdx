@@ -162,6 +162,27 @@ Some operations need a way to authenticate during a workflow run. GitHub provide
 Another way to authenticate is creating an artificial user, e. g. by this action: [setup-git-user action](https://github.com/fregante/setup-git-user).
 This is useful if you want to push to a repository inside a workflow.
 
+#### Node, Webpack
+Do not set `NODE_ENV=test` when running Rails tests! Just use `NODE_ENV=test` for JavaScript tests. Otherwise the Babel configuration will get confused. The default for the `NODE_ENV` is `development`. For testing set `RAILS_ENV=test` and make custom configurations for testing for example in `webpack/config/development.js` and with `process.env` properties. Read for further informations this article: [Why doesn't Webpacker use my test config when I run Rails tests?](https://rossta.net/blog/why-doesnt-webpacker-use-my-test-config-when-i-run-rails-tests.html)
+and this [GitHub issue on the rails/webpacker repository](https://github.com/rails/webpacker/issues/2654). This article describes a way to customize the devtool setting: [How to speed up assets precompile for Ruby on Rails apps](https://itnext.io/how-to-speed-up-assets-precompile-for-ruby-on-rails-apps-e0338d8d7301). The devtool controls how error paths are resolved in the browser console. In test and production mode no error log is needed, therefore the devtool can be set to the fastest configuration. 
+E. g. use this for compiling and running tests with the environemnt property `DEVTOOL`:  
+```sh  
+RAILS_ENV=test DEVTOOL=eval bundle exec rails webpacker:compile
+RAILS_ENV=test bundle exec rspec spec/features   
+```
+The webpack configuration could then be set like this in `config/webpack/development.js`:
+```js
+process.env.NODE_ENV = process.env.NODE_ENV || 'development'
+const webpackConfig = require('./base')
+const { merge } = require('@rails/webpacker')
+
+const debugConfig = {
+    devtool: process.env.DEVTOOL
+}
+
+module.exports = merge(webpackConfig, debugConfig)
+```
+
 ### GitHub Actions for ELN
 #### Workflow files 
 Each of the three test classes (Ruby unit tests, JS unit test, acceptance tests) has its own workflow yml file, because that is the only way to make single test classes repeatable in GH Actions. There are just a few prescripted actions from GH Marketplace used, because of the special version settings for `nvm` and `Node` and because prescripted actions are not easy to handle in self-written Docker containers.
