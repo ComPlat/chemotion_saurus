@@ -9,33 +9,33 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCog } from '@fortawesome/free-solid-svg-icons' 
 import { Btn } from '@site/docs/btn.js'
 
-There are three test classes for ELN available: JavaScript (npm) and Ruby unit tests and acceptance (feature) tests.
+There are three test classes for Chemotion ELN available: JavaScript (npm) and Ruby unit tests and acceptance (feature) tests.
 
-## Local Testing for ELN 
-For locally testing ELN on a developer system, change to the root directory of your ELN code and type following commands:
-### JavaScript (npm) unit tests 
+## Local testing for chemotion eln
+For locally testing Chemotion ELN on a developer system, change to the root directory of your Chemotion ELN code and type following commands:
+### Javascript (npm) unit tests
 ```sh
 source ~/.rvm/scripts/rvm && source ~/.nvm/nvm.sh && nvm use && RAILS_ENV=test bundle exec rake db:test:prepare && npm test
 ```
 
-### Ruby unit tests 
+### Ruby unit tests
 ```sh
 source ~/.rvm/scripts/rvm && RAILS_ENV=test bundle exec rake db:test:prepare && bundle exec rspec --exclude-pattern spec/{features}/**/*_spec.rb
 ```
 
-### Acceptance tests 
+### Acceptance tests
 ```sh
 source ~/.rvm/scripts/rvm && source ~/.nvm/nvm.sh && nvm use  && RAILS_ENV=test bundle exec rake db:test:prepare && bundle exec rake assets:precompile  && bundle exec rspec spec/features
 ```
-When you have freshly installed ELN, make sure to create a `welcome-message.md` file in the `public` directory inside ELN before running acceptance tests. You can create it from the example file there:
+When you have freshly installed Chemotion ELN, make sure to create a `welcome-message.md` file in the `public` directory inside Chemotion ELN before running acceptance tests. You can create it from the example file there:
 ```sh
 cp public/welcome-message-sample.md public/welcome-message.md
 ```
 
-## Remote Testing with GitHub Actions 
-GitHub Actions are the Continuous Integration and Deployment tool of GitHub. They are used for testing newly created code in development and activated on every push to the [ELN GitHub repository](https://github.com/ComPlat/chemotion_ELN). Every test class (JavaScript, Ruby and acceptance) has its own workflow.
+## Remote testing with github actions
+GitHub Actions are the Continuous Integration and Deployment tool of GitHub. They are used for testing newly created code in development and activated on every push to the  Chemotion ELN GitHub repository](https://github.com/ComPlat/ Chemotion ELN). Every test class (JavaScript, Ruby and acceptance) has its own workflow.
 
-### Skip Tests
+### Skip tests
 If you only want to test a single or two test classes or commit without tests, you can use skip commands. Multiple skip commands can be combined. Insert one or more from the following skip commands in your commit message, where they are parsed by GitHub:
 ```sh
 skip unit js
@@ -50,24 +50,24 @@ skip acceptance
 skip all
 ``` 
 
-### User Interface 
+### User interface
 Most of the interactions with GH actions can be done via the Web UI of GitHub.  
 ![Workflows](/img/gh_actions_ui.gif) 
 To view the status of the GH Actions (passing, failed or skipped), click on the Actions Tab in the repository. On the left side are all workflows per single yml file grouped. You can click on a button to view the single workflow runs of a workflow. The name of a button corresponds to the `name` attribute in the yml file. 
 
 In the middle part are all workflow runs of a single workflow yml file listed. Click on the <b>`...`</b> button to <b>delete one workflow run</b>. Click on a single workflow to see the status (passing, failed or skipped) of the single jobs inside the workflow. Clicking on a job shows you the status of the single steps inside the job. In the steps view is a <Btn mixed={[faCog]} color={"secondary"}/> cog symbol in the upper right corner where you can get the <b> log files </b> of the corresponding job. In the job and steps view is also a button in the right upper corner to <b>`Re-run jobs`</b> and a <b>`...`</b> button  where you can <b>view the workflow yml file</b> or create a [status badge](#status-badge).
 
-## Developing CI with GitHub Actions 
-The following text describes shortly how to develop and use GitHub Actions especially for the ELN. For deeper and broader information look at the official [GitHub documentation for Actions](https://docs.github.com/en/actions).
+## Developing ci with github actions
+The following text describes shortly how to develop and use GitHub Actions especially for the Chemotion ELN. For deeper and broader information look at the official [GitHub documentation for Actions](https://docs.github.com/en/actions).
 
-### GitHub Actions in General
+### Github actions in general
 
 #### Runners
 Runners are applications provided by GitHub to execute the workflows. You can install your own `self-hosted` runner on your system or use runners hosted on GitHub servers. GitHub-hosted runners are specified by the keyword for the OS they are running on: `ubuntu-latest`, `windows-latest`, `macos-latest` etc. For more informations see the GitHub documentation:
 - [GitHub-hosted runners](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners)
 - [self-hosted runners](https://docs.github.com/en/actions/hosting-your-own-runners/about-self-hosted-runners)
 
-##### Self-hosted Runners
+##### Self-hosted runners
 You need at least admin rights on a repository to add self-hosted runners. GitHub-hosted runners can be already invoked with write access. Self-hosted runners must be linked to a repository (under `Settings/Actions/Runners`) and installed as a service on a computer. The GitHub repository then invokes the service if a workflow is triggered and the actions are executed through the service on the computer. See the [GitHub documentation](https://docs.github.com/en/actions/hosting-your-own-runners/adding-self-hosted-runners) how to install runners. Runners have their own root directory `actions-runner`. 
 
 After installation you have to install the service of the runner:
@@ -119,13 +119,13 @@ jobs:
     needs: build
 ```
 
-#### Steps and Actions
+#### Steps and actions
 Steps are sequences of actions. Actions are the smallest unit in GitHub Continuous Integration. Here you can place the commands to execute your tests, e. g. `npm test`. You can script your own actions or use prescripted actions from [GitHub Marketplace](https://github.com/marketplace?type=actions). Because of their sequence character actions inside steps depend on each other and can not run in parallel.
 
 #### Status badge
 A status badge per workflow can also be added to the `README` file. For quickly getting the Markdown code for a status badge go to the Actions tab on the GitHub repository, click on the workflow, click on the dots on the right upper corner and click on `Create status badge`.
 
-#### Docker 
+#### Docker
 GH actions can run inside a Docker container and can also create a Docker container. For furter information look at the official GitHub Documentation:
 - [run actions inside Docker container](https://docs.github.com/en/actions/creating-actions/dockerfile-support-for-github-actions)
 - [build Docker container inside actions](https://docs.github.com/en/actions/creating-actions/creating-a-docker-container-action)
@@ -134,17 +134,17 @@ It is important to know that GitHub actions (for GitHub-hosted runners) automati
 
 The official documentation about running actions inside container can be a bit misleading because they suggest to not set the `USER`, because the default user in GH is root and the GH Actions `workspace` will not be available. Despite that you can handle that with setting the owners inside the Docker container in GH Actions again to the original `USER` defined in the Docker file with `chown` and avoid needing the GH `workspace` with self-scripted actions. 
 
-#### Tools 
-##### GitHub CLI (command line tool)
+#### Tools
+##### Github cli (command line tool)
 See here: https://github.blog/2021-04-15-work-with-github-actions-in-your-terminal-with-github-cli/
-##### GitHub API
+##### Github api
 GitHub offers two kind of APIs: REST and GraphQL. Here is the documentation for the [GitHub Actions REST API](https://docs.github.com/en/rest/reference/actions).
-##### tmate
+##### Tmate
 To create an constant open SSH session until (the workflow run or the SSH session is) closed, you can use a [tmate action](https://github.com/marketplace/actions/debugging-with-tmate). It is useful for inspecting the server where the actions are running, for example check versions and paths, but the workflows itself can not be rerun.
-##### Visual Studio Code
+##### Visual studio code
 One good extension for syntax checking in the workflow yml files is the extension [GitHub Actions](https://marketplace.visualstudio.com/items?itemName=cschleiden.vscode-github-actions).
 
-#### Variables 
+#### Variables
 GH offers different ways and levels to save variables: 
 - When you have the appropriate permissions you can save environment variables as so called `secrets` in your GH repository under `Settings/Secrets`. This has the advantage, that you can use them in different workflows or when set on organization level accross multiple repositories. Call them  with `${{ secrets.XXX }}`.
 - You can create environment variables inside a workflow file with the `env` keyoword on workflow, job or step level. Call them with `${{ env.XXX }}`. There are some [default environment variables](https://docs.github.com/en/actions/reference/environment-variables#default-environment-variables) set in GH.
@@ -162,7 +162,7 @@ Some operations need a way to authenticate during a workflow run. GitHub provide
 Another way to authenticate is creating an artificial user, e. g. by this action: [setup-git-user action](https://github.com/fregante/setup-git-user).
 This is useful if you want to push to a repository inside a workflow.
 
-#### Node, Webpack
+#### Node, webpack
 Do not set `NODE_ENV=test` when running Rails tests! Just use `NODE_ENV=test` for JavaScript tests. Otherwise the Babel configuration will get confused. The default for the `NODE_ENV` is `development`. For testing set `RAILS_ENV=test` and make custom configurations for testing for example in `webpack/config/development.js` and with `process.env` properties. Read for further informations this article: [Why doesn't Webpacker use my test config when I run Rails tests?](https://rossta.net/blog/why-doesnt-webpacker-use-my-test-config-when-i-run-rails-tests.html)
 and this [GitHub issue on the rails/webpacker repository](https://github.com/rails/webpacker/issues/2654). This article describes a way to customize the devtool setting: [How to speed up assets precompile for Ruby on Rails apps](https://itnext.io/how-to-speed-up-assets-precompile-for-ruby-on-rails-apps-e0338d8d7301). The devtool controls how error paths are resolved in the browser console. In test and production mode no error log is needed, therefore the devtool can be set to the fastest configuration. 
 E. g. use this for compiling and running tests with the environemnt property `DEVTOOL`:  
@@ -183,22 +183,22 @@ const debugConfig = {
 module.exports = merge(webpackConfig, debugConfig)
 ```
 
-### GitHub Actions for ELN
-#### Workflow files 
+### Github actions for chemotion eln
+#### Workflow files
 Each of the three test classes (Ruby unit tests, JS unit test, acceptance tests) has its own workflow yml file, because that is the only way to make single test classes repeatable in GH Actions. There are just a few prescripted actions from GH Marketplace used, because of the special version settings for `nvm` and `Node` and because prescripted actions are not easy to handle in self-written Docker containers.
 
 #### Docker
-Because of the large Ruby and npm libraries used in ELN the jobs are running inside a Docker container with prebuilt libraries, This [Dockerimage](https://hub.docker.com/r/complat/complat-ubuntu-runner) built from the Dockerfile `chemotion_ELN/Dockerfile.focal.gitlab-ci` is used. The `WORKDIR` of the Docker image is set to `/home/gitlab-runner` therefore all `working-directory` attributes in the workflows are set to that and also the `HOME` environment variable inside the Docker container in the workflow. The default root user inside Docker containers in GH actions is changed to the `USER gitlab-runner` from the complat Docker image.
+Because of the large Ruby and npm libraries used in Chemotion ELN the jobs are running inside a Docker container with prebuilt libraries, This [Dockerimage](https://hub.docker.com/r/complat/complat-ubuntu-runner) built from the Dockerfile ` Chemotion ELN/Dockerfile.focal.gitlab-ci` is used. The `WORKDIR` of the Docker image is set to `/home/gitlab-runner` therefore all `working-directory` attributes in the workflows are set to that and also the `HOME` environment variable inside the Docker container in the workflow. The default root user inside Docker containers in GH actions is changed to the `USER gitlab-runner` from the complat Docker image.
 
-#### PostGres
+#### Postgres
 For the database a [PostGres container](https://docs.github.com/en/actions/guides/creating-postgresql-service-containers) is used. The databases and users must be extra created.
 :::caution Do not use 12 alpine version
-Do not use `image: postgres:12-alpine` in the ELN workflows. Otherwise there will be permission problems.  
+Do not use `image: postgres:12-alpine` in the Chemotion ELN workflows. Otherwise there will be permission problems.  
 Use `image: postgres` as a postgres service.
 :::
 
-## Common Errors
-### With GitHub Actions
+## Common errors
+### With github actions
 If some GitHub services are not working, may look at the [status page](https://www.githubstatus.com/).
 ### Random seed numbers
 The most common error for failing ruby unit and acceptance tests are caused by seed numbers. Just run the tests multiple times again, until a suitable seed number is found.
@@ -235,16 +235,16 @@ Reset the database and migrate again:
 bundle exec rake db:reset
 bundle exec db:migrate RAILS_ENV=test
 ```
-#### npm test
+#### Npm test
 In JavaScript unit tests:
 <div class="boxBorder">
 Error: Cannot find module '../extra/ElementStoreXlisteners'
 </div>
 One possible source for that can be an error in your PostGres set up. Check if databases etc. exist and are properly configured.
 
-### Acceptance Tests
+### Acceptance tests
 
-#### Memory (when using GitHub Actions)
+#### Memory (when using github actions)
 <div class="boxBorder">
 Compiling...
 Compilation failed:
@@ -264,7 +264,7 @@ Solved with setting a Node flag to increase memory size. Setting this flag as en
 ```sh
 --max_old_space_size=4096
 ```
-#### Welcome Message
+#### Welcome message
 <div class="boxBorder">
 No route matches [GET] "/welcome-message.md"
 </div>
