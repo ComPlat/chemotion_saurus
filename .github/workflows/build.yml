@@ -55,9 +55,7 @@ jobs:
           path: build
 
   deploy:
-    if: |
-      "!contains(github.event.commits[0].message, 'skip deploy')"
-      github.ref == 'refs/heads/master'
+    if: "!contains(github.event.commits[0].message, 'skip deploy')"
     runs-on: ubuntu-latest
     needs: build
     steps:
