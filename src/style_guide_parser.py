@@ -4,6 +4,9 @@ import sys
 
 from bs4 import BeautifulSoup
 
+# list of terms that are always capitalized or uppercased
+terms = frozenset(["Chemotion", "ELN", "API", "Visual Studio Code", "PostgreSQL", "GitHub"])
+
 def typos(text):
     """ replace typos with correct words
 
@@ -18,6 +21,24 @@ def typos(text):
         f.truncate()
         print("\033[92m CHECK TYPOS")
 
+def cap(title):
+    """write first word in title capitalized, the rest lowercased, except it is a term
+
+    Args:
+        title (string): title of a (sub)chapter
+
+    Returns:
+        cap_title: title with first word capitalized
+    """
+    title=title.strip().split()
+    cap_title=title[0].capitalize()
+    for t in title[1:]:
+        if t not in terms:
+            cap_title+=" "+t.lower()
+        elif t in terms:
+            cap_title+=" "+t
+    return cap_title
+
 def capitalize_first(f):
     """correct titles: capital letters only in first word
 
@@ -30,10 +51,11 @@ def capitalize_first(f):
             title = line.split('#')
             hashtags = re.search("[#]+",line).group(0)
             title =  re.split(hashtags, line)
-            text = text + hashtags+" "+title[1].strip().capitalize() + "\n"
+            text = text + hashtags+" "+cap(title[1])+ "\n"
         else:
             text = text + line
     if text:
+        print(text)
         f.seek(0)
         f.write(text)
         f.truncate()
@@ -116,19 +138,19 @@ for file in sys.argv[1:]:
 
 #for testing
 # if __name__ == "__main__":
-    # with open("docs/eln/test.mdx", "r+") as f:
-    #     f.seek(0)
-    #     lines = f.readlines()[:10]
-    #     kwargs = {}
-    #     slug = [l.split(":") for l in lines if (l.startswith("slug"))][0][1].strip()
-    #     id = [l.split(":") for l in lines if (l.startswith("id"))][0][1].strip()
-    #     kwargs["filename"]="test"
-    #     if id:
-    #         kwargs["id"]=id
-    #     if slug:
-    #         kwargs["slug"]=slug
-    #     kwargs["subdir"]="eln"
-    #     f.seek(0)
+#     with open("docs/eln/development/github_actions.mdx", "r+") as f:
+#         f.seek(0)
+#         lines = f.readlines()[:10]
+#         kwargs = {}
+#         slug = [l.split(":") for l in lines if (l.startswith("slug"))][0][1].strip()
+#         id = [l.split(":") for l in lines if (l.startswith("id"))][0][1].strip()
+#         kwargs["filename"]="test"
+#         if id:
+#             kwargs["id"]=id
+#         if slug:
+#             kwargs["slug"]=slug
+#         kwargs["subdir"]="eln"
+#         f.seek(0)
         # toc(f, **kwargs)
         # f.seek(0)
         # tables(f, **kwargs)

@@ -11,7 +11,7 @@ import { Btn } from '@site/docs/btn.js'
 
 There are three test classes for Chemotion ELN available: JavaScript (npm) and Ruby unit tests and acceptance (feature) tests.
 
-## Local testing for chemotion eln
+## Local testing for Chemotion ELN
 For locally testing Chemotion ELN on a developer system, change to the root directory of your Chemotion ELN code and type following commands:
 ### Javascript (npm) unit tests
 ```sh
@@ -32,7 +32,7 @@ When you have freshly installed Chemotion ELN, make sure to create a `welcome-me
 cp public/welcome-message-sample.md public/welcome-message.md
 ```
 
-## Remote testing with github actions
+## Remote testing with GitHub Actions
 GitHub Actions are the Continuous Integration and Deployment tool of GitHub. They are used for testing newly created code in development and activated on every push to the  Chemotion ELN GitHub repository](https://github.com/ComPlat/ Chemotion ELN). Every test class (JavaScript, Ruby and acceptance) has its own workflow.
 
 ### Skip tests
@@ -57,10 +57,10 @@ To view the status of the GH Actions (passing, failed or skipped), click on the 
 
 In the middle part are all workflow runs of a single workflow yml file listed. Click on the <b>`...`</b> button to <b>delete one workflow run</b>. Click on a single workflow to see the status (passing, failed or skipped) of the single jobs inside the workflow. Clicking on a job shows you the status of the single steps inside the job. In the steps view is a <Btn mixed={[faCog]} color={"secondary"}/> cog symbol in the upper right corner where you can get the <b> log files </b> of the corresponding job. In the job and steps view is also a button in the right upper corner to <b>`Re-run jobs`</b> and a <b>`...`</b> button  where you can <b>view the workflow yml file</b> or create a [status badge](#status-badge).
 
-## Developing ci with github actions
+## Developing CI with GitHub Actions
 The following text describes shortly how to develop and use GitHub Actions especially for the Chemotion ELN. For deeper and broader information look at the official [GitHub documentation for Actions](https://docs.github.com/en/actions).
 
-### Github actions in general
+### GitHub Actions in general
 
 #### Runners
 Runners are applications provided by GitHub to execute the workflows. You can install your own `self-hosted` runner on your system or use runners hosted on GitHub servers. GitHub-hosted runners are specified by the keyword for the OS they are running on: `ubuntu-latest`, `windows-latest`, `macos-latest` etc. For more informations see the GitHub documentation:
@@ -135,13 +135,13 @@ It is important to know that GitHub actions (for GitHub-hosted runners) automati
 The official documentation about running actions inside container can be a bit misleading because they suggest to not set the `USER`, because the default user in GH is root and the GH Actions `workspace` will not be available. Despite that you can handle that with setting the owners inside the Docker container in GH Actions again to the original `USER` defined in the Docker file with `chown` and avoid needing the GH `workspace` with self-scripted actions. 
 
 #### Tools
-##### Github cli (command line tool)
+##### Github CLI (command line tool)
 See here: https://github.blog/2021-04-15-work-with-github-actions-in-your-terminal-with-github-cli/
-##### Github api
+##### GitHub API
 GitHub offers two kind of APIs: REST and GraphQL. Here is the documentation for the [GitHub Actions REST API](https://docs.github.com/en/rest/reference/actions).
 ##### Tmate
 To create an constant open SSH session until (the workflow run or the SSH session is) closed, you can use a [tmate action](https://github.com/marketplace/actions/debugging-with-tmate). It is useful for inspecting the server where the actions are running, for example check versions and paths, but the workflows itself can not be rerun.
-##### Visual studio code
+##### Visual Studio Code
 One good extension for syntax checking in the workflow yml files is the extension [GitHub Actions](https://marketplace.visualstudio.com/items?itemName=cschleiden.vscode-github-actions).
 
 #### Variables
@@ -183,14 +183,14 @@ const debugConfig = {
 module.exports = merge(webpackConfig, debugConfig)
 ```
 
-### Github actions for chemotion eln
+### GitHub Actions for Chemotion ELN
 #### Workflow files
 Each of the three test classes (Ruby unit tests, JS unit test, acceptance tests) has its own workflow yml file, because that is the only way to make single test classes repeatable in GH Actions. There are just a few prescripted actions from GH Marketplace used, because of the special version settings for `nvm` and `Node` and because prescripted actions are not easy to handle in self-written Docker containers.
 
 #### Docker
 Because of the large Ruby and npm libraries used in Chemotion ELN the jobs are running inside a Docker container with prebuilt libraries, This [Dockerimage](https://hub.docker.com/r/complat/complat-ubuntu-runner) built from the Dockerfile ` Chemotion ELN/Dockerfile.focal.gitlab-ci` is used. The `WORKDIR` of the Docker image is set to `/home/gitlab-runner` therefore all `working-directory` attributes in the workflows are set to that and also the `HOME` environment variable inside the Docker container in the workflow. The default root user inside Docker containers in GH actions is changed to the `USER gitlab-runner` from the complat Docker image.
 
-#### Postgres
+#### PostgreSQL
 For the database a [PostGres container](https://docs.github.com/en/actions/guides/creating-postgresql-service-containers) is used. The databases and users must be extra created.
 :::caution Do not use 12 alpine version
 Do not use `image: postgres:12-alpine` in the Chemotion ELN workflows. Otherwise there will be permission problems.  
@@ -198,7 +198,7 @@ Use `image: postgres` as a postgres service.
 :::
 
 ## Common errors
-### With github actions
+### With GitHub Actions
 If some GitHub services are not working, may look at the [status page](https://www.githubstatus.com/).
 ### Random seed numbers
 The most common error for failing ruby unit and acceptance tests are caused by seed numbers. Just run the tests multiple times again, until a suitable seed number is found.
@@ -244,7 +244,7 @@ One possible source for that can be an error in your PostGres set up. Check if d
 
 ### Acceptance tests
 
-#### Memory (when using github actions)
+#### Memory (when using GitHub Actions)
 <div class="boxBorder">
 Compiling...
 Compilation failed:
