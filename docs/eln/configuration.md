@@ -223,5 +223,19 @@ settings the computed-properties can be done directly from the Admin-UI, and are
 
 Application will need to be restarted
 
+## Dynamic Welcome Email and Message(optional)
+
+This configuration is to send welcome email to new users on registration and display the same as welcome message at home page. The content is dynamic and can be modified and changed anytime.
+
+image goes here...
+
+The message is rendered via .md file and you can find the sample file [here.](https://github.com/ComPlat/chemotion_ELN/blob/development-5/public/welcome-message-sample.md)
+In order to configure this you just need to create a similar file as above in the same `public` directory named as `welcome-message.md`. You can copy the contain from the sample file and modify the message as you wish.
+
+:::note
+Restart of server may require if you are adding the file to already running instance.
+:::
+
+
 
 
