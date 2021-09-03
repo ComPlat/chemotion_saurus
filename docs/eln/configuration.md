@@ -227,7 +227,7 @@ Application will need to be restarted
 
 This configuration is to send welcome email to new users on registration and display the same as welcome message at home page. The content is dynamic and can be modified and changed anytime.
 
-image goes here...
+![adminui-welcomemessage](../../static/img/adminui-welcomemessage.png)
 
 The message is rendered via .md file and you can find the sample file [here.](https://github.com/ComPlat/chemotion_ELN/blob/development-5/public/welcome-message-sample.md)
 In order to configure this you just need to create a similar file as above in the same `public` directory named as `welcome-message.md`. You can copy the contain from the sample file and modify the message as you wish.
