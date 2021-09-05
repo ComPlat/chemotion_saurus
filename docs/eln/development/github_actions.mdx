@@ -50,7 +50,7 @@ skip acceptance
 skip all
 ``` 
 
-### User interface
+### User Interface
 Most of the interactions with GH actions can be done via the Web UI of GitHub.  
 ![Workflows](/img/gh_actions_ui.gif) 
 To view the status of the GH Actions (passing, failed or skipped), click on the Actions Tab in the repository. On the left side are all workflows per single yml file grouped. You can click on a button to view the single workflow runs of a workflow. The name of a button corresponds to the `name` attribute in the yml file. 
@@ -135,7 +135,7 @@ It is important to know that GitHub actions (for GitHub-hosted runners) automati
 The official documentation about running actions inside container can be a bit misleading because they suggest to not set the `USER`, because the default user in GH is root and the GH Actions `workspace` will not be available. Despite that you can handle that with setting the owners inside the Docker container in GH Actions again to the original `USER` defined in the Docker file with `chown` and avoid needing the GH `workspace` with self-scripted actions. 
 
 #### Tools
-##### Github CLI (command line tool)
+##### GitHub CLI (command line tool)
 See here: https://github.blog/2021-04-15-work-with-github-actions-in-your-terminal-with-github-cli/
 ##### GitHub API
 GitHub offers two kind of APIs: REST and GraphQL. Here is the documentation for the [GitHub Actions REST API](https://docs.github.com/en/rest/reference/actions).

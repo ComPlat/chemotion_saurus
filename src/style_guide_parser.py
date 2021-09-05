@@ -32,6 +32,8 @@ def cap(title):
     """
     title=title.strip().split()
     cap_title=title[0].capitalize()
+    # print(title)
+    # print(cap_title)
     for t in title[1:]:
         if t not in terms:
             cap_title+=" "+t.lower()
@@ -51,11 +53,14 @@ def capitalize_first(f):
             title = line.split('#')
             hashtags = re.search("[#]+",line).group(0)
             title =  re.split(hashtags, line)
-            text = text + hashtags+" "+cap(title[1])+ "\n"
+            #print(title)
+            if title[1].strip():
+                #print(title)
+                text = text + hashtags+" "+cap(title[1])+ "\n"
         else:
             text = text + line
+    #print(text)
     if text:
-        print(text)
         f.seek(0)
         f.write(text)
         f.truncate()
@@ -114,31 +119,32 @@ def toc(f, **kwargs):
             IndexError
 
 for file in sys.argv[1:]:
-    with open(file, "r+") as f:
-        dirs = file.split("/")
-        lines = f.readlines()[:10]
-        kwargs = {}
-        slug = [l.split(":") for l in lines if (l.startswith("slug"))][0][1].strip()
-        id = [l.split(":") for l in lines if (l.startswith("id"))][0][1].strip()
-        kwargs["filename"]=dirs[2].replace(".mdx", "").strip()
-        if id:
-            kwargs["id"]=id
-        if slug:
-            kwargs["slug"]=slug
-        kwargs["subdir"]=dirs[1]
-        f.seek(0)
-        typos(f)
-        f.seek(0)
-        capitalize_first(f)
-        f.seek(0)
-        tables(f, **kwargs)
-        f.seek(0)
-        toc(f, **kwargs)
-        f.seek(0)
+    print("SYS: ",f)
+    # with open(file, "r+") as f:
+    #     dirs = file.split("/")
+    #     lines = f.readlines()[:10]
+    #     kwargs = {}
+    #     slug = [l.split(":") for l in lines if (l.startswith("slug"))][0][1].strip()
+    #     id = [l.split(":") for l in lines if (l.startswith("id"))][0][1].strip()
+    #     kwargs["filename"]=dirs[2].replace(".mdx", "").strip()
+    #     if id:
+    #         kwargs["id"]=id
+    #     if slug:
+    #         kwargs["slug"]=slug
+    #     kwargs["subdir"]=dirs[1]
+    #     f.seek(0)
+    #     typos(f)
+    #     f.seek(0)
+    #     capitalize_first(f)
+    #     f.seek(0)
+    #     tables(f, **kwargs)
+    #     f.seek(0)
+    #     toc(f, **kwargs)
+    #     f.seek(0)
 
 #for testing
 # if __name__ == "__main__":
-#     with open("docs/eln/development/github_actions.mdx", "r+") as f:
+#     with open("docs/eln/problems.mdx", "r+") as f:
 #         f.seek(0)
 #         lines = f.readlines()[:10]
 #         kwargs = {}
