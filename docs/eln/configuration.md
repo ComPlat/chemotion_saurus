@@ -33,7 +33,7 @@ stored in <b>.env</b> file
 
 For sending users account email confirmation request, reset password instructions, or other notifications.
  
-Email configuration parameters are set as environment variables in the <b>.env</b> file. 
+Email configuration parameters are set as environment variables in the <b>.env</b> file.
 below a list of available parameters:
 
 ```sh

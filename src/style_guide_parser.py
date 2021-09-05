@@ -120,6 +120,7 @@ def toc(f, **kwargs):
 
 for file in sys.argv[1:]:
     print("SYS: ",file)
+    print("SYS: ",type(file))
     # with open(file, "r+") as f:
     #     dirs = file.split("/")
     #     lines = f.readlines()[:10]
