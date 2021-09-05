@@ -14,7 +14,8 @@ def typos(text):
         f ([type]): file object
     """
     text = f.read()
-    text = re.sub(r"([Cc]hemotion)?(.)?ELN", 'Chemotion ELN', text)
+    text = re.sub(r"([Cc]hemotion)?(.)?ELN", ' Chemotion ELN', text)
+    text = re.sub(r"(\s)*Chemotion", ' Chemotion', text)
     if text:
         f.seek(0)
         f.write(text)
@@ -142,7 +143,7 @@ for file in sys.argv[1:]:
 
 #for testing
 if __name__ == "__main__":
-    with open("docs/eln/generic_config.mdx", "r+") as f:
+    with open("docs/eln/firststeps.mdx", "r+") as f:
         f.seek(0)
         lines = f.readlines()[:10]
         kwargs = {}
