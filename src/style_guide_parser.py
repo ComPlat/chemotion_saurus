@@ -32,8 +32,6 @@ def cap(title):
     """
     title=title.strip().split()
     cap_title=title[0].capitalize()
-    # print(title)
-    # print(cap_title)
     for t in title[1:]:
         if t not in terms:
             cap_title+=" "+t.lower()
@@ -53,13 +51,10 @@ def capitalize_first(f):
             title = line.split('#')
             hashtags = re.search("[#]+",line).group(0)
             title =  re.split(hashtags, line)
-            #print(title)
             if title[1].strip():
-                #print(title)
                 text = text + hashtags+" "+cap(title[1])+ "\n"
         else:
             text = text + line
-    #print(text)
     if text:
         f.seek(0)
         f.write(text)
@@ -134,8 +129,8 @@ for file in sys.argv[1:]:
         f.seek(0)
         typos(f)
         f.seek(0)
-        capitalize_first(f)
-        f.seek(0)
+        # capitalize_first(f) --> skip, because of too much terms in titles
+        # f.seek(0)
         tables(f, **kwargs)
         f.seek(0)
         toc(f, **kwargs)
