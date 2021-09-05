@@ -119,7 +119,7 @@ def toc(f, **kwargs):
             IndexError
 
 for file in sys.argv[1:]:
-    print("SYS: ",f)
+    print("SYS: ",file)
     # with open(file, "r+") as f:
     #     dirs = file.split("/")
     #     lines = f.readlines()[:10]
