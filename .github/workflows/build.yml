@@ -33,13 +33,15 @@ jobs:
       - uses: fregante/setup-git-user@v1
 
       - name: Style Guide Parser
+        env:
+          COMMIT_MSG: ${{ github.event.commits[0].message }}
         if: "!contains(github.event.commits[0].message, 'skip style guide')"
         run: |
           export FILES="$(git diff-tree --no-commit-id --name-only -r --diff-filter=d ${{ github.sha }} | egrep '\.mdx')"
           if [ "$FILES" ]; then 
           echo $FILES
-          python3 -m pip install beautifulsoup4
-          python3 src/style_guide_parser.py {{$github.event.commits[0].message}} $FILES
+          python3 -m pip install beautifulsoup4 
+          python3 src/style_guide_parser.py $COMMIT_MSG $FILES
           git status
           git add $FILES
           git commit -m "automatic Style Guide changes"
