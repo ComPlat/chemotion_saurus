@@ -82,9 +82,13 @@ def tables(f, **kwargs):
             soup_th=soup.find_all("th")
             soup_td=soup.find_all("td")
             for s in soup_th+soup_td:
-                if s.string.strip()[0].istitle():
-                    #s.string.replace_with(s.string.lower())
-                    warning="\033[93m" + "WARNING: Table has capitalized letters. See Style Guide in the documentation."
+                try:
+                    if s.string.strip()[0].istitle():
+                        #s.string.replace_with(s.string.lower())
+                        warning="\033[93m" + "WARNING: Table has capitalized letters. Look at the Style Guide in the documentation."
+                except:
+                    e = sys.exc_info()[0]
+                    #print( "Error: %s" % e )
             # f_html.seek(0)
             # f_html.write(str(soup))
             # f_html.truncate()
@@ -137,25 +141,26 @@ for file in sys.argv[1:]:
         f.seek(0)
 
 #for testing
-# if __name__ == "__main__":
-#     with open("docs/eln/problems.mdx", "r+") as f:
-#         f.seek(0)
-#         lines = f.readlines()[:10]
-#         kwargs = {}
-#         slug = [l.split(":") for l in lines if (l.startswith("slug"))][0][1].strip()
-#         id = [l.split(":") for l in lines if (l.startswith("id"))][0][1].strip()
-#         kwargs["filename"]="test"
-#         if id:
-#             kwargs["id"]=id
-#         if slug:
-#             kwargs["slug"]=slug
-#         kwargs["subdir"]="eln"
-#         f.seek(0)
-        # toc(f, **kwargs)
-        # f.seek(0)
-        # tables(f, **kwargs)
-        # f.seek(0)
-        # typos(f)
-        # f.seek(0)
+if __name__ == "__main__":
+    with open("docs/eln/generic_config.mdx", "r+") as f:
+        f.seek(0)
+        lines = f.readlines()[:10]
+        kwargs = {}
+        slug = [l.split(":") for l in lines if (l.startswith("slug"))][0][1].strip()
+        id = [l.split(":") for l in lines if (l.startswith("id"))][0][1].strip()
+        kwargs["filename"]="test"
+        if id:
+            kwargs["id"]=id
+        if slug:
+            kwargs["slug"]=slug
+        kwargs["subdir"]="eln"
+        f.seek(0)
+        toc(f, **kwargs)
+        f.seek(0)
+        tables(f, **kwargs)
+        f.seek(0)
+        typos(f)
+        f.seek(0)
+
         # capitalize_first(f)
         # f.seek(0)
