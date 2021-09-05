@@ -119,29 +119,27 @@ def toc(f, **kwargs):
             IndexError
 
 for file in sys.argv[1:]:
-    print("SYS: ",file)
-    print("SYS: ",type(file))
-    # with open(file, "r+") as f:
-    #     dirs = file.split("/")
-    #     lines = f.readlines()[:10]
-    #     kwargs = {}
-    #     slug = [l.split(":") for l in lines if (l.startswith("slug"))][0][1].strip()
-    #     id = [l.split(":") for l in lines if (l.startswith("id"))][0][1].strip()
-    #     kwargs["filename"]=dirs[2].replace(".mdx", "").strip()
-    #     if id:
-    #         kwargs["id"]=id
-    #     if slug:
-    #         kwargs["slug"]=slug
-    #     kwargs["subdir"]=dirs[1]
-    #     f.seek(0)
-    #     typos(f)
-    #     f.seek(0)
-    #     capitalize_first(f)
-    #     f.seek(0)
-    #     tables(f, **kwargs)
-    #     f.seek(0)
-    #     toc(f, **kwargs)
-    #     f.seek(0)
+    with open(file, "r+") as f:
+        dirs = file.split("/")
+        lines = f.readlines()[:10]
+        kwargs = {}
+        slug = [l.split(":") for l in lines if (l.startswith("slug"))][0][1].strip()
+        id = [l.split(":") for l in lines if (l.startswith("id"))][0][1].strip()
+        kwargs["filename"]=dirs[2].replace(".mdx", "").strip()
+        if id:
+            kwargs["id"]=id
+        if slug:
+            kwargs["slug"]=slug
+        kwargs["subdir"]=dirs[1]
+        f.seek(0)
+        typos(f)
+        f.seek(0)
+        capitalize_first(f)
+        f.seek(0)
+        tables(f, **kwargs)
+        f.seek(0)
+        toc(f, **kwargs)
+        f.seek(0)
 
 #for testing
 # if __name__ == "__main__":

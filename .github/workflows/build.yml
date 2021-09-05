@@ -39,18 +39,14 @@ jobs:
         if: "!contains(github.event.commits[0].message, 'skip style guide')"
         run: |
           export FILES="$(git diff-tree --no-commit-id --name-only -r --diff-filter=d ${{ github.sha }} | egrep '\.mdx')"
-          #if [ "$FILES" ]; then 
-          export ARGS=($COMMIT_MSG $FILES)
-          echo $COMMIT_MSG
-          echo $FILES
-          echo $ARGS
+          if [ "$FILES" ]; then 
           python3 -m pip install beautifulsoup4 
-          python3 src/style_guide_parser.py $ARGS
-          # git status
-          # git add $FILES
-          # git commit -m "automatic Style Guide changes"
-          # git push
-          #fi
+          python3 src/style_guide_parser.py $FILES
+          git status
+          git add $FILES
+          git commit -m "automatic Style Guide changes"
+          git push
+          fi
 
       # - name: Upload build artifacts
       #   uses: actions/upload-artifact@v2

@@ -11,7 +11,7 @@ Several descriptions and images are derived from the above mentioned manuscript 
 Referring to the diverse origin of data in chemistry labs, we implemented three different procedures to allow the availability of data to the ELN server (Figure 1). The first procedure includes the transfer of data (preferably small data) by a mailing system which manages the capture of NMR data and additional information that is sent by mail to the email account of the ELN. A second procedure was designed for the transfer of data from a local server or computer with network connection to the ELN server. The last procedure was implemented for the transfer of data from devices without network access (due to safety standards, location issues or software-related issues). For the transfer of data from devices without network connectivity, we implemented a procedure which requires the manual collection of data (for example with a portable data storage e.g. an USB flash drive) and its transfer to the ELN via WinSCP running on a computer with network connection.
 
 ![concept_transfer_neu](/img/concept_transfer_neu.png)
-**Figure 1:** Overview of the three procedures to integrate research data from (analytical) devices to an ELN. The given analytical methods are chosen as examples to illustrate the procedure. They can be exchanged depending on the local infrastructure.
+<b>Figure 1:</b> Overview of the three procedures to integrate research data from (analytical) devices to an ELN. The given analytical methods are chosen as examples to illustrate the procedure. They can be exchanged depending on the local infrastructure.
 
 General requirements concern in general the device and ELN specific adaptations, therefore, the following documentation contains always aspects of ELN setting adaptation and device specific settings. 
 The ELN specific adjustments depend on the use of a mail-collector (used to collect data transferred by email to a mail-server) or a datacollector (used to collect data transferred to a server)  as a basic process for the desired data transfer. 
@@ -52,7 +52,7 @@ Additionally, the mailing procedure is very helpful if the information to be add
 ![data_mail](/img/data_mail.png)
 
 ![config_mail](/img/config_mail.png)
-**Figure 2:** Data collection via the MailCollector routine implemented exemplarily for Bruker NMR spectrometers and addi-tional information sent by email. Configuring the data transfer via the MailCollector.
+<b>Figure 2:</b> Data collection via the MailCollector routine implemented exemplarily for Bruker NMR spectrometers and addi-tional information sent by email. Configuring the data transfer via the MailCollector.
 
 
 ### DataCollectors for devices with LAN/WLAN
@@ -79,6 +79,6 @@ To allow the assignment of the data collected by the DataCollectors to a specifi
 ![config_manual](/img/config_manual.png)
 
 
-**Figure 3:** Data collection via DataCollectors (FileCollector and FolderCollector) as implemented for the devices GC (MS), LC (MS), Raman and mass spectrometer (general labeling as Device 1 to Device 4). Right: Device configuration for data transfer via additional file copies as described in detail in the following chapter 4. Workflow of the installation of a data transfer routine via a DataCollector.
+<b>Figure 3:</b> Data collection via DataCollectors (FileCollector and FolderCollector) as implemented for the devices GC (MS), LC (MS), Raman and mass spectrometer (general labeling as Device 1 to Device 4). Right: Device configuration for data transfer via additional file copies as described in detail in the following chapter 4. Workflow of the installation of a data transfer routine via a DataCollector.
 
 
