@@ -40,10 +40,11 @@ jobs:
         run: |
           export FILES="$(git diff-tree --no-commit-id --name-only -r --diff-filter=d ${{ github.sha }} | egrep '\.mdx')"
           #if [ "$FILES" ]; then 
+          export ARGS=($COMMIT_MSG $FILES)
           echo $COMMIT_MSG
           echo $FILES
           python3 -m pip install beautifulsoup4 
-          python3 src/style_guide_parser.py ($COMMIT_MSG $FILES)
+          python3 src/style_guide_parser.py $ARGS
           # git status
           # git add $FILES
           # git commit -m "automatic Style Guide changes"
