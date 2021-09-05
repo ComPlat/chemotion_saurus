@@ -43,6 +43,7 @@ jobs:
           export ARGS=($COMMIT_MSG $FILES)
           echo $COMMIT_MSG
           echo $FILES
+          echo $ARGS
           python3 -m pip install beautifulsoup4 
           python3 src/style_guide_parser.py $ARGS
           # git status
