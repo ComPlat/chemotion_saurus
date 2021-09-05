@@ -5,6 +5,8 @@ on:
   workflow_dispatch:
   push:
     branches: [ master ]
+env:
+  COMMIT_MSG: ${{ github.event.commits[0].message }}
 
 jobs:
   build:
@@ -34,9 +36,10 @@ jobs:
       - uses: fregante/setup-git-user@v1
 
       - name: Style Guide Parser
-        env:
-          COMMIT_MSG: ${{ github.event.commits[0].message }}
-        if: "!contains(github.event.commits[0].message, 'skip style guide')"
+        # env:
+        #   COMMIT_MSG: ${{ github.event.commits[0].message }}
+        if: "!contains($COMMIT_MSG, 'skip style guide')"
+        #if: "!contains(github.event.commits[0].message, 'skip style guide')"
         run: |
           export FILES="$(git diff-tree --no-commit-id --name-only -r --diff-filter=d ${{ github.sha }} | egrep '\.mdx')"
           if [ "$FILES" ]; then 

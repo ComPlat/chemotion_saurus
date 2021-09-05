@@ -55,7 +55,7 @@ Additionally, the mailing procedure is very helpful if the information to be add
 <b>Figure 2:</b> Data collection via the MailCollector routine implemented exemplarily for Bruker NMR spectrometers and addi-tional information sent by email. Configuring the data transfer via the MailCollector.
 
 
-### Datacollectors for devices with lan/wlan
+### Datacollectors for devices with LAN/WLAN
 There are two possibilities to enable an automatic transfer of data to the Chemotion ELN from devices that store data on a local computer or server. Either the data is actively transferred via a client application from the local comput-er/server to the Chemotion ELN server or the Chemotion ELN server directly accesses the device data storage folder. The first solution requires more efforts for the installation and maintenance of several client applications, therefore, we followed a central solution (Figure 3A) where both, the device computer and the Chemotion ELN server, have access to a common storage. Considering the availability of transfer software packages for the server and for the device computers, we focused on SFTP over NFS, CIFS/SAMBA, FTPS to securely transfer files. SFTP is relatively well supported and free third-party software can be found even for legacy operation systems (OS) such as windows XP. Though the latter OS supports mapping of the network drive, the obsolete and unsafe SMBv1 protocol cannot be accept-ed. Having such an OS in a network is nowadays a high security issue. These issues can be circumvented by entirely isolating the computer and device network and configuring a firewall exception for ssh communication with the external remote storage.   
 To allow the Chemotion ELN to access the data, four basic adaptions are implemented:   
 
