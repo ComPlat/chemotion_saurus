@@ -22,13 +22,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gems-
 
-      - name: Build
-        env:
-          ALGOLIA_SEARCH_API_KEY: ${{ secrets.ALGOLIA_SEARCH_API_KEY }}
-          INDEX_NAME: ${{ secrets.INDEX_NAME }}
-        run: |
-          npm i
-          npm run build --if-present
+      # - name: Build
+      #   env:
+      #     ALGOLIA_SEARCH_API_KEY: ${{ secrets.ALGOLIA_SEARCH_API_KEY }}
+      #     INDEX_NAME: ${{ secrets.INDEX_NAME }}
+      #   run: |
+      #     ls -la build
+      #     npm i
+      #     npm run build --if-present
           
       - uses: fregante/setup-git-user@v1
 
@@ -41,18 +42,18 @@ jobs:
           #if [ "$FILES" ]; then 
           echo $FILES
           python3 -m pip install beautifulsoup4 
-          python3 src/style_guide_parser.py $COMMIT_MSG $FILES
+          python3 src/style_guide_parser.py $($COMMIT_MSG) $FILES
           # git status
           # git add $FILES
           # git commit -m "automatic Style Guide changes"
           # git push
           #fi
 
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: public
-          path: build
+      # - name: Upload build artifacts
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: public
+      #     path: build
 
   deploy:
     if: "!contains(github.event.commits[0].message, 'skip deploy')"
