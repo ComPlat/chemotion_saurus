@@ -38,7 +38,7 @@ jobs:
       - name: Style Guide Parser
         # env:
         #   COMMIT_MSG: ${{ github.event.commits[0].message }}
-        if: "!contains($COMMIT_MSG, 'skip style guide')"
+        if: "!contains(${{COMMIT_MSG}}, 'skip style guide')"
         #if: "!contains(github.event.commits[0].message, 'skip style guide')"
         run: |
           export FILES="$(git diff-tree --no-commit-id --name-only -r --diff-filter=d ${{ github.sha }} | egrep '\.mdx')"
