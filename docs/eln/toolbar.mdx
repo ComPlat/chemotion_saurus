@@ -12,7 +12,7 @@ import { DownloadBtn } from '@site/docs/download_files.js'
 
 ![whole window](/img/screen.png) 
 
-The toolbar (or action bar) provides a variety of functions to control the ELN elements. Those functions include adding, copying, deleting, moving, filtering, importing and exporting.
+The toolbar (or action bar) provides a variety of functions to control the Chemotion ELN elements. Those functions include adding, copying, deleting, moving, filtering, importing and exporting.
 
 ## Filtering
 
@@ -60,7 +60,7 @@ This action can be performed by pressing <Btn mixed={[faMinusSquare]} color={"wa
 
 Shared collections are collections that can be created by users if they want to share their data with a specific person or a group, so <b>Sharing</b> will make the data available to that person or group.  
 
-Collections shared by the user appear as <b>My project with</b> owner/recipient in <b>My shared Collections</b> in the collections bar and can be sorted through collection management. An ELN user who receives information in the form of a shared collection from another ELN user cannot sort that shared collection.  
+Collections shared by the user appear as <b>My project with</b> owner/recipient in <b>My shared Collections</b> in the collections bar and can be sorted through collection management. An Chemotion ELN user who receives information in the form of a shared collection from another Chemotion ELN user cannot sort that shared collection.  
 
 An important feature of the shared collections that the user, whether a creator or a recipient of the shared collection, must be aware of: Changes to the shared collection can only be made to existing elements. When new elements are added within the original collection, this is not reflected in the shared collection. Only changes within existing elements are transferred to the shared collection. This is a significant difference from the synchronized collections.  
 
@@ -72,7 +72,7 @@ To share a collection, press <Btn mixed={[faShareAlt]} color={"info"}/>, this wi
 
 <img src={require('@site/static/img/sharing.png').default} width={"30px"} height={"30px"} alt={"Sharing"} />
 
-Collections that an ELN user has obtained as shared collections from another user are subject to a rights system, which is always defined by the original owner. According to these system, the recipient of the shared collection can perform certain actions on it. The original owner can optionally set a <b>Role</b> to the recipient. Each role corresponds to a default <b>Permission level</b>, and means that <b>Everything</b> is being shared when it comes to the detail level for samples, reactions, wellplates, and screens. The original owner can still change those <b>Permission level</b>s and detail levels, but in this case the <b>Role</b> already set will be removed. The following table shows the possible <b>Role</b>s with the corresponding <b>Permission level</b>s.
+Collections that an Chemotion ELN user has obtained as shared collections from another user are subject to a rights system, which is always defined by the original owner. According to these system, the recipient of the shared collection can perform certain actions on it. The original owner can optionally set a <b>Role</b> to the recipient. Each role corresponds to a default <b>Permission level</b>, and means that <b>Everything</b> is being shared when it comes to the detail level for samples, reactions, wellplates, and screens. The original owner can still change those <b>Permission level</b>s and detail levels, but in this case the <b>Role</b> already set will be removed. The following table shows the possible <b>Role</b>s with the corresponding <b>Permission level</b>s.
 
 | Role | Permission level | 
 |---|---| 
@@ -120,7 +120,7 @@ To export reactions, wellplates, or analyses, you can use <b>Export samples from
 ### Importind Data
 
 Samples can be imported easily using an excel template that contains Smiles-Strings. To enable the import into a collection, the desired target collection has to be selected. 
-Please see the following example which can be used as a template to import data to the ELN. The template file can be used as test file to check the functions of the ELN, for a specific import, please delete the current content.
+Please see the following example which can be used as a template to import data to the Chemotion ELN. The template file can be used as test file to check the functions of the Chemotion ELN, for a specific import, please delete the current content.
 
 <p><DownloadBtn text={"Download XLSX Template here "} files={['@site/static/files/template%20_sample_import.xlsx']}/><br></br>Please don't change the header of the template file. </p>
 
@@ -129,7 +129,7 @@ The columns "stereo_abs" and "stereo_rel" are predefined. Valid values are:
 stereo_abs: any, rac, meso, (S), (R), (Sp), (Rp), (Sa); 
 stereo_rel: any, syn, anti, p-geminal, p-ortho, p-meta, p-para, cis, trans, fac
 
-After downloading the XLSX Template you can import it in your ELN as shown below:
+After downloading the XLSX Template you can import it in your Chemotion ELN as shown below:
 ![Collection View](/img/import_samples_short.gif)
 
 :::caution Recommendation
