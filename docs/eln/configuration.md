@@ -27,13 +27,13 @@ ln -s  /var/www/chemotion_ELN/shared/config/user_props.yml /var/www/chemotion_EL
 
 ## Secret key 
 used for cookie encryption.
-stored in **.env** file
+stored in <b>.env</b> file
 
 ## Email-service (optional)
 
 For sending users account email confirmation request, reset password instructions, or other notifications.
  
-Email configuration parameters are set as environment variables in the **.env** file. 
+Email configuration parameters are set as environment variables in the <b>.env</b> file. 
 below a list of available parameters:
 
 ```sh

@@ -39,7 +39,7 @@ jobs:
           if [ "$FILES" ]; then 
           echo $FILES
           python3 -m pip install beautifulsoup4
-          python3 src/style_guide_parser.py github.event.commits[0].message $FILES
+          python3 src/style_guide_parser.py {{$github.event.commits[0].message}} $FILES
           git status
           git add $FILES
           git commit -m "automatic Style Guide changes"
