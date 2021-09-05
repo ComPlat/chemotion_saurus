@@ -37,14 +37,14 @@ Internal remark TO DO: Info to be added image of the sample frame and informatio
 
 ### Properties tab
 ![Sample properties](/img/sample_properties.png)
-The first tab (in the standard Chemotion ELN configuration) that allows the description of samples is the **Properties** tab.  In the **Molecule** field, the user can pick the preferred naming convention for a molecule or write a new one. Users can also specify the absolute and the relative configuration of the molecule in the fields **Stereo Abs**, **Stereo Rel** respectively from drop-downs. The descriptors for sterro information are recommended if the chemoinformatics tools of the Chemotion ELN (such as structure editors and toolkits) don't support full identification of the stereochemistry. The information on the given stereoconfiguration is added to the information that is used to structure molecules in the molecules' list. It allows e.g. the differentiation of different paracyclophane isomers or other planar ciral molecules which are usually hard to distinguish by chemoinformatic toolkits. 
+The first tab (in the standard  Chemotion ELN configuration) that allows the description of samples is the **Properties** tab.  In the **Molecule** field, the user can pick the preferred naming convention for a molecule or write a new one. Users can also specify the absolute and the relative configuration of the molecule in the fields **Stereo Abs**, **Stereo Rel** respectively from drop-downs. The descriptors for sterro information are recommended if the chemoinformatics tools of the  Chemotion ELN (such as structure editors and toolkits) don't support full identification of the stereochemistry. The information on the given stereoconfiguration is added to the information that is used to structure molecules in the molecules' list. It allows e.g. the differentiation of different paracyclophane isomers or other planar ciral molecules which are usually hard to distinguish by chemoinformatic toolkits. 
 **Decoupled** mode: Selecting decoupled in the properties tab allows to draw structures in the embedded structure editors without the generation of identifiers and calculation of molecular mass. The user is then asked to add the molecular mass and the formula of the molecule to an additionally appearing interface. This gives the option to use the samples in the reaction table even though the automatic mass calculation is disabled. The function can be used for all types of molecules for that: 
 - the structure editors fail (e.g. large structures such as macromolecules)
 - contain undefined parts which cannot be explicitly drawn (such as polymers)
 - materials that contain compound mixtures 
 
 :::info
-The decoupled mode can help to add undefined strucutres to the Chemotion ELN. Please add "undefined structure" (default) as **Sum formula** if the structure is not known. 
+The decoupled mode can help to add undefined strucutres to the  Chemotion ELN. Please add "undefined structure" (default) as **Sum formula** if the structure is not known. 
 :::
 
 **decoupled mode properties**
@@ -90,7 +90,7 @@ The information required for chemical use is supplemented by **Chemical identifi
 ### Analyses tab
 ![Analyses](/img/analyses_tab.gif)
 
-To add analytics information to the Chemotion ELN, the **Analyses** tab is available. Here the evaluation of the performed analytical experiments can be entered  (field **Content**) and additional files can be uploaded to store the data and its documents (see datasets). The **Content** field supports the check of the entered data for types of data (data types are confirmed by the ontology terms). For 1H NMR and 13C NMR, the **Content** field is checked for the given amount of 1H NMR or 13C NMR signals mentioned and compares the given number with the number of signals expected by the amount of H- or C-atoms. 
+To add analytics information to the  Chemotion ELN, the **Analyses** tab is available. Here the evaluation of the performed analytical experiments can be entered  (field **Content**) and additional files can be uploaded to store the data and its documents (see datasets). The **Content** field supports the check of the entered data for types of data (data types are confirmed by the ontology terms). For 1H NMR and 13C NMR, the **Content** field is checked for the given amount of 1H NMR or 13C NMR signals mentioned and compares the given number with the number of signals expected by the amount of H- or C-atoms. 
 
 :::info
 The content of 1H NMR and 13C NMR analyses id checked by screening the information on atoms given in brackets, e.g. 1.11 (s, 3H) -> 3Hs counted. Therefore it is important to add (which is rather unusual) all carbons to the **content**, e.g. 129.3 (s, 2C). Also, id signals are hidden or too broad to be detected or not detected due to H/D exchange, you may indicate this by adding a sentence as explanation: e.g. Missing OH-signal due to H/D exchange (1H). The information in brackets is also counted.  
@@ -111,18 +111,18 @@ If the **Content** of the analysis fits to the expected data (calculated from th
 Reference: https://dx.doi.org/10.14272/HGMIATOQJCNPOO-UHFFFAOYSA-N.1
 
 
-You can create as many analyses for a sample as you need with the button <Btn mixed={[faPlus, "Add analysis"]} color={"success"}/>, and for each analysis you can upload as many datasets (files) as you want with the button <Btn mixed={[faPlus]} color={"success"}/>. Please pay attention to the structure of the data storage and take care of the input fields, this will allow you to search your results quickly. Any information that you define through the created fields is available to the Chemotion ELN for processing and this data can be displayed or summarized in lists.  
+You can create as many analyses for a sample as you need with the button <Btn mixed={[faPlus, "Add analysis"]} color={"success"}/>, and for each analysis you can upload as many datasets (files) as you want with the button <Btn mixed={[faPlus]} color={"success"}/>. Please pay attention to the structure of the data storage and take care of the input fields, this will allow you to search your results quickly. Any information that you define through the created fields is available to the  Chemotion ELN for processing and this data can be displayed or summarized in lists.  
 
 The uploaded records can be supplemented with information in an input modal available for each data file. The input modal opens either when you create a new data record, or when you click on the link generated by the name of existing data records. 
 
 :::info
-The Chemotion ELN uses **analyses**, **datasets** and **attachments** to structure analytical data. Please ensure that you use it in the intended manner (see description below)
+The  Chemotion ELN uses **analyses**, **datasets** and **attachments** to structure analytical data. Please ensure that you use it in the intended manner (see description below)
 :::
 
-**Intended structure of added analytical data to the Chemotion ELN**
+**Intended structure of added analytical data to the  Chemotion ELN**
 An **Analysis** is ceated for every new measurements type that is done. 
 A **Dataset** is created for every different measurement within a certain measurement type. Example: User measures 1H NMR data (one analysis tab created). After doing an experiment with 16 scans, the measurment has to be repeated with 64 scans. Both measurements/experiments are stored as different datasets in one analysis tab. Also 1H NMR experiments in different solvents should be added as additional dataset to one analysis.
-**Attachments** are defined as data files that are created for each dataset. There can be different data files that are attached as attachment to a dataset as probably proprietary data files come along with open or readable data files and raw data are provided and stored along with edited data files. The Chemotion ELN processes support also different file conersion procedures. They result also in an increased number of stored attachements. One example is the creation of image files to support the preview of data. Images can be one additional attachment to an existing dataset. 
+**Attachments** are defined as data files that are created for each dataset. There can be different data files that are attached as attachment to a dataset as probably proprietary data files come along with open or readable data files and raw data are provided and stored along with edited data files. The  Chemotion ELN processes support also different file conersion procedures. They result also in an increased number of stored attachements. One example is the creation of image files to support the preview of data. Images can be one additional attachment to an existing dataset. 
 
 Analyses that you have entered are shown in short form e.g. in the sample list, and you can find out at a glance which data you have entered. The illustration shows the sample list with symbols such as <Btn mixed={[faChartBar, " 1 ?"]} color={"secondary"}/> or <Btn mixed={[faChartBar, " 1", faCheck]} color={"secondary"}/>. The first case means that you have set an analysis for the analyzed sample, but its **Status** is so far **Unconfirmed**. The second symbol informs you again about an existing analysis whose **Status** has already been **Confirmed**, and therefore, it is classified by you as correct. The number given always refers to the number of analyses, not to the number of uploaded data files. If analysis have no status, they are not visible in the samples' list.
 
@@ -132,7 +132,7 @@ The analysis methods, from which you can choose, are given by the drop-down menu
 Choosing an ontology term is required to enable the transfer of data to the chemotion repository. Without added the chemical methods ontology, the transfer won't be successful
 :::
 
-You can delete your datasets from your analysis by clicking <Btn mixed={[faTrashAlt]} color={"danger"}/>, or install it as a zip file with <Btn mixed={[faDownload]} color={"info"}/>. You shouldn't forget one important property of the Chemotion ELN: the uploaded data files and entered information are not saved until you confirm that with <Btn mixed={["Save"]} color={"warning"}/> or <Btn mixed={[faSave]} color={"warning"}/>. This point if overlooked can lead to the loss of the data you have set. 
+You can delete your datasets from your analysis by clicking <Btn mixed={[faTrashAlt]} color={"danger"}/>, or install it as a zip file with <Btn mixed={[faDownload]} color={"info"}/>. You shouldn't forget one important property of the  Chemotion ELN: the uploaded data files and entered information are not saved until you confirm that with <Btn mixed={["Save"]} color={"warning"}/> or <Btn mixed={[faSave]} color={"warning"}/>. This point if overlooked can lead to the loss of the data you have set. 
 
 
 ### Literature tab
@@ -163,7 +163,7 @@ This tab is not supported at the moment as it is still being developed.
 ### QC & curation tab
 ![QC & curation tab](/img/qc_tab.png)
 
-The QC and curation tab is part of the beta-testing of the Chemotion ELN. You may use it to gain additional information on your data. The QC and curation tool uses data from the **Content** of the **analysis** (checks the calculated 1H NMR and 13C NMR data as well as mass data as described above for **Content**). The feature uses also information directly from the data files that were aded to the **Attachments** of the different **Analyses** and extracts information that is compared to either simulated data (1H NMR and 13C NMR data) and evaluations done by machine learning tools  (IR data). Requirement for running the QC and curation tool is the definition of the ontology to define the type of the measurement that is used for the analysis. Another part of the QC and curation checke is the check for availability of open file formats. The tool checks the attachments for file types JCAMP, MzML, MzXML (either added by the user or created by the Chemotion ELN processing functions).
+The QC and curation tab is part of the beta-testing of the  Chemotion ELN. You may use it to gain additional information on your data. The QC and curation tool uses data from the **Content** of the **analysis** (checks the calculated 1H NMR and 13C NMR data as well as mass data as described above for **Content**). The feature uses also information directly from the data files that were aded to the **Attachments** of the different **Analyses** and extracts information that is compared to either simulated data (1H NMR and 13C NMR data) and evaluations done by machine learning tools  (IR data). Requirement for running the QC and curation tool is the definition of the ontology to define the type of the measurement that is used for the analysis. Another part of the QC and curation checke is the check for availability of open file formats. The tool checks the attachments for file types JCAMP, MzML, MzXML (either added by the user or created by the  Chemotion ELN processing functions).
 A detailed description of the feature will follow.
 
 ## Details modal for reactions
@@ -290,17 +290,17 @@ the **List** tab can be used to organize the samples collected in the wellplate.
 
 ### Analyses tab
 
-You can create as many analyses for a sample as you need with the button <Btn mixed={[faPlus, "Add analysis"]} color={"success"}/>, and for each analysis you can upload as many datasets (files) as you want with the button <Btn mixed={[faPlus]} color={"success"}/>. Please pay attention to the structure of the data storage and take care of the input fields, this will allow you to search your results quickly. Any information that you define through the created fields is available to the Chemotion ELN for processing and this data can be displayed or summarized in lists.   
+You can create as many analyses for a sample as you need with the button <Btn mixed={[faPlus, "Add analysis"]} color={"success"}/>, and for each analysis you can upload as many datasets (files) as you want with the button <Btn mixed={[faPlus]} color={"success"}/>. Please pay attention to the structure of the data storage and take care of the input fields, this will allow you to search your results quickly. Any information that you define through the created fields is available to the  Chemotion ELN for processing and this data can be displayed or summarized in lists.   
 
 The uploaded records can be supplemented with information in an input modal available for each data file. The input modal opens either when you create a new data record, or when you click on the link generated by the name of existing data records.  
 
- The analysis methods, from which you can choose, are given by the drop-down menu **Type (Chemical Methods Ontology)**. You shouldn't forget one important property of the Chemotion ELN: the uploaded data files and entered information are not saved until you confirm that with <Btn mixed={["Save"]} color={"warning"}/> or <Btn mixed={[faSave]} color={"warning"}/>. This point if overlooked can lead to the loss of the data you have set. 
+ The analysis methods, from which you can choose, are given by the drop-down menu **Type (Chemical Methods Ontology)**. You shouldn't forget one important property of the  Chemotion ELN: the uploaded data files and entered information are not saved until you confirm that with <Btn mixed={["Save"]} color={"warning"}/> or <Btn mixed={[faSave]} color={"warning"}/>. This point if overlooked can lead to the loss of the data you have set. 
 
 You can delete your datasets from within your analysis by clicking <Btn mixed={[faTrashAlt]} color={"danger"}/>, or install it as a zip file with <Btn mixed={[faDownload]} color={"info"}/> 
 
 ## Detail modal for screens
 
-In the future, it should also be possible to use the Chemotion ELN for the documentation of biological experiments. The structure of this biological work should be possible through the element **Screen**. All descriptions and procedures of biological work for a planned experiment are recorded on a screen while the wellplates define the localization of the substances and materials used. Wellplates can therefore also be assigned to the individual screens in order to make their affiliation clear. 
+In the future, it should also be possible to use the  Chemotion ELN for the documentation of biological experiments. The structure of this biological work should be possible through the element **Screen**. All descriptions and procedures of biological work for a planned experiment are recorded on a screen while the wellplates define the localization of the substances and materials used. Wellplates can therefore also be assigned to the individual screens in order to make their affiliation clear. 
 
 So far, only a rudimentary structure for entering the screens has been programmed. The further development is an important task within the project in the coming months. The most important data of a biological study can be saved by entering free text in the **Name**, **Collaborator**, **Requirements**, **Conditions**, **Result** and **Description** fields. The allocation of the wellplates required for the examination can be done via drag & drop directly under the heading **Wellplates**. The selected wellplates are added and are directly available through a link. 
 
