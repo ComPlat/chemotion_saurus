@@ -223,7 +223,7 @@ settings the computed-properties can be done directly from the Admin-UI, and are
 
 Application will need to be restarted
 
-## Dynamic Welcome Email and Message(optional)
+## Dynamic Welcome Email and Message (optional)
 
 :::caution
 This feature is still in Beta version.
