@@ -225,6 +225,10 @@ Application will need to be restarted
 
 ## Dynamic Welcome Email and Message(optional)
 
+:::caution
+This feature is still in Beta version.
+:::
+
 This configuration enables sending a welcome message as an email to the new users upon registration. It also displays the same content as a welcome message at the home page. The content is dynamic and can be modified and updated anytime.
 
 ![adminui-welcomemessage](../../static/img/adminui-welcomemessage.PNG)
