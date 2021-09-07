@@ -191,7 +191,7 @@ Each of the three test classes (Ruby unit tests, JS unit test, acceptance tests)
 Because of the large Ruby and npm libraries used in Chemotion ELN the jobs are running inside a Docker container with prebuilt libraries, This [Dockerimage](https://hub.docker.com/r/complat/complat-ubuntu-runner) built from the Dockerfile ` Chemotion ELN/Dockerfile.focal.gitlab-ci` is used. The `WORKDIR` of the Docker image is set to `/home/gitlab-runner` therefore all `working-directory` attributes in the workflows are set to that and also the `HOME` environment variable inside the Docker container in the workflow. The default root user inside Docker containers in GH actions is changed to the `USER gitlab-runner` from the complat Docker image.
 
 #### PostgreSQL
-For the database a [PostGres container](https://docs.github.com/en/actions/guides/creating-postgresql-service-containers) is used. The databases and users must be extra created.
+For the database a [PostgreSQL container](https://docs.github.com/en/actions/guides/creating-postgresql-service-containers) is used. The databases and users must be extra created.
 :::caution Do not use 12 alpine version
 Do not use `image: postgres:12-alpine` in the Chemotion ELN workflows. Otherwise there will be permission problems.  
 Use `image: postgres` as a postgres service.

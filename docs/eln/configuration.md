@@ -19,7 +19,7 @@ vim config/user_props.yml
 # restart the application (assuming Passenger is being used)
 touch tmp/restart.txt
 
-# keep the configuration for future ELN updates (assuming Capistrano is used)
+# keep the configuration for future Chemotion ELN updates (assuming Capistrano is used)
 mv config/user_props.yml /var/www/chemotion_ELN/shared/config/user_props.yml
 ln -s  /var/www/chemotion_ELN/shared/config/user_props.yml /var/www/chemotion_ELN/current/config/user_props.yml
 ```
@@ -37,7 +37,7 @@ Email configuration parameters are set as environment variables in the <b>.env</
 below a list of available parameters:
 
 ```sh
-# default url of your ELN for http links in emails:
+# default url of your Chemotion ELN for http links in emails:
 SMTP_HOST='sld.tld' 
 # senders email:
 DEVISE_SENDER='no-reply@sld.tld' 
@@ -66,7 +66,7 @@ See [rails docs](https://guides.rubyonrails.org/action_mailer_basics.html#action
 
 ## File collector 
 
-This is an optional service to collect data files and distribute them to the ELN inbox of the respective users.
+This is an optional service to collect data files and distribute them to the Chemotion ELN inbox of the respective users.
 
 (see the [devices overview](devices) or [doi: 10.1016/j.acax.2019.100007 ](https://doi.org/10.1016/j.acax.2019.100007 ))
 
@@ -76,12 +76,12 @@ Two options are available:
 
 ### Email-attachement collection 
 
-The ELN-app should be given access to an email account in which it will regularly check for incoming emails and collect the attachments.
-The attachments are then distributed to ELN user by matching the additional addressee present in the __To:__ or __CC:__ fied of the email. The sender's email address should also one of an ELN-registered device. 
+The Chemotion ELN-app should be given access to an email account in which it will regularly check for incoming emails and collect the attachments.
+The attachments are then distributed to Chemotion ELN user by matching the additional addressee present in the __To:__ or __CC:__ fied of the email. The sender's email address should also one of an Chemotion ELN-registered device. 
 
 :::danger 
 All new incoming emails are processed and discarded. 
-If the sender and other addresssees are unknown to the ELN (emails registered to ELN accounts), then the email will be directly deleted.
+If the sender and other addresssees are unknown to the Chemotion ELN (emails registered to Chemotion ELN accounts), then the email will be directly deleted.
 :::
 
 
@@ -117,7 +117,7 @@ production:
     - :name: 'filewatcherlocal'
       :every: 2 # minutes
 
-  ## ELN email account
+  ## Chemotion ELN email account
   :mailcollector:
     :server: 'imap.server.de'
     :mail_address: "service@mail"
@@ -173,7 +173,7 @@ vim config/spectra.yml
 # restart the application (assuming Passenger is being used)
 touch tmp/restart.txt
 
-# keep the configuration for future ELN updates (assuming Capistrano is used)
+# keep the configuration for future Chemotion ELN updates (assuming Capistrano is used)
 mv config/spectra.yml /var/www/chemotion_ELN/shared/config/spectra.yml
 ln -s  /var/www/chemotion_ELN/shared/config/spectra.yml /var/www/chemotion_ELN/current/config/spectra.yml
 ```
@@ -208,7 +208,7 @@ vim config/editors.yml
 # restart the application (assuming Passenger is being used)
 touch tmp/restart.txt
 
-# keep the configuration for future ELN updates (assuming Capistrano is used)
+# keep the configuration for future Chemotion ELN updates (assuming Capistrano is used)
 mv config/editors.yml /var/www/chemotion_ELN/shared/config/editors.yml
 ln -s  /var/www/chemotion_ELN/shared/config/editors.yml /var/www/chemotion_ELN/current/config/editors.yml
 ```
@@ -239,7 +239,3 @@ In order to configure this, you just need to create a similar file as above in t
 :::note
 Restarting of server might be required if you are adding the file to an already running instance.
 :::
-
-
-
-

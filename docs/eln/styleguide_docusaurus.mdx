@@ -8,8 +8,9 @@ slug: styleguide_docusaurus
 # Images
 * If you're adding an image to illustrate a paragraph, place the image after the corresponding paragraph.
 
-# Naming
-* Refer to the Chemotion Electronic Lab Notebook as ` Chemotion ELN`.
+# Terms
+* Refer to the Chemotion Electronic Lab Notebook as `Chemotion ELN`.
+* The Chemotion spectra editor for analytical data is `ChemSpectra`.
 
 # Titles
 * Capitalize only the first word of a title.
@@ -20,8 +21,6 @@ slug: styleguide_docusaurus
 # Automatic style checking
 By every push to the chemotion_saurus repository an automatic style guide checking is running. Naming typos are fixed within an automatic push to the repository, after the initial push from the user and will be deployed within the next push from a user. If tables contain uppercased words or the commited file is missing in the TOC, warning or error messages are printed in the `Style Guide Parser` step in the [GitHub Actions](https://github.com/ComPlat/chemotion_saurus/actions).  
 Style checking can be skipped with the command `skip style guide` in the commit message.
-
-
-
-
-
+:::danger Caution
+The Style Guide Parser works best for natural language text like in the chemistry manual of this documentaiton. It is recommended to skip the Stlye Guide Parser (`skip style guide` in the commit message) if you are using the [terms](#terms) with an extra spelling, e. g. in paths or unix comamnds like "cd ~/chemotion_ELN", like in the developer section of this documentation. 
+:::
