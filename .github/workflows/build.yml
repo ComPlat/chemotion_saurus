@@ -39,12 +39,13 @@ jobs:
           export FILES="$(git diff-tree --no-commit-id --name-only -r --diff-filter=d ${{ github.sha }} | egrep '\.mdx')"
           if [ "$FILES" ]; then 
           echo $FILES
-          python3 -m pip install beautifulsoup4 
+          python3 -m pip install beautifulsoup4  > /dev/null
           python3 src/style_guide_parser.py $FILES
           git status
           git add $FILES
           git commit -m "automatic Style Guide changes"
           git push
+          #TODO deploy
           fi
 
       - name: Upload build artifacts
