@@ -7,52 +7,53 @@ from bs4 import BeautifulSoup
 # list of terms that are always capitalized or uppercased
 terms = frozenset(["Chemotion", "ELN", "API", "Visual Studio Code", "PostgreSQL", "GitHub"])
 
+# do not correct lines, that starts with these words
+exclude_lines = frozenset(["---", "id:", "slug:", "import"])
+
 def typos(f):
     """ replace typos with correct words
-    except lines with URIs because of wrong replacemtns in URIs
-    TODO not in metadatas
+    except lines with URIs because of wrong replacements in URIs
     Args:
         f ([type]): file object
     """
     text = ""
+    # pattern for not replacing terms
     pattern_uri = re.compile(r"(\]\(){1}(\S)*") # match ]( for markdown links
     pattern_url = re.compile(r"(https:\/\/|http:\/\/|www.)(\S)*")
     pattern_path = re.compile(r"[/\\](.)*[/\\](\S)*")
     pattern_url_title = re.compile(r"({#)(\S)*(})") # {#eln-in-docker}
-    pattern_eln = re.compile(r"(Chemotion)?(.)?ELN", re.IGNORECASE)
     pattern_mail = re.compile(r"(\S)+@(\S)+", re.IGNORECASE)
-    #pattern_chem_spectra = re.compile(r"(Chem)?(.)?spectra", re.IGNORECASE) # TODO
+    # pattern terms
+    pattern_eln = re.compile(r"(Chemotion)?(.)?ELN", re.IGNORECASE)
+    pattern_chem_spectra = re.compile(r"Chem(.)?Spectra", re.IGNORECASE)
+
     for line in f.readlines():
-        uris = re.finditer(pattern_uri, line)
-        urls = re.finditer(pattern_url, line)
-        paths = re.finditer(pattern_path, line)
-        url_titles = re.finditer(pattern_url_title, line)
-        mails = re.finditer(pattern_mail, line)
-        #elns = re.finditer(pattern_eln, line)
-        if uris:
-            uri_matches=[match.group(0) for match in uris]
-        if urls:
-            url_matches=[match.group(0) for match in urls]
-        if paths:
-            path_matches=[match.group(0) for match in paths]
-        if url_titles:
-            url_titles_matches=[match.group(0) for match in url_titles]
-        if mails:
-            mail_matches = [match.group(0) for match in mails]
-        # if elns:
-        #     eln_matches=[match.group(0) for match in elns]
-        # else:
-        #     eln_matches=[]
-        all_uris = uri_matches+url_matches+path_matches+url_titles_matches+mail_matches
-        if all_uris:
-            line = line
-        else:
-            line = re.sub(pattern_eln, 'Chemotion ELN', line)
-            line = re.sub(r"(\s)*Chemotion", ' Chemotion', line)
-            #line = re.sub(pattern_chem_spectra, 'ChemSpectra', line) TODO
-        text = text + line
+        if line.split():
+            if line.split()[0] not in exclude_lines: 
+                uris = re.finditer(pattern_uri, line)
+                urls = re.finditer(pattern_url, line)
+                paths = re.finditer(pattern_path, line)
+                url_titles = re.finditer(pattern_url_title, line)
+                mails = re.finditer(pattern_mail, line)
+                if uris:
+                    uri_matches=[match.group(0) for match in uris]
+                if urls:
+                    url_matches=[match.group(0) for match in urls]
+                if paths:
+                    path_matches=[match.group(0) for match in paths]
+                if url_titles:
+                    url_titles_matches=[match.group(0) for match in url_titles]
+                if mails:
+                    mail_matches = [match.group(0) for match in mails]
+                all_uris = uri_matches+url_matches+path_matches+url_titles_matches+mail_matches
+                if all_uris:
+                    line = line
+                else:
+                    line = re.sub(pattern_eln, 'Chemotion ELN', line)
+                    line = re.sub(r"(\s)*Chemotion", ' Chemotion', line)
+                    line = re.sub(pattern_chem_spectra, 'ChemSpectra', line)
+        text = text + line # always add corrected or not corrected line to text
     if text:
-        # print(text)
         f.seek(0)
         f.write(text)
         f.truncate()
@@ -199,6 +200,5 @@ for file in sys.argv[1:]:
 #         f.seek(0)
 #         typos(f)
 #         f.seek(0)
-
         # capitalize_first(f)
         # f.seek(0)
