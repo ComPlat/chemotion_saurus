@@ -35,6 +35,7 @@ jobs:
 
       - name: Style Guide Parser
         if: "!contains(github.event.commits[0].message, 'skip style guide')"
+        continue-on-error: true
         run: |
           export FILES="$(git diff-tree --no-commit-id --name-only -r --diff-filter=d ${{ github.sha }} | egrep '\.mdx')"
           if [ "$FILES" ]; then 
