@@ -30,3 +30,10 @@ There are also an [Linting extensions for Visual Studio Code](#visual-studio-cod
 
 ### Vim
 Check https://github.com/dense-analysis/ale.
+
+## Webpack 
+### Debug 
+The webpack configurations can be printed out to the node console via:
+```sh
+RAILS_ENV=test node -e 'console.dir(require("config/webpack/test"), { depth: null })'
+```

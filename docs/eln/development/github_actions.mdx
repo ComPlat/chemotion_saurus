@@ -49,7 +49,10 @@ skip acceptance
 ```sh
 skip all
 ``` 
-
+In the file with the acceptance tests is some linting included. Linting can be skipped with this command in the commit message:
+```sh 
+skip linting 
+```
 ### User Interface
 Most of the interactions with GH actions can be done via the Web UI of GitHub.  
 ![Workflows](/img/gh_actions_ui.gif) 
@@ -122,6 +125,19 @@ jobs:
 #### Steps and actions
 Steps are sequences of actions. Actions are the smallest unit in GitHub Continuous Integration. Here you can place the commands to execute your tests, e. g. `npm test`. You can script your own actions or use prescripted actions from [GitHub Marketplace](https://github.com/marketplace?type=actions). Because of their sequence character actions inside steps depend on each other and can not run in parallel.
 
+#### Workspace
+GH by default creates a workspaces to run actions inside of it. The path of the workspace can be read via `${{github.workspace}}`. You must pay attention on your workspace path when using Docker containers with a `WORKDIR`. See [Docker chapter](#docker). 
+:::caution Recommendation
+When using some actions from the [GitHub Marketplace](https://github.com/marketplace?type=actions) e. g. the `checkout` action - the workspace is flushed before the action. So make sure to run every other commands after that action or replace the action with a self-scripted code. For example if you want to replace the `checkout` action use `git clone ...`.
+:::
+
+#### Variables
+GH offers different ways and levels to save variables: 
+- When you have the appropriate permissions you can save environment variables as so called `secrets` in your GH repository under `Settings/Secrets`. This has the advantage, that you can use them in different workflows or when set on organization level accross multiple repositories. Call them  with `${{ secrets.XXX }}`.
+- You can create environment variables inside a workflow file with the `env` keyoword on workflow, job or step level. Call them with `${{ env.XXX }}`. There are some [default environment variables](https://docs.github.com/en/actions/reference/environment-variables#default-environment-variables) set in GH.
+- On job level you can create a [`strategy.matrix`](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix). Call variables from that with `${{ matrix.XXX }}`
+- On step level you can create normal shell variables. Call them with `$XXX`.
+
 #### Status badge
 A status badge per workflow can also be added to the `README` file. For quickly getting the Markdown code for a status badge go to the Actions tab on the GitHub repository, click on the workflow, click on the dots on the right upper corner and click on `Create status badge`.
 
@@ -144,45 +160,47 @@ To create an constant open SSH session until (the workflow run or the SSH sessio
 ##### Visual Studio Code
 One good extension for syntax checking in the workflow yml files is the extension [GitHub Actions](https://marketplace.visualstudio.com/items?itemName=cschleiden.vscode-github-actions).
 
-#### Variables
-GH offers different ways and levels to save variables: 
-- When you have the appropriate permissions you can save environment variables as so called `secrets` in your GH repository under `Settings/Secrets`. This has the advantage, that you can use them in different workflows or when set on organization level accross multiple repositories. Call them  with `${{ secrets.XXX }}`.
-- You can create environment variables inside a workflow file with the `env` keyoword on workflow, job or step level. Call them with `${{ env.XXX }}`. There are some [default environment variables](https://docs.github.com/en/actions/reference/environment-variables#default-environment-variables) set in GH.
-- On job level you can create a [`strategy.matrix`](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix). Call variables from that with `${{ matrix.XXX }}`
-- On step level you can create normal shell variables. Call them with `$XXX`.
-
-#### Workspace
-GH by default creates a workspaces to run actions inside of it. The path of the workspace can be read via `${{github.workspace}}`. You must pay attention on your workspace path when using Docker containers with a `WORKDIR`. See [Docker chapter](#docker). 
-:::caution Recommendation
-When using some actions from the [GitHub Marketplace](https://github.com/marketplace?type=actions) e. g. the `checkout` action - the workspace is flushed before the action. So make sure to run every other commands after that action or replace the action with a self-scripted code. For example if you want to replace the `checkout` action use `git clone ...`.
-:::
-
 #### Authentication
-Some operations need a way to authenticate during a workflow run. GitHub provides an automatic token, which is only valid during a workflow run: [GITHUB_TOKEN](https://docs.github.com/en/actions/reference/authentication-in-a-workflow).  
-Another way to authenticate is creating an artificial user, e. g. by this action: [setup-git-user action](https://github.com/fregante/setup-git-user).
-This is useful if you want to push to a repository inside a workflow.
-
+##### Token
+Some operations need a way to authenticate during a workflow run. GitHub provides an automatic token, which is only valid during a workflow run: [GITHUB_TOKEN](https://docs.github.com/en/actions/reference/authentication-in-a-workflow). In the workflow the token can be accessed like this:
+```sh 
+${{ github.token }}
+${{ secrets.GITHUB_TOKEN }}
+```
+##### GitHub bot
+Another way to authenticate is using the bot user provided by GitHub, e. g. with this action: [setup-git-user action](https://github.com/fregante/setup-git-user).
+This is useful if you want to push to a repository inside a workflow. The GitHub bot prevents recursive workflows, that means an automatic push from it does not invoke the normal CI workflows for the repsoitory.
+If you can not use the setup-git-user action (because you are using another user than root etc.), you can configure the GitHub bot user in the workflow with these credentials:
+```sh
+git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+git config --global user.name "github-actions[bot]"
+```
 #### Node, webpack
 Do not set `NODE_ENV=test` when running Rails tests! Just use `NODE_ENV=test` for JavaScript tests. Otherwise the Babel configuration will get confused. The default for the `NODE_ENV` is `development`. For testing set `RAILS_ENV=test` and make custom configurations for testing for example in `webpack/config/development.js` and with `process.env` properties. Read for further informations this article: [Why doesn't Webpacker use my test config when I run Rails tests?](https://rossta.net/blog/why-doesnt-webpacker-use-my-test-config-when-i-run-rails-tests.html)
-and this [GitHub issue on the rails/webpacker repository](https://github.com/rails/webpacker/issues/2654). This article describes a way to customize the devtool setting: [How to speed up assets precompile for Ruby on Rails apps](https://itnext.io/how-to-speed-up-assets-precompile-for-ruby-on-rails-apps-e0338d8d7301). The devtool controls how error paths are resolved in the browser console. In test and production mode no error log is needed, therefore the devtool can be set to the fastest configuration. 
-E. g. use this for compiling and running tests with the environemnt property `DEVTOOL`:  
+and this [GitHub issue in the rails/webpacker repository](https://github.com/rails/webpacker/issues/2654). This article describes a way to customize the devtool setting: [How to speed up assets precompile for Ruby on Rails apps](https://itnext.io/how-to-speed-up-assets-precompile-for-ruby-on-rails-apps-e0338d8d7301). The devtool controls how error paths are resolved in the browser console. In test and production mode no error log is needed, therefore the devtool can be set to the fastest configuration. 
+E. g. use this for compiling and running tests with the environment property `DEVTOOL`:  
 ```sh  
 RAILS_ENV=test DEVTOOL=eval bundle exec rails webpacker:compile
 RAILS_ENV=test bundle exec rspec spec/features   
 ```
 The webpack configuration could then be set like this in `config/webpack/development.js`:
 ```js
-process.env.NODE_ENV = process.env.NODE_ENV || 'development'
-const webpackConfig = require('./base')
-const { merge } = require('@rails/webpacker')
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-const debugConfig = {
+const webpackConfig = require('./base');
+
+const { merge } = require('@rails/webpacker');
+
+if (process.env.DEVTOOL) {
+  const debugConfig = {
     devtool: process.env.DEVTOOL
+  };
+  module.exports = merge(webpackConfig, debugConfig);
+} else {
+  module.exports = webpackConfig;
 }
-
-module.exports = merge(webpackConfig, debugConfig)
 ```
-
+Values for the `devtool` variable are listed in the [webpack documentation](https://webpack.js.org/configuration/devtool/).
 ### GitHub Actions for Chemotion ELN
 #### Workflow files
 Each of the three test classes (Ruby unit tests, JS unit test, acceptance tests) has its own workflow yml file, because that is the only way to make single test classes repeatable in GH Actions. There are just a few prescripted actions from GH Marketplace used, because of the special version settings for `nvm` and `Node` and because prescripted actions are not easy to handle in self-written Docker containers.
@@ -196,6 +214,14 @@ For the database a [PostgreSQL container](https://docs.github.com/en/actions/gui
 Do not use `image: postgres:12-alpine` in the Chemotion ELN workflows. Otherwise there will be permission problems.  
 Use `image: postgres` as a postgres service.
 :::
+
+#### Acceptance tests
+##### Linting
+Before the acceptance tests are running, changed JavaScript or Ruby files will be linted. If no changed files are pushed, `git add $FILES_JS $FILES_RB` will throw an error: `Error: Process completed with exit code 1.`, because there are no files to add. But the workflow for acceptance tests will continue because of `continue-on-error: true` in the workflow.  
+Linting can be skipped with this command in the commit message:
+```sh 
+skip linting 
+```
 
 ## Common errors
 ### With GitHub Actions
