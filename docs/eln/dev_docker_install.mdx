@@ -180,13 +180,13 @@ git clone https://github.com/ComPlat/chemotion_ELN.git src
 ./rebuild.sh
 ```
 
-Depending your machine, this will take some time, as some packages will be compiled from source code.
+Depending on your machine, this will take some time, as some packages will be compiled from source code.
 In the end, the production mode image should be ready.
 Check it with ```docker images```; the command should display an image tagged ```user1/chemotion:VERSION``` with ```VERSION``` being a placeholder for the exact version.
 To start an instance of ELN, the file ```~/chemotion/client-chemotion/docker-compose.yml``` must be updated manually to reflect the correct image name.
 Originally, the file references ```ptrxyz/chemotion:VERSION``` in two places, which both must be updated to ```user1/chemotion:VERSION```.
 Please note that an update of the version field might be necessary as well.
-After the update, the production mode Chemotion ELN can be started with the following commands:
+After the update, the production mode Chemotion ELN can be started with the following commands:  
 
 ```
 cd ~/chemotion/client-chemotion

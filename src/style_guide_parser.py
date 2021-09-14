@@ -17,24 +17,28 @@ def typos(f):
         f ([type]): file object
     """
     text = ""
+    code_block_counter = 0 # count lines that starts with ``` and therefore form a code block
     # pattern for not replacing terms
     pattern_uri = re.compile(r"(\]\(){1}(\S)*") # match ]( for markdown links
     pattern_url = re.compile(r"(https:\/\/|http:\/\/|www.)(\S)*")
     pattern_path = re.compile(r"[/\\](.)*[/\\](\S)*")
-    pattern_url_title = re.compile(r"({#)(\S)*(})") # {#eln-in-docker}
+    pattern_url_title = re.compile(r"({#)(\S)*(})") # match {#eln-in-docker}
     pattern_mail = re.compile(r"(\S)+@(\S)+", re.IGNORECASE)
+    pattern_highlight = re.compile(r"(`){1,3}(.)*(`){1,3}") # match `RAILS_ENV=test`
     # pattern terms
     pattern_eln = re.compile(r"(Chemotion)?(.)?ELN", re.IGNORECASE)
     pattern_chem_spectra = re.compile(r"Chem(.)?Spectra", re.IGNORECASE)
 
     for line in f.readlines():
         if line.split():
-            if line.split()[0] not in exclude_lines: 
+            if line.split()[0].startswith("```"): code_block_counter+=1
+            if code_block_counter % 2 == 0 and line.split()[0] not in exclude_lines: 
                 uris = re.finditer(pattern_uri, line)
                 urls = re.finditer(pattern_url, line)
                 paths = re.finditer(pattern_path, line)
                 url_titles = re.finditer(pattern_url_title, line)
                 mails = re.finditer(pattern_mail, line)
+                highlights = re.finditer(pattern_highlight, line)
                 if uris:
                     uri_matches=[match.group(0) for match in uris]
                 if urls:
@@ -45,7 +49,11 @@ def typos(f):
                     url_titles_matches=[match.group(0) for match in url_titles]
                 if mails:
                     mail_matches = [match.group(0) for match in mails]
-                all_uris = uri_matches+url_matches+path_matches+url_titles_matches+mail_matches
+                if mails:
+                    mail_matches = [match.group(0) for match in mails]
+                if highlights:
+                    highlight_matches = [match.group(0) for match in highlights]
+                all_uris = uri_matches+url_matches+path_matches+url_titles_matches+mail_matches+highlight_matches
                 if all_uris:
                     line = line
                 else:
@@ -180,7 +188,7 @@ for file in sys.argv[1:]:
 
 #for testing
 # if __name__ == "__main__":
-#     with open("docs/eln/faq.mdx", "r+") as f:
+#     with open("docs/eln/development/github_actions.mdx", "r+") as f:
 #         f.seek(0)
 #         lines = f.readlines()[:10]
 #         kwargs = {}
@@ -194,11 +202,11 @@ for file in sys.argv[1:]:
 #         subdir = f.name.split("/")
 #         kwargs["subdir"]="/".join(subdir[1:-1])
 #         f.seek(0)
-#         toc(f, **kwargs)
-#         f.seek(0)
-#         tables(f, **kwargs)
-#         f.seek(0)
-#         typos(f)
-#         f.seek(0)
+        # toc(f, **kwargs)
+        # f.seek(0)
+        # tables(f, **kwargs)
+        # f.seek(0)
+        # typos(f)
+        # f.seek(0)
         # capitalize_first(f)
         # f.seek(0)
