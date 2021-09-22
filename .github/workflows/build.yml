@@ -27,7 +27,6 @@ jobs:
           ALGOLIA_SEARCH_API_KEY: ${{ secrets.ALGOLIA_SEARCH_API_KEY }}
           INDEX_NAME: ${{ secrets.INDEX_NAME }}
         run: |
-          ls -la build
           npm i
           npm run build --if-present
           
