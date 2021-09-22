@@ -34,24 +34,6 @@ stored in <b>.env</b> file
 Configure the license and required files for using ChemDraw editor or Marvin JS editor.
 
 setting:
-```sh
-### example of structure_editors.yml
-production:
-  :editors:
-    :chemdraw:
-      :label: 'ChemDrawJS'
-      :license: '/chemdraw/ChemDraw-JS-License.xml' # license file of ChemDraw
-      :extJs: ['/chemdraw/chemdrawweb/chemdrawweb.js'] # js of ChemDraw
-    :marvinjs:
-      :label: 'MarvinJS'
-      :license: 'license file'  # license file of MarvinJS
-      :extJs: ['external javascript files to be included'] # js of MarvinJS
-      :extSrc: 'external file' # file of MarvinJS
-```
-
-:::info NOTE
-After editing the structure_editors.yml the service needs to be restarted.
-:::
 
 ## Email-service (optional)
 
