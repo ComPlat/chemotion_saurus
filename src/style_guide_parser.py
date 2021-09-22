@@ -25,6 +25,7 @@ def typos(f):
     pattern_url_title = re.compile(r"({#)(\S)*(})") # match {#eln-in-docker}
     pattern_mail = re.compile(r"(\S)+@(\S)+", re.IGNORECASE)
     pattern_highlight = re.compile(r"(`){1,3}(.)*(`){1,3}") # match `RAILS_ENV=test`
+    pattern_bold= re.compile(r"<b>(.*)<\/b>") # match bold text
     # pattern terms
     pattern_eln = re.compile(r"(Chemotion)?(.)?ELN", re.IGNORECASE)
     pattern_chem_spectra = re.compile(r"Chem(.)?Spectra", re.IGNORECASE)
@@ -39,6 +40,7 @@ def typos(f):
                 url_titles = re.finditer(pattern_url_title, line)
                 mails = re.finditer(pattern_mail, line)
                 highlights = re.finditer(pattern_highlight, line)
+                bold = re.finditer(pattern_bold, line)
                 if uris:
                     uri_matches=[match.group(0) for match in uris]
                 if urls:
@@ -53,7 +55,9 @@ def typos(f):
                     mail_matches = [match.group(0) for match in mails]
                 if highlights:
                     highlight_matches = [match.group(0) for match in highlights]
-                all_uris = uri_matches+url_matches+path_matches+url_titles_matches+mail_matches+highlight_matches
+                if bold:
+                    bold_matches = [match.group(0) for match in bold]
+                all_uris = uri_matches+url_matches+path_matches+url_titles_matches+mail_matches+highlight_matches+bold_matches
                 if all_uris:
                     line = line
                 else:
@@ -188,7 +192,7 @@ for file in sys.argv[1:]:
 
 #for testing
 # if __name__ == "__main__":
-#     with open("docs/eln/development/github_actions.mdx", "r+") as f:
+#     with open("docs/eln/collections.mdx", "r+") as f:
 #         f.seek(0)
 #         lines = f.readlines()[:10]
 #         kwargs = {}

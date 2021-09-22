@@ -5,9 +5,13 @@ sidebar_label: Configuration
 slug: settings
 ---
 
+:::info Info 
+This page is still being edited and reviewed.
+::: 
+
 ## User name_abbreviation
-Name abbreviation, like emails, are unique in the DB and can be used for sign in.
-the length of if can be defined in the user_props.yml config file
+Name abbreviation, like e-mails, are unique in the DB and can be used for sign in.
+The length of it can be defined in the `user_props.yml` configuration file:
 
 ```sh
 # from the application dir (/var/www/chemotion_ELN/current) copy the config file 
@@ -35,17 +39,17 @@ Configure the license and required files for using ChemDraw editor or Marvin JS 
 
 setting:
 
-## Email-service (optional)
+## e-mail-service (optional)
 
-For sending users account email confirmation request, reset password instructions, or other notifications.
+For sending users account e-mail confirmation request, reset password instructions, or other notifications.
  
-Email configuration parameters are set as environment variables in the <b>.env</b> file.
+e-mail configuration parameters are set as environment variables in the <b>.env</b> file.
 below a list of available parameters:
 
 ```sh
-# default url of your Chemotion ELN for http links in emails:
+# default url of your Chemotion ELN for http links in e-mails:
 SMTP_HOST='sld.tld' 
-# senders email:
+# senders e-mail:
 DEVISE_SENDER='no-reply@sld.tld' 
 
 ## SMTP config 
@@ -63,8 +67,6 @@ SMTP_TLS=true
 SMTP_AUTH='plain'
 # how OpenSSL checks the certificate  ('none' or 'peer') 
 SMTP_SSL_MODE='none'
-
-
 ```
 
 See [rails docs](https://guides.rubyonrails.org/action_mailer_basics.html#action-mailer-configuration) for an explanation of the parameters.
@@ -77,17 +79,17 @@ This is an optional service to collect data files and distribute them to the Che
 (see the [devices overview](devices) or [doi: 10.1016/j.acax.2019.100007 ](https://doi.org/10.1016/j.acax.2019.100007 ))
 
 Two options are available:
-- collecting attachment files from emails.
+- collecting attachment files from e-mails
 - collecting file or folder from local drives or over scp
 
-### Email-attachement collection 
+### e-mail-attachement collection 
 
-The Chemotion ELN-app should be given access to an email account in which it will regularly check for incoming emails and collect the attachments.
-The attachments are then distributed to Chemotion ELN user by matching the additional addressee present in the __To:__ or __CC:__ fied of the email. The sender's email address should also one of an Chemotion ELN-registered device. 
+The Chemotion ELN-app should be given access to an e-mail account in which it will regularly check for incoming e-mails and collect the attachments.
+The attachments are then distributed to Chemotion ELN user by matching the additional addressee present in the __To:__ or __CC:__ fied of the e-mail. The sender's e-mail address should also one of an Chemotion ELN-registered device. 
 
 :::danger 
-All new incoming emails are processed and discarded. 
-If the sender and other addresssees are unknown to the Chemotion ELN (emails registered to Chemotion ELN accounts), then the email will be directly deleted.
+All new incoming e-mails are processed and discarded. 
+If the sender and other addresssees are unknown to the Chemotion ELN (e-mails registered to Chemotion ELN accounts), then the e-mail will be directly deleted.
 :::
 
 
@@ -96,13 +98,13 @@ If the sender and other addresssees are unknown to the Chemotion ELN (emails reg
 Files can be collected from remote storages and distributed to specific user based on the file-name matching the user's name abbreviation.
 
 :::danger 
-The directories watched by the collector service will be emptied at each collection i.e. all files within the watched directories will be removed.
+The directories watched by the collector service will be emptied at each collection i. e. all files within the watched directories will be removed.
 :::
 
 
 ### Data-collector settings
 
-Configure the frequency for collecting the files, as well as the email access in the config/datacollectors.yml file.
+Configure the frequency for collecting the files, as well as the e-mail access in the `config/datacollectors.yml` file.
 The background worker will collect the files at the frequencies set.
 If login credentials are needed, those are set in the configuration file as well.
 
@@ -123,7 +125,7 @@ production:
     - :name: 'filewatcherlocal'
       :every: 2 # minutes
 
-  ## Chemotion ELN email account
+  ## Chemotion ELN e-mail account
   :mailcollector:
     :server: 'imap.server.de'
     :mail_address: "service@mail"
@@ -161,7 +163,7 @@ For each registered Device, a collection job can be set up through the administr
 
 ## External services 
 
-### Chemspectra-App
+### ChemSpectra-App
 
 source: https://github.com/complat/chem-spectra-app
 
@@ -202,7 +204,7 @@ User can assign others to the groups they manage.
 
 ### Onlyoffice
 
-install  [OnlyOffice](https://helpcenter.onlyoffice.com/installation/docs-community-install-ubuntu.aspx?_ga=2.2091185.1060566386.1612303438-123622021.1612303437) instance on a server
+Install [OnlyOffice](https://helpcenter.onlyoffice.com/installation/docs-community-install-ubuntu.aspx?_ga=2.2091185.1060566386.1612303438-123622021.1612303437) instance on a server:
 
 ```sh
 # from the application dir (/var/www/chemotion_ELN/current) copy the config file 
@@ -229,13 +231,13 @@ settings the computed-properties can be done directly from the Admin-UI, and are
 
 Application will need to be restarted
 
-## Dynamic Welcome Email and Message (optional)
+## Dynamic Welcome e-mail and Message (optional)
 
 :::caution
 This feature is still in Beta version.
 :::
 
-This configuration enables sending a welcome message as an email to the new users upon registration. It also displays the same content as a welcome message at the home page. The content is dynamic and can be modified and updated anytime.
+This configuration enables sending a welcome message as an e-mail to the new users upon registration. It also displays the same content as a welcome message at the home page. The content is dynamic and can be modified and updated anytime.
 
 ![adminui-welcomemessage](../../static/img/adminui-welcomemessage.PNG)
 

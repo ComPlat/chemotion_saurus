@@ -49,7 +49,7 @@ skip acceptance
 ```sh
 skip all
 ``` 
-In the file with the acceptance tests is some linting included. Linting can be skipped with this command in the commit message:
+In the file with the acceptance tests is some [linting](#linting) included. Linting can be skipped with this command in the commit message:
 ```sh 
 skip linting 
 ```
@@ -217,6 +217,9 @@ Use `image: postgres` as a postgres service.
 
 #### Acceptance tests
 ##### Linting
+:::info Info 
+This feature is still being reviewed and not available in the current development-5 branch.
+::: 
 Before the acceptance tests are running, changed JavaScript or Ruby files will be linted. The changed files will be automatically pushed to the repository via the [GitHub Bot](#github-bot).
 If no files are changed, `git add $FILES_JS $FILES_RB` will throw an `Error: Process completed with exit code 1.`, because there are no files to add. But the workflow for acceptance tests will continue because of `continue-on-error: true` in the workflow.  
 Linting can be skipped with this command in the commit message:
