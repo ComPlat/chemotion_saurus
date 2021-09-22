@@ -29,6 +29,30 @@ ln -s  /var/www/chemotion_ELN/shared/config/user_props.yml /var/www/chemotion_EL
 used for cookie encryption.
 stored in <b>.env</b> file
 
+## Structure editor
+
+Configure the license and required files for using ChemDraw editor or Marvin JS editor.
+
+setting:
+```sh
+### example of structure_editors.yml
+production:
+  :editors:
+    :chemdraw:
+      :label: 'ChemDrawJS'
+      :license: '/chemdraw/ChemDraw-JS-License.xml' # license file of ChemDraw
+      :extJs: ['/chemdraw/chemdrawweb/chemdrawweb.js'] # js of ChemDraw
+    :marvinjs:
+      :label: 'MarvinJS'
+      :license: 'license file'  # license file of MarvinJS
+      :extJs: ['external javascript files to be included'] # js of MarvinJS
+      :extSrc: 'external file' # file of MarvinJS
+```
+
+:::info NOTE
+After editing the structure_editors.yml the service needs to be restarted.
+:::
+
 ## Email-service (optional)
 
 For sending users account email confirmation request, reset password instructions, or other notifications.
