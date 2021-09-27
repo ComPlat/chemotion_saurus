@@ -1,5 +1,5 @@
 ---
-id: use_docuasaurus
+id: use_docusaurus
 title: Use Docusaurus
 sidebar_label: Usage
 slug: use_docusaurus
@@ -10,22 +10,28 @@ import { faChartBar, faCheck, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { Btn } from '@site/docs/btn.js'
 
 :::info
-This page contains information how to edit a page in the Docusaurus instance for the Chemotion ELN hosted at KIT. If the content is seen in a more general manner, it can also be used for the editing of other Docusaurus instances. For that replace special links, references etc. with the counterpart of your instance.
+This page contains information on how to edit a page in the Docusaurus instance for the Chemotion ELN hosted at KIT.
+The information also applies to editing other Docusaurus instances. In the latter case, replace special links, references etc. with the counterpart of your instance.
 :::
 
-This website is based on the [Docusaurus framework](https://docusaurus.io) , that uses Markdown with JavaScript (MDX). Therefore the content is stored as a mixture mainly containing Markdown with elements from HTML and from the JavaScript Framework React. The most important and used components are explained below. More information about Markdown in docusaurus can be found in the [official Docusaurus Documentation](https://docusaurus.io/docs/markdown-features)
+This website is based on the [Docusaurus framework](https://docusaurus.io) using Markdown with JavaScript (MDX).
+Therefore, the content is provided as Markdown containing elements from HTML and the JavaScript framework React.
+The most important components are explained below. More information about Markdown in Docusaurus can be found in the [official Docusaurus documentation](https://docusaurus.io/docs/markdown-features).
 
 ## Editing
 To ensure consistent style and naming throughout the documentation, please make sure to have a look at our [styleguide](styleguide_docusaurus) while editing.
-For changing the documentation you need a GitHub Account and then you can use the ```Edit this page``` button at the left bottom of every page. This will leads you to an Editor on GitHub, where you can directly edit the page and make a Pull Request afterwards or commit your changes directly, if you have write access.
-For advanced usage of chemotion_saurus, you can also clone the repository and push to it, if you have write access. Therefore follow the instructions in the [set up chapter](Set%20Up#development).
-Succesfull changes are directly deployed and went online.
-You can check [GitHub Actions](https://github.com/ComPlat/chemotion_saurus/actions/workflows/build.yml), to see if your changes are succesfully merged in the web page. More information about GitHub Actions (in general and for the Chemotion ELN) are in the [testing chapter](development/testing_code).
+For changing the documentation you need a GitHub account which allows you to use the `Edit this page` button at the bottom left of every Docusaurus page.
+Alternatively, you can start editing Markdown files (.md or .mdx file format) directly on GitHub by clicking the pencil icon on the top right.
+This leads you to an editor on GitHub where you can directly edit the page and make a pull request or commit your changes directly, if you have write access.
+For advanced contributions to the Docusaurus, you can clone the repository and push to it if you have write access (follow the instructions in the [set up chapter](Set%20Up#development)).
+Successful changes are directly deployed online.
+You can check [GitHub Actions](https://github.com/ComPlat/chemotion_saurus/actions/workflows/build.yml) to see if your changes are merged successfully merged.
+More information about GitHub Actions (in general and for the Chemotion ELN) can be found in the [testing chapter](development/testing_code).
 The landing (start) page can be edited [on GitHub](https://github.com/ComPlat/chemotion_saurus/edit/master/src/pages/index.js).
 
 ## New Page
 - use `.mdx` as filename ending in GitHub
-- Insert at the top of every page:
+- at the top of every page, insert the following metadata section:
 
 ```
 ---
@@ -35,28 +41,31 @@ slug: videos_eln
 title: Introduction Videos
 ---
 ```
+`id:`  The unique document id. By default, a document id is the name of the document (without the extension) relative to the root docs directory. It can be used in the table of content (TOC).
 
-`id:`  The unique document id. By default, a document id is the name of the document (without the extension) relative to the root docs directory. It can be used in the left TOC.  
-`sidebar_label:` Name displayed in the table of content (TOC).  
-`slug:` Optional. Defines the last part of the URL.  
-`title:`  Optional. Prompted on the page.  
-- After you have inserted a new page, add its `id` from the metadata section at the top of the file to the [TOC (table of contents)](#toc) so that it will be visible on the page.
+`sidebar_label:` Name displayed in the TOC.
 
-- short links for insert a new page (= create a new file on GitHub):
-    - [Create New Chemotion ELN Documentation Page](https://github.com/ComPlat/chemotion_saurus/new/master/docs/eln)
+`slug:` Optional. Defines the last part of the URL.
 
-    - [Create New REPO Documentation Page](https://github.com/ComPlat/chemotion_saurus/new/master/docs/repo)
+`title:`  Optional. Prompted on the page.
 
-    - [Create New Newsroom Page](https://github.com/ComPlat/chemotion_saurus/new/master/blog)
+- after you have inserted a new page, add its `id` from the metadata section at the top of the file to the [TOC (table of content)](#toc).
+
+- short links for creating a new page on GitHub:
+    - [new Chemotion ELN documentation page](https://github.com/ComPlat/chemotion_saurus/new/master/docs/eln)
+
+    - [new REPO documentation page](https://github.com/ComPlat/chemotion_saurus/new/master/docs/repo)
+
+    - [new Newsroom page](https://github.com/ComPlat/chemotion_saurus/new/master/blog)
 
 ## Markdown
 
 ### Assets
 #### images, gifs, videos, files
 
-Images can be inserted as Markdown or as HTML for special configurations (optional `width` and `height` etc.) or if the image is inside an HTML tag.
-The `![...]` in Markdown or `alt={...}` in HTML/React creates an `alt` tag for an additional title, if the image loading failures.
-Keep in mind, that the image paths for Markdown and HTML differs, which is caused by different treatment of Markdown and React (which creates the HTML) in Docusaurus.
+Images can be embedded in Markdown or HTML, the latter allowing for special configurations (optional `width` and `height` etc.) or if the image is inside an HTML tag.
+The `![...]` in Markdown or `alt={...}` in HTML/React creates an `alt` tag for an additional title, if the image loading fails.
+Note that the image paths for Markdown and HTML differ, which is caused by different treatment of Markdown and React (which creates the HTML) in Docusaurus.
 
 Inserting an image in Markdown:
 ``` md
@@ -68,7 +77,7 @@ Inserting an image in HTML (React):
 <img src={require('@site/static/img/export_menu.png').default} width={"30px"} height={"30px"} alt={"replacement_title"} />
 ```
 #### SVG
-SVGs need a special treatment. First import them as React component and then insert them in your text with `className="logo"`:
+SVGs require special treatment. First import them as React component and then insert them in your text with `className="logo"`:
 ``` js
 import Sample from '@site/static/img/sample.svg'
 // more content here
@@ -77,9 +86,10 @@ import Sample from '@site/static/img/sample.svg'
 
 ### Buttons and Icons
 #### regular buttons with text and icon content
-For creating buttons use a button function and import it in the page. Every button gets a <b>color</b> and can have multiple text elements and icons <b>mixed</b> in its content.
-For icon buttons the library Font Awesome is used. Get icons from [https://fontawesome.com](https://fontawesome.com/) and import them in the page, too. The color palette is from the [Infima library](https://infima.dev/docs/components/button).
-For example following code snippet...
+For creating buttons use a button function and import it on the page. Every button gets a <b>color</b> and can have multiple text elements and icons <b>mixed</b> in its content.
+For icon buttons get icons from [https://fontawesome.com](https://fontawesome.com/) and import them on the page.
+The color palette is from the [Infima library](https://infima.dev/docs/components/button).
+For example, the following code snippet...
 ```
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChartBar, faCheck } from '@fortawesome/free-solid-svg-icons'
@@ -90,7 +100,7 @@ import { Btn } from '@site/docs/btn.js'
 ...produces <Btn mixed={[faChartBar, " 1", faCheck]} color={"warning"}/>
 
 #### special buttons
-To create a button diffrent from the regular one, e. g. with a different size, you need to use a React button with `<button></button>` tags.
+To create a button different from the regular one, e.g., with a different size, you need to use a React button with `<button></button>` tags.
 You can change the size of a button in its style attribute with values in `%`, pixel (`px`), `rem` or `em`. Common icon sizes inside buttons are `xs`, `sm` and `lg`.
 ```
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -113,14 +123,16 @@ import { faPlus, faShareAlt } from '@fortawesome/free-solid-svg-icons'
 </button>
 
 ### Downloadable Files
-If you want to provide one or multiple file(s) to download directly form the manual, then upload them to the files folder in [GitHub](https://github.com/ComPlat/chemotion_saurus/upload/master/static/files) and insert a Download Button with the filepath(s) - separated by comma - in `files` and the button text in `text` :
+If you want to provide one or multiple file(s) to download directly form the manual,
+upload them to the files folder on [GitHub](https://github.com/ComPlat/chemotion_saurus/upload/master/static/files)
+and insert a Download Button with the (comma-separated) filepath(s) in `files` and the button text in `text` :
 ```
 import { DownloadBtn } from '@site/docs/download_files.js'
 
 <p><DownloadBtn files={['/chemotionsaurus/files/template%20_sample_import.xlsx, docker-compose.yml']}  text={"Download XLSX Template here "}/></p>
 ```
 ### Escape signs
-To show signs, that are specified in the Markdown syntax, escape them with `\`.
+Escape characters that are part of the Markdown syntax with `\`.
 
 ### Formatting
 #### Color
@@ -138,10 +150,11 @@ colored background:
 ```
 
 ### Headings
-To create a heading, add number signs # in front of a word or phrase. The number of # you use should correspond to the heading level. A lot of # indicates a low level.
+To create a heading, add pound signs (`#`) in front of a word or phrase.
+The number of `#` you use determines the heading level. A single `#` designates the top level.
 
 ### Info Boxes
-Highlighted info boxes ([like in the eln intro page](intro)) with further informations are called `Admonitions` in [Docusaurus](https://docusaurus.io/docs/markdown-features/admonitions).
+Highlighted info boxes ([like on the eln intro page](intro)) with further information are called `Admonitions` in [Docusaurus](https://docusaurus.io/docs/markdown-features/admonitions).
 
 ### Line Breaks
 Insert <b>two white spaces</b> at the end of the line.
@@ -171,25 +184,24 @@ In React:
 ```
 
 #### intern
-In Markdown link to another page in the docu with the ```slug``` or if not available the ```id``` as anchor:
+In Markdown, link to another page within the documentation using its `slug` or `id` (in case a `slug` is not available):
 ```md
 [contact](specific_contact)
 ```
-link to another chapter in the same page with the last segement of the URL:
-e. g. URL: eln.chemotion.net/chemotionsaurus/docs/instructions <b>#toc</b>
+Link to another chapter on the same page using the last segment of the URL.
+For example, link to `eln.chemotion.net/chemotionsaurus/docs/instructions#toc` by using
 ```md
 [link to TOC](#toc)
 ```
-In React insert link to another with a the relative path after the base url `/chemotionsaurus/`:
+In React insert a link to another page using the relative path after the base url `/chemotionsaurus/`:
 ```js
 <Link to="/docs/eln/structure">Structure of the Chemotion ELN</Link>
 ```
 
 :::caution Recommendation
-For links to intern pages it is not recommended to use https links from the server, where the website stays. It is better to use Markdown syntax with relative intern linking.
-For example:
-better use: `[contact](specific_contact)`
-instead of: `[contact](https://www.chemotion.net/chemotionsaurus/docs/eln/specific_contact)`
+For links to internal pages it is not recommended to use https links from the server, where the website is hosted.
+In order for links to resolve independently of the host, use Markdown syntax with relative internal linking.
+For example, better use `[contact](specific_contact)` instead of `[contact](https://www.chemotion.net/chemotionsaurus/docs/eln/specific_contact)`.
 :::
 ### Lists
 #### ordered
@@ -230,21 +242,35 @@ random number with a dot
 
 ### Hints & Errors
 #### Links or insertion of images or files are not resolved in Markdown
-For writing content in the [Docusaurus framework](https://docusaurus.io) it is generally recommended to use Markdown for the most content instead of pure HTML/CSS or React. Some things are easier to style in React than in Markdown (e. g. buttons) and some things can be done in Markdown or in React (e. g. [links](#links), [images](#assets)). If you write a paragraph in Markdown and mix it with some React elements and then insert some Markdown links, it could be the case that the Markdown links are not resolved on the web page. Replace them wirth React elements.
+For writing content in the [Docusaurus framework](https://docusaurus.io) it is generally recommended to use Markdown for the most content instead of pure HTML/CSS or React.
+Some things are easier to style in React than in Markdown (e. g. buttons) and some things can be done in Markdown or in React (e. g. [links](#links), [images](#assets)).
+If you write a paragraph in Markdown, mix it with React elements and then insert Markdown links, it could be the case that the Markdown links are not resolved on the web page.
+Replace them with React elements.
 
 ## TOC
-The TOC on the left of every documentation page must be manually updated via <b>[sidebars.js](https://github.com/ComPlat/chemotion_saurus/edit/master/sidebars.js)</b> on GitHub. If you have inserted a new page or want to change the order, change it there.
+The TOC on the left of every documentation page must be manually updated via <b>[sidebars.js](https://github.com/ComPlat/chemotion_saurus/edit/master/sidebars.js)</b> on GitHub.
+If you have inserted a new page or want to change the order, change it there.
 
 ## Versioning
-Currently versioning is not enabled for the Chemotion ELN part of the documentation, but this could be quickly changed in the future. To create a new documentation version based on the latest content in the ```docs Chemotion ELN``` directory follow these steps:
-1. Pull the GitHub repo of chemotion_saurus locally. This is necessary, because a lot of files and folders through npm will be added.
-1. In ```docusaurus.config.js```: Change the ```current``` version to the new version and add the former current version to the other versions below.
-1. in ```sideba Chemotion ELN.js```: Add the new version to the ```Versions``` category.
-1. After the first three steps, you can create a new version with ```npm run docusaurus docs:version:elnID <former version number>```, e. g. ```npm run docusaurus docs:version:elnID 0.9``` The version number should be the <b>last</b> version, but not the latest/current. The latest version will be stored in ```docs/eln``` folder and should be the version, that is currently under construction. The ```npm run docusaurus docs:version ...``` creates a new folder with the version number, that should not be edited anymore. Nevertheless it is possible to edit it.
-For example: you are planning a new version 0.10, that is already the current version of the code. Then you probably have a version 0.8 and a current version with the label 0.9 (but not with a versioned folder 0.9) in docusaurus. Now you create a version 0.9 through the npm command. Your current version gets 0.10 and is stored in ```docs Chemotion ELN``` and you will have one more versioned folders: 0.9 and 0.8.
-If you want to version the repository part of the documenation, then add the ```lastVersion``` and ```versions``` keys to the ```"@docusaurus/plugin-content-docs"``` plugin with the ```id: "repoID"``` in ```docusaurus.config.js``` and follow the steps above.
-1. If versioning is enabled, you have to use two different TOCs for each part of the documenation, instead of one TOC. Use  [**sidebarELN.js**](https://github.com/ComPlat/chemotion_saurus/edit/master/sidebarELN.js) for the Chemotion ELN part and [**sidebarsREPO.js**](https://github.com/ComPlat/chemotion_saurus/edit/master/sidebarsREPO.js) for the Repository part instead of [**sidebars.js**](https://github.com/ComPlat/chemotion_saurus/edit/master/sidebars.js) for all parts. Before that, the different TOCs needs probably been updated.
-1. After enabling versioning it is important to change your relative imports - if this was used before - to absolut iports, because with versioning a lot more roots will be added to your Docusaurus:
+Currently, versioning is not enabled for the Chemotion ELN part of the documentation.
+However, this can be adapted in the future. To create a new documentation version based on the latest content in the `docs Chemotion ELN` directory follow these steps:
+1. Clone the GitHub repository of chemotion_saurus on your machine. This is necessary because a lot of files and folders will be added through npm.
+1. In `docusaurus.config.js`: Change the `current` version to the new version and add the previous version to the other versions below.
+1. In `sidebar Chemotion ELN.js`, add the new version to the `Versions` category.
+1. After the first three steps, you can create a new version with `npm run docusaurus docs:version:elnID <former version number>`, e. g. `npm run docusaurus docs:version:elnID 0.9`.
+The version number should be the <b>last</b> version, but not the latest/current. The latest version will be stored in `docs/eln` folder and should be the version that is currently under development.
+`npm run docusaurus docs:version ...` creates a new folder with the version number, that ideally should not be edited anymore.
+For example: you are planning a new version 0.10, that is already the current version of the code.
+Then you probably have a version 0.8 and a current version with the label 0.9 (but not with a versioned folder 0.9) in Docusaurus.
+Now you create a version 0.9 through the npm command. Your current version gets bumped to 0.10 and is stored in `docs Chemotion ELN` and you will have one more versioned folders: 0.9 and 0.8.
+If you want to version the repository part of the documentation add the `lastVersion` and `versions` keys to the `"@docusaurus/plugin-content-docs"` plugin with the `id: "repoID"` in `docusaurus.config.js`
+ and follow the steps above.
+1. If versioning is enabled you have to use a separate TOC for each part of the documentation.
+Use [**sidebarELN.js**](https://github.com/ComPlat/chemotion_saurus/edit/master/sidebarELN.js) for
+the Chemotion ELN part and [**sidebarsREPO.js**](https://github.com/ComPlat/chemotion_saurus/edit/master/sidebarsREPO.js)
+for the Repository part instead of [**sidebars.js**](https://github.com/ComPlat/chemotion_saurus/edit/master/sidebars.js) for all parts.
+Before that, the different TOCs probably need to be updated.
+1. After enabling versioning it is important to change your relative imports - in case you used those before - to absolute imports because with versioning a lot more roots will be added to your Docusaurus:
 ```js
 - import Foo from '../src/components/Foo';
 + import Foo from '@site/src/components/Foo';

@@ -18,7 +18,7 @@ module.exports = {
         Configuration: ['eln/settings', 'eln/system_check'],
       },
       {
-        Documentation: ['eln/set_up_docuasaurus', 'eln/use_docuasaurus', 'eln/styleguide_docusaurus'],
+        Documentation: ['eln/set_up_docusaurus', 'eln/use_docusaurus', 'eln/styleguide_docusaurus'],
       },
       {
         Manual: [
