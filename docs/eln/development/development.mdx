@@ -6,16 +6,22 @@ slug: development
 ---
 
 ## Linting
-For linting/formatting code [RuboCop](https://rubocop.org/) and [ESLint](https://eslint.org/) are used. They can be used with the following commands from inside a Chemotion ELN installation directory. The flags `-a` or `-x` for rubocop and `--fix` for ESLint are for correcting and therefore changing the code. Without the flags errors or warnings are just displayed, but without changes to the code.
+For linting and formatting Ruby and JavaScript, [RuboCop](https://rubocop.org/) and [ESLint](https://eslint.org/) are used respectively.
+They can be used with the following commands from inside a Chemotion ELN installation directory.
+The flags `-a` or `-x` for rubocop and `--fix` for ESLint are for correcting and therefore changing the code.
+Without the flags errors or warnings are displayed without changes to the code.
 ```sh
 rubocop [-a | -x] [paths]
 yarn run eslint [--fix] [paths]
 ```
-When ESLint detects some linting errors in the files, it finishes by default with exit code 1. This can be lead to an overall execution in some environments (e. g. inside GitHub Actions). To avoid this the [eslint-plugin-only-warn](https://www.npmjs.com/package/eslint-plugin-only-warn) can be added via yarn which returns warnings instead of errors. It needs also to be added with a flag in the ESLint command:
-```sh 
+When ESLint detects linting errors, it finishes by default with exit code 1.
+This can be lead to scripts being terminated with error codes in some environments (e. g. GitHub Actions).
+To avoid this the [eslint-plugin-only-warn](https://www.npmjs.com/package/eslint-plugin-only-warn) can be added via yarn which returns warnings instead of errors.
+The plugin needs to be activated with a flag in the ESLint command:
+```sh
 yarn run eslint --plugin eslint-plugin-only-warn [--fix] [paths]
 ```
-There are also [Linting extensions for Visual Studio Code](#visual-studio-code) available.
+There are [Linting extensions for Visual Studio Code](#visual-studio-code) available.
 ## Tools recommended for development
 
 ### Visual Studio Code
@@ -31,9 +37,9 @@ There are also [Linting extensions for Visual Studio Code](#visual-studio-code) 
 ### Vim
 Check https://github.com/dense-analysis/ale.
 
-## Webpack 
-### Debug 
-The webpack configurations can be printed out to the node console via:
+## Webpack
+### Debug
+The webpack configurations can be printed to the node console via:
 ```sh
 RAILS_ENV=test node -e 'console.dir(require("config/webpack/test"), { depth: null })'
 ```
