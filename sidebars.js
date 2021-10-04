@@ -45,7 +45,17 @@ module.exports = {
         ],
       },
       {
-        Administration: ['eln/generic_config', 'eln/adjust_analysis'],
+        type: 'category',
+        label: 'Admin UI',
+        items: [
+          'eln/admin_ui/overview',
+          // 'eln/admin_ui/dashboard',
+          // 'eln/admin_ui/user_management',
+          'eln/admin_ui/groups_n_devices',
+          'eln/admin_ui/novnc_settings',
+          'eln/generic_config',
+          //'eln/adjust_analysis'
+        ],
       },
       'eln/coming_soon',
       {
