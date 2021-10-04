@@ -18,9 +18,6 @@ module.exports = {
         Configuration: ['eln/settings', 'eln/system_check'],
       },
       {
-        Documentation: ['eln/set_up_docusaurus', 'eln/use_docusaurus', 'eln/styleguide_docusaurus'],
-      },
-      {
         Manual: [
           'eln/about',
           'eln/intro',
@@ -80,4 +77,11 @@ module.exports = {
       'repo/faq',
     ],
   },
+  docuSidebar: {
+    "About this Docu": [
+      'docu/set_up_docusaurus',
+      'docu/use_docusaurus',
+      'docu/styleguide_docusaurus',
+    ]
+  }
 };
