@@ -61,6 +61,7 @@ Starting point is a fresh installation of a Linux operating system. This could b
 The instructions have been tested on 64-bit Ubuntu Focal 20.04 (LTS). The following packages have to be installed:
 * git
 * docker
+* docker-compose
 
 ### Setup
 
@@ -98,7 +99,7 @@ systemctl restart docker.service
 
 In each case, the settings for ```user1``` will become effective upon the next login.
 
-You're now ready to run the ELN in a [Docker container](#eln-in-docker) or in a [Visual Studio Code devcontainer](https://github.com/ptrxyz/chemotion/tree/main/client-vscode-remote-container).
+You're now ready to run the ELN in a [Docker container](#eln-in-docker) or in a [Visual Studio Code devcontainer](#eln-in-devcontainer).
 
 ## macOS {#macos-heading-id}
 
@@ -199,6 +200,44 @@ docker-compose up
 The third command will prompt you to authorize a potentially destructive initialization of a fresh database by typing ```continue```.
 The fourth command will prompt prior to the removal of stopped containers.
 For a real production mode environment additional steps would be required (e.g. setup of a HTTP proxy), which is beyond the scope of this guide.
+
+## ELN in a Visual Studio Code devcontainer {#eln-in-devcontainer}
+Make sure you have docker running. Create a folder where you want to keep Dockerfiles and shell scripts for dockerization and, in the terminal, clone the following [repository](https://github.com/ptrxyz/chemotion) to it:
+
+```
+git clone https://github.com/ptrxyz/chemotion.git
+```
+From that folder, dive into ```client-vscode-remote-container``` folder:
+
+```
+cd chemotion/client-vscode-remote-container/
+```
+
+Run the script ```createWorkspace.sh``` which will create your work space containing chemotion codebase. Choose the directory where you want to have your codebase. Make sure it is an empty one. Here we will create a directory in home called ```workspace```
+
+```
+bash ./createWorkspace.sh ~/workspace
+```
+
+When it is done, ```workspace``` will open in VSCode. There, check the bell button in the bottom right corner for a new notification and choose ```Reopen in Container```. If you can't see the notification, check the bottom left side for an icon similar to >< in green. Press the icon, this will open a menu. From the menu choose ```Reopen in Container```. Building the container might take a little time. Then there is a post creation step which takes a while. When it is finished, open a new terminal in VSCode. Run:
+
+```
+bundle exec rails c
+```
+And then type quit
+
+And then start the server. Compiling "webpacker" takes a little time so wait a little for it:
+
+```
+bundle exec rails s
+```
+One last step. If you start applying changes, you might get the error: ```FATAL: Listen error: unable to monitor directories for changes.```, open a terminal and run:
+
+```
+sudo sh -c "echo fs.inotify.max_user_watches=524288 >> /etc/sysctl.conf"
+sudo sysctl -p
+```
+You are ready now. You can find more details in this [link](https://github.com/ptrxyz/chemotion/tree/main/client-vscode-remote-container) and this [video](https://www.youtube.com/watch?v=HZCAbC6ldzE).
 
 ## Tools recommended for development
 
