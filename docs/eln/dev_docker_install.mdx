@@ -30,13 +30,22 @@ The instructions have been tested on Windows 10. Your machine should run Windows
 
 #### WSL 2
 Start by [installing `WSL 2`](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
+
 :::important
-While going through the `WSL 2` installation, make sure to install `WSL 2`, not `WSL 1`. Also, make sure to install `Ubuntu 20.04 LTS` (referred to as `Ubuntu` in the following) as your Linux distribution.
+While going through the `WSL 2` installation, make sure to install `WSL 2`, not `WSL 1`. Also, make sure to install `Ubuntu 20.04 LTS` (referred to as `Ubuntu` in the following) as your Linux distribution. You may need to upgrade `Ubuntu 20.04 LTS` from `WSL 1` to `WSL 2`. To check if you have the correct version, open powershell and enter the comand 
+```
+wsl.exe -l -v
+```
+If this shows verion 1 for `Ubuntu 20.04 LTS` upgrade to `WSL 2` with the command 
+```
+wsl.exe --set-version Ubuntu-20.04 2
+```
 :::
-Next, [open a `WSL 2` terminal](https://docs.microsoft.com/en-us/windows/wsl/wsl-config#ways-to-run-wsl) and [set up a user account](https://docs.microsoft.com/en-us/windows/wsl/user-support).
+
+Next, [open an `Ubuntu` terminal](https://docs.microsoft.com/en-us/windows/wsl/wsl-config#ways-to-run-wsl) and [set up a user account](https://docs.microsoft.com/en-us/windows/wsl/user-support).
 
 #### Docker Desktop
-Once you have installed `WSL 2` you can [install `Docker Desktop` and enable the `WSL 2` backend in `Docker Desktop`](https://docs.docker.com/docker-for-windows/wsl/).
+Once you have set up `WSL 2` you can [install `Docker Desktop` and enable the `WSL 2` backend in `Docker Desktop`](https://docs.docker.com/docker-for-windows/wsl/).
 For additional information and prerequisites regarding the installation of `Docker Desktop` also have a look [here](https://docs.docker.com/docker-for-windows/install/) (the instructions above should be sufficient though).
 
 ### Setup
@@ -50,8 +59,8 @@ you could store them in your home directory (`~`).
 Also, make sure that you're running all commands from a `WSL 2` terminal (`$` command prompt), i.e., from within `Ubuntu`, not Windows PowerShell (`>` command prompt).
 You won't be able to run bash scripts from PowerShell.
 
-On your Windows machine, [open a `WSL 2` terminal](https://docs.microsoft.com/en-us/windows/wsl/wsl-config#ways-to-run-wsl).
-Next, start `Docker Desktop`. You can confirm that `Docker Desktop` is running by typing `docker --version` in the `WSL 2` terminal.
+On your Windows machine, [open the `Ubuntu` terminal](https://docs.microsoft.com/en-us/windows/wsl/wsl-config#ways-to-run-wsl).
+Next, start `Docker Desktop`. You can confirm that `Docker Desktop` is running by typing `docker --version` in the `Ubuntu` terminal.
 If you get a response you're now ready to run the ELN in a [Docker container](#eln-in-docker) or in a [Visual Studio Code devcontainer](https://github.com/ptrxyz/chemotion/tree/main/client-vscode-remote-container).
 
 ## Linux {#linux-heading-id}
@@ -104,6 +113,7 @@ You're now ready to run the ELN in a [Docker container](#eln-in-docker) or in a 
 ## macOS {#macos-heading-id}
 
 We recommend having an Ubuntu virtual machine. Then you can follow the steps from [Linux installation](#linux-heading-id).
+
 ## ELN in a Docker container {#eln-in-docker}
 :::caution operating system requirements
 Before proceeding, make sure you've followed the instructions for your operating system ([Windows](#windows-heading-id), [Linux](#linux-heading-id), [macOS](#macos-heading-id)).
@@ -146,8 +156,7 @@ In total, the code snippet will do the following:
 * set up a Chemotion ELN container which mounts the source code of Chemotion ELN as a volume and run it in the foreground (to daemonize it and send it to the background, add option ```-d``` to the last command)
 
 Thus any changes to the Chemotion ELN source code in the ```src``` directory will be reflected in the running instance.
-The status of the containers can be checked either with ```docker ps``` or ```ss -tlpen``` which displays the TCP sockets where processes are listening for connections.
- Chemotion ELN should listen on port 4000 whereas the PostgreSQL database should listen on port 5432.
+The status of the containers can be checked either with ```docker ps``` or ```ss -tlpen``` which displays the TCP sockets where processes are listening for connections. After the start-up you can access your fresh instance using a browser. The application is running on `http://localhost:4000`, the seeded administration account is `ADM` (all caps!) with password `PleaseChangeYourPassword`. The PostgreSQL database should listen on port 5432.
 
 To tear things down, you can issue and the following command (in a different shell but from the same directory):
 
