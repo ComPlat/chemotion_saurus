@@ -45,6 +45,11 @@ module.exports = {
                   to: 'docs/repo/videos_repo',
                   // docsPluginId: 'repoID',
                 },
+                {
+                  label: 'About this documentation',
+                  to: 'docs/docu/Set Up',
+                  // docsPluginId: 'repoID',
+                },
               ],
             },
         // right
