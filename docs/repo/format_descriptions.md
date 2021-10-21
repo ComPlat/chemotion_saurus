@@ -1,6 +1,6 @@
 ---
 id: format_descriptions
-title: Format Descriptions
+title: Format descriptions
 slug: format_descriptions
 author: Nicole Jung
 ---

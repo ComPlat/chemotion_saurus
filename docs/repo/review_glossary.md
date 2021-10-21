@@ -1,6 +1,6 @@
 ---
 id: review_glossary
-title: Review Glossary
+title: Review glossary
 slug: review_glossary
 author: Nicole Jung
 ---

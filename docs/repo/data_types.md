@@ -1,6 +1,6 @@
 ---
 id: data_types
-title: Data Types
+title: Data types
 slug: data_types
 author: Nicole Jung
 ---

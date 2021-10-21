@@ -1,6 +1,6 @@
 ---
 id: details_analytics
-title: Details for Analytics
+title: Details for analytics
 slug: details_analytics
 author: Nicole Jung
 ---
