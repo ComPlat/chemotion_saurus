@@ -61,7 +61,7 @@ module.exports = {
       'eln/coming_soon',
       {
         type: 'category',
-        label: 'Device Integration',
+        label: 'Device integration',
         items: ['eln/devices', 'eln/devices_nmr'],
       },
       'eln/contact',
