@@ -9,7 +9,24 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCog } from '@fortawesome/free-solid-svg-icons'
 import { Btn } from '@site/docs/btn.js'
 
-We test the Chemotion ELN using three kinds of tests: JavaScript (npm) tests, Ruby unit tests, and acceptance (feature) tests.
+We test the Chemotion ELN using three kinds of tests.
+
+## 1. JavaScript (npm) tests
+Using the `Mocha` framework: https://mochajs.org/.
+
+Test are configured with
+```sh
+"test": "mocha --require '@babel/register' './spec/javascripts/helper/setup.js' './spec/javascripts/**/*.spec.js'"
+```
+in the `scripts` section of `package.json`.
+
+## 2. Ruby unit tests
+Using the `RSpec` framework: https://rspec.info/.
+
+## 3. Acceptance (feature) tests
+Using the `Capybara` framework alongside `RSpec` to simulate user interactions: https://teamcapybara.github.io/capybara/.
+The test driver is `Selenium`: https://www.selenium.dev/.
+
 
 ## Local testing for Chemotion ELN
 For locally testing Chemotion ELN, change to the root directory of your Chemotion ELN code and type the following commands:
