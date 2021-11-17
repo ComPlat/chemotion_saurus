@@ -36,6 +36,6 @@ A change of embargoed items is in general not desired and part of the standard w
 
 ## Move items to another embargo bundle
 
-Samples or reactions can be moved to another existing embargo bundle or can be moved to an embargo bundle to be generated newly. Please use the transfer symbol given next to each entry in the "embargoed publications" panel. 
+Samples or reactions can be moved to another existing embargo bundle or can be moved to a new embargo bundle. Please use the transfer symbol given next to each entry in the "embargoed publications" panel. 
 
-![](/img/docs/move-change-release-embargo/7a5b05a7-35d8-435c-8e9d-f530ffe16f26_image_20200831-18167-1ysnmcj.png)
+![](/img/docs/move-change-release-embargo/change_embargo_bundle_edit_0.gif)
