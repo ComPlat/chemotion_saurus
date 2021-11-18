@@ -34,8 +34,14 @@ Release: please open the "Embargoed Publications" panel and select an embargo as
 
 A change of embargoed items is in general not desired and part of the standard workflow of the repository. After the passing the internal review, all changes should be finished. If there are any mistakes that you become aware of after the the submissions were accepted, then please let the repository team know and contact us. In those cases, we can correct even those entries that are accepted and under embargo. Published items (after the release of the embargo) can't be changed any more. 
 
+## Move items to embargo bundle
+
+Samples or reactions submitted to the Repository without embargo can be retroactively moved to embargo bundle after they have been reviewed. Simply use the transfer symbol given next to the entry in the "Reviewed" panel and select the desired embargo bundle.
+
+![](/img/docs/move-change-release-embargo/change_embargo_bundle_edit_0.gif)
+
 ## Move items to another embargo bundle
 
 Samples or reactions can be moved to another existing embargo bundle or can be moved to a new embargo bundle. Please use the transfer symbol given next to each entry in the "embargoed publications" panel. 
 
-![](/img/docs/move-change-release-embargo/change_embargo_bundle_edit_0.gif)
+![](/img/docs/move-change-release-embargo/how_to_move_to_another_embargo.gif)
