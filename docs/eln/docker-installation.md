@@ -9,8 +9,7 @@ slug: docker_installation
 Documentation and processes are being reworked and improved at the moment. It may happen that you miss information. If you face problems, please let us know, we are there to support you. You may also [contact](specific_contact) us directly if you plan to install Chemotion. 
 :::
 
-
-
+## Version 0.9.1
 
 ## Preparation
 To setup the Chemotion ELN using Docker, Docker and Docker-Compose have to be installed on the host machine. Please refer to your distributions documentation on how this can be achieved. For Ubuntu-based machines, this can be found [here](https://docs.docker.com/engine/install/ubuntu/).
