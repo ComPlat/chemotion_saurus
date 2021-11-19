@@ -21,12 +21,6 @@ const features = [
   },
 
   {
-    imageUrl: 'img/chemeln.jpg',
-    title: 'SciMotion ELN',
-    mainLink: 'http://eln.chemotion.net',
-  },
-
-  {
     imageUrl: 'img/spectraviewer.png',
     title: 'ChemSpectra',
     mainLink: 'http://eln.chemotion.net/chemspectra-editor',
