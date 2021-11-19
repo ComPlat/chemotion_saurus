@@ -17,6 +17,9 @@ As of now, there is only one landscape shipped with the image and we plan to add
 
 Further, this changed the config file structure a bit. While in previous versions, the ELN configuration was stored in `./shared/config` and the container configuration was stored in `./config`, there is only one folder now: `./shared`. We hope this change makes it more intuitive for users.
 
+On the inside, we managed to reduce the size of our images by more than 50% by being more selective when it comes to installed packages: using multistage builds to build the big dependencies makes sure that no build artifacts are unnecessarily present in the final image. To ensure consistency we added a dependency scanner that makes sure that all dependencies are still satisfied and no libraries are missing.
+
+
 ## Preparation
 To setup the Chemotion ELN using Docker, Docker and Docker-Compose have to be installed on the host machine. Please refer to your distributions documentation on how this can be achieved. For Ubuntu-based machines, this can be found [here](https://docs.docker.com/engine/install/ubuntu/).
 
