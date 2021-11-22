@@ -28,9 +28,9 @@ In addition you need that latest version of our Docker-Compose service descripti
 | File | Description | 
 | ---- | ----------- |
 | [docker-compose.yml](https://github.com/ptrxyz/chemotion/blob/main/client-chemotion/docker-compose.yml) | service description file |
-| setup.sh   | use this script if you plan to setup a new Chemotion ELN instance |
-| upgrade.sh | this script shall be used to perform an upgrade of an existing instance from v0.9.1 to v1.0.3 |
-| backup.sh  | script to backup your data before messing things up |
+| [setup.sh](https://raw.githubusercontent.com/ptrxyz/chemotion/v1.0.3D0.1/client-chemotion/setup.sh)   | use this script if you plan to setup a new Chemotion ELN instance |
+| [upgrade.sh](https://raw.githubusercontent.com/ptrxyz/chemotion/v1.0.3D0.1/client-chemotion/upgrade.sh) | this script shall be used to perform an upgrade of an existing instance from v0.9.1 to v1.0.3 |
+| [backup.sh](https://raw.githubusercontent.com/ptrxyz/chemotion/v1.0.3D0.1/client-chemotion/backup.sh)  | script to backup your data before messing things up |
 
 
 (For other releases, check out our repository on DockerHub[^1] and the archived installation on Github[^2])
@@ -42,17 +42,17 @@ Download this file and place it in a separate folder (further referred to as `CH
 ```
 mkdir -p $CHEMOTION_PATH
 cd $CHEMOTION_PATH
-curl -L -O https://raw.githubusercontent.com/ptrxyz/chemotion/main/client-chemotion/docker-compose.yml
-curl -L -O https://raw.githubusercontent.com/ptrxyz/chemotion/main/client-chemotion/backup.sh
-curl -L -O https://raw.githubusercontent.com/ptrxyz/chemotion/main/client-chemotion/setup.sh
-curl -L -O https://raw.githubusercontent.com/ptrxyz/chemotion/main/client-chemotion/upgrade.sh
+curl -L -O https://raw.githubusercontent.com/ptrxyz/chemotion/v1.0.3D0.1/client-chemotion/docker-compose.yml
+curl -L -O https://raw.githubusercontent.com/ptrxyz/chemotion/v1.0.3D0.1/client-chemotion/backup.sh
+curl -L -O https://raw.githubusercontent.com/ptrxyz/chemotion/v1.0.3D0.1/client-chemotion/setup.sh
+curl -L -O https://raw.githubusercontent.com/ptrxyz/chemotion/v1.0.3D0.1/client-chemotion/upgrade.sh
 ```
 
 As a next step, run the setup script and follow the instructions:
 
 ```
 cd $CHEMOTION_PATH
-./setup.sh
+bash ./setup.sh
 ```
 
 ## Running Chemotion
@@ -117,7 +117,7 @@ This will drop you to a root shell inside the container. You are now free to per
 To backup your data, it is sufficient to run the following command on your host machine (not inside the container) in the folder, where your Compose file resides:
 
 ```
-sudo ./backup.sh
+sudo bash ./backup.sh
 ```
 
  :::info
