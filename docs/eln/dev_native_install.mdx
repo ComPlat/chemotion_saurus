@@ -5,12 +5,12 @@ sidebar_label: Native installation
 slug: development_native_installation
 ---
 
-This documentation describes an installation solution example of the the chemotion_ELN system for development purposes with Rails 5 on Ubuntu 20.04.  
+This documentation describes an installation solution of the chemotion ELN system for development purposes with Rails 5 on Ubuntu 20.04.  
 ## Before Installation
 The installation script installs ELN through a default user, which is created during the installation. If you want to use another user or use an existing user, download the installation script (see [Get installation script](#get-installation-script)) and change the varibale PROD at the top of the script.  
-The default user gets also a random generated password when newly created. If you want to login to the user after installation you can change password in the script. For that search for the command `chpasswd` in the script.
+For the default user a random password is generated when newly created. If you want to login to the user after installation you can change the password in the script. For that search for the command `chpasswd` in the script.
 
-## Get installation script
+## Get the installation script
 Download the current development installation script (14.07.2021) from [GitHub](https://github.com/ComPlat/chemotion_ELN/tree/development-5/scripts) and make it executable:
 ```sh
 curl -o install_development.sh -L https://raw.githubusercontent.com/ComPlat/chemotion_ELN/development-5/scripts/install_development.sh
@@ -31,7 +31,7 @@ You need to run "nvm install vxx.xx.x" to install it before using it.
 ```sh
 nvm install vxx.xx.x
 ```
-Run again installation script:
+Run the installation script again:
 ```sh
 sudo ./install_development.sh
 ```
@@ -55,13 +55,13 @@ curl: (23) Failed writing body (0 != 1369)
 000:09 removing tmp repo..
 000:09 An error has occured
 ```
-This may occure if you install chemotion_ELN for multiple users on the same machine, because global packages to be installed already exists, so either comment out the installation of the package which causes the problem or delete it.
+This may occure if you install the chemotion ELN for multiple users on the same machine, because the global packages to be installed already exists, so either comment out the installation of the package which causes the problem or delete it.
 
 ## After Installation
 ### Git clone
-After the installation of the desired libraries to use chemotion ELN you need to clone the source code from [GitHub](https://github.com/ComPlat/chemotion_ELN).
+After the installation of the desired libraries to use the chemotion ELN you need to clone the source code from [GitHub](https://github.com/ComPlat/chemotion_ELN).
 ### Change configuration files
-Before using you have to change some configurations. Change to the root folder of your ELN (e. g. `cd ~/chemotion_ELN`) and paste the following commands at once in your terminal:
+Before using the chemotion ELN you have to change some configurations. Change to the root folder of your ELN (e. g. `cd ~/chemotion_ELN`) and paste the following commands at once in your terminal:
 ```sh
 cp Gemfile.plugin.example Gemfile.plugin ;
 cp .ruby-gemset.example .ruby-gemset ;
@@ -81,7 +81,7 @@ source ~/.rvm/scripts/rvm && bundle install
 ```
 #### Errors
 <div class="boxBorder">
-You might have to install separate package for the ruby development environment, ruby-dev or ruby-devel for example
+You might have to install separate package for the ruby development environment, ruby-dev or ruby-devel for example:
 </div>
 
 ```sh
@@ -188,4 +188,4 @@ You need to run two servers simultaneously in two different terminals: one for t
 bundle exec rails s
 bundle exec bin/webpack-dev-server
 ```
-Potentially a restart of the Rails server is needed because changes in JavaScript files below `app/` are monitored by the webpack server process.
+Potentially a restart of the Rails server is needed because changes in the JavaScript files below `app/` are monitored by the webpack server process.
