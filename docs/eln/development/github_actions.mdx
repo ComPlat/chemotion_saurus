@@ -9,27 +9,28 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCog } from '@fortawesome/free-solid-svg-icons'
 import { Btn } from '@site/docs/btn.js'
 
-We test the Chemotion ELN using three kinds of tests.
+We test the Chemotion ELN using three different kinds of tests.
 
 ## 1. JavaScript (npm) tests
-Using the `Mocha` framework: https://mochajs.org/.
+The first testing is done using the `Mocha` framework: https://mochajs.org/.
 
-Test are configured with
+Tests are configured with
 ```sh
 "test": "mocha --require '@babel/register' './spec/javascripts/helper/setup.js' './spec/javascripts/**/*.spec.js'"
 ```
 in the `scripts` section of `package.json`.
 
 ## 2. Ruby unit tests
-Using the `RSpec` framework: https://rspec.info/.
+Another testing is done with the `RSpec` framework: https://rspec.info/.
 
 ## 3. Acceptance (feature) tests
-Using the `Capybara` framework alongside `RSpec` to simulate user interactions: https://teamcapybara.github.io/capybara/.
+The `Capybara` framework is used alongside `RSpec` to simulate user interactions: https://teamcapybara.github.io/capybara/.
 The test driver is `Selenium`: https://www.selenium.dev/.
 
 
 ## Local testing for Chemotion ELN
-For locally testing Chemotion ELN, change to the root directory of your Chemotion ELN code and type the following commands:
+For locally testing the Chemotion ELN, some changes to the root directory of your Chemotion ELN code is necessary. For this type the following commands: 
+
 ### Javascript (npm) unit tests
 ```sh
 source ~/.rvm/scripts/rvm && source ~/.nvm/nvm.sh && nvm use && RAILS_ENV=test bundle exec rake db:test:prepare && npm test
@@ -58,7 +59,7 @@ Every kind of test (JavaScript, Ruby and acceptance) has its own [GitHub Actions
 
 ### Skip tests
 If you want to run a subset of the test or commit without tests, you can use skip commands.
-Multiple skip commands can be combined. Insert one or more from the following skip commands in your commit message, where they are parsed by GitHub:
+Multiple skip commands can be combined. Insert one or more of the following skip commands in your commit message, where they are parsed by GitHub:
 ```sh
 skip unit js
 ```
