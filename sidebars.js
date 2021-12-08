@@ -12,7 +12,7 @@ module.exports = {
         ],
       },
       {
-        Development: ['eln/development/project_overview', 'eln/development/development', 'eln/development/github_actions', 'eln/development/swagger'],
+        Development: ['eln/development/project_overview', 'eln/development/development', 'eln/development/testing', 'eln/development/ci'],
       },
       {
         Configuration: ['eln/settings', 'eln/system_check'],

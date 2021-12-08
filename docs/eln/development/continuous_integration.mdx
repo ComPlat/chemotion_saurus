@@ -1,60 +1,18 @@
 ---
-id: github_actions
-title: Testing Code
-sidebar_label: Testing
-slug: testing_code
+id: ci
+title: Continuous integration
+sidebar_label: Continuous integration
+slug: ci
 ---
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCog } from '@fortawesome/free-solid-svg-icons'
 import { Btn } from '@site/docs/btn.js'
 
-We test the Chemotion ELN using three different kinds of tests.
-
-## 1. JavaScript (npm) tests
-The first testing is done using the `Mocha` framework: https://mochajs.org/.
-
-Tests are configured with
-```sh
-"test": "mocha --require '@babel/register' './spec/javascripts/helper/setup.js' './spec/javascripts/**/*.spec.js'"
-```
-in the `scripts` section of `package.json`.
-
-## 2. Ruby unit tests
-Another testing is done with the `RSpec` framework: https://rspec.info/.
-
-## 3. Acceptance (feature) tests
-The `Capybara` framework is used alongside `RSpec` to simulate user interactions: https://teamcapybara.github.io/capybara/.
-The test driver is `Selenium`: https://www.selenium.dev/.
-
-
-## Local testing for Chemotion ELN
-For locally testing the Chemotion ELN, some changes to the root directory of your Chemotion ELN code is necessary. For this type the following commands: 
-
-### Javascript (npm) unit tests
-```sh
-source ~/.rvm/scripts/rvm && source ~/.nvm/nvm.sh && nvm use && RAILS_ENV=test bundle exec rake db:test:prepare && npm test
-```
-
-### Ruby unit tests
-```sh
-source ~/.rvm/scripts/rvm && RAILS_ENV=test bundle exec rake db:test:prepare && bundle exec rspec --exclude-pattern spec/{features}/**/*_spec.rb
-```
-
-### Acceptance tests
-```sh
-source ~/.rvm/scripts/rvm && source ~/.nvm/nvm.sh && nvm use  && RAILS_ENV=test bundle exec rake db:test:prepare && bundle exec rake assets:precompile  && bundle exec rspec spec/features
-```
-When you have freshly installed Chemotion ELN, make sure to create a `welcome-message.md` file in the `public` directory inside Chemotion ELN
-before running acceptance tests. You can create it from the example file:
-```sh
-cp public/welcome-message-sample.md public/welcome-message.md
-```
-
 ## Testing with GitHub Actions
 [GitHub Actions](https://github.com/features/actions) is the Continuous Integration and Deployment tool of GitHub.
 It allows for running the tests automatically on every push to the
-Chemotion ELN GitHub repository](https://github.com/ComPlat/ Chemotion ELN).
+[Chemotion ELN GitHub repository](https://github.com/ComPlat/chemotion_ELN).
 Every kind of test (JavaScript, Ruby and acceptance) has its own [GitHub Actions workflow](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions).
 
 ### Skip tests
@@ -406,4 +364,4 @@ Maybe the value in MB needs to be adjusted.
 No route matches [GET] "/welcome-message.md"
 </div>
 
-See [local acceptance testing](#acceptance-tests).
+See [local acceptance testing](testing#acceptance-tests).
