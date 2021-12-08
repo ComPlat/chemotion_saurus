@@ -61,7 +61,7 @@ To install on a single machine for few users below is the minimum hardware requi
 * 3GB RAM
 * Dual Core
 * 50-100GB hard disk 
-* Ubuntu 20.04LTS or 18.04 LTS
+* Ubuntu 20.04 LTS
 
 For multiple machine configuration and splitting the services onto different machines below is the hardware requirement:
 
@@ -69,19 +69,19 @@ For multiple machine configuration and splitting the services onto different mac
 * 3GB RAM
 * Dual Core
 * 10-20GB hard disk
-* Ubuntu 20.04LTS or 18.04 LTS
+* Ubuntu 20.04 LTS
 
 **DB server**:
 * 2GB RAM
 * Dual Core
 * 500GB hard disk or smaller (depending upon the size of the metadata)
-* Ubuntu 20.04LTS or 18.04 LTS
+* Ubuntu 20.04 LTS
 
 **ELN proxy server**:
 * 2GB RAM
 * Dual Core
 * 8GB hard disk
-* Ubuntu 20.04LTS or 18.04 LTS
+* Ubuntu 20.04 LTS
 
 :::info
 Where are the research data and entries stored in Chemotion? If the installation is done on multiple machines, Chemotion will have more users and consequently more data. Shouldn't the DB server have more hard disk or at least 500 GB?
@@ -358,7 +358,7 @@ service postgresql status
 ### ELN Web App Setup:
 
 Follow the below steps to install the ELN application.
-1. Copy the installation script on a Ubuntu server 18.04 or 20.04 LTS
+1. Copy the installation script on an Ubuntu server 20.04 LTS
    ```sh
    curl -o chemotion_ELN_install.sh -L https://raw.githubusercontent.com/ComPlat/chemotion_ELN/development/scripts/install_production.sh
    ```
