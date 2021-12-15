@@ -6,11 +6,11 @@ slug: native_installation
 ---
 
 :::info
-Documentation and processes are being reworked and improved at the moment. It may happen that you miss information. If you face problems, please let us know, we are there to support you. You may also [contact](specific_contact) us directly if you plan to install Chemotion. 
+Documentation and processes are being reworked and improved at the moment. It may happen that you miss information. If you face problems, please let us know, we are there to support you. You may contact the [helpdesk](https://helpdesk.nfdi4chem.de) about chemotion ELN or submit a [request](https://www.nfdi4chem.de/index.php/setup-own-eln/) directly if you plan to install or test Chemotion. 
 :::
 
 
-This documentation detailled an installation solution example of the the chemotion_ELN system and associated services on Ubuntu servers.
+This documentation detailled an installation solution example of the the chemotion_ELN system and associated services on Ubuntu servers with NGINX as web server and Phusion-passenger as app server.
 
 
 The chemotion_ELN is a web-application that needs the following elements:
@@ -23,12 +23,11 @@ The chemotion_ELN is a web-application that needs the following elements:
 
 The code for the web-application (server- and client- sides) and the workers is what we provide.
 
-For a few users, all this components can be installed on a single machine (2 cpu s, 3GB memory) using the [installation script](https://github.com/ComPlat/chemotion_ELN/blob/development/scripts/install_production.sh) that will set up all these components and basic configurations.
+For a few users, all this components can be installed on a single machine (2 cpu s, 4GB memory) using the [installation script](https://github.com/ComPlat/chemotion_ELN/blob/development-5/scripts/install_production.sh) that will set up all these components and basic configurations.
 
 
 :::info
-We should be more precise here and make a recommendation up to what number of users the installation on a machine is good for;
-Installation with root or sudo user
+ Use a sudo user, not root, to run the script! 
 :::
 
 ![architecture_ELN](../../static/img/architecture_ELN_base.svg)
@@ -46,19 +45,11 @@ In short the installation, will:
 
 For more users, one can start to split the services onto distinct machines.
 
-:::info
-From how many users does this make sense? What advantages do I have?
-
-The link to the installation scripts for the different machines is missing. On the end of the page are important information -> link possible?
-
-How do I install Chemotion if several working groups at one university / from different universities want to access Chemotion? Does each working group have to install everything completely? Can I save the data of the working groups on different computers? 
-:::
-
 ![architecture_ELN_dist](../../static/img/architecture_ELN_dist.svg)
 
 ## Hardware Requirement
 To install on a single machine for few users below is the minimum hardware requirement.
-* 3GB RAM
+* 4GB RAM
 * Dual Core
 * 50-100GB hard disk 
 * Ubuntu 20.04 LTS
@@ -83,17 +74,10 @@ For multiple machine configuration and splitting the services onto different mac
 * 8GB hard disk
 * Ubuntu 20.04 LTS
 
-:::info
-Where are the research data and entries stored in Chemotion? If the installation is done on multiple machines, Chemotion will have more users and consequently more data. Shouldn't the DB server have more hard disk or at least 500 GB?
-:::
-
 
 ## Nginx - Phusion passenger
 
-:::info
-The information density here is very high, and i think that single subheadings would help, e.g. "Use of SSL" here.
-Another point, e.g. Use of a server name
-:::
+More info on NGINX open source can be found on [nginx.org](http://nginx.org/en/docs/). For Phusion Passenger, see [phusionpassenger.com](https://www.phusionpassenger.com/docs/advanced_guides/install_and_upgrade/nginx/install/).
 
 The configuration files are at /etc/nginx/sites-enabled/ (symlinked from ../sites-available).
 SSL use is recommended and should be set there.
@@ -396,7 +380,7 @@ Follow the below steps to install the ELN application.
 6. Once the application is setup, technically we can uninstall the postgres and stop the worker job from this server.
 7. To uninstall PostgreSQL from the app server you can follow the [link here](https://askubuntu.com/questions/32730/how-to-remove-postgres-from-my-installation)
 8. The worker app (_delayed_job_) and  the web app (_passenger instance_) are  started at machine-reboot  through crontab of the production user.
-   Crontab will execute at reboot a script located  at _/home/production/boot-ELN.sh_. In ordee to stop the worker job comment out the job on the script 
+   Crontab will execute at reboot a script located  at _/home/production/boot-ELN.sh_. In order to stop the worker job, comment out the job on the script 
    section (_/home/production/boot-ELN.sh_) and quit the job(_delayed_job_) from the process manager as well(_htop_).
   
 ### ELN Web Worker Setup:
