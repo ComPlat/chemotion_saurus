@@ -1,24 +1,62 @@
 module.exports = {
   elnSidebar: {
     ELN: [
+
       {
-        Installation: [
+        type: 'category',
+        label: 'Installation',
+        link: {
+          type: 'generated-index',
+        },
+        items: [
           {
-            Production: ['eln/native_installation', 'eln/dockerinstall'],
+            Production: [
+              'eln/native_installation',
+              'eln/dockerinstall'
+            ],
           },
           {
-            Development: ['eln/dev_native_install', 'eln/dev_docker_install'],
+            Development: [
+              'eln/dev_native_install',
+              'eln/dev_docker_install'
+            ],
           },
         ],
       },
+
       {
-        Development: ['eln/development/project_overview', 'eln/development/development', 'eln/development/testing', 'eln/development/ci'],
+        type: 'category',
+        label: 'Development',
+        link: {
+          type: 'generated-index',
+        },
+        items : [
+          'eln/development/project_overview',
+          'eln/development/development',
+          'eln/development/testing',
+          'eln/development/ci'
+        ],
       },
+
       {
-        Configuration: ['eln/settings', 'eln/system_check'],
+        type: 'category',
+        label: 'Configuration',
+        link: {
+          type: 'generated-index',
+        },
+        items: [
+          'eln/settings',
+          'eln/system_check'
+        ],
       },
+
       {
-        Manual: [
+        type: 'category',
+        label: 'Manual',
+        link: {
+          type: 'generated-index',
+        },
+        items: [
           'eln/about',
           'eln/intro',
           'eln/videos_eln',
@@ -31,7 +69,11 @@ module.exports = {
           {
             type: 'category',
             label: 'Elements',
-            items: ['eln/samples', 'eln/reactions',  'eln/wellplates'],
+            items: [
+              'eln/samples',
+              'eln/reactions',
+              'eln/wellplates'
+            ],
           },
           'eln/details',
           'eln/toolbar',
@@ -44,9 +86,13 @@ module.exports = {
           'eln/problems',
         ],
       },
+
       {
         type: 'category',
         label: 'Admin UI',
+        link: {
+          type: 'generated-index',
+        },
         items: [
           'eln/admin_ui/overview',
           // 'eln/admin_ui/dashboard',
@@ -58,22 +104,37 @@ module.exports = {
           //'eln/adjust_analysis'
         ],
       },
-      'eln/coming_soon',
+
       {
         type: 'category',
         label: 'Device integration',
+        link: {
+          type: 'generated-index',
+        },
         items: ['eln/devices', 'eln/devices_nmr'],
       },
-      'eln/contact',
+
+      'eln/coming_soon',
+
       'eln/faq_eln',
+
+      'eln/contact',
+
     ],
   },
 
   repoSidebar: {
     REPO: [
+
       'repo/videos_repo',
+
       {
-        Usage: [
+        type: 'category',
+        label: 'Usage',
+        link: {
+          type: 'generated-index',
+        },
+        items: [
           'repo/review_glossary',
           'repo/new_entry',
           'repo/publication_review',
@@ -85,14 +146,21 @@ module.exports = {
           'repo/request_physical_samples',
         ],
       },
+
       'repo/faq',
+
     ],
   },
+
   docuSidebar: {
-    "About this Docu": [
+    "About this Documentation": [
+
       'docu/set_up_docusaurus',
+
       'docu/use_docusaurus',
+
       'docu/styleguide_docusaurus',
+
     ]
   }
 };
