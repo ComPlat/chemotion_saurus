@@ -30,8 +30,7 @@ jobs:
           npm i
           npm run build --if-present
           
-      - uses: fregante/setup-git-user@v1
-
+      # - uses: fregante/setup-git-user@v1
       # - name: Style Guide Parser
       #   if: "!contains(github.event.commits[0].message, 'skip style guide')"
       #   continue-on-error: true
