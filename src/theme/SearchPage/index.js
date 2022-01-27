@@ -18,8 +18,8 @@ import Link from '@docusaurus/Link';
 import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 import {useTitleFormatter, usePluralForm} from '@docusaurus/theme-common';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import {useAllDocsData} from '@theme/hooks/useDocs';
-import useSearchQuery from '@theme/hooks/useSearchQuery';
+import {useAllDocsData} from '@docusaurus/plugin-content-docs/client';
+import {useSearchPage} from '@docusaurus/theme-common';
 import Layout from '@theme/Layout';
 import Translate, {translate} from '@docusaurus/Translate';
 import styles from './styles.module.css';
@@ -125,7 +125,7 @@ function SearchPage() {
   const documentsFoundPlural = useDocumentsFoundPlural();
 
   const docsSearchVersionsHelpers = useDocsSearchVersionsHelpers();
-  const {searchValue, updateSearchPath} = useSearchQuery();
+  const {searchValue, updateSearchPath} = useSearchPage();
   const [searchQuery, setSearchQuery] = useState(searchValue);
   const initialSearchResultState = {
     items: [],
@@ -203,7 +203,7 @@ function SearchPage() {
       // set of urls without #
       const uniqueUrls = new Set(hits.map(item => item.url_without_anchor));
 
-      hits.map((item) => { 
+      hits.map((item) => {
         uniqueUrls.forEach((uniURL) => {
           if (item.url_without_anchor == uniURL){
             filterItems.push(item);
@@ -211,7 +211,7 @@ function SearchPage() {
           }
         });
       });
-      
+
       // const items = hits.map(
         const items = filterItems.map(
         ({

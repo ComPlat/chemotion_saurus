@@ -3,7 +3,7 @@
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
- * 
+ *
  * instructions:
  * https://autocomplete-experimental.netlify.app/docs/docsearchmodal/#reference
  */
@@ -15,11 +15,11 @@
  import {useBaseUrlUtils} from '@docusaurus/useBaseUrl';
  import Link from '@docusaurus/Link';
  import Head from '@docusaurus/Head';
- import useSearchQuery from '@theme/hooks/useSearchQuery';
+ import {useSearchPage} from '@docusaurus/theme-common';
  import {DocSearchButton, useDocSearchKeyboardEvents} from '@docsearch/react';
- import useAlgoliaContextualFacetFilters from '@theme/hooks/useAlgoliaContextualFacetFilters';
+ import {useAlgoliaContextualFacetFilters} from '@docusaurus/theme-search-algolia/client';
  import {translate} from '@docusaurus/Translate';
- 
+
  let DocSearchModal = null;
 
  function Hit({hit, children}) {
@@ -27,56 +27,56 @@
   // return <Link to={hit.url}>{title}</Link>;
    return <Link to={hit.url}>{children}</Link>;
  }
- 
+
  function ResultsFooter({state, onClose}) {
-   const {generateSearchPageLink} = useSearchQuery();
+   const {generateSearchPageLink} = useSearchPage();
    return (
      <Link to={generateSearchPageLink(state.query)} onClick={onClose}>
-       See all results 
+       See all results
        {/* See all {state.context.nbHits} results  */}
      </Link>
    );
  }
- 
+
  function DocSearch({contextualSearch, ...props}) {
   /**
    *
-   * @contextualSearch {boolean} 
+   * @contextualSearch {boolean}
    * @props {object} Algolia configs
    */
 
   // console.log('APP ID', props);
 
    const {siteMetadata} = useDocusaurusContext();
- 
+
    const contextualSearchFacetFilters = useAlgoliaContextualFacetFilters();
- 
+
    const configFacetFilters = props.searchParameters?.facetFilters ?? [];
- 
+
    const facetFilters = contextualSearch
      ? // Merge contextual search filters with config filters
        [...contextualSearchFacetFilters, ...configFacetFilters]
      : // ... or use config facetFilters
        configFacetFilters;
- 
+
    // we let user override default searchParameters if he wants to
    const searchParameters = {
      ...props.searchParameters,
      facetFilters,
    };
- 
+
    const {withBaseUrl} = useBaseUrlUtils();
    const history = useHistory();
    const searchContainer = useRef(null);
    const searchButtonRef = useRef(null);
    const [isOpen, setIsOpen] = useState(false);
    const [initialQuery, setInitialQuery] = useState(null);
- 
+
    const importDocSearchModalIfNeeded = useCallback(() => {
      if (DocSearchModal) {
        return Promise.resolve();
      }
- 
+
      return Promise.all([
        import('@docsearch/react/modal'),
        import('@docsearch/react/style'),
@@ -85,7 +85,7 @@
        DocSearchModal = Modal;
      });
    }, []);
- 
+
    const onOpen = useCallback(() => {
      importDocSearchModalIfNeeded().then(() => {
        searchContainer.current = document.createElement('div');
@@ -96,12 +96,12 @@
        setIsOpen(true);
      });
    }, [importDocSearchModalIfNeeded, setIsOpen]);
- 
+
    const onClose = useCallback(() => {
      setIsOpen(false);
      searchContainer.current.remove();
    }, [setIsOpen]);
- 
+
    const onInput = useCallback(
      (event) => {
        importDocSearchModalIfNeeded().then(() => {
@@ -111,13 +111,13 @@
      },
      [importDocSearchModalIfNeeded, setIsOpen, setInitialQuery],
    );
- 
+
    const navigator = useRef({
      navigate({itemUrl}) {
        history.push(itemUrl);
      },
    }).current;
- 
+
    const transformItems = useRef((items) => {
      let filterItems = []; // no duplicate urls without #
 
@@ -125,8 +125,8 @@
      const uniqueUrls = new Set(items.map(item => item.url.split('#')[0]));
 
       // filter urls with multiple results per page for showing every single page max. 1x in the results
-     items.map((item) => { 
-      const itemURL = item.url.split('#')[0] 
+     items.map((item) => {
+      const itemURL = item.url.split('#')[0]
       uniqueUrls.forEach((uniURL) => {
         if (itemURL == uniURL){
           filterItems.push(item);
@@ -141,7 +141,7 @@
        // supported in IE.
        const a = document.createElement('a');
        a.href = item.url;
- 
+
        return {
          ...item,
          url: withBaseUrl(`${a.pathname}`),
@@ -149,13 +149,13 @@
        };
      });
    }).current;
- 
+
     // useMemo depends on "onClose"
    const resultsFooterComponent = useMemo(
      () => (footerProps) => <ResultsFooter {...footerProps} onClose={onClose} />,
      [onClose],
    );
- 
+
    const transformSearchClient = useCallback(
      (searchClient) => {
        searchClient.addAlgoliaAgent(
@@ -166,7 +166,7 @@
      },
      [siteMetadata.docusaurusVersion],
    );
- 
+
    useDocSearchKeyboardEvents({
      isOpen,
      onOpen,
@@ -181,7 +181,7 @@
      message: 'Search Documentation',
      description: 'The ARIA label and placeholder for search button',
    });
- 
+
    return (
      <>
        <Head>
@@ -194,7 +194,7 @@
            crossOrigin="anonymous"
          />
        </Head>
- 
+
        <DocSearchButton
          onTouchStart={importDocSearchModalIfNeeded}
          onFocus={importDocSearchModalIfNeeded}
@@ -206,7 +206,7 @@
            buttonAriaLabel: translatedSearchLabel,
          }}
        />
- 
+
        {isOpen &&
          createPortal(
            <DocSearchModal
@@ -226,10 +226,10 @@
      </>
    );
  }
- 
+
  function SearchBar() {
    const {siteConfig} = useDocusaurusContext();
    return <DocSearch {...siteConfig.themeConfig.algolia} />;
  }
- 
+
 export default SearchBar;
