@@ -61,7 +61,7 @@ You are now ready to run the initialization. Please note that this will create a
 
 ```
 cd $CHEMOTION_PATH
-docker-compose run landscape deploy
+docker-compose run eln landscape deploy
 docker-compose run eln init
 ```
 
