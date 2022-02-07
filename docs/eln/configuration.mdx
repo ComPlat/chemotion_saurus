@@ -31,7 +31,7 @@ ln -s  /var/www/chemotion_ELN/shared/config/user_props.yml /var/www/chemotion_EL
 
 ## Secret key 
 used for cookie encryption.
-stored in <b>.env</b> file
+stored in `.env` file
 
 ## Structure editor
 
@@ -57,11 +57,23 @@ production:
 After editing the structure_editors.yml the service needs to be restarted.
 :::
 
+## Set hostname for file download
+
+In order for file downloads (e. g., in exporting collections) to work correctly, you have to configure your hostname for Chemtion ELN. You can do that in the `.env` file:
+
+```
+HOST: 'my.hostname.com'
+```
+
+:::info NOTE
+If `HOST` is not set, Chemotion ELN may also use the value of `SMTP_DOMAIN`.
+:::
+
 ## e-mail-service (optional)
 
 For sending users account e-mail confirmation request, reset password instructions, or other notifications.
  
-e-mail configuration parameters are set as environment variables in the <b>.env</b> file.
+e-mail configuration parameters are set as environment variables in the `.env` file.
 below a list of available parameters:
 
 ```sh
