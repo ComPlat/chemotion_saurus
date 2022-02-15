@@ -19,16 +19,16 @@ The Chemotion ELN consists of different panels that are combined in the main app
  `Collection Bar`: The collection bar is located on the left below the action bar and used to navigate through the collections. It can be toggled on/off.  
  `Management Level`: The management level can be opened using the button <Btn mixed={[faCog]} color={"danger"}/> in the collection bar. The management level enables the creation, deletion and organization of collections.  
  ![Management Level](/img/mgmt_lvl.png)
-`Element Bar`: The element bar is to the right of the collection bar. It shows the elements <b> Sample</b>, <b> Reaction </b>, <b> Wellplate </b>,  <b> Screen </b> and <b>Research Plan</b> assigned to the selected collection.
+`Element Bar`: The element bar is to the right of the collection bar. It shows the elements <b> Sample</b>, <b> Reaction</b>, <b> Wellplate</b>,  <b> Screen</b> and <b>Research Plan</b> assigned to the selected collection.
 You can find more details in the [`Elements` section](#elements).
 
-`Detail Modal`: The detail modal or detail window is opened by clicking on the desired element. It shows the information, which are stored on the corresponding element or are available through databases. The modal / window can be set to full screen mode.
+`Detail Modal`: The detail modal or detail window is opened by clicking on the desired element. It shows the information which are stored on the corresponding element or are available through databases. The modal / window can be set to full screen mode.
 
-`Detail Tab`: To organize the information within the detail modals tabs were introduced. These enable the information to be structured and are displayed as folders.
+`Detail Tab`: To organize the information within the detail modals, tabs were introduced. These enable the information to be structured and displayed as folders.
 
 ## Elements
 - `Samples` <Sample title="Sample" className="logo"  width={"30px"}/>   
-Samples are the smallest organizational unit of this Chemotion ELN. They describe the physical unit of a chemical compound used for a synthesis or other projects. The sample is described by e.g. the molecular structure, the amount and properties of the compound used (such as the purity). If a chemical compound with the same molecular structure is used several times, several samples are generated, each with the same molecular structure as a feature.
+Samples are the smallest organizational unit of this Chemotion ELN. They describe the physical unit of a chemical compound used for a synthesis or other projects. The sample is described by e.g. the molecular structure, the amount and the properties of the compound used (such as the purity). If a chemical compound with the same molecular structure is used several times, several samples are generated, each with the same molecular structure as a feature.
 - `Reactions` <Reaction title="Reaction" className="logo"  width={"30px"}/>    
  Reactions form the core of the Chemotion ELN, as reactions can be used to plan the chemists' experiments. The reactions are characterized by the use (starting material, reagents) and the receipt of samples (products).
 - `Wellplates` <Wellplate title="Wellplate" className="logo"  width={"30px"}/>    
@@ -36,9 +36,9 @@ Several samples can be arranged in wellplates so that they can be combined accor
 - `Screens` <Screen title="Screen" className="logo"  width={"30px"}/>     
 A screen is the overview of a biological experiment that is carried out with several samples (usually organized by wellplates).
 - `Research Plan` <FontAwesomeIcon icon={faFileAlt} size="lg"/>    
-A research plan is a generic element that can be used in a flexible manner to describe in particular processes. The reserach plan combines functions for text, tables, images and other information and allows the assignement of other elements such as molecules and reactions.  
+A research plan is a generic element that can be used in a flexible manner to describe in particular processes. The reserach plan combines functions for text, tables, images and other information and allows the assignment of other elements such as molecules and reactions.  
 - `Others`   
-The Chemotion ELN in its first, pure chemistry version included only the Elements decribed above. In the meantime, a more flexible use of the Chemotion ELN allows the definition of additional elements which can be defined and added to the Chemotion ELN by the supervising admin.
+The Chemotion ELN in its first, pure chemistry version included only the elements decribed above. In the meantime, a more flexible use of the Chemotion ELN allows the definition of additional elements which can then be added to the Chemotion ELN by the supervising admin.
 
 ## Actions
 -  `Split` :** Split ** is an action that can be carried out according to the physical division of a sample into subsets (a certain amount of a chemical compound). A ** split ** represents the removal of a subset from a sample and depicts this by generating a new sample with the same properties as the original sample. The split action can be traced by numbering the newly created sample based on the original sample.
