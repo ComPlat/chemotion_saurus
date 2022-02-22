@@ -83,7 +83,8 @@ module.exports = {
           "eln/import",
           "eln/analysis",
           "eln/hyperlinks",
-          "eln/problems"
+          "eln/problems",
+          'eln/local_editable_attachment'
         ]
       },
       {
