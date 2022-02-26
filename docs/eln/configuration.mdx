@@ -35,7 +35,16 @@ stored in `.env` file
 
 ## Structure editor
 
-Chemotion ELN uses Ketcher as the default structure editor. To use the ChemDraw editor or the Marvin JS editor, configure the licence and required files in the `structure_editors.yml` file.
+Chemotion ELN uses Ketcher as the default structure editor. To use other editors, configure the licence and required files in the `structure_editors.yml` file.
+
+
+#### Currently supported editors
+
+| Name        | Version |
+| ----------- | ------- |
+| ChemDraw JS | 17, 20  |
+| Ketcher 2   | 2.4     |
+| Marvin JS   | 21.8    |
 
 structure_editors.yml:
 ```sh
@@ -46,12 +55,17 @@ production:
       :label: 'ChemDrawJS'
       :license: '/chemdraw/ChemDraw-JS-License.xml' # license file of ChemDraw
       :extJs: ['/chemdraw/chemdrawweb/chemdrawweb.js'] # js of ChemDraw
+    :ketcher2:
+      :label: 'Ketcher 2'
+      :extSrc: '/editors/ketcher/index.html'
     :marvinjs:
       :label: 'MarvinJS'
       :license: 'license file'  # license file of MarvinJS
       :extJs: ['external javascript files to be included'] # js of MarvinJS
       :extSrc: 'external file' # file of MarvinJS
 ```
+
+:bulb: <b>Tip:</b> To install ChemDraw JS or Ketcher 2 library, unzip the (library).zip, and then copy the sub-folders and files to the folder which the system loads scripts.
 
 :::info NOTE
 After editing the structure_editors.yml the service needs to be restarted.
