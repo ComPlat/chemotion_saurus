@@ -209,26 +209,51 @@ For each registered Device, a collection job can be set up through the administr
 
 ### ChemSpectra-App
 
-source: https://github.com/complat/chem-spectra-app
+Installation guide: https://github.com/ComPlat/chem-spectra-app/blob/master/INSTALL.md
 
-installation: https://github.com/ComPlat/chem-spectra-app/blob/master/INSTALL.md
-
-setting: 
+To configure Chemotion-ELN to connect to Chem-Spectra, create a configuration file:
 
 ```sh
 # from the application dir (/var/www/chemotion_ELN/current) copy the config file 
+cd /var/www/chemotion_ELN/current
 cp config/spectra.yml.example config/spectra.yml
+```
+
+If you followed the above installation guide you may edit `spectra.yml` as follows:
+
+```sh
+production:
+  :url: '127.0.0.1'
+  :port: '3007'
+```
+
+Restart the application (assuming Passenger is being used):
 
 # edit it
-vim config/spectra.yml
-
-# restart the application (assuming Passenger is being used)
+```sh
 touch tmp/restart.txt
+```
 
-# keep the configuration for future Chemotion ELN updates (assuming Capistrano is used)
+To keep the configuration for future Chemotion ELN updates (assuming Capistrano is used):
+```sh
 mv config/spectra.yml /var/www/chemotion_ELN/shared/config/spectra.yml
 ln -s  /var/www/chemotion_ELN/shared/config/spectra.yml /var/www/chemotion_ELN/current/config/spectra.yml
 ```
+
+To make sure Chem-Spectra is started on reboot you can use this BASH script in your root crontab:
+
+```sh
+#!/bin/bash
+
+sudo -H -u production bash -c "cd /home/production/chem-spectra-app && source /home/production/anaconda3/bin/activate chem-spectra && gunicorn -w 4 -b 0.0.0.0:3007 server:app --daemon"
+
+docker run --detach --name msconvert_docker \
+    --rm -it \
+    -e WINEDEBUG=-all \
+    -v /home/production/chem-spectra-app/chem_spectra/tmp:/data \   ## Modify path according to your installation
+    chambm/pwiz-skyline-i-agree-to-the-vendor-licenses bash
+```
+
 
 ### VNC
 Access remote Desktops with VNC using websockify
