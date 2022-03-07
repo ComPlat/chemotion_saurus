@@ -209,7 +209,11 @@ For each registered Device, a collection job can be set up through the administr
 
 ### Chem-Spectra-App
 
-Installation guide: https://github.com/ComPlat/chem-spectra-app/blob/master/INSTALL.md
+#### Installation
+
+Use this installation guide: https://github.com/ComPlat/chem-spectra-app/blob/master/INSTALL.md
+
+#### Configuration in Chemotion-ELN
 
 To configure Chemotion-ELN to connect to Chem-Spectra, create a configuration file:
 
@@ -238,6 +242,8 @@ To keep the configuration for future Chemotion ELN updates (assuming Capistrano 
 mv config/spectra.yml /var/www/chemotion_ELN/shared/config/spectra.yml
 ln -s  /var/www/chemotion_ELN/shared/config/spectra.yml /var/www/chemotion_ELN/current/config/spectra.yml
 ```
+
+#### Automatic startup in crontab
 
 To make sure Chem-Spectra is started on reboot you can use this BASH script in your root crontab (if required, adapt Chemotion-ELN username and home directory):
 
