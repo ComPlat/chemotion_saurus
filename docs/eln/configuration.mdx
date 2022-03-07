@@ -229,7 +229,6 @@ production:
 
 Restart the application (assuming Passenger is being used):
 
-# edit it
 ```sh
 touch tmp/restart.txt
 ```
@@ -245,7 +244,9 @@ To make sure Chem-Spectra is started on reboot you can use this BASH script in y
 ```sh
 #!/bin/bash
 
-sudo -H -u production bash -c "cd /home/production/chem-spectra-app && source /home/production/anaconda3/bin/activate chem-spectra && gunicorn -w 4 -b 0.0.0.0:3007 server:app --daemon"
+sudo -H -u production bash -c "cd /home/production/chem-spectra-app && \
+  source /home/production/anaconda3/bin/activate chem-spectra && \
+  gunicorn -w 4 -b 0.0.0.0:3007 server:app --daemon"
 
 docker run --detach --name msconvert_docker \
     --rm -it \
