@@ -35,15 +35,31 @@ stored in `.env` file
 
 ## Structure editor
 
-Chemotion ELN uses Ketcher as the default structure editor. To use other editors, configure the licence and required files in the `structure_editors.yml` file.
+Chemotion ELN uses Ketcher as the default structure editor. To use other editors, configure the required files and the licence (if needed) in the `structure_editors.yml` file.
 
+The `structure_editors.yml` configuration file is in the `config` folder. To create the file for the first time,
+
+```sh
+# from the application dir (/var/www/chemotion_ELN/current) copy the config file 
+cp config/structure_editors.yml.example config/structure_editors.yml
+
+# edit it
+vim config/structure_editors.yml
+
+# restart the application (assuming Passenger is being used)
+touch tmp/restart.txt
+
+# keep the configuration for future Chemotion ELN updates (assuming Capistrano is used)
+mv config/structure_editors.yml /var/www/chemotion_ELN/shared/config/structure_editors.yml
+ln -s  /var/www/chemotion_ELN/shared/config/structure_editors.yml /var/www/chemotion_ELN/current/config/structure_editors.yml
+```
 
 #### Currently supported editors
 
 | Name        | Version |
 | ----------- | ------- |
 | ChemDraw JS | 17, 20  |
-| Ketcher 2   | 2.4     |
+| Ketcher 2   | [2.4](https://drive.google.com/drive/folders/1TZLEVyKs0Fhz8vmjOHK6Xii8MFfrifFI?usp=sharing) |
 | Marvin JS   | 21.8    |
 
 structure_editors.yml:
