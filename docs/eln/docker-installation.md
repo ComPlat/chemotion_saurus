@@ -27,7 +27,7 @@ To install this version on a blank system, follow these steps:
 
 - download the `docker-compose.yml` to a directory of your choice:
 ```
-wget <TODO>/docker-compose.yml
+wget https://raw.githubusercontent.com/ptrxyz/chemotion/main/new-build/release/1.1.2p220401/docker-compose.yml
 ```
 
 - download all images and create the containers, data volumes and networks by running this command in the same folder you downloaded the compose file to:
@@ -72,7 +72,7 @@ sudo mv ./shared ./old
 
 - download the `docker-compose.yml`:
 ```
-wget <TODO>/docker-compose.yml
+wget https://raw.githubusercontent.com/ptrxyz/chemotion/main/new-build/release/1.1.2p220401/docker-compose.yml
 ```
 
 - download all images and create the containers, data volumes and networks by running this command in the same folder you downloaded the compose file to:
