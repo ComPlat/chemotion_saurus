@@ -126,7 +126,7 @@ URL_PROTOCOL=<http or https>
 ```
 Since Chemotion sends out links that point to the ELN, it needs to know where the ELN is running. So configure those two variables to make sure the ELN can construct the URLs properly. An example for `localhost` would look like this:
 
-./shared/pullin/.env
+(_./shared/pullin/.env_:)
 ```
 URL_HOST=localhost:4000
 URL_PROTOCOL=http
