@@ -106,14 +106,33 @@ docker-compose up
 
 ### Configuring
 
-To keep your new installation clean, we switched to an overlay-based configuration system. The ELN instance will from now on start with (reasonable) defaults and overlay all files found in `./shared/pullin/` onto the ELN application directory. As an example, to configure a `.env` file, it's filename would be `./shared/pullin/.env`. Other files you might want to configure:
+To keep your new installation clean, we switched to an overlay-based configuration system. The ELN instance will from now on start with (reasonable) defaults and overlay all files found in `./shared/pullin/` onto the ELN application directory. As an example, to configure a `.env` file, it's filename would be `./shared/pullin/.env`. Files you might want to configure:
 
+- `.env` --> `./shared/pullin/.env`
 - `database.yml` --> `./shared/pullin/config/database.yml`
 - `editors.yml` --> `./shared/pullin/config/editors.yml`
 - `welcome-message.md` --> `./shared/pullin/public/welcome-message.md`
 - `editors`-folder --> `./shared/pullin/public/editors`
 
 Have a look at the [Complat/Chemotion-GitHub-Repo](https://github.com/ComPlat/chemotion_ELN) to get an overview where things need to be placed.
+
+### Setting the Base-URL
+Please make sure you configure .env to contain at least two settings:
+```
+URL_HOST=<your domain here>:<port>
+URL_PROTOCOL=<http or https>
+```
+Since Chemotion sends out links that point to the ELN, it needs to know where the ELN is running. So configure those two variables to make sure the ELN can construct the URLs properly. An example for `localhost` would look like this:
+
+./shared/pullin/.env
+```
+URL_HOST=localhost:4000
+URL_PROTOCOL=http
+```
+
+Of course, if you are using default ports for your protocol (80 or 443) you can omit the `:<port>` part and simply use `URL_HOST=localhost` for example. 
+
+Note: Settings protocol to `https` requires you to configure TLS on your machine (i.e. with a HTTP proxy like NGINX). It will NOT magically make it work for you. Those settings are simply used to construct URLs.
 
 ### Other Documentation
 
