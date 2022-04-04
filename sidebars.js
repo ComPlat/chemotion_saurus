@@ -81,8 +81,6 @@ module.exports = {
           'eln/barcodes',
           'eln/inventory',
           'eln/analysis',
-          'eln/generic_segment',
-          'eln/generic_element',
           'eln/problems',
         ],
       },
