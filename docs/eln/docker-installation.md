@@ -46,6 +46,7 @@ docker-compose up -d
 ```
 (the 1st command outputs to stdout, the 2nd starts the ELN as a background service loggin to the docker's log daemon)
 - after a short startup/migration period, the ELN will available on port `<your host IP>:4000`
+- Proceed with the sections [Configuring](#configuring-112p220401) and [Setting the Base URL](#baseurl-112p220401)
 
 ### Upgrade from 1.0.3D0.1
 
@@ -103,8 +104,9 @@ Note: the point here is that you copy everything from your old `uploads` and `pu
 docker-compose up
 ```
 - after a short startup/migration period, the ELN will available on port `<your host IP>:4000`
+- Proceed with the sections [Configuring](#configuring-112p220401) and [Setting the Base URL](#baseurl-112p220401)
 
-### Configuring
+### Configuring {#config-112p220401}
 
 To keep your new installation clean, we switched to an overlay-based configuration system. The ELN instance will from now on start with (reasonable) defaults and overlay all files found in `./shared/pullin/` onto the ELN application directory. As an example, to configure a `.env` file, it's filename would be `./shared/pullin/.env`. Files you might want to configure:
 
@@ -116,7 +118,7 @@ To keep your new installation clean, we switched to an overlay-based configurati
 
 Have a look at the [Complat/Chemotion-GitHub-Repo](https://github.com/ComPlat/chemotion_ELN) to get an overview where things need to be placed.
 
-### Setting the Base-URL
+### Setting the Base-URL {#baseurl-112p220401}
 Please make sure you configure .env to contain at least two settings:
 ```
 URL_HOST=<your domain here>:<port>
