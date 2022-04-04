@@ -46,7 +46,7 @@ docker-compose up -d
 ```
 (the 1st command outputs to stdout, the 2nd starts the ELN as a background service loggin to the docker's log daemon)
 - after a short startup/migration period, the ELN will available on port `<your host IP>:4000`
-- Proceed with the sections [Configuring](#configuring-112p220401) and [Setting the Base URL](#baseurl-112p220401)
+- Proceed with the sections [Configuring](#config-112p220401) and [Setting the Base URL](#baseurl-112p220401)
 
 ### Upgrade from 1.0.3D0.1
 
