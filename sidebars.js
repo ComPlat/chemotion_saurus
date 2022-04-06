@@ -112,8 +112,6 @@ module.exports = {
         items: ['eln/devices', 'eln/devices_nmr'],
       },
 
-      'eln/coming_soon',
-
       'eln/faq_eln',
 
       'eln/contact',
