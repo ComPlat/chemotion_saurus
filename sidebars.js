@@ -102,6 +102,7 @@ module.exports = {
           'eln/admin_ui/groups_n_devices',
           'eln/admin_ui/novnc_settings',
           'eln/generic_config',
+          'eln/admin_ui/report_template_management',
           //'eln/adjust_analysis'
         ],
       },
