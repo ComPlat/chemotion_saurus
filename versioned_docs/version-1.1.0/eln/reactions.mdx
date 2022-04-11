@@ -1,0 +1,45 @@
+---
+id: reactions
+sidebar_label: Reactions
+slug: reactions
+title: Reactions
+---
+
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome' 
+import { faChevronDown, faArrowsAlt, faList, faSortDown } from '@fortawesome/free-solid-svg-icons' 
+import {Btn} from '@site/docs/btn.js' 
+
+:::danger Caution 
+This page is still being edited and reviewed.
+::: 
+
+## Meaning  
+
+The element reactions can be used to summarize all actions that involve several substances, materials or chemicals.  Samples are always an essential part of reactions. In general, the more carefully the ELN user documents the use of samples and differentiates between the individual actions (e.g. use of split and copy), the easier it is to document reactions and analyze the individual influences on a successful reaction. 
+
+## Naming  
+
+Reactions are numbered consecutively and displayed in the list of reactions in reverse order according to their number. The reaction name is preceded by the abbreviation of the ELN owner so that reactions can be clearly identified. If you want to assign another name to the reaction, you can do this by making an entry in the **Name** field within the **Scheme** tab or **Properties** tab. 
+
+## Generation 
+
+Reactions can be generated from the action bar by pressing <Btn mixed={[faSortDown]} color={"primary"}/> and choosing <b>Create Reaction</b>. If the user is already in the reaction tab from the element bar, the action button for adding is already set up accordingly to adding reactions. It looks like this <img src={"/chemotionsaurus/img/add_reaction.png"} width={"40px"} alt={"Add reaction"}/>, and you can make the selection directly. 
+
+Once a reaction is generated, its details modal pops up, and then the user can fill the reaction with the interacting samples and the resulting products from within the **Scheme** tab. More details about populating a reaction with samples can be found in the [Details modal for reactions](https://eln.chemotion.net/chemotionsaurus/docs/eln/details_modal#details-modal-for-reactions) chapter. 
+
+:::danger Caution 
+To balance your equation, changing coefficients is still not possible, so you need multiple samples to express a single molecule when it has a coefficient more than one. This step is important for correct calculations of the yield. 
+::: 
+
+## Reactions in the element bar 
+
+<img src={"/chemotionsaurus/img/reactions_list.png"} alt={"Reactions list"}/> 
+
+In the element bar, reaction tab has the symbol <img src={"/chemotionsaurus/img/reaction.svg"} width={"30px"} alt={"Reaction"}/>. The user will notice the number next to the reaction symbol and the number in parentheses. The number right next to the reaction symbol indicates the number of reactions within the selected collection. The number in parentheses shows the number of selected reactions within the collection. The reactions list shown in the figure above appears when the ELN is opened if no detail level has been selected. When selecting the level of detail by selecting a reaction, the reactions list is reduced and the [details modal](https://eln.chemotion.net/chemotionsaurus/docs/eln/details_modal#details-modal-for-reactions) appears. 
+
+The view of the reactions list differs from the view of samples list manly by the abscence of the gray and white areas as there is only possibility to copy reactions, with no other similar yet different functions such as **Split** in case of samples. In the right-side of each reaction, there shows a cross <Btn mixed={[faArrowsAlt]} color={"secondary"}/> to enable dragging & dropping of reactions. In case other elements are available to drop reactions within them (such as a research plan), the cross is colored in blue to indicate that it is active, otherwise, it appears in gray, and it can be used in this case. 
+
+The user can filter their reaction either by creation date, or update day. The image above shows a calendar icon <img src={"/chemotionsaurus/img/creation_date.png"} width={"30px"} alt={"Creation date calendar"}/> which corresponds to a **filter by creation date**. Next to the calendar are the fields **From** and **To**. Clicking on them opens a calendar for the user to pick the desired days. Pressing on the calendar icon switches to **filter by update date**, and here the calendar appears like this <img src={"/chemotionsaurus/img/update_date.png"} width={"30px"} alt={"Update date calendar"}/>. 
+
+Another method for filtering is using text search or structure search from the toolbar. More details about those methods to be found in the page [Toolbar functions](https://eln.chemotion.net/chemotionsaurus/docs/eln/toolbar_functions). 

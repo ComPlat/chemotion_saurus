@@ -1,0 +1,103 @@
+---
+id: faq_eln
+sidebar_label: FAQ
+slug: faq_eln
+title: Fequently Asked Questions (FAQ)
+---
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {Btn} from '@site/docs/btn.js'
+
+## Access
+
+#### Is it possible to use Chemotion ELN offline?
+
+- **Answer:** Chemotion ELN is a web based application that can only be used through internet connection. PLease make sure to use Chrome browser.
+
+#### Is there a standalone version from Chemotion ELN? 
+
+- **Answer:** Currently there is no standalone version from Chemotion ELN, and there are no plans to have it in the near future.
+
+#### What are the prerequisites for proper Chemotion ELN  use?
+
+- **Answer:** Standard laptop/pc is sufficient, internet connection and Chrome browser. PLease be careful not to use other browsers as they seem to function, but this functionality is never complete.
+
+
+## Collections
+
+#### How to share elements from Chemotion ELN with others? Especially to limit the access of trainees, for role assignment and access rights?
+
+- **Answer:** Everyone is the owner of their account. Accounts are not shared and can't be controlled by, e.g., a supervisor, but they can be deleted by Chemotion admins. However, sharing of certain elements of the ELN, and assigning roles is still possible through collections sharing and synchronizing. For more details on those two functions, please refer to [Shared collections](https://eln.chemotion.net/chemotionsaurus/docs/eln/collections#shared-collections) and [Synchronized collections](https://eln.chemotion.net/chemotionsaurus/docs/eln/collections#synchronized-collections)
+
+#### How many people can work on a shared or synchronized collection at the same time?
+
+- **Answer:** Any number of users in the real world can work simultaneously on a shared or synchronized collection.
+
+#### Why can’t I find the collection that I have created in the collections bar?
+
+- **Answer:** When you create a collection, you have to make sure to press <Btn mixed={["Update"]} color={"warning"}/> in your collection management.
+
+#### Why can’t I find the elements I have created in a collection when I look in its upper collection?
+
+- **Answer:** Subcollections are not mirrored in the upper collection, they are rather just an optical structuring tool. 
+
+#### Why can’t I see the elements added by my partner to the shared collection? 
+
+- **Answer:** In a shared collection, only changes to existing elements are displayed to users. Elements added after sharing to the original collection will not be considered. If you want to see new elements, use collection synchronization.
+
+## Samples
+
+#### Why can’t I find SciFinder tab in the sample’s details modal?
+
+- **Answer:** There is no SciFinder available in the test version. It will be implemented in Jena university’s instance by August at latest.
+
+#### Why can’t I see any other tab in the sample’s details modal rather than **Properties**?
+
+- **Answer:** The **Properties** tab is the only tab shown by default in the details modal. The other tabs are hidden to give the user the space to organize their windows. You can add or remove tabs as you wish from your details modal as explained [here]( https://chemotion.net/chemotionsaurus/docs/eln/adjusting_views#adjust-the-tabs-in-detail-modal).
+
+#### Why can’t I add samples to the collection?
+
+- **Answer:** Make sure that you have already selected a collection and that you are not in the **All** collection. No action can be performed in the **All** collection because it is kind of back up.
+
+#### Why has the name of my sample changed automatically?
+
+- **Answer:** Your sample is mostly a product from a reaction. The Name field within the product sample Properties tab is overwritten because it is required to generate a product name.
+
+#### I have copied a sample, and all its information except its structure is lost, why?
+
+- **Answer:** With the Copy sample action you only copy the molecular structure of the sample, all other information is not available and will not be adopted. Only the general information available from the molecular structure, e.g. molecular weight, are transferred. If you are interested in the other details, such as the concentration and others, please use **Split** action.
+
+#### Why can’t I see all the samples I have created in sample list?
+
+- **Answer:** If your sample has been created in indirect way, e.g. from within a reaction, it might not appear in the samples list. In general, Reactants and Solvents don’t apprear in the list, while samples that have been created as Starting material or as a Product are listed. 
+
+#### How can I add a **Reactant** to the samples list?
+
+- **Answer:**  **Reactant**s don’t appear in the samples list. If you need to see them there, you have to change their status from **Reactant**s to **Starting material**.
+
+## Reactions
+
+#### How can I add coefficients to balance my reaction?
+
+- **Answer:** To balance your equation, changing coefficients is still not possible, so you need multiple samples to express a single molecule when it has a coefficient more than one. This step is important for correct calculations of the yield.
+
+## Restoring and Tracking
+#### Are images of the ELN created, e.g., to retrieve data in case of accidental deletion of a collection?
+
+- **Answer:** Only the current state of the data is saved in the database, but images of data and database are backed up (according to a backup plan). Most of the entries are soft deleted (marked as deleted in the database but are not removed). However, there is no user interface yet to easily restore them. Please pay attention that deleting a collection does not remove its elements, it rather removes the association between them and the collection. Elements can still be picked out individually  from **All** collection to a new collection. 
+
+#### How is the ELN documenting the changes in data (e.g., time, author)? Is there a versioning/ time stamp? Any auditing capabilities?
+
+- **Answer:** work-in-progress on versioning and auditing.
+
+## Integrated Devices
+
+#### Can I copy the data directly into Chemotion from another server (MS and NMR)?
+
+- **Answer:** Yes. Please refer to [Devices overview](https://eln.chemotion.net/chemotionsaurus/docs/eln/devices).
+
+## Contact
+#### How could I get personalized help?
+
+- **Answer:**  You can send us an email with your question or request, and we will get back to you as soon as possible. Please follow this [link]( https://chemotion.net/chemotionsaurus/docs/eln/specific_contact) to find the email addresses corresponding to your question area.
+
