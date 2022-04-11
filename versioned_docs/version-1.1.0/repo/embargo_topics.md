@@ -5,7 +5,7 @@ slug: embargo_topics
 author: Nicole Jung
 ---
 
-Embargos can be used to prepare data at any time and release the data at any time that is desired. The setting of an embargo is described in the pages [Publication and Review](/chemotionsaurus/docs/repo/embargo_topics). The release of embargos can only be done by the person who submitted the data to the repository. In principle, the release of data can be done at any time. For data that are part of a scientific publication, the release of the embargo is recommended be done either in parallel to the review process of the manuscript or after the acceptance of the manuscript. If reviewers should have access to the data, a reviewer-access to the embargo bundle can be requested. 
+Embargos can be used to prepare data at any time and release the data at any time that is desired. The setting of an embargo is described in the pages [Publication and Review](publication_review.mdx). The release of embargos can only be done by the person who submitted the data to the repository. In principle, the release of data can be done at any time. For data that are part of a scientific publication, the release of the embargo is recommended be done either in parallel to the review process of the manuscript or after the acceptance of the manuscript. If reviewers should have access to the data, a reviewer-access to the embargo bundle can be requested. 
 
 <!--truncate-->
 
@@ -34,14 +34,8 @@ Release: please open the "Embargoed Publications" panel and select an embargo as
 
 A change of embargoed items is in general not desired and part of the standard workflow of the repository. After the passing the internal review, all changes should be finished. If there are any mistakes that you become aware of after the the submissions were accepted, then please let the repository team know and contact us. In those cases, we can correct even those entries that are accepted and under embargo. Published items (after the release of the embargo) can't be changed any more. 
 
-## Move items to embargo bundle
-
-Samples or reactions submitted to the Repository without embargo can be retroactively moved to embargo bundle after they have been reviewed. Simply use the transfer symbol given next to the entry in the "Reviewed" panel and select the desired embargo bundle.
-
-![](/img/docs/move-change-release-embargo/change_embargo_bundle_edit_0.gif)
-
 ## Move items to another embargo bundle
 
-Samples or reactions can be moved to another existing embargo bundle or can be moved to a new embargo bundle. Please use the transfer symbol given next to each entry in the "embargoed publications" panel. 
+Samples or reactions can be moved to another existing embargo bundle or can be moved to an embargo bundle to be generated newly. Please use the transfer symbol given next to each entry in the "embargoed publications" panel. 
 
-![](/img/docs/move-change-release-embargo/how_to_move_to_another_embargo.gif)
+![](/img/docs/move-change-release-embargo/7a5b05a7-35d8-435c-8e9d-f530ffe16f26_image_20200831-18167-1ysnmcj.png)

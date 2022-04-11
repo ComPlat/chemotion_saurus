@@ -1,0 +1,65 @@
+---
+id: devices
+slug: devices
+title: Devices overview
+---
+
+## General concept
+The principles for device integration are described in: https://doi.org/10.1016/j.acax.2019.100007  
+Several descriptions and images are derived from the above mentioned manuscript published in Analytica Chimica Acta X and the assigned supplemental information. 
+
+Referring to the diverse origin of data in chemistry labs, we implemented three different procedures to allow the availability of data to the ELN server (Figure 1). The first procedure includes the transfer of data (preferably small data) by a mailing system which manages the capture of NMR data and additional information that is sent by mail to the email account of the ELN. A second procedure was designed for the transfer of data from a local server or computer with network connection to the ELN server. The last procedure was implemented for the transfer of data from devices without network access (due to safety standards, location issues or software-related issues). For the transfer of data from devices without network connectivity, we implemented a procedure which requires the manual collection of data (for example with a portable data storage e.g. an USB flash drive) and its transfer to the ELN via WinSCP running on a computer with network connection.
+
+![concept_transfer_neu](/img/concept_transfer_neu.png)
+**Figure 1:** Overview of the three procedures to integrate research data from (analytical) devices to an ELN. The given ana-lytical methods are chosen as examples to illustrate the procedure. They can be exchanged depending on the local infrastructure.
+
+General requirements concern in general the device and ELN specific adaptations, therefore, the following documentation contains always aspects of ELN setting adaptation and device specific settings. 
+The ELN specific adjustments depend on the use of a mail-collector (used to collect data transferred by email to a mail-server) or a datacollector (used to collect data transferred to a server)  as a basic process for the desired data transfer. 
+
+### Name conventions
+
+To be able to transfer data and assign data to a users ELN-account, users have to follow strict rules regarding the labels/names of maeasurements.  
+Measurements have to be submitted in a form: 
+(1) "UserShortLabel"-"number""additional" or (2) "groupID""UserShortLabel"-"number""additional"
+"UserShortLabel" = Label for each user given by registration to the ELN
+"number" = any integer 
+"additional" = any additional information. Valid are numbers, letters (case insensitive), hyphens. 
+"groupID" = number given as identifier for a distinct user group in the ELN
+Examples for (1): NJ-101; NJ-101-A; NJ-101-5; NJ-101_pure; ABCD-1234-B
+Also, if many groups are using the ELN, a groupID may help to sort users and therefore their measurements according to a group ID. The measurements should then be named according to examples (2): 2NJ-101; 2NJ-101-A; 2NJ-101-5; 2NJ-101_pure; 2ABCD-1234-B. 
+Please take care that the hyphen is included!
+
+### Mail-Collector 
+One of the easiest possibilities to transfer data to a management systemsuch as the Chemotion-ELN is to send data per email. The software of some analytical devices support the mailing of measurements to a user defined email address by default. This allows to implement storage routines that are independent of any additional software or hardware on the instrument’s side. The only prerequisite for a use of the MailCollector routine is fulfilled if one can set the email to be send to two addresses, to the ELN server associated email ad-dress and to the user’s email address registered with the corresponding ELN account (Figure 2). This is necessary to identify the target of the mailed information and the corresponding account in the ELN. In short, four configuration steps are necessary to fetch the information via email: 
+•	First, it is necessary to have an email account for the ELN with any provider or server that supports Internet Message Access Protocol (IMAP) to centrally collect the emailed data.
+•	Second, the device software has to be configured to send the data to the user’s (scientist’s) email account as a main recipient and to this ELN email address as a main recipient or in cc. 
+•	Third, the devices sending emails should be whitelisted by the ELN server. For this, the devices information is persisted in the ELN DB as ‘device’ entities. The device class is a subclass of the ELN User class and each device’s email can then be registered (step 3, Figure 2).
+•	The last step for the implementation of the mailing routine is the activation of the MailCollector service with-in the Chemotion ELN (this is also done by the administrator of the ELN server). For this, the credentials (email address and password) and email server IMAP settings for the ELN mail account as well as the cron time schedule parameters are configured (step 4, Figure 2). 
+The MailCollector (see Figure 2 for the used routine) screens the ELN account for new emails and processes the data subsequently. The processing follows the routine: inspect – store– delete. New emails are inspected with respect to the sender (device) and the recipient (user). If both are known to the MailCollector, the service adds the data in the email’s attachment to the ELN server and deletes the mail from the inbox of the ELN email account. The MailCollector can be used e.g. for the transfer of NMR data from Burker instruments.
+
+Additionally, the mailing procedure is very helpful if the information to be added to an ELN is captured with a mobile device or is available on a computer. In this manner, almost all data, independent of its origin, can be transferred to the ELN. The only step necessary for this procedure is sending an email (using the same email address the user is registered with in the ELN) to the ELN’s email account. Data that is attached to the email will be processed accord-ing to the MailCollector as described above and will be assigned to the user ELN account according to the email address of the sender (Figure 2).
+
+![data_mail](/img/data_mail.png)
+
+![config_mail](/img/config_mail.png)
+**Figure 2:** Data collection via the MailCollector routine implemented exemplarily for Bruker NMR spectrometers and addi-tional information sent by email. Configuring the data transfer via the MailCollector.
+
+
+### DataCollectors for devices with LAN/WLAN
+There are two possibilities to enable an automatic transfer of data to the ELN from devices that store data on a local computer or server. Either the data is actively transferred via a client application from the local comput-er/server to the ELN server or the ELN server directly accesses the device data storage folder. The first solution requires more efforts for the installation and maintenance of several client applications, therefore, we followed a central solution (Figure 3A) where both, the device computer and the ELN server, have access to a common storage. Considering the availability of transfer software packages for the server and for the device computers, we focused on SFTP over NFS, CIFS/SAMBA, FTPS to securely transfer files. SFTP is relatively well supported and free third-party software can be found even for legacy operation systems (OS) such as windows XP. Though the latter OS supports mapping of the network drive, the obsolete and unsafe SMBv1 protocol cannot be accept-ed. Having such an OS in a network is nowadays a high security issue. These issues can be circumvented by entirely isolating the computer and device network and configuring a firewall exception for ssh communication with the external remote storage. 
+To allow the ELN to access the data, four basic adaptions are implemented: 
+•	In a first step, the device has to be prepared to enable data storage on a remote folder (SFTP server) in addi-tion to a data storage on a local computer or server. This configuration of the devices can be easily done if the instrument offers this option by default. In all other cases, a few changes have to be made according to the description given below in the subchapter “necessary device adaptions” (step 1, Figure 3B).  
+•	Second, folders for each device are created on a remote network drive. File access credentials are also gener-ated. In our implementation, the central storage was provided by the Large Scale Data Facility, LSDF, in Karlsruhe, and a read/write account was created for each device folder. The results of the measurements are mirrored on this central storage in the folder reserved for the device. In addition, a copy of the raw data is be-ing kept locally (step 2, Figure 3B).  
+•	In a third step, the device information along with a specific profile are registered to the database of the ELN as described in Procedure 1. The necessary information added to the new device entry in the DB includes the network drive (or server) for the remote folder, the corresponding path and the access credentials (step 3, Figure 3B). 
+•	The last step of the implantation consists of the activation of a DataCollector through the corresponding con-figuration file of the ELN server (step 4, Figure 3B). Similar to the MailCollector, it requires a cron schedule type parameter at which the DataCollector becomes active. It also accepts the network credentials for sftp password authentication (instead of storing the passwords, it is also possible to configure rsa key authentica-tion). 
+With the DataCollector activated, all data stored on remote accounts are processed at the set times. This routine works for all instruments that are connected to the collector and belong to the devices that are registered in the ELN. The DataCollector is a routine that works similar to the MailCollector described in Procedure 1, but uses, in contrast to the MailCollector, SFTP. Two different DataCollector types (FileCollector and FolderCollector) were developed and are used depending on whether the device stores measurement data either as a single file or as a folder including a defined number of objects. The FileCollector reads single data files which were written into the predefined remote folder, while the FolderCollector inspects the remote folder of a device for new sub-folders (the codes of the FileCollector and FolderCollector are given in the Supporting Information). It is critical for this mode to know if the measurements have been completed and all files have been written. This can be achieved by defining the number of files that have to be present within a data folder for a completed measure-ment. If all data has been written, the expected file number is reached and the folder can be processed and as-signed to an ELN user. All files are compressed in a ZIP folder and become accessible through the ELN account of the identified ELN user. To allow the assignment of the data collected by the DataCollectors to a specific ELN user, only a few rules have to be respected: the name of the file has to start with a unique identifier regis-tered with the ELN user account. This identifier has to be separated from the experiment number via a hyphen or a period (e.g. JD-xyz for the registered user John Doe and a measurement xyz). If the initials can be assigned to a registered ELN user, the data is registered in the ELN account for the identified user. The processing of data by the DataCollectors follows the same routine “inspect – store – delete” as used in case of the MailCollector. All data that is found by the DataCollectors within the remote folders is transferred to the ELN server and deleted from the remote folder. Deleting successfully transferred data is of high importance to maintain a good perfor-mance of the ELN and data transfer server, as the amount and size of datasets increase with the running time and the resources required for their inspection increases as well. The deletion of the data in the remote folder is also done if no user of the ELN can be assigned to the datasets. All changes are documented in a log file.  
+
+
+![manual_transfer](/img/manual_transfer.png)
+
+![config_manual](/img/config_manual.png)
+
+
+**Figure 3:** Data collection via DataCollectors (FileCollector and FolderCollector) as implemented for the devices GC (MS), LC (MS), Raman and mass spectrometer (general labeling as Device 1 to Device 4). Right: Device configuration for data transfer via additional file copies as described in detail in the following chapter 4. Workflow of the installation of a data transfer routine via a DataCollector.
+
+
