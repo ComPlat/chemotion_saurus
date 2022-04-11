@@ -16,7 +16,7 @@ const features = [
   {
     imageUrl: 'img/chemrepo.png',
     title: 'Repository',
-    mainLink: 'http://chemotion-repository.ibcs.kit.edu/welcome',
+    mainLink: 'https://www.chemotion-repository.net/welcome',
     btnText: 'Enter',
   },
 
