@@ -55,14 +55,14 @@ scfinder_n.yml:
 production:
   :provider:
     :metadata: 'api/oauth2/metadata' # DON'T CHANGE
-    :host: '' # SciFinder server
+    :host: 'https://scifinder-n.cas.org' # DON'T CHANGE
     :client_id: '' # your client id, issued by CAS SciFinder
     :redirect: 'sfn_cb' # DON'T CHANGE
     :redirect_host: 'localhost' # your server 
 ```
 
 :::info NOTE
-After editing the structure_editors.yml the service needs to be restarted.
+After editing the scfinder_n.yml the service needs to be restarted.
 :::
 
 
