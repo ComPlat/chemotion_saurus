@@ -28,6 +28,43 @@ mv config/user_props.yml /var/www/chemotion_ELN/shared/config/user_props.yml
 ln -s  /var/www/chemotion_ELN/shared/config/user_props.yml /var/www/chemotion_ELN/current/config/user_props.yml
 ```
 
+## SciFinder<sup>n</sup>
+  
+Chemotion ELN provides users with an easy way to search in CAS SciFinder<sup>n</sup>. To enable this feature, the necessary information needs to be configured in the `scfinder_n.yml` file.
+  
+The `scfinder_n.yml` configuration file is in the `config` folder. To create the file for the first time,
+
+```sh
+# from the application dir (/var/www/chemotion_ELN/current) copy the config file 
+cp config/scfinder_n.yml.example config/scfinder_n.yml
+
+# edit it
+vim config/scfinder_n.yml
+
+# restart the application (assuming Passenger is being used)
+touch tmp/restart.txt
+
+# keep the configuration for future Chemotion ELN updates (assuming Capistrano is used)
+mv config/scfinder_n.yml /var/www/chemotion_ELN/shared/config/scfinder_n.yml
+ln -s  /var/www/chemotion_ELN/shared/config/scfinder_n.yml /var/www/chemotion_ELN/current/config/scfinder_n.yml
+```
+
+scfinder_n.yml:
+```sh
+### example of scfinder_n.yml
+production:
+  :provider:
+    :metadata: 'api/oauth2/metadata' # DON'T CHANGE
+    :host: 'https://scifinder-n.cas.org' # DON'T CHANGE
+    :client_id: '' # your client id, issued by CAS SciFinder
+    :redirect: 'sfn_cb' # DON'T CHANGE
+    :redirect_host: 'localhost' # your server 
+```
+
+:::info NOTE
+After editing the scfinder_n.yml the service needs to be restarted.
+:::
+
 
 ## Secret key 
 used for cookie encryption.

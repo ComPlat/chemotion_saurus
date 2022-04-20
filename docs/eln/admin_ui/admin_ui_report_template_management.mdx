@@ -1,0 +1,41 @@
+---
+id: report_template_management 
+title: Report Template Management
+slug: report_template_management 
+sidebar_label: Report Template Management
+---
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome' 
+import { faPlusCircle, faClone, faPen, faPenSquare, faFileAlt, faFileCode, faPlus, faChartBar, faCheck, faSave, faAngleRight, faTrashAlt, faPaste, faArrowsAlt, faSyncAlt, faChartArea, faClock, faHourglassHalf, faUser, faEllipsisH,faCheckCircle, faTimesCircle, faDownload, faTrash, faArrowRight} from '@fortawesome/free-solid-svg-icons' 
+import { Btn } from '@site/docs/btn.js' 
+
+# Report Template Management
+
+:::danger Caution 
+This page is still being edited and reviewed.
+::: 
+
+Administrators can create, update or delete report template in this page.
+![report_template_management](/img/report_template/report_template.PNG)
+
+### Create
+
+You can create as many report templates as possible.
+
+To create a report template, press the button <Btn mixed={[" Add new template ", faPlus]} color={"primary"}/>, fill in the data of the report template attributes, then select your MS-word template file to upload. Finally press <Btn mixed={["Create", faPlus]} color={"primary"} /> to save the data into database or <Btn mixed={["Cancel"]} color={"warning"} /> to cancel the operation.
+
+![add-new-report-template](/img/report_template/add-new-report-template.PNG)
+
+### Update
+
+You can update a report template. Note that the reports generated using that template will not be changed.
+
+To update a report template, press the button <Btn mixed={["", faUser]} color={"primary"}/> on the report template line, change data of report template attributes, then select a new report template file. Finally press <Btn mixed={["Update", faSave]} color={"primary"} /> to save the data into database or <Btn mixed={["Cancel"]} color={"warning"} /> to cancel the operation.
+
+![update-report-template](/img/report_template/update-report-template.PNG)
+
+### Delete
+
+You can update a report template. Note thate the reports generated using that template will not be changed.
+
+To delete a report template, press the button <Btn mixed={["", faTrash]} color={"danger"}/> on the report template line, a delete confirmation popup will appear. Press <Btn mixed={["Yes"]} color={"danger"} /> to delete the report template or <Btn mixed={["No"]} color={"warning"} /> to cancel the operation.
