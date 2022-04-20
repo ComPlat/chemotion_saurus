@@ -1,0 +1,489 @@
+---
+id: native_installation
+title: Native Installation
+sidebar_label: Native installation
+slug: native_installation
+---
+
+:::info
+Documentation and processes are being reworked and improved at the moment. It may happen that you miss information. If you face problems, please let us know, we are there to support you. You may contact the [helpdesk](https://helpdesk.nfdi4chem.de) about chemotion ELN or submit a [request](https://www.nfdi4chem.de/index.php/setup-own-eln/) directly if you plan to install or test Chemotion. 
+:::
+
+
+This documentation detailled an installation solution example of the the chemotion_ELN system and associated services on Ubuntu servers with NGINX as web server and Phusion-passenger as app server.
+
+
+The chemotion_ELN is a web-application that needs the following elements:
+
+* web-server and application server: NGINX with Passenger-phusion
+* DB: postgresql (>10)
+* the web application itself
+* worker-applications to execute background tasks
+* disk space to store attachment files from the users
+
+The code for the web-application (server- and client- sides) and the workers is what we provide.
+
+For a few users, all this components can be installed on a single machine (2 cpu s, 4GB memory) using the [installation script](https://github.com/ComPlat/chemotion_ELN/blob/development-5/scripts/install_production.sh) that will set up all these components and basic configurations.
+
+
+:::info
+ Use a sudo user, not root, to run the script! 
+:::
+
+![architecture_ELN](/img/architecture_ELN_base.svg)
+
+In short the installation, will:
+
+* install OS package dependencies
+* install passenger
+* create a new user
+* install ruby and nodejs for this user
+* create a postgresql DB
+* copy the chemotion_ELN code and prepare basic config files
+* do a capistrano app deploy
+* config nginx (NB: no ssl set) and UFW
+
+For more users, one can start to split the services onto distinct machines.
+
+![architecture_ELN_dist](/img/architecture_ELN_dist.svg)
+
+## Hardware Requirement
+To install on a single machine for few users below is the minimum hardware requirement.
+* 4GB RAM
+* Dual Core
+* 50-100GB hard disk 
+* Ubuntu 20.04 LTS
+
+For multiple machine configuration and splitting the services onto different machines below is the hardware requirement:
+
+**ELN web and worker server**:
+* 3GB RAM
+* Dual Core
+* 10-20GB hard disk
+* Ubuntu 20.04 LTS
+
+**DB server**:
+* 2GB RAM
+* Dual Core
+* 500GB hard disk or smaller (depending upon the size of the metadata)
+* Ubuntu 20.04 LTS
+
+**ELN proxy server**:
+* 2GB RAM
+* Dual Core
+* 8GB hard disk
+* Ubuntu 20.04 LTS
+
+
+## Nginx - Phusion passenger
+
+More info on NGINX open source can be found on [nginx.org](http://nginx.org/en/docs/). For Phusion Passenger, see [phusionpassenger.com](https://www.phusionpassenger.com/docs/advanced_guides/install_and_upgrade/nginx/install/).
+
+The configuration files are at /etc/nginx/sites-enabled/ (symlinked from ../sites-available).
+SSL use is recommended and should be set there.
+
+To help with building the ssl config, one can use the [configurator from Mozilla](https://ssl-config.mozilla.org/)
+
+Copy or edit your currently enabled config (/etc/nginx/sites-available/...) to change the listening port from 80 to 443 and set the path to the certificates for an example to:
+
+```sh
+server {
+        listen 443 ssl http2;
+        listen [::]:443 ssl http2;
+# SSL config
+        ssl_certificate /path/to/signed_cert_plus_intermediates;
+        ssl_certificate_key /path/to/private_key;
+        # ssl_trusted_certificate /path/to/interm;
+        ssl_session_timeout 1d;
+        ssl_session_cache shared:MozSSL:1m;
+
+       ssl_protocols TLSv1.2 TLSv1.3;
+       ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
+       ssl_prefer_server_ciphers off;
+
+       # HSTS
+       add_header Strict-Transport-Security "max-age=63072000" always;
+
+    .....
+
+
+```
+
+One can also add  a DH group:
+
+generate the group with  `sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 4096`
+
+then add it to the nginx server config
+```sh
+ssl_dhparam /etc/ssl/certs/dhparam.pem;
+```
+
+the rest of the config should be unchanged and similar to:
+```sh
+
+......
+
+# application
+        passenger_enabled on;
+        client_max_body_size xxm;
+        passenger_ruby /home/production/.rvm/wrappers/ruby-x.x.x/ruby;
+        root /var/www/chemotion_ELN/current/public;
+
+        server_name _;
+        # server_name www.my-eln.tld my-eln.tld;
+
+        location / {
+            proxy_pass http://127.0.0.1:xxxx;
+            proxy_http_version 1.1;
+            proxy_set_header Host $http_host;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection "upgrade";
+            proxy_buffering off;
+        }
+
+}
+
+```
+
+**force ssl redirection from port 80 to 443**:
+With a sudo user, create a file  in  sites-available/. and enable it by linking it into sites-enabled/.
+
+```sh
+server {
+  listen 80;
+  listen [::]:80;
+  server_name your_server_name;
+  return      301  https://$server_name$request_uri ;
+}
+
+```
+
+
+test the config (`sudo nginx -t -c /etc/nginx/nginx.conf`)  and restart/reload nginx (`sudo systemctl restart nginx `)
+
+
+
+
+
+## Application File & Directory Structure
+
+
+With this setup the application code is located at /var/www/chemotion/ELN/current
+The installation script calls [Capistrano](https://capistranorb.com/documentation/overview/what-is-capistrano/) to deploy the Rails app. Because of that, the structure of application files is the following:
+
+
+```sh
+/var/www/chemotion_ELN/
+├── current -> /var/www/chemotion_ELN/releases/202101XXXXXXXX
+├── releases
+│   ├── 202101XXXXXXXX
+│   ├── 202101XXXXXXXX
+│   └─── 202101XXXXXXXX
+│       ├── app
+│       ├── backup
+│       │   ├── deploy_backup -> /var/www/chemotion_ELN/shared/backup/deploy_backup
+│       │   ├── models
+│       │   └── weekly_backup -> /var/www/chemotion_ELN/shared/backup/weekly_backup
+│       ├── bin
+│       ├── config
+│       │   ├── data_collector_keys
+│       │   ├── deploy
+│       │   ├── environments
+│       │   ├── initializers
+│       │   ├── locales
+│       │   └── unicorn
+│       ├── db
+│       │   ├── functions
+│       │   ├── migrate
+│       │   ├── seeds
+│       │   ├── triggers
+│       │   └── views
+│       ├── lib
+│       ├── log -> /var/www/chemotion_ELN/shared/log
+│       ├── node_modules -> /var/www/chemotion_ELN/shared/node_modules
+│       ├── public
+│       │   ├── assets -> /var/www/chemotion_ELN/shared/public/assets
+│       │   ├── images -> /var/www/chemotion_ELN/shared/public/images
+│       │   ├── simulations -> /var/www/chemotion_ELN/shared/public/simulations
+│       │   └── zip
+│       ├── tmp
+│       │   ├── cache -> /var/www/chemotion_ELN/shared/tmp/cache
+│       │   ├── novnc_devices -> /var/www/chemotion_ELN/shared/tmp/novnc_devices
+│       │   ├── pids -> /var/www/chemotion_ELN/shared/tmp/pids
+│       │   ├── sockets -> /var/www/chemotion_ELN/shared/tmp/sockets
+│       │   └── uploads -> /var/www/chemotion_ELN/shared/tmp/uploads
+│       ├── uploads -> /var/www/chemotion_ELN/shared/uploads
+│       └── vendor
+│           └── assets
+├── repo
+│   ├── branches
+│   ├── ...
+│   └── refs
+│       ├── .. heads
+│       └ ..
+└── shared
+    ├── .env
+    ├── backup
+    │   ├── deploy_backup
+    │   └── weekly_backup
+    ├── config
+    │   ├── database.yml
+    │   └── storage.yml
+    ├── log
+    ├── node_modules
+    │   ├─ ...
+    │   ...
+    │
+    ├── public
+    │   ├── assets
+    │   │   ├── ...
+    │   │   ├── ...ketcherails
+    │   │  
+    │   ├── images
+    │   │   ├── ghs
+    │   │   ├── images
+    │   │   ├── ketcherails
+    │   │   ├── molecules
+    │   │   ├── qr
+    │   │   ├── reactions
+    │   │   ├── research_plans
+    │   │   ├── samples
+    │   │   ├── sprites
+    │   │   ├── templates
+    │   │   ├── thumbnail
+    │   │   └── wild_card
+    │   ├── ontologies
+    │   ├── simulations
+    │   └
+    ├── tmp
+    │   ├── cache
+    │   ├── novnc_devices
+    │   ├── pids
+    │   ├── sockets
+    │   └── uploads
+    └── uploads
+
+
+```
+Configuration files for the application are in the *config* directory.
+In the currently running application directory the configuration files ( _current/config/*.yml_ ) are linked from _shared/config/*yml_
+
+
+
+The web and background-worker applications are started a reboot by executing the script /home/production/boot-ELN.sh from the crontab.
+The ruby dependencies and node versions are also in the home directory.
+
+```sh
+/home/production
+├── .nvm
+│   └── ...
+├── .rvm
+│   └── ...
+├── Backup
+└── boot-ELN.sh
+
+```
+
+
+### File storage
+
+Files uploaded by the users are stored in /var/www/chemotion_ELN/shared/uploads.
+The path is defined in the storage.yml config.
+
+### DB settings
+
+Connection to the DB is set in _config/database.yml_.
+
+
+
+## Multiple Machine Configuration
+
+When splitting the tasks on several machines make sure you meet the above [hardware requirement](#hardware-requirement). There should also be a shared directory among all the VMs and should have access for read and write. Following are the files which needs to be accessible to any web-app or worker-app instance
+
+- DB
+- uploaded user files
+- images
+
+### DB Setup:
+
+Chemotion runs on PostgreSQL relational database (version >10).In order to setup DB server we have to install PostgreSQL and create necessary role,DB and extension.
+Follow below steps to setup the DB server.
+
+1.Install Postgres
+```sh
+sudo apt-get update
+sudo apt-get -y install postgresql-12
+```
+2. To check if postgres is correctly installed. Run below command to check the version and status.
+```sh
+apt show postgresql
+service postgresql status
+```
+3. Allow remote connection to postgres.To help doing this you can follow [link here](https://www.thegeekstuff.com/2014/02/enable-remote-postgresql-connection/)
+  
+4. Create DB, Role and Extension
+   
+   _NOTE: Perform this step after Step 3 of ELN Web App Setup._
+   * Create Role:
+   ```sh
+   sudo -u postgres psql -c " CREATE ROLE $DB_ROLE LOGIN CREATEDB NOSUPERUSER PASSWORD '$DB_PW';"
+   ```
+   * Create DB:
+   ```sh
+   sudo -u postgres psql -c " CREATE DATABASE $DB_NAME OWNER $DB_ROLE;"
+   ```
+   * Create Extension:
+   ```sh
+   sudo -u postgres psql -d $DB_NAME -c ' CREATE EXTENSION IF NOT EXISTS "pg_trgm"; CREATE EXTENSION IF NOT EXISTS "hstore";  CREATE EXTENSION IF NOT EXISTS "uuid-ossp";'
+   ```
+   _NOTE : replace $DB_NAME, $DB_PW and $DB_ROLE by the values  saved in .env file of app_server (/var/www/chemotion_ELN/shared/.env)_
+  
+
+### ELN Web App Setup:
+
+Follow the below steps to install the ELN application.
+1. Copy the installation script on an Ubuntu server 20.04 LTS
+   ```sh
+   curl -o chemotion_ELN_install.sh -L https://raw.githubusercontent.com/ComPlat/chemotion_ELN/development/scripts/install_production.sh
+   ```
+   Check the variables at the beginning of the file, but also check the whole script to see what it is doing.
+   This will basically install evrything on one machine but configuration within can be reworked to just serve one purpose.
+   The script will...
+   * install OS package dependencies
+   * install passenger
+   * create a new user
+   * install ruby and nodejs for the user
+   * create a postgresql DB
+   * copy the chemotion_ELN code and prepare basic config files
+   * do a capistrano app deploy
+   * config nginx (NB: no ssl set) and UFW
+
+   You can also comment out the part from script which you want to skip during the installation.
+
+2. When ready, make the script executable and run it as a non-root user (but in the sudo group):
+   ```sh
+   chmod 700 chemotion_ELN_install.sh
+   sudo ./chemotion_ELN_install.sh
+   ```
+  The whole installation process may take approximately an hour to complete. Once done the system should reboot and the application should be up and running at the 
+  IP of the   machine   (http://...). An admin account should have been created (email: eln-admin@kit.edu, pw: PleaseChangeYourPassword)
+
+3. Connect to remote DB server by updating the HOST and PORT in database.yml file (_/var/www/chemotion_ELN/shared/config/database.yml_) or instead update the parameter at 
+  .env file (_/var/www/chemotion_ELN/shared/.env_). 
+4. Once connection is succesfully established follow step 4 of DB Setup to Create DB,Role and Extension.
+5. After sucessfully completing the DB configuration migrate the DB and restart the app by running below command in app server as production user.
+   ```sh
+   sudo su production
+   source ~/.profile && cd /var/www/chemotion_ELN/current && RAILS_ENV=production bundle exec rake db:migrate
+   touch /var/www/chemotion_ELN/current/tmp/restart.txt
+   ```
+6. Once the application is setup, technically we can uninstall the postgres and stop the worker job from this server.
+7. To uninstall PostgreSQL from the app server you can follow the [link here](https://askubuntu.com/questions/32730/how-to-remove-postgres-from-my-installation)
+8. The worker app (_delayed_job_) and  the web app (_passenger instance_) are  started at machine-reboot  through crontab of the production user.
+   Crontab will execute at reboot a script located  at _/home/production/boot-ELN.sh_. In order to stop the worker job, comment out the job on the script 
+   section (_/home/production/boot-ELN.sh_) and quit the job(_delayed_job_) from the process manager as well(_htop_).
+  
+### ELN Web Worker Setup:
+
+Follow the below steps to configure the worker.
+1. Download and execute the installation script as done in Step 1 of app setup. This time you can execute the script by 
+   commenting out the Part 2,6,71 and 11. 
+   ```sh
+   PART_0='update OS'
+   PART_1='deb dependencies installation'
+   PART_1_1='deb specific dep version'
+   #PART_2='nginx and phusionpassenger installation'
+   PART_3='create a ubuntu user'
+   PART_4='rvm and ruby installation'
+   PART_5='nvm and npm installation'
+   #PART_6='prepare postgresql DB'
+   PART_7='prepare production app directories and config'
+   #PART_71='reset DB pw'
+   PART_8='prepare first deploy and deploy application code'
+   PART_81='seed common ketcher templates'
+   PART_82='seed common reagents'
+   PART_9='prepare boot start and log rotation'
+   PART_10='configure UFW'
+   #PART_11='configure NGINX'
+   ```
+2. Once installation done succesfully you can configure the DB server at .env file (_/var/www/chemotion_ELN/shared/.env_).
+3. To check if installation was successful login as production user and perform below action.
+   ```sh
+   source ~/.profile && cd /var/www/chemotion_ELN/current && RAILS_ENV=production bundle exec rails c#then run some ruby rails command:
+   Person.count
+   exit
+   ````
+4. You can edit the boot-ELN.sh to only reboot the worker. Now that your worker and app setup is done make sure below files are shared between the VMs 
+   and have read and write permissions.
+   * to share btw VMs:
+   ```sh
+   /var/www/chemotion_ELN/shared/uploads/
+   /var/www/chemotion_ELN/shared/public/images/
+   /var/www/chemotion_ELN/shared/tmp/uploads/
+   /var/www/chemotion_ELN/shared/public/zip/
+   ```
+   * to share or duplicate:
+   ```sh
+   /var/www/chemotion_ELN/shared/config/
+   /var/www/chemotion_ELN/shared/.env
+   ````
+### ELN Web Proxy Setup:
+1. Install Nginx 
+   ```sh
+   sudo apt-get update
+   sudo apt-get install nginx
+   ````
+2. If you don't have a certificate already, you can grab one for free at [Let's Encrypt](https://certbot.eff.org/)
+3. Edit default config file in _/etc/nginx/sites-available/default_ and proxy pass to your app server. You can refer below configuration for reference.
+   ```sh
+   ....
+   
+   server {
+ 
+		listen [::]:443 ssl ipv6only=on; # managed by Certbot
+		listen 443 ssl; # managed by Certbot
+		
+		#SSL Certificate
+		ssl_certificate __path_to_certificate__; # managed by Certbot
+		ssl_certificate_key __path_to_certificate_key__; # managed by Certbot
+		include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+		ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+		
+                # Add index.php to the list if you are using PHP
+                index index.html index.htm index.nginx-debian.html;
+                server_name your_domain; # managed by Certbot
+ 
+                location / {
+                        proxy_pass http://(_your_app_domain_):8080;
+                        proxy_http_version 1.1;
+                        proxy_set_header Upgrade $http_upgrade;
+                        proxy_set_header Connection "upgrade";
+                        proxy_set_header Host $http_host;
+                        proxy_set_header X-Real-IP $remote_addr;
+                        proxy_set_header X-Nginx-Proxy true;
+                        proxy_redirect off;
+                }
+ 
+          } 
+   server {
+                if ($host = application.chemotion.uni-jena.de) {
+                        return 301 https://$host$request_uri;
+                } # managed by Certbot
+
+                listen 80 ;
+                listen [::]:80 ;
+                server_name _your_domain_;
+                return 404; # managed by Certbot
+          }
+
+   ....
+   ```
+
+  
+  
+  
+  
+  
+  
+  
+  
