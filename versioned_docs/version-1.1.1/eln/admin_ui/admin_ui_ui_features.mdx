@@ -1,0 +1,67 @@
+---
+id: ui_features
+title: UI features
+slug: ui_features
+sidebar_label: UI features
+---
+
+# UI features
+
+For functions that require authorized access, the administrator can grant or deny users access to the function.
+
+![adminui-uifeatures](/img/adminui-uifeatures.png)
+
+<b>Edit Permission</b>
+
+* Enable globally - when the function is enabled globally, it is available for all users except the users in the "Exclude Users" list
+* Include Users - the user who can access the function
+* Exclude Users - the user who cannot access the function
+
+![adminui-uifeatures-edit_permission](/img/adminui-uifeatures-permission.gif)
+
+<b>Edit JSON</b>
+
+Each function has its own unique features and the administrator can adjust the setting by editing the configuration. Please make sure to find the corresponding information and read the content carefully before changing the settings.
+
+* User Label
+* Computed Prop
+* Reaction Prediction
+* Sample Decoupled
+* Generic Element
+* Generic Segment
+* Gerneic Dataset
+* [ChemDraw Editor](/docs/eln/admin_ui/ui_features#chemdraw-editor)
+* Ketcher Editor
+
+## ChemDraw Editor
+
+<b>Supported Versions</b>
+
+| Chemotion ELN | ChemDraw |
+|---|---|
+| 1.0.2 | 17, 19, 20 |
+| before 1.0.2 | 17 |
+
+<b>JSON</b>
+
+To active ChemDraw in Chemotion ELN, use
+
+```sh
+{
+  editor: 'chemdraw'
+}
+```
+
+By default, the web service in enabled. To disable the web service, use
+
+```sh
+{
+  editor: 'chemdraw',
+  features: {
+    disabled: ['WebService']
+  }
+}
+```
+
+To set up ChemDraw, please see [Structure editor](/docs/eln/settings#structure-editor)
+
