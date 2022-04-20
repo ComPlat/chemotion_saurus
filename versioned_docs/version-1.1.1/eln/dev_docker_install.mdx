@@ -1,0 +1,253 @@
+---
+id: dev_docker_install
+title:  Docker Installation
+sidebar_label: Docker installation
+slug: development_docker_installation
+---
+
+:::info
+Documentation and processes are being reworked and improved at the moment. Please [contact](specific_contact) us for installation of a development version of the ELN.
+
+:::
+
+
+## Introduction
+Containers enable the use of isolated, consistent, and portable development enviromnents. When using containers for development you will not have to install and configure the Chemotion ELN locally on your machine.
+Instead, depencencies and configurations are maintained in container-images which you can run on your machine using Docker.
+This keeps your machine free of clutter, and more importantly, it can ensure consistent development environments across contributors (i.e., avoiding "works on my machine" scenarios).
+Have a look at this [tutorial](https://carpentries-incubator.github.io/docker-introduction/01-introduction/index.html) for an accessible introduction to containers.
+
+## Prerequisites
+This guide assumes you are familiar with basic operation of Git, Docker and a Linux operating system.
+At minimum, your hardware setup should feature 3 GB RAM and 20 GB disk capacity (it is advisable to assign considerably more ressources).
+
+## Windows {#windows-heading-id}
+This guide will help you getting started developing with containers on Windows using `Docker Desktop` along with [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/about) (referred to as `WSL 2` in the following).
+With `Docker Desktop` you can work in a Linux-based development environment and run Linux-based containers while using an IDE on Windows for editing and debugging (e.g., Visual Studio Code).
+The instructions have been tested on Windows 10. Your machine should run Windows 10, version 2004, Build 18362 or higher.
+
+### Dependencies
+
+#### WSL 2
+Start by [installing `WSL 2`](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
+
+:::important
+While going through the `WSL 2` installation, make sure to install `WSL 2`, not `WSL 1`. Also, make sure to install `Ubuntu 20.04 LTS` (referred to as `Ubuntu` in the following) as your Linux distribution. You may need to upgrade `Ubuntu 20.04 LTS` from `WSL 1` to `WSL 2`. To check if you have the correct version, open powershell and enter the comand 
+```
+wsl.exe -l -v
+```
+If this shows verion 1 for `Ubuntu 20.04 LTS` upgrade to `WSL 2` with the command 
+```
+wsl.exe --set-version Ubuntu-20.04 2
+```
+:::
+
+Next, [open an `Ubuntu` terminal](https://docs.microsoft.com/en-us/windows/wsl/wsl-config#ways-to-run-wsl) and [set up a user account](https://docs.microsoft.com/en-us/windows/wsl/user-support).
+
+#### Docker Desktop
+Once you have set up `WSL 2` you can [install `Docker Desktop` and enable the `WSL 2` backend in `Docker Desktop`](https://docs.docker.com/docker-for-windows/wsl/).
+For additional information and prerequisites regarding the installation of `Docker Desktop` also have a look [here](https://docs.docker.com/docker-for-windows/install/) (the instructions above should be sufficient though).
+
+### Setup
+Once you have `WSL 2` and `Docker Desktop` installed, you can start setting up the Chemotion ELN development enviromnent.
+The development enviromnent consists of the Chemotion ELN source code as well as two Docker images containing all depencencies and configurations of the Chemotion ELN runtime.
+
+Make sure that all files you'll download in the following steps live in the Linux file system, *not* in your Windows file system ([here's why](https://docs.docker.com/docker-for-windows/wsl/#best-practices)).
+The Windows file system (e.g., C: drive) is mounted into `Ubuntu` under `/mnt`. Therefore, store your files somewhere else than `/mnt`. For example,
+you could store them in your home directory (`~`).
+
+Also, make sure that you're running all commands from a `WSL 2` terminal (`$` command prompt), i.e., from within `Ubuntu`, not Windows PowerShell (`>` command prompt).
+You won't be able to run bash scripts from PowerShell.
+
+On your Windows machine, [open the `Ubuntu` terminal](https://docs.microsoft.com/en-us/windows/wsl/wsl-config#ways-to-run-wsl).
+Next, start `Docker Desktop`. You can confirm that `Docker Desktop` is running by typing `docker --version` in the `Ubuntu` terminal.
+If you get a response you're now ready to run the ELN in a [Docker container](#eln-in-docker) or in a [Visual Studio Code devcontainer](https://github.com/ptrxyz/chemotion/tree/main/client-vscode-remote-container).
+
+## Linux {#linux-heading-id}
+
+### Dependencies
+Starting point is a fresh installation of a Linux operating system. This could be a physical or virtual machine.
+The instructions have been tested on 64-bit Ubuntu Focal 20.04 (LTS). The following packages have to be installed:
+* git
+* docker
+* docker-compose
+
+### Setup
+
+The dockerized installation of Chemotion ELN expects some folders to have numerical UID:GID of 1000:1000.
+These are usually the UID and GID of the first unprivileged user on a fresh system.
+Throughout this guide, we assume the login of this user to be ```user1```.
+Some additional settings can be applied to ease the management of the development system.
+
+:::caution Security implications
+It is assumed that the development system is operated in a safe environment by a single user.
+The settings proposed here should neither be applied to production machines nor in unsafe environments.
+:::
+
+#### docker group
+Operation of the docker subsystem normally requires elevated privileges.
+Although granting docker access to unprivileged users comes with a security impact, this can be justified on a development system.
+To grant management privileges for the docker subsystem, run the following commands:
+
+```
+sudo bash
+groupadd --system docker
+usermod -aG docker user1
+snap disable docker
+snap enable docker
+exit
+```
+Other Linux distributions (Debian, openSUSE) set up their docker instances differently (e.g. the group ```docker``` may already exist).
+For these distributions, you may want to replace the ```snap``` commands by :
+
+```
+...
+systemctl restart docker.service
+...
+```
+
+In each case, the settings for ```user1``` will become effective upon the next login.
+
+You're now ready to run the ELN in a [Docker container](#eln-in-docker) or in a [Visual Studio Code devcontainer](#eln-in-devcontainer).
+
+## macOS {#macos-heading-id}
+
+We recommend having an Ubuntu virtual machine. Then you can follow the steps from [Linux installation](#linux-heading-id).
+
+## ELN in a Docker container {#eln-in-docker}
+:::caution operating system requirements
+Before proceeding, make sure you've followed the instructions for your operating system ([Windows](#windows-heading-id), [Linux](#linux-heading-id), [macOS](#macos-heading-id)).
+:::
+
+The code for a dockerized installation of Chemotion ELN is currently split into two repositories:
+
+* [https://github.com/ptrxyz/chemotion](https://github.com/ptrxyz/chemotion) containing Dockerfiles and shell scripts for dockerization
+* [https://github.com/ComPlat/chemotion_ELN](https://github.com/ComPlat/chemotion_ELN) containing the ELN source code
+
+As a developer, you may want to replace one or both repositories by your own fork. In this case, you would have to replace the URLs in the code snippets given below.
+There are two flavours of dockerized setups of Chemotion ELN:
+
+* setup in development mode
+* setup in production mode
+
+### Development Mode Setup
+The development mode setup is straight forward and requires only a few steps. The setup starts by checking out the containerization scripts in the home directory:
+
+```
+cd ~
+git clone https://github.com/ptrxyz/chemotion.git
+```
+
+The next step is to execute the following code snippet:
+
+```
+cd chemotion/client-chemotion-dev
+./firstrun.sh
+docker-compose up
+```
+First, the script ```firstrun.sh``` will clone / check out the Chemotion ELN source code.
+You would have to adjust the URL if you would prefer to work on a fork of the repository.
+Later on, the script will be prompt you to type ```continue``` to authorize a potentially destructive initialization of a fresh Chemotion ELN database.
+In total, the code snippet will do the following:
+
+* clone the Chemotion ELN source code into a subdirectory ```src```
+* download a development container image for Chemotion ELN
+* download a PostgreSQL container image and set up database for Chemotion ELN
+* set up a Chemotion ELN container which mounts the source code of Chemotion ELN as a volume and run it in the foreground (to daemonize it and send it to the background, add option ```-d``` to the last command)
+
+Thus any changes to the Chemotion ELN source code in the ```src``` directory will be reflected in the running instance.
+The status of the containers can be checked either with ```docker ps``` or ```ss -tlpen``` which displays the TCP sockets where processes are listening for connections. After the start-up you can access your fresh instance using a browser. The application is running on `http://localhost:4000`, the seeded administration account is `ADM` (all caps!) with password `PleaseChangeYourPassword`. The PostgreSQL database should listen on port 5432.
+
+To tear things down, you can issue and the following command (in a different shell but from the same directory):
+
+```
+docker-compose down --remove-orphans
+```
+Additional possiblities to manage docker containers, images, networks and volumes are described in the [Docker CLI](https://docs.docker.com/engine/reference/commandline/cli/) manual.
+
+
+### Production Mode Setup
+For manual installation in production mode, a pre-built image from DockerHub is used.
+The goal for this guide is to build our own production mode image instead.
+This means, a few manual adjustments are necessary, otherwise the pre-built image from DockerHub would be used.
+The procedure starts with checking out the containerization scripts (the repository checked out for a development mode setup can be re-used):
+
+```
+cd ~
+git clone https://github.com/ptrxyz/chemotion.git
+```
+
+The next step is to modify the file ```~/chemotion/build-chemotion/rebuild.sh```. Any reference to ```ptrxyz/chemotion``` must be updated.
+In this guide, all occurences are changed to ```user1/chemotion```.
+
+The setup continues with the following steps:
+
+```
+cd ~/chemotion/build-chemotion
+git clone https://github.com/ComPlat/chemotion_ELN.git src
+./rebuild.sh
+```
+
+Depending on your machine, this will take some time, as some packages will be compiled from source code.
+In the end, the production mode image should be ready.
+Check it with ```docker images```; the command should display an image tagged ```user1/chemotion:VERSION``` with ```VERSION``` being a placeholder for the exact version.
+To start an instance of ELN, the file ```~/chemotion/client-chemotion/docker-compose.yml``` must be updated manually to reflect the correct image name.
+Originally, the file references ```ptrxyz/chemotion:VERSION``` in two places, which both must be updated to ```user1/chemotion:VERSION```.
+Please note that an update of the version field might be necessary as well.
+After the update, the production mode Chemotion ELN can be started with the following commands:  
+
+```
+cd ~/chemotion/client-chemotion
+mkdir -p shared db-data
+docker-compose run eln init
+docker container prune
+docker-compose up
+```
+
+The third command will prompt you to authorize a potentially destructive initialization of a fresh database by typing ```continue```.
+The fourth command will prompt prior to the removal of stopped containers.
+For a real production mode environment additional steps would be required (e.g. setup of a HTTP proxy), which is beyond the scope of this guide.
+
+## ELN in a Visual Studio Code devcontainer {#eln-in-devcontainer}
+Make sure you have docker running. Create a folder where you want to keep Dockerfiles and shell scripts for dockerization and, in the terminal, clone the following [repository](https://github.com/ptrxyz/chemotion) to it:
+
+```
+git clone https://github.com/ptrxyz/chemotion.git
+```
+From that folder, dive into ```client-vscode-remote-container``` folder:
+
+```
+cd chemotion/client-vscode-remote-container/
+```
+
+Run the script ```createWorkspace.sh``` which will create your work space containing chemotion codebase. Choose the directory where you want to have your codebase. Make sure it is an empty one. Here we will create a directory in home called ```workspace```
+
+```
+bash ./createWorkspace.sh ~/workspace
+```
+
+When it is done, ```workspace``` will open in VSCode. There, check the bell button in the bottom right corner for a new notification and choose ```Reopen in Container```. If you can't see the notification, check the bottom left side for an icon similar to ```><``` in green. Press the icon, this will open a menu. From the menu choose ```Reopen in Container```. Building the container might take a little time. Then there is a post creation step which takes a while. When it is finished, open a new terminal in VSCode. Run:
+
+```
+bundle exec rails c
+```
+And then type quit
+
+And then start the server. Compiling "webpacker" takes a little time so wait a little for it:
+
+```
+bundle exec rails s
+```
+One last step. If you start applying changes, you might get the error: ```FATAL: Listen error: unable to monitor directories for changes.```, open a terminal and run:
+
+```
+sudo sh -c "echo fs.inotify.max_user_watches=524288 >> /etc/sysctl.conf"
+sudo sysctl -p
+```
+You are ready now. You can find more details in this [link](https://github.com/ptrxyz/chemotion/tree/main/client-vscode-remote-container) and this [video](https://www.youtube.com/watch?v=HZCAbC6ldzE).
+
+## Tools recommended for development
+
+### Visual Studio Code
+
+In addition to the tools mentioned in the [development chapter](development/development) you can install the VS Code Docker extension. This extension adds the functionality to build, manage, and deploy containerized applications from inside VS Code. (You need the Remote-Container extension to actually use the container as your dev environment.)

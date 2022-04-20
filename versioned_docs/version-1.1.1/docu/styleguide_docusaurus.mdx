@@ -1,0 +1,38 @@
+---
+id: styleguide_docusaurus
+title: Docusaurus Style Guide
+sidebar_label: Style guide
+slug: styleguide_docusaurus
+---
+
+# Images
+* If you're adding an image to illustrate a paragraph, place the image after the corresponding paragraph.
+
+# Terms
+* Refer to the Chemotion Electronic Lab Notebook as ` Chemotion ELN`.
+* Refer to the the Chemotion spectra editor for analytical data as `ChemSpectra`.
+* Refer to the repository as `Chemotion Repository`.
+
+# Titles
+* Capitalize only the first word (except for names or abbreviations).
+* Use all low caps starting at header level 4 (`####`).
+
+# Sidebar labels
+* Capitalize only the first word (except for names or abbreviations).
+
+# Lists
+* Capitalize the first word of each list entry.
+* Use regular punctuation within list entries.
+
+# Tables
+* Do not capitalize words inside tables.
+
+# Automatic style checking
+On every push to the chemotion_saurus repository an automatic style guide parser is triggered.
+The parser automatically fixes incorrect terms and pushed the corrections, which will be deployed along with the subsequent push from a user.
+If tables contain upper-cased words or the committed file is missing in the table of contents, warning or error messages are printed in the `Style Guide Parser` step in the [GitHub Actions](https://github.com/ComPlat/chemotion_saurus/actions).
+Style checking can be skipped by including `skip style guide` in the commit message.
+
+:::caution Recommendation
+The Style Guide Parser works best for natural language text like in the chemistry manual of this documentation. It may be better to skip the Style Guide Parser (`skip style guide` in the commit message) if you are using the [terms](#terms) with an extra spelling, e.g., "chemotion_ELN" as name for the Ruby app, like in the developer section of this documentation.
+:::
