@@ -30,6 +30,7 @@
         },
         "items": [
           "eln/development/project_overview",
+          "eln/development/architecture",
           "eln/development/development",
           "eln/development/testing",
           "eln/development/ci"
