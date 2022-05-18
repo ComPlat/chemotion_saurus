@@ -30,6 +30,12 @@ Release: please open the "Embargoed Publications" panel and select an embargo as
 
 ![](/img/docs/move-change-release-embargo/7a5b05a7-35d8-435c-8e9d-f530ffe16f26_image_20200831-18167-mojbpo.png)
 
+## Collection DOI
+
+When the embargo is released, a Collection DOI is generated automatically by the system (embargoes released before 10.05.2022 are not included). You can see the Collection DOI link in the reaction/sample details page and through this link you can access to the DOI and metadata for the whole data collection.
+
+![](/img/docs/move-change-release-embargo/collection_doi.gif)
+
 ## Change of contents for embargoed items
 
 A change of embargoed items is in general not desired and part of the standard workflow of the repository. After the passing the internal review, all changes should be finished. If there are any mistakes that you become aware of after the the submissions were accepted, then please let the repository team know and contact us. In those cases, we can correct even those entries that are accepted and under embargo. Published items (after the release of the embargo) can't be changed any more. 
