@@ -85,4 +85,4 @@ Please give the IR spectra analysis in the following form:
 IR (ATR, ṽ): 2895, 1703, 1598, 1488, 1438, 1417, 1359, 1279, 1240, 1157, 1113, 1072, 1023, 998, 962, 910, 818, 786, 759, 699, 653, 616, 594, 542, 502, 421 cm–1.
 
 ## 19F NMR data
-If the compound contains Fluorine atoms, the analysis set shoul contain 19F NMr characterization
+If the compound contains Fluorine atoms, the analysis set should contain 19F NMR characterization
