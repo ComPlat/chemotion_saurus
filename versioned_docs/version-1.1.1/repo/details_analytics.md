@@ -32,6 +32,7 @@ Please order the analysis part of your molecules/samples according to
 5. others (EA, crystal structures)
 Please use the “order mode” button in the analysis tab. 
 ## Formatting of NMR data
+
 ## Coupling constants
 1. Please give the full description for each coupling constant:   
 Example: wrong: 1.11 (dd, J = 11.11 Hz, 2.22 Hz, 2H),  
@@ -82,3 +83,6 @@ EI (m/z, 70 eV, 70 °C): 278/280 (72/72) [M]+, 221/223 (100/100), 103 (23).
 
 Please give the IR spectra analysis in the following form:  
 IR (ATR, ṽ): 2895, 1703, 1598, 1488, 1438, 1417, 1359, 1279, 1240, 1157, 1113, 1072, 1023, 998, 962, 910, 818, 786, 759, 699, 653, 616, 594, 542, 502, 421 cm–1.
+
+## 19F NMR data
+If the compound contains Fluorine atoms, the analysis set shoul contain 19F NMr characterization
