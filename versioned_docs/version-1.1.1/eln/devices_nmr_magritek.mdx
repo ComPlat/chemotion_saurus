@@ -1,0 +1,141 @@
+---
+id: devices_nmr_magritek
+slug: devices_nmr_magritek
+title: Magritek NMR Integration
+---
+
+This guide explains how to add Magritek NMR to the Chemotion ELN device pool. The protocol enables remote access to the
+PC running Spinsolve and the transfer of experiment data to the Chemotion ELN’s inbox. Both these can be set up
+separately, with neither relying on the other. The data transfer is configured for experiments conducted directly in
+Spinsolve.
+
+# General preparation aspects
+Primarily the integration of devices depends on several factors as,
+- Operating system of the PC
+- Vendor software of the device
+- Network connection (What IP address and what type of network)
+- File types etc
+
+Some basic requirements to integrate the devices are as follows,
+- Operating system: Windows (Minimum Windows XP. No Windows 98 or Windows 95), preferably Windows 10 or Windows 11.
+Linux based system is also possible
+- Network: Access to the KIT intranet. Either a static IP address or FQDN (fully qualified domain name) is required
+- Administrator rights to the system’s operating system
+
+Considering all these aspects, this procedure has been conducted on the following system configurations. However it is
+likely to work on systems with different software versions as well.
+
+## Specifications of the Magritek NMR device
+- Operating system: Windows 10
+- Software Name: Spinsolve (Version: 2.0.1)
+- Connected to Internet/Intranet: Yes
+- Data files generated: 1D file (.1d)
+- Static IP address has been configured
+
+# Objectives
+- Remote Device Control
+- Data transfer to Chemotion ELN inbox
+
+For the NMR integration, we have decided to configure both these features.
+
+# Configurations
+## Remote Device Control
+Users will be able to access the NMR PC through the Chemotion ELN. For that we have to make sure that the NMR PC and the
+Chemotion ELN are connected to a common LAN. Furthermore the firewall of the LAN needs to allow VNC connections to be
+established.
+
+### Configurations in NMR PC
+This has been achieved by the installation of the software, [TightVNC](https://www.tightvnc.com/download.php) (Installer
+for Windows, 64-bit). Users can access the computer remotely through Chemotion ELN through this. We have to configure it
+as follows,
+
+On the setup screen, we have to select the TightVNC server to be installed following the set up of the passwords for
+remote access and administrative password.
+
+![devices_NMR_magritek_1](/img/nmr_magritek/devices_nmr_magritek_1.png)
+![devices_NMR_magritek_2](/img/nmr_magritek/devices_nmr_magritek_2.png)
+
+After installation, we have to make sure it is accepting incoming connections at port 5900 and also for added security,
+we have to whitelist the IP address of the Chemotion ELN only. Also we select the option so that the administrative
+password is needed to make any changes or for each operation.
+
+![devices_NMR_magritek_3](/img/nmr_magritek/devices_nmr_magritek_3.png)
+![devices_NMR_magritek_4](/img/nmr_magritek/devices_nmr_magritek_4.png)
+![devices_NMR_magritek_5](/img/nmr_magritek/devices_nmr_magritek_5.png)
+
+### Configurations in Chemotion ELN
+There are basically two types of configurations we have to perform in Chemotion ELN,
+- As an admin of Chemotion ELN
+- As an admin of the group which the device belongs to
+
+As an admin of Chemotion ELN, we have to create the device corresponding to Magritek NMR and configure the NoVNC settings
+for it with a token.
+
+On the other hand, as an admin of the group which the device belongs to, we have to make sure that the user belongs to the group in
+Chemotion ELN in order to get access to the device. For example, in the screenshot below, any user who belongs to the
+group, Device Pool AK Theato in Chemotion ELN will have remote access to the device, Magritek NMR, in the campus West
+of KIT. If the user is not already in the group, then the group admin will have to add the user from Chemotion ELN.
+
+![devices_NMR_magritek_6](/img/nmr_magritek/devices_nmr_magritek_6.png)
+
+For a user who is in the group, the user has to log in to the Chemotion ELN at
+[https://complat-eln.ioc.kit.edu/home](https://complat-eln.ioc.kit.edu/home). Then he can access the device as follows,
+
+![devices_NMR_magritek_7](/img/nmr_magritek/devices_nmr_magritek_7.png)
+![devices_NMR_magritek_8](/img/nmr_magritek/devices_nmr_magritek_8.png)
+
+For further information regarding the VNC settings, see the
+[VNC settings page](settings#vnc)
+
+## Data transfer
+Here transfer of the output file to Chemotion ELN will occur automatically after the experiment is completed and a new
+data file is generated. User only needs to make sure to name the sample according to the
+[naming convention](devices#name-conventions).
+
+:::info
+Please take care that you communicate name conventions to all users of the Chemotion ELN:
+https://www.chemotion.net/chemotionsaurus/docs/eln/devices#name-conventions
+:::
+
+### Configurations in NMR PC
+The NMR's PC and the Chemotion ELN both need access to a common network storage location. This can be set up on a
+third-party storage (a NAS server, shared storage of another PC etc) or it can be set up locally on the NMR PC.
+
+In this case, the LSDF storage service from KIT has been used which has been later on mounted in the NMR’s PC as a
+network drive under Netzwerkadressen i.e. Network Address. For this guide, the LSDF folder was mounted as a network
+drive of the NMR PC using the [SMB/CIFS on Windows](https://wiki.scc.kit.edu/lsdf/index.php/LSDF_Online_Storage:_SMB_/_CIFS#Using_SMB.2FCIFS_on_Windows)
+configurations.
+
+### Configurations in Spinsolve
+We can see that the data is stored both locally and on a remote server when we look at Spinsolve's data storage options.
+Now as for the remote backup storage location, the network drive we created will be used. The Chemotion ELN also has
+access to this storage location. The experiment data file will be automatically saved at this location besides the local
+drive and  Chemotion ELN will be able to retrieve and transfer it to the appropriate user's inbox.
+
+![devices_NMR_magritek_10](/img/nmr_magritek/devices_nmr_magritek_10.png)
+
+To make sure that Chemotion ELN is able to transfer it to the appropriate user's inbox, we have to make sure the samples
+are named following the naming convention [rules](devices#name-conventions).
+
+Here the naming of the sample has started with the name abbreviation (Kürzel) of a certain user to whom the experiment
+data file will be sent.
+
+![devices_NMR_magritek_11](/img/nmr_magritek/devices_nmr_magritek_11.png)
+
+Now data experiment data will be transferred to the network storage location so that the data collector of Chemotion
+ELN can retrieve it from there.
+
+### Configurations in Chemotion ELN
+The Chemotion ELN’s data collector has to be configured to collect data from the NMR from the network location.
+
+As the file collector mechanism, there are two options.
+
+- Collecting attachment files from emails
+- Collecting file or folder from local drives or over SCP
+
+Here in this guide we have used the second mechanism where the files are collected from remote storage locations and are
+distributed to specific users based on the file-name matching the name abbreviation of the user.
+
+:::note See details
+[File collector setting page](settings#file-collection)
+:::

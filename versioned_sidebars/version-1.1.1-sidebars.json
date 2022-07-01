@@ -104,7 +104,8 @@
         },
         "items": [
           "eln/devices",
-          "eln/devices_nmr"
+          "eln/devices_nmr",
+          "eln/devices_nmr_magritek"
         ]
       },
       "eln/faq_eln",
