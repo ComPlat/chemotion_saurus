@@ -81,7 +81,9 @@ module.exports = {
       //   // Transform the list of hits; not working in docusaurus
       // }
     },
-
+    prism: {
+        additionalLanguages: ['ruby'],
+    },
     footer: {
       style: 'light',
       links: [
