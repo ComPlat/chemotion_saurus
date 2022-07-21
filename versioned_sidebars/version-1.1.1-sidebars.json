@@ -33,7 +33,8 @@
           "eln/development/architecture",
           "eln/development/development",
           "eln/development/testing",
-          "eln/development/ci"
+          "eln/development/ci",
+          "eln/development/performance"
         ]
       },
       {
