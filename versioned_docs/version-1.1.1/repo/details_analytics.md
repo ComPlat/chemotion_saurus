@@ -55,7 +55,7 @@ Example for issues 1-4:
 - 13C NMR (100 MHz, CDCl3, ppm) δ = [...], 129.5, 126.7 (2C), [...].
 
 (3) For compounds that are obtained as mixtures of isomers and cannot be separated:      
-- <b>1H NMR</b>: please give the number of protons per signal to achieve 1H/proton as combination of all isomers:<br> 
+- <b>1H NMR</b>: please give the number of protons per signal to achieve 1H/proton as combination of all isomers:<br /> 
 Example: 1H NMR (500 MHz, MeOD-d4, ppm) δ = 13.23 (bs, 0.4H, CO2H-isomer1), 12.98 (bs, 0.6H, CO2H-isomer2), 8.24 (d, 0.6H, <i>J</i> = 1.5 Hz, CH-isomer2), 8.21 (d, 0.4H, <i>J</i> = 1.5 Hz, CH-isomer1), 3.30 (s, 3H, CH3-isomer1+-isomer2) etc. 
 
 - <b>13C NMR</b>: If you can assign all signals: please give separate lists of 13C assignments for isomer 1 and isomer 2 and separate both analytical desciptions with the text-fragment: "Other isomer:" 
@@ -66,7 +66,7 @@ Please add the info "<b>_due to an inseparable mixture of isomers, the total amo
 ## 3.3.3 Others
 
 Please omit spaces while giving ranges e.g. for multiplets:  
-- wrong: <b>1H NMR</b> (300 MHz, CDCl3, ppm) δ = [...], 2.27 – 2.22 (m, 2H, C<i>H</i>2), [...]. <br>
+- wrong: <b>1H NMR</b> (300 MHz, CDCl3, ppm) δ = [...], 2.27 – 2.22 (m, 2H, C<i>H</i>2), [...].
 - right: <b>1H NMR</b> (300 MHz, CDCl3, ppm) δ = [...], 2.27–2.22 (m, 2H, C<i>H</i>2), [...].  
 
 Please use the long “minus” symbol for giving the ranges:  
