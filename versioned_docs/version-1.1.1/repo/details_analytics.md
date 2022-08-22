@@ -31,12 +31,13 @@ Please order the analysis part of your molecules/samples according to
 4. IR data
 5. others (EA, crystal structures)
 Please use the “order mode” button in the analysis tab. 
+
 ## Formatting of NMR data
 
 ## Coupling constants
 1. Please give the full description for each coupling constant:   
-Example: wrong: 1.11 (dd, J = 11.11 Hz, 2.22 Hz, 2H),  
-right: (dd, J = 11.1 Hz, J = 2.2 Hz, 2H)
+Example: wrong: 1.11 (dd, <i>J</i> = 11.11 Hz, 2.22 Hz, 2H),  
+right: (dd, <i>J</i> = 11.1 Hz, <i>J</i> = 2.2 Hz, 2H)
 2. Please use italic style for “J”, please add a space before and after “=”, e.g. J = 2.2 Hz.
 3. Please give the coupling constant with an accuracy of 0.1 Hz (not J = 2.22 Hz, but J = 2.2 Hz)
 4. Don’t forget to give coupling constants for 13C NMR data if applicable (e.g. C-F coupling)
