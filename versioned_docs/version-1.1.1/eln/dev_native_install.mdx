@@ -5,7 +5,12 @@ sidebar_label: Native installation
 slug: development_native_installation
 ---
 
-This documentation describes an installation solution of the chemotion ELN system for development purposes with Rails 5 on Ubuntu 20.04.  
+This documentation describes an installation solution of the chemotion ELN system for development purposes with Rails 5 on Ubuntu 20.04.
+
+:::danger Caution
+Please note that the native installation is not supported any longer. If you face any issues during the installation, we recommend that you switch to Docker installation.
+:::
+
 ## Before Installation
 The installation script installs ELN through a default user, which is created during the installation. If you want to use another user or use an existing user, download the installation script (see [Get installation script](#get-installation-script)) and change the varibale PROD at the top of the script.  
 For the default user a random password is generated when newly created. If you want to login to the user after installation you can change the password in the script. For that search for the command `chpasswd` in the script.
