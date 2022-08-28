@@ -122,7 +122,7 @@
       "repo/videos_repo",
       {
         "type": "category",
-        "label": "Usage",
+        "label": "Submission - basics",
         "link": {
           "type": "generated-index"
         },
@@ -138,6 +138,59 @@
           "repo/review_glossary"
         ]
       },
+      
+      
+            {
+        "type": "category",
+        "label": "Standards for reactions",
+        "link": {
+          "type": "generated-index"
+        },
+        "items": [
+          "repo/format_descriptions"
+        ]
+      },
+      
+      
+      
+      {
+        "type": "category",
+        "label": "Standards analytical data",
+        "link": {
+          "type": "generated-index"
+        },
+        "items": [
+          "repo/details_analytics",
+          "repo/data_types",
+                  ]
+      },
+      
+            {
+        "type": "category",
+        "label": "References",
+        "link": {
+          "type": "generated-index"
+        },
+        "items": [
+         
+          "repo/references",
+          "repo/request_physical_samples",
+          "repo/review_glossary"
+        ]
+      },
+      
+      
+      {
+        "type": "category",
+        "label": "Request physical samples",
+        "link": {
+          "type": "generated-index"
+        },
+        "items": [
+          "repo/request_physical_samples"
+        ]
+      },
+      
       "repo/faq"
     ]
   },
