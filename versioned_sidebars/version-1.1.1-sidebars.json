@@ -138,6 +138,24 @@
           "repo/review_glossary"
         ]
       },
+      {
+        "type": "category",
+        "label": "Submission - basics",
+        "link": {
+          "type": "generated-index"
+        },
+        "items": [
+          "repo/new_entry",
+          "repo/publication_review",
+          "repo/embargo_topics",
+          "repo/format_descriptions",
+          "repo/details_analytics",
+          "repo/data_types",
+          "repo/references",
+          "repo/request_physical_samples",
+          "repo/review_glossary"
+        ]
+      },
       "repo/faq",
       "repo/videos_repo"
     ]
