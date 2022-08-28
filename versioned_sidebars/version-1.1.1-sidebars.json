@@ -138,7 +138,8 @@
           "repo/review_glossary"
         ]
       },
-      "repo/faq"
+      "repo/faq",
+      "repo/videos_repo"
     ]
   },
   "docuSidebar": {
