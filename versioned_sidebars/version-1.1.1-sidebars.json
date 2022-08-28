@@ -144,19 +144,10 @@
           "repo/data_types"
         ]
       },
-            {
-        "type": "category",
-        "label": "Physical samples",
-        "link": {
-          "type": "generated-index"
-        },
-        "items": [
-          "repo/request_physical_samples"          
-        ]
-      },
       "repo/references",
       "repo/faq",
       "repo/review_glossary",
+      "repo/request_physical_samples",
       "repo/videos_repo"
     ]
   },
