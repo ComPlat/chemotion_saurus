@@ -127,7 +127,6 @@
           "type": "generated-index"
         },
         "items": [
-          "repo/review_glossary",
           "repo/new_entry",
           "repo/publication_review",
           "repo/details_analytics",
@@ -135,7 +134,8 @@
           "repo/format_descriptions",
           "repo/references",
           "repo/embargo_topics",
-          "repo/request_physical_samples"
+          "repo/request_physical_samples",
+          "repo/review_glossary"
         ]
       },
       "repo/faq"
