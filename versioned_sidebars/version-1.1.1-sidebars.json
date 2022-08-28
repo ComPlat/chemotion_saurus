@@ -129,34 +129,36 @@
         "items": [
           "repo/new_entry",
           "repo/publication_review",
-          "repo/embargo_topics",
-          "repo/format_descriptions",
-          "repo/details_analytics",
-          "repo/data_types",
-          "repo/references",
-          "repo/request_physical_samples",
-          "repo/review_glossary"
+          "repo/embargo_topics"
         ]
       },
+      "repo/format_descriptions",
       {
         "type": "category",
-        "label": "Submission - basics",
+        "label": "Standards analytical data",
         "link": {
           "type": "generated-index"
         },
         "items": [
-          "repo/new_entry",
-          "repo/publication_review",
-          "repo/embargo_topics",
-          "repo/format_descriptions",
           "repo/details_analytics",
           "repo/data_types",
-          "repo/references",
           "repo/request_physical_samples",
           "repo/review_glossary"
         ]
       },
+            {
+        "type": "category",
+        "label": "Physical samples",
+        "link": {
+          "type": "generated-index"
+        },
+        "items": [
+          "repo/request_physical_samples"          
+        ]
+      },
+      "repo/references",
       "repo/faq",
+      "repo/review_glossary",
       "repo/videos_repo"
     ]
   },
