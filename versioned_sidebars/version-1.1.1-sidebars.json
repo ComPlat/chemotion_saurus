@@ -141,9 +141,7 @@
         },
         "items": [
           "repo/details_analytics",
-          "repo/data_types",
-          "repo/request_physical_samples",
-          "repo/review_glossary"
+          "repo/data_types"
         ]
       },
             {
