@@ -129,11 +129,11 @@
         "items": [
           "repo/new_entry",
           "repo/publication_review",
+          "repo/embargo_topics",
+          "repo/format_descriptions",
           "repo/details_analytics",
           "repo/data_types",
-          "repo/format_descriptions",
           "repo/references",
-          "repo/embargo_topics",
           "repo/request_physical_samples",
           "repo/review_glossary"
         ]
