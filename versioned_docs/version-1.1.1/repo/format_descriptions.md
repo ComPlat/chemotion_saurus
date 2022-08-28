@@ -1,9 +1,17 @@
 ---
 id: format_descriptions
-title: Format descriptions
+title: Standards for reactions
 slug: format_descriptions
 author: Nicole Jung
 ---
+
+## General aspects
+
+Please ensure that the description of the reaction is as comprehensive as possible. The description of the reaction needs to be understandable and reproducible. 
+- Please ensure that no abbreviations are used that need further explanations. If you need to add abbreviations, please define them in "additional information for publication and purification". 
+- Please use the exact name of the given reagents instead of general terms such as "the amine", "the aldehyde", the "starting material"
+- Please add the distinct temperture instead of RT, if not otherwise possible as a range
+- Please add the duration of a reaction as precise as possible and avoid "over night"
 
 ## Units
 
@@ -18,17 +26,8 @@ All combinations of number and unit should be given with space, only the combina
 But: the product was obtained in 12% yield  
 Or: 5% methanol in water
 
-## Common errors & inaccuracies
-
-Please do not give any temperature with the information: room temperature  
-The temperature has to be defined as e.g. 21 °C or others as room temperature might differ a lot from air conditioned labs to not air conditioned ones. 
-
-Please do not give the duration of a reaction or others as “over night” or “one day”. Please give the accurate time as 12 h or 24 h. 
-
 ## Abbreviations and names
 Please avoid misunderstandings due to inaccurate names and descriptions:   
 **Right**: cyclohexane (wrong: cyclo)
 
-## Description of processes
-For the description of the reactions: please use the exact name of the given reagents instead of general terms such as "the amine", "the aldehyde", the "starting material"
 
