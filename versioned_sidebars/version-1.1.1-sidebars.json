@@ -78,6 +78,7 @@
           "eln/ketcher",
           "eln/barcodes",
           "eln/inventory",
+          "eln/import",
           "eln/analysis",
           "eln/problems"
         ]
