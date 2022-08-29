@@ -9,15 +9,11 @@ author: Nicole Jung
 
 ## Purity and impurities
 
-The quality of the datasets is important for the utility of the repository. Therefore, please check carefully the purity of your compounds before you provide your data. Avoidable by-products or solvents in the spectra won't be tolerated by the reviewers and the data will be sent back for revision or will be rejected. <!--truncate--> 
-If your spectra contain impurities that can't be removed (isomerization during measurement or similar issues) please indicate the impurities, the percentage of impurities and their origin (if known) clearly in all types of analysis.
-Example: 1H NMR (500 MHz, DMSO-d6, ppm) δ = 13.23 (bs, 2H, CO2H), 8.24 (d, 1H, J = 1.5 Hz, CH), 8.17 (dd, 1H, J = 8.0 Hz, 1.5 Hz, CH), 8.05 (m, 2H, CH), 7.81 (d, 1H, J = 8.0 Hz, CH), 7.63 (m, 2H, CH), 7.49 (m, 2H, CH).
-Impurities: 10% impurities due to the formation of the cis-isomer during the measurement of the sample.
-Alternative:
-Impurities: 1% ethyl acetate, unknown impurities at 1.11-2.22 ppm and 3.33 ppm.
-or:
-1H NMR (500 MHz, DMSO-d6, ppm) δ = 13.23 (bs, 2H, CO2H), 8.24 (d, 1H, J = 1.5 Hz, CH), 8.17 (dd, 1H, J = 8.0 Hz, 1.5 Hz, CH), 8.05 (m, 2H, CH), 7.81 (d, 1H, J = 8.0 Hz, CH), 7.63 (m, 2H, CH), 7.49 (m, 2H, CH).
-Impurities: This spectrum contains around 5% impurities at 7.66 ppm and 2.44 ppm due to an unknown by-product.
+The quality of the datasets is important for the utility of the repository. Therefore, please check carefully the purity of your compounds before you provide your data. If the data includes by-products or solvents in the spectra that are not mentioned in the content/description the data will be sent back for revision or will be rejected. <!--truncate--> 
+If your spectra contain impurities that can't be removed (isomerization during measurement or similar issues) please indicate the impurities, the percentage of impurities and their origin (if known) clearly in all types of analysis. Examples are: <br>
+- 1H NMR (500 MHz, DMSO-d6, ppm) δ = 13.23 (bs, 2H, CO2H), 8.24 (d, 1H, J = 1.5 Hz, CH), 8.17 (dd, 1H, J = 8.0 Hz, 1.5 Hz, CH), 8.05 (m, 2H, CH), 7.81 (d, 1H, J = 8.0 Hz, CH), 7.63 (m, 2H, CH), 7.49 (m, 2H, CH). Impurities: 10% impurities due to the formation of the cis-isomer during the measurement of the sample.
+- Alternative: Impurities: 1% ethyl acetate, unknown impurities at 1.11-2.22 ppm and 3.33 ppm.
+- or: 1H NMR (500 MHz, DMSO-d6, ppm) δ = 13.23 (bs, 2H, CO2H), 8.24 (d, 1H, J = 1.5 Hz, CH), 8.17 (dd, 1H, J = 8.0 Hz, 1.5 Hz, CH), 8.05 (m, 2H, CH), 7.81 (d, 1H, J = 8.0 Hz, CH), 7.63 (m, 2H, CH), 7.49 (m, 2H, CH). Impurities: This spectrum contains around 5% impurities at 7.66 ppm and 2.44 ppm due to an unknown by-product.
 
 ## Missing signals
 
