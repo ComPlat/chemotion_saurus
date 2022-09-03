@@ -1,6 +1,6 @@
 {
   "elnSidebar": {
-    "ELN": [
+    "ELN Chemotion and LabIMotion": [
       {
         "type": "category",
         "label": "Installation",
@@ -85,6 +85,18 @@
           "eln/problems"
         ]
       },
+     {
+        "type": "category",
+        "label": "Manual LabIMotion",
+        "link": {
+          "type": "generated-index"
+        },
+        "items": [
+          "repo/new_entry",
+          "repo/publication_review",
+          "repo/embargo_topics"
+        ]
+      },    
       {
         "type": "category",
         "label": "Admin UI",
