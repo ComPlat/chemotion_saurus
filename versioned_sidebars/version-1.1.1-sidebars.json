@@ -90,9 +90,10 @@
         "label": "Manual LabIMotion ELN",
         "link": {
           "type": "doc",
-          "id": "eln/generic_config"
+          "id": "eln/labimotion"
         },
         "items": [
+          "eln/generic_config",
           "eln/admin_ui/report_template_management"
         ]
       },    
