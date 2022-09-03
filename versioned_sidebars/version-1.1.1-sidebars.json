@@ -89,10 +89,10 @@
         "type": "category",
         "label": "Manual LabIMotion ELN",
         "link": {
-          "type": "generated-index"
+          "type": "doc",
+          "id": "eln/generic_config"
         },
         "items": [
-          "eln/generic_config",
           "eln/admin_ui/report_template_management"
         ]
       },    
