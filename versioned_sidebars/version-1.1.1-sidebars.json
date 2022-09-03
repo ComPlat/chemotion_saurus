@@ -92,9 +92,8 @@
           "type": "generated-index"
         },
         "items": [
-          "repo/new_entry",
-          "repo/publication_review",
-          "repo/embargo_topics"
+          "eln/generic_config",
+          "eln/admin_ui/report_template_management"
         ]
       },    
       {
