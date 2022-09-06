@@ -81,6 +81,7 @@ module.exports = {
           'eln/barcodes',
           'eln/inventory',
           'eln/analysis',
+          'eln/hyperlinks',
           'eln/problems',
         ],
       },
