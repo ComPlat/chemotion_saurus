@@ -82,6 +82,7 @@
           "eln/inventory",
           "eln/import",
           "eln/analysis",
+          "eln/hyperlinks",
           "eln/problems"
         ]
       },
