@@ -5,7 +5,15 @@ slug: embargo_topics
 author: Nicole Jung
 ---
 
-Embargos can be used to prepare data at any time and release the data at any time that is desired. The setting of an embargo is described in the pages [Publication and Review](/chemotionsaurus/docs/repo/embargo_topics). The release of embargos can only be done by the person who submitted the data to the repository. In principle, the release of data can be done at any time. For data that are part of a scientific publication, the release of the embargo is recommended be done either in parallel to the review process of the manuscript or after the acceptance of the manuscript. If reviewers should have access to the data, a reviewer-access to the embargo bundle can be requested. 
+Embargos can be used to prepare data at any time and release the data at any time that is desired. The setting of an embargo is described briefly in the pages [Publication and Review](/chemotionsaurus/docs/repo/embargo_topics). 
+As embargos are typically used for a set of data, e.g. all reactions belonging to a planned publication, chemotion repository offers embargo bundles (= embargo collections to be assigned to all data belonging to one publication). Each embargo bundle will result in the publication of a dataset with one dataset DOI (= collection DOI, see section below).
+
+When should one use the embargo function? 
+We strongly recommend the use of the embargo function for all data that will be published in a journal publication. The management of the data and reviewing process is a lot easier with adding the embargo. 
+When should one submit without an embargo? 
+If one submits data that was already published in journals or in the repository, an embargo does not make that much sense and one should submit without. In consequence, the data is visible directly after review. 
+
+The release of embargos can only be done by the person who submitted the data to the repository. In principle, the release of data can be done at any time. For data that are part of a scientific publication, the release of the embargo is recommended to be done either in parallel to the review process of the manuscript or after the acceptance of the manuscript. If reviewers should have access to the data, a reviewer-access to the embargo bundle can be requested. 
 
 <!--truncate-->
 
@@ -29,6 +37,12 @@ To release an embargo, all data that are part of the embargo bundle have to be r
 Release: please open the "Embargoed Publications" panel and select an embargo as described above. Please select "Release".
 
 ![](/img/docs/move-change-release-embargo/7a5b05a7-35d8-435c-8e9d-f530ffe16f26_image_20200831-18167-mojbpo.png)
+
+## Collection DOI
+
+When the embargo is released, a Collection DOI is generated automatically by the system (embargoes released before 10.05.2022 are not included). You can see the Collection DOI link in the reaction/sample details page and through this link you can access to the DOI and metadata for the whole data collection.
+
+![](/img/docs/move-change-release-embargo/collection_doi.gif)
 
 ## Change of contents for embargoed items
 
