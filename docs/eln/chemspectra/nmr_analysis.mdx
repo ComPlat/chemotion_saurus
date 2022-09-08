@@ -1,0 +1,41 @@
+---
+id: nmranalysis
+title: NMR analysis
+slug: nmranalysis
+sidebar_label: NMR
+---
+
+:::danger Caution 
+This page is still being edited and reviewed.
+::: 
+
+## 1. Supporting file formats
+For NMR analysis, we are now only support [JCAMP-DX files](https://iupac.org/what-we-do/digital-standards/jcamp-dx/) (*.jcamp, *.dx, *.jdx), zip (Bruker FID and [BagIt](https://en.wikipedia.org/wiki/BagIt)) files.
+
+## 2. Supporting NMR layouts
+We are now support 1H, 13C, 19F, 31P, 15N and 29Si NMR
+
+## 3. Upload your data and view it
+To upload and view your data, you can follow [this instruction](../analysis#2-analysing-data-in-chemotioneln) 
+
+## 4. Working with your data
+
+1. Using tools bar to zoom in/out, add peaks, add multiplicity, etc.
+<img src={require('@site/static/img/chemspectra/nmr/chemspectra_nmr_1.png').default} alt={"chemspectra toolbar"} height={"100%"} width={"100%"}/>
+
+2. Example of added multiplicity
+<img src={require('@site/static/img/chemspectra/nmr/chemspectra_nmr_4.png').default} alt={"chemspectra multiplicity"} height={"100%"} width={"100%"}/>
+
+4. Select which data you want to be saved
+<img src={require('@site/static/img/chemspectra/nmr/chemspectra_nmr_2.png').default} alt={"chemspectra type of submit"} height={"100%"} width={"100%"}/>
+
+<img src={require('@site/static/img/chemspectra/nmr/chemspectra_nmr_3.png').default} alt={"chemspectra select type of submit"} height={"100%"} width={"100%"}/>
+
+5. Confirm you saving
+<img src={require('@site/static/img/chemspectra/nmr/chemspectra_nmr_5.png').default} alt={"chemspectra submit"} height={"100%"} width={"100%"}/>
+
+6. Predict NMR signals
+You can predict NMR signals with the `Predict` button, the data of prediction come from NMRshiftDB
+<img src={require('@site/static/img/chemspectra/nmr/chemspectra_nmr_6.png').default} alt={"chemspectra predict button"} height={"100%"} width={"100%"}/>
+
+<img src={require('@site/static/img/chemspectra/nmr/chemspectra_nmr_7.png').default} alt={"chemspectra prediction result"} height={"100%"} width={"100%"}/>
