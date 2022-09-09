@@ -67,7 +67,6 @@ module.exports = {
     },
 
     // comment out algolia if you don't want to have a search function
-    /*
     algolia: {
       // for development, put .env file containing ALGOLIA_SEARCH_API_KEY and INDEX_NAME in root of repo
       apiKey: process.env.ALGOLIA_SEARCH_API_KEY,
@@ -81,7 +80,6 @@ module.exports = {
       //   // Transform the list of hits; not working in docusaurus
       // }
     },
-    */
     docs: {
       sidebar: {
         hideable: true,
