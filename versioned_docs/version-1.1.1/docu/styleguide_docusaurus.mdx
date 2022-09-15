@@ -26,13 +26,3 @@ slug: styleguide_docusaurus
 
 # Tables
 * Do not capitalize words inside tables.
-
-# Automatic style checking
-On every push to the chemotion_saurus repository an automatic style guide parser is triggered.
-The parser automatically fixes incorrect terms and pushed the corrections, which will be deployed along with the subsequent push from a user.
-If tables contain upper-cased words or the committed file is missing in the table of contents, warning or error messages are printed in the `Style Guide Parser` step in the [GitHub Actions](https://github.com/ComPlat/chemotion_saurus/actions).
-Style checking can be skipped by including `skip style guide` in the commit message.
-
-:::caution Recommendation
-The Style Guide Parser works best for natural language text like in the chemistry manual of this documentation. It may be better to skip the Style Guide Parser (`skip style guide` in the commit message) if you are using the [terms](#terms) with an extra spelling, e.g., "chemotion_ELN" as name for the Ruby app, like in the developer section of this documentation.
-:::
