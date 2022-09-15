@@ -20,106 +20,63 @@ Once you've identified a performance issue (e.g., creating a reaction is slow), 
 This is why we start by setting up an `rspec` test (https://rspec.info) to isolate the issue.
 
 ```ruby title="spec/api/reaction_api_performance_spec.rb"
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-describe 'reaction API' do
+describe 'Reaction API POST' do
   let(:user) { create(:user) }
-  let(:new_root_container) { create(:root_container) }
-  let(:collection_1) do
-    Collection.create!(label: 'Collection #1', user: user)
-  end
-  let(:sample_1) do
-    create(
-      :sample, name: 'Sample 1', container: FactoryBot.create(:container)
-    )
-  end
-  let(:sample_2) do
-    create(
-      :sample, name: 'Sample 2', container: FactoryBot.create(:container)
-    )
-  end
-  let(:sample_3) do
-    create(
-      :sample, name: 'Sample 3', container: FactoryBot.create(:container)
-    )
-  end
-  let(:sample_4) do
-    create(
-      :sample, name: 'Sample 4', container: FactoryBot.create(:container)
-    )
-  end
-  let(:molfile_1) { sample_1.molecule.molfile }
+  let(:root_container) { create(:root_container) }
+  let(:collection) { Collection.create!(label: 'Collection', user: user) }
+  let(:reaction) { create(:reaction, name: 'Reaction', collections: [collection]) }
+  let(:sample) { create(:sample, name: 'Sample', container: FactoryBot.create(:container)) }
+  let(:molfile) { File.read(Rails.root + 'spec/fixtures/test_2.mol') }
   let(:params) do
     {
       'name' => 'r001',
-      'collection_id' => collection_1.id,
-      'container' => new_root_container,
+      'collection_id' => collection.id,
+      'container' => root_container,
       'materials' => {
         'starting_materials' => [
-          {
-            'id' => sample_1.id,
-            'target_amount_unit' => 'mg',
-            'target_amount_value' => 76.09596,
-            'equivalent' => 1,
-            'reference' => false,
-            'is_new' => true,
-            'container' => new_root_container,
-            'molfile' => File.read(Rails.root + 'spec/fixtures/test_2.mol')
-          },
-          {
-            'id' => sample_2.id,
-            'target_amount_unit' => 'mg',
-            'target_amount_value' => 74.09596,
-            'equivalent' => 1.2,
-            'reference' => false,
-            'is_new' => true,
-            'container' => new_root_container,
-            'molfile' => File.read(Rails.root + 'spec/fixtures/test_2.mol')
-          },
-          {
-            'id' => sample_3.id,
-            'target_amount_unit' => 'mg',
-            'target_amount_value' => 99.08304,
-            'equivalent' => 5.5,
-            'reference' => false,
-            'is_new' => false,
-            'container' => new_root_container
-          },
-          {
-            'id' => sample_4.id,
-            'target_amount_unit' => 'mg',
-            'target_amount_value' => 98.08404,
-            'equivalent' => 3,
-            'reference' => false,
-            'is_new' => false,
-            'container' => new_root_container
-          }
-        ],
-        'products' => [
-          'id' => 'd4ca4ec0-6d8e-11e5-b2f1-c9913eb3e335',
-          'name' => 'New Subsample 1',
+          'id' => sample.id,
+          'name' => 'starting_material',
           'target_amount_unit' => 'mg',
-          'target_amount_value' => 76.09596,
-          'parent_id' => sample_1.id,
-          'reference' => true,
+          'target_amount_value' => 75.09596,
           'equivalent' => 1,
-          'is_new' => true,
-          'is_split' => true,
-          'molecule' => { molfile: molfile_1 },
-          'container' => new_root_container
+          'reference' => false,
+          'is_new' => false,
+          'molfile' => molfile,
+          'container' => root_container
         ],
         'reactants' => [
-          'id' => 'd4ca4ec0-6d8e-11e5-b2f1-c9913eb3e336',
-          'name' => 'Copied Sample',
-          'solvent' => [{ :label => 'Acetone', :smiles => 'CC(C)=O', :ratio => '100' }],
           'target_amount_unit' => 'mg',
           'target_amount_value' => 86.09596,
-          'reference' => false,
           'equivalent' => 2,
+          'reference' => false,
           'is_new' => true,
-          'is_split' => false,
-          'molfile' => molfile_1,
-          'container' => new_root_container
+          'molfile' => molfile,
+          'container' => root_container,
+          'parent_id' => sample.id # gets named after parent, hence no name specified
+        ],
+        'products' => [
+          'name' => 'product',
+          'target_amount_unit' => 'mg',
+          'target_amount_value' => 99.08304,
+          'equivalent' => 5.5,
+          'reference' => false,
+          'is_new' => true,
+          'molfile' => molfile,
+          'container' => root_container
+        ],
+        'solvents' => [
+          'name' => 'solvent',
+          'target_amount_unit' => 'mg',
+          'target_amount_value' => 76.09596,
+          'equivalent' => 1,
+          'reference' => true,
+          'is_new' => true,
+          'molfile' => molfile,
+          'container' => root_container
         ]
       }
     }
@@ -128,7 +85,11 @@ describe 'reaction API' do
   before do
     allow_any_instance_of(WardenAuthentication).to receive(:current_user)
       .and_return(user)
+    ReactionsStartingMaterialSample.create!(
+      reaction: reaction, sample: sample, reference: true, equivalent: 1
+    )
   end
+
 
   it 'creates reaction in under one second', :profile do
     post '/api/v1/reactions', params: params, as: :json
@@ -192,7 +153,7 @@ require 'stackprof'
 RSpec.configure do |config|
   config.around do |example|
     if example.metadata[:profile]
-      profile = StackProf.run(mode: :wall, interval: 250000, raw: true, out: 'tmp/stackprof.dump') do
+      StackProf.run(mode: :wall, interval: 250000, raw: true, out: 'tmp/stackprof.dump') do
         example.run
       end
     else
