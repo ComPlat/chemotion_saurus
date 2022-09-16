@@ -150,11 +150,15 @@ The <b>Archive</b> tab contains all the generated reports (except the deleted on
 
 ## Creating Elements
 
+The generation of new element-instances such as a new sample or a new reaction can be done by three different actions: <b>add</b>, <b>copy</b> and <b>split</b>. The function add is available for all types of elements, the functions copy and split are only available for selected ones.
+
+### New Elements by using the function "add" 
 There are two buttons to create elements: <Btn mixed={[faPlus]} color={"primary"}/>, which changes its appearance based on the selected element in the element bar, e.g., if the user is already in the reactions list from the element bar, the button will look like <Btn mixed={[faFlask, faPlus]} color={"primary"}/>. If you press this button, a new reaction will be generated immediately in the collection you are already in.
 The other button is in the shape of an arrow <Btn mixed={[faSortDown]} color={"primary"}/>. 
 If you are using the arrow button, a menu with the following options is opened: <b>Create Sample</b>, <b>Create Reaction</b>, <b>Create Wellplate</b>, <b>Create Screen</b>, <b>Create Research Plan</b>. It doesn’t matter in which list you are as long as you are in the right collection, choose any of the above options and the corresponding element will be created.
 To populate wellplates, the user has to drag and drop samples, and to populate screens, the user has to drag and drop wellplates. The arrow button menu enables the user to avoid this repetitive drag and drop process by offering the two functions: <b>Create Wellplate from Samples</b>, and <b>Create Screen from Wellplates</b>. To use either of them, go to the target collection, select the elements (samples or wellplates) to be added to the newly created element (wellplate or screen respectively), and choose the corresponding function (<b>Create Wellplate from Samples</b> or <b>Create Screen from Wellplates</b>). Please note that you will not be able to create an element with this method from elements coming from another collection. However, you can still add them to the created element with the classical drag and drop.
 
+### Function "copy" or "split" for samples 
 In the last section of the menu, one can find the copy and split functions.
 Generation of new samples with molecular structures that are already used by another samples can be carried out by two similar but not equal actions, <b>Split Sample</b> and <b>Copy Sample</b>. 
 
@@ -163,3 +167,12 @@ To copy a sample, first select the sample whose structure you want to copy from 
 With the <b>Copy sample</b> action you only copy the molecular structure of the sample, all other information is not available and will not be adopted. Only the general data available from the molecular structure are transferred. 
 ::: 
 When creating a new sample using the split function <b>Split Sample</b>, a new sample is created that is directly dependent on the original sample. In contrast to copy, with split not only the structure-dependent information of the original sample is taken over for the creation of a new sample. All available data are used to generate the new sample. The action is intended to represent those cases in the laboratory in which something is removed from a batch and used for a new purpose. Examples of a split action are therefore e.g., the removal from a chemical container or the further use of a product from a reaction. For more details on Samples generation, visit this [link](https://eln.chemotion.net/chemotionsaurus/docs/eln/samples#generation).
+
+### Function "copy" for reactions
+
+Reactions can be copied via the same copy function as decribed for samples. Please ensure that the reaction that you want to copy is selected. The action "copy of reaction" generates a template with the same information on the original reaction which then needs to be saved. After saving the new reaction, a new reaction number is registered and new samples assigend to the new reaction are generated in parallel. 
+
+<img src={require('@site/static/img/Copy a reaction.png').default} alt={"Report"} /> 
+
+
+

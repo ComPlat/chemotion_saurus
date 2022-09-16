@@ -9,6 +9,55 @@ slug: docker_installation
 Documentation and processes are being reworked and improved at the moment. It may happen that you miss information. If you face problems, please let us know, we are there to support you. You may also [contact](specific_contact) us directly if you plan to install Chemotion. 
 :::
 
+## Version 1.3.0p220705
+
+:::info
+With version 1.3.0 onwards a new CLI tool is available to support installations, upgrades and other administrative tasks. Please see the [instructions page here](https://github.com/harivyasi/chemotion/tree/chemotion-cli/chemotion-cli).
+:::
+
+To install version 1.3.0 of the ELN, we introduce the container version 1.3.0p220705. The images are available on DockerHub: https://hub.docker.com/r/ptrxyz/chemotion/tags
+
+
+### Fresh Installation
+
+To install this version on a blank system, follow these steps:
+
+- download the `docker-compose.yml` to a directory of your choice:
+```
+wget https://raw.githubusercontent.com/ptrxyz/chemotion/latest-release/docker-compose.yml
+```
+
+- download all images and create the containers, data volumes and networks by running this command in the same folder you downloaded the compose file to:
+```
+docker-compose create
+```
+Note: depending on your Compose version you might get a deprecation warning. The warning can be ignored for now, in the future, `docker-compose up --no-start` will be a drop-in replacement for this command.
+
+- Start the ELN containers with
+```
+docker-compose up
+```
+or 
+```
+docker-compose up -d
+```
+(the 1st command outputs to stdout, the 2nd starts the ELN as a background service loggin to the docker's log daemon)
+- after a short startup/migration period, the ELN will available on port `<your host IP>:4000`
+- Proceed with the sections [Configuring](#config-112p220401) and [Setting the Base URL](#baseurl-112p220401)
+
+### Upgrade from version 1.1.2
+
+:::caution
+Please do always create a backup of your data before upgrading. No backup - no pity.
+:::
+
+To upgrade to 1.1.3 from 1.1.2, simply follow these steps:
+
+- Stop all running containers: `docker-compose down --remove-orphans`
+- Delete the APP volume: `docker volume rm chemotion_app`
+- Get the latest compose file: `wget -O docker-compose.yml https://raw.githubusercontent.com/ptrxyz/chemotion/latest-release/docker-compose.yml`
+- Restart the containers: `docker-compose up`
+
 ## Version 1.1.2p220401
 
 To install version 1.1.2 of the ELN, we introduce the container version 1.1.2p220401. Please note, the naming convention cahnged to now encode the ELN version (1.1.2) followed by a single character to denote the intended use ("p" for production, "d" for development and "e" for experimental) followed by the version of the Docker middleware in the form of "YYMMRR" with RR being an increaseing integer.
@@ -27,7 +76,7 @@ To install this version on a blank system, follow these steps:
 
 - download the `docker-compose.yml` to a directory of your choice:
 ```
-wget https://raw.githubusercontent.com/ptrxyz/chemotion/main/new-build/release/1.1.2p220401/docker-compose.yml
+wget https://raw.githubusercontent.com/ptrxyz/chemotion/latest-release/docker-compose.yml
 ```
 
 - download all images and create the containers, data volumes and networks by running this command in the same folder you downloaded the compose file to:
@@ -73,7 +122,7 @@ sudo mv ./shared ./old
 
 - download the `docker-compose.yml`:
 ```
-wget https://raw.githubusercontent.com/ptrxyz/chemotion/main/new-build/release/1.1.2p220401/docker-compose.yml
+wget https://raw.githubusercontent.com/ptrxyz/chemotion/latest-release/docker-compose.yml
 ```
 
 - download all images and create the containers, data volumes and networks by running this command in the same folder you downloaded the compose file to:
