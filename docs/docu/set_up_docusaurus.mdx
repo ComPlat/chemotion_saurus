@@ -94,16 +94,13 @@ module.exports = {
   themeConfig: {
     // ...
     algolia: {
+      appId: 'YOUR_APP_ID',
       apiKey: 'YOUR_API_KEY',
       indexName: 'YOUR_INDEX_NAME',
     },
   },
 };
 ```
-
-:::caution Warning
-Do not insert another app id provided by Algolia if you are using the free plan from Algolia. Otherwise the search does not work because Algolia itself inserts the app id. There is no need for an app id with free plan.
-:::
 Algolia also provides the ability to create an account for accessing statistics and configuring their products: [Algolia Sign Up](https://www.algolia.com/users/sign_up).
 If you are using a free plan it is not necessary to use an account because you are very limited in configurations and your configuration options are on the Docusaurus site.
 If you encounter problems with your search you can directly access the [Algolia API](https://www.algolia.com/doc/api-client/getting-started/what-is-the-api-client/javascript/?client=javascript) written in different programming languages or write the Algolia customer service.
@@ -126,12 +123,6 @@ index = client.init_index('YOUR_INDEX_NAME');
 index.search('YOUR_SEARCH_WORD');
 ```
 Error messages are also displayed in the browser console of a production Docusaurus.
-### Advanced: configure display of search results etc.
-If you want to modify how Docusaurus displays the search results retrieved from the Algolia API you can change the
-[Algolia Search Code in React](https://github.com/facebook/docusaurus/tree/master/packages/docusaurus-theme-search-algolia/src/theme)
-by populating `src/theme/SearchBar` and `src/theme/SearchPage` directories.
-For example if you want to display all pages with multiple hits just once in the search results, get an inspiration for that from [GitHub](https://github.com/ComPlat/chemotion_saurus/tree/master/src/theme).
-Of course you can also modify other functions of the Algolia React code in Docusaurus.
 
 ## Presets, Plugins and Themes
 Presets are a bundle of themes and plugins that define the layout and offer functionalities like the search bar.
