@@ -92,7 +92,7 @@ module.exports = {
                 "eln/chemspectra/msanalysis",
                 "eln/chemspectra/ramananalysis",
                 "eln/chemspectra/uvvisanalysis",
-                "eln/chemspectra/taganalysis",
+                "eln/chemspectra/tgaanalysis",
                 "eln/chemspectra/xrdanalysis",
                 "eln/chemspectra/cvanalysis"
             ]
