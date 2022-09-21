@@ -184,9 +184,9 @@ module.exports = {
   },
   "docuSidebar": {
     "About this Documentation": [
-      "docu/set_up_docusaurus",
-      "docu/use_docusaurus",
-      "docu/styleguide_docusaurus"
+      "docu/maintaining",
+      "docu/contributing",
+      "docu/styleguide"
     ]
   }
 };

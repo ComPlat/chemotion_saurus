@@ -1,8 +1,8 @@
 ---
-id: set_up_docusaurus
-title: Set Up Docusaurus
-sidebar_label: Set up
-slug: Set Up
+id: maintaining
+title: Maintaining
+sidebar_label: Maintaining
+slug: maintaining
 ---
 
 :::info
@@ -27,7 +27,7 @@ See the [official documentation](https://docusaurus.io/docs/installation#updatin
 
 ## File structure
 ### Assets
-Assets (images, gifs, videos, etc.) are stored inside the `static` directory. Look at the [usage chapter](use_docusaurus#assets) to see how to import them.
+Assets (images, gifs, videos, etc.) are stored inside the `static` directory. Look at the [chapter for contributors](contributing#assets) to see how to import them.
 Video links from YouTube (optionally with preview) can be embedded using HTML.
 
 ### CSS
@@ -53,12 +53,12 @@ module.exports = {
 ### Markdown
 The main content of Docusaurus is written in Markdown files (`.md` or `.mdx` file format).
 The `.mdx` format is recommended, because it supports React.
-For detailed description look into the [usage chapter](use_docusaurus).
+For detailed description look into the [chapter for contributors](contributing).
 
 ### Paths
 Setting paths can get complicated when you are [deploying](#deployment) your website under another directory on the server or if you are using [versioning](#versioning).
 Detailed information can be found in the [Docusaurus documentation about assets](https://docusaurus.io/docs/static-assets) and [versioning](https://docusaurus.io/docs/versioning#use-absolute-import-within-the-docs)
-as well as in the [usage chapter](use_docusaurus).
+as well as in the [chapter for contributors](contributing).
 
 ### React/JavaScript
 React is the main frontend framework in Docusaurus. Beside React components in MarkdownX you can create your own React or pure JavaScript snippets in `.js` files saved in every directory, where content pages in MarkdownX can occur. Namely in:
@@ -197,7 +197,7 @@ See the [official Docusaurus documentation](https://docusaurus.io/docs/styling-l
 ## Versioning
 For adding multiple versions of one documentation to Docusaurus look at the [plugin chapter](#presets-plugins-and-themes)
 to see how it is configured in the [configuration file](#configuration-file).
-To know how to install it look at the example in the [usage chapter](use_docusaurus#versioning).
+To know how to install it look at the example in the [chapter for contributors](contributing#versioning).
 
 ## Version Control System (e. g. GitHub)
 The Docusaurus instance can be saved in a VCS to enable development by multiple people.

@@ -47,7 +47,7 @@ module.exports = {
             },
             {
               label: "About this documentation",
-              to: "docs/docu/Set Up",
+              to: "docs/docu/maintaining",
               // docsPluginId: 'repoID',
             },
           ],
