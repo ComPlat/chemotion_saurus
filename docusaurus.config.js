@@ -6,10 +6,8 @@ module.exports = {
     "Electronic Laboratory Notebook (ELN) &\n" +
     "Repository for Research Data\n",
   url: "https://chemotion.net",
-  //baseUrl: '/',
   baseUrl: "/chemotionsaurus/",
   onBrokenLinks: "log",
-  // onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
   organizationName: "Complat", // Usually your GitHub org/user name.
@@ -32,32 +30,17 @@ module.exports = {
             {
               label: "ELN",
               to: "docs/eln/intro",
-              // docsPluginId: 'elnID',
-              // items:[
-              //   {
-              //     type: 'docsVersionDropdown',
-              //     docsPluginId: 'elnID',
-              //   }
-              // ]
             },
             {
               label: "Repository",
               to: "docs/repo/videos_repo",
-              // docsPluginId: 'repoID',
             },
             {
               label: "About this documentation",
               to: "docs/docu/maintaining",
-              // docsPluginId: 'repoID',
             },
           ],
         },
-        // right
-        // {
-        //   type: 'docsVersionDropdown',
-        //   position: 'right',
-        //   docsPluginId: 'elnID',
-        // },
         {
           to: "blog/newsroom",
           label: "Newsroom",
@@ -66,7 +49,6 @@ module.exports = {
       ],
     },
 
-    // comment out algolia if you don't want to have a search function/*
     algolia: {
       // for development, put .env file containing ALGOLIA_SEARCH_API_KEY and INDEX_NAME in root of repo
       apiKey: process.env.ALGOLIA_SEARCH_API_KEY,
@@ -75,10 +57,6 @@ module.exports = {
       debug: true,
       placeholder: "Search Documentation",
       facetFilters: [],
-      // contextualSearch: true --> no results in search bar
-      // transformData: function(hits) {
-      //   // Transform the list of hits; not working in docusaurus
-      // }
     },
     docs: {
       sidebar: {
@@ -140,7 +118,6 @@ module.exports = {
     [
       "@docusaurus/preset-classic",
       {
-        // docs:false,
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
           editUrl: "https://github.com/ComPlat/chemotion_saurus/edit/master/",
@@ -156,44 +133,4 @@ module.exports = {
       },
     ],
   ],
-
-  //   plugins: [
-  //   [
-  //     "@docusaurus/plugin-content-docs",
-  //     {
-  //       id: "elnID",
-  //       showLastUpdateTime: true,
-  //       showLastUpdateAuthor: true,
-  //       editUrl:
-  //             'https://github.com/ComPlat/chemotion_saurus/edit/master/',
-  //       sidebarPath: require.resolve('./sidebarsELN.js'),
-  //       path: "docs/eln",
-  //       routeBasePath: "docs/eln",
-  //       lastVersion: "current",
-  //         versions: {
-  //           current: {
-  //             label: 'ELN 0.9',
-  //           },
-  //           '0.8': {
-  //             label: 'ELN 0.8',
-  //             path: 'version-0.8',
-  //           },
-  //         }
-  //       }
-  //   ]
-  //   ,
-  //   [
-  //     "@docusaurus/plugin-content-docs",
-  //     {
-  //       id: "repoID",
-  //       showLastUpdateTime: true,
-  //       showLastUpdateAuthor: true,
-  //       editUrl:
-  //             'https://github.com/ComPlat/chemotion_saurus/edit/master/',
-  //       sidebarPath: require.resolve('./sidebarsREPO.js'),
-  //       path: "docs/repo",
-  //       routeBasePath: "/docs/repo",
-  //     },
-  //   ],
-  // ]
 };
