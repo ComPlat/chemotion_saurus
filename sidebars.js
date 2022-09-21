@@ -81,7 +81,22 @@ module.exports = {
           "eln/barcodes",
           "eln/inventory",
           "eln/import",
-          "eln/analysis",
+          {
+            "type": "category",
+            "label": "Analytical data",
+            "items": [
+                "eln/analysis",
+                "eln/chemspectra/nmranalysis",
+                "eln/chemspectra/iranalysis",
+                "eln/chemspectra/hplcanalysis",
+                "eln/chemspectra/msanalysis",
+                "eln/chemspectra/ramananalysis",
+                "eln/chemspectra/uvvisanalysis",
+                "eln/chemspectra/tgaanalysis",
+                "eln/chemspectra/xrdanalysis",
+                "eln/chemspectra/cvanalysis"
+            ]
+          },
           "eln/hyperlinks",
           "eln/problems"
         ]
