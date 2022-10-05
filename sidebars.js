@@ -136,12 +136,17 @@ module.exports = {
         },
         "items": [
           "eln/devices",
+          "eln/devices/device_configuration",
           {
             "NMR devices": [
               "eln/devices_nmr",
-              "eln/devices_nmr_magritek"
+              "eln/devices/devices_nmr_magritek"
             ]
-          }
+          },
+          "eln/devices/devices_sec",
+          "eln/devices/devices_dsc",
+          "eln/devices/devices_ir",
+          "eln/devices/devices_eis",
         ]
       },
       "eln/faq_eln",

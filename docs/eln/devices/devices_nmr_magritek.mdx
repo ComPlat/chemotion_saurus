@@ -9,18 +9,11 @@ PC running Spinsolve and the transfer of experiment data to the Chemotion ELN’
 separately, with neither relying on the other. The data transfer is configured for experiments conducted directly in
 Spinsolve.
 
-# General preparation aspects
-Primarily the integration of devices depends on several factors as,
-- Operating system of the PC
-- Vendor software of the device
-- Network connection (What IP address and what type of network)
-- File types etc
+:::info
+General preparation aspects can be found here:
 
-Some basic requirements to integrate the devices are as follows,
-- Operating system: Windows (Minimum Windows XP. No Windows 98 or Windows 95), preferably Windows 10 or Windows 11.
-Linux based system is also possible
-- Network: Access to the KIT intranet. Either a static IP address or FQDN (fully qualified domain name) is required
-- Administrator rights to the system’s operating system
+https://www.chemotion.net/chemotionsaurus/docs/eln/devices#general-preparation-aspects
+:::
 
 Considering all these aspects, this procedure has been conducted on the following system configurations. However it is
 likely to work on systems with different software versions as well.
@@ -49,7 +42,7 @@ This has been achieved by the installation of the software, [TightVNC](https://w
 for Windows, 64-bit). Users can access the computer remotely through Chemotion ELN through this. We have to configure it
 as follows,
 
-On the setup screen, we have to select the TightVNC server to be installed following the set up of the passwords for
+On the setup screen, we have to select the TightVNC server to be installed along with the set up of the passwords for
 remote access and administrative password.
 
 ![devices_NMR_magritek_1](/img/nmr_magritek/devices_nmr_magritek_1.png)
@@ -85,12 +78,12 @@ For a user who is in the group, the user has to log in to the Chemotion ELN at
 ![devices_NMR_magritek_8](/img/nmr_magritek/devices_nmr_magritek_8.png)
 
 For further information regarding the VNC settings, see the
-[VNC settings page](settings#vnc)
+[VNC settings page](/docs/eln/settings#vnc)
 
 ## Data transfer
 Here transfer of the output file to Chemotion ELN will occur automatically after the experiment is completed and a new
 data file is generated. User only needs to make sure to name the sample according to the
-[naming convention](devices#name-conventions).
+[naming convention](/docs/eln/devices#name-conventions).
 
 :::info
 Please take care that you communicate name conventions to all users of the Chemotion ELN:
@@ -115,7 +108,7 @@ drive and  Chemotion ELN will be able to retrieve and transfer it to the appropr
 ![devices_NMR_magritek_10](/img/nmr_magritek/devices_nmr_magritek_10.png)
 
 To make sure that Chemotion ELN is able to transfer it to the appropriate user's inbox, we have to make sure the samples
-are named following the naming convention [rules](devices#name-conventions).
+are named following the naming convention [rules](/docs/eln/devices#name-conventions).
 
 Here the naming of the sample has started with the name abbreviation (Kürzel) of a certain user to whom the experiment
 data file will be sent.
@@ -137,5 +130,5 @@ Here in this guide we have used the second mechanism where the files are collect
 distributed to specific users based on the file-name matching the name abbreviation of the user.
 
 :::note See details
-[File collector setting page](settings#file-collection)
+[File collector setting page](/docs/eln/settings#file-collection)
 :::
