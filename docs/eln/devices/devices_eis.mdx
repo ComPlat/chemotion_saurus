@@ -1,12 +1,12 @@
 ---
-id: devices_dsc
-slug: devices_dsc
-title: Low Temperature DSC Device
+id: devices_eis
+slug: devices_eis
+title: EIS Device
 ---
 
-In this guideline, we have explained the integration process of the Low Temperature DSC device into the Chemotion
-ELN. This procedure enables remote access to the PC connected to the device, which runs the software, DSC 214 and also
-the transfer of the experiment data to the Chemotion ELN’s inbox.
+In this guideline, we have explained the integration process of the EIS device into the Chemotion ELN. This procedure
+enables remote access to the PC connected to the device, which runs the software, EC-Lab and also the transfer of
+the experiment data to the Chemotion ELN’s inbox.
 
 :::info
 General preparation aspects can be found here:
@@ -17,26 +17,26 @@ https://www.chemotion.net/chemotionsaurus/docs/eln/devices#general-preparation-a
 Considering all these aspects, this procedure has been conducted on the following system configurations. However it is
 likely to work on systems with different software versions as well.
 
-## Specifications of the DSC PC
+## Specifications of the EIS PC
 - Operating system: Windows 10
-- Software Name: DSC 214 (Version: 8.0.3)
+- Software Name: EC-Lab
 - Connected to Internet/Intranet: Yes
-- Data files generated: Excel files
+- Data files generated: EC-Lab raw data binary file (.mpr)
 - Static IP address has been configured
 
 # Objectives
 - Remote Device Control
 - Data transfer to Chemotion ELN inbox
 
-For the DSC device integration, we have decided to configure both these features.
+For the EIS device integration, we have decided to configure both these features.
 
 # Configurations
 ## Remote Device Control
 
-Users will have access to the DSC PC via the Chemotion ELN. The DSC PC and the Chemotion ELN must be linked to the same
+Users will have access to the EIS PC via the Chemotion ELN. The EIS PC and the Chemotion ELN must be linked to the same
 LAN in order to accomplish this. The LAN's firewall also needs to allow the establishment of VNC connections.
 
-### Configurations in DSC PC
+### Configurations in EIS PC
 This has been achieved by the installation of the software, [TightVNC](https://www.tightvnc.com/download.php) (Installer
 for Windows, 64-bit). Users can access the computer remotely through Chemotion ELN through this. We have to configure it
 as follows,
@@ -57,7 +57,7 @@ the administrative password for every operation or change.
 
 ### Configurations in Chemotion ELN
 There are basically two types of configurations we have to perform in Chemotion ELN,
-- As an admin of Chemotion ELN: As an admin of Chemotion ELN, we have to create a device instance corresponding to DSC
+- As an admin of Chemotion ELN: As an admin of Chemotion ELN, we have to create a device instance corresponding to EIS
 PC and configure the NoVNC settings for it with a token.
 - As an admin of the group which the device belongs to:  As an admin of the group to which the device instance belongs
 (it was specified by the Chemotion admin while creating the device instance), we have to make sure that the user belongs
@@ -79,9 +79,9 @@ Please take care that you communicate name conventions to all users of the Chemo
 https://www.chemotion.net/chemotionsaurus/docs/eln/devices#name-conventions
 :::
 
-### Configurations in DSC PC
-The DSC PC and the Chemotion ELN both need access to a common network storage location. This can be set up on a
-third-party storage (a NAS server, shared storage of another PC etc.) or it can be set up locally on the DSC PC. In this
+### Configurations in EIS PC
+The EIS PC and the Chemotion ELN both need access to a common network storage location. This can be set up on a
+third-party storage (a NAS server, shared storage of another PC etc.) or it can be set up locally on the EIS PC. In this
 case, the LSDF storage service from KIT has been used.
 
 We need to download an executable file from the [EFW builder](http://193.196.38.127/) that will run on the computer to
@@ -92,7 +92,7 @@ and schedule a task at startup so that the process keeps running on the computer
 In this step, we have to restart the PC for the scheduler to run.
 
 ### Configurations in Chemotion ELN
-The Chemotion ELN’s data collector has to be configured to collect data of the DSC device from the network location.
+The Chemotion ELN’s data collector has to be configured to collect data of the EIS device from the network location.
 
 As for the file collector mechanism, there are two options.
 

@@ -1,0 +1,28 @@
+---
+id: device_configuration
+slug: device_configuration
+title: Configurations
+---
+
+:::info Info
+This page is still being edited and reviewed.
+:::
+
+- Login to the EFW builder at http://193.196.38.127/
+- Create a new EFW executable file by with all necessary inputs
+
+![device_configuration_1](/img/device_configuration_1.png)
+
+- Download the executable file.
+- (Optional) Copy the efw.exe to the target directory on your target machine
+- Create a Scheduled Task to trigger at startup
+  - Copy the task_example.vbs into the startup directory
+    - Hint: Windows Key + R to open run and type shell:startup. This will open Task Scheduler
+  - Replace the full path of the executable file in the script
+  - After restarting the computer, check from Task Manager if the schedule task is created and the application
+  process is running
+
+:::info NB
+After editing the scheduling script, the computer needs to be restarted
+:::
+
