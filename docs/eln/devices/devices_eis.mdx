@@ -33,41 +33,12 @@ For the EIS device integration, we have decided to configure both these features
 # Configurations
 ## Remote Device Control
 
-Users will have access to the EIS PC via the Chemotion ELN. The EIS PC and the Chemotion ELN must be linked to the same
-LAN in order to accomplish this. The LAN's firewall also needs to allow the establishment of VNC connections.
+:::info
+General guideline regarding the configurations of remote device control can be found
+here:
 
-### Configurations in EIS PC
-This has been achieved by the installation of the software, [TightVNC](https://www.tightvnc.com/download.php) (Installer
-for Windows, 64-bit). Users can access the computer remotely through Chemotion ELN through this. We have to configure it
-as follows,
-
-On the setup screen, we have to select the TightVNC server to be installed, along with the setting of the passwords for
-remote access and administrative password.
-
-![devices_NMR_magritek_1](/img/nmr_magritek/devices_nmr_magritek_1.png)
-![devices_NMR_magritek_2](/img/nmr_magritek/devices_nmr_magritek_2.png)
-
-After the installation, we have to make sure it is accepting incoming connections at port 5900 and also for added
-security, we have to whitelist the IP address of the Chemotion ELN only. In addition, we choose the option that requires
-the administrative password for every operation or change.
-
-![devices_NMR_magritek_3](/img/nmr_magritek/devices_nmr_magritek_3.png)
-![devices_NMR_magritek_4](/img/nmr_magritek/devices_nmr_magritek_4.png)
-![devices_NMR_magritek_5](/img/nmr_magritek/devices_nmr_magritek_5.png)
-
-### Configurations in Chemotion ELN
-There are basically two types of configurations we have to perform in Chemotion ELN,
-- As an admin of Chemotion ELN: As an admin of Chemotion ELN, we have to create a device instance corresponding to EIS
-PC and configure the NoVNC settings for it with a token.
-- As an admin of the group which the device belongs to:  As an admin of the group to which the device instance belongs
-(it was specified by the Chemotion admin while creating the device instance), we have to make sure that the user belongs
-to the group in Chemotion ELN in order to get access to the device.
-
-For a user who is in the group, the user has to log in to the Chemotion ELN at
-[https://complat-eln.ioc.kit.edu/home](https://complat-eln.ioc.kit.edu/home). Then he can access the device.
-
-For further information regarding the VNC settings, see the
-[VNC settings page](/docs/eln/settings#vnc)
+https://www.chemotion.net/chemotionsaurus/docs/eln/devices/remote_device_control
+:::
 
 ## Data transfer
 Data will automatically be transferred to the Chemotion ELN once the data has been saved locally on the computer. The

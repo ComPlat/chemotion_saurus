@@ -136,7 +136,12 @@ module.exports = {
         },
         "items": [
           "eln/devices",
-          "eln/devices/device_configuration",
+          {
+            "Configurations": [
+              "eln/devices/device_configuration",
+              "eln/devices/remote_device_control"
+            ]
+          },
           {
             "NMR devices": [
               "eln/devices_nmr",
