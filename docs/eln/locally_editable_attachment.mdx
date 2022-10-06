@@ -7,14 +7,16 @@ title: Local editable attachment
 This feature allows users to be able to edit attachments by using their local application without requiring them to download and upload the attachment.
 This feature has already been tested with applications like Microsoft Office, ChemDraw and MestreNova(Mnova).
 
-Caution:
+:::danger Caution:
 We suggest to use .mnova file extension to work with Mnova instead of .jdx or .dx.
 In case you are using Mnova application to edit .jdx or .dx file, when you are saving the changes, you will see the
 file extension was change from .jdx or .dx to .mnova . Please correct it, ortherwise your changes will not updated in ELN server.
+![Mnova](/img/locally_editable_attachment/Mnova.PNG)
+:::
 
 ## Set up Chemotion URL Handler
 
-- Download the Chemotion URL Handler via the link on chemotion navigation bar or using this [link](https://github.com/Allenskywalker92/ChemotionURIHandler/tree/main/ChemotionURLHandler/Release).![Code Scanner Button](/img/locally_editable_attachment/url_handler_download.png). 
+- Download the Chemotion URL Handler via the link on chemotion navigation bar or using this [link](https://github.com/Allenskywalker92/ChemotionURIHandler/tree/main/urlhandler.app.setup/Debug).![Code Scanner Button](/img/locally_editable_attachment/url_handler_download.png). 
 
 - Unzip the file to a folder.
 
@@ -22,14 +24,25 @@ file extension was change from .jdx or .dx to .mnova . Please correct it, orther
 
 ## How to edit attachments locally
 
-- Open attachment dataset in chemotion ELN. ![Register handler successfully](/img/locally_editable_attachment/attachment.PNG)
+- Open attachment dataset in chemotion ELN. 
 
-- Click on the local edit button![Locally edit button](/img/locally_editable_attachment/edit_button.PNG)
+![Register handler successfully](/img/locally_editable_attachment/attachment.PNG)
 
-- A console app will be open to download the file for you to edit. <b>DO NOT CLOSE</b> this application! ![Register handler successfully](/img/locally_editable_attachment/downloading_file.PNG)
+- Click on the local edit button.
 
-- When finish editing the attachment, save the file with exactly the same name and extension. The console application will automatically upload the attachment to the ELN server. Then you can press any key to exit the application.
- ![finished](/img/locally_editable_attachment/finished.PNG)
+![Locally edit button](/img/locally_editable_attachment/edit_button.PNG)
+
+- An application will open. Click start to start the editing process. 
+![Start](/img/locally_editable_attachment/Start.PNG)
+
+- This application will download the attachment and opend the application to edit it based on the file extension. 
+<b>DO NOT CLOSE</b> this application! 
+
+![Register handler successfully](/img/locally_editable_attachment/downloading_file.PNG)
+
+- When finish editing the attachment, save the file with exactly the same name and extension. The console application will automatically upload the attachment to the ELN server. Then you can click close button to exit the application.
+ 
+![finished](/img/locally_editable_attachment/finished.PNG)
 
 ## View all attachment versions
 
