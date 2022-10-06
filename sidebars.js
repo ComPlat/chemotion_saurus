@@ -136,6 +136,7 @@ module.exports = {
         },
         "items": [
           "eln/devices",
+          "eln/devices/devices_integrated",
           {
             "Configurations": [
               "eln/devices/device_configuration",
