@@ -185,6 +185,17 @@ module.exports = {
           "repo/data_types"
         ]
       },
+      {
+        "type": "category",
+        "label": "Open Access",
+        "link": {
+          "type": "generated-index"
+        },
+        "items": [
+          "repo/oa_oai_pmh",
+          "repo/oa_open_apis"
+        ]
+      },      
       "repo/references",
       "repo/faq",
       "repo/review_glossary",
