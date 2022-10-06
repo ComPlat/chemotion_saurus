@@ -5,7 +5,9 @@ slug: oa_oai_pmh
 author: Claire Lin
 ---
 
-## The OAI-PMH service exposes metadata stored in the Chemotion Repository using the Open Archives Initiative Protocol for Metadata Harvesting (OAI-PMH).
+## The OAI-PMH service is available
+
+### The OAI-PMH service exposes metadata stored in the Chemotion Repository using the Open Archives Initiative Protocol for Metadata Harvesting (OAI-PMH).
 
 This service is open to the public. The Chemotion Repository processes OAI-PMH requests and exposes metadata so that records can be harvested.
 
@@ -36,7 +38,7 @@ The Chemotion Repository OAI-PMH service is able to provide metadata in the foll
 
 Please visit the [Open Archives Initiative](https://www.openarchives.org/) for more details.
 
-## Examples
+### Examples
 
 - You want to request records in the oai_dc metadata format, between 2022-08-01T14:15:00Z and 2022-09-01T14:20:00Z.
 
