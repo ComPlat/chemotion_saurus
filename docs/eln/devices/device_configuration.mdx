@@ -1,13 +1,34 @@
 ---
 id: device_configuration
 slug: device_configuration
-title: Configurations
+title: Data transfer configurations
 ---
 
 :::info Info
 This page is still being edited and reviewed.
 :::
 
+Data transfer is an integral part of device integration. The device integration protocol generally enables the
+remote access and transfer of data. Both these can be set up separately, with neither relying on the other.
+
+There are basically two approaches for the data transfer configurations,
+- Automatic data transfer
+- Manual transfer
+
+While the manual transfer refers to manually collecting, generally using a USB storage device, there are several
+approaches for the automatic transfer as follows,
+- transferring data through **email provider**
+- **exe** running as a program
+- **powershell script** running as a background service
+- macro
+
+In this part we mostly discuss the configurations required to run exe as a program to collect the data automatically.
+Initially we have to generate an exe file with custom input fields specifying the source, destination along with other
+some other configuration data. We can generate the exe file from the [EFW builder](http://193.196.38.127/). It is a
+service which generates the exe in a secured manner. Though user registration is not allowed currently, nq  ew users can be
+created upon contacting the admin of the EFW builder.
+
+The rest of the configurations are as follows,
 - Login to the EFW builder at http://193.196.38.127/
 - Create a new EFW executable file by with all necessary inputs
 

@@ -139,8 +139,8 @@ module.exports = {
           "eln/devices/devices_integrated",
           {
             "Configurations": [
-              "eln/devices/device_configuration",
-              "eln/devices/remote_device_control"
+              "eln/devices/remote_device_control",
+              "eln/devices/device_configuration"
             ]
           },
           {
