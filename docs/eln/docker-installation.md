@@ -67,7 +67,7 @@ From this version onwards, spectra analysis services will be included into the d
 :::
 
 :::info
-From this version onwardws, we rely on Docker volumes to preserve data. Your user data will be stored in the volumes `chemotion_data` and `chemotion_db`. DO NOT delete them if you like your stuff. No backup, no pity.
+From this version onwards, we rely on Docker volumes to preserve data. Your user data will be stored in the volumes `chemotion_data` and `chemotion_db`. DO NOT delete them if you like your stuff. No backup, no pity.
 :::
 
 ### Fresh Installation
