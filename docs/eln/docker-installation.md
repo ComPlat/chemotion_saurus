@@ -41,7 +41,7 @@ or
 ```
 docker-compose up -d
 ```
-(the 1st command outputs to stdout, the 2nd starts the ELN as a background service loggin to the docker's log daemon)
+(the 1st command outputs to stdout, the 2nd starts the ELN as a background service login to the docker's log daemon)
 - after a short startup/migration period, the ELN will available on port `<your host IP>:4000`
 - Proceed with the sections [Configuring](#config-112p220401) and [Setting the Base URL](#baseurl-112p220401)
 
@@ -60,7 +60,7 @@ To upgrade to 1.1.3 from 1.1.2, simply follow these steps:
 
 ## Version 1.1.2p220401
 
-To install version 1.1.2 of the ELN, we introduce the container version 1.1.2p220401. Please note, the naming convention cahnged to now encode the ELN version (1.1.2) followed by a single character to denote the intended use ("p" for production, "d" for development and "e" for experimental) followed by the version of the Docker middleware in the form of "YYMMRR" with RR being an increaseing integer.
+To install version 1.1.2 of the ELN, we introduce the container version 1.1.2p220401. Please note, the naming convention changed to now encode the ELN version (1.1.2) followed by a single character to denote the intended use ("p" for production, "d" for development and "e" for experimental) followed by the version of the Docker middleware in the form of "YYMMRR" with RR being an increasing integer.
 
 :::info
 From this version onwards, spectra analysis services will be included into the default setup. If you do not like that, you can edit the Compose file accordingly.  
@@ -76,7 +76,7 @@ To install this version on a blank system, follow these steps:
 
 - download the `docker-compose.yml` to a directory of your choice:
 ```
-wget https://raw.githubusercontent.com/ptrxyz/chemotion/latest-release/docker-compose.yml
+wget https://raw.githubusercontent.com/ptrxyz/chemotion/release-112/release/1.1.2p220401/docker-compose.yml
 ```
 
 - download all images and create the containers, data volumes and networks by running this command in the same folder you downloaded the compose file to:
@@ -93,13 +93,13 @@ or
 ```
 docker-compose up -d
 ```
-(the 1st command outputs to stdout, the 2nd starts the ELN as a background service loggin to the docker's log daemon)
+(the 1st command outputs to stdout, the 2nd starts the ELN as a background service login to the docker's log daemon)
 - after a short startup/migration period, the ELN will available on port `<your host IP>:4000`
 - Proceed with the sections [Configuring](#config-112p220401) and [Setting the Base URL](#baseurl-112p220401)
 
 ### Upgrade from 1.0.3D0.1
 
-To upgrade from a previouse version to this release, a few manual steps have to be done. In the new release, we changed to make use of Docker volumes instead of bind mounts for all user data and shared storages. It is up to the user to transfer previous user data to these volumes.
+To upgrade from a previous version to this release, a few manual steps have to be done. In the new release, we changed to make use of Docker volumes instead of bind mounts for all user data and shared storage. It is up to the user to transfer previous user data to these volumes.
 All you need to do is to copy/merge your old folders to/with the data volume (mounted at `/chemotion/data` in the ELN container):
 
 - `./shared/eln/uploads` --> `/chemotion/data/uploads`
@@ -276,7 +276,7 @@ bash ./setup.sh
 
 ## Running Chemotion
 
-You are now ready to run the initialization. Please note that this will create a new database and delete any old database that might exist. Therefore it is curical that you do only run this command if you want to create a new instance of Chemotion.
+You are now ready to run the initialization. Please note that this will create a new database and delete any old database that might exist. Therefore it is crucial that you do only run this command if you want to create a new instance of Chemotion.
 
 ```
 cd $CHEMOTION_PATH
@@ -340,7 +340,7 @@ sudo bash ./backup.sh
 ```
 
  :::info
- It is adviced to setup an automatic system task (i.e. cron job) to backup regularly. This is highly system specific and thus out of the scope of this documentation. Please refer to your OS's manual to find out how to setup scheduled tasks. 
+ It is advised to setup an automatic system task (i.e. cron job) to backup regularly. This is highly system specific and thus out of the scope of this documentation. Please refer to your OS's manual to find out how to setup scheduled tasks. 
  In addition, you should always backup before upgrading your installation.
 :::
 
