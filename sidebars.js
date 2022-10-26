@@ -130,6 +130,23 @@ module.exports = {
       },
       {
         "type": "category",
+        "label": "Chemotion Converter",
+        "link": {
+          "type": "generated-index"
+        },
+        "items": [
+          "eln/converter/converter_overview",
+          {
+            "Profiles": [
+              "eln/converter/converter_profile",
+              "eln/converter/converter_profile_cv",
+              "eln/converter/converter_profile_uvvis"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "category",
         "label": "Device integration",
         "link": {
           "type": "generated-index"
