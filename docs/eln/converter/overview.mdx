@@ -5,6 +5,16 @@ slug: converter_overview
 sidebar_label: Overview
 ---
 
+:::info Info
+This page is still being edited and reviewed.
+:::
+
 # Overview of the Converter functions
 
+The purpose of the Chemotion Converter (in short: ChemConverter) is to convert different file formats and types from [integrated devices](/docs/eln/devices) to a common and well known data type, namely e.g. jcamp .jdx or .json.
+It is also possible to extract columns for 2D data visualization and Metadata.
+Currently, the ChemConverter can handle most text readable files like txt/csv/dta if they are properly structured, but developers can create their own readers if a rule is notable for the newly added file type.
 
+Most of the time, the ChemConverter runs as a background process when the user or a measurement device uploads a analytic file to the ELN.
+The prerequisite is that an admin has created a suitable [profile](/docs/eln/converter/converter_profile).
+There is also a standalone version of the converter which you can find and install from [Github](https://github.com/jochenklar/chemotion-converter-app).
