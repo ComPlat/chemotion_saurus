@@ -7,42 +7,75 @@ slug: testing
 
 We test the Chemotion ELN using three different kinds of tests.
 
-## 1. JavaScript (npm) unit tests
-We use the `Mocha` framework for JavaScript unit tests: https://mochajs.org/.
-
-These tests are configured with
-```sh
-"test": "mocha --require '@babel/register' './spec/javascripts/helper/setup.js' './spec/javascripts/**/*.spec.js'"
-```
-in the `scripts` section of `package.json`.
-
-## 2. Ruby unit tests
-We use the `RSpec` framework for Ruby unit tests: https://rspec.info/.
-
-## 3. Acceptance (feature) tests
-The `Capybara` framework is used alongside `RSpec` to simulate user interactions: https://teamcapybara.github.io/capybara/.
-The test driver is `Selenium`: https://www.selenium.dev/.
+#### 1. JavaScript unit tests (mocha)
+     npm test 
+#### 2. Ruby unit tests (rpec)
+    RAILS_ENV=test bundle exec rake db:test:prepare && bundle exec rspec exclude-pattern spec/features/**/*_spec.rb
+#### 3. Acceptance (feature) tests (Capybara)
+    RAILS_ENV=test bundle exec rake db:test:prepare && bundle exec rake assets:precompile && bundle exec rspec spec/features
 
 
-## Local testing for Chemotion ELN
-For locally testing the Chemotion ELN, change your directory to to the root directory of your Chemotion ELN. Then type the following commands: 
+## General rules of thumb
+- All public methods should be tested, every statement, conditional branch should be covered
+- Tests should be easy to read and understand. Try to use a maximum of 3 of describe/context levels
+    - **Describe**: what is the class/method i want to test
+    - **Context**: under what circumstances is the method tested
+    - **It**: what do i expect
+- Testing the UI should not be in focus for unit tests. Exception is snaphot testing in js
+- Useful resources
+    - https://mochajs.org/
+    - https://www.betterspecs.org
+    - https://github.com/teamcapybara/capybara
+    - https://rspec.info/
+## Javascript Unit tests
+- Tests should be placed in **spec/javascript/...** . Mirroring the location of the src file.
+- Tests should have the name of the original file but end with **.spec.js**
+- For simple plain js objects test every "public" method. By not having access modifiers one should look what methods are called by other components
+### Testing a react components
+- using the Enzyme library to create react components: `wrapper = shallow(<CLASS_OF_COMPONENT/>);`    
+- react components can be used with its js-state or its html representation: `wrapper.instance()` and `wrapper.html()` 
+- Example: [ResearchPlanDetailsFieldImage.spec.js](https://github.com/ComPlat/chemotion_ELN/blob/applying-gem-shrine-2/spec/javascripts/packs/src/apps/mydb/elements/details/researchPlans/ResearchPlanDetailsFieldImage.spec.js)
 
-### Javascript (npm) unit tests
-```sh
-source ~/.rvm/scripts/rvm && source ~/.nvm/nvm.sh && nvm use && RAILS_ENV=test bundle exec rake db:test:prepare && npm test
-```
+:::caution Warning
+Testing a component which includes a store need an explicit import of the store in the test file. The import must be before the import statement of the component to test.
+The linter recognize that the store dependency is not used and tries to eliminate it. By manually disabling the linter rule for those line, one can prevent it.
+Example: [ResearchPlanDetails.spec.js](https://github.com/ComPlat/chemotion_ELN/blob/applying-gem-shrine-2/spec/javascripts/packs/src/apps/mydb/elements/details/researchPlans/ResearchPlanDetails.spec.js)
+:::
 
-### Ruby unit tests
-```sh
-source ~/.rvm/scripts/rvm && RAILS_ENV=test bundle exec rake db:test:prepare && bundle exec rspec --exclude-pattern spec/{features}/**/*_spec.rb
-```
+### Stubbing/Mocking
 
-### Acceptance tests
-```sh
-source ~/.rvm/scripts/rvm && source ~/.nvm/nvm.sh && nvm use  && RAILS_ENV=test bundle exec rake db:test:prepare && bundle exec rake assets:precompile  && bundle exec rspec spec/features
-```
-When you have freshly installed Chemotion ELN, make sure to create a `welcome-message.md` file in the `public` directory inside Chemotion ELN
-before running acceptance tests. You can create it from the example file:
-```sh
-cp public/welcome-message-sample.md public/welcome-message.md
-```
+- Heavy dependencies like REST calls can be stubbed/mocked in a test
+- We use the library sinon  
+ `Sinon.stub(CLASS_TO_MOCK, "METHOD_NAME").callsFake(LAMBDA as replacement of original method);` 
+- Example: [ResearchPlanDetailsFieldImage.spec.js](https://github.com/ComPlat/chemotion_ELN/blob/applying-gem-shrine-2/spec/javascripts/packs/src/apps/mydb/elements/details/researchPlans/ResearchPlanDetailsFieldImage.spec.js#L54)
+
+### Creating models by factories
+- To create model objects we use the library [factory-bot](https://github.com/ratson/factory-bot)
+- `const researchPlan = await ResearchPlanFactory.build('empty');`
+- By using a pseudoRandomGenerator in the factory for ids and checksums we can create reproducible objects
+- One can reset the generator by adding a build option: `const researchPlan = await ResearchPlanFactory.build('empty', {}, { reset: true });`
+:::caution Warning
+Creating a model is an asynchronous action, so the test must also be asynchronous: `it('no img tag should be rendered', async function (){ }`
+:::
+
+### Snapshot testing
+ - By testing a react component, one should test the state of the component. An easy way would be to check if the html state is correct.
+ - By using the snaphot library [expect-mocha-snapshot](https://www.npmjs.com/package/expect-mocha-snapshot) a snaphot of the html state is generated at the first test run. After that the state in the test is checked against the saved state from the first run.
+ - Snapshots are saved in a folder __snapshots__ at the same level of the test
+ - Snapshots are not only restricted to html but can also be used for json or js-objects
+ - Example: [ResearchPlanDetailsFieldImage.spec.js](https://github.com/ComPlat/chemotion_ELN/blob/applying-gem-shrine/spec/javascripts/packs/src/apps/mydb/elements/details/researchPlans/ResearchPlanDetailsFieldImage.spec.js#L52)
+
+:::caution Warning
+The expect extension by mocha refers to the current test-object by `this`. Using an lambda expression at the it definition, mocha have no access to it. Using an explicit
+function definition solved this problem.
+:::
+
+ 
+
+### Coverage
+
+
+    
+    
+        
+        
