@@ -59,20 +59,44 @@ Creating a model is an asynchronous action, so the test must also be asynchronou
 :::
 
 ### Snapshot testing
- - By testing a react component, one should test the state of the component. An easy way would be to check if the html state is correct.
- - By using the snaphot library [expect-mocha-snapshot](https://www.npmjs.com/package/expect-mocha-snapshot) a snaphot of the html state is generated at the first test run. After that the state in the test is checked against the saved state from the first run.
- - Snapshots are saved in a folder __snapshots__ at the same level of the test
- - Snapshots are not only restricted to html but can also be used for json or js-objects
- - Example: [ResearchPlanDetailsFieldImage.spec.js](https://github.com/ComPlat/chemotion_ELN/blob/applying-gem-shrine/spec/javascripts/packs/src/apps/mydb/elements/details/researchPlans/ResearchPlanDetailsFieldImage.spec.js#L52)
+- By testing a react component, one should test the state of the component. An easy way would be to check if the html state is correct.
+- By using the snaphot library [expect-mocha-snapshot](https://www.npmjs.com/package/expect-mocha-snapshot) a snaphot of the html state is generated at the first test run. After that the state in the test is checked against the saved state from the first run.
+- Snapshots are saved in a folder __snapshots__ at the same level of the test
+- Snapshots are not only restricted to html but can also be used for json or js-objects
+- Example: [ResearchPlanDetailsFieldImage.spec.js](https://github.com/ComPlat/chemotion_ELN/blob/applying-gem-shrine/spec/javascripts/packs/src/apps/mydb/elements/details/researchPlans/ResearchPlanDetailsFieldImage.spec.js#L52)
 
 :::caution Warning
 The expect extension by mocha refers to the current test-object by `this`. Using an lambda expression at the it definition, mocha have no access to it. Using an explicit
 function definition solved this problem.
 :::
 
+## Ruby Unit tests
+
+### common infos
+
+### creating db models via factory bot
+
+### Testing methods without classes
+- can be done by  by adding type :helpers  `Rspec.describe GenericHelpers, type: :helper do`.  
+ Example [generic_helpers_spec.rb](https://github.com/ComPlat/chemotion_ELN/blob/applying-gem-shrine/spec/api/helpers/generic_helpers_spec.rb)
+
+### Stubbing/Mocking
+- REST calls  
+ `stub_request(REST_METHOD_AS_SYMBOL, 'REST_ADDRESS'`   
+      `  .with(REQUEST_HEADER_INFOS OR/AND PARAMETER)`    
+      `  .to_return(RETURN BODY OR/AND HEADER)`         
+Example: [spec_helper.rb](https://github.com/ComPlat/chemotion_ELN/blob/applying-gem-shrine/spec/spec_helper.rb#L86)
+:::info Info
+Many REST requests especially requesting INCHI keys are already defined in  [spec_helper.rb](https://github.com/ComPlat/chemotion_ELN/blob/applying-gem-shrine/spec/spec_helper.rb#L86)
+:::
+ 
+- Methods of classes/objects  
+`allow_any_instance_of(CLASS_NAME).to receive(METHOD_NAME_AS_SYMBOL).and_return(RESULT)`  
+`allow_any_instance_of(CLASS_NAME).to receive(METHOD_NAME_AS_SYMBOL).and_raise(AN ERROR)`
+- for more infos: [rspec-mocks](https://relishapp.com/rspec/rspec-mocks/docs) 
  
 
-### Coverage
+## Coverage
 
 
     
