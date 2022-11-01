@@ -60,7 +60,7 @@ Creating a model is an asynchronous action, so the test must also be asynchronou
 
 ### Snapshot testing
 - By testing a react component, one should test the state of the component. An easy way would be to check if the html state is correct.
-- By using the snaphot library [expect-mocha-snapshot](https://www.npmjs.com/package/expect-mocha-snapshot) a snaphot of the html state is generated at the first test run. After that the state in the test is checked against the saved state from the first run.
+- By using the snapshot library [expect-mocha-snapshot](https://www.npmjs.com/package/expect-mocha-snapshot) a snapshot of the html state is generated at the first test run. After that the state in the test is checked against the saved state from the first run.
 - Snapshots are saved in a folder __snapshots__ at the same level of the test
 - Snapshots are not only restricted to html but can also be used for json or js-objects
 - Example: [ResearchPlanDetailsFieldImage.spec.js](https://github.com/ComPlat/chemotion_ELN/blob/applying-gem-shrine/spec/javascripts/packs/src/apps/mydb/elements/details/researchPlans/ResearchPlanDetailsFieldImage.spec.js#L52)
@@ -73,8 +73,15 @@ function definition solved this problem.
 ## Ruby Unit tests
 
 ### common infos
+- Tests should reflect the structure of the src package. That means having exact the same location and name ending with and *_spec.rb. 
+- [Example test](https://github.com/ComPlat/chemotion_ELN/blob/development-5/spec/api/chemotion/attachment_api_spec.rb)
 
 ### creating db models via factory bot
+
+- Models can be created using the library [factory bot](https://github.com/thoughtbot/factory_bot). In factories, desired states of the models are predefined and can then be created using create (creates a DB entry) or build (creates a model without a DB entry).
+:::caution Warning
+Creating an attachment via factorybot must be handled carefully because `create` also triggers the `create_derivative` method and could remove a fixture file. By using `build` the `create_derivative` method is not executed, but one has no object in DB and some properties are not initialized.
+:::
 
 ### Testing methods without classes
 - can be done by  by adding type :helpers  `Rspec.describe GenericHelpers, type: :helper do`.  
@@ -94,9 +101,20 @@ Many REST requests especially requesting INCHI keys are already defined in  [spe
 `allow_any_instance_of(CLASS_NAME).to receive(METHOD_NAME_AS_SYMBOL).and_return(RESULT)`  
 `allow_any_instance_of(CLASS_NAME).to receive(METHOD_NAME_AS_SYMBOL).and_raise(AN ERROR)`
 - for more infos: [rspec-mocks](https://relishapp.com/rspec/rspec-mocks/docs) 
- 
+
+## Acceptance tests
+
+When you have freshly installed Chemotion ELN, make sure to create a `welcome-message.md` file in the public directory inside Chemotion ELN before running acceptance tests. You can create it from the example file:
 
 ## Coverage
+
+Infos about code coverage: [Code Coverage](https://www.guru99.com/code-coverage.html)
+
+### JavaScript unit tests
+
+- Using `npm run coverage` creates a coverage report in html written in .coverage. The method of covering is condition coverage.
+- in package.json one can exclude directories from coverage 
+- Coverage is currently not included in CI
 
 
     
