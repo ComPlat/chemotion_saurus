@@ -28,6 +28,9 @@ How the files are converted will be decided by specific rules which are listenin
 
 ### First layer: The reader
 
+The reader is one part of programming code responsible for the software to import and handle the given data format.
+It is the most powerfull layer due to flexibility (e.g. calculation of custom Metadata or special and complex column rules and calculations). 
+
 Source codes for the readers and examples can also be found on [Github](https://github.com/jochenklar/chemotion-converter-app/tree/master/converter_app/readers).
 There are readers for common file types and specific ones which are heirs of the basic ones.
 The following list shows some (but not all) of the current readers available:
@@ -35,3 +38,17 @@ The following list shows some (but not all) of the current readers available:
 * CSV
   * NOVA (Specific reader for an instrument without Metadata, also an example for custom Metadata calculation)
 * DTA
+
+### Second layer: The admin Profile creation GUI
+
+The final rules to convert a data file into a standardized Bagit-it-zip-Container containing .jdx/.json files will be determined by profiles.
+Which profile is responsible is determined via identifiers.
+Like in case of the readers almost eyerthing the input file contains can be used as an identifier, as long as the sum of identifiers for one profil is unique.
+The most common identifiers are:
+* The file extension (.txt, .csv, .dta, ...)
+* The first human readable line(s) of the header
+* The data column titles 
+
+### Third layer: Upload, processing and output
+
+![Flow diagram of the three Layers](static/img/converter/ConverterLayers.svg) 
