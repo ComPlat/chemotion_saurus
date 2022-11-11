@@ -18,3 +18,20 @@ Currently, the ChemConverter can handle most text readable files like txt/csv/dt
 Most of the time, the ChemConverter runs as a background process when the user or a measurement device uploads a analytic file to the ELN.
 The prerequisite is that an admin has created a suitable [profile](/docs/eln/converter/converter_profile).
 There is also a standalone version of the converter which you can find and install from [Github](https://github.com/jochenklar/chemotion-converter-app).
+
+## Technical aspect
+
+Technically the converter is built based on three layers, namely the reader, the admin GUI and last but not least the upload & processing.
+The creator of reader requires mostly knowledge in (e.g python) coding while the admin of the second layer has to know the measurement technique and device very well, because it decides which info the use will get and see at the end of the third layer.
+The last layer is a simple Webapp executing the code or an automated process during the file upload.
+How the files are converted will be decided by specific rules which are listening on predefined identifiers.
+
+### First layer: The reader
+
+Source codes for the readers and examples can also be found on [Github](https://github.com/jochenklar/chemotion-converter-app/tree/master/converter_app/readers).
+There are readers for common file types and specific ones which are heirs of the basic ones.
+The following list shows some (but not all) of the current readers available:
+* ASCII (aka simple TXT)
+* CSV
+  * NOVA (Specific reader for an instrument without Metadata, also an example for custom Metadata calculation)
+* DTA
