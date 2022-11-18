@@ -15,7 +15,8 @@
 			"settings": {
 				"files.associations": {
 					"*.mdx": "markdown"
-				}
+				},
+				"editor.rulers": [100]
 			},
 			
 			// Add the IDs of extensions you want installed when the container is created.
