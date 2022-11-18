@@ -10,14 +10,14 @@ module.exports = {
         "items": [
           {
             "Production": [
-              "eln/native_installation",
-              "eln/dockerinstall"
+              "eln/installation/native_installation",
+              "eln/installation/docker_installation"
             ]
           },
           {
             "Development": [
-              "eln/dev_native_install",
-              "eln/dev_docker_install"
+              "eln/installation/dev_native_install",
+              "eln/installation/dev_docker_install"
             ]
           }
         ]
