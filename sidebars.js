@@ -127,13 +127,6 @@ module.exports = {
         },
         "items": [
           "eln/converter/converter_overview",
-          {
-            "Profiles": [
-              "eln/converter/converter_profile",
-              "eln/converter/converter_profile_cv",
-              "eln/converter/converter_profile_uvvis"
-            ]
-          }
         ]
       },
       {
