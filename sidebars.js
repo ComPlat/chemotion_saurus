@@ -16,7 +16,6 @@ module.exports = {
           },
           {
             "Development": [
-              "eln/installation/dev_native_install",
               "eln/installation/dev_docker_install"
             ]
           }
