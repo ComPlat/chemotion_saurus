@@ -1,0 +1,94 @@
+---
+id: git_workflow
+title: Git Workflow
+sidebar_label: Git Workflow
+slug: git_workflow
+---
+
+An _explicit_ git-workflow is essential for efficient collaboration, especially for new team members.
+In this chapter we document our git-workflow in order to reduce uncertainty and ambiguity in our collaboration.
+
+We have a centralized git-workflow with feature branches.
+The workflow is centralized in the sense that internal team members have write access to our
+online repository (<https://github.com/ComPlat/chemotion_ELN>),
+and are contributing directly to the online repository, rather than contributing via forks.
+The latter is the case for external contributors who don't have write access to the online repository.
+
+All changes are contributed by opening pull requests from feature branches against the default branch of our online repository.
+In the following, we illustrate our git-workflow by showing the life-cycle of a feature branch `feature`:
+from creating the branch, to opening a pull request, to eventually merging it into the default branch `main`.
+
+TODO: write step-by-step guide with commands
+
+## Creating a branch for your feature
+
+- branch naming conventions (TBD):
+  - choose a short, concise name
+  - if the name consists of multiple words, separate those words with hyphens (-) not underscores (_)
+  - if there's an issue about your feature, prefix the branch name with the issue number (e.g., 123-feature-name)
+
+## Pushing changes to your feature branch
+
+- conventions for commit messages?
+- scope of commits: avoid extremes (not too large, not too small; examples)
+- write meaningful commit messages (helps searching git history and understanding during review)
+- <https://www.git-tower.com/blog/how-to-write-the-perfect-commit-message/>
+
+## Keeping you feature branch up-to-date with the default branch
+
+- <https://blog.verslu.is/git/git-rebase/>
+- <https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/keeping-your-pull-request-in-sync-with-the-base-branch>
+- <https://docs.gitlab.com/ee/topics/git/git_rebase.html>
+- <https://stackoverflow.com/questions/40006193/rebasing-after-a-pull-request>
+- <https://www.git-tower.com/blog/force-push-in-git/>
+- how? merge commits vs. rebase
+- currently (Pierre, Megorei) favor linear history, i.e., rebase or fast-forward merge
+- first try fast-forward merge, i.e., merging without new commit
+- if fast-forward merge isn't possible, use rebase and subsequent force push
+- if you're not the only one working on a branch your about to force push, make sure to inform your collaborators
+- use --force-with-lease! If new commits are added to the remote branch (by another team member), this command would not update the remote branch (and not overwrite any work).
+
+## Pull requests / Merging a feature branch into the default branch
+
+- naming convention for PRs?
+- how? rebase feature onto main with squash commit (history preserved in PRs)
+
+## Misc
+
+- proposal to rename "development-5" to "main" (or "development")
+- in case the changes are visible to the end-user, video or screenshots should be added to the PR => helps with user testing
+- new functionality is covered with tests / no drops in test coverage
+- CHANGELOG : add a bullet point on top (optional: reference to github issue/PR )
+- parallel PR for documentation on Docusaurus  if the feature/fix is tagged for a release
+
+## Resources
+
+- <https://docs.github.com/en/pull-requests/collaborating-with-pull-requests>
+- <https://www.atlassian.com/git/articles/git-team-workflows-merge-or-rebase>
+- <https://www.atlassian.com/git/tutorials/merging-vs-rebasing#conceptual-overview>
+- <https://hackernoon.com/git-merge-vs-rebase-whats-the-diff-76413c117333>
+- <https://www.derekgourlay.com/blog/git-when-to-merge-vs-when-to-rebase/>
+- <https://www.atlassian.com/git/tutorials/syncing>
+- <https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/about-pull-request-merges>
+- <https://git-scm.com/book/en/v2/Distributed-Git-Distributed-Workflows>
+
+We assume that you have a local copy of the online repository on you machine.
+
+```shell
+git clone https://github.com/ComPlat/chemotion_ELN.git
+```
+
+Create a branch for your feature.
+
+```shell
+git branch feature-A`
+```
+
+While working on the feature, then stage, commit, and push the changes to the online repository.
+Note that the push will create a `feature-A` branch in the online repository.
+
+```shell
+git add .
+git commit -m "Work on feature A"
+git push origin feature-A
+```

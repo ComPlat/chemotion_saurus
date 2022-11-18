@@ -21,6 +21,7 @@ module.exports = {
         "items": [
           "eln/development/project_overview",
           "eln/development/development_environment",
+          "eln/development/git_workflow",
           "eln/development/learning_resources",
           "eln/development/architecture",
           "eln/development/debugging",
