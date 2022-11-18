@@ -8,17 +8,8 @@ module.exports = {
           "type": "generated-index"
         },
         "items": [
-          {
-            "Production": [
-              "eln/installation/native_installation",
-              "eln/installation/docker_installation"
-            ]
-          },
-          {
-            "Development": [
-              "eln/installation/dev_docker_install"
-            ]
-          }
+          "eln/installation/native_installation",
+          "eln/installation/docker_installation"
         ]
       },
       {
@@ -29,6 +20,7 @@ module.exports = {
         },
         "items": [
           "eln/development/project_overview",
+          "eln/development/development_environment",
           "eln/development/learning_resources",
           "eln/development/architecture",
           "eln/development/debugging",
@@ -84,16 +76,16 @@ module.exports = {
             "type": "category",
             "label": "Analytical data",
             "items": [
-                "eln/analysis",
-                "eln/chemspectra/nmranalysis",
-                "eln/chemspectra/iranalysis",
-                "eln/chemspectra/hplcanalysis",
-                "eln/chemspectra/msanalysis",
-                "eln/chemspectra/ramananalysis",
-                "eln/chemspectra/uvvisanalysis",
-                "eln/chemspectra/tgaanalysis",
-                "eln/chemspectra/xrdanalysis",
-                "eln/chemspectra/cvanalysis"
+              "eln/analysis",
+              "eln/chemspectra/nmranalysis",
+              "eln/chemspectra/iranalysis",
+              "eln/chemspectra/hplcanalysis",
+              "eln/chemspectra/msanalysis",
+              "eln/chemspectra/ramananalysis",
+              "eln/chemspectra/uvvisanalysis",
+              "eln/chemspectra/tgaanalysis",
+              "eln/chemspectra/xrdanalysis",
+              "eln/chemspectra/cvanalysis"
             ]
           },
           "eln/hyperlinks",
@@ -212,7 +204,7 @@ module.exports = {
           "repo/oa_oai_pmh",
           "repo/oa_open_apis"
         ]
-      },      
+      },
       "repo/references",
       "repo/faq",
       "repo/review_glossary",
