@@ -115,11 +115,6 @@ Alternatively, we recommend setting up a Ubuntu virtual machine and following th
 Make sure you've followed the instructions for your operating system ([Windows](#windows-heading-id), [Linux](#linux-heading-id), [macOS](#macos-heading-id)).
 :::
 
-:::info Clean Docker
-When you're having trouble setting up the ELN's Docker environment, make sure that
-you're working with a clean Docker system: <https://docs.docker.com/config/pruning/>.
-:::
-
 Start by cloning <https://github.com/ComPlat/chemotion_ELN>.
 The repository contains the ELN's source code and Docker configuration (`docker-compose.dev.yml`).
 
@@ -177,11 +172,6 @@ If you're using Docker Desktop (opposed to the Docker Engine on Linux)
 make sure that Docker Desktop is running before starting the devcontainer.
 :::
 
-:::info Clean Docker
-When you're having trouble setting up the ELN's Docker environment, make sure that
-you're working with a clean Docker system: <https://docs.docker.com/config/pruning/>.
-:::
-
 Visual Studio Code devcontainers allow you to run your entire development environment inside a Docker container.
 For more context visit <https://code.visualstudio.com/docs/devcontainers/containers>.
 
@@ -213,3 +203,38 @@ VSCode will list all available commands for the `Dev Containers` extension.
 Select `>Dev Containers: Reopen in Container`. Based on the configuration in the repositories
 `.devcontainer` directory, VSCode will now build and orchestrate the containers that constitute the
 development environment. This could take about an hour, depending on your system's resources.
+
+## Troubleshooting
+
+Below are a few remedies you can try when you're having trouble setting up your containerized
+development environment.
+
+### Clean Docker
+
+Make sure that you're working with a clean Docker system: <https://docs.docker.com/config/pruning/>.
+
+### Remove `node_modules` directory
+
+The ELN "app" container (`Dockerfile.chemotion-dev`) is configured such that the `node_modules` directory
+is kept outside of the ELN repository.
+Some commands (especially when you're using `npm` instead of `yarn`) will populate
+the `node_modules` directory inside the ELN repository, which can cause trouble.
+Simply remove `node_modules` from the repository in that case. Similarly, it can help to remove
+
+* `public/packs`
+* `public/packs-test`
+* `tmp/cache/*`
+
+### Use `yarn` not `npm` to handle JavaScript dependencies
+
+### When you are hopelessly stuck: start over
+
+Use the fact that everything is containerized to your full advantage.
+If you feel like you've painted yourself into a corner, simply start over.
+It's much easier to set up everything from scratch when using containers,
+opposed to re-installing a clean development environment on your local machine.
+
+### Ask around
+
+Chances are someone on the team was stuck on a similar, if not the same, problem before and knows
+how to help you out.
