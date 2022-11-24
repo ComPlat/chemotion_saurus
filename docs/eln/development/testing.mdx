@@ -7,35 +7,42 @@ slug: testing
 
 We test the Chemotion ELN using three different kinds of tests.
 
-#### 1. JavaScript unit tests (mocha)
+## 1. JavaScript unit tests (mocha)
+
      npm test 
-#### 2. Ruby unit tests (RSpec)
+
+## 2. Ruby unit tests (RSpec)
+
     RAILS_ENV=test bundle exec rake db:test:prepare && bundle exec rspec exclude-pattern spec/features/**/*_spec.rb
-#### 3. Acceptance (feature) tests (Capybara)
+
+## 3. Acceptance (feature) tests (Capybara)
+
     RAILS_ENV=test bundle exec rake db:test:prepare && bundle exec rake assets:precompile && bundle exec rspec spec/features
 
-
 ## General rules of thumb
+
 - All public methods should be tested, every statement, conditional branch should be covered.
 - Tests should be easy to read and understand. Try to use a maximum of 3 describe/context levels:
-    - **Describe**: What is the class/method I want to test?
-    - **Context**: Under what circumstances is the method tested?
-    - **It**: What do I expect?
+  - **Describe**: What is the class/method I want to test?
+  - **Context**: Under what circumstances is the method tested?
+  - **It**: What do I expect?
 - Verifying UI state should not be the focus of unit testing (with the exception of snapshot testing in JavaScript).
 - Useful resources
-    - https://mochajs.org/
-    - https://www.betterspecs.org
-    - https://github.com/teamcapybara/capybara
-    - https://rspec.info/
+  - <https://mochajs.org/>
+  - <https://www.betterspecs.org>
+  - <https://github.com/teamcapybara/capybara>
+  - <https://rspec.info/>
 
 ## Javascript Unit tests
+
 - Test files should be placed in **spec/javascript/...**, mirroring the location of the source file (i.e., the file under test).
 - Test files should have the name of the file under test but end with **.spec.js**.
 - For simple plain JavaScript objects, test every "public" method. Without access modifiers, look what methods are called by other components.
 
 ### Testing React components
-- Use the [Enzyme library](https://enzymejs.github.io/enzyme/) to create React components: `wrapper = shallow(<CLASS_OF_COMPONENT/>);`    
-- React components can be used with their JavaScript-state or their HTML representation: `wrapper.instance()` and `wrapper.html()` 
+
+- Use the [Enzyme library](https://enzymejs.github.io/enzyme/) to create React components: `wrapper = shallow(<CLASS_OF_COMPONENT/>);`
+- React components can be used with their JavaScript-state or their HTML representation: `wrapper.instance()` and `wrapper.html()`
 - Example: [ResearchPlanDetailsFieldImage.spec.js](https://github.com/ComPlat/chemotion_ELN/blob/applying-gem-shrine-2/spec/javascripts/packs/src/apps/mydb/elements/details/researchPlans/ResearchPlanDetailsFieldImage.spec.js)
 
 :::caution Important
@@ -45,12 +52,14 @@ Example: [ResearchPlanDetails.spec.js](https://github.com/ComPlat/chemotion_ELN/
 :::
 
 ### Stubbing/Mocking
+
 - Heavy dependencies like REST calls can be [stubbed/mocked](https://en.wikipedia.org/wiki/Mock_object) in a test
 - We use the library sinon  
- `Sinon.stub(CLASS_TO_MOCK, "METHOD_NAME").callsFake(LAMBDA as replacement of original method);` 
+ `Sinon.stub(CLASS_TO_MOCK, "METHOD_NAME").callsFake(LAMBDA as replacement of original method);`
 - Example: [ResearchPlanDetailsFieldImage.spec.js](https://github.com/ComPlat/chemotion_ELN/blob/applying-gem-shrine-2/spec/javascripts/packs/src/apps/mydb/elements/details/researchPlans/ResearchPlanDetailsFieldImage.spec.js#L54)
 
 ### Creating models with factories
+
 - To create model objects, we use the library [factory-bot](https://github.com/ratson/factory-bot)
 - `const researchPlan = await ResearchPlanFactory.build('empty');`
 - By using a pseudoRandomGenerator in the factory for ids and checksums we can create reproducible objects
@@ -61,9 +70,10 @@ Creating a model is an asynchronous action, so the test must also be asynchronou
 :::
 
 ### Snapshot testing
+
 - When testing a React component, we want to verify the state of the component. An easy way to achieve this would be to check if its HTML state is as expected.
 - By using the snapshot library [expect-mocha-snapshot](https://www.npmjs.com/package/expect-mocha-snapshot), a snapshot of the HTML state is generated at the first test run. After that, the state in the test is checked against the saved state from the first run.
-- Snapshots are saved in a folder __snapshots__ at the same level of the test
+- Snapshots are saved in a folder **snapshots** at the same level of the test
 - Snapshots are not only restricted to HTML but can also be used for JSON or JavaScript-objects
 - Example: [ResearchPlanDetailsFieldImage.spec.js](https://github.com/ComPlat/chemotion_ELN/blob/applying-gem-shrine/spec/javascripts/packs/src/apps/mydb/elements/details/researchPlans/ResearchPlanDetailsFieldImage.spec.js#L52)
 
@@ -75,10 +85,12 @@ function definition solves this problem.
 ## Ruby Unit tests
 
 ### Common infos
-- Tests should reflect the structure of the source package. That means having the exact same location and name ending with `_spec.rb`. 
+
+- Tests should reflect the structure of the source package. That means having the exact same location and name ending with `_spec.rb`.
 - [Example test](https://github.com/ComPlat/chemotion_ELN/blob/development-5/spec/api/chemotion/attachment_api_spec.rb)
 
 ### Creating database models with factory bot
+
 - Models can be created using the library [factory bot](https://github.com/thoughtbot/factory_bot). In factories, desired states of the models are predefined and can then be created using `create` (creates a DB entry) or `build` (creates a model without a DB entry).
 
 :::caution IMPORTANT
@@ -87,38 +99,37 @@ By using `build` the `create_derivative` method is not executed, but one has no 
 :::
 
 ### Testing methods without classes
+
 - can be done by adding type :helpers  `Rspec.describe GenericHelpers, type: :helper do`.  
  Example [generic_helpers_spec.rb](https://github.com/ComPlat/chemotion_ELN/blob/applying-gem-shrine/spec/api/helpers/generic_helpers_spec.rb)
 
 ### Stubbing/Mocking
+
 - REST calls  
- `stub_request(REST_METHOD_AS_SYMBOL, 'REST_ADDRESS'`   
-      `  .with(REQUEST_HEADER_INFOS OR/AND PARAMETER)`    
-      `  .to_return(RETURN BODY OR/AND HEADER)`         
+ `stub_request(REST_METHOD_AS_SYMBOL, 'REST_ADDRESS'`
+      `.with(REQUEST_HEADER_INFOS OR/AND PARAMETER)`
+      `.to_return(RETURN BODY OR/AND HEADER)`
 Example: [spec_helper.rb](https://github.com/ComPlat/chemotion_ELN/blob/applying-gem-shrine/spec/spec_helper.rb#L86)
 
 :::info Info
 Many REST requests that request INCHI keys are already defined in [spec_helper.rb](https://github.com/ComPlat/chemotion_ELN/blob/applying-gem-shrine/spec/spec_helper.rb#L86)
 :::
- 
+
 - Methods of classes/objects  
 `allow_any_instance_of(CLASS_NAME).to receive(METHOD_NAME_AS_SYMBOL).and_return(RESULT)`  
 `allow_any_instance_of(CLASS_NAME).to receive(METHOD_NAME_AS_SYMBOL).and_raise(AN ERROR)`
-- for more infos: [rspec-mocks](https://relishapp.com/rspec/rspec-mocks/docs) 
+- for more infos: [rspec-mocks](https://relishapp.com/rspec/rspec-mocks/docs)
 
 ## Acceptance tests
+
 When you have freshly installed Chemotion ELN, make sure to create a `welcome-message.md` file in the public directory inside Chemotion ELN before running acceptance tests. You can create it from the example file:
 
 ## Coverage
+
 Infos about code coverage: [Code Coverage](https://www.guru99.com/code-coverage.html)
 
 ### JavaScript unit tests
+
 - Using `npm run coverage` creates a coverage report in HTML written in .coverage. The method of covering is condition coverage.
-- in package.json one can exclude directories from coverage 
+- in package.json one can exclude directories from coverage
 - Coverage is currently not included in CI
-
-
-    
-    
-        
-        
