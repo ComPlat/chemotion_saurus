@@ -106,7 +106,7 @@ as independent as possible of other changes on the same branch.
 
 ### Commit messages
 
-Writing clear and concise commit messages is very helpful for reviewing a feature branch and searching the git history.
+Writing descriptive and concise commit messages is very helpful for reviewing a feature branch and searching the git history.
 
 TODO:
 
@@ -136,10 +136,10 @@ In addition to the precaution of using `--force-with-lease`,
 make sure to frequently and proactively communicate with anyone collaborating on `feature`.
 It's the best way to build a shared context and make it easier to integrate your collaborative work.
 
-## Pull requests from your feature branch
+## Opening pull requests from your feature branch
 
-With pull requests (in the following referred to as PR),
-the team can review features, and eventually merge them into the default branch.
+Pull requests (in the following referred to as PR),
+allow the team to review features, and eventually merge them into the default branch.
 As a rule of thumb, [open a PR](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request?tool=webui)
 sooner rather than later.
 In other words, you don't have to wait with opening a PR until you feel like the feature is ready and polished.
@@ -147,20 +147,57 @@ On the contrary: early feedback is extremely valuable.
 It's much easier to make feedback-based changes in the early stages of development,
 rather than having to correct course once the feature-ship has already sailed.
 
+### Scoping a pull request
+
+Avoid large pull requests that propose changes to many files.
+Also try to keep the size of diffs per file as small as possible.
+Introduce only one change at a time, and split multiple changes across multiple PRs.
+Well-scoped PRs speed up code review and reduce the cognitive demand on reviewers.
+
+### Naming a pull request
+
+Give your PR a descriptive and concise title.
+Do not include issue numbers in the title.
+Consider the bigger project context when choosing a title.
+
+### Describing a pull request
+
+In the description of the PR, try to provide as much context as possible.
+Especially answering _why_ the changes were made is very useful for reviewers.
+
+### Inviting reviewers
+
 Be proactive about [inviting reviewers](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/requesting-a-pull-request-review) to your PR,
 and follow up with them if they don't respond. It's easy to forget
 about PR invites, or responding to comments on a PR, and reminders are very valuable.
 
-TODO:
+:::info Resources
 
-* PR naming convention
-* how to merge PR? rebase `feature` onto `main` with squashed commits (full history preserved in PRs)
+* <https://docs.github.com/en/pull-requests/collaborating-with-pull-requests>
+* <https://opensource.com/article/18/6/anatomy-perfect-pull-request>
+
+:::
+
+## Merging pull requests
+
+Before a PR can be merged, a number of quality checks have to be passed:
+
+* linting
+* code coverage
+* approving review by at least one maintainer
+* all review discussions are marked as resolved
+
+Once the review is finished and all quality checks pass, a maintainer with push access
+can merge `feature` into `main`.
+We merge PRs by squashing all commits on the feature branch,
+using the [Squash and merge](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/about-pull-request-merges) option in the GitHub UI.
+Consequently, we can conveniently trace which features have been merged into `main` and in which order.
+The merge-commit message by default includes the PR number,
+such that we can conveniently access the full history of a PR (despite it being squashed).
 
 :::info Resources
 
 * <https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/about-pull-request-merges>
-* <https://docs.github.com/en/pull-requests/collaborating-with-pull-requests>
-
 :::
 
 ## Misc
