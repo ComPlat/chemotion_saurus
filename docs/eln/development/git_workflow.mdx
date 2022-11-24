@@ -27,15 +27,15 @@ Each of the developers has a branch that's tracking `feature` locally on their m
 Let's assume for the remaining chapter that you have a branch `feature-dev-a` on your machine,
 that's tracking the `feature` branch.
 The arrows don't represent git-specific technical details.
-They represent the flow of information in the sense of
-"commits from a source branch are integrated into a receiving branch",
+They represent the flow of information:
+commits from a source branch are integrated into a receiving branch,
 with the arrow-head pointing towards the receiving branch.
 
 ![diagram_git_workflow](/img/git-workflow.drawio.svg)
 
 ## Creating a branch for your feature
 
-Make sure that your branching `feature` off of the up-to-date `main` branch.
+Make sure that you're branching `feature` off of the up-to-date `main` branch.
 When creating a feature branch, please consider the following guidelines about naming the branch:
 
 * choose a short, concise name
@@ -50,21 +50,21 @@ that have been pushed to `main` and/or `feature` while you were working on `feat
 Note that you don't need to worry about staying in sync with `feature` if you're the only one working
 on that branch.
 
-When you sync your `feature-dev-a` branch regularly it will be a lot easier to resolve merge conflicts,
+When you sync your `feature-dev-a` branch regularly, it will be a lot easier to resolve merge conflicts,
 and you're always testing your changes against the current "ground truth" on `main` and `feature`.
 Ideally, you make a habit of regularly (e.g., every time you resume working on `feature-dev-a`)
 integrating the latest changes.
 
 On this project, we merge branches without separate merge commits.
-That means that we're integrating changes by **rebasing** in order to maintain a clean git history.
+That means we're integrating changes by **rebasing** in order to maintain a clean git history.
 
 What does that mean in practice? Let's assume you currently have `feature-dev-a` checked out
 (i.e., `git status` returns "On branch feature-dev-a ...").
 
 If there are commits on `main` that you don't have on `feature-dev-a` yet,
 you can pull in those changes by rebasing `feature-dev-a` onto `main`.
-Note that this applies to the `feature` branch as well.
-If your collaborator has pushed changes from their `feature-dev-b` branch to `feature`,
+Note that this applies to the `feature` branch as well:
+if your collaborator has pushed changes from their `feature-dev-b` branch to `feature`,
 you can pull in those changes by rebasing your `feature-dev-a` onto `feature`.
 
 You can achieve this conveniently with the following command:
@@ -74,25 +74,20 @@ git pull --rebase origin main
 git pull --rebase origin feature
 ```
 
-During rebasing you might have to [resolve merge conflict](TODO_link_to_resource).
-After rebasing, you might have to [force push](https://www.git-tower.com/blog/force-push-in-git/)
-your rebased commits to `feature` in case the commits had been pushed before (with a different hash).
-To avoid trouble with collaborators, use `--force-with-lease` instead of `--force`!
-If new commits are added to `feature` (i.e., pushes from `feature-dev-b`),
-that you haven't pulled into `feature-dev-a` yet,
-`--force-with-lease` would abort the push.
-Note that `--force` would overwrite / remove your collaborator's changes.
-In addition to the precaution of using `--force-with-lease`,
-make sure to frequently and proactively communicate with anyone collaborating on `feature`.
-It's the best way to build a shared context and make it easier to integrate your collaborative work.
+During rebasing you might have to [resolve merge conflicts](TODO_link_to_resource).
+
+:::info Resources
 
 * <https://levelup.gitconnected.com/how-to-collaborate-using-git-without-messing-things-up-7111f6ae8285>
 * <https://poanchen.github.io/blog/2020/09/19/what-to-do-when-git-branch-has-diverged>
 * <https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/keeping-your-pull-request-in-sync-with-the-base-branch>
 * <https://www.atlassian.com/git/articles/git-team-workflows-merge-or-rebase>
-* <https://www.atlassian.com/git/tutorials/merging-vs-rebasing#conceptual-overview>
+* <https://www.atlassian.com/git/tutorials/merging-vs-rebasing>
 * <https://hackernoon.com/git-merge-vs-rebase-whats-the-diff-76413c117333>
-* <https://www.derekgourlay.com/blog/git-when-to-merge-vs-when-to-rebase/>
+* <https://blog.verslu.is/git/git-rebase/>
+* <https://docs.gitlab.com/ee/topics/git/git_rebase.html>
+* <https://stackoverflow.com/questions/40006193/rebasing-after-a-pull-request>
+:::
 
 ## Committing changes to your feature branch
 
@@ -113,26 +108,60 @@ as independent as possible of other changes on the same branch.
 
 Writing clear and concise commit messages is very helpful for reviewing a feature branch and searching the git history.
 
-* <https://www.git-tower.com/blog/how-to-write-the-perfect-commit-message/>
-
 TODO:
 
 * conventions
 
+:::info Resources
+
+* <https://www.git-tower.com/blog/how-to-write-the-perfect-commit-message/>
+:::
+
 ## Pushing your feature branch
 
 Push your commits early and frequently.
-Keep evolving your feature branch publicly, rather than committing locally and then pushing only "when the feature is done".
-Facilitates collaboration, as well as early, focussed review and feedback.
+Keep evolving your feature branch publicly, rather than committing locally and pushing only "once the feature is done".
+By publishing your commits as early as possible, you'll facilitate collaboration,
+as well as early, focussed review and feedback.
 
-## Pull requests / Merging a feature branch into the default branch
+If you've previously rebased the branch you're about to push,
+you might have to [force push](https://www.git-tower.com/blog/force-push-in-git/)
+your rebased commits to `feature` in case the commits had been pushed before (with a different hash).
+To avoid trouble with collaborators, use `--force-with-lease` instead of `--force`!
+If new commits are added to `feature` (i.e., pushes from `feature-dev-b`),
+that you haven't pulled into `feature-dev-a` yet,
+`--force-with-lease` would abort the push.
+Note that `--force` would overwrite / remove your collaborator's changes.
+In addition to the precaution of using `--force-with-lease`,
+make sure to frequently and proactively communicate with anyone collaborating on `feature`.
+It's the best way to build a shared context and make it easier to integrate your collaborative work.
 
-* <https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/about-pull-request-merges>
+## Pull requests from your feature branch
+
+With pull requests (in the following referred to as PR),
+the team can review features, and eventually merge them into the default branch.
+As a rule of thumb, [open a PR](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request?tool=webui)
+sooner rather than later.
+In other words, you don't have to wait with opening a PR until you feel like the feature is ready and polished.
+On the contrary: early feedback is extremely valuable.
+It's much easier to make feedback-based changes in the early stages of development,
+rather than having to correct course once the feature-ship has already sailed.
+
+Be proactive about [inviting reviewers](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/requesting-a-pull-request-review) to your PR,
+and follow up with them if they don't respond. It's easy to forget
+about PR invites, or responding to comments on a PR, and reminders are very valuable.
 
 TODO:
 
 * PR naming convention
 * how to merge PR? rebase `feature` onto `main` with squashed commits (full history preserved in PRs)
+
+:::info Resources
+
+* <https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/about-pull-request-merges>
+* <https://docs.github.com/en/pull-requests/collaborating-with-pull-requests>
+
+:::
 
 ## Misc
 
@@ -141,11 +170,3 @@ TODO:
 * new functionality is covered with tests / no drops in test coverage
 * add a bullet point on top of the CHANGELOG (optional: reference to github issue/PR)
 * parallel PR for documentation on Docusaurus if the feature/fix is tagged for a release
-
-## Resources
-
-* <https://docs.github.com/en/pull-requests/collaborating-with-pull-requests>
-* <https://git-scm.com/book/en/v2/Distributed-Git-Distributed-Workflows>
-* <https://blog.verslu.is/git/git-rebase/>
-* <https://docs.gitlab.com/ee/topics/git/git_rebase.html>
-* <https://stackoverflow.com/questions/40006193/rebasing-after-a-pull-request>
