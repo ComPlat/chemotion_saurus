@@ -30,5 +30,8 @@ This command generates static content into the `build` directory and can be serv
 npm run clear
 ```
 
+## Deploy
+The website is deployed with GitHub Actions: https://github.com/ComPlat/chemotion_saurus/blob/aa6fe5cc1ade8517f855a7df1ef4f6d648c67f26/.github/workflows/build.yml#L40
+
 ## Code Status
 ![](https://github.com/ComPlat/chemotion_saurus/actions/workflows/build.yml/badge.svg)
