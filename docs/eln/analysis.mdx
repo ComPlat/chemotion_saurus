@@ -5,19 +5,20 @@ sidebar_label: Overview
 slug: analysis
 ---
 
-The Chemotion ELN supports the upload of in principle every dataset that is provided.
+The Chemotion ELN supports the upload of many dataset formats.
 The file size restriction is set by the admin of the Chemotion ELN instance and can be adjusted to your needs.
 If open file formats are available, spectra viewers can visualize and edit the data set.
-At the moment, the Chemotion ELN supports ChemSpectra as data viewer. NMRium will be implemented soon.
+At the moment, the Chemotion ELN supports ChemSpectra as data viewer.
 
 ## 1. ChemSpectra
 
-This section offers a brief overview over ChemSpectra and its functions,
-an in-depth description was published [here](https://doi.org/10.1186/s13321-020-00481-0).
+This section offers a brief overview over ChemSpectra and its functions.
+An in-depth description was published [here](https://doi.org/10.1186/s13321-020-00481-0).
 
-ChemSpectra is a web-based software for the visualization and analysis of spectroscopic data and allows the analysis
-of data attached to a sample or reaction in the Chemotion ELN.
-The focus of ChemSpectra is on analytical methods used in synthetic organic chemistry, such as infrared spectroscopy,
+ChemSpectra is a web-based software for the visualization and analysis of spectroscopic data
+and allows the analysis of data attached to a sample or reaction in the Chemotion ELN.
+The focus of ChemSpectra is on analytical methods used in synthetic organic chemistry,
+such as infrared spectroscopy,
 mass spectrometry and NMR spectroscopy (one dimensional <sup>1</sup>H and <sup>13</sup>C).
 The tool supports the open file formats JCAMP-DX (jdx) and mz(X)ML.
 Furthermore, it can support RAW and FID files.
@@ -38,23 +39,44 @@ The analysis of the spectra can be submitted to the Chemotion ELN through the bl
 in the upper right corner. After submission, the peak list (green box) is generated automatically and
 can be further modified by the user.
 
-## 2. Analysing data in ChemotionELN
-To analyse your data, you can follow these steps:
-1. Open your details of Sample and select Analyses tab. Then click on `Add analysis` button to create a new analysis.
+## 2. Analysing data in Chemotion ELN
+
+1. Open your Sample details and select the Analyses tab. Then click on the`Add analysis` button to create a new analysis.
 <img src={require('@site/static/img/chemspectra/chemspectra_upload_file_1.png').default} alt={"chemspectra create new analysis"} height={"100%"} width={"100%"}/>
 
-2. Scroll down and select button to add new dataset.
+2. Scroll down and select the `+` button to add a new dataset.
 <img src={require('@site/static/img/chemspectra/chemspectra_upload_file_2.png').default} alt={"chemspectra add new analysis dataset"} height={"100%"} width={"100%"}/>
 
 3. Click to upload your files or drop down your files.
 <img src={require('@site/static/img/chemspectra/chemspectra_upload_file_3.png').default} alt={"chemspectra upload analysis dataset"} height={"100%"} width={"100%"}/>
 
-4. Click close button to close the popup view and click `Save` button to save your files.
+4. Click the close button to close the popup view and click `Save` to save your files.
 <img src={require('@site/static/img/chemspectra/chemspectra_upload_file_4.png').default} alt={"chemspectra close popup"} height={"100%"} width={"100%"}/>
 
 <img src={require('@site/static/img/chemspectra/chemspectra_upload_file_5.png').default} alt={"chemspectra save dataset upload"} height={"100%"} width={"100%"}/>
 
-5. After your files were processed, click on `Spectra Editor` button to open analyses viewer
+5. After your files were processed, click on the `Spectra Editor` button to open the analyses viewer.
 <img src={require('@site/static/img/chemspectra/chemspectra_upload_file_6.png').default} alt={"chemspectra button open spectra editor"} height={"100%"} width={"100%"}/>
 
 <img src={require('@site/static/img/chemspectra/chemspectra_upload_file_7.png').default} alt={"chemspectra frontend"} height={"100%"} width={"100%"}/>
+
+## 3. Analysing data with NMRium
+
+Besides Chemspectra, you can use NMRium to analyse NMR data.
+
+:::info Note
+In Chemotion ELN version 1.5, we only support opening and viewing NMR data.
+We will support saving your analyzed data in upcoming versions.
+:::
+
+You can only open NMRium after defining your `Type (Chemical Methods Ontology)` is NMR.
+<img src={require('@site/static/img/chemspectra/nmrium/nmrium_1.png').default} alt={"nmrium select type"} height={"100%"} width={"100%"}/>
+
+Click on the icon to open your file with NMRium.
+<img src={require('@site/static/img/chemspectra/nmrium/nmrium_2.png').default} alt={"open nmrium"} height={"100%"} width={"100%"}/>
+
+**1D spectrum**
+<img src={require('@site/static/img/chemspectra/nmrium/nmrium_3.png').default} alt={"nmrium modal 1D"} height={"100%"} width={"100%"}/>
+
+**2D spectrum**
+<img src={require('@site/static/img/chemspectra/nmrium/nmrium_4.png').default} alt={"nmrium modal 2D"} height={"100%"} width={"100%"}/>
