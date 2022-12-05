@@ -58,7 +58,7 @@ These steps would boil down to this:
 ```
 mkdir -p ./shared/config/                   # this makes sure a configuration directory for the ELN exists
 mkdir -p ./services/converter/              # this creates a directory holding service configurations
-docker run --entrypoint htpasswd httpd:2 -sbn mysuser mypassword > ./services/converter/htpasswd   # this creates a user in the service's authentication database
+docker run --entrypoint htpasswd httpd:2 -sbn mysuser mypassword | grep ':' > ./services/converter/htpasswd   # this creates a user in the service's authentication database
 
 cat >> ./shared/config <<EOF
 production:
