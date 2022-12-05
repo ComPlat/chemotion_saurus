@@ -9,6 +9,94 @@ slug: docker_installation
 Documentation and processes are being reworked and improved at the moment. It may happen that you miss information. If you face problems, please let us know, we are there to support you. You may also [contact](specific_contact) us directly if you plan to install Chemotion. 
 :::
 
+## Version 1.4.1 {#version-141}
+
+The latest version of the Chemotion images is `1.4.1-2` as listed on [DockerHub](https://hub.docker.com/repository/docker/ptrxyz/chemotion).
+In addition, there is a compose file for simpler usage: [docker-compose.yml](https://github.com/ptrxyz/chemotion/blob/latest-release/docker-compose.yml)
+
+With version 1.4.1 two new services got introduced: the Chemotion file format converter and the Ketcher render backend.
+The services are optional but it is adviced to leave them enabled. To disable the service, remove the service definition from the compose file.
+
+### New Configuration variable {#publicurl-141}
+
+In our efforts to streamline some settings of the ELN, we introduced a new environment variable `PUBLIC_URL`. This variable is meant to be set to the public URL that points to your ELN installation. This variable is used whenever the ELN has to construct absolute URLs, for example when an E-Mail is send after user registration.
+
+The variable also deprecates the variables "HOST_URL" and "HOST_PROTOCOL". Those are now ignored and can safely be removed.
+
+To set the variable, add it to the sections "services.worker.environment" and "services.eln.environemnt" just below the already present variables (such as "CONFIG_ROLE" for example) in your `docker-compose.yml`.
+
+i.e. if you type "http://my.eln" in your browser to reach the ELN, please set this variable to `PUBLIC_URL=http://my.eln`
+
+### New Services
+
+#### Ketcher Service
+
+The Ketcher backend render service is used to render molecules on the backend. It is optional and the ELN will fall back to a different rendering mechanism if the service can not be reached. This might result in less uniform visuals.
+
+By default, the render service is already configure in the docker containers for the default compose environment.
+
+To configure the Ketcher backend render service differently, simply create a new configuration file called `ketcher_service.yml` in your config folder (by default that is `./shared/config`) with the following content:
+
+```
+production:
+  :url: 'http://ketchersvc/render'
+```
+Adjust the URL in case you run the service outside the default compose environment/at a differeny location.
+
+#### Converter Service {#converter-141}
+
+To configure the converter service, please follow the steps described here in the documentation (see side pane).
+
+In short, the following steps have to be taken:
+
+- create a directory to hold all it's configuration
+- create a user for the ELN to authenticate at the service
+- configure the ELN to use the service and the creaeted user
+
+These steps would boil down to this:
+
+```
+mkdir -p ./shared/config/                   # this makes sure a configuration directory for the ELN exists
+mkdir -p ./services/converter/              # this creates a directory holding service configurations
+docker run --entrypoint htpasswd httpd:2 -sbn mysuser mypassword > ./services/converter/htpasswd   # this creates a user in the service's authentication database
+
+cat >> ./shared/config <<EOF
+production:
+  :url: 'http://converter/'
+  :profile: MYUSER
+  :secret_key: MYPASS
+  :timeout: 300
+  :ext:
+    - '.xy'
+    - '.xls'
+    - '.xlsx'
+    - '.txt'
+    - '.brml'
+    - '.dta'
+    - '.pssession'
+EOF
+```
+
+### Fresh Installation {#fresh-141}
+
+To install, simply download the compose file and place it in an empty directory.
+The ELN does not need any more configuration beside the configuration for the Converter service (again, see converter documentation and [the section above](#fresh-141)) and (optionally) the configuration for the PUBLIC_URL variable as described [here](#publicurl-141).
+
+### Upgrading from 1.3.0 or above
+
+:::info
+Before you upgrade your Chemotion installation, please make sure you have a backup of all your data (docker volume and database data).
+:::
+
+To upgrade a default installation, the following steps need to be taken:
+
+- shutdown your Chemotion instance (`docker-compose down --remove-orphans`)
+- replace your docker-compose.yml file with the one for version 1.4.1 (see [this](#version-141)).
+- delete the Chemotion app volume (by default this is named "chemotion_app", `docker volume rm chemotion_app`).
+- configure the PUBLIC_URL variable as described [here](#publicurl-141)
+- configure the converter service as described in the documentation or in the [section above](#fresh-141).
+- restart the system using `docker-compose up`.
+
 ## Version 1.3.0p220705
 
 :::info
