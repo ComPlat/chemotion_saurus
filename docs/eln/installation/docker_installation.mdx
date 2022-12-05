@@ -9,6 +9,12 @@ slug: docker_installation
 Documentation and processes are being reworked and improved at the moment. It may happen that you miss information. If you face problems, please let us know, we are there to support you. You may also [contact](specific_contact) us directly if you plan to install Chemotion. 
 :::
 
+## Prerequisites
+
+To setup the Chemotion ELN using Docker, Docker Engine and Docker Compose have to be installed on the host machine. Please refer to the [Docker distributions documentation](https://docs.docker.com/desktop/install/linux-install/) on how this can be achieved. For Ubuntu-based machines, this can be found [here](https://docs.docker.com/engine/install/ubuntu/).
+
+The Docker Daemon may be configured to run as a non-root user (Rootless mode). Please see the distribution-specific [setup instructions](https://docs.docker.com/engine/security/rootless/) for details.
+
 ## Version 1.4.1 {#version-141}
 
 The latest version of the Chemotion images is `1.4.1-2` as listed on [DockerHub](https://hub.docker.com/repository/docker/ptrxyz/chemotion).
@@ -328,7 +334,7 @@ On the inside, we managed to reduce the size of our images by more than 50% by b
 
 
 ## Preparation
-To setup the Chemotion ELN using Docker, Docker and Docker Compose have to be installed on the host machine. Please refer to your distributions documentation on how this can be achieved. For Ubuntu-based machines, this can be found [here](https://docs.docker.com/engine/install/ubuntu/).
+To setup the Chemotion ELN using Docker, Docker Engine and Docker Compose have to be installed on the host machine. Please refer to the [Docker distributions documentation](https://docs.docker.com/desktop/install/linux-install/) on how this can be achieved. For Ubuntu-based machines, this can be found [here](https://docs.docker.com/engine/install/ubuntu/).
 
 In addition you need that latest version of our Docker Compose service description as well as some scripts depending on your scenario. The file can be found here:
 
