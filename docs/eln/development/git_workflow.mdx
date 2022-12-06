@@ -7,7 +7,7 @@ slug: git_workflow
 
 ## Introduction
 
-Sharing an _explicit_ git-workflow is essential for efficient collaboration, especially for new team members.
+A shared, _explicit_ git-workflow is essential for efficient collaboration, especially for new team members.
 In this chapter we document our git-workflow in order to reduce uncertainty and ambiguity in our collaboration.
 
 We have a centralized git-workflow with feature branches.
@@ -74,7 +74,7 @@ git pull --rebase origin main
 git pull --rebase origin feature
 ```
 
-During rebasing you might have to [resolve merge conflicts](TODO_link_to_resource).
+During rebasing you might have to [resolve merge conflicts](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/about-merge-conflicts).
 
 :::info Resources
 
@@ -106,11 +106,27 @@ as independent as possible of other changes on the same branch.
 
 ### Commit messages
 
-Writing descriptive and concise commit messages is very helpful for reviewing a feature branch and searching the git history.
+Writing descriptive and concise commit messages is very helpful for reviewing a feature branch and searching the git history. When writing commit messages, stick to the following conventions.
+The first line (subject line):
 
-TODO:
+* is as short as possible
+* starts with a capitalized letter
+* contains no punctuation characters
+* is written in imperative form (i.e., "Add", not "Added", or "Adds")
 
-* conventions
+Additionally, you can add a more lengthy description after the subject line.
+Separate the subject line and description with a blank line.
+
+```shell
+Add example commit message
+
+More detailed description of the example message,
+it can contain URLs, and lists:
+- foo
+- bar
+- baz
+
+```
 
 :::info Resources
 
@@ -171,6 +187,14 @@ Be proactive about [inviting reviewers](https://docs.github.com/en/pull-requests
 and follow up with them if they don't respond. It's easy to forget
 about PR invites, or responding to comments on a PR, and reminders are very valuable.
 
+:::caution PR checklist
+
+* if the changes are visible to the end-user, consider adding videos or screenshots to the PR description, in order to facilitate reviewing and testing
+* new features are covered with tests
+* add new features or significant other changes to the [CHANGELOG](https://github.com/ComPlat/chemotion_ELN/blob/8385ccfe10ee1c402ef316bffb29ec64c6982313/CHANGELOG.md)
+* contribute documentation for new features by opening a PR on [Docusaurus](https://github.com/ComPlat/chemotion_saurus)
+:::
+
 :::info Resources
 
 * <https://docs.github.com/en/pull-requests/collaborating-with-pull-requests>
@@ -199,11 +223,3 @@ such that we can conveniently access the full history of a PR (despite it being 
 
 * <https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/about-pull-request-merges>
 :::
-
-## Misc
-
-* proposal to rename "development-5" to "main" (or "development")
-* if the changes are visible to the end-user, video or screenshots should be added to the PR, in order to facilitate user testing
-* new functionality is covered with tests / no drops in test coverage
-* add a bullet point on top of the CHANGELOG (optional: reference to github issue/PR)
-* parallel PR for documentation on Docusaurus if the feature/fix is tagged for a release
