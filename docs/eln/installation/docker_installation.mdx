@@ -66,7 +66,7 @@ mkdir -p ./shared/pullin/config/                   # this makes sure a configura
 mkdir -p ./services/converter/              # this creates a directory holding service configurations
 docker run --entrypoint htpasswd httpd:2 -sbn mysuser mypassword | grep ':' > ./services/converter/htpasswd   # this creates a user in the service's authentication database
 
-cat >> ./shared/pullin/config <<EOF
+cat >> ./shared/pullin/config/converter.yml <<EOF
 production:
   :url: 'http://converter/'
   :profile: MYUSER
