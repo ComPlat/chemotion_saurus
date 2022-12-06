@@ -41,7 +41,7 @@ The Ketcher backend render service is used to render molecules on the backend. I
 
 By default, the render service is already configure in the docker containers for the default compose environment.
 
-To configure the Ketcher backend render service differently, simply create a new configuration file called `ketcher_service.yml` in your config folder (by default that is `./shared/config`) with the following content:
+To configure the Ketcher backend render service differently, simply create a new configuration file called `ketcher_service.yml` in your config folder (by default that is `./shared/pullin/config`) with the following content:
 
 ```
 production:
@@ -62,11 +62,11 @@ In short, the following steps have to be taken:
 These steps would boil down to this:
 
 ```
-mkdir -p ./shared/config/                   # this makes sure a configuration directory for the ELN exists
+mkdir -p ./shared/pullin/config/                   # this makes sure a configuration directory for the ELN exists
 mkdir -p ./services/converter/              # this creates a directory holding service configurations
 docker run --entrypoint htpasswd httpd:2 -sbn mysuser mypassword | grep ':' > ./services/converter/htpasswd   # this creates a user in the service's authentication database
 
-cat >> ./shared/config <<EOF
+cat >> ./shared/pullin/config <<EOF
 production:
   :url: 'http://converter/'
   :profile: MYUSER
