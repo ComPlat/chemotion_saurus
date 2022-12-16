@@ -43,12 +43,28 @@ The following list shows some (but not all) of the current readers available:
 
 The final rules to convert a data file into a standardized Bagit-it-zip-Container containing .jdx/.json files will be determined by profiles.
 Which profile is responsible is determined via identifiers.
-Like in case of the readers almost eyerthing the input file contains can be used as an identifier, as long as the sum of identifiers for one profil is unique.
+Like in case of the readers almost eyerthing the input file contains can be used as an identifier, as long as the sum of identifiers for one profile is unique.
 The most common identifiers are:
 * The file extension (.txt, .csv, .dta, ...)
 * The first human readable line(s) of the header
-* The data column titles 
+* The data column titles
+
+#### Purpose of the Profile GUI vs. Reader coding
+
+The aim of the profiles is to give admin users, which are less or non-experience with Python Coding, the possibility to define rulesets for conversion.
+It's also possible to define different profiles using the same Reader but slightly different datafiles (e.g., if only one column is varying or two columns are mixed).  
 
 ### Third layer: Upload, processing and output
+
+The normal user will only see the upload GUI, shown by the picture as standalone version (left) or inside the ELN (right).
+
+![Two possible upload GUIs](../../../static/img/converter/UploadGUI.png)
+
+After the file is uploaded, it will be converted as long as there exists a suitable reader and profile.
+It's possible (via deep coding) to define which file types are redirected to the converter and which ones are only displayed as they are (e.g. in case of binary files like pictures) to evade errors from the Converter app. 
+
+### Summary
+
+The following picture shows the course of the three layers.
 
 ![Flow diagram of the three Layers](../../../static/img/converter/ConverterLayers.svg) 
