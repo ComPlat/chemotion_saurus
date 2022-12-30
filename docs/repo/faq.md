@@ -1,6 +1,6 @@
 ---
 id: faq
-title: Fequently Asked Questions (FAQ)
+title: Frequently Asked Questions (FAQ)
 slug: faq
 sidebar_label: FAQ
 author: Nicole Jung
