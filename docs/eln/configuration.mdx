@@ -5,16 +5,16 @@ sidebar_label: Configuration
 slug: settings
 ---
 
-:::info Info 
+:::info Info
 This page is still being edited and reviewed.
-::: 
+:::
 
 ## User name_abbreviation
 Name abbreviation, like e-mails, are unique in the DB and can be used for sign in.
 The length of it can be defined in the `user_props.yml` configuration file:
 
 ```sh
-# from the application dir (/var/www/chemotion_ELN/current) copy the config file 
+# from the application dir (/var/www/chemotion_ELN/current) copy the config file
 cp config/user_props.yml.example config/user_props.yml
 
 # edit it
@@ -29,13 +29,29 @@ ln -s  /var/www/chemotion_ELN/shared/config/user_props.yml /var/www/chemotion_EL
 ```
 
 ## SciFinder<sup>n</sup>
-  
-Chemotion ELN provides users with an easy way to search in CAS SciFinder<sup>n</sup>. To enable this feature, the necessary information needs to be configured in the `scfinder_n.yml` file.
+
+Chemotion ELN provides users with an easy way to query information in SciFinder<sup>n</sup> by using an API. To enable the use of the API, your institute needs to have a regular SciFinder<sup>n</sup> license. For each ELN instance, a registration at CAS is needed.
+This is managed by the Chemotion team at KIT to facilitate the process.
+
+### Instance Registeration
+
+For requesting a license for SciFinder<sup>n</sup> API use in Chemotion, please send a short request including the following information to [nicole.jung@kit.edu](mailto:nicole.jung@kit.edu).
+
+* Institution
+* Redirect URL pattern list
+  * _The URL patterns represent the domain names that you will use to host your ELN server. The patterns may use standard wildcard characters (for example, '*' for 0 or more characters).  Be sure to include all environments (including dev, test, etc.) that you might provision._
+* Contact information
+
+Once the process is complete, you will receive a Client ID which you can enable the feature by following the "Settings" section below.
+
+### Settings
+
+To enable this feature, the necessary information needs to be configured in the `scfinder_n.yml` file.
   
 The `scfinder_n.yml` configuration file is in the `config` folder. To create the file for the first time,
 
 ```sh
-# from the application dir (/var/www/chemotion_ELN/current) copy the config file 
+# from the application dir (/var/www/chemotion_ELN/current) copy the config file
 cp config/scfinder_n.yml.example config/scfinder_n.yml
 
 # edit it
@@ -50,23 +66,27 @@ ln -s  /var/www/chemotion_ELN/shared/config/scfinder_n.yml /var/www/chemotion_EL
 ```
 
 scfinder_n.yml:
+
 ```sh
 ### example of scfinder_n.yml
 production:
   :provider:
     :metadata: 'api/oauth2/metadata' # DON'T CHANGE
     :host: 'https://scifinder-n.cas.org' # DON'T CHANGE
-    :client_id: '' # your client id, issued by CAS SciFinder
+    :client_id: '' # the client id you received
     :redirect: 'sfn_cb' # DON'T CHANGE
-    :redirect_host: 'localhost' # your server 
+    :redirect_host: 'localhost' # your server
 ```
 
 :::info NOTE
 After editing the scfinder_n.yml the service needs to be restarted.
 :::
 
+### User Authorization
 
-## Secret key 
+This feature requires authorized access. As a system administrator, you can grant or deny users access to the function. Please see [Admin UI > UI features](/docs/eln/admin_ui/ui_features)
+
+## Secret key
 used for cookie encryption.
 stored in `.env` file
 
@@ -77,7 +97,7 @@ Chemotion ELN uses Ketcher as the default structure editor. To use other editors
 The `structure_editors.yml` configuration file is in the `config` folder. To create the file for the first time,
 
 ```sh
-# from the application dir (/var/www/chemotion_ELN/current) copy the config file 
+# from the application dir (/var/www/chemotion_ELN/current) copy the config file
 cp config/structure_editors.yml.example config/structure_editors.yml
 
 # edit it
@@ -139,22 +159,22 @@ If `HOST` is not set, Chemotion ELN may also use the value of `SMTP_DOMAIN`.
 ## e-mail-service (optional)
 
 For sending users account e-mail confirmation request, reset password instructions, or other notifications.
- 
+
 e-mail configuration parameters are set as environment variables in the `.env` file.
 below a list of available parameters:
 
 ```sh
 # default url of your Chemotion ELN for http links in e-mails:
-SMTP_HOST='sld.tld' 
+SMTP_HOST='sld.tld'
 # senders e-mail:
-DEVISE_SENDER='no-reply@sld.tld' 
+DEVISE_SENDER='no-reply@sld.tld'
 
-## SMTP config 
+## SMTP config
 # Remote mail server
 SMTP_ADDRESS='smtp.sld.tld'
 SMTP_PORT=587
 # login user name & password:
-SMTP_USERNAME='no-reply@sld.tld' 
+SMTP_USERNAME='no-reply@sld.tld'
 SMTP_PASSWORD='s3cr3tPW'
 # optional, HELO domain
 SMTP_DOMAIN='sld.tld'
@@ -162,14 +182,14 @@ SMTP_DOMAIN='sld.tld'
 SMTP_TLS=true
 # authentication type ('plain' 'login' (Base64 encoded) or 'cram_md5')
 SMTP_AUTH='plain'
-# how OpenSSL checks the certificate  ('none' or 'peer') 
+# how OpenSSL checks the certificate  ('none' or 'peer')
 SMTP_SSL_MODE='none'
 ```
 
 See [rails docs](https://guides.rubyonrails.org/action_mailer_basics.html#action-mailer-configuration) for an explanation of the parameters.
 
 
-## File collector 
+## File collector
 
 This is an optional service to collect data files and distribute them to the Chemotion ELN inbox of the respective users.
 
@@ -179,7 +199,7 @@ Two options are available:
 - collecting attachment files from e-mails
 - collecting file or folder from local drives or over scp
 
-### e-mail-attachment collection 
+### e-mail-attachment collection
 
 The Chemotion ELN-app should be given access to an e-mail account in which it will regularly check for incoming e-mails and collect the attachments.
 The attachments are then distributed to Chemotion ELN user by matching the additional addressee present in the __To:__ or __CC:__ field of the e-mail. The sender's e-mail address should also be one of an Chemotion ELN-registered device. 
