@@ -144,28 +144,28 @@ production:
 After editing the structure_editors.yml the service needs to be restarted.
 :::
 
-## Set hostname for file download
+## Set the hostname for generating proper file download links
 
-In order for file downloads (e. g., in exporting [collections](/docs/eln/collections)) to work correctly, you have to configure your hostname for Chemtion ELN. You can do that in the `.env` file:
+In order for file downloads links (e. g., in exporting [collections](/docs/eln/collections)) to work correctly, you have to configure the hostname of your Chemotion ELN. Set the following variable accordingly in the `.env` file:
 
 ```
-HOST='my.hostname.com'
+PUBLIC_URL='https://my.hostname.edu'
 ```
 
 :::info NOTE
-If `HOST` is not set, Chemotion ELN may also use the value of `SMTP_DOMAIN`.
+`PUBLIC_URL` has been replacing the `HOST` and `SMTP_HOST` variables since version v1.4.
 :::
 
 ## e-mail-service (optional)
 
-For sending users account e-mail confirmation request, reset password instructions, or other notifications.
+This is used for sending the users an e-mail confirmation request, reset password instructions, or other notifications.
 
 e-mail configuration parameters are set as environment variables in the `.env` file.
-below a list of available parameters:
+below is the list of available parameters:
 
 ```sh
 # default url of your Chemotion ELN for http links in e-mails:
-SMTP_HOST='sld.tld'
+PUBLIC_URL='https://sld.tld'
 # senders e-mail:
 DEVISE_SENDER='no-reply@sld.tld'
 
@@ -173,7 +173,7 @@ DEVISE_SENDER='no-reply@sld.tld'
 # Remote mail server
 SMTP_ADDRESS='smtp.sld.tld'
 SMTP_PORT=587
-# login user name & password:
+# login user name & password if applicable:
 SMTP_USERNAME='no-reply@sld.tld'
 SMTP_PASSWORD='s3cr3tPW'
 # optional, HELO domain
@@ -281,6 +281,8 @@ For each registered Device, a collection job can be set up through the administr
 ## External services 
 
 ### Chem-Spectra-App
+
+If you are using the docker production setup, the service is already installed and configured, but you can still decide to overwrite the configuration file to use another instance of the service.
 
 #### Installation
 
