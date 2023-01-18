@@ -20,7 +20,8 @@
         "[markdown]": {
           "editor.defaultFormatter": "esbenp.prettier-vscode"
         },
-        "cSpell.enableFiletypes": ["md", "mdx", "!js", "!json", "!jsonc"]
+        "cSpell.enableFiletypes": ["md", "mdx", "!js", "!json", "!jsonc"],
+        "cSpell.words": ["Chemotion"]
       },
 
       // Add the IDs of extensions you want installed when the container is created.

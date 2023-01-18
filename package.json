@@ -17,7 +17,7 @@
     "@fortawesome/fontawesome-svg-core": "*",
     "@fortawesome/free-solid-svg-icons": "*",
     "@fortawesome/react-fontawesome": "*",
-    "@mdx-js/react": "*",
+    "@mdx-js/react": "^1",
     "bootstrap": "*",
     "clsx": "*",
     "dotenv": "*",
