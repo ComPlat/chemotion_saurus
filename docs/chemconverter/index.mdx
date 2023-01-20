@@ -1,8 +1,7 @@
 ---
-id: converter_overview 
-title: Overview
-slug: converter_overview 
-sidebar_label: Overview
+id: ChemConverter
+title: ChemConverter
+sidebar_position: 4
 ---
 
 :::info Info
@@ -29,15 +28,16 @@ How the files are converted will be decided by specific rules which are listenin
 ### First layer: The reader
 
 The reader is one part of programming code responsible for the software to import and handle the given data format.
-It is the most powerfull layer due to flexibility (e.g. calculation of custom Metadata or special and complex column rules and calculations). 
+It is the most powerfull layer due to flexibility (e.g. calculation of custom Metadata or special and complex column rules and calculations).
 
 Source codes for the readers and examples can also be found on [Github](https://github.com/jochenklar/chemotion-converter-app/tree/master/converter_app/readers).
 There are readers for common file types and specific ones which are heirs of the basic ones.
 The following list shows some (but not all) of the current readers available:
-* ASCII (aka simple TXT)
-* CSV
-  * NOVA (Specific reader for an instrument without Metadata, also an example for custom Metadata calculation)
-* DTA
+
+- ASCII (aka simple TXT)
+- CSV
+  - NOVA (Specific reader for an instrument without Metadata, also an example for custom Metadata calculation)
+- DTA
 
 ### Second layer: The admin Profile creation GUI
 
@@ -45,24 +45,24 @@ The final rules to convert a data file into a standardized Bagit-it-zip-Containe
 Which profile is responsible is determined via identifiers.
 Like in case of the readers almost eyerthing the input file contains can be used as an identifier, as long as the sum of identifiers for one profile is unique.
 The most common identifiers are:
-* The file extension (.txt, .csv, .dta, ...)
-* The first human readable line(s) of the header
-* The data column titles
+
+- The file extension (.txt, .csv, .dta, ...)
+- The first human readable line(s) of the header
+- The data column titles
 
 #### Purpose of the Profile GUI vs. Reader coding
 
 The aim of the profiles is to give admin users, which are less or non-experience with Python Coding, the possibility to define rulesets for conversion.
-It's also possible to define different profiles using the same Reader but slightly different datafiles (e.g., if only one column is varying or two columns are mixed).  
+It's also possible to define different profiles using the same Reader but slightly different datafiles (e.g., if only one column is varying or two columns are mixed).
 
 ### Third layer: Upload, processing and output
 
 The normal user will only see the upload GUI, shown by the picture as standalone version (left) or inside the ELN (right).
 
-![Two possible upload GUIs](../../../static/img/converter/UploadGUI.png)
+![Two possible upload GUIs](/img/converter/UploadGUI.png)
 
 After the file is uploaded, it will be converted as long as there exists a suitable reader and profile.
 It's possible (via deep coding) to define which file types are redirected to the converter and which ones are only displayed as they are (e.g. in case of binary files like pictures) to evade errors from the Converter app.
-
 
 ## How-to ...
 
@@ -74,39 +74,14 @@ If using the standalone version just write your "converter-URL"/admin/ into your
 And if you are using the ELN integrated version you have to be logged in as an admin and click on the "Converter Profiles"-Tab on the left side.
 In both cases you will see the following GUI where all your profiles are listed (if there are already some of course):
 
-![Admin list of all current existing profiles](../../../static/img/converter/2ndLayerAdminGUI.png)
+![Admin list of all current existing profiles](/img/converter/2ndLayerAdminGUI.png)
 
 After clicking on the "Create new new profile"-Button you can finally start to ...
 
 ### ... create your own profile
 
-To create a profile a first example file has to be uploaded.
-This file should be a maxima example with as much information as possible, even if later data files sometimes have fewer.
-The file type and it contents must fit to an existing reader or an error will occure. 
-After the upload, the following default GUI will be shown:
-
-![Default screen after upload a file for profile creation - Screen 1](../../../static/img/converter/CreateProfileGUI_1.PNG)
-![Default screen after upload a file for profile creation - Screen 2](../../../static/img/converter/CreateProfileGUI_2.PNG)
-
-After all the adjustments and settings are done, the "Create profile" button will finish the job and the screen will be back to the existing profiles page.
-Now a non-admin user or an automatic process can upload and convert files.
-
-#### Specific settings
-
-##### Data Class
-
-The "Data Class" drop down menu defines the kind of jdx output.
-Currently there are four used classes:
-
-|Data Class |description |requirements |
-|---|---|---|
-|XY POINTS |typical "modern data curves" where each data point is descripted by two coordinates (x and y). Difference between each x need not to be equal | exactly one column with x values & one column with y values |
-|XY DATA |Classical jcamp files with the intension to save harddrive space. Difference between each x is always equal. | exactly one column with y values and defined values for FIRSTX, LASTX and DELTAX  |
-|PEAK TABLE | | |
-|NTUBLES | | |
-
 ## Summary
 
 The following picture shows the course of the three layers.
 
-![Flow diagram of the three Layers](../../../static/img/converter/ConverterLayers.svg) 
+![Flow diagram of the three Layers](/img/converter/ConverterLayers.svg)

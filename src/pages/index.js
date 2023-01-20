@@ -1,56 +1,51 @@
-import React from 'react';
-import clsx from 'clsx';
-import Layout from '@theme/Layout';
-import Link from '@docusaurus/Link';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import useBaseUrl from '@docusaurus/useBaseUrl';
-import styles from './styles.module.css';
+import React from "react";
+import clsx from "clsx";
+import Layout from "@theme/Layout";
+import Link from "@docusaurus/Link";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import useBaseUrl from "@docusaurus/useBaseUrl";
+import styles from "./styles.module.css";
 
 const features = [
   {
-    imageUrl: 'img/chemeln.jpg',
-    title: 'Chemotion ELN',
-    mainLink: 'https://demo.chemotion.ibcs.kit.edu/',
+    imageUrl: "img/chemeln.jpg",
+    title: "Chemotion ELN",
+    mainLink: "/docs/eln",
+    btnText: "Get Started",
   },
-
   {
-    imageUrl: 'img/chemrepo.png',
-    title: 'Repository',
-    mainLink: 'https://www.chemotion-repository.net/welcome',
-    btnText: 'Enter',
+    imageUrl: "img/chemeln.jpg",
+    title: "Demo",
+    mainLink: "https://demo.chemotion.ibcs.kit.edu/",
+    btnText: "Try",
   },
-
   {
-    imageUrl: 'img/spectraviewer.png',
-    title: 'ChemSpectra',
-    mainLink: 'https://demo.chemotion.ibcs.kit.edu/chemspectra',
-    mainTitle: ' Try our ChemSpectra'
-  },
-
-  {
-    imageUrl: 'img/chemscanner.png',
-    title: 'ChemScanner',
-    mainLink: 'http://eln.chemotion.net/chemscanner',
+    imageUrl: "img/chemrepo.png",
+    title: "Chemotion Repository",
+    mainLink: "https://www.chemotion-repository.net/welcome",
+    btnText: "Explore ↗",
   },
 ];
 
-function Feature({imageUrl, title, mainLink, btnText = 'Demo Version'}) {
-  const {siteConfig = {}} = useDocusaurusContext();
+function Feature({ imageUrl, title, mainLink, btnText }) {
+  const { siteConfig = {} } = useDocusaurusContext();
   const imgUrl = useBaseUrl(imageUrl);
   return (
-    <div className={clsx('card_u col col--2 margin--md margin--md')}>
-      <h3 style={{textAlign: "center", color:"#337ab7"}}>
+    <div className={clsx("card_u col col--2 margin--md margin--md")}>
+      <h3 style={{ textAlign: "center", color: "#337ab7" }}>
         {/*comment out to disable Chemotion icon over software tool images*/}
         {/*<img src={siteConfig.favicon} alt="Chemotion Icon" style={{verticalAlign: "bottom", width: "26px"}}/>*/}
-        {' '+ title}</h3>
-        {imgUrl && (
-            <img className={styles.featureImage} src={imgUrl} alt={title} />
-        )}
-        <div className={styles.link}>
-        <Link className={clsx('button button--primary button--lg')}
-              to={mainLink}
+        {" " + title}
+      </h3>
+      {imgUrl && (
+        <img className={styles.featureImage} src={imgUrl} alt={title} />
+      )}
+      <div className={styles.link}>
+        <Link
+          className={clsx("button button--primary button--lg")}
+          to={mainLink}
         >
-          { btnText }
+          {btnText}
         </Link>
       </div>
     </div>
@@ -58,27 +53,50 @@ function Feature({imageUrl, title, mainLink, btnText = 'Demo Version'}) {
 }
 
 function Home() {
-  const {siteConfig = {}} = useDocusaurusContext();
+  const { siteConfig = {} } = useDocusaurusContext();
 
   return (
     <Layout
       title={siteConfig.title}
-      description="Description will go into a meta tag in <head />">
-      <header className={clsx('hero hero--primary', styles.heroBanner)}>
-        <div className="row">
-        <div style={{margin: "1rem", textAlign: "center"}}>
-          <h1 className="hero__title">
-            <img src={'img/chemotion_full.svg'} alt="Chemotion Icon" style={{width: "40%", height: "40%"}}/>
-          </h1>
-          <h2>{siteConfig.tagline}</h2>
+      description="Description will go into a meta tag in <head/>"
+    >
+      <header className={clsx("hero hero--primary", styles.heroBanner)}>
+        <div
+          className="row"
+          style={{ textAlign: "center", alignItems: "center" }}
+        >
+          <div className="column">
+            <div style={{ margin: "1rem", textAlign: "left" }}>
+              <h1 className="hero__title">
+                <img
+                  src={"img/chemotion_full.svg"}
+                  alt="Chemotion Icon"
+                  style={{ width: "80%", height: "80%" }}
+                />
+              </h1>
+              <h2>
+                Electronic Laboratory Notebook (ELN) &
+                <br />
+                Repository for Research Data
+              </h2>
+            </div>
+          </div>
+          <div className="column">
+            <div style={{ margin: "2rem auto 0 auto", textAlign: "center" }}>
+              <iframe
+                width="640"
+                height="360"
+                src="https://www.youtube.com/embed/tZHaP6DW-Dw"
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
         </div>
-        </div>
-
       </header>
-      <div style={{ margin: "2rem auto 0 auto", textAlign: "center"}}>
-      <iframe width="640" height="360" src="https://www.youtube.com/embed/tZHaP6DW-Dw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
-      <main style={{ backgroundColor: "#f5f6f7"}}>
+
+      <main style={{ backgroundColor: "#f5f6f7" }}>
         {features && features.length > 0 && (
           <section className={styles.features}>
             <div className="row">
@@ -89,22 +107,46 @@ function Home() {
           </section>
         )}
       </main>
-
-      <div className="row" style={{marginLeft: "5px", height:"50%"}}>
-          <p className={clsx('fund col col--3')} style={{marginBottom: "0"}}>Funded By</p>
-        <Link to='https://www.dfg.de/' className={clsx('col col--3 margin-top--sm margin-bottom--sm')}>
-          <img className={styles.fundImg} src={'img/dfg_logo.png'} alt="DFG Logo"/>
+      <div
+        className="row"
+        style={{ marginLeft: "5px", height: "50%", WebkitAlignItems: "center" }}
+      >
+        <p
+          className={clsx("fund col col--1")}
+          style={{ marginBottom: "0", fontSize: "large" }}
+        >
+          Funded By
+        </p>
+        <Link to="https://www.dfg.de/" className={clsx("col col--2")}>
+          <img
+            className={styles.fundImg}
+            src={"img/dfg_logo.png"}
+            alt="DFG Logo"
+          />
         </Link>
 
-        <Link to='https://www.kit.edu/' className={clsx('col col--3 margin-top--sm margin-bottom--sm')}>
-          <img className={styles.fundImg} src='img/KIT_logo.png' alt="KIT Logo"/>
+        <Link
+          to="https://www.kit.edu/"
+          className={clsx("col col--2 margin-top--sm margin-bottom--sm")}
+        >
+          <img
+            className={styles.fundImg}
+            src="img/KIT_logo.png"
+            alt="KIT Logo"
+          />
         </Link>
 
-        <Link to='https://mwk.baden-wuerttemberg.de/' className={clsx('col col--3 margin-top--sm margin-bottom--sm')}>
-          <img  className={styles.fundImg} src='img/csm_LogoMWK_2_Zeilen_220px.png' alt="Kultusministerium Baden-Würtemberg Logo"/>
+        <Link
+          to="https://mwk.baden-wuerttemberg.de/"
+          className={clsx("col col--2 margin-top--sm margin-bottom--sm")}
+        >
+          <img
+            className={styles.fundImg}
+            src="img/csm_LogoMWK_2_Zeilen_220px.png"
+            alt="Kultusministerium Baden-Würtemberg Logo"
+          />
         </Link>
       </div>
-
     </Layout>
   );
 }

@@ -5,11 +5,15 @@ slug: reactions
 title: Reactions
 ---
 
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronDown, faArrowsAlt, faList, faSortDown } from '@fortawesome/free-solid-svg-icons'
-import { Btn } from '@site/docs/btn.js'
-import Reaction from '@site/static/img/reaction.svg'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faChevronDown,
+  faArrowsAlt,
+  faList,
+  faSortDown,
+} from "@fortawesome/free-solid-svg-icons";
+import { Btn } from "@site/src/js/btn.js";
+import Reaction from "@site/static/img/reaction.svg";
 
 :::danger Caution
 This page is still being edited and reviewed.
@@ -46,9 +50,12 @@ This step is important for correct calculations of the yield.
 
 ## Reactions in the element bar
 
-<img src={require('@site/static/img/reactions_list.png').default} alt={"Reactions list"}/>
+<img
+  src={require("@site/static/img/reactions_list.png").default}
+  alt={"Reactions list"}
+/>
 
-In the element bar, the reaction tab has the symbol <Reaction title="Reaction" className="logo"  width={"30px"}/>.
+In the element bar, the reaction tab has the symbol <Reaction title="Reaction" className="logo" width={"30px"}/>.
 The number right next to the reaction symbol indicates the number of reactions within the selected collection.
 The number in parentheses shows the number of selected reactions within the collection.
 The reactions list shown in the figure above appears when the Chemotion ELN is opened if no detail level has been selected.
@@ -91,5 +98,5 @@ This window offers the user a set of data about the sample to select for export.
 The Export of the data is offered into 2 data formats (XLSX/SDF) by clicking on the orange export button at the end of the window.
 
 <center>
-<img src={require('@site/static/img/export_menu.png').default} />
+  <img src={require("@site/static/img/export_menu.png").default} />
 </center>

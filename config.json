@@ -1,10 +1,10 @@
 {
   "index_name": "chemotion",
   "start_urls": [
-    "https://eln.chemotion.net/chemotionsaurus/docs/"
+    "https://chemotion.net/"
   ],
   "sitemap_urls": [
-    "https://eln.chemotion.net/chemotionsaurus/sitemap.xml"
+    "https://chemotion.net/sitemap.xml"
   ],
   "sitemap_alternate_links": true,
   "stop_urls": [],

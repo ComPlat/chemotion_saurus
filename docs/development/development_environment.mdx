@@ -1,6 +1,6 @@
 ---
 id: development_environment
-title:  Development environment
+title: Development environment
 sidebar_label: Development environment
 slug: development_environment
 ---
@@ -69,7 +69,7 @@ For additional information and prerequisites regarding the installation of `Dock
 
 Once you have `WSL` and `Docker Desktop` installed, you can start setting up the Chemotion ELN development environment.
 
-Make sure that all files you'll download in the following steps live in the Linux file system, *not* in your Windows file system ([here's why](https://docs.docker.com/docker-for-windows/wsl/#best-practices)).
+Make sure that all files you'll download in the following steps live in the Linux file system, _not_ in your Windows file system ([here's why](https://docs.docker.com/docker-for-windows/wsl/#best-practices)).
 The Windows file system (e.g., C: drive) is mounted into `Ubuntu` under `/mnt`. Therefore, store your files somewhere else than `/mnt`. For example,
 you could store them in your home directory (`~`).
 
@@ -198,7 +198,7 @@ code .
 
 The VSCode IDE is now running on you host operating system.
 You can open the IDE inside a running Docker container as follows.
-Bring up the Command Pallet with `Ctrl+Shift+P`, and type `>Dev Containers:`.
+Bring up the Command Pallet with <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, and type `>Dev Containers:`.
 VSCode will list all available commands for the `Dev Containers` extension.
 Select `>Dev Containers: Reopen in Container`. Based on the configuration in the repositories
 `.devcontainer` directory, VSCode will now build and orchestrate the containers that constitute the
@@ -221,9 +221,9 @@ Some commands (especially when you're using `npm` instead of `yarn`) will popula
 the `node_modules` directory inside the ELN repository, which can cause trouble.
 Simply remove `node_modules` from the repository in that case. Similarly, it can help to remove
 
-* `public/packs`
-* `public/packs-test`
-* `tmp/cache/*`
+- `public/packs`
+- `public/packs-test`
+- `tmp/cache/*`
 
 ### Use `yarn` not `npm` to handle JavaScript dependencies
 

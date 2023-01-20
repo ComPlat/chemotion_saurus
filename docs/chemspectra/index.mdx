@@ -1,8 +1,7 @@
 ---
-id: analysis
-title: Overview
-sidebar_label: Overview
-slug: analysis
+id: chemspectra
+title: ChemSpectra
+sidebar_position: 6
 ---
 
 The Chemotion ELN supports the upload of many dataset formats.
@@ -26,7 +25,11 @@ The user interface of ChemSpectra is identically for different analytical method
 while the tools are selected to fit the requirements of the different analytical methods.
 The user interface of ChemSpectra is shown here:
 
-<img width="920" alt="UI-ChemSpectra" src={require("@site/static/img/spectra_editor.png").default}/>
+<img
+  width="920"
+  alt="UI-ChemSpectra"
+  src={require("@site/static/img/spectra_editor.png").default}
+/>
 
 The analysis-tools (peak picking, integration, multiplicity, reference) for the spectra
 can be accessed through the toolbar in the upper left corner of the user interface (red box).
@@ -42,23 +45,82 @@ can be further modified by the user.
 ## 2. Analysing data in Chemotion ELN
 
 1. Open your Sample details and select the Analyses tab. Then click on the`Add analysis` button to create a new analysis.
-<img src={require('@site/static/img/chemspectra/chemspectra_upload_file_1.png').default} alt={"chemspectra create new analysis"} height={"100%"} width={"100%"}/>
+
+   <img
+     src={
+       require("@site/static/img/chemspectra/chemspectra_upload_file_1.png")
+         .default
+     }
+     alt={"chemspectra create new analysis"}
+     height={"100%"}
+     width={"100%"}
+   />
 
 2. Scroll down and select the `+` button to add a new dataset.
-<img src={require('@site/static/img/chemspectra/chemspectra_upload_file_2.png').default} alt={"chemspectra add new analysis dataset"} height={"100%"} width={"100%"}/>
+
+   <img
+     src={
+       require("@site/static/img/chemspectra/chemspectra_upload_file_2.png")
+         .default
+     }
+     alt={"chemspectra add new analysis dataset"}
+     height={"100%"}
+     width={"100%"}
+   />
 
 3. Click to upload your files or drop down your files.
-<img src={require('@site/static/img/chemspectra/chemspectra_upload_file_3.png').default} alt={"chemspectra upload analysis dataset"} height={"100%"} width={"100%"}/>
+
+   <img
+     src={
+       require("@site/static/img/chemspectra/chemspectra_upload_file_3.png")
+         .default
+     }
+     alt={"chemspectra upload analysis dataset"}
+     height={"100%"}
+     width={"100%"}
+   />
 
 4. Click the close button to close the popup view and click `Save` to save your files.
-<img src={require('@site/static/img/chemspectra/chemspectra_upload_file_4.png').default} alt={"chemspectra close popup"} height={"100%"} width={"100%"}/>
+   <img
+     src={
+       require("@site/static/img/chemspectra/chemspectra_upload_file_4.png")
+         .default
+     }
+     alt={"chemspectra close popup"}
+     height={"100%"}
+     width={"100%"}
+   />
 
-<img src={require('@site/static/img/chemspectra/chemspectra_upload_file_5.png').default} alt={"chemspectra save dataset upload"} height={"100%"} width={"100%"}/>
+<img
+  src={
+    require("@site/static/img/chemspectra/chemspectra_upload_file_5.png")
+      .default
+  }
+  alt={"chemspectra save dataset upload"}
+  height={"100%"}
+  width={"100%"}
+/>
 
 5. After your files were processed, click on the `Spectra Editor` button to open the analyses viewer.
-<img src={require('@site/static/img/chemspectra/chemspectra_upload_file_6.png').default} alt={"chemspectra button open spectra editor"} height={"100%"} width={"100%"}/>
+   <img
+     src={
+       require("@site/static/img/chemspectra/chemspectra_upload_file_6.png")
+         .default
+     }
+     alt={"chemspectra button open spectra editor"}
+     height={"100%"}
+     width={"100%"}
+   />
 
-<img src={require('@site/static/img/chemspectra/chemspectra_upload_file_7.png').default} alt={"chemspectra frontend"} height={"100%"} width={"100%"}/>
+<img
+  src={
+    require("@site/static/img/chemspectra/chemspectra_upload_file_7.png")
+      .default
+  }
+  alt={"chemspectra frontend"}
+  height={"100%"}
+  width={"100%"}
+/>
 
 ## 3. Analysing data with NMRium
 
@@ -70,13 +132,37 @@ We will support saving your analyzed data in upcoming versions.
 :::
 
 You can only open NMRium after defining your `Type (Chemical Methods Ontology)` is NMR.
-<img src={require('@site/static/img/chemspectra/nmrium/nmrium_1.png').default} alt={"nmrium select type"} height={"100%"} width={"100%"}/>
+
+<img
+  src={require("@site/static/img/chemspectra/nmrium/nmrium_1.png").default}
+  alt={"nmrium select type"}
+  height={"100%"}
+  width={"100%"}
+/>
 
 Click on the icon to open your file with NMRium.
-<img src={require('@site/static/img/chemspectra/nmrium/nmrium_2.png').default} alt={"open nmrium"} height={"100%"} width={"100%"}/>
+
+<img
+  src={require("@site/static/img/chemspectra/nmrium/nmrium_2.png").default}
+  alt={"open nmrium"}
+  height={"100%"}
+  width={"100%"}
+/>
 
 **1D spectrum**
-<img src={require('@site/static/img/chemspectra/nmrium/nmrium_3.png').default} alt={"nmrium modal 1D"} height={"100%"} width={"100%"}/>
+
+<img
+  src={require("@site/static/img/chemspectra/nmrium/nmrium_3.png").default}
+  alt={"nmrium modal 1D"}
+  height={"100%"}
+  width={"100%"}
+/>
 
 **2D spectrum**
-<img src={require('@site/static/img/chemspectra/nmrium/nmrium_4.png').default} alt={"nmrium modal 2D"} height={"100%"} width={"100%"}/>
+
+<img
+  src={require("@site/static/img/chemspectra/nmrium/nmrium_4.png").default}
+  alt={"nmrium modal 2D"}
+  height={"100%"}
+  width={"100%"}
+/>

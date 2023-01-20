@@ -20,8 +20,15 @@
         "[markdown]": {
           "editor.defaultFormatter": "esbenp.prettier-vscode"
         },
+        "[javascript]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
         "cSpell.enableFiletypes": ["md", "mdx", "!js", "!json", "!jsonc"],
-        "cSpell.words": ["Chemotion"]
+        "cSpell.words": ["Chemotion", "helpdesk"],
+        "markdownlint.config": {
+          "MD033": { "allowed_elements": ["kbd"] }
+        },
+        "markdownlint.run": "onSave"
       },
 
       // Add the IDs of extensions you want installed when the container is created.

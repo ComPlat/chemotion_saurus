@@ -1,115 +1,128 @@
 ---
 id: ketcher
-title: Molecule Editors/Ketchers 
-sidebar_label: Molecule Editors/Ketchers 
+title: Molecule Editors/Ketchers
+sidebar_label: Molecule Editors/Ketchers
 slug: ketcher
 ---
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome' 
-import { faEllipsisH } from '@fortawesome/free-solid-svg-icons'  
-import {Btn} from '@site/docs/btn.js' 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEllipsisH } from "@fortawesome/free-solid-svg-icons";
+import { Btn } from "@site/src/js/btn.js";
 
 :::danger Caution  
-This page is still being edited. 
-::: 
+This page is still being edited.
+:::
 
 ![Ketcher](/img/ketcher.png)
 
-The main way to enter chemical structures into the Chemotion ELN is the Ketcher Editor. The editor is available via the sample detail modal and can be opened by clicking on the area framed in light blue. The Ketcher Editor is not a product of the Chemotion programming group, but it has been modified so that it can be used flexibly for a wide variety of applications. After the additions are made, the structure editor integrated within the Chemotion ELN is now unique in its functionality and, in addition to the input of small chemical molecules, it also enables the illustration of polymeric carrier materials (beads). The editor will also be supplemented by further developments in the future. 
+The main way to enter chemical structures into the Chemotion ELN is the Ketcher Editor. The editor is available via the sample detail modal and can be opened by clicking on the area framed in light blue. The Ketcher Editor is not a product of the Chemotion programming group, but it has been modified so that it can be used flexibly for a wide variety of applications. After the additions are made, the structure editor integrated within the Chemotion ELN is now unique in its functionality and, in addition to the input of small chemical molecules, it also enables the illustration of polymeric carrier materials (beads). The editor will also be supplemented by further developments in the future.
 
-## Basic functions 
+## Basic functions
 
-The Ketcher Structure Editor offers all the basic functions that are necessary for chemical work and the input of structures. Drawn molecules can be rotated, optimized, copied and pasted again. The size of the displayed molecules can be changed by adjusting the zoom factor. 
+The Ketcher Structure Editor offers all the basic functions that are necessary for chemical work and the input of structures. Drawn molecules can be rotated, optimized, copied and pasted again. The size of the displayed molecules can be changed by adjusting the zoom factor.
 
-On the left side of the image above, some functions have a small black arrow in the lower right corner. This arrow indicates the possibility to change to other similar functions e.g. single bond to double bond. This will become clear later in this page. 
+On the left side of the image above, some functions have a small black arrow in the lower right corner. This arrow indicates the possibility to change to other similar functions e.g. single bond to double bond. This will become clear later in this page.
 
-### Atoms 
+### Atoms
+
 ![Ketcher bonds](/img/ketcher_bonds.gif)
 
-Atoms can be added to the structure from the column on the right side of the image above. The most frequent used atoms are already displayed in the column using their symbols, while less frequent used ones can be accessed from the <FontAwesomeIcon icon={faEllipsisH} size="lg"/> icon which displays the <b>Periodic table</b> to pick from. The user can either pick a <b>Single</b> atom,  a <b>List</b>, or <b>Not List</b>. The user can also use <b>Generics Groups</b> to add one of <b>Reaxys Generics</b>. For more details about Reaxys Generics, please follow this [link](https://www.elsevier.com/__data/assets/pdf_file/0007/818638/FAQ_GenericsGroup.pdf). When an atom is added, it is assumed to be attached with a number of Hydrogen atoms based on its valency, which can be manually modified (see [Select](#select)), so if you add a carbon atom <b>C</b>, you get CH4 unless . 
+Atoms can be added to the structure from the column on the right side of the image above. The most frequent used atoms are already displayed in the column using their symbols, while less frequent used ones can be accessed from the <FontAwesomeIcon icon={faEllipsisH} size="lg"/> icon which displays the <b>Periodic table</b> to pick from. The user can either pick a <b>Single</b> atom, a <b>List</b>, or <b>Not List</b>. The user can also use <b>Generics Groups</b> to add one of <b>Reaxys Generics</b>. For more details about Reaxys Generics, please follow this [link](https://www.elsevier.com/__data/assets/pdf_file/0007/818638/FAQ_GenericsGroup.pdf). When an atom is added, it is assumed to be attached with a number of Hydrogen atoms based on its valency, which can be manually modified (see [Select](#select)), so if you add a carbon atom <b>C</b>, you get CH4 unless .
 
-### Bonds 
+### Bonds
+
 ![Bonds](/img/bonds.png)
 
-The bonds menu can be usually opened by using this icon <img src={require('@site/static/img/bond_single.png').default} width={"20px"} alt={"Single"}/> from Ketcher's left column. However, if another type of bonds is selected, the main icon changes to that type. Alongside the usual <b>Single</b>, <b>Double</b>, <b>Triple</b> bonds, Ketcher editor offers a variety of bonds to express coordination, stereochemistry, and aromaticity. All bond types can be seen in the image above.  If you draw a separate bond (not starting from an atom), it will be assumed to be between two carbon atoms, so with a <b>Single</b> bond you will get CH3-CH3. If it starts from an atom, the end is assumed to be a carbon atom. However those carbon atoms can be replaced with the one you choose from the atoms column. A bond can also be used to connect two atoms or to change the type of an already existing bond to another one. If the bond is asymmetric, e.g. a stereochemical bond, you can change its direction by re-clicking on the bond. Make sure that the right bond type is selected, otherwise you will change the bond type instead of changing its direction.  
+The bonds menu can be usually opened by using this icon <img src={require('@site/static/img/bond_single.png').default} width={"20px"} alt={"Single"}/> from Ketcher's left column. However, if another type of bonds is selected, the main icon changes to that type. Alongside the usual <b>Single</b>, <b>Double</b>, <b>Triple</b> bonds, Ketcher editor offers a variety of bonds to express coordination, stereochemistry, and aromaticity. All bond types can be seen in the image above. If you draw a separate bond (not starting from an atom), it will be assumed to be between two carbon atoms, so with a <b>Single</b> bond you will get CH3-CH3. If it starts from an atom, the end is assumed to be a carbon atom. However those carbon atoms can be replaced with the one you choose from the atoms column. A bond can also be used to connect two atoms or to change the type of an already existing bond to another one. If the bond is asymmetric, e.g. a stereochemical bond, you can change its direction by re-clicking on the bond. Make sure that the right bond type is selected, otherwise you will change the bond type instead of changing its direction.
 
-### Chain Tool 
+### Chain Tool
 
-This tool <img src={require('@site/static/img/chain_tool.png').default} width={"20px"} alt={"Chain"} /> can be used to build chains of carbon (methylene groups) instead of taking time to add the groups one by one. If atoms other than carbon or bonds other than <b>Single</b> are wanted, one by one modifications are possible subsequently. 
+This tool <img src={require('@site/static/img/chain_tool.png').default} width={"20px"} alt={"Chain"} /> can be used to build chains of carbon (methylene groups) instead of taking time to add the groups one by one. If atoms other than carbon or bonds other than <b>Single</b> are wanted, one by one modifications are possible subsequently.
 
-### Rings 
+### Rings
 
-The rings menu can be opened using the benzene icon <img src={require('@site/static/img/benzen.png').default} width={"20px"} alt={"Benzene"} /> from Ketcher's left column. A variety of rings is available, some of them are aromatic, saturated or unsaturated, but all of them are #TODO. The ring sizes vary between three and eight atoms. If the user picks a ring other than benzene, the icon changes in the left column. The rings contain carbon atoms only, but the user can modify the atoms or bonds later by using the atoms or bonds column. If a ring of a larger size is needed, the user can open the available ring, add new atoms, and close it again with a bond. Another option is to build a ring from scratch. 
+The rings menu can be opened using the benzene icon <img src={require('@site/static/img/benzen.png').default} width={"20px"} alt={"Benzene"} /> from Ketcher's left column. A variety of rings is available, some of them are aromatic, saturated or unsaturated, but all of them are #TODO. The ring sizes vary between three and eight atoms. If the user picks a ring other than benzene, the icon changes in the left column. The rings contain carbon atoms only, but the user can modify the atoms or bonds later by using the atoms or bonds column. If a ring of a larger size is needed, the user can open the available ring, add new atoms, and close it again with a bond. Another option is to build a ring from scratch.
 
-### Charge 
+### Charge
 
-The user can modify the charge of an atom by increasing the positivity with the icon <img src={require("@site/static/img/charge_plus.png").default} width={"20px"} alt={"ChargeP"} />, or increasing the negativity with the icon <img src={require("@site/static/img/charge_minus.png").default} width={"20px"} alt={"ChargeM"} />. The user has to click on the desired icon and then click on the desired atom. The change in charge is accompanied with change in the number of attached hydrogen atoms.  
+The user can modify the charge of an atom by increasing the positivity with the icon <img src={require("@site/static/img/charge_plus.png").default} width={"20px"} alt={"ChargeP"} />, or increasing the negativity with the icon <img src={require("@site/static/img/charge_minus.png").default} width={"20px"} alt={"ChargeM"} />. The user has to click on the desired icon and then click on the desired atom. The change in charge is accompanied with change in the number of attached hydrogen atoms.
 
 ### Select
-The selection tool icon is <img src={require("@site/static/img/select.png").default} width={"20px"} alt={"Select"} /> by default, which corresponds to the <b>Lasso Selection Tool</b> for free shape selection. There is also the <b>Rectangle Selection Tool</b>, and the <b>Fragment Selection Tool</b> which selects a connected fragment (all the atoms connected to the atom clicked on with bonds among them, non-atomic elements such as <b>Reaction Arrows</b> etc.). 
 
-<img src={require("@site/static/img/atoms_properties.png").default} alt={"Atoms properties"}/>
+The selection tool icon is <img src={require("@site/static/img/select.png").default} width={"20px"} alt={"Select"} /> by default, which corresponds to the <b>Lasso Selection Tool</b> for free shape selection. There is also the <b>Rectangle Selection Tool</b>, and the <b>Fragment Selection Tool</b> which selects a connected fragment (all the atoms connected to the atom clicked on with bonds among them, non-atomic elements such as <b>Reaction Arrows</b> etc.).
 
-By using any selection tool, and double clicking on an existing atom, a window <b>Atoms Properties</b> pops up, where you can modify properties of your atoms. When pressing <b>OK</b>, those changes appear on the atom. 
+<img
+  src={require("@site/static/img/atoms_properties.png").default}
+  alt={"Atoms properties"}
+/>
 
-<img src={require("@site/static/img/bond_properties.png").default} alt={"Bond properties"}/>
+By using any selection tool, and double clicking on an existing atom, a window <b>Atoms Properties</b> pops up, where you can modify properties of your atoms. When pressing <b>OK</b>, those changes appear on the atom.
 
-Double-clicking on a bond opens the <b>Bond Properties</b> window. 
+<img
+  src={require("@site/static/img/bond_properties.png").default}
+  alt={"Bond properties"}
+/>
 
-Many tools in the structure editor require selection first. However, some tools have the selection function included, such as <b>Erase</b> and <b>Rotate Tool</b>. Others, such as <b>Copy</b> and <b>Cut</b>, need the designated selection tool. 
+Double-clicking on a bond opens the <b>Bond Properties</b> window.
 
-### Erase 
+Many tools in the structure editor require selection first. However, some tools have the selection function included, such as <b>Erase</b> and <b>Rotate Tool</b>. Others, such as <b>Copy</b> and <b>Cut</b>, need the designated selection tool.
 
-The <b>Erase</b> tool <img src={require("@site/static/img/erase.png").default} width={"20px"} alt={"Erase"}/> can be used to erase atoms, bonds, or other elements. It works either by clicking on a single element to be erased (e.g. an atom), or using the tool to select a set of elements in a rectangle for deletion. Users can also use the selection tool first and delete the selected elements afterwards. 
+### Erase
 
-When an atom is erased, all its bonds are erased too. However, when a bond is erased, the attached atoms are not erased unless they have no other bonds. 
+The <b>Erase</b> tool <img src={require("@site/static/img/erase.png").default} width={"20px"} alt={"Erase"}/> can be used to erase atoms, bonds, or other elements. It works either by clicking on a single element to be erased (e.g. an atom), or using the tool to select a set of elements in a rectangle for deletion. Users can also use the selection tool first and delete the selected elements afterwards.
 
-### Rotate 
+When an atom is erased, all its bonds are erased too. However, when a bond is erased, the attached atoms are not erased unless they have no other bonds.
 
-You can either rotate elements in a circular manner ( <b>Rotate Tool</b> <img src={require("@site/static/img/rotate.png").default} width={"20px"} alt={"Rotate"}/> ), flip them horizontally (<b>Horizontal Flip</b> <img src={require("@site/static/img/horizontal.png").default} width={"20px"} alt={"Horizontal "}/>), or vertically (<b>Vertical Flip</b> <img src={require("@site/static/img/vertical.png").default} width={"20px"} alt={"vertical"}/>). Rotation needs selection first, either directly by the rotation tools, or using the selection tools. 
+### Rotate
 
-### Polymer 
+You can either rotate elements in a circular manner ( <b>Rotate Tool</b> <img src={require("@site/static/img/rotate.png").default} width={"20px"} alt={"Rotate"}/> ), flip them horizontally (<b>Horizontal Flip</b> <img src={require("@site/static/img/horizontal.png").default} width={"20px"} alt={"Horizontal "}/>), or vertically (<b>Vertical Flip</b> <img src={require("@site/static/img/vertical.png").default} width={"20px"} alt={"vertical"}/>). Rotation needs selection first, either directly by the rotation tools, or using the selection tools.
 
-For solid-phase syntheses, the symbol <b>Bead</b> <img src={require("@site/static/img/polymer.png").default} width={"20px"} alt={"Polymer"} /> was introduced which, similar to the symbol of the ChemDraw editor, depicts beads of the polymeric carrier material. Please use this symbol for drawing a solid phase material, because the ELN recognizes the bead and sets up the layout of the input module accordingly. The definition of the load is given within the input model for the sample. 
+### Polymer
 
-### Clear Canvas 
+For solid-phase syntheses, the symbol <b>Bead</b> <img src={require("@site/static/img/polymer.png").default} width={"20px"} alt={"Polymer"} /> was introduced which, similar to the symbol of the ChemDraw editor, depicts beads of the polymeric carrier material. Please use this symbol for drawing a solid phase material, because the ELN recognizes the bead and sets up the layout of the input module accordingly. The definition of the load is given within the input model for the sample.
 
-The tool <img src={require("@site/static/img/clear.png").default} width={"20px"} alt={"Clear"} /> deletes everything there is in the current canvas. 
+### Clear Canvas
 
-### Open 
+The tool <img src={require("@site/static/img/clear.png").default} width={"20px"} alt={"Clear"} /> deletes everything there is in the current canvas.
+
+### Open
 
 The user can use the tool <img src={require("@site/static/img/open.png").default} width={"20px"} alt={"Open"} /> to open files, either by inserting the content of a Molfile directly as <b>input</b> in the window <b>Open File</b>, or by browsing for a <b>File</b> (not available yet in the current version). In both cases, the user can also load the file as a fragment and copy it to the clipboard.
 
-### Save As 
+### Save As
 
-The user can use the tool <b>Save As</b> <img src={require("@site/static/img/save_as.png").default} width={"20px"} alt={"Save As"}/> to save their provided structures in one of three <b>Format</b>s: MDL/Symyx Molfile, Daylight SMILES, and InChI String (not available yet in the current version). The chosen format is then displayed for the user to copy it to a file. 
+The user can use the tool <b>Save As</b> <img src={require("@site/static/img/save_as.png").default} width={"20px"} alt={"Save As"}/> to save their provided structures in one of three <b>Format</b>s: MDL/Symyx Molfile, Daylight SMILES, and InChI String (not available yet in the current version). The chosen format is then displayed for the user to copy it to a file.
 
-### Undo/Redo 
+### Undo/Redo
 
-Any action done in the editor can be undone with <b>Undo</b> <img src={require("@site/static/img/undo.png").default} width={"20px"} alt={"Undo"}/>, and the undone action can be redone with <b>Redo</b> <img src={require("@site/static/img/redo.png").default} width={"20px"} alt={"Redo"}/>. 
+Any action done in the editor can be undone with <b>Undo</b> <img src={require("@site/static/img/undo.png").default} width={"20px"} alt={"Undo"}/>, and the undone action can be redone with <b>Redo</b> <img src={require("@site/static/img/redo.png").default} width={"20px"} alt={"Redo"}/>.
 
-### Cut/Copy/Paste 
+### Cut/Copy/Paste
 
-Any structure (or substructure) can be cut  <img src={require("@site/static/img/cut.png").default} width={"20px"} alt={"Cut"}/>, copied <img src={require("@site/static/img/copy.png").default} width={"20px"} alt={"Copy"}/>, and pasted <img src={require("@site/static/img/paste.png").default} width={"20px"} alt={"Paste"}/> somewhere else in the editor. 
+Any structure (or substructure) can be cut <img src={require("@site/static/img/cut.png").default} width={"20px"} alt={"Cut"}/>, copied <img src={require("@site/static/img/copy.png").default} width={"20px"} alt={"Copy"}/>, and pasted <img src={require("@site/static/img/paste.png").default} width={"20px"} alt={"Paste"}/> somewhere else in the editor.
 
-### Zoom In/Out 
+### Zoom In/Out
 
 The user can use the tools <b>Zoom In</b> <img src={require("@site/static/img/zoom_in.png").default} width={"20px"} alt={"ZoomIn"}/> and <b>Zoom Out</b> <img src={require("@site/static/img/zoom_out.png").default} width={"20px"} alt={"ZoomOut"}/> to adjust the view, or set the preferred zoom directly as a percentage.
 
-### Clean 
+### Clean
 
-The tool <b>Clean</b> <img src={require("@site/static/img/clean.png").default} width={"20px"} alt={"Clean"}/> provides a better view of the provided elements by aligning them and adjusting the distances, rotations and bond lengths.  
+The tool <b>Clean</b> <img src={require("@site/static/img/clean.png").default} width={"20px"} alt={"Clean"}/> provides a better view of the provided elements by aligning them and adjusting the distances, rotations and bond lengths.
 
-### Show Molecule Info 
+### Show Molecule Info
 
-<img src={require("@site/static/img/molecule_info.png").default} alt={"sMolecule Infohow_molecule_info"}/> 
+<img
+  src={require("@site/static/img/molecule_info.png").default}
+  alt={"sMolecule Infohow_molecule_info"}
+/>{" "}
 
-This tool <img src={require("@site/static/img/show_molecule_info.png").default} width={"20px"} alt={"Show Info"}/> shows information on all the provided molecules, e.g. the displayed molar mass is the sum of the molar masses of all displayed molecules. However, the user can select desired  elements to get their details.  
+This tool <img src={require("@site/static/img/show_molecule_info.png").default} width={"20px"} alt={"Show Info"}/> shows information on all the provided molecules, e.g. the displayed molar mass is the sum of the molar masses of all displayed molecules. However, the user can select desired elements to get their details.
 
 ## Standard templates
+
 The specified standard templates are given and cannot be changed. If you have suggestions or guidelines for additional templates or even a new template category, send a MolFile or a ChemDraw file to nicole.jung@kit.edu. We will review your structure and add it to the standard templates.
 The standard templates can be found in the lower bar of the editor and are arranged according to the categories Amino Acids, Aromatics, Bicyclics, Conformers, Cycloalkanes, Functional Groups, Nucleic Acids, Paracyclophanes, Schlegel-diagrams and Solid Supports. Press on a category to open its template list, press again to close it.
 
 :::danger Caution  
-When creating chiral compounds, the configuration of the unique structure is observed and registered accordingly. Planar chiral compounds are unfortunately not recognized as such yet, and therefore, they are not differentiated in lists and names, even if they were drawn accordingly by the Ketcher editor. An example is the Paracyclophanes. Please note the chirality of your samples in those cases in the <b>Description</b> field. 
-::: 
+When creating chiral compounds, the configuration of the unique structure is observed and registered accordingly. Planar chiral compounds are unfortunately not recognized as such yet, and therefore, they are not differentiated in lists and names, even if they were drawn accordingly by the Ketcher editor. An example is the Paracyclophanes. Please note the chirality of your samples in those cases in the <b>Description</b> field.
+:::

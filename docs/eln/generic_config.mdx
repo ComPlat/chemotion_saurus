@@ -5,9 +5,35 @@ sidebar_label: Generic configuration
 slug: generic_config
 ---
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlusCircle, faClone, faPen, faPenSquare, faFileAlt, faFileCode, faPlus, faChartBar, faCheck, faSave, faAngleRight, faTrashAlt, faPaste, faArrowsAlt, faSyncAlt, faChartArea, faClock, faHourglassHalf, faHourglassEnd, faEllipsisH,faCheckCircle, faTimesCircle, faDownload, faTrash, faArrowRight} from '@fortawesome/free-solid-svg-icons'
-import { Btn } from '@site/docs/btn.js'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faPlusCircle,
+  faClone,
+  faPen,
+  faPenSquare,
+  faFileAlt,
+  faFileCode,
+  faPlus,
+  faChartBar,
+  faCheck,
+  faSave,
+  faAngleRight,
+  faTrashAlt,
+  faPaste,
+  faArrowsAlt,
+  faSyncAlt,
+  faChartArea,
+  faClock,
+  faHourglassHalf,
+  faHourglassEnd,
+  faEllipsisH,
+  faCheckCircle,
+  faTimesCircle,
+  faDownload,
+  faTrash,
+  faArrowRight,
+} from "@fortawesome/free-solid-svg-icons";
+import { Btn } from "@site/src/js/btn.js";
 
 :::danger Caution
 This page is still being edited and reviewed.
@@ -44,32 +70,39 @@ to save the data or <Btn mixed={["Cancel"]} color={"warning"} /> the creation.
 
 ![generic_segment_new](/img/generic_segment_new.png)
 
-| attribute | required | explanation |
-|---|:---:|---|
-| Segment Label | Yes | The name displayed on the UI tab. |
-| Description | No | Shown as a tooltip when the mouse hovers over the UI tab. |
-| Assign to Element | Yes | Define which element this segment belongs to. |
+| attribute         | required | explanation                                               |
+| ----------------- | :------: | --------------------------------------------------------- |
+| Segment Label     |   Yes    | The name displayed on the UI tab.                         |
+| Description       |    No    | Shown as a tooltip when the mouse hovers over the UI tab. |
+| Assign to Element |   Yes    | Define which element this segment belongs to.             |
 
 ## Generic elements
-By default Chemotion ELN contains five elements: samples, reactions, wellplates, screens, and research plans.
-Optionally, *generic* elements can be added by the administration.
 
-<img src={require("@site/static/img/create_element.gif").default} alt={"Create generic element"}/>
+By default Chemotion ELN contains five elements: samples, reactions, wellplates, screens, and research plans.
+Optionally, _generic_ elements can be added by the administration.
+
+<img
+  src={require("@site/static/img/create_element.gif").default}
+  alt={"Create generic element"}
+/>
 
 To create a generic element, go to the page <b>Generic Elements</b> and press <Btn mixed={["New Element", faPlus]} color={"primary"} />.
 This opens the window <b>New Element</b> to enter the following attributes:
 
-| attribute | required | explanation |
-|---|:---:|---|
-| Klass | Yes | The name used to identify the element. |
-| Prefix | Yes | A prefix for naming the generated objects that belong to the generic element, e.g., if the user name abbreviation is "user" and the <b>Prefix</b> is "t", then new "Mixture" will be called: "user-t1 New Mixture", "user-t2 New Mixture", etc.. |
-| Label | Yes | The name displayed in the UI, e.g., the labels <b>Sample</b>, <b>Reaction</b>, <b>Wellplate</b>. |
-| Icon | Yes | The icon to be displayed in the elements list and in the toolbar for creating new objects. Icons can be obtained from [Font Awesome 4]( https://fontawesome.com/v4.7/icons/). |
-| Description | No | Explanation of the intended functionality of the element. |
+| attribute   | required | explanation                                                                                                                                                                                                                                      |
+| ----------- | :------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Klass       |   Yes    | The name used to identify the element.                                                                                                                                                                                                           |
+| Prefix      |   Yes    | A prefix for naming the generated objects that belong to the generic element, e.g., if the user name abbreviation is "user" and the <b>Prefix</b> is "t", then new "Mixture" will be called: "user-t1 New Mixture", "user-t2 New Mixture", etc.. |
+| Label       |   Yes    | The name displayed in the UI, e.g., the labels <b>Sample</b>, <b>Reaction</b>, <b>Wellplate</b>.                                                                                                                                                 |
+| Icon        |   Yes    | The icon to be displayed in the elements list and in the toolbar for creating new objects. Icons can be obtained from [Font Awesome 4](https://fontawesome.com/v4.7/icons/).                                                                     |
+| Description |    No    | Explanation of the intended functionality of the element.                                                                                                                                                                                        |
 
 Once all the required attributes are provided, press <Btn mixed={["Create", faSave]} color={"primary"}/> to create the element, or cancel the process with <Btn mixed={["Cancel"]} color={"warning"}/>.
 
-<img src={require('@site/static/img/show_element.gif').default} alt={"Create generic element"} />
+<img
+  src={require("@site/static/img/show_element.gif").default}
+  alt={"Create generic element"}
+/>
 
 After an element is created, it can either be added to the Chemotion ELN interfaces of all users,
 or made available to specific users. This option is also controlled by the administration.
@@ -84,123 +117,139 @@ The elements list includes all the elements generated by the admin’s account,
 along with their attributes and further functions.
 The elements are sorted alphabetically by status (active first), element label, and description.
 
-<img src={require("@site/static/img/elments_list.png").default} alt={"Elements list"}/>
+<img
+  src={require("@site/static/img/elments_list.png").default}
+  alt={"Elements list"}
+/>
 
-| symbol | explanation |
-|---|---|
-| <FontAwesomeIcon icon={faClone} size="lg"/> | Copy the attributes of an element. |
+| symbol                                          | explanation                                                   |
+| ----------------------------------------------- | ------------------------------------------------------------- |
+| <FontAwesomeIcon icon={faClone} size="lg"/>     | Copy the attributes of an element.                            |
 | <FontAwesomeIcon icon={faPenSquare} size="lg"/> | Edit element attributes, delete the element or deactivate it. |
-| <FontAwesomeIcon icon={faFileAlt} size="lg"/> | Edit the element template. |
-| <FontAwesomeIcon icon={faFileCode} size="lg"/> | Edit the element template in json format. |
+| <FontAwesomeIcon icon={faFileAlt} size="lg"/>   | Edit the element template.                                    |
+| <FontAwesomeIcon icon={faFileCode} size="lg"/>  | Edit the element template in json format.                     |
 
 Editing the element's template allows adding new layers and lists to the <b>Properties</b> tab of the element.
 More on that in the next chapter.
 
 ## Generic datasets
 
-
 ## Layers
 
-<b>Layers</b> are the fundamental building blocks that contain the content of generic elements/segments/datasets.
-They can be used to group related fields with a custom layout and appearance.
-<b>Layers</b> can be added to elements and segments by clicking on <b>edit element/segment template</b> <FontAwesomeIcon icon={faFileAlt} size="lg"/>
-in the elements/segments list, and then clicking <Btn mixed={["Add new layer", faPlus]} color={"secondary"}/>.
+<b>Layers</b> are the fundamental building blocks that contain the content of generic
+elements/segments/datasets. They can be used to group related fields with a custom
+layout and appearance.
+<b>Layers</b> can be added to elements and segments by clicking on <b>
+  edit element/segment template
+</b> <FontAwesomeIcon icon={faFileAlt} size="lg" />
+in the elements/segments list, and then clicking <Btn
+  mixed={["Add new layer", faPlus]}
+  color={"secondary"}
+/>
+.
 
-<img src={require('@site/static/img/add_layer.gif').default} alt={"Add Layer"}/>
+<img
+  src={require("@site/static/img/add_layer.gif").default}
+  alt={"Add Layer"}
+/>
 
 The following attributes can be configured on a layer:
 
-| attribute | required | explanation |
-|---|:---:|---|
-| Name | yes | The name used to identify the layer, must be unique in the template. |
-| Display name | No | The name displayed in the details modal. |
-| Columns per row | Yes | The maximum number of fields to be aligned in one row (default is 1). |
-| Sequential position | No | A number to sort the layers, if left empty, they are ordered by the order of creation. |
-| Restriction | No | A maximum for certain fields. |
-| Header color | No | A color for the Display name. |
-| Style Option | Yes | Style of the Display name, "bold" is the default. |
+| attribute           | required | explanation                                                                            |
+| ------------------- | :------: | -------------------------------------------------------------------------------------- |
+| Name                |   yes    | The name used to identify the layer, must be unique in the template.                   |
+| Display name        |    No    | The name displayed in the details modal.                                               |
+| Columns per row     |   Yes    | The maximum number of fields to be aligned in one row (default is 1).                  |
+| Sequential position |    No    | A number to sort the layers, if left empty, they are ordered by the order of creation. |
+| Restriction         |    No    | A maximum for certain fields.                                                          |
+| Header color        |    No    | A color for the Display name.                                                          |
+| Style Option        |   Yes    | Style of the Display name, "bold" is the default.                                      |
 
-<img src={require('@site/static/img/add_layer.gif').default} alt={"Add Layer"}/>
+<img
+  src={require("@site/static/img/add_layer.gif").default}
+  alt={"Add Layer"}
+/>
 
 After a new layer is created, it appears in the layers list, where its Name, Display name,
 the number of columns per row, and the number of <b>fields</b> can be found.
 Layers can be edited with the following functions:
 
-| symbol | explanation |
-|---|---|
-| <FontAwesomeIcon icon={faPen} size="lg"/> | Edit the layer's attributes. |
-| <FontAwesomeIcon icon={faTrash} size="lg"/> | Delete the layer. |
-| <FontAwesomeIcon icon={faPlus} size="lg"/> | Add new fields. |
-| <FontAwesomeIcon icon={faPlusCircle} size="lg"/> | Add dummy fields. |
+| symbol                                           | explanation                  |
+| ------------------------------------------------ | ---------------------------- |
+| <FontAwesomeIcon icon={faPen} size="lg"/>        | Edit the layer's attributes. |
+| <FontAwesomeIcon icon={faTrash} size="lg"/>      | Delete the layer.            |
+| <FontAwesomeIcon icon={faPlus} size="lg"/>       | Add new fields.              |
+| <FontAwesomeIcon icon={faPlusCircle} size="lg"/> | Add dummy fields.            |
 
 Whenever a new layer is added, or an existing one is edited, changes need to be saved with
-<Btn mixed={["Save", faSave]} color={"primary"}/>. Once saved, a user with access to the element
-or segment will be able to see the new layer upon reloading the page in their account,
-and pressing the button <Btn mixed={["Reload"]} color={"danger"}/>.
-Admins can add <b>fields</b> to a layer, as discussed below.
 
+<Btn mixed={["Save", faSave]} color={"primary"} />. Once saved, a user with
+access to the element or segment will be able to see the new layer upon
+reloading the page in their account, and pressing the button <Btn
+  mixed={["Reload"]}
+  color={"danger"}
+/>. Admins can add <b>fields</b> to a layer, as discussed below.
 
 ## Fields
 
 <b>Fields</b> provide a wide variety of input, display, and drag-and-drop functions.
 They can be customized using the following attributes.
 
-| attribute | required | explanation |
-|---|:---:|---|
-| Field Name | Yes | The name given by the admin when first creating the field. It is the name used to identify the field in the system. It must be unique in the template. |
-| Display Name | No | The name displayed in the details modal. It has the same value as the `Field Name` by default, but the admin can modify it or delete it to create a field without a displayed name. |
-| Hover Info | No | An explanatory text to be shown when the mouse hovers over the `Display Name`. |
-| Type | Yes | The type of the field (more details about it in the next paragraph). Its value is "text" by default, but can be modified by the admin. |
+| attribute    | required | explanation                                                                                                                                                                         |
+| ------------ | :------: | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Field Name   |   Yes    | The name given by the admin when first creating the field. It is the name used to identify the field in the system. It must be unique in the template.                              |
+| Display Name |    No    | The name displayed in the details modal. It has the same value as the `Field Name` by default, but the admin can modify it or delete it to create a field without a displayed name. |
+| Hover Info   |    No    | An explanatory text to be shown when the mouse hovers over the `Display Name`.                                                                                                      |
+| Type         |   Yes    | The type of the field (more details about it in the next paragraph). Its value is "text" by default, but can be modified by the admin.                                              |
 
-###  Field types
+### Field types
 
-| type | availability | dependencies | explanation |
-|---|---|---|---|
-| checkbox | v0.9.0+ |---| A small square box to let the user make a binary choice. |
-| drag molecule | v0.9.0+ |---| An icon with drag-and-drop function to let user add a molecule into a generic element/segment by drag-and-drop; it will display the molecule image after being added. |
-| drag sample | v0.9.0+ (generic element only) |---| An icon with drag-and-drop function to let the user add a sample into a generic element by drag-and-drop; it will display the sample image after adding. It also enables using the exact drag-and-dropped sample, a split of it, or a copy. |
-| formula field | v0.9.0+ |---| A calculation field; as an admin, define a formula using other fields, and the system does the calculation automatically. |
-| input group | v0.9.0+ |---| A group of fields; the fields can be 'label', 'text', or 'number'. 'label' is used for display only, and the user can't modify its default value, while 'text' and 'integer' are used as an input field, but still the admins can give them a default value. |
-| integer | v0.9.0+ |---| An input field for integer entries. |
-| select | v0.9.0+ |---| A dropdown list to let user select an item. |
-| system-defined | v0.9.0+ |---| An interconvertible unit field; with a numerical input field and a button for unit conversion ([details](#field-type-system-defined)). |
-| text | v0.9.0+ |---| An input field for a single editable line of text. |
-| text area | v0.9.0+ |---| An input field with adaptable size for multi-line text. |
-| text formula | v0.9.0+ |---| A (display only) field to let users combine other fields or descriptions. |
+| type           | availability                   | dependencies | explanation                                                                                                                                                                                                                                                  |
+| -------------- | ------------------------------ | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| checkbox       | v0.9.0+                        | ---          | A small square box to let the user make a binary choice.                                                                                                                                                                                                     |
+| drag molecule  | v0.9.0+                        | ---          | An icon with drag-and-drop function to let user add a molecule into a generic element/segment by drag-and-drop; it will display the molecule image after being added.                                                                                        |
+| drag sample    | v0.9.0+ (generic element only) | ---          | An icon with drag-and-drop function to let the user add a sample into a generic element by drag-and-drop; it will display the sample image after adding. It also enables using the exact drag-and-dropped sample, a split of it, or a copy.                  |
+| formula field  | v0.9.0+                        | ---          | A calculation field; as an admin, define a formula using other fields, and the system does the calculation automatically.                                                                                                                                    |
+| input group    | v0.9.0+                        | ---          | A group of fields; the fields can be 'label', 'text', or 'number'. 'label' is used for display only, and the user can't modify its default value, while 'text' and 'integer' are used as an input field, but still the admins can give them a default value. |
+| integer        | v0.9.0+                        | ---          | An input field for integer entries.                                                                                                                                                                                                                          |
+| select         | v0.9.0+                        | ---          | A dropdown list to let user select an item.                                                                                                                                                                                                                  |
+| system-defined | v0.9.0+                        | ---          | An interconvertible unit field; with a numerical input field and a button for unit conversion ([details](#field-type-system-defined)).                                                                                                                       |
+| text           | v0.9.0+                        | ---          | An input field for a single editable line of text.                                                                                                                                                                                                           |
+| text area      | v0.9.0+                        | ---          | An input field with adaptable size for multi-line text.                                                                                                                                                                                                      |
+| text formula   | v0.9.0+                        | ---          | A (display only) field to let users combine other fields or descriptions.                                                                                                                                                                                    |
 
-
-###  Field-type: System-defined
+### Field-type: System-defined
 
 The field type <b>System-defined</b> allows to add values with a unit.
 Units are assigned to certain standards in the research field but should meet common conventions and definitions.
 Depending on the unit, different conversions are available.
 
-| unit name | unit default | interconversion 1 | interconversion 2 | interconversion 3 | interconversion 4 |
-|---|---|---|---|---|---|
-| Acceleration | mm/s² | --- | --- | --- | --- |
-| Agitation | rpm | --- | --- | --- | --- |
-| Amount enzyme as nmol/min | U | mU | --- | --- | --- |
-| Chem. concentration (Molarity) | mol/L (M) | mmol/L (mM) | nmol/L (nM) | pmol/L (pM) | --- |
-| Chem. distances | Å | --- | --- | --- | --- |
-| Concentration | ng/L | mg/L | g/L | --- | --- |
-| Conductivity | S/m | --- | --- | --- | --- |
-| Degree | ° | --- | --- | --- | --- |
-| Duration | day(s) | hour(s) | min(s) | sec(s) | --- |
-| Elastic modulus | MPa | kPa | Pa | --- | --- |
-| Enzyme activity | U/L | U/mL | --- | --- | --- |
-| Frequency | Hz | kHz | --- | --- | --- |
-| Heating rate | K/min | --- | --- | --- | --- |
-| Length | pm | nm | mm | cm | m |
-| Mass | g | mg | µg | --- | --- |
-| Mass of molecule | D | kD | --- | --- | --- |
-| Molecular weight | g/mol | --- | --- | --- | --- |
-| Percentage | % | --- | --- | --- | --- |
-| Pressure | atm | Pa | Torr | --- | --- |
-| Reaction rate | mol/Lmin | mol/Ls | --- | --- | --- |
-| Speed | cm/s | mm/s | cm/h | mm/h | --- |
-| Surface | A² | mm² | cm² | --- | --- |
-| Temperature | °C | °F | K | --- | --- |
-| Turnover number | 1/s | --- | --- | --- | --- |
-| Viscosity | mL/g | --- | --- | --- | --- |
-| Voltage | mV | V | --- | --- | --- |
-| Volumes | l | ml | µl | nl | --- |
+| unit name                      | unit default | interconversion 1 | interconversion 2 | interconversion 3 | interconversion 4 |
+| ------------------------------ | ------------ | ----------------- | ----------------- | ----------------- | ----------------- |
+| Acceleration                   | mm/s²        | ---               | ---               | ---               | ---               |
+| Agitation                      | rpm          | ---               | ---               | ---               | ---               |
+| Amount enzyme as nmol/min      | U            | mU                | ---               | ---               | ---               |
+| Chem. concentration (Molarity) | mol/L (M)    | mmol/L (mM)       | nmol/L (nM)       | pmol/L (pM)       | ---               |
+| Chem. distances                | Å            | ---               | ---               | ---               | ---               |
+| Concentration                  | ng/L         | mg/L              | g/L               | ---               | ---               |
+| Conductivity                   | S/m          | ---               | ---               | ---               | ---               |
+| Degree                         | °            | ---               | ---               | ---               | ---               |
+| Duration                       | day(s)       | hour(s)           | min(s)            | sec(s)            | ---               |
+| Elastic modulus                | MPa          | kPa               | Pa                | ---               | ---               |
+| Enzyme activity                | U/L          | U/mL              | ---               | ---               | ---               |
+| Frequency                      | Hz           | kHz               | ---               | ---               | ---               |
+| Heating rate                   | K/min        | ---               | ---               | ---               | ---               |
+| Length                         | pm           | nm                | mm                | cm                | m                 |
+| Mass                           | g            | mg                | µg                | ---               | ---               |
+| Mass of molecule               | D            | kD                | ---               | ---               | ---               |
+| Molecular weight               | g/mol        | ---               | ---               | ---               | ---               |
+| Percentage                     | %            | ---               | ---               | ---               | ---               |
+| Pressure                       | atm          | Pa                | Torr              | ---               | ---               |
+| Reaction rate                  | mol/Lmin     | mol/Ls            | ---               | ---               | ---               |
+| Speed                          | cm/s         | mm/s              | cm/h              | mm/h              | ---               |
+| Surface                        | A²           | mm²               | cm²               | ---               | ---               |
+| Temperature                    | °C           | °F                | K                 | ---               | ---               |
+| Turnover number                | 1/s          | ---               | ---               | ---               | ---               |
+| Viscosity                      | mL/g         | ---               | ---               | ---               | ---               |
+| Voltage                        | mV           | V                 | ---               | ---               | ---               |
+| Volumes                        | l            | ml                | µl                | nl                | ---               |

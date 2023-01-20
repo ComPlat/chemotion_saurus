@@ -5,10 +5,11 @@ sidebar_label: First steps
 slug: firststeps
 ---
 
-import { faCog, faPlus, faSearch } from '@fortawesome/free-solid-svg-icons'
-import { Btn } from '@site/docs/btn.js'
+import { faCog, faPlus, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { Btn } from "@site/src/js/btn.js";
 
 ## Registration
+
 Registration is a necessary step towards your own laboratory notebook. Please register on your first visit to the electronic laboratory notebook. Then use this access data for each subsequent login. The registration page or the login page will always be the first page accessed.
 
 ## SciFinder/SciFinder<sup>n</sup> Credential
@@ -22,7 +23,10 @@ Please note that you must register once with CAS to obtain your personal CAS use
 
 You can register the SciFindern crediential in the "Account & Profile".
 
-<img src={require("@site/static/img/scifindern_profile.png").default} alt={"SciFinderN Profile"}/>
+<img
+  src={require("@site/static/img/scifindern_profile.png").default}
+  alt={"SciFinderN Profile"}
+/>
 
 ### ELN 1.3 and above (Search CAS)
 
@@ -30,23 +34,38 @@ You can register the SciFindern crediential in the "Account & Profile".
 This function is not accessable to all users, please ask your instance administrator if you don't see this function.
 :::
 
-<img src={require("@site/static/img/scifindern_function.png").default} alt={"CAS Search"}/>
+<img
+  src={require("@site/static/img/scifindern_function.png").default}
+  alt={"CAS Search"}
+/>
 
 When you first see the SciFinder-n Credential, the expiry date is blank.
 
-<img src={require("@site/static/img/scifindern_no_credential.png").default} alt={"SciFinderN No Credential"}/>
+<img
+  src={require("@site/static/img/scifindern_no_credential.png").default}
+  alt={"SciFinderN No Credential"}
+/>
 
 After pressing the <Btn mixed={["Get token"]} color={"primary"} /> button, you will be redirected to the CAS login page. Please enter your CAS username and password to request an access token.
 
-<img src={require("@site/static/img/scifindern_cas_login.png").default} alt={"SciFinderN CAS Login"}/>
+<img
+  src={require("@site/static/img/scifindern_cas_login.png").default}
+  alt={"SciFinderN CAS Login"}
+/>
 
 If you see a valid expiry date, you are ready to use the Search CAS feature. Please see [Search CAS](/docs/eln/details_modal#search-cas).
 
-<img src={require("@site/static/img/scifindern_has_credential.png").default} alt={"SciFinderN Credential"}/>
+<img
+  src={require("@site/static/img/scifindern_has_credential.png").default}
+  alt={"SciFinderN Credential"}
+/>
 
 ### Prior to ELN 1.0.0 (SciFinder tab)
 
-<img src={require("@site/static/img/scifinder_tab.png").default} alt={"SciFinder Tab"}/>
+<img
+  src={require("@site/static/img/scifinder_tab.png").default}
+  alt={"SciFinder Tab"}
+/>
 
 If you're using a version of ELN prior to 1.0.0, you can register the SciFinder crediential in the "Account & Profile".
 
@@ -59,7 +78,6 @@ After pressing the <Btn mixed={["Submit"]} color={"info"}/> button, a token will
 If the credential is not vaild, "none" will be shown in the column "current token".
 
 ![SciFinder No_Token](/img/scifinder_no_token.png)
-
 
 ## The First Collection
 
@@ -76,15 +94,18 @@ Please think about a smart structure for your Chemotion ELN and create your firs
 ## Chemotion ELN user settings
 
 ### User Settings: Account & Profile
+
 The account & profile settings allow the user to
+
 - define a reaction label and adjust the counter for reactions
-- change the visibility of labels/numbers for samples 
+- change the visibility of labels/numbers for samples
 - choose a curation standard for the analytical section
 - [add SciFinder/SciFinder<sup>n</sup> credentials](#scifinderscifindern-credential)
 - adjust the counter for different elements in the Chemotion ELN
 - set up his/her default structure editor
 
 ### User Settings: Template management
+
 This function is not accessable to all users, please ask your instance admin if you don't see this function
 
 ### User Settings: Change Password
@@ -94,7 +115,9 @@ This function is not accessable to all users, please ask your instance admin if 
 ### User Settings: My groups
 
 ### User Settings: Molecule Moderator
+
 This function is not accessable to all users, please ask your instance admin if you don't see this function
 
-### User Settings: My devices 
+### User Settings: My devices
+
 This function is not accessable to all users, please ask your instance admin if you don't see this function
