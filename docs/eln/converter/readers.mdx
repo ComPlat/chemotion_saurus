@@ -9,9 +9,17 @@ sidebar_label: Converter readers
 This page is still being edited and reviewed.
 :::
 
+:::danger Caution
+Because the Readers are constant in development, smaller bugs in the linked files can not be avoided entirely.   
+:::
+
 # Characteristics of existing Readers and where to get them
 
-|Name |supported file format and/or identifiers |Measurement Technique: Device |Link to download |
+|Name |supported file format and/or identifiers |Measurement technique: device and/or software |Link to download |
 |---|---|---|---|
-|AIF |.txt, plain text and *first line == raw2aif* |sorption-desorption | [Link JK](https://github.com/jochenklar/chemotion-converter-app/blob/b3b01c9c446944c829a64bc90c00db88ca3d247d/converter_app/readers/aif.py) |
-|DTA |.dta and plain text |CV: Gamry | [Link JK](https://github.com/jochenklar/chemotion-converter-app/blob/b3b01c9c446944c829a64bc90c00db88ca3d247d/converter_app/readers/dta.py) |
+|AIF |.txt, plain text and *first line == raw2aif* |sorption-desorption | [Link JK](https://github.com/jochenklar/chemotion-converter-app/blob/master/converter_app/readers/aif.py) |
+|ASCII |non binary file |*fallback Reader for generic ascii files* | [Link JK](https://github.com/jochenklar/chemotion-converter-app/blob/master/converter_app/readers/ascii.py) |
+|CIF |.cif and plain text |single crystal X-ray diffraction: OlexSys | [Link JK](https://github.com/jochenklar/chemotion-converter-app/blob/master/converter_app/readers/cif.py) |
+|DTA |.dta and plain text |CV: Gamry | [Link JK](https://github.com/jochenklar/chemotion-converter-app/blob/master/converter_app/readers/dta.py) |
+|NOVA | Special Heir of CSV Reader with <br> *first_row == 'Potential applied (V)', 'Time (s)', 'WE(1).Current (A)', 'WE(1).Potential (V)', 'Scan', 'Index', 'Q+', 'Q-'* | CV: Metrohm NOVA | [Link JK](https://github.com/jochenklar/chemotion-converter-app/blob/master/converter_app/readers/nova.py) |
+|PsSession |.pssession and json formatted |CV: PalmSens PSTrace | [Link JK](https://github.com/jochenklar/chemotion-converter-app/blob/master/converter_app/readers/pssession.py) |
