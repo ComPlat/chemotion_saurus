@@ -2,11 +2,12 @@ require("dotenv").config();
 
 module.exports = {
   title: "Chemotion",
+  tagline: "Electronic Laboratory Notebook & Repository for Research Data",
   url: "https://chemotion.net",
   baseUrl: "/",
-  onBrokenLinks: "log",
+  onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
-  favicon: "img/favicon.ico",
+  favicon: "img/logos/favicon.ico",
   organizationName: "Complat", // Usually your GitHub org/user name.
   projectName: "chemotion_saurus", // Usually your repo name.
   customFields: {
@@ -17,7 +18,7 @@ module.exports = {
       title: "Chemotion",
       logo: {
         alt: "Chemotion",
-        src: "img/favicon.ico",
+        src: "img/logos/favicon.ico",
       },
       items: [
         {

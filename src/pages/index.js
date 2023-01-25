@@ -56,10 +56,7 @@ function Home() {
   const { siteConfig = {} } = useDocusaurusContext();
 
   return (
-    <Layout
-      title={siteConfig.title}
-      description="Description will go into a meta tag in <head/>"
-    >
+    <Layout title={siteConfig.title} description={siteConfig.tagline}>
       <header className={clsx("hero hero--primary", styles.heroBanner)}>
         <div
           className="row"
@@ -69,7 +66,7 @@ function Home() {
             <div style={{ margin: "1rem", textAlign: "left" }}>
               <h1 className="hero__title">
                 <img
-                  src={"img/chemotion_full.svg"}
+                  src={"img/logos/Chemotion_full.svg"}
                   alt="Chemotion Icon"
                   style={{ width: "80%", height: "80%" }}
                 />
@@ -120,7 +117,7 @@ function Home() {
         <Link to="https://www.dfg.de/" className={clsx("col col--2")}>
           <img
             className={styles.fundImg}
-            src={"img/dfg_logo.png"}
+            src={"img/logos/DFG_logo.png"}
             alt="DFG Logo"
           />
         </Link>
@@ -131,7 +128,7 @@ function Home() {
         >
           <img
             className={styles.fundImg}
-            src="img/KIT_logo.png"
+            src="img/logos/KIT_logo.png"
             alt="KIT Logo"
           />
         </Link>
@@ -142,7 +139,7 @@ function Home() {
         >
           <img
             className={styles.fundImg}
-            src="img/csm_LogoMWK_2_Zeilen_220px.png"
+            src="img/logos/MWKBW_logo.png"
             alt="Kultusministerium Baden-Würtemberg Logo"
           />
         </Link>

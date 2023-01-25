@@ -1,0 +1,36 @@
+---
+id: ci
+title: Continuous Integration
+---
+
+## GitHub Actions
+
+We're running our CI with [GitHub Actions](https://github.com/features/actions), an automation tool by GitHub.
+It automatically runs our test suite on pushes to the
+[Chemotion ELN GitHub repository](https://github.com/ComPlat/chemotion_ELN).
+For more information visit the official [GitHub documentation for Actions](https://docs.github.com/en/actions).
+
+Our CI is configured in the following workflow file:
+<https://github.com/ComPlat/chemotion_ELN/blob/b59ab0d56b926c242d5e4d6bae869da10b2302ea/.github/workflows/ci.yml>.
+
+## Docker
+
+Because of large Ruby and npm dependencies, the CI is running inside a Docker container with prebuilt libraries
+in order to speed up CI runs.
+Our Docker image for CI is hosted at <https://hub.docker.com/r/complat/complat-ubuntu-runner>.
+The CI image is built from the following Dockerfile:
+<https://github.com/ComPlat/chemotion_ELN/blob/b59ab0d56b926c242d5e4d6bae869da10b2302ea/Dockerfile.github-ci>.
+
+We're using a PostgreSQL container to run the database alongside the ELN application:
+<https://hub.docker.com/_/postgres>.
+
+## Troubleshooting
+
+### GitHub Actions services can be down
+
+If some GitHub services are not working, have a look at the [status page](https://www.githubstatus.com/).
+
+### Flaky tests
+
+Currently, the acceptance tests are flaky, meaning they fail in non-deterministic ways
+because they are sensitive to timing (i.e., clicking on buttons that aren't rendered yet etc.).

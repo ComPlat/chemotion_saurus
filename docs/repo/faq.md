@@ -1,6 +1,5 @@
 ---
-id: repo_faq
-slug: faq
+id: faq
 title: Frequently Asked Questions (FAQ)
 sidebar_label: FAQ
 ---

@@ -1,7 +1,6 @@
 ---
 id: oa_oai_pmh
 title: OAI-PMH Service
-slug: oa_oai_pmh
 author: Claire Lin
 ---
 

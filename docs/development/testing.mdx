@@ -2,14 +2,13 @@
 id: testing
 title: Testing Code
 sidebar_label: Testing
-slug: testing
 ---
 
 We test the Chemotion ELN using three different kinds of tests.
 
 ## 1. JavaScript unit tests (mocha)
 
-     npm test 
+     npm test
 
 ## 2. Ruby unit tests (RSpec)
 
@@ -55,7 +54,7 @@ Example: [ResearchPlanDetails.spec.js](https://github.com/ComPlat/chemotion_ELN/
 
 - Heavy dependencies like REST calls can be [stubbed/mocked](https://en.wikipedia.org/wiki/Mock_object) in a test
 - We use the library sinon  
- `Sinon.stub(CLASS_TO_MOCK, "METHOD_NAME").callsFake(LAMBDA as replacement of original method);`
+  `Sinon.stub(CLASS_TO_MOCK, "METHOD_NAME").callsFake(LAMBDA as replacement of original method);`
 - Example: [ResearchPlanDetailsFieldImage.spec.js](https://github.com/ComPlat/chemotion_ELN/blob/applying-gem-shrine-2/spec/javascripts/packs/src/apps/mydb/elements/details/researchPlans/ResearchPlanDetailsFieldImage.spec.js#L54)
 
 ### Creating models with factories
@@ -100,24 +99,24 @@ By using `build` the `create_derivative` method is not executed, but one has no 
 
 ### Testing methods without classes
 
-- can be done by adding type :helpers  `Rspec.describe GenericHelpers, type: :helper do`.  
- Example [generic_helpers_spec.rb](https://github.com/ComPlat/chemotion_ELN/blob/applying-gem-shrine/spec/api/helpers/generic_helpers_spec.rb)
+- can be done by adding type :helpers `Rspec.describe GenericHelpers, type: :helper do`.  
+  Example [generic_helpers_spec.rb](https://github.com/ComPlat/chemotion_ELN/blob/applying-gem-shrine/spec/api/helpers/generic_helpers_spec.rb)
 
 ### Stubbing/Mocking
 
 - REST calls  
- `stub_request(REST_METHOD_AS_SYMBOL, 'REST_ADDRESS'`
-      `.with(REQUEST_HEADER_INFOS OR/AND PARAMETER)`
-      `.to_return(RETURN BODY OR/AND HEADER)`
-Example: [spec_helper.rb](https://github.com/ComPlat/chemotion_ELN/blob/applying-gem-shrine/spec/spec_helper.rb#L86)
+   `stub_request(REST_METHOD_AS_SYMBOL, 'REST_ADDRESS'`
+  `.with(REQUEST_HEADER_INFOS OR/AND PARAMETER)`
+  `.to_return(RETURN BODY OR/AND HEADER)`
+  Example: [spec_helper.rb](https://github.com/ComPlat/chemotion_ELN/blob/applying-gem-shrine/spec/spec_helper.rb#L86)
 
 :::info Info
 Many REST requests that request INCHI keys are already defined in [spec_helper.rb](https://github.com/ComPlat/chemotion_ELN/blob/applying-gem-shrine/spec/spec_helper.rb#L86)
 :::
 
 - Methods of classes/objects  
-`allow_any_instance_of(CLASS_NAME).to receive(METHOD_NAME_AS_SYMBOL).and_return(RESULT)`  
-`allow_any_instance_of(CLASS_NAME).to receive(METHOD_NAME_AS_SYMBOL).and_raise(AN ERROR)`
+  `allow_any_instance_of(CLASS_NAME).to receive(METHOD_NAME_AS_SYMBOL).and_return(RESULT)`  
+  `allow_any_instance_of(CLASS_NAME).to receive(METHOD_NAME_AS_SYMBOL).and_raise(AN ERROR)`
 - for more infos: [rspec-mocks](https://relishapp.com/rspec/rspec-mocks/docs)
 
 ## Acceptance tests

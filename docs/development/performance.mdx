@@ -1,13 +1,12 @@
 ---
 id: performance
-title: Investigating performance
-sidebar_label: Investigating performance
-slug: performance
+title: Investigating Performance
+sidebar_label: Performance
 ---
 
 Poor performance is bad for user experience.
 If you notice that parts of the ELN don't perform as well as you'd like,
-it might be helpful to find out *why* that is the case, and how you could improve it.
+it might be helpful to find out _why_ that is the case, and how you could improve it.
 This chapter provides some guidance on how to investigate performance.
 
 We follow the example of investigating the performance of creating a reaction.
@@ -182,8 +181,8 @@ bundle exec stackprof --d3-flamegraph tmp/stackprof.dump > tmp/stackprof-flamegr
 
 Have a look at the following resources for details on how to read flamegraphs:
 
-* <https://youtu.be/6uKZXIwd6M0> (5:20-13:00)
-* <https://www.brendangregg.com/flamegraphs.html>
+- <https://youtu.be/6uKZXIwd6M0> (5:20-13:00)
+- <https://www.brendangregg.com/flamegraphs.html>
 
 `stackprof` can also break down how much time the tests spends on each line of a function call.
 This can help zooming in on hot spots.
