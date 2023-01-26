@@ -1,0 +1,25 @@
+---
+id: readers
+title: Readers
+---
+
+:::info Info
+This page is still being edited and reviewed.
+:::
+
+:::danger Caution
+Because the Readers are constant in development, smaller bugs in the linked files can not be avoided entirely.  
+:::
+
+# Characteristics of existing Readers and where to get them
+
+| Name      | supported file format and/or identifiers                                                                                                                    | Measurement technique: device and/or software | Link to download                                                                                                |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| AIF       | .txt, plain text and _first line == raw2aif_                                                                                                                | sorption-desorption                           | [Link JK](https://github.com/jochenklar/chemotion-converter-app/blob/master/converter_app/readers/aif.py)       |
+| ASCII     | non binary file                                                                                                                                             | _fallback Reader for generic ascii files_     | [Link JK](https://github.com/jochenklar/chemotion-converter-app/blob/master/converter_app/readers/ascii.py)     |
+| CIF       | .cif and plain text                                                                                                                                         | single crystal X-ray diffraction: OlexSys     | [Link JK](https://github.com/jochenklar/chemotion-converter-app/blob/master/converter_app/readers/cif.py)       |
+| DTA       | .dta and plain text                                                                                                                                         | CV: Gamry                                     | [Link JK](https://github.com/jochenklar/chemotion-converter-app/blob/master/converter_app/readers/dta.py)       |
+| NOVA      | Special Heir of CSV Reader with _first_row == 'Potential applied (V)', 'Time (s)', 'WE(1).Current (A)', 'WE(1).Potential (V)', 'Scan', 'Index', 'Q+', 'Q-'_ | CV: Metrohm NOVA                              | [Link JK](https://github.com/jochenklar/chemotion-converter-app/blob/master/converter_app/readers/nova.py)      |
+| PsSession | .pssession and json formatted                                                                                                                               | CV: PalmSens PSTrace                          | [Link JK](https://github.com/jochenklar/chemotion-converter-app/blob/master/converter_app/readers/pssession.py) |
+| SEC       | .txt, plain text and 'Sample', 'Method settings' & 'Sequence table' as the first three lines                                                                | Size Exclusion Chromatography: WinGPC         | [Link JK](https://github.com/jochenklar/chemotion-converter-app/blob/master/converter_app/readers/sec.py)       |
+| SEM       | ascii-file and _first_line.startswith('$SEM_DATA_VERSION')_                                                                                                 | Scanning Electron Microscopy                  | [Link JK](https://github.com/jochenklar/chemotion-converter-app/blob/master/converter_app/readers/sem.py)       |
