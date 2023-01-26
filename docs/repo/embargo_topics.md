@@ -5,7 +5,7 @@ slug: embargo_topics
 author: Nicole Jung
 ---
 
-Embargos can be used to prepare data at any time and release the data at any time that is desired. The setting of an embargo is described briefly in the pages [Publication and Review](/chemotionsaurus/docs/repo/embargo_topics).
+Embargos can be used to prepare data at any time and release the data at any time that is desired. The setting of an embargo is described briefly in the pages [Publication and Review](publication_review).
 As embargos are typically used for a set of data, e.g. all reactions belonging to a planned publication, chemotion repository offers embargo bundles (= embargo collections to be assigned to all data belonging to one publication). Each embargo bundle will result in the publication of a dataset with one dataset DOI (= collection DOI, see section below).
 
 When should one use the embargo function?

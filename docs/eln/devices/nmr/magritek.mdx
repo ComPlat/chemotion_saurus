@@ -9,7 +9,7 @@ separately, with neither relying on the other. The data transfer is configured f
 Spinsolve.
 
 :::info
-General preparation aspects can be found [here](../devices#general-preparation-aspects).
+General preparation aspects can be found [here](../../devices#general-preparation-aspects).
 :::
 
 Considering all these aspects, this procedure has been conducted on the following system configurations. However it is
@@ -34,22 +34,20 @@ For the NMR integration, we have decided to configure both these features.
 
 ## Remote Device Control
 
-:::info
-General guideline regarding the configurations of remote device control can be found
-here:
+## Remote Device Control
 
-https://www.chemotion.net/chemotionsaurus/docs/eln/devices/remote_device_control
+:::info
+General guideline regarding the configurations of remote device control can be found [here](../remote_control).
 :::
 
 ## Data transfer
 
-Here transfer of the output file to Chemotion ELN will occur automatically after the experiment is completed and a new
-data file is generated. User only needs to make sure to name the sample according to the
-[naming convention](/docs/eln/devices#name-conventions).
+Data will automatically be transferred to the Chemotion ELN once the data has been saved locally on the computer. The
+user only needs to make sure to name the output file according to the [naming convention](../../devices#name-conventions)
+before saving it to the local machine.
 
 :::info
-Please take care that you communicate name conventions to all users of the Chemotion ELN:
-https://www.chemotion.net/chemotionsaurus/docs/eln/devices#name-conventions
+Please take care that you communicate [name conventions]([naming convention](../../devices#name-conventions)) to all users of the Chemotion ELN.
 :::
 
 ### Configurations in NMR PC
@@ -71,16 +69,13 @@ drive and Chemotion ELN will be able to retrieve and transfer it to the appropri
 
 ![devices_NMR_magritek_10](/img/nmr_magritek/devices_nmr_magritek_10.png)
 
-To make sure that Chemotion ELN is able to transfer it to the appropriate user's inbox, we have to make sure the samples
-are named following the naming convention [rules](/docs/eln/devices#name-conventions).
+To make sure that Chemotion ELN is able to transfer it to the appropriate user's inbox, we have to make sure the samples are named following the [naming convention](../../devices#name-conventions).
 
-Here the naming of the sample has started with the name abbreviation (Kürzel) of a certain user to whom the experiment
-data file will be sent.
+Here the naming of the sample has started with the name abbreviation (Kürzel) of a certain user to whom the experiment data file will be sent.
 
 ![devices_NMR_magritek_11](/img/nmr_magritek/devices_nmr_magritek_11.png)
 
-Now data experiment data will be transferred to the network storage location so that the data collector of Chemotion
-ELN can retrieve it from there.
+Now data experiment data will be transferred to the network storage location so that the data collector of Chemotion ELN can retrieve it from there.
 
 ### Configurations in Chemotion ELN
 
@@ -95,5 +90,5 @@ Here in this guide we have used the second mechanism where the files are collect
 distributed to specific users based on the file-name matching the name abbreviation of the user.
 
 :::note See details
-[File collector setting page](/docs/eln/settings#file-collection)
+[File collector setting page](../../install_configure/configuration#file-collection)
 :::

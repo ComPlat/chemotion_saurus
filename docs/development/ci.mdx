@@ -10,16 +10,14 @@ It automatically runs our test suite on pushes to the
 [Chemotion ELN GitHub repository](https://github.com/ComPlat/chemotion_ELN).
 For more information visit the official [GitHub documentation for Actions](https://docs.github.com/en/actions).
 
-Our CI is configured in the following workflow file:
-<https://github.com/ComPlat/chemotion_ELN/blob/b59ab0d56b926c242d5e4d6bae869da10b2302ea/.github/workflows/ci.yml>.
+Our CI is configured in this following workflow [file](https://github.com/ComPlat/chemotion_ELN/blob/main/.github/workflows/ci.yml).
 
 ## Docker
 
 Because of large Ruby and npm dependencies, the CI is running inside a Docker container with prebuilt libraries
 in order to speed up CI runs.
 Our Docker image for CI is hosted at <https://hub.docker.com/r/complat/complat-ubuntu-runner>.
-The CI image is built from the following Dockerfile:
-<https://github.com/ComPlat/chemotion_ELN/blob/b59ab0d56b926c242d5e4d6bae869da10b2302ea/Dockerfile.github-ci>.
+The CI image is built from the following [Dockerfile](https://github.com/ComPlat/chemotion_ELN/blob/main/Dockerfile.github-ci).
 
 We're using a PostgreSQL container to run the database alongside the ELN application:
 <https://hub.docker.com/_/postgres>.

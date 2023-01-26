@@ -8,50 +8,49 @@ sidebar_position: 1
 This page is still being edited and reviewed.
 :::
 
-### List of devices transfering data to Chemotion ELN
+### List of devices transferring data to Chemotion ELN
 
-The following list summarizes those devices for that a tranfer routine from the devices to Chemotion ELN was enabled.
+The following list summarizes those devices for that a transfer routine from the devices to Chemotion ELN was enabled.
 For most of the devices, a detailed description of the routine is given in the link (last column of the table). If the
 description is missing, we will provide it soon. If you have questions, please don't hesitate to contact us directly. We
 are constantly working on the integration of new devices, please let us know if you need support for your favourite
 devices.
 
-Possible integration types are **automatic** and **manual**. Automatic means that the full process works automatically.
-There are several approaches for the automatic transfer
+There are several approaches for the automatic transfer:
 
 - transferring data through **email provider**
 - **exe** running as a program
 - **powershell script** running as a background service
 - macro
 
-On the other hand, manual means that the device is not connected to any network and therefore, one manual transfer step is needed. This is
+On the other hand, _manual_ transfer means that the device is not connected to any network and therefore, one manual transfer step is needed. This is
 usually solved via a direct regular upload of data collections to the chemotion ELN data exchange server.
 
-| Device Type  |     Vendor     | Model                |       Software       | Integration type | Data transfer process (if automatic)  | link to details                                       |
-| ------------ | :------------: | -------------------- | :------------------: | ---------------- | :-----------------------------------: | ----------------------------------------------------- |
-| DSC          |    Netzsch     | DSC 214              |   NETZSCH Messung    | Automatic        |                  exe                  | [link](/docs/eln/devices/devices_low_temperature_dsc) |
-| DSC          | TA Instruments | DSC2500              |        TRIOS         | Automatic        |                  exe                  | [link](/docs/eln/devices/devices_low_temperature_dsc) |
-| FTIR         |     Bruker     | Alpha II             |       Opus 8.5       | Automatic        |                  exe                  | [link](/docs/eln/devices/devices_ir)                  |
-| GC/MS        |    Agilent     | 6890 GC / 5973N MSD  | MSD ChemStation E.02 | Automatic        |           ChemStation Macro           | link                                                  |
-| HPLC         |    Agilent     | 1100                 | LC ChemStation B.04  | Automatic        |           ChemStation Macro           | link                                                  |
-| LC/MS        |    Agilent     | 1100 HPLC / 1100 MSD | MSD ChemStation B.04 | Automatic        |           ChemStation Macro           | link                                                  |
-| LC/MS        |    Agilent     | 1260 HPLC / IQ MS    |   OpenLab CDS 2.6    | Automatic        |         Post Processing + exe         | link                                                  |
-| MS           |     Advion     | expression-L CMS     |     Mass Express     | Automatic        | Advion conversion + Powershell Script | link                                                  |
-| MS           |  ThermoFisher  | MAT95                |       xCalibur       | manual           |                                       | link                                                  |
-| NMR          |     Bruker     | Avance 400           |  TopSpin or IconNMR  | Automatic        |                 email                 | [link](/docs/eln/devices_nmr)                         |
-| NMR Benchtop |    Magritek    | 60 Proton Ultra      |      Spinsolve       | Automatic        |           Powershell script           | [link](/docs/eln/devices/devices_nmr_magritek)        |
-| Potentiostat |     Gamry      | 1010                 |      Framework       | Automatic        |                  exe                  | link                                                  |
-| Raman        |     Bruker     | MultiRAM             |         Opus         | Automatic        |    OPUS Macro + Powershell script     | link                                                  |
-| SEC          | Agilent / PSS  | 1200 HPLC            |      PSS winGPC      | Automatic        |                  exe                  | [link](/docs/eln/devices/devices_sec)                 |
-| SEC          |  Tosoh / PSS   | Tosoh EcoSEC         |      PSS WinGPC      | Automatic        |                  exe                  | [link](/docs/eln/devices/devices_sec)                 |
-| TGA          | TA Instruments | TGA5500              |        TRIOS         | Automatic        |                  exe                  | link                                                  |
-| UV-VIS       |     Horiba     | Duetta               |        EzSpec        | Automatic        |                  exe                  | link                                                  |
+| Device Type  |         Vendor | Model                |       Software       |            Data Transfer process            |
+| ------------ | -------------: | :------------------- | :------------------: | :-----------------------------------------: |
+| DSC          |        Netzsch | DSC 214              |   NETZSCH Messung    |            exe ([details](dsc))             |
+| DSC          | TA Instruments | DSC2500              |        TRIOS         |            exe ([details](dsc))             |
+| EIS          |                |                      |        EC Lab        |            exe ([details](eis))             |
+| FTIR         |         Bruker | Alpha II             |       Opus 8.5       |             exe ([details](ir))             |
+| GC/MS        |        Agilent | 6890 GC / 5973N MSD  | MSD ChemStation E.02 |              ChemStation Macro              |
+| HPLC         |        Agilent | 1100                 | LC ChemStation B.04  |              ChemStation Macro              |
+| LC/MS        |        Agilent | 1100 HPLC / 1100 MSD | MSD ChemStation B.04 |              ChemStation Macro              |
+| LC/MS        |        Agilent | 1260 HPLC / IQ MS    |   OpenLab CDS 2.6    |            Post Processing + exe            |
+| MS           |         Advion | expression-L CMS     |     Mass Express     |    Advion conversion + Powershell Script    |
+| MS           |   ThermoFisher | MAT95                |       xCalibur       |                  _manual_                   |
+| NMR          |         Bruker | Avance 400           |  TopSpin or IconNMR  |        email ([details](nmr/bruker))        |
+| NMR Benchtop |       Magritek | 60 Proton Ultra      |      Spinsolve       | Powershell script ([details](nmr/magritek)) |
+| Potentiostat |          Gamry | 1010                 |      Framework       |                     exe                     |
+| Raman        |         Bruker | MultiRAM             |         Opus         |       OPUS Macro + Powershell script        |
+| SEC          |  Agilent / PSS | 1200 HPLC            |      PSS winGPC      |            exe ([details](sec))             |
+| SEC          |    Tosoh / PSS | Tosoh EcoSEC         |      PSS WinGPC      |            exe ([details](sec))             |
+| TGA          | TA Instruments | TGA5500              |        TRIOS         |                     exe                     |
+| UV-VIS       |         Horiba | Duetta               |        EzSpec        |                     exe                     |
 
 ### List of the devices being worked on or potentially in the pipeline
 
-| Device Name  |    Vendor     | Model         |  Software  | Integration type | Data transfer process (if automatic) |
-| ------------ | :-----------: | ------------- | :--------: | ---------------- | :----------------------------------: |
-| EIS          |               |               |   EC Lab   | Automatic        |                 exe                  |
-| IR Vertex 80 |               |               |    Opus    | Automatic        |                 exe                  |
-| HPLC         | Thermo Fisher | Ultimate 3000 | Chromeleon | Automatic        |                 exe                  |
-| TGA          |               |               |            | Automatic        |                 exe                  |
+| Device Name  |        Vendor | Model         |  Software  | Data transfer process |
+| ------------ | ------------: | :------------ | :--------: | :-------------------: |
+| IR Vertex 80 |               |               |    Opus    |          exe          |
+| HPLC         | Thermo Fisher | Ultimate 3000 | Chromeleon |          exe          |
+| TGA          |               |               |            |          exe          |

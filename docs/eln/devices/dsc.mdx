@@ -34,21 +34,17 @@ For the DSC device integration, we have decided to configure both these features
 ## Remote Device Control
 
 :::info
-General guideline regarding the configurations of remote device control can be found
-here:
-
-https://www.chemotion.net/chemotionsaurus/docs/eln/devices/remote_device_control
+General guideline regarding the configurations of remote device control can be found [here](remote_control).
 :::
 
 ## Data transfer
 
 Data will automatically be transferred to the Chemotion ELN once the data has been saved locally on the computer. The
-user only needs to make sure to name the output file according to the
-[naming convention](/docs/eln/devices#name-conventions) before saving it to the local machine.
+user only needs to make sure to name the output file according to the [naming convention](../devices#name-conventions)
+before saving it to the local machine.
 
 :::info
-Please take care that you communicate name conventions to all users of the Chemotion ELN:
-https://www.chemotion.net/chemotionsaurus/docs/eln/devices#name-conventions
+Please take care that you communicate [name conventions]([naming convention](../devices#name-conventions)) to all users of the Chemotion ELN.
 :::
 
 ### Configurations in DSC PC
@@ -60,7 +56,7 @@ case, the LSDF storage service from KIT has been used.
 We need to download an executable file from the [EFW builder](http://193.196.38.127/) that will run on the computer to
 transfer data from a predefined source (local location on the computer) to a destination (LSDF server in this case)
 and schedule a task at startup so that the process keeps running on the computer. Details can be found
-[here](/eln/devices/device_configuration.mdx).
+[here](data_transfer).
 
 In this step, we have to restart the PC for the scheduler to run.
 
@@ -77,5 +73,5 @@ Here in this guide we have used the second mechanism where the files are collect
 distributed to specific users based on the file-name matching the name abbreviation of the user.
 
 :::note See details
-[File collector setting page](/docs/eln/settings#file-collection)
+[File collector setting page](../install_configure/configuration#file-collection)
 :::

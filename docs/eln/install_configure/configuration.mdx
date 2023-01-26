@@ -84,7 +84,7 @@ After editing the scfinder_n.yml the service needs to be restarted.
 
 ### User Authorization
 
-This feature requires authorized access. As a system administrator, you can grant or deny users access to the function. Please see [Admin UI > UI features](/docs/eln/admin_ui/ui_features)
+This feature requires authorized access. As a system administrator, you can grant or deny users access to the function. Please see [Admin Interface > UI features](../admin/features)
 
 ## Secret key
 
@@ -148,7 +148,7 @@ After editing the structure_editors.yml the service needs to be restarted.
 
 ## Set the hostname for generating proper file download links
 
-In order for file downloads links (e. g., in exporting [collections](/docs/eln/collections)) to work correctly, you have to configure the hostname of your Chemotion ELN. Set the following variable accordingly in the `.env` file:
+In order for file downloads links (e. g., in exporting [collections](../ui/collections)) to work correctly, you have to configure the hostname of your Chemotion ELN. Set the following variable accordingly in the `.env` file:
 
 ```
 PUBLIC_URL='https://my.hostname.edu'
@@ -194,7 +194,7 @@ See [rails docs](https://guides.rubyonrails.org/action_mailer_basics.html#action
 
 This is an optional service to collect data files and distribute them to the Chemotion ELN inbox of the respective users.
 
-(see the [devices overview](devices) or [doi: 10.1016/j.acax.2019.100007 ](https://doi.org/10.1016/j.acax.2019.100007))
+(see the [devices overview](../devices) or [doi: 10.1016/j.acax.2019.100007 ](https://doi.org/10.1016/j.acax.2019.100007))
 
 Two options are available:
 
@@ -208,7 +208,7 @@ The attachments are then distributed to Chemotion ELN user by matching the addit
 
 :::danger
 All new incoming e-mails are processed and discarded.
-If the sender and other addresssees are unknown to the Chemotion ELN (e-mails registered to Chemotion ELN accounts), then the e-mail will be directly deleted.
+If the sender and other addressees are unknown to the Chemotion ELN (e-mails registered to Chemotion ELN accounts), then the e-mail will be directly deleted.
 :::
 
 ### File collection
@@ -284,7 +284,7 @@ If you are using the docker production setup, the service is already installed a
 
 #### Installation
 
-Use this installation guide: https://github.com/ComPlat/chem-spectra-app/blob/master/INSTALL.md
+[Use this installation guide](https://github.com/ComPlat/chem-spectra-app/blob/master/INSTALL.md).
 
 #### Configuration in Chemotion-ELN
 
@@ -345,9 +345,9 @@ installation: https://github.com/novnc/websockify
 
 A VNC server needs to be installed on each remote machine.
 
-setting: through the [Administrator-interface](/docs/eln/admin_ui/novnc_settings)
+Setting: through the [Admin Interface > noVNC settings](../admin/novnc_settings)
 
-### Onlyoffice
+### OnlyOffice
 
 Install [OnlyOffice](https://helpcenter.onlyoffice.com/installation/docs-community-install-ubuntu.aspx?_ga=2.2091185.1060566386.1612303438-123622021.1612303437) instance on a server:
 
