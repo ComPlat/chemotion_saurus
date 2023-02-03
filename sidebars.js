@@ -128,8 +128,8 @@ module.exports = {
         },
         "items": [
           "eln/converter/converter_overview",
-          "eln/converter/integration",
-          "eln/converter/readers",
+          "eln/converter/converter_integration",
+          "eln/converter/converter_readers",
         ]
       },
       {
