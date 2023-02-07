@@ -190,6 +190,7 @@ module.exports = {
           "repo/data_types"
         ]
       },
+      "repo/repo_doi",
       {
         "type": "category",
         "label": "Open Access",
