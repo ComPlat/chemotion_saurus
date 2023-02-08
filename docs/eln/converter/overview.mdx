@@ -89,7 +89,21 @@ After the upload, the following default GUI will be shown:
 ![Default screen after upload a file for profile creation - Screen 2](../../../static/img/converter/CreateProfileGUI_2.PNG)
 
 After all the adjustments and settings are done, the "Create profile" button will finish the job and the screen will be back to the existing profiles page.
-Now a non-admin user or an automatic process can upload and convert files. 
+Now a non-admin user or an automatic process can upload and convert files.
+
+#### Specific settings
+
+##### Data Class
+
+The "Data Class" drop down menu defines the kind of jdx output.
+Currently there are four used classes:
+
+|Data Class |description |requirements |
+|---|---|---|
+|XY POINTS |typical "modern data curves" where each data point is descripted by two coordinates (x and y). Difference between each x need not to be equal | exactly one column with x values & one column with y values |
+|XY DATA |Classical jcamp files with the intension to save harddrive space. Difference between each x is always equal. | exactly one column with y values and defined values for FIRSTX, LASTX and DELTAX  |
+|PEAK TABLE | | |
+|NTUBLES | | |
 
 ## Summary
 
