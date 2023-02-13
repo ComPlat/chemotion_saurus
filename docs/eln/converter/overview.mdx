@@ -80,6 +80,30 @@ After clicking on the "Create new new profile"-Button you can finally start to .
 
 ### ... create your own profile
 
+To create a profile a first example file has to be uploaded.
+This file should be a maxima example with as much information as possible, even if later data files sometimes have fewer.
+The file type and it contents must fit to an existing reader or an error will occure. 
+After the upload, the following default GUI will be shown:
+
+![Default screen after upload a file for profile creation - Screen 1](../../../static/img/converter/CreateProfileGUI_1.PNG)
+![Default screen after upload a file for profile creation - Screen 2](../../../static/img/converter/CreateProfileGUI_2.PNG)
+
+After all the adjustments and settings are done, the "Create profile" button will finish the job and the screen will be back to the existing profiles page.
+Now a non-admin user or an automatic process can upload and convert files.
+
+#### Specific settings
+
+##### Data Class
+
+The "Data Class" drop down menu defines the kind of jdx output.
+Currently there are four used classes:
+
+|Data Class |description |requirements |
+|---|---|---|
+|XY POINTS |typical "modern data curves" where each data point is descripted by two coordinates (x and y). Difference between each x need not to be equal | exactly one column with x values & one column with y values |
+|XY DATA |Classical jcamp files with the intension to save harddrive space. Difference between each x is always equal. | exactly one column with y values and defined values for FIRSTX, LASTX and DELTAX  |
+|PEAK TABLE | | |
+|NTUBLES | | |
 
 ## Summary
 

@@ -128,6 +128,8 @@ module.exports = {
         },
         "items": [
           "eln/converter/converter_overview",
+          "eln/converter/converter_integration",
+          "eln/converter/converter_readers",
         ]
       },
       {
@@ -188,6 +190,7 @@ module.exports = {
           "repo/data_types"
         ]
       },
+      "repo/repo_doi",
       {
         "type": "category",
         "label": "Open Access",
