@@ -307,7 +307,7 @@ Another solution is to look into the `.docusaurus` folder. For debugging the JSX
 ### Contribution to online version via Version Control System
 
 Every documentation page can be edited online via the `Edit this page` button.
-To enable this, insert a link for editing in your VCS (e. g. `https://github.com/ComPlat/chemotion_saurus/edit/master/`) in the [configuration file](#configuration-file),
+To enable this, insert a link for editing in your VCS (e. g. `https://github.com/ComPlat/chemotion_saurus/edit/main/`) in the [configuration file](#configuration-file),
 usually under `presets/docs/editUrl` or `plugins/<instance>/editUrl`.
 
 ## Deployment
@@ -328,5 +328,5 @@ Look in the Docusaurus documentation for solutions: [https://docusaurus.io/docs/
 Docusaurus can be fully built and deployed via GitHub or GitLab.
 For that a workflow file in yml is needed, where the current code is checked out (e. g. on every push),
 build via npm or yarn and the so created build directory pushed to a server via SSH.
-An example workflow for Continuous Deployment via SSH can be found on [GitHub](https://github.com/ComPlat/chemotion_saurus/blob/master/.github/workflows/build.yml).
+An example workflow for Continuous Deployment via SSH can be found on [GitHub](https://github.com/ComPlat/chemotion_saurus/blob/main/.github/workflows/build.yml).
 For details have a look at the chapter on [continuous integration](../development/ci).

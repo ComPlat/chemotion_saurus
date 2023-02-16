@@ -60,7 +60,7 @@ For advanced contributions to the Docusaurus, you can clone the repository and d
 Successful changes are directly deployed online.
 You can check [GitHub Actions](https://github.com/ComPlat/chemotion_saurus/actions/workflows/build.yml) to see if your changes are merged successfully merged.
 More information about GitHub Actions (in general and for the Chemotion ELN) can be found in the [testing chapter](../development/ci).
-The landing (start) page can be edited [on GitHub](https://github.com/ComPlat/chemotion_saurus/edit/master/src/pages/index.js).
+The landing (start) page can be edited [on GitHub](https://github.com/ComPlat/chemotion_saurus/edit/main/src/pages/index.js).
 
 ## New Page
 
@@ -85,11 +85,9 @@ title: Introduction Videos
 
 - short links for creating a new page on GitHub:
 
-  - [new Chemotion ELN documentation page](https://github.com/ComPlat/chemotion_saurus/new/master/docs/eln)
+  - [new Chemotion ELN documentation page](https://github.com/ComPlat/chemotion_saurus/new/main/docs/eln)
 
-  - [new REPO documentation page](https://github.com/ComPlat/chemotion_saurus/new/master/docs/repo)
-
-  - [new Newsroom page](https://github.com/ComPlat/chemotion_saurus/new/master/blog)
+  - [new REPO documentation page](https://github.com/ComPlat/chemotion_saurus/new/main/docs/repo)
 
 ## Markdown
 
@@ -182,7 +180,7 @@ import { faPlus, faShareAlt } from '@fortawesome/free-solid-svg-icons'
 ### Downloadable Files
 
 If you want to provide one or multiple file(s) to download directly form the manual,
-upload them to the files folder on [GitHub](https://github.com/ComPlat/chemotion_saurus/upload/master/static/files)
+upload them to the files folder on [GitHub](https://github.com/ComPlat/chemotion_saurus/upload/main/static/files)
 and insert a Download Button with the (comma-separated) filepath(s) in `files` and the button text in `text` :
 
 ```
@@ -349,7 +347,7 @@ Replace them with React elements.
 
 ## TOC
 
-The TOC on the left of every documentation page must be manually updated via <b>[sidebars.js](https://github.com/ComPlat/chemotion_saurus/edit/master/sidebars.js)</b> on GitHub.
+The TOC on the left of every documentation page must be manually updated via <b>[sidebars.js](https://github.com/ComPlat/chemotion_saurus/edit/main/sidebars.js)</b> on GitHub.
 If you have inserted a new page or want to change the order, change it there.
 
 ## Versioning
@@ -369,9 +367,9 @@ However, this can be adapted in the future. To create a new documentation versio
    If you want to version the repository part of the documentation add the `lastVersion` and `versions` keys to the `"@docusaurus/plugin-content-docs"` plugin with the `id: "repoID"` in `docusaurus.config.js`
    and follow the steps above.
 1. If versioning is enabled you have to use a separate TOC for each part of the documentation.
-   Use [**sidebarELN.js**](https://github.com/ComPlat/chemotion_saurus/edit/master/sidebarELN.js) for
-   the Chemotion ELN part and [**sidebarsREPO.js**](https://github.com/ComPlat/chemotion_saurus/edit/master/sidebarsREPO.js)
-   for the Repository part instead of [**sidebars.js**](https://github.com/ComPlat/chemotion_saurus/edit/master/sidebars.js) for all parts.
+   Use [**sidebarELN.js**](https://github.com/ComPlat/chemotion_saurus/edit/main/sidebarELN.js) for
+   the Chemotion ELN part and [**sidebarsREPO.js**](https://github.com/ComPlat/chemotion_saurus/edit/main/sidebarsREPO.js)
+   for the Repository part instead of [**sidebars.js**](https://github.com/ComPlat/chemotion_saurus/edit/main/sidebars.js) for all parts.
    Before that, the different TOCs probably need to be updated.
 1. After enabling versioning it is important to change your relative imports - in case you used those before - to absolute imports because with versioning a lot more roots will be added to your Docusaurus:
 

@@ -40,7 +40,7 @@ npm start
 
 You may want to disable [algolia search](https://docusaurus.io/docs/search#using-algolia-docsearch) during development (in case you don't have the API key). To do this, comment out the `module.exports.themeConfig.algolia` key in the file [docusaurus.config.js](docusaurus.config.js).
 
-### Shipping Docs
+### Building
 
 This command generates static content into the `build` directory and can be served using any static contents hosting service.
 
