@@ -14,6 +14,14 @@ module.exports = {
     fund: "Funded By",
   },
   themeConfig: {
+    announcementBar: {
+      id: "restructuring",
+      content:
+        "The Documentation has been significantly restructured. If your referring link is broken, it would be best to use the Search feature.",
+      backgroundColor: "#fafbfc",
+      textColor: "#091E42",
+      isCloseable: false,
+    },
     navbar: {
       title: "Chemotion",
       logo: {
