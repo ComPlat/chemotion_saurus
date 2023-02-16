@@ -103,21 +103,6 @@ button[name="downloadBtn"]:hover{
   }
 }
 
-/*Google Maps*/
-#gmap_canvas {
-  overflow:hidden;
-  background:none!important;
-  height:500px;
-  width:600px;
-}
-
-#mapouter{
-  position:relative;
-  text-align:right;
-  height:500px;
-  width:600px;
-}
-
 .table-of-contents__link--active{
   color: black;
 }

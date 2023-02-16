@@ -1,0 +1,82 @@
+---
+id: development
+title: Development of Chemotion ELN
+sidebar_label: Development
+sidebar_position: 98
+---
+
+Welcome to the development documentation of the Chemotion ELN.
+
+## Repositories
+
+- Source code: <https://github.com/ComPlat/chemotion_eln>
+- Documentation: <https://github.com/ComPlat/chemotion_saurus>
+
+## Setting up a development environment
+
+We recommend setting up a development environment in a Visual Studio Code devcontainer.
+You can find more information [here](environment).
+
+## Learning resources
+
+To learn more about the technologies we're using on the project, have a look at the following
+[resources](learn).
+
+## Technologies
+
+The project is built with [Ruby on Rails](https://rubyonrails.org/), version 6.1.
+It uses the Model-View-Controller (MVC) architectural pattern.
+However, this project differs from a typical Rails project:
+
+- It is using a JSON API.
+- Rails comes with built-in support for an [SQLite](https://www.sqlite.org/index.html) database, but the project is using [PostgreSQL](https://www.postgresql.org/).
+- The front-end is built using the [React](https://reactjs.org/) and [alt](http://alt.js.org) frameworks. The main page is a single-page application (SPA) along with a few other pages.
+
+## Directory structure
+
+### app
+
+**app** is the main directory in a Rails application. It contains the MVC structure in the subdirectories **models**, **views**, and **controllers**.
+However, because the project doesn't adhere to the default Rails architecture, the controllers are mostly empty.
+Instead of controllers, a JSON API is used which lives in the **api** directory. Also, there are not many pages in the views directory.
+
+The assets are compiled with [Webpacker](https://github.com/rails/webpacker).
+There are currently multiple directories containing **assets** (e.g., under `app`, `public`, `vendor`, `tmp`).
+The **app/assets** directory was the main directory for storing assets in the previous version with Rails 4.
+With the implementation of Webpacker the assets moved to **app/packs**.
+For example, the JavaScript files with all React components formerly lived in `app/assets/javascripts` and now moved to `app/packs/src`.
+`app/packs/src` contains a directory for each single-page application (SPA). For example, the user-facing SPA lives in is the `app/packs/src/components`.
+The **stylesheets** directory is still located under `app/assets`.
+
+### config
+
+Contains the configuration of the application. For example, **database.yml** contains the configuration of the database.
+The **environments** subdirectory contains the three environments provided by Rails by default (i.e., **development**, **production**, and **test**).
+The **initializers** subdirectory contains the configuration of extensions.
+For instance, in the **devise** subdirectory, we configure a [package](https://github.com/heartcombo/devise) for authentication which takes care of the mail sender and passwords.
+
+### lib
+
+Modules related to the application are added to this directory, such as PubChem, DataCite, OpenBabel. It also has the **storage** directory where the files are uploaded.
+
+### node_modules
+
+Contains [node](https://nodejs.org/en/) modules which are installed with [yarn](https://yarnpkg.com/).
+
+### public
+
+Contains static files, such as **images** of molecules. It is difficult to query them as they have hexadecimal identifiers.
+When creating, e.g., a new reaction, the application will create an image for it and store it in the **images**/**reactions** directory.
+
+### spec
+
+Contains Ruby and JavaScript unit test, as well as feature/acceptance tests.
+
+### uploads
+
+Contains attachments uploaded by the user.
+
+### .rubocop.yml and .eslintrc
+
+**.eslintrc** and **.rubocop.yml** contain the linter configurations for JavaScript and Ruby respectively.
+Visit the [linting chapter](linting) for more details.

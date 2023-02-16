@@ -2,49 +2,48 @@ require("dotenv").config();
 
 module.exports = {
   title: "Chemotion",
-  tagline:
-    "Electronic Laboratory Notebook (ELN) &\n" +
-    "Repository for Research Data\n",
+  tagline: "Electronic Laboratory Notebook & Repository for Research Data",
   url: "https://chemotion.net",
-  baseUrl: "/chemotionsaurus/",
-  onBrokenLinks: "log",
+  baseUrl: "/",
+  onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
-  favicon: "img/favicon.ico",
+  favicon: "img/logos/favicon.ico",
   organizationName: "Complat", // Usually your GitHub org/user name.
   projectName: "chemotion_saurus", // Usually your repo name.
   customFields: {
     fund: "Funded By",
   },
   themeConfig: {
+    announcementBar: {
+      id: "restructuring",
+      content:
+        "The Documentation has been significantly restructured. If your referring link is broken, it would be best to use the Search feature.",
+      backgroundColor: "#03e8fc",
+      textColor: "#000000",
+      isCloseable: true,
+    },
     navbar: {
       title: "Chemotion",
       logo: {
         alt: "Chemotion",
-        src: "img/favicon.ico",
+        src: "img/logos/favicon.ico",
       },
       items: [
         {
-          label: "Documentation",
+          label: "Documentation 📖",
           position: "left",
-          items: [
-            {
-              label: "ELN",
-              to: "docs/eln/intro",
-            },
-            {
-              label: "Repository",
-              to: "docs/repo/videos_repo",
-            },
-            {
-              label: "About this documentation",
-              to: "docs/docu/maintaining",
-            },
-          ],
+          docId: "welcome",
+          type: "doc",
         },
         {
-          to: "blog/newsroom",
-          label: "Newsroom",
-          position: "left",
+          label: "Helpdesk 🤝",
+          position: "right",
+          to: "/helpdesk",
+        },
+        {
+          label: "Chemotion Repository ↗️",
+          position: "right",
+          to: "https://www.chemotion-repository.net/",
         },
       ],
     },
@@ -72,35 +71,15 @@ module.exports = {
         {
           items: [
             {
-              label: "ELN GitHub",
-              to: "https://github.com/ComPlat/chemotion_ELN",
+              // using html to ensure centered alignment
+              html: `<p style="text-align:center"><a href="https://github.com/ComPlat/chemotion_ELN">Chemotion ELN Source Code ↗</a></p>`,
             },
           ],
         },
-
         {
           items: [
             {
-              label: "Repository GitHub",
-              to: "https://github.com/ComPlat/chemotion_REPO",
-            },
-          ],
-        },
-
-        {
-          items: [
-            {
-              label: "Contact Us",
-              to: "about",
-            },
-          ],
-        },
-
-        {
-          items: [
-            {
-              label: "Admin",
-              to: "admin",
+              html: `<p style="text-align:center"><a href="/about">About Us</a></p>`,
             },
           ],
         },
@@ -120,13 +99,12 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
-          editUrl: "https://github.com/ComPlat/chemotion_saurus/edit/master/",
+          editUrl: "https://github.com/ComPlat/chemotion_saurus/edit/main/",
           showLastUpdateTime: true,
           showLastUpdateAuthor: true,
+          routeBasePath: "/docs",
         },
-        blog: {
-          showReadingTime: true,
-        },
+        blog: false,
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
