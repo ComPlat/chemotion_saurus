@@ -18,9 +18,9 @@ module.exports = {
       id: "restructuring",
       content:
         "The Documentation has been significantly restructured. If your referring link is broken, it would be best to use the Search feature.",
-      backgroundColor: "#fafbfc",
-      textColor: "#091E42",
-      isCloseable: false,
+      backgroundColor: "#03e8fc",
+      textColor: "#000000",
+      isCloseable: true,
     },
     navbar: {
       title: "Chemotion",
