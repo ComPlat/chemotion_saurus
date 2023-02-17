@@ -53,3 +53,7 @@ npm run build
 ![code status](https://github.com/ComPlat/chemotion_saurus/actions/workflows/build.yml/badge.svg)
 
 The website is deployed with GitHub Actions [here](https://github.com/ComPlat/chemotion_saurus/blob/aa6fe5cc1ade8517f855a7df1ef4f6d648c67f26/.github/workflows/build.yml#L40).
+
+## Algolia search
+The search can be configure at https://crawler.algolia.com/ and https://www.algolia.com/apps/.
+Configuration requires an account with access to `secrets.ALGOLIA_APP_ID`.
