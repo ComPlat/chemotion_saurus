@@ -29,25 +29,22 @@ DOIs are created directly with the submission of data to chemotion repository - 
 Here, some action is needed, please see section on how to release an embargo: https://www.chemotion.net/docs/repo/embargo_topics#release-an-embargo
 :::
 
-**Explanation of DOI-structure**
+**Explanation of DOI-structure**<br />
+DOIs consist of a prefix and a suffix. DOI links include additionally "https://". DOIs created by chemotion repository contain the prefix "dx.doi.org/10.14272/" which is combined with a speficic suffix for collections, reactions, samples and analyses. DOIs contain a numerical counter to indicate how ofter items are submitted, that consist of a similar content.<br />
 
-DOIs consist of a prefix and a suffix. DOI links include additionally "https://". DOIs created by chemotion repository contain the prefix "dx.doi.org/10.14272/" which is combined with a speficic suffix for collections, reactions, samples and analyses. DOIs contain a numerical counter to indicate how ofter items are submitted, that consist of a similar content.  
+**Example for typical collection DOI:** https://dx.doi.org/10.14272/collection/AAL_2022-12-18_2. <br />
+Explanation: "https://"(link) + "dx.doi.org/10.14272"(prefix) + "/collection"(indicator for type of DOI) + "AAL_2022-12-18_2"(label of the collection).<br />
+**Example for typical reaction DOI:** https://dx.doi.org/10.14272/reaction/SA-FUHFF-UHFFFADPSC-WSUGZWJXIM-UHFFFADPSC-NUHFF-NAKRX-NUHFF-ZZZ <br />
+Explanation: "https://"(link) + "dx.doi.org/10.14272"(prefix) + "reaction"(indicator for type of DOI) + "/SA-FUHFF-UHFFFADPSC-WSUGZWJXIM-UHFFFADPSC-NUHFF-NAKRX-NUHFF-ZZZ"(InCHIkey identifier for the reaction).<br />
+**Example for typical sample DOI:** https://dx.doi.org/10.14272/WSUGZWJXIMLXNZ-WUKNDPDISA-N.1 <br />
+Explanation: "https://"(link) + "dx.doi.org/10.14272"(prefix) + "/WSUGZWJXIMLXNZ-WUKNDPDISA-N"(InCHIkey of molecule) + ".1"(numer of repetition in repository).<br />
+**Example for typical analysis DOI:** https://dx.doi.org/10.14272/WSUGZWJXIMLXNZ-WUKNDPDISA-N/CHMO0000593<br />
+Explanation: "https://"(link) + "dx.doi.org/10.14272"(prefix) + "/WSUGZWJXIMLXNZ-WUKNDPDISA-N"(InCHIkey of molecule) + "/CHMO0000593"(label of the collection).<br />
 
-**Example for typical collection DOI:** https://dx.doi.org/10.14272/collection/AAL_2022-12-18_2. 
-Explanation: "https://"(link) + "dx.doi.org/10.14272"(prefix) + "/collection"(indicator for type of DOI) + "AAL_2022-12-18_2"(label of the collection).
-**Example for typical reaction DOI:** https://dx.doi.org/10.14272/reaction/SA-FUHFF-UHFFFADPSC-WSUGZWJXIM-UHFFFADPSC-NUHFF-NAKRX-NUHFF-ZZZ
-Explanation: "https://"(link) + "dx.doi.org/10.14272"(prefix) + "reaction"(indicator for type of DOI) + "/SA-FUHFF-UHFFFADPSC-WSUGZWJXIM-UHFFFADPSC-NUHFF-NAKRX-NUHFF-ZZZ"(InCHIkey identifier for the reaction).
-**Example for typical sample DOI:** https://dx.doi.org/10.14272/WSUGZWJXIMLXNZ-WUKNDPDISA-N.1
-Explanation: "https://"(link) + "dx.doi.org/10.14272"(prefix) + "/WSUGZWJXIMLXNZ-WUKNDPDISA-N"(InCHIkey of molecule) + ".1"(numer of repetition in repository).
-**Example for typical analysis DOI:** https://dx.doi.org/10.14272/WSUGZWJXIMLXNZ-WUKNDPDISA-N/CHMO0000593
-Explanation: "https://"(link) + "dx.doi.org/10.14272"(prefix) + "/WSUGZWJXIMLXNZ-WUKNDPDISA-N"(InCHIkey of molecule) + "/CHMO0000593"(label of the collection).
-
-**How to use DOIs in publications and SI**
-
+**How to use DOIs in publications and SI**<br />
 There are different options to use DOIs in publications. Following, we descibed the recommended way of where the DOIs should be placed. An explanation of how to gain this in a feasible manner without the need of entering all DOIs manually is described elsewhere.  
 
-**DOIs in supplemental information or methods' section:** 
-
+**DOIs in supplemental information or methods' section:** <br />
 Please add DOIs to your Supportig information or the exterimental/methods part of your main manuscript. Please use at least one DOI per experiment (the reaction DOI), in this case the DOI of the reaction (as the repository then links to samples and their characterization). If possible, please include DOIs for the experiment (the reaction DOI) and the sample (as the repository then links the characterization/analyses). Sometimes it might be helpful to point to specific analyses. Following you will find an example on how to include reaction DOIs and sample DOIs to a Supplemental Part: 
  
 1H-Quinoxalin-2-one (S2a): Benzene-1,2-diamine (5.00 g, 46.2 mmol, 1.0 equiv) and ethyl 2-oxoacetate (50% in toluene, 10.4 g, 10.1 mL, 50.9 mmol, 1.10 equiv) in 80 mL of THF was stirred at 75 °C for 2 h. The reaction mixture was cooled to 25 °C; the resulting white-yellow precipitate was isolated by filtration and THF was evaporated from the filtrate under reduced pressure. The remaining solid was rinsed out with DCM and added to the solid residue. Subsequently the combined solid precipitate was washed 3x with distilled water, transferred to a flask and dried under high vacuum. The product 1H-quinoxalin-2-one (6.66 g, 45.6 mmol, 99% yield) was obtained as a white solid.
@@ -55,14 +52,12 @@ Rf = 0.23 (cyclohexane/ethyl acetate 1:1). 1H NMR (400 MHz, DMSO-d6, ppm) δ = 1
 CHar), 7.31–7.28 (m, 2H, CHar); 13C NMR (100 MHz, DMSO-d6, ppm) δ = 154.9 (1C, CqO), 151.6 (1C, CHar), 132.0 (1C, Cq), 131.8 (1C, Cq), 130.8 (1C, CHar), 128.8 (1C,
 CHar), 123.3 (1C, CHar), 115.7 (1C, CHar); EI (m/z, 70 eV, 80 °C): 147 (10) [M+1]+, 146 (100) [M]+, 119 (17), 118 (66), 91 (24), 64 (10), 63 (11). HRMS (EI, C8H6O1N2):
 calcd 146.0475, found 146.0473; IR (ATR, ṽ) = 3077 (w), 2997 (w), 2976 (m), 2942(m), 2870 (m), 2816 (s), 2745 (m), 2680 (m), 1696 (s), 1672 (vs), 1636 (vs), 1612 (vs),
-1537 (vs), 1494 (s), 1472 (s), 1424 (vs), 1373 (s), 1353 (m), 1332 (m), 1322 (m), 1262(m), 1254 (m), 1200 (m), 1142 (m), 1125 (m), 1021 (m), 963 (m), 950 (s), 924 (m), 891(vs), 779 (s), 751 (vs), 724 (vs), 681 (m), 606 (vs), 554 (m), 531 (m), 510 (vs), 493 (s),470 (vs), 399 (vs) cm–1.
-
-Additional information on the experimental procedure is available via Chemotion repository: https://doi.org/10.14272/reaction/SA-FUHFF-UHFFFADPSC-FFRYUAVNPBUHFFFADPSC-NUHFF-NUHFF-NUHFF-ZZZ.1
-Additional information on the characterization of the target compound is available via Chemotion repository: https://doi.org/10.14272/FFRYUAVNPBUEIC-UHFFFAOYSA-N.2
-
+1537 (vs), 1494 (s), 1472 (s), 1424 (vs), 1373 (s), 1353 (m), 1332 (m), 1322 (m), 1262(m), 1254 (m), 1200 (m), 1142 (m), 1125 (m), 1021 (m), 963 (m), 950 (s), 924 (m), 891(vs), 779 (s), 751 (vs), 724 (vs), 681 (m), 606 (vs), 554 (m), 531 (m), 510 (vs), 493 (s),470 (vs), 399 (vs) cm–1.<br />
+Additional information on the experimental procedure is available via Chemotion repository: https://doi.org/10.14272/reaction/SA-FUHFF-UHFFFADPSC-FFRYUAVNPBUHFFFADPSC-NUHFF-NUHFF-NUHFF-ZZZ.1 <br />
+Additional information on the characterization of the target compound is available via Chemotion repository: https://doi.org/10.14272/FFRYUAVNPBUEIC-UHFFFAOYSA-N.2<br />
 The synthesis of this compound has been previously described and the NMR data corresponds with the literature [8].
 
-**DOIs in main part of the manuscript** 
+**DOIs in main part of the manuscript**<br /> 
 The main 
 
 
