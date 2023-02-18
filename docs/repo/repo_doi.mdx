@@ -29,7 +29,8 @@ DOIs are created directly with the submission of data to chemotion repository - 
 Here, some action is needed, please see section on how to release an embargo: https://www.chemotion.net/docs/repo/embargo_topics#release-an-embargo
 :::
 
-**Explanation of DOI-structure**<br />
+**Explanation of DOI-structure**
+
 DOIs consist of a prefix and a suffix. DOI links include additionally "https://". DOIs created by chemotion repository contain the prefix "dx.doi.org/10.14272/" which is combined with a speficic suffix for collections, reactions, samples and analyses. DOIs contain a numerical counter to indicate how ofter items are submitted, that consist of a similar content.<br />
 
 **Example for typical collection DOI:** https://dx.doi.org/10.14272/collection/AAL_2022-12-18_2. <br />
@@ -41,8 +42,16 @@ Explanation: "https://"(link) + "dx.doi.org/10.14272"(prefix) + "/WSUGZWJXIMLXNZ
 **Example for typical analysis DOI:** https://dx.doi.org/10.14272/WSUGZWJXIMLXNZ-WUKNDPDISA-N/CHMO0000593<br />
 Explanation: "https://"(link) + "dx.doi.org/10.14272"(prefix) + "/WSUGZWJXIMLXNZ-WUKNDPDISA-N"(InCHIkey of molecule) + "/CHMO0000593"(label of the collection).<br />
 
-**How to use DOIs in publications and SI**<br />
-There are different options to use DOIs in publications. Following, we descibed the recommended way of where the DOIs should be placed. An explanation of how to gain this in a feasible manner without the need of entering all DOIs manually is described elsewhere.  
+**How to use DOIs in publications**
+
+There are different options to use DOIs in publications. Following, we descibe the recommended way of where the DOIs should be placed. An explanation of how to gain this in a feasible manner without the need of entering all DOIs manually is described elsewhere.
+
+:::info
+DOIs need to be placed in three sections of a publication. <br />
+(1) supplemental information and/or methods/experimental section in the manuscript <br />
+(2) data availability statement of manuscript <br />
+(3) references part of the manuscript <br />
+:::
 
 **DOIs in supplemental information or methods' section:** <br />
 Please add DOIs to your Supportig information or the exterimental/methods part of your main manuscript. Please use at least one DOI per experiment (the reaction DOI), in this case the DOI of the reaction (as the repository then links to samples and their characterization). If possible, please include DOIs for the experiment (the reaction DOI) and the sample (as the repository then links the characterization/analyses). Sometimes it might be helpful to point to specific analyses. Following you will find an example on how to include reaction DOIs and sample DOIs to a Supplemental Part: 
@@ -57,12 +66,17 @@ Additional information on the experimental procedure is available via Chemotion 
 Additional information on the characterization of the target compound is available via Chemotion repository: https://doi.org/10.14272/FFRYUAVNPBUEIC-UHFFFAOYSA-N.2<br />
 The synthesis of this compound has been previously described and the NMR data corresponds with the literature [8].
 
-**DOIs in main part of the manuscript**<br /> 
-The main 
+**DOIs in data availability statement of the manuscript**<br /> 
+Please give information in the manuscript itself on where the data can be found. This is done via giving either one collection DOI (preferred case) or multiple collection DOIs (if more than one collection was created due to e.g. differnt experimentalists). The information on the DOI should be supported with an extra reference that is dedicated to the collection DOI (here, reference [60] of the manuscript is created for this purpose)<br /> 
+**Data Availability Statement (or similar section):**  The Supporting Information covers detailed material on the conducted experiments and their results including the characterization of the obtained compounds. The data that support the findings of this study are available in the repository Chemotion (https://www.chemotion-repository.net/). All DOIs minted for the data are linked to the specific experiments in the Supporting Information and a summary of all new data obtained in this study can be gained with the collection DOI https://dx.doi.org/10.14272/collection/SiO_2023-01-18. [60]
 
+**DOIs in references section of the manuscript**<br />  
+Please use one reference in the manuscript to refer to the data deposit. Please use a similar style as given for the other references in your mansucript. e.g.
+[60] Author 1, Author 2, Author 3, Chemotion Repository 2023, https://dx.doi.org/10.14272/collection/SiO_2023-01-18.
 
-
-
+:::info for corresponding authors
+In addition to the above described process, the collection DOI and the name of the used repository need to be communicated to the editorial office/publisher during the publication submission process. 
+:::
 
 **DOIs for publishers** 
 Publishers request information on the repository where data is deposited during the manuscript submission process. Please refer in those cases to chemotion repository. If the publisher requires a persistent identifier of the repository, please refer to: fairsharing_DOI:10.25504/FAIRsharing.iagXcR. 
