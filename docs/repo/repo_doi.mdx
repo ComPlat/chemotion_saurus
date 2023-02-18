@@ -9,7 +9,7 @@ author: Nicole Jung
 ## DOIs in chemotion repository: Explanations 
 
 Chemotion repository generates different DOI-types for the submitted data:
-- Collection DOIs: Collection DOIs refer to a whole collection of data, including reactions, samples and analysis data. They are used to decribed a study with just one DOI. 
+- Collection DOIs: Collection DOIs refer to a whole collection of data, including reactions, samples and analysis data. They are used to decribed a study with just one DOI. Collection DOIs are generated on the basis of en embargo bundle. All reactions and samples assigned to an embargo bundle number are summarized in one collection DOI. 
 - Reaction DOIs: Reaction DOIs point to one specific reaction that includes the target samples and analysis data. 
 - Sample DOIs: Sample DOIs point to one specific sample that includes the analysis data. Chemotion creates DOIs for samples, not for molecules. Therefore, the same molecule can occur differnt times in Chemotion with differnt DOIs (according to differnt samples (=batches)).
 - Analysis (Datasets) DOIs: Analysis DOIs are the lowest DOI level that is supported by chemotion repository. The analysis DOI refers to one analytical measurement that was conducted for a specific sample. The analysis DOi may refer to one or multiple datasets describing the measurement. 
@@ -32,13 +32,13 @@ DOIs are created directly with the submission of data to chemotion repository - 
 
 DOIs consist of a prefix and a suffix. DOI links include additionally "https://". DOIs created by chemotion repository contain the prefix "dx.doi.org/10.14272/" which is combined with a speficic suffix for collections, reactions, samples and analyses. DOIs contain a numerical counter to indicate how ofter items are submitted, that consist of a similar content.<br />
 
-- **Example for typical collection DOI:** https://dx.doi.org/10.14272/collection/AAL_2022-12-18_2. <br />
+- **Example for a typical collection DOI:** https://dx.doi.org/10.14272/collection/AAL_2022-12-18_2. <br />
  Explanation: "https://"(link) + "dx.doi.org/10.14272"(prefix) + "/collection"(indicator for type of DOI) + "AAL_2022-12-18_2"(label of the collection).<br />
-- **Example for typical reaction DOI:** https://dx.doi.org/10.14272/reaction/SA-FUHFF-UHFFFADPSC-WSUGZWJXIM-UHFFFADPSC-NUHFF-NAKRX-NUHFF-ZZZ <br />
+- **Example for a typical reaction DOI:** https://dx.doi.org/10.14272/reaction/SA-FUHFF-UHFFFADPSC-WSUGZWJXIM-UHFFFADPSC-NUHFF-NAKRX-NUHFF-ZZZ <br />
  Explanation: "https://"(link) + "dx.doi.org/10.14272"(prefix) + "reaction"(indicator for type of DOI) + "/SA-FUHFF-UHFFFADPSC-WSUGZWJXIM-UHFFFADPSC-NUHFF-NAKRX-NUHFF-ZZZ"(InCHIkey identifier for the reaction).<br />
-- **Example for typical sample DOI:** https://dx.doi.org/10.14272/WSUGZWJXIMLXNZ-WUKNDPDISA-N.1 <br />
+- **Example for a typical sample DOI:** https://dx.doi.org/10.14272/WSUGZWJXIMLXNZ-WUKNDPDISA-N.1 <br />
  Explanation: "https://"(link) + "dx.doi.org/10.14272"(prefix) + "/WSUGZWJXIMLXNZ-WUKNDPDISA-N"(InCHIkey of molecule) + ".1"(numer of repetition in repository).<br />
-- **Example for typical analysis DOI:** https://dx.doi.org/10.14272/WSUGZWJXIMLXNZ-WUKNDPDISA-N/CHMO0000593<br />
+- **Example for a typical analysis DOI:** https://dx.doi.org/10.14272/WSUGZWJXIMLXNZ-WUKNDPDISA-N/CHMO0000593<br />
  Explanation: "https://"(link) + "dx.doi.org/10.14272"(prefix) + "/WSUGZWJXIMLXNZ-WUKNDPDISA-N"(InCHIkey of molecule) + "/CHMO0000593"(label of the collection).<br />
 
 ## How to use DOIs in publications
@@ -82,10 +82,12 @@ Usually, publishers request the collection DOIs of the data deposit. In those ca
 
 ## Where can I find the DOIs in the repository
 
+There are differnt options to find the either already published DOIs or the reserved DOIs. The DOIs can be either copied from the single pages of reactions and samples o they can be gained from the embargo bundle page (as a collection DOIs is assigned to each embargo bundle). Please see the differnt options in the following gifs.<br />
+For getting reaction DOIs and sample DOIs from the landing page of a reaction, please see this video: <br />
 ![](/img/docs/move-change-release-embargo/dois_reaction_sample.gif)
-
+For getting collection DOIs from the landing page of a reaction belonging to the collection (running under the same embargo bundle number), please see this video:<br />
 ![](/img/docs/move-change-release-embargo/doi_collection_edit_0.gif)
-
+For getting collection DOIs from the embargo bundle page, please see this video: <br />
 ![](/img/docs/move-change-release-embargo/collection_doi.gif)
 
 
