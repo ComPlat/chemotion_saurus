@@ -59,7 +59,7 @@ It's also possible to define different profiles using the same Reader but slight
 
 The normal user will only see the upload GUI, shown by the picture as standalone version (left) or inside the ELN (right).
 
-![Two possible upload GUIs](/img/converter/UploadGUI.png)
+![Two possible upload GUIs](../../static/img/converter/UploadGUI.png)
 
 After the file is uploaded, it will be converted as long as there exists a suitable reader and profile.
 It's possible (via deep coding) to define which file types are redirected to the converter and which ones are only displayed as they are (e.g. in case of binary files like pictures) to evade errors from the Converter app.
@@ -74,7 +74,7 @@ If using the standalone version just write your "converter-URL"/admin/ into your
 And if you are using the ELN integrated version you have to be logged in as an admin and click on the "Converter Profiles"-Tab on the left side.
 In both cases you will see the following GUI where all your profiles are listed (if there are already some of course):
 
-![Admin list of all current existing profiles](/img/converter/2ndLayerAdminGUI.png)
+![Admin list of all current existing profiles](../../static/img/converter/2ndLayerAdminGUI.png)
 
 After clicking on the "Create new new profile"-Button you can finally start to ...
 
@@ -85,8 +85,8 @@ This file should be a maxima example with as much information as possible, even 
 The file type and it contents must fit to an existing reader or an error will occur.
 After the upload, the following default GUI will be shown:
 
-![Default screen after upload a file for profile creation - Screen 1](/img/converter/CreateProfileGUI_1.PNG)
-![Default screen after upload a file for profile creation - Screen 2](/img/converter/CreateProfileGUI_2.PNG)
+![Default screen after upload a file for profile creation - Screen 1](../../static/img/converter/CreateProfileGUI_1.PNG)
+![Default screen after upload a file for profile creation - Screen 2](../../static/img/converter/CreateProfileGUI_2.PNG)
 
 After all the adjustments and settings are done, the "Create profile" button will finish the job and the screen will be back to the existing profiles page.
 Now a non-admin user or an automatic process can upload and convert files.
@@ -105,8 +105,28 @@ Currently there are four used classes:
 | PEAK TABLE |                                                                                                                                              |                                                                                  |
 | NTUBLES    |                                                                                                                                              |                                                                                  |
 
+##### Data Type
+
+Data Type contains a drop-down list of some ontologies (mostly chemical analytic techniques) defining the kind of layout for displaying and plotting curves and spectra in ChemSpectra.
+Not all ontologies known in the ELN are findable here because it's only for the plotting layout purpose.
+If you think that something is missing, feel free to tell us.
+
+##### X & Y Units
+
+Mostly self-explanatory but it contains a list of physical units.
+The most common units with and without prefixes are inside the lists but if you need others, please tell us or use the "scalar operation" feature to convert the column values.
+
+##### Table columns
+
+Also mostly self-explanatory.
+It's a drop-down menu for defining the x and y column values while a preview can be seen on the end of the left side as "Input table data".
+Currently only 2D data extraction is possible so if you need more, you can create additional Output tables and merge them together with external tools.
+Alternative you can use the "column operation" feature to add, subtract, divide or multiply multiple columns together.
+
+In some futur version it will become possible to create profiles without Output tables if you intend to use the converter only for Metadata extraction like descripted down below. 
+
 ## Summary
 
 The following picture shows the course of the three layers.
 
-![Flow diagram of the three Layers](/img/converter/ConverterLayers.svg)
+![Flow diagram of the three Layers](../../static/img/converter/ConverterLayers.svg)
