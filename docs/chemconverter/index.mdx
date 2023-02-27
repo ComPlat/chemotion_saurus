@@ -28,7 +28,7 @@ How the files are converted will be decided by specific rules which are listenin
 ### First layer: The reader
 
 The reader is one part of programming code responsible for the software to import and handle the given data format.
-It is the most powerfull layer due to flexibility (e.g. calculation of custom Metadata or special and complex column rules and calculations).
+It is the most powerful layer due to flexibility (e.g. calculation of custom Metadata or special and complex column rules and calculations).
 
 Source codes for the readers and examples can also be found on [Github](https://github.com/jochenklar/chemotion-converter-app/tree/master/converter_app/readers).
 There are readers for common file types and specific ones which are heirs of the basic ones.
@@ -107,23 +107,22 @@ Currently there are four used classes:
 
 ##### Data Type
 
-Data Type contains a drop-down list of some ontologies (mostly chemical analytic techniques) defining the kind of layout for displaying and plotting curves and spectra in ChemSpectra.
-Not all ontologies known in the ELN are findable here because it's only for the plotting layout purpose.
+A drop-down list of ontologies (mostly chemical analytic techniques) defining the kind of layout for displaying and plotting curves and spectra in ChemSpectra.
+Not all ontologies known in the ELN are findable here because it's only for layout purposes.
 If you think that something is missing, feel free to tell us.
 
 ##### X & Y Units
 
-Mostly self-explanatory but it contains a list of physical units.
-The most common units with and without prefixes are inside the lists but if you need others, please tell us or use the "scalar operation" feature to convert the column values.
+A list of physical units containing the most common units with and without prefixes.
+If you need additional units, please tell us or use the "scalar operation" feature to convert the column values.
 
 ##### Table columns
 
-Also mostly self-explanatory.
-It's a drop-down menu for defining the x and y column values while a preview can be seen on the end of the left side as "Input table data".
+A drop-down menu for defining the x and y column values while a preview can be seen on the end of the left side as "Input table data".
 Currently only 2D data extraction is possible so if you need more, you can create additional Output tables and merge them together with external tools.
-Alternative you can use the "column operation" feature to add, subtract, divide or multiply multiple columns together.
+Alternative you can use the "column operation" feature to add, subtract, divide or multiply columns together.
 
-In some futur version it will become possible to create profiles without Output tables if you intend to use the converter only for Metadata extraction like descripted down below. 
+In a future version it will become possible to create profiles without Output tables if you intend to use the converter only for Metadata extraction like described below.
 
 ## Summary
 
