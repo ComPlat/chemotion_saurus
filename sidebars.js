@@ -90,7 +90,8 @@ module.exports = {
             ]
           },
           "eln/hyperlinks",
-          "eln/problems"
+          "eln/problems",
+          'eln/local_editable_attachment'
         ]
       },
       {
