@@ -83,7 +83,7 @@ function Home() {
               <iframe
                 width="640"
                 height="360"
-                src="https://www.youtube.com/embed/tZHaP6DW-Dw"
+                src="https://www.youtube-nocookie.com/embed/tZHaP6DW-Dw"
                 title="YouTube video player"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
