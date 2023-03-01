@@ -138,6 +138,25 @@ While creating a profile you have to assign one of three match parameters to the
 | Any Value  | The value will always be extracted as long as the key is found in the given file. | Metadata |
 | RegEx  | The value from the input field is translated into a regular expression and compared to the string value from the input file. If the RegEx is valid, the first group of the result will be extracted as the value for the wanted key. | n.a. but often used for searching table headers with/-out line number|
 
+The extraction and assignment is now done by text fields and drop-down menus.
+You just have to follow this steps:
+1. Press "Add Metadata/Identifier"
+2. Choose a key or table (+ optional line number) as input
+3. Choose on of three matches and if it is not "any", write a value or RegEx into the text field
+4. Choose an output layer (comparable with a category)
+5. Choose an output key
+6. Optional: add scalar Operators (+,-,*,:) to the calculation of your output
+
+In the end, it could look like this:
+
+![GUI during Metadata extraction](/img/converter/MetadataExGUI.png)
+
+If the converter is integrated in the ELN and an already designed Dataset is chosen, bullet points 4 and 5 are chosen via drop-down menus otherwise typing a value is necessary.
+
+### Last but not least: ... save
+
+To finish your creation or save changes just don't forget to click on the "Create/Update profile" button otherwise everything will be lost.
+
 ## Summary
 
 The following picture shows the course of the three layers.
