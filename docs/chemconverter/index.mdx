@@ -129,7 +129,7 @@ In a future version it will become possible to create profiles without Output ta
 Both share some similarities, even in the backend (both are called "identifier" there), with the exception that Metadata have an assigned "optional = true" flag.
 Every info and content the file provides and which is not explicit declared as (measurement) data by the reader can been seen as Metadata.
 Metadata can often be further broken into "key & value".
-Sometimes the key is provided together with the value, which makes it easier for the Reader to recognize the string as a Metadata, and in other cases, it has to be defined or assigned by a user with background and RegEx knowledge.
+Sometimes the key is provided together with the value, which makes it easier for the reader to recognize the string as Metadata, and in other cases, it has to be defined or assigned by a user with background and RegEx knowledge.
 While creating a profile you have to assign one of three match parameters to the desired key.
 
 | Match | behavior | default for |
@@ -137,8 +137,6 @@ While creating a profile you have to assign one of three match parameters to the
 | Exact Value  | The value of the key will only be extracted or valid for profile choosing if it's the same as the one of the example file during profile creation. | Identifiers |
 | Any Value  | The value will always be extracted as long as the key is found in the given file. | Metadata |
 | RegEx  | The value from the input field is translated into a regular expression and compared to the string value from the input file. If the RegEx is valid, the first group of the result will be extracted as the value for the wanted key. | n.a. but often used for searching table headers with/-out line number|
-   
-
 
 ## Summary
 
