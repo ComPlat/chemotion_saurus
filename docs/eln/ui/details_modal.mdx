@@ -105,7 +105,7 @@ Values such as mass/amount/volume in the sample properties are referring to the 
 
 The **Elemental composition** is automatically calculated based on the formula, but the user can still provide their experimental numbers in fields that correspond to each atom in the molecule.
 
-The information required for chemical use is supplemented by **Chemical identifiers** such as **InChI** and **InChIKey** (clicking on the InCHI/InChIkey button alows to switch), **Canonical SMILES** and **CAS** number. Molecular structure is also provided in the **Molfile** format. You can provide the **Canonical SMILES** to create a new **Sample**, but you can’t modify the SMILES after creation (vice versa, SMILES is changed if the molecular structure changes). The other identifiers can only be copied after a **Sample** is created, and they can’t be used to generate Samples.
+The information required for chemical use is supplemented by **Chemical identifiers** such as **InChI** and **InChIKey** (clicking on the InCHI/InChIkey button allows to switch), **Canonical SMILES** and **CAS** number. Molecular structure is also provided in the **Molfile** format. You can provide the **Canonical SMILES** to create a new **Sample**, but you can’t modify the SMILES after creation (vice versa, SMILES is changed if the molecular structure changes). The other identifiers can only be copied after a **Sample** is created, and they can’t be used to generate Samples.
 
 ![InChI_IncHIKey](/img/InChI_IncHIKey.gif)
 
@@ -221,7 +221,7 @@ If you want to see a reactant displayed in the samples list, change its status f
 2. Select samples from the samples list:
    ![Reaction drag samples](/img/reaction_drag_sample.gif)
 
-Select samples from the samples list and drag and drop them by using the <Btn mixed={[faArrowsAlt]} color={"secondary"}/> symbol next to its molecular structure or next to the sample name and place the sample in the reaction. If you only want to adopt the molecular structure, use the <Btn mixed={[faArrowsAlt]} color={"secondary"}/> symbol next to the molecular structure in the sample list for the drag & drop action. The internal process corresponds to the <b>copy</b> action. If you want to carry out a reaction that uses existing samples, e.g. a subsequent reaction including a product from a previous reaction as starting material or a chemical from a chemical container, you should use the symbol <Btn mixed={[faArrowsAlt]} color={"secondary"}/> next to a sample name in the sample list and place the sample into the reaction using drag & drop. A **split** of the sample is generated internally by the system (recognizable by the generation of the sample number). This applies only to the **Starting materials** as dragging and dropping of samples to the **Reactants** section doesn‘t add anything to the samples list. Splitting is not possible for products, as they always have to be recreated, but **copy** is possible.
+Select samples from the samples list and drag and drop them by using the <Btn mixed={[faArrowsAlt]} color={"secondary"}/> symbol next to its molecular structure or next to the sample name and place the sample in the reaction. If you only want to adopt the molecular structure, use the <Btn mixed={[faArrowsAlt]} color={"secondary"}/> symbol next to the molecular structure in the sample list for the drag & drop action. The internal process corresponds to the <b>copy</b> action. If you want to carry out a reaction that uses existing samples, e.g. a subsequent reaction including a product from a previous reaction as starting material or a chemical from a chemical container, you should use the symbol <Btn mixed={[faArrowsAlt]} color={"secondary"}/> next to a sample name in the sample list and place the sample into the reaction using drag & drop. A **split** of the sample is generated internally by the system (recognizable by the generation of the sample number). This applies only to the **Starting materials** as dragging and dropping of samples to the **Reactants** section does not add anything to the samples list. Splitting is not possible for products, as they always have to be recreated, but **copy** is possible.
 
 Choose either the **Starting materials** or the **Reactants** as a reference using the **Ref** switch. As a result, the selected reference is automatically assigned an equivalent **Equiv** of 1.000. Several **Starting materials** and **Reactants** can be added, but only one sample can be marked as reference material.
 
@@ -336,7 +336,7 @@ So far, only a rudimentary structure for entering the screens has been programme
 
 ## Detail modal for research plan
 
-![Reseach plan](/img/research_plan.png)
+![Research plan](/img/research_plan.png)
 
 A research plan is a generic element that can be used in a flexible manner to describe a particular process. The research plan contains a **Name**, and there are plenty of fields that can be added in the form of text (**Add Text Editor**), tables (**Add Table Editor**), images (either a molecular structure with **Add Ketcher Editor**, or a regular image with **Add Image** where you can control its **Zoom**). You can add other elements such as samples (**Add Sample**) and reactions (**Add Reaction**) with drag and drop.
 The order of the segments added to the research plan can be changed by drag and drop.
@@ -353,7 +353,7 @@ Internal remark TO DO: gif showing export functions
 
 You can add or remove columns and rows by right-clicking on the table body. Then you can choose the action you want to make.
 
-![Reseach plan](/img/manage_column_row.gif)
+![Research plan](/img/manage_column_row.gif)
 
 #### Reorder/sort columns and rows
 
@@ -367,13 +367,13 @@ Sort:
 
 - You can sort by column by clicking on the column header.
 
-![Reseach plan](/img/reorder_column_row.gif)
+![Research plan](/img/reorder_column_row.gif)
 
 #### Rename columns
 
-You can rename columns by right-clicking on the column cell and choose 'Rename column', the rename popup will apear. Then input the new name and click 'Rename column' button.
+You can rename columns by right-clicking on the column cell and choose 'Rename column', the rename popup will appear. Then input the new name and click 'Rename column' button.
 
-![Reseach plan](/img/rename_column.gif)
+![Research plan](/img/rename_column.gif)
 
 #### Manage table schemes
 
@@ -385,7 +385,7 @@ You can rename columns by right-clicking on the column cell and choose 'Rename c
 
   - Then input the scheme name and click 'Save' button.
 
-![Reseach plan](/img/Table_Schema_Save.gif)
+![Research plan](/img/Table_Schema_Save.gif)
 
 - When you want to apply a table scheme:
 
@@ -395,4 +395,4 @@ You can rename columns by right-clicking on the column cell and choose 'Rename c
 
   - Click 'Use' button to apply the table scheme name.
 
-![Reseach plan](/img/Table_Schema_Apply.gif)
+![Research plan](/img/Table_Schema_Apply.gif)

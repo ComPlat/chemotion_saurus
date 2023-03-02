@@ -6,23 +6,24 @@ slug: doi
 author: Nicole Jung
 ---
 
-## DOIs in chemotion repository: Explanations 
+## DOIs in chemotion repository: Explanations
 
 Chemotion repository generates different DOI-types for the submitted data:
-- Collection DOIs: Collection DOIs refer to a whole collection of data, including reactions, samples and analysis data. They are used to decribe a study with just one DOI. Collection DOIs are generated on the basis of an embargo bundle. All reactions and samples assigned to an embargo bundle number are summarized in one collection DOI. 
-- Reaction DOIs: Reaction DOIs point to one specific reaction that includes the target samples and analysis data. 
-- Sample DOIs: Sample DOIs point to one specific sample that includes the analysis data. Chemotion creates DOIs for samples, not for molecules. Therefore, the same molecule can occur differnt times in Chemotion with differnt DOIs (according to differnt samples (=batches)).
-- Analysis (Datasets) DOIs: Analysis DOIs are the lowest DOI level that is supported by chemotion repository. The analysis DOI refers to one analytical measurement that was conducted for a specific sample. The analysis DOI may refer to one or multiple datasets describing the measurement. 
+
+- Collection DOIs: Collection DOIs refer to a whole collection of data, including reactions, samples and analysis data. They are used to describe a study with just one DOI. Collection DOIs are generated on the basis of an embargo bundle. All reactions and samples assigned to an embargo bundle number are summarized in one collection DOI.
+- Reaction DOIs: Reaction DOIs point to one specific reaction that includes the target samples and analysis data.
+- Sample DOIs: Sample DOIs point to one specific sample that includes the analysis data. Chemotion creates DOIs for samples, not for molecules. Therefore, the same molecule can occur different times in Chemotion with different DOIs (according to different samples (=batches)).
+- Analysis (Datasets) DOIs: Analysis DOIs are the lowest DOI level that is supported by chemotion repository. The analysis DOI refers to one analytical measurement that was conducted for a specific sample. The analysis DOI may refer to one or multiple datasets describing the measurement.
 
 **How do scientists benefit from DOIs?**
 
 The use of DOIs allows scientists to point directly to data that was generated along with their research. The users can cite not only a whole dataset but also single data on e.g. the characterization of a specific compound or the experimental details of a reaction.
-The collection DOI can be used to summarize a collection of data (ideally belonging to one publication) which allows to refer to and cite all data that describe one study. Using the DOI link in supplemental information means that every experiment can be cited. Further reuse of the full information is facilitated due to a direct link to the data - without the need to search in databases. 
-In the long run, the deposit and re-use of research data will be an important factor contributing the the scientists' impact. DOIs are the most powerful measure to cite research data and therefore contributing to new indicators for science and scientists. 
+The collection DOI can be used to summarize a collection of data (ideally belonging to one publication) which allows to refer to and cite all data that describe one study. Using the DOI link in supplemental information means that every experiment can be cited. Further reuse of the full information is facilitated due to a direct link to the data - without the need to search in databases.
+In the long run, the deposit and re-use of research data will be an important factor contributing the the scientists' impact. DOIs are the most powerful measure to cite research data and therefore contributing to new indicators for science and scientists.
 
 **How to generate DOIs? When are DOIs available?**
 
-DOIs are generated automatically in the repository - there is no need for action. Users just need to know where to find DOIs and how to use them. The DOIs are created (reserved) directly when the user submits a reaction or sample. After the information in the submission panel is added, the DOIs are created. At this stage, the DOIs can be copied and used for the referencing in SIs and publications, but the DOIs don't resolve yet. Therefore, the data is not accessible to a others. The DOIs will resolve at the time the dataset is release and published. 
+DOIs are generated automatically in the repository - there is no need for action. Users just need to know where to find DOIs and how to use them. The DOIs are created (reserved) directly when the user submits a reaction or sample. After the information in the submission panel is added, the DOIs are created. At this stage, the DOIs can be copied and used for the referencing in SIs and publications, but the DOIs don't resolve yet. Therefore, the data is not accessible to a others. The DOIs will resolve at the time the dataset is release and published.
 
 :::info
 DOIs are created directly with the submission of data to chemotion repository - but they resolve only after disclosure of the datasets - with the public accessibility of the data. Here, some action is needed, please see section on how to release an embargo: https://www.chemotion.net/docs/repo/embargo_topics#release-an-embargo
@@ -30,20 +31,20 @@ DOIs are created directly with the submission of data to chemotion repository - 
 
 **Explanation of DOI-structure**
 
-DOIs consist of a prefix and a suffix. DOI links include additionally "https://". DOIs created by chemotion repository contain the prefix "dx.doi.org/10.14272/" which is combined with a speficic suffix for collections, reactions, samples and analyses. DOIs contain a numerical counter to indicate how often items are submitted, that consist of a similar content.<br />
+DOIs consist of a prefix and a suffix. DOI links include additionally "https://". DOIs created by chemotion repository contain the prefix "dx.doi.org/10.14272/" which is combined with a specific suffix for collections, reactions, samples and analyses. DOIs contain a numerical counter to indicate how often items are submitted, that consist of a similar content.<br />
 
 - **Example for a typical collection DOI:** https://dx.doi.org/10.14272/collection/AAL_2022-12-18_2. <br />
- Explanation: "https://"(link) + "dx.doi.org/10.14272"(prefix) + "/collection"(indicator for type of DOI) + "AAL_2022-12-18_2"(label of the collection).<br />
+  Explanation: "https://"(link) + "dx.doi.org/10.14272"(prefix) + "/collection"(indicator for type of DOI) + "AAL_2022-12-18_2"(label of the collection).<br />
 - **Example for a typical reaction DOI:** https://dx.doi.org/10.14272/reaction/SA-FUHFF-UHFFFADPSC-WSUGZWJXIM-UHFFFADPSC-NUHFF-NAKRX-NUHFF-ZZZ <br />
- Explanation: "https://"(link) + "dx.doi.org/10.14272"(prefix) + "reaction"(indicator for type of DOI) + "/SA-FUHFF-UHFFFADPSC-WSUGZWJXIM-UHFFFADPSC-NUHFF-NAKRX-NUHFF-ZZZ"(InCHIkey identifier for the reaction).<br />
+  Explanation: "https://"(link) + "dx.doi.org/10.14272"(prefix) + "reaction"(indicator for type of DOI) + "/SA-FUHFF-UHFFFADPSC-WSUGZWJXIM-UHFFFADPSC-NUHFF-NAKRX-NUHFF-ZZZ"(InCHIkey identifier for the reaction).<br />
 - **Example for a typical sample DOI:** https://dx.doi.org/10.14272/WSUGZWJXIMLXNZ-WUKNDPDISA-N.1 <br />
- Explanation: "https://"(link) + "dx.doi.org/10.14272"(prefix) + "/WSUGZWJXIMLXNZ-WUKNDPDISA-N"(InCHIkey of molecule) + ".1"(numer of repetition in repository).<br />
+  Explanation: "https://"(link) + "dx.doi.org/10.14272"(prefix) + "/WSUGZWJXIMLXNZ-WUKNDPDISA-N"(InCHIkey of molecule) + ".1"(number of repetition in repository).<br />
 - **Example for a typical analysis DOI:** https://dx.doi.org/10.14272/WSUGZWJXIMLXNZ-WUKNDPDISA-N/CHMO0000593<br />
- Explanation: "https://"(link) + "dx.doi.org/10.14272"(prefix) + "/WSUGZWJXIMLXNZ-WUKNDPDISA-N"(InCHIkey of molecule) + "/CHMO0000593"(label of the collection).<br />
+  Explanation: "https://"(link) + "dx.doi.org/10.14272"(prefix) + "/WSUGZWJXIMLXNZ-WUKNDPDISA-N"(InCHIkey of molecule) + "/CHMO0000593"(label of the collection).<br />
 
 ## How to use DOIs in publications
 
-There are different options to use DOIs in publications. Following, we descibe the recommended way to add DOIs. 
+There are different options to use DOIs in publications. Following, we describe the recommended way to add DOIs.
 
 :::info for authors
 DOIs need to be added to three sections of a publication. <br />
@@ -53,8 +54,8 @@ DOIs need to be added to three sections of a publication. <br />
 :::
 
 - **DOIs in supplemental information or methods' section:** <br />
- Please add DOIs to your Supporting Information or the exterimental/methods part of your main manuscript. Please use at least one DOI per experiment (the reaction DOI), in this case the DOI of the reaction (as the repository then links to samples and their characterization). If possible, please include DOIs for the experiment (the reaction DOI) and the sample (as the repository then links the characterization/analyses). Sometimes it might be helpful to point to specific analyses. Following, you will find an example on how to include reaction DOIs and sample DOIs to a Supplemental Part: 
- 
+  Please add DOIs to your Supporting Information or the experimental/methods part of your main manuscript. Please use at least one DOI per experiment (the reaction DOI), in this case the DOI of the reaction (as the repository then links to samples and their characterization). If possible, please include DOIs for the experiment (the reaction DOI) and the sample (as the repository then links the characterization/analyses). Sometimes it might be helpful to point to specific analyses. Following, you will find an example on how to include reaction DOIs and sample DOIs to a Supplemental Part:
+
 1H-Quinoxalin-2-one (S2a): Benzene-1,2-diamine (5.00 g, 46.2 mmol, 1.0 equiv) and ethyl 2-oxoacetate (50% in toluene, 10.4 g, 10.1 mL, 50.9 mmol, 1.10 equiv) in 80 mL of THF was stirred at 75 °C for 2 h. The reaction mixture was cooled to 25 °C; the resulting white-yellow precipitate was isolated by filtration and THF was evaporated from the filtrate under reduced pressure. The remaining solid was rinsed out with DCM and added to the solid residue. Subsequently the combined solid precipitate was washed 3x with distilled water, transferred to a flask and dried under high vacuum. The product 1H-quinoxalin-2-one (6.66 g, 45.6 mmol, 99% yield) was obtained as a white solid.
 Rf = 0.23 (cyclohexane/ethyl acetate 1:1). 1H NMR (400 MHz, DMSO-d6, ppm) δ = 12.41 (bs, 1H, NH), 8.16 (s, 1H, NCHCO), 7.77–7.75 (m, 1H, CHar), 7.56–7.52 (m, 1H,
 CHar), 7.31–7.28 (m, 2H, CHar); 13C NMR (100 MHz, DMSO-d6, ppm) δ = 154.9 (1C, CqO), 151.6 (1C, CHar), 132.0 (1C, Cq), 131.8 (1C, Cq), 130.8 (1C, CHar), 128.8 (1C,
@@ -64,20 +65,20 @@ calcd 146.0475, found 146.0473; IR (ATR, ṽ) = 3077 (w), 2997 (w), 2976 (m), 29
 Additional information on the experimental procedure is available via the repository Chemotion: https://doi.org/10.14272/reaction/SA-FUHFF-UHFFFADPSC-FFRYUAVNPBUHFFFADPSC-NUHFF-NUHFF-NUHFF-ZZZ.1 <br />
 Additional information on the characterization of the target compound is available via the repository Chemotion: https://doi.org/10.14272/FFRYUAVNPBUEIC-UHFFFAOYSA-N.2<br />
 
-- **DOIs in data availability statement of the manuscript**<br /> 
- Please give information in the manuscript itself on where the data can be found. This is done via giving either one collection DOI (preferred case) or multiple collection DOIs (if more than one collection was created due to e.g. different experimentalists). The information on the DOI should be supported with an extra reference that is dedicated to the collection DOI (here, reference [60] of the manuscript is created for this purpose)<br /> 
- **Data Availability Statement (or similar section):**  The Supporting Information covers detailed material on the conducted experiments and their results including the characterization of the obtained compounds. The data that support the findings of this study are available in the repository Chemotion (https://www.chemotion-repository.net/). All DOIs minted for the data are linked to the specific experiments in the Supporting Information and a summary of all new data obtained in this study can be gained with the collection DOI https://dx.doi.org/10.14272/collection/SiO_2023-01-18. [60]
+- **DOIs in data availability statement of the manuscript**<br />
+  Please give information in the manuscript itself on where the data can be found. This is done via giving either one collection DOI (preferred case) or multiple collection DOIs (if more than one collection was created due to e.g. different experimentalists). The information on the DOI should be supported with an extra reference that is dedicated to the collection DOI (here, reference [60] of the manuscript is created for this purpose)<br />
+  **Data Availability Statement (or similar section):** The Supporting Information covers detailed material on the conducted experiments and their results including the characterization of the obtained compounds. The data that support the findings of this study are available in the repository Chemotion (https://www.chemotion-repository.net/). All DOIs minted for the data are linked to the specific experiments in the Supporting Information and a summary of all new data obtained in this study can be gained with the collection DOI https://dx.doi.org/10.14272/collection/SiO_2023-01-18. [60]
 
 - **DOIs in references section of the manuscript**<br />
-Please use one reference in the manuscript to refer to the data deposit. Please use a similar style as given for the other references in your mansucript. e.g.<br />
-[60] Author 1, Author 2, Author 3, Chemotion Repository 2023, https://dx.doi.org/10.14272/collection/SiO_2023-01-18.
+  Please use one reference in the manuscript to refer to the data deposit. Please use a similar style as given for the other references in your manuscript. e.g.<br />
+  [60] Author 1, Author 2, Author 3, Chemotion Repository 2023, https://dx.doi.org/10.14272/collection/SiO_2023-01-18.
 
 :::info for corresponding authors
-In addition to the above described process, the collection DOI and the name of the used repository need to be communicated to the editorial office/publisher during the publication submission process. 
+In addition to the above described process, the collection DOI and the name of the used repository need to be communicated to the editorial office/publisher during the publication submission process.
 :::
 
-**DOIs for publishers** 
-Publishers request information on the repository where data is deposited during the manuscript submission process. Please refer in those cases to chemotion repository. If the publisher requires a persistent identifier of the repository, please refer to: fairsharing_DOI:10.25504/FAIRsharing.iagXcR. 
+**DOIs for publishers**
+Publishers request information on the repository where data is deposited during the manuscript submission process. Please refer in those cases to chemotion repository. If the publisher requires a persistent identifier of the repository, please refer to: fairsharing_DOI:10.25504/FAIRsharing.iagXcR.
 Usually, publishers request the collection DOIs of the data deposit. In those cases, please give the collection DOI as described above.
 
 ## Where can I find the DOIs in the repository
@@ -94,7 +95,4 @@ There are different options to find either already published DOIs or the reserve
 
 **How many DOIs should be added to a publication?** <br />
 Experimental/methods section and Supplemental Information: Usually, the more DOIs are available, the better. If every experiment has an assignment to a DOI, research data are available on a very good detail level. <br />
-Data availability statement and references: the fewer DOIs, the better. The aim in those sections is to give a summary on all data, therefore, just one collection DOI is recommended. 
-
-
-
+Data availability statement and references: the fewer DOIs, the better. The aim in those sections is to give a summary on all data, therefore, just one collection DOI is recommended.
