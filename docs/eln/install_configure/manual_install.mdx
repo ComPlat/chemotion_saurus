@@ -20,7 +20,7 @@ The latest version of the Chemotion images is `1.4.1-2` as listed on [DockerHub]
 In addition, there is a compose file for simpler usage: [docker-compose.yml](https://github.com/ptrxyz/chemotion/blob/latest-release/docker-compose.yml)
 
 With version 1.4.1 two new services got introduced: the Chemotion file format converter and the Ketcher render backend.
-The services are optional but it is adviced to leave them enabled. To disable the service, remove the service definition from the compose file.
+The services are optional but it is advised to leave them enabled. To disable the service, remove the service definition from the compose file.
 
 ### New Configuration variable {#publicurl-141}
 
@@ -28,7 +28,7 @@ In our efforts to streamline some settings of the ELN, we introduced a new envir
 
 The variable also deprecates the variables "HOST_URL" and "HOST_PROTOCOL". Those are now ignored and can safely be removed.
 
-To set the variable, add it to the sections "services.worker.environment" and "services.eln.environemnt" just below the already present variables (such as "CONFIG_ROLE" for example) in your `docker-compose.yml`.
+To set the variable, add it to the sections "services.worker.environment" and "services.eln.environment" just below the already present variables (such as "CONFIG_ROLE" for example) in your `docker-compose.yml`.
 
 i.e. if you type "http://my.eln" in your browser to reach the ELN, please set this variable to `PUBLIC_URL=http://my.eln`
 
@@ -47,7 +47,7 @@ production:
   :url: 'http://ketchersvc/render'
 ```
 
-Adjust the URL in case you run the service outside the default compose environment/at a differeny location.
+Adjust the URL in case you run the service outside the default compose environment/at a different location.
 
 #### Converter Service {#converter-141}
 
@@ -57,7 +57,7 @@ In short, the following steps have to be taken:
 
 - create a directory to hold all it's configuration
 - create a user for the ELN to authenticate at the service
-- configure the ELN to use the service and the creaeted user
+- configure the ELN to use the service and the created user
 
 These steps would boil down to this:
 

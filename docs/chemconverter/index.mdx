@@ -124,6 +124,39 @@ Alternative you can use the "column operation" feature to add, subtract, divide 
 
 In a future version it will become possible to create profiles without Output tables if you intend to use the converter only for Metadata extraction.
 
+#### Metadata and Identifiers
+
+Both share some similarities, even in the backend (both are called "identifier" there), with the exception that Metadata have an assigned "optional = true" flag.
+Every info and content the file provides and which is not explicit declared as (measurement) data by the reader can been seen as Metadata.
+Metadata can often be further broken into "key & value".
+Sometimes the key is provided together with the value, which makes it easier for the reader to recognize the string as Metadata, and in other cases, it has to be defined or assigned by a user with background and RegEx knowledge.
+While creating a profile you have to assign one of three match parameters to the desired key.
+
+| Match | behavior | default for |
+| ----- | --------  | ------------|
+| Exact Value  | The value of the key will only be extracted or valid for profile choosing if it's the same as the one of the example file during profile creation. | Identifiers |
+| Any Value  | The value will always be extracted as long as the key is found in the given file. | Metadata |
+| RegEx  | The value from the input field is translated into a regular expression and compared to the string value from the input file. If the RegEx is valid, the first group of the result will be extracted as the value for the wanted key. | n.a. but often used for searching table headers with/-out line number|
+
+The extraction and assignment is now done by text fields and drop-down menus.
+You just have to follow this steps:
+1. Press "Add Metadata/Identifier"
+2. Choose a key or table (+ optional line number) as input
+3. Choose on of three matches and if it is not "any", write a value or RegEx into the text field
+4. Choose an output layer (comparable with a category)
+5. Choose an output key
+6. Optional: add scalar Operators (+,-,*,:) to the calculation of your output
+
+In the end, it could look like this:
+
+![GUI during Metadata extraction](/img/converter/MetadataExGUI.png)
+
+If the converter is integrated in the ELN and an already designed Dataset is chosen, bullet points 4 and 5 are chosen via drop-down menus otherwise typing a value is necessary.
+
+### Last but not least: ... save
+
+To finish your creation or save changes just don't forget to click on the "Create/Update profile" button otherwise everything will be lost.
+
 ## Summary
 
 The following picture shows the course of the three layers.
