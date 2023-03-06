@@ -84,21 +84,24 @@ module.exports = {
       respectPrefersColorScheme: false,
     },
   },
-  presets: [
+
+  plugins: [
+    "@docusaurus/plugin-sitemap",
+    "@docusaurus/plugin-content-pages",
     [
-      "@docusaurus/preset-classic",
+      "@docusaurus/plugin-content-docs",
       {
-        docs: {
-          sidebarPath: require.resolve("./sidebars.js"),
-          editUrl: "https://github.com/ComPlat/chemotion_saurus/edit/main/",
-          showLastUpdateTime: true,
-          showLastUpdateAuthor: false,
-          routeBasePath: "/docs",
-        },
-        blog: false,
-        theme: {
-          customCss: require.resolve("./src/css/custom.css"),
-        },
+        sidebarPath: require.resolve("./sidebars.js"),
+        editUrl: "https://github.com/ComPlat/chemotion_saurus/edit/main/",
+        showLastUpdateTime: true,
+        showLastUpdateAuthor: false,
+        routeBasePath: "/docs",
+      },
+    ],
+    [
+      "@docusaurus/theme-classic",
+      {
+        customCss: require.resolve("./src/css/custom.css"),
       },
     ],
   ],
