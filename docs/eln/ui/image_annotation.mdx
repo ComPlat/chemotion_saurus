@@ -7,28 +7,26 @@ sidebar_position: 11
 ## Overview ##
 As of version 1.5.0, images can be edited or annotated directly in the chemotion eln UI without an external editor.
 Images can be edited in several places on the eln.
-<table>
-    <tr>
-        <td>Edit image in researchplan</td>
-        <td>Edit image in a dataset</td>
-        <td>Edit image as an attachment of a research plan</td>
-    </tr>
-    <tr>
-        <td>
-            <img src={require("@site/static/img/image_annotation/20230303_edit_research_plan_body.jpg").default} alt={"Sharing"} />
-        </td>
-        <td>
-            <img src={require("@site/static/img/image_annotation/20230303_edit_research_plan_body.jpg").default} alt={"Sharing"} />
-        </td>
-        <td>
-        <img src={require("@site/static/img/image_annotation/20230303_edit_research_plan_body.jpg").default} alt={"Sharing"} />
-        </td>
-    </tr>
-</table>
+<img src={require("@site/static/img/image_annotation/20230306_image_annotation_research_body.png").default}/>
 
-Editierbare Dateitypen sind png, bmp, tiff, tif, svg, jpg und jpeg
+**Edit image in researchplan**
+
+<img src={require("@site/static/img/image_annotation/20230306_image_annotation_research_attachment.png").default}/>
+
+**Edit image in a dataset**
+
+<img src={require("@site/static/img/image_annotation/20230306_image_annotation_dataset.png").default} alt={"Sharing"}/>
+
+**Edit image as an attachment of a research plan**
+
+
+Editable file types are png, bmp, tiff, tif, svg, jpg and jpeg
+
 :::info
 tif and tiff format is converted to png format before annotation to be able to display it in the browser. The original image will be preserved and remains unchanged
+:::
+:::info
+When the editor is started for the first time, the user is asked whether he wants to save the settings and the history locally.
 :::
 :::caution
 Before editing an image, it must first be saved in order to make the necessary preparations on the server.
@@ -36,3 +34,25 @@ Before editing an image, it must first be saved in order to make the necessary p
 
 ## Editor ##
 
+The integrated editor is [svgedit](https://github.com/SVG-Edit/svgedit). The editor can be divided into 4 different areas.
+<img src={require("@site/static/img/image_annotation/20230306_image_annotation_editor.png").default} alt={"Sharing"} />
+
+### 1 - Toolbar ###
+Provides various tools for manipulating the image. There are graphic tools (circles, rectangles, ...), a free-form tool and the possibility to add text
+
+### 2 - Canvas ###
+The canvas for adding graphic elements or text
+:::info
+Elements outside the original image size are currently trimmed
+:::
+
+### 3 - Magnification tools ###
+Offers the user the possibility to enlarge or reduce the current canvas. Automatic adjustment to the screen shape is also possible (fit to canvas).
+
+### 4 - Colour selection ###
+Provides the user with a choice of colours and gradients to both fill and colour the edge of the selected element
+
+## Further hints ##
+- Previously placed elements can be edited subsequently. In addition, texts can be changed later on
+- After editing the image, the corresponding element must be saved in order to permanently apply the changes and make them visible
+- Images in research plans that were created before version 1.5.0 cannot be edited at the moment
