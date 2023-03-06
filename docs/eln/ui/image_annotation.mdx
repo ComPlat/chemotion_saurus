@@ -1,0 +1,38 @@
+---
+id: image_annotation
+title: Image Edit/Annotation
+sidebar_position: 11
+---
+# Image Edit/Annotation #
+## Overview ##
+As of version 1.5.0, images can be edited or annotated directly in the chemotion eln UI without an external editor.
+Images can be edited in several places on the eln.
+<table>
+    <tr>
+        <td>Edit image in researchplan</td>
+        <td>Edit image in a dataset</td>
+        <td>Edit image as an attachment of a research plan</td>
+    </tr>
+    <tr>
+        <td>
+            <img src={require("@site/static/img/image_annotation/20230303_edit_research_plan_body.jpg").default} alt={"Sharing"} />
+        </td>
+        <td>
+            <img src={require("@site/static/img/image_annotation/20230303_edit_research_plan_body.jpg").default} alt={"Sharing"} />
+        </td>
+        <td>
+        <img src={require("@site/static/img/image_annotation/20230303_edit_research_plan_body.jpg").default} alt={"Sharing"} />
+        </td>
+    </tr>
+</table>
+
+Editierbare Dateitypen sind png, bmp, tiff, tif, svg, jpg und jpeg
+:::info
+tif and tiff format is converted to png format before annotation to be able to display it in the browser. The original image will be preserved and remains unchanged
+:::
+:::caution
+Before editing an image, it must first be saved in order to make the necessary preparations on the server.
+:::
+
+## Editor ##
+
