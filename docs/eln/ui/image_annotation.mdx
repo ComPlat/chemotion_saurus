@@ -1,58 +1,62 @@
 ---
-id: image_annotation
-title: Image Edit/Annotation
+id: images
+title: Image Editing & Annotation
 sidebar_position: 11
 ---
-# Image Edit/Annotation #
-## Overview ##
-As of version 1.5.0, images can be edited or annotated directly in the chemotion eln UI without an external editor.
-Images can be edited in several places on the eln.
-<img src={require("@site/static/img/image_annotation/20230306_image_annotation_research_body.png").default}/>
 
-**Edit image in researchplan**
+## Overview
 
-<img src={require("@site/static/img/image_annotation/20230306_image_annotation_research_attachment.png").default}/>
+As of version 1.5.0, images can be edited or annotated directly in the Chemotion ELN UI without an external editor.
 
-**Edit image in a dataset**
+:::info Supported file formats
+Editable file types are .png, .bmp, .tiff, .tif, .svg, .jpg and .jpeg.
 
-<img src={require("@site/static/img/image_annotation/20230306_image_annotation_dataset.png").default} alt={"Sharing"}/>
+tif and tiff format is converted to png format before annotation to be able to display it in the browser. The original image is preserved and remains unchanged.
 
-**Edit image as an attachment of a research plan**
-
-
-Editable file types are png, bmp, tiff, tif, svg, jpg and jpeg
-
-:::info
-tif and tiff format is converted to png format before annotation to be able to display it in the browser. The original image will be preserved and remains unchanged
-:::
-:::info
-When the editor is started for the first time, the user is asked whether he wants to save the settings and the history locally.
-:::
-:::caution
-Before editing an image, it must first be saved in order to make the necessary preparations on the server.
+Images in research plans that were created before version 1.5.0 cannot be edited at the moment.
 :::
 
-## Editor ##
+## Procedure
+
+- Before editing an image, it must first be saved in order to make the necessary preparations on the server.
+- When the editor is started for the first time, the user is asked whether he wants to save the settings and the history locally.
+- Previously placed elements can be edited subsequently. In addition, texts can be changed later on.
+- After editing the image, the corresponding element must be saved in order to permanently apply the changes and make them visible.
+
+### Availability
+
+Images can be edited in several places on the ELN:
+
+- **In Research Plan (body)**
+  ![](/img/image_annotation/20230306_image_annotation_research_body.png)
+
+- **In Research Plan (attachments)**
+  ![](/img/image_annotation/20230306_image_annotation_research_attachment.png)
+
+- **In a Dataset**:
+  ![](/img/image_annotation/20230306_image_annotation_dataset.png)
+
+## Editor
 
 The integrated editor is [svgedit](https://github.com/SVG-Edit/svgedit). The editor can be divided into 4 different areas.
-<img src={require("@site/static/img/image_annotation/20230306_image_annotation_editor.png").default} alt={"Sharing"} />
 
-### 1 - Toolbar ###
-Provides various tools for manipulating the image. There are graphic tools (circles, rectangles, ...), a free-form tool and the possibility to add text
+![Sharing](/img/image_annotation/20230306_image_annotation_editor.png)
 
-### 2 - Canvas ###
-The canvas for adding graphic elements or text
+#### Toolbar (1)
+
+Provides various tools for manipulating the image. There are graphic tools (circles, rectangles, ...), a free-form tool and the possibility to add text.
+
+#### Canvas (2)
+
+The canvas for adding graphic elements or text.
 :::info
-Elements outside the original image size are currently trimmed
+Elements outside the original image size are currently trimmed.
 :::
 
-### 3 - Magnification tools ###
+#### Magnification tools (3)
+
 Offers the user the possibility to enlarge or reduce the current canvas. Automatic adjustment to the screen shape is also possible (fit to canvas).
 
-### 4 - Colour selection ###
-Provides the user with a choice of colours and gradients to both fill and colour the edge of the selected element
+#### Color selection (4)
 
-## Further hints ##
-- Previously placed elements can be edited subsequently. In addition, texts can be changed later on
-- After editing the image, the corresponding element must be saved in order to permanently apply the changes and make them visible
-- Images in research plans that were created before version 1.5.0 cannot be edited at the moment
+Provides the user with a choice of colors and gradients to both fill and color the edge of the selected element
