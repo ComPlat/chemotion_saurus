@@ -1,6 +1,7 @@
 ---
 id: files
 title: For Data Files
+author: Nicole Jung
 sidebar_position: 3
 ---
 
@@ -9,14 +10,13 @@ The list contains the file formats that should be available. In many cases, the 
 
 **NMR Spectroscopy**
 
-| NMR data          | file type   |required | explanation                                               |
-| ----------------- | ---------   |:------: | --------------------------------------------------------- |
-| 1D                | **zip**     |Yes      | Original data need to be provided                         |
-|                   | jcamp       |Yes      | Is created automatically from ZIP                         |
-|                   | jcamp(edit) |depends  | if automatically generated jcamp is of low quality        |
-|                   | image       |Yes      | Is created automatically from ZIP                         |
-|                   | nmrium      |No       | Desired if available                                      |
-
+| NMR data | file type   | required | explanation                                        |
+| -------- | ----------- | :------: | -------------------------------------------------- |
+| 1D       | **zip**     |   Yes    | Original data need to be provided                  |
+|          | jcamp       |   Yes    | Is created automatically from ZIP                  |
+|          | jcamp(edit) | depends  | if automatically generated jcamp is of low quality |
+|          | image       |   Yes    | Is created automatically from ZIP                  |
+|          | nmrium      |    No    | Desired if available                               |
 
 Please take care that your files are given with an analysis including the listing of the observed signals. The information is supposed to be given as analyzed signals. Peak lists in form of non-analyzed signals (without coupling constants) are not suitable.  
 Please provide for 2D data:
