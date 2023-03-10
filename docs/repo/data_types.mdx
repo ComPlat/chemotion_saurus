@@ -4,41 +4,67 @@ title: Data Types
 author: Nicole Jung
 ---
 
-The following definitions are applicable to the analysis types that you wish to provide. It is not mandatory to provide all of the following types of analysis to the repository, the selection of the analysis is up to you. But if you provide data, then please provide it in the following manner.
-The list contains the file formats that should be available. In many cases, the repository supports with automated processing of files. An example is the processing of jcamp files to images. If you provide files that can be processed (in that case jcamp), additional files (e.g. image) are not necessary. <!--truncate-->
+It is not mandatory to provide all of the following types of analysis (measurement types) to the repository, the selection of the analysis is up to you. Highly recommended is the provision of all data that is needed for proving evidence for the characterized compounds. 
 
-**NMR Spectroscopy**
+The following list contains the file formats that should be available. In many cases, the repository supports with automated processing of files. An example is the processing of zip files to jcamp files and images (alternatively the processing of jcamp files to images). If you provide files that can be processed (in that case zip and/or jcamp), additional files (e.g. images) are not necessary. An exception is [1]. <!--truncate-->
 
-| NMR data          | file type   |required | explanation                                               |
-| ----------------- | ---------   |:------: | --------------------------------------------------------- |
-| 1D                | **zip**     |Yes      | Original data need to be provided                         |
-|                   | jcamp       |Yes      | Is created automatically from ZIP                         |
-|                   | jcamp(edit) |depends  | if automatically generated jcamp is of low quality        |
-|                   | image       |Yes      | Is created automatically from ZIP                         |
-|                   | nmrium      |No       | Desired if available                                      |
+**NMR Spectroscopy - 1D data**
 
+| Supported files     | Ending                |Required   | Explanation                                               |
+| ------------------- | --------------------  |:-------:  | --------------------------------------------------------- |
+| zip                 | .zip                  |Yes        | Original data from device - please add this in any case   |
+| jcamp               | .jdx, .dx, .jcamp     |No         | Please add in addition to zip if the automatically generated one has low quality[1]|
+| NMRium              | .nmrium               |No         | If NMRium data is available, you can add it additionally to the zip[2] |
+| **Generated files** | **Ending**            |           | **Explanation**                                           |
+| jcamp               | .jdx                  |           | is generated from zip (not editable)    |
+| jcamp               | .peak.jdx             |           | is generated from zip with automated peak picking (not editable)|
+| jcamp               | .edit.jdx             |           | is generated from jdx including manual editing            |
+| png                 | .peak.png             |           | is automatically generated from .peak.jdx                 |
+| png                 | .edit.png             |           | is automatically generated from .edit.jdx                 |
+| json                | .infer.json           |           | is automatically generated from .edit.jdx, data exchange format for NMRshiftDB |
+| NMRium              | .nmrium               |           | is generated from zip if NMRium editor is selected (not automatically)[2] |
+
+[1] the automatic processing from zip to jcamp with the embedded software gives sometimes bad results. In those cases, please provide a jcamp file that was processed with a suitable external software to allow the provision of clear, high quality data.</br>
+[2] NMRium is supported from version 1.5 of Chemotion ELN (March 2023).
+
+**NMR Spectroscopy - 2D data**
+| Supported files     | Ending                |Required   | Explanation                                               |
+| ------------------- | --------------------  |:-------:  | --------------------------------------------------------- |
+| zip                 | .zip                  |Yes        | Original data from device - please add this in any case   |
+| jcamp               | .jdx, .dx, .jcamp     |No         | Please add in addition to zip if the automatically generated one has low quality[1]|
+| NMRium              | .nmrium               |No         | If NMRium data is available, you can add it additionally to the zip[2] |
+| **Generated files** | **Ending**            |           | **Explanation**                                           |
+| NMRium              | .nmrium               |           | is generated from zip if NMRium editor is selected (not automatically)[2] |
+
+[1] the automatic processing from zip to jcamp with the embedded software gives sometimes bad results. In those cases, please provide a jcamp file that was processed with a suitable external software to allow the provision of clear, high quality data.</br>
+[2] NMRium is supported from version 1.5 of Chemotion ELN (March 2023).
 
 Please take care that your files are given with an analysis including the listing of the observed signals. The information is supposed to be given as analyzed signals. Peak lists in form of non-analyzed signals (without coupling constants) are not suitable.  
-Please provide for 2D data:
-· original data (fid or ZIP-file) [ **M** ]  
-· one image format (jpeg or png) [ **M** ]  
-· other data formats [ **R** ]
 
-**2. mass spec**
+**Mass spectrometry data**
 
 · original data (MzMl, RAW, cdf, jcamp or mestre data; for other formats, please send an info to the chemotion team) [**M**]  
 · one image format (jpeg or png) [**M**] (if not processed automatically)
 
-**3. IR data**
+**IR spectroscopy data**
 
 · a jcamp file (_.jcamp or _.dx) [ **M** ]  
 · original data [ **O** ]
 
-**4. Elemental Analysis**
+**UV VIS spectroscopy data**</br>
+Status: in test phase - please contact us for questions: we can assist you to get your data represented </br>
+
+**XRD spectroscopy data**</br>
+Status: in test phase - please contact us for questions: we can assist you to get your data represented </br>
+
+**Cyclic voltammetry data**</br>
+Status: in test phase - please contact us for questions: we can assist you to get your data represented </br>
+
+**Elemental Analysis**
 
 · one image format (preferred: jpeg or png) [**M**]
 
-**5. Crystal structures**
+**Crystal structures**
 
 · one image format (jpeg or png) [**M**]  
 · reduced cif (reduced information in comparison to original CIF), to be completed with the complete cif after publication in the CSD (CCDC).[**M**]
