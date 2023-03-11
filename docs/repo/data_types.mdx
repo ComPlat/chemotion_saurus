@@ -18,15 +18,14 @@ The following list contains the file formats that should be available. In many c
 | jcamp           | .jdx, .dx, .jcamp |    No    | Please add in addition to zip if the automatically generated one has low quality[1] |
 | NMRium          | .nmrium           |    No    | If NMRium data is available, you can add it additionally to the zip[2]              |
 
-| Generated files | Ending      | Explanation                                                                    |
-| --------------- | ----------- | ------------------------------------------------------------------------------ |
-| jcamp           | .jdx        | is generated from zip (not editable)                                           |
-| jcamp           | .peak.jdx   | is generated from zip with automated peak picking (not editable)               |
-| jcamp           | .edit.jdx   | is generated from jdx including manual editing                                 |
-| png             | .peak.png   | is automatically generated from .peak.jdx                                      |
-| png             | .edit.png   | is automatically generated from .edit.jdx                                      |
-| json            | .infer.json | is automatically generated from .edit.jdx, data exchange format for NMRshiftDB |
-| NMRium          | .nmrium     | is generated from zip if NMRium editor is selected (not automatically)[2]      |
+| Generated files | Ending            | Explanation                                                                                    |
+| --------------- | ----------------- | ---------------------------------------------------------------------------------------------- |
+| jcamp           | .peak.jdx         | is generated from zip with automated peak picking (not editable)                               |
+| jcamp           | .edit.jdx         | is generated from jdx including manual editing                                                 |
+| png             | .peak.png         | is automatically generated from .peak.jdx                                                      |
+| png             | .edit.png         | is automatically generated from .edit.jdx                                                      |
+| json            | .infer.json       | is automatically generated from .edit.jdx, data exchange format for NMRshiftDB                 |
+| NMRium          | .nmrium           | is generated from zip if NMRium editor is selected (not automatically)[2]                      |
 
 [1] the automatic processing from zip to jcamp with the embedded software gives sometimes bad results. In those cases, please provide a jcamp file that was processed with a suitable external software to allow the provision of clear, high quality data.<br/>
 [2] NMRium is supported from version 1.5 of Chemotion ELN (March 2023).
