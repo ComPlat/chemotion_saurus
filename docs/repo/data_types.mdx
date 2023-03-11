@@ -15,7 +15,7 @@ The following list contains the file formats that should be available. In many c
 | Supported files | Ending            | Required | Explanation                                                                         |
 | --------------- | ----------------- | :------: | ----------------------------------------------------------------------------------- |
 | zip             | .zip              |   Yes    | Original data from device - please add this in any case                             |
-| jcamp           | .jdx, .dx, .jcamp |    No    | Please add in addition to zip if the automatically generated one has low quality[1] |
+| jcamp-dx        | .jdx, .dx, .jcamp |    No    | Please add in addition to zip if the automatically generated one has low quality[1] |
 | NMRium          | .nmrium           |    No    | If NMRium data is available, you can add it additionally to the zip[2]              |
 
 | Generated files | Ending            | Explanation                                                                                    |
@@ -35,7 +35,7 @@ The following list contains the file formats that should be available. In many c
 | Supported files | Ending            | Required | Explanation                                                                         |
 | --------------- | ----------------- | :------: | ----------------------------------------------------------------------------------- |
 | zip             | .zip              |   Yes    | Original data from device - please add this in any case                             |
-| jcamp           | .jdx, .dx, .jcamp |    No    | Please add in addition to zip if the automatically generated one has low quality[1] |
+| jcamp-dx        | .jdx, .dx, .jcamp |    No    | Please add in addition to zip if the automatically generated one has low quality[1] |
 | NMRium          | .nmrium           |    No    | If NMRium data is available, you can add it additionally to the zip[2]              |
 
 | Generated files | Ending  | Explanation                                                               |
@@ -49,8 +49,28 @@ Please take care that your files are given with an analysis including the listin
 
 ## Mass spectrometry data
 
-- original data (MzMl, RAW, cdf, jcamp or mestre data; for other formats, please send an info to the chemotion team) [**M**]
-- one image format (jpeg or png) [**M**] (if not processed automatically)
+If you can't provide suppoted data file types, please add an image (.jpeg, .png). This should be avoided and only used if there is no option to get access to a digital file.
+
+| Supported files | Ending            | Required    | Explanation                                                                         |
+| --------------- | ----------------- | :------:    | ----------------------------------------------------------------------------------- |
+| raw             | .zip              |   (Yes)[2.1]  | Original data from device [2.2]                                                   |
+| MzML            | .jdx, .dx, .jcamp |   (Yes)[2.1]  |                                                                                   |
+| jcamp-dx        | .jdx, .dx, .jcamp |   (Yes)[2.1]  |                                                                                   |
+| Excel           | .xlsx             |   (Yes)[2.1]  | Supported by Converter - please refer to Converter Profiles give below [2.3]      |
+| CSV             | .jdx, .dx, .jcamp |   (Yes)[2.1]  | Supported by Converter - please refer to Converter Profiles give below [2.3]      |
+
+| Generated files | Ending            | Explanation                                                                                    |
+| --------------- | ----------------- | ---------------------------------------------------------------------------------------------- |
+| jcamp           | .jdx              | is generated from the supported file formats                                                   |
+| jcamp           | .peak.jdx         | is generated from zip with automated peak picking (not editable)                               |
+| jcamp           | .edit.jdx         | is generated from jdx including manual editing                                                 |
+| png             | .peak.png         | is automatically generated from .peak.jdx                                                      |
+| png             | .edit.png         | is automatically generated from .edit.jdx                                                      |
+
+
+[2.1] one of these fies should be given. 
+[2.2] RAW data is supported for selected instruments of thermofisher currently.
+[2.3] Excel and CSV: some standard versions are supported and described in the section - for others, plese contact us. 
 
 ## IR spectroscopy data
 
