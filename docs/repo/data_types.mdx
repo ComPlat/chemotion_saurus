@@ -51,24 +51,16 @@ Please take care that your files are given with an analysis including the listin
 
 If you can't provide the supported data file types, please add an image (.jpg, .png). This should be avoided and only used if there is no option to get access to a digital file.
 
-| Supported files | Ending            | Required    | Explanation                                                                         |
-| --------------- | ----------------- | :------:    | ----------------------------------------------------------------------------------- |
-| raw             | .zip              |   (Yes)[3.1]  | Original data from device [3.2]                                                   |
-| MzML            | .jdx, .dx, .jcamp |   (Yes)[3.1]  |                                                                                   |
-| jcamp-dx        | .jdx, .dx, .jcamp |   (Yes)[3.1]  |                                                                                   |
-| Excel           | .xlsx             |   (Yes)[3.1]  | Supported by Converter - please refer to ChemConverter Profiles given below [3.3] |
-| CSV             | .jdx, .dx, .jcamp |   (Yes)[3.1]  | Supported by Converter - please refer to ChemConverter Profiles given below [3.3] |
+| Supported files (SF) | Ending            | Required    | Explanation                                                                         |
+| -------------------- | ----------------- | :------:    | ----------------------------------------------------------------------------------- |
+| raw                  | .zip              |   (Yes)[3.1]  | Original data from device [3.2]                                                   |
+| MzML                 | .jdx, .dx, .jcamp |   (Yes)[3.1]  |                                                                                   |
+| jcamp-dx             | .jdx, .dx, .jcamp |   (Yes)[3.1]  |                                                                                   |
+| Excel                | .xlsx             |   (Yes)[3.1]  | Supported by Converter - please refer to ChemConverter Profiles given below [3.3] |
+| CSV                  | .jdx, .dx, .jcamp |   (Yes)[3.1]  | Supported by Converter - please refer to ChemConverter Profiles given below [3.3] |
+| xy                   | .xy               |   (Yes)[3.1]  | Supported by Converter - please refer to ChemConverter Profiles given below [3.3] |
 
-| Generated files | Ending            | Explanation                                                                                    |
-| --------------- | ----------------- | ---------------------------------------------------------------------------------------------- |
-| jcamp           | .jdx              | is generated from the supported file formats                                                   |
-| jcamp           | .peak.jdx         | is generated from zip with automated peak picking (not editable)                               |
-| jcamp           | .edit.jdx         | is generated from jdx including manual editing                                                 |
-| png             | .peak.png         | is automatically generated from .peak.jdx                                                      |
-| png             | .edit.png         | is automatically generated from .edit.jdx                                                      |
-
-
-[3.1] one of these fies should be given.<br/>
+[3.1] one of these files should be given.<br/>
 [3.2] RAW data is supported for selected instruments of thermofisher currently.<br/>
 [3.3] Excel and CSV: some standard versions are supported (see list below) and described in the section ChemConverter- for others, please contact us. Link to all Chemconverter Profiles: https://www.chemotion-repository.net/converter_admin
 
@@ -76,7 +68,26 @@ If you can't provide the supported data file types, please add an image (.jpg, .
 | -------| ------------------- | :------:    | --------------------------------------------------------------------------------- |
 | .xlsx  | No                  |             |                                                                                   |
 | .csv   | No                  |             |                                                                                   |
+| .xy    | No                  | mass_spectrometry, general_xy  | modified to allow the upload of pure tables without metadata   |
 
+The following files are generated after providing one or several supported file formats:
+For raw, MzMl, jcamp-dx:
+
+| Generated files | Ending            | Explanation                                                                                    |
+| --------------- | ----------------- | ---------------------------------------------------------------------------------------------- |
+| jcamp           | .peak.jdx         | is generated from zip with automated peak picking (not editable)                               |
+| jcamp           | .edit.jdx         | is generated from jdx including manual editing                                                 |
+| png             | .peak.png         | is automatically generated from .peak.jdx                                                      |
+| png             | .edit.png         | is automatically generated from .edit.jdx                                                      |
+
+If the added file is .xy, then the following data file types are generated:
+
+| Generated files  | Ending            | Explanation                                                                              |
+| ---------------- | ----------------- | ---------------------------------------------------------------------------------------- |
+| BagIt            | .zip              | is generated from uploaded Excel, CSX or Text-File                                       |
+| jcamp            | bagit.jdx         | is generated from the supported file formats                                             |
+| jcamp            | bagit.peak.jdx    | is generated from zip with automated peak picking (not editable)                         |
+| png              | bagit.png         | is automatically generated from .peak.jdx                                                |
 
 
 ## IR spectroscopy data
