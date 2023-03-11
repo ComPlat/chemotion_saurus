@@ -118,15 +118,14 @@ If you can't provide the supported data file types, please add an image (.jpg, .
 | jcamp-dx         | .jdx, .dx, .jcamp |   Yes          |                                                                         |
 | Excel            | .xlsx             |   Yes          | Supported by ChemConverter - please refer to profiles given below [5.2] |
 | CSV              | .csv              |   Yes          | Supported by ChemConverter - please refer to profiles given below [5.2] |
+| TEXT             | .txt              |   Yes          | Supported by ChemConverter - please refer to profiles given below [5.2] |
 
-| Generated files  | Ending            | Explanation                                                                                    |
-| ---------------- | ----------------- | ---------------------------------------------------------------------------------------------- |
-| jcamp            | .jdx              | is generated from the supported file formats                                                   |
-| jcamp            | .peak.jdx         | is generated from zip with automated peak picking (not editable)                               |
-| jcamp            | .edit.jdx         | is generated from jdx including manual editing                                                 |
-| png              | .peak.png         | is automatically generated from .peak.jdx                                                      |
-| png              | .edit.png         | is automatically generated from .edit.jdx                                                      |
-
+| Generated files  | Ending            | Explanation                                                                              |
+| ---------------- | ----------------- | ---------------------------------------------------------------------------------------- |
+| BagIt            | .zip              | is generated from uploaded Excel, CSX or Text-File                                       |
+| jcamp            | bagit.jdx         | is generated from the supported file formats                                             |
+| jcamp            | bagit.peak.jdx    | is generated from zip with automated peak picking (not editable)                         |
+| png              | bagit.png         | is automatically generated from .peak.jdx                                                |
 
 [5.1] One of the files in this list should be given.<br/>
 [5.2] Excel, CSV, Text: some standard versions are supported (see list below) and described in the section ChemConverter- for others, please contact us.
