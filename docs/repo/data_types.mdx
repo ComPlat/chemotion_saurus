@@ -68,7 +68,7 @@ If you can't provide the supported data file types, please add an image (.jpg, .
 | -------| ------------------- | :------:    | --------------------------------------------------------------------------------- |
 | .xlsx  | No                  |             |                                                                                   |
 | .csv   | No                  |             |                                                                                   |
-| **.xy**    | No                  | mass_spectrometry, general  | modified to allow the upload of pure tables without metadata   |
+| .xy    | No                  | line1: "mass_spectrometry, general_xy" | modified to allow the upload of pure tables without metadata   |
 
 The following files are generated after providing one or several supported file formats:
 For raw, MzMl, jcamp-dx:
@@ -77,6 +77,7 @@ For raw, MzMl, jcamp-dx:
 | --------------- | ----------------- | ---------------------------------------------------------------------------------------------- |
 | jcamp           | .peak.jdx         | is generated from zip with automated peak picking (not editable)                               |
 | jcamp           | .edit.jdx         | is generated from jdx including manual editing                                                 |
+| json            | .infer.json       | is automatically generated from .edit.jdx, data exchange format                                |
 | png             | .peak.png         | is automatically generated from .peak.jdx                                                      |
 | png             | .edit.png         | is automatically generated from .edit.jdx                                                      |
 
@@ -163,7 +164,7 @@ Status: in test phase - please contact us for questions: we can assist you to ge
 - one image format (jpeg or png) [**M**]
 - reduced cif (reduced information in comparison to original CIF), to be completed with the complete cif after publication in the CSD (CCDC).[**M**]
 
-## Stefan Bräse group standards in brief
+## Stefan Bräse group: advices in brief
 
 | Method     | device               | to be provided |  processing |   Explanation   |
 | ---------- | -------------------- | :----------    | ----------- |-----------------|
@@ -175,7 +176,21 @@ Status: in test phase - please contact us for questions: we can assist you to ge
 | UV-Vis     | Horiba (CN)          | .txt           |   Yes       |                 |
 | UV-Vis     | xxxxxx (CS)          | xxx            |   tbd       |                 |
 | EA         | EA (CS)              | .png           |   No        |                 |
-| X-ray      | all                  | .cif           |   No        |                 |
+| X-ray      | all                  | .cif + png     |   No        |                 |
+
+[SB1] please ensure that the zip is the oiginally provided one. Don't collect data as zip on our own, don't add other data than the provided ones to the original file folder, please don't add mestre file to the zip. Please use the data provided by the instrument (eventually generate the zip from the obtained folder- without other changes). 
+
+## SHP group: advices in brief
+
+| Method     | device               | to be provided |  processing |   Explanation   |
+| ---------- | -------------------- | :----------    | ----------- |-----------------|
+| 1D NMR     | all                  | Zip (+jcamp)   |   Yes       | jcamp needed if quality of processed file too low |
+| 2D NMR     | all                  | Zip (+jcamp)   |   No        |                 |
+| mass       | TOF                  | .xy            |   Yes       | general profile .xy ChemConverter                 |
+| IR         | xxx                  | .dx            |   Yes       |                 |
+| UV-Vis     | Horiba (CN)          | .txt           |   Yes       |                 |
+| EA         | EA                   | .png           |   No        |                 |
+| X-ray      | all                  | .cif + png     |   No        |                 |
 
 [SB1] please ensure that the zip is the oiginally provided one. Don't collect data as zip on our own, don't add other data than the provided ones to the original file folder, please don't add mestre file to the zip. Please use the data provided by the instrument (eventually generate the zip from the obtained folder- without other changes). 
 
