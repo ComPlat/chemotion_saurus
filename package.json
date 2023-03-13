@@ -13,7 +13,11 @@
   },
   "dependencies": {
     "@docusaurus/core": "^2",
-    "@docusaurus/preset-classic": "^2",
+    "@docusaurus/plugin-content-docs": "*",
+    "@docusaurus/plugin-content-pages": "*",
+    "@docusaurus/plugin-sitemap": "*",
+    "@docusaurus/theme-classic": "*",
+    "@easyops-cn/docusaurus-search-local": "^0.34.0",
     "@fortawesome/fontawesome-svg-core": "*",
     "@fortawesome/free-solid-svg-icons": "*",
     "@fortawesome/react-fontawesome": "*",

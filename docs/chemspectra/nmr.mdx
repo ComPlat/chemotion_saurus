@@ -7,88 +7,77 @@ title: NMR
 This page is still being edited and reviewed.
 :::
 
-## 1. Supporting file formats
+:::info Supported file formats
+For NMR analysis, we currently support:
 
-For NMR analysis, we are now only support [JCAMP-DX files](https://iupac.org/what-we-do/digital-standards/jcamp-dx/) (_.jcamp, _.dx, \*.jdx), zip (Bruker FID and [BagIt](https://en.wikipedia.org/wiki/BagIt)) files.
+- when using ChemSpectra: [JCAMP-DX files](https://iupac.org/what-we-do/digital-standards/jcamp-dx/) (\*.jcamp, \*.dx, \*.jdx), zip (Bruker FID and [BagIt](https://en.wikipedia.org/wiki/BagIt)) files.
+- when using NMRium: [JCAMP-DX files](https://iupac.org/what-we-do/digital-standards/jcamp-dx/) (\*.jcamp, \*.dx, \*.jdx), zip (Bruker FID), Jeol (\*.jdf), NMRium (\*.nmrium) files.
 
-## 2. Supporting NMR layouts
+:::
 
-We are now support 1H, 13C, 19F, 31P, 15N and 29Si NMR
+:::info Data Portability between ChemSpectra (Chemotion ELN) and NMRium
 
-## 3. Upload your data and view it
+- How your data will be stored in ChemotionELN?
+  When you click on `Close with Save` button, one `*.nmrium` file and one image file (a svg file) will be stored in ChemotionELN.
+  In case of your **ChemSpectra** service is available and **your data is 1D**, your analyzed data will be stored in an `*.edit.jdx` file as well, that allow you can either open your analyzed data with **ChemSpectra** or **NMRium**.
+- Can I analyze data with ChemSpectra and open it with NMRium?
+  Yes. ChemotionELN supports synchronizing data between ChemSpectra and NMRium, only when both these services are available.
 
-To upload and view your data, you can follow [this instruction](../chemspectra#2-analysing-data-in-chemotion-eln)
+:::
 
-## 4. Working with your data
+## Analysis using ChemSpectra
 
-1. Using tools bar to zoom in/out, add peaks, add multiplicity, etc.
+:::info Supported NMR techniques
+We currently support 1H, 13C, 15N, 19F, 29Si, and 31P NMR techniques.
+:::
 
-   <img
-     src={
-       require("@site/static/img/chemspectra/nmr/chemspectra_nmr_1.png").default
-     }
-     alt={"chemspectra toolbar"}
-     height={"100%"}
-     width={"100%"}
-   />
+1. To upload and view your data, you can follow [this instruction](../chemspectra#using-chemspectra).
 
-2. Example of added multiplicity
+2. Using tools bar to zoom in/out, add peaks, add multiplicity, etc.:
+   ![chemspectra toolbar](/img/chemspectra/nmr/chemspectra_nmr_1.png)
 
-   <img
-     src={
-       require("@site/static/img/chemspectra/nmr/chemspectra_nmr_4.png").default
-     }
-     alt={"chemspectra multiplicity"}
-     height={"100%"}
-     width={"100%"}
-   />
+3. Example of added multiplicity:
+   ![chemspectra multiplicity](/img/chemspectra/nmr/chemspectra_nmr_4.png)
 
-3. Select which data you want to be saved
-   <img
-     src={
-       require("@site/static/img/chemspectra/nmr/chemspectra_nmr_2.png").default
-     }
-     alt={"chemspectra type of submit"}
-     height={"100%"}
-     width={"100%"}
-   />
+4. Select which data you want to be saved:
+   ![/img/chemspectra/nmr/chemspectra_nmr_2.png](chemspectra type of submit)
+   ![/img/chemspectra/nmr/chemspectra_nmr_3.png](chemspectra select type of submit)
 
-<img
-  src={
-    require("@site/static/img/chemspectra/nmr/chemspectra_nmr_3.png").default
-  }
-  alt={"chemspectra select type of submit"}
-  height={"100%"}
-  width={"100%"}
-/>
+5. Confirm save:
+   ![chemspectra submit](/img/chemspectra/nmr/chemspectra_nmr_5.png)
 
-5. Confirm you saving
+6. **Predict NMR signals** You can predict NMR signals with the `Predict` button, the data of prediction comes from [NMRshiftDB](https://nmrshiftdb.nmr.uni-koeln.de):
+   ![chemspectra predict button](/img/chemspectra/nmr/chemspectra_nmr_6.png)
+   ![chemspectra prediction result](/img/chemspectra/nmr/chemspectra_nmr_7.png)
 
-   <img
-     src={
-       require("@site/static/img/chemspectra/nmr/chemspectra_nmr_5.png").default
-     }
-     alt={"chemspectra submit"}
-     height={"100%"}
-     width={"100%"}
-   />
+## Analysis using NMRium
 
-6. Predict NMR signals
-   You can predict NMR signals with the `Predict` button, the data of prediction come from NMRshiftDB
-   <img
-     src={
-       require("@site/static/img/chemspectra/nmr/chemspectra_nmr_6.png").default
-     }
-     alt={"chemspectra predict button"}
-     height={"100%"}
-     width={"100%"}
-   />
+:::info Note
+The official of the document of NMRium is located at https://docs.nmrium.org/
+:::
 
-<img
-  src={
-    require("@site/static/img/chemspectra/nmr/chemspectra_nmr_7.png").default
-  }
-  alt={"chemspectra prediction result"}
-  height={"100%"}
-  width={"100%"}
-/>
+### Demo Video
+
+A video demonstrating how to use NMRium in Chemotion ELN
+
+<video controls height={"100%"} width={"100%"}>
+  <source
+    src={require("@site/static/img/chemspectra/nmrium/nmrium_6.mp4").default}
+  />
+</video>
+
+### How-To
+
+1. You can only open NMRium after defining that your `Type (Chemical Methods Ontology)` is NMR:
+   ![nmrium select type](/img/chemspectra/nmrium/nmrium_1.png)
+
+2. Click on the icon to open your file with NMRium.
+   ![open nmrium](/img/chemspectra/nmrium/nmrium_2.png)
+
+3. **1D spectrum**:
+   ![nmrium modal 1D](/img/chemspectra/nmrium/nmrium_3.png)
+   **2D spectrum**
+   ![nmrium modal 2D](/img/chemspectra/nmrium/nmrium_4.png)
+
+4. Save your analyzed data by using `Close with Save` button:
+   ![nmrium save](/img/chemspectra/nmrium/nmrium_5.png)
