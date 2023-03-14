@@ -1,0 +1,4 @@
+label: Submitting Data
+position: 2
+collapsible: true # make the category collapsible
+collapsed: true # keep the category closed by default
