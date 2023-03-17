@@ -17,11 +17,9 @@
           "*.mdx": "markdown"
         },
         "editor.rulers": [100],
-        "[markdown]": {
-          "editor.defaultFormatter": "esbenp.prettier-vscode"
-        },
-        "[javascript]": {
-          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": true,
+          "source.fixAll.markdownlint": true
         },
         "cSpell.enableFiletypes": ["md", "mdx", "!js", "!json", "!jsonc"],
         "cSpell.words": ["Chemotion", "helpdesk"],
@@ -35,8 +33,7 @@
       "extensions": [
         "dbaeumer.vscode-eslint",
         "streetsidesoftware.code-spell-checker",
-        "DavidAnson.vscode-markdownlint",
-        "esbenp.prettier-vscode"
+        "DavidAnson.vscode-markdownlint"
       ]
     }
   },
