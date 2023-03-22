@@ -2,6 +2,3 @@ position: 3
 label: Details and Standards
 collapsible: true # make the category collapsible
 collapsed: true # keep the category closed by default
-link: 
-  type: generated-index
-  title: Details and Standards
