@@ -1,81 +1,85 @@
 ---
 title: System Check
-sidebar_position: 32
+sidebar_position: 22
 ---
 
 import { DownloadBtn } from "@site/src/js/download_files.js";
 
-### 1 Create collection
+1.  Create collection
+    See the [collection chapter](../ui/collections#sorting-and-organizing).
 
-See the [collection chapter](../ui/collections#sorting-and-organizing).
+2.  Create and copy sample
+    See the [samples chapter](../ui/elements/samples#generation).
 
-### 2 Create and copy sample
+3.  Create and copy reaction
+    See the [reactions chapter](../ui/elements/reactions#generation).
 
-See the [samples chapter](../ui/elements/samples#generation).
+4.  Add attachment to sample
 
-### 3 Create and copy reaction
+5.  Generate a report
 
-See the [reactions chapter](../ui/elements/reactions#generation).
+6.  Share and sync collection
+    See the [collection chapter](../ui/collections#shared-collections).
 
-### 4 Add attachment to sample
+7.  Export a collection, export samples and reactions
+    See how to [export data from the ELN](../ui/toolbar#exporting-data-from-the-eln).
 
-### 5 Generate a report
+8.  Import Samples to Chemotion ELN content
+    Samples can be imported easily using an excel template that contains Smiles-Strings. To enable the import into a collection, the desired target collection has to be selected.
+    Please see the following example which can be used as a template to import data to the Chemotion ELN.
 
-### 6 Share and sync collection
+    <p>
+      <DownloadBtn
+        files={["/files/template_sample_import.xlsx"]}
+        text={"Download XLSX Template here "}
+      />
+    </p>
 
-See the [collection chapter](../ui/collections#shared-collections).
+    ![Collection View](/img/import_samples.gif)
 
-### 7 Export a collection, export samples and reactions
+    See further information in the section about [toolbar](../ui/toolbar) functions.
 
-See how to [export data from the ELN](../ui/toolbar#exporting-data-from-the-eln).
+9.  Send data to Chemotion Repository
 
-### 8 Import Samples to Chemotion ELN content
+10. Add a jcamp file to the analysis section of a Sample. One can use these example files to import spectra data to the Chemotion ELN.
 
-Samples can be imported easily using an excel template that contains Smiles-Strings. To enable the import into a collection, the desired target collection has to be selected.
-Please see the following example which can be used as a template to import data to the Chemotion ELN.
-
-<p>
-  <DownloadBtn
-    files={["/files/template_sample_import.xlsx"]}
-    text={"Download XLSX Template here "}
-  />
-</p>
-
-![Collection View](/img/import_samples.gif)
-
-See further information in the section about [toolbar](../ui/toolbar) functions.
-
-### 9 Send data to repository
-
-### 10 Add a jcamp file to the analysis section in sample
-
-Please see the following examples which can be used as a examples to import data to the Chemotion ELN.
-
-<p>1H NMR example (.zip and .dx):</p>
-<p>
-  <DownloadBtn
-    files={["/files/SVS-957 F1_10.zip"]}
-    text={"Download zip file"}
-  />
-  <DownloadBtn files={["/files/SVS-957 F1_10.dx"]} text={"Download dx file"} />
-</p>
-<p>13C NMR example (.zip and .dx):</p>
-<p>
-  <DownloadBtn files={["/files/SVS-969F1_12.zip"]} text={"Download zip file"} />
-  <DownloadBtn files={["/files/SVS-969F1_12.dx"]} text={"Download dx file"} />
-</p>
-<p>IR example (.dx): </p>
-<p>
-  <DownloadBtn files={["/files/SVS-969F1 (1).dx"]} text={"Download dx file"} />
-</p>
-<p>Mass spec example (.raw):</p>
-<p>
-  <DownloadBtn
-    files={["/files/svs-969f1 (1).RAW"]}
-    text={"Download RAW file"}
-  />
-  <DownloadBtn
-    files={["/files/svs-969f1.edit.jdx"]}
-    text={"Download dx file"}
-  />
-</p>
+    - 1H NMR example (.zip and .dx)
+      <p>
+        <DownloadBtn
+          files={["/files/SVS-957 F1_10.zip"]}
+          text={"Download zip file"}
+        />
+        <DownloadBtn
+          files={["/files/SVS-957 F1_10.dx"]}
+          text={"Download dx file"}
+        />
+      </p>
+    - 13C NMR example (.zip and .dx)
+      <p>
+        <DownloadBtn
+          files={["/files/SVS-969F1_12.zip"]}
+          text={"Download zip file"}
+        />
+        <DownloadBtn
+          files={["/files/SVS-969F1_12.dx"]}
+          text={"Download dx file"}
+        />
+      </p>
+    - IR example (.dx):
+      <p>
+        <DownloadBtn
+          files={["/files/SVS-969F1 (1).dx"]}
+          text={"Download dx file"}
+        />
+      </p>
+    - Mass spec example (.raw):
+      <p>
+        <DownloadBtn
+          files={["/files/svs-969f1 (1).RAW"]}
+          text={"Download RAW file"}
+        />
+        <DownloadBtn
+          files={["/files/svs-969f1.edit.jdx"]}
+          text={"Download dx file"}
+        />
+      </p>
