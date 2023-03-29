@@ -12,11 +12,11 @@
     "clear": "docusaurus clear"
   },
   "dependencies": {
-    "@docusaurus/core": "^2",
-    "@docusaurus/plugin-content-docs": "*",
-    "@docusaurus/plugin-content-pages": "*",
-    "@docusaurus/plugin-sitemap": "*",
-    "@docusaurus/theme-classic": "*",
+    "@docusaurus/core": "^2.4.0",
+    "@docusaurus/plugin-content-docs": "^2.4.0",
+    "@docusaurus/plugin-content-pages": "^2.4.0",
+    "@docusaurus/plugin-sitemap": "^2.4.0",
+    "@docusaurus/theme-classic": "^2.4.0",
     "@easyops-cn/docusaurus-search-local": "^0.34.0",
     "@fortawesome/fontawesome-svg-core": "*",
     "@fortawesome/free-solid-svg-icons": "*",
