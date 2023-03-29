@@ -4,53 +4,230 @@ sidebar_position: 12
 ---
 
 :::info
-Documentation and processes are being reworked and improved at the moment. It may happen that you miss information. If you face problems, please let us know, we are there to support you. You may also [contact us directly](/helpdesk) if you plan to install Chemotion.
+This install process involves direct interaction with Docker, and is targeted at advanced users who have some experience with Docker. For an easier experience, consider using [ChemCLI](ChemCLI).
+
+If you face problems, please let us know; we are there to support you. You may [contact us directly](/helpdesk) if you plan to install Chemotion or have problems installing/using it.
 :::
 
-## Prerequisites
+## Latest Version
 
-To setup the Chemotion ELN using Docker, Docker Engine and Docker Compose have to be installed on the host machine. Please refer to the [Docker distributions documentation](https://docs.docker.com/desktop/install/linux-install/) on how this can be achieved. For Ubuntu-based machines, this can be found [here](https://docs.docker.com/engine/install/ubuntu/).
+We distribute the ELN as docker images for ease of distribution and use. The latest images can be found on [DockerHub](https://hub.docker.com/r/ptrxyz/chemotion/tags) and installed using a `docker-compose.yml` file. The latest version of this file can be found [here](https://github.com/ptrxyz/chemotion/blob/latest-release/docker-compose.yml).
 
-The Docker Daemon may be configured to run as a non-root user (Rootless mode). Please see the distribution-specific [setup instructions](https://docs.docker.com/engine/security/rootless/) for details.
+## Fresh Installations
 
-## Version 1.4.1 {#version-141}
+:::info IMPORTANT
+Certain installations require may require additional/different steps. Please check [this section](#special-cases) to see if your desired version needs such treatment.
+:::
 
-The latest version of the Chemotion images is `1.4.1-2` as listed on [DockerHub](https://hub.docker.com/repository/docker/ptrxyz/chemotion).
-In addition, there is a compose file for simpler usage: [docker-compose.yml](https://github.com/ptrxyz/chemotion/blob/latest-release/docker-compose.yml)
+To install this version on a blank system, follow these steps:
 
-With version 1.4.1 two new services got introduced: the Chemotion file format converter and the Ketcher render backend.
-The services are optional but it is advised to leave them enabled. To disable the service, remove the service definition from the compose file.
+- download the `docker-compose.yml` to a directory of your choice:
 
-### New Configuration variable {#publicurl-141}
+  ```
+  wget https://raw.githubusercontent.com/ptrxyz/chemotion/latest-release/docker-compose.yml
+  ```
 
-In our efforts to streamline some settings of the ELN, we introduced a new environment variable `PUBLIC_URL`. This variable is meant to be set to the public URL that points to your ELN installation. This variable is used whenever the ELN has to construct absolute URLs, for example when an E-Mail is send after user registration.
+- download all images and create the containers, data volumes and networks by running this command in the same folder you downloaded the compose file to:
 
-The variable also deprecates the variables "HOST_URL" and "HOST_PROTOCOL". Those are now ignored and can safely be removed.
+  ```bash
+  docker compose up --no-start
+  ```
 
-To set the variable, add it to the sections "services.worker.environment" and "services.eln.environment" just below the already present variables (such as "CONFIG_ROLE" for example) in your `docker-compose.yml`.
+- Start the ELN containers with
 
-i.e. if you type "http://my.eln" in your browser to reach the ELN, please set this variable to `PUBLIC_URL=http://my.eln`
+  ```bash
+  docker compose up # outputs to stdout
+  ```
 
-### New Services
+  or
 
-#### Ketcher Service
+  ```bash
+  docker compose up -d #starts the ELN as a background service logging to the docker's log daemon
+  ```
 
-The Ketcher backend render service is used to render molecules on the backend. It is optional and the ELN will fall back to a different rendering mechanism if the service can not be reached. This might result in less uniform visuals.
+  - after a short startup period, the ELN will available on port `4000` and can be accessed on `<your host IP>:4000`
+  - The application is running on `http://localhost:4000`, the seeded administration account is `ADM` (all caps!) with password `PleaseChangeYourPassword`.
 
-By default, the render service is already configure in the docker containers for the default compose environment.
+:::info
+We rely on Docker volumes to preserve data. Your user data will be stored in the volumes `chemotion_data` and `chemotion_db`. DO NOT delete them: Having backups is essential to making your data FAIR.
+:::
 
-To configure the Ketcher backend render service differently, simply create a new configuration file called `ketcher_service.yml` in your config folder (by default that is `./shared/pullin/config`) with the following content:
+### Setting up a Reverse-Proxy
 
+To make the installation available to the public, the container's ports should to be forwarded. We suggest to run NGINX as a reverse-proxy either in docker (by extending the Docker Compose service description file) or standalone on the host. The application is (by default) listening on `0.0.0.0:4000`.
+
+A guidance for setting up reverse proxy by means of some sample configuration files for NGINX can be found [here](https://github.com/ptrxyz/chemotion/tree/v1.0.3D0.1/reverse-proxy).
+
+### Controlling Services
+
+- Services automatically restart when the docker daemon restarts. This can be configured by removing the lines containing `restart:      unless-stopped` in the `docker-compose.yml` file or disabling autostart of your docker daemon on your system. Please refer to the Docker [documentation](https://docs.docker.com/config/containers/start-containers-automatically/) on how this property works.
+
+  ```yaml
+  services:
+    db:
+      ...
+    worker:
+      restart: unless-stopped
+      ...
+    eln:
+      restart: unless-stopped
+      ...
+  ```
+
+- Following additional services are included in the `docker-compose.yml` file.
+
+  | Service                               | Introduced in Version | Optional |
+  | ------------------------------------- | --------------------- | -------- |
+  | Chemotion file format `converter`     | 1.4.1                 | Yes      |
+  | Ketcher render backend (`ketchersvc`) | 1.4.1                 | Yes      |
+  | `spectra`                             | 1.1.2p220401          | Yes      |
+
+  Optional services can be disabled by removing/commenting-out their entry in the `docker-compose.yml` file.
+
+## Upgrades
+
+:::info IMPORTANT
+Certain upgrades require may require additional/different steps. Please check [this section](#special-cases) to see if your current version and/or desired version needs such treatment.
+:::
+
+:::caution Before Upgrades
+
+- ALWAYS perform a [backup](#backing-up-and-restoring-your-data) before doing upgrades. We cannot help you restore data if there is no backup and things go wrong during upgrade processes.
+- Inform your users of downtime that may accompany the upgrade.
+
+:::
+
+- Stop all running containers:
+  ```bash
+  docker compose down --remove-orphans
+  ```
+- Delete the APP volume:
+
+  ```bash
+  docker volume rm chemotion_app
+  ```
+
+- Get the latest compose file:
+
+  ```bash
+  wget -O docker-compose.yml https://raw.githubusercontent.com/ptrxyz/chemotion/latest-release/docker-compose.yml
+  ```
+
+- Restart the containers:
+
+  In foreground:
+
+  ```bash
+  docker compose up
+  ```
+
+  Or, in background (recommended)
+
+  ```bash
+  docker compose up
+  ```
+
+- Proceed with [Configuration](configuration).
+
+## Managing your instance
+
+To get access to the inside of the container, i.e to perform tasks based on the Rails console etc., one can use the following commands:
+
+- Getting a shell with loaded Chemotion environment variables
+
+  This will drop you to a root shell inside the container. You are now free to perform any administrative tasks in the container context, but be aware that all changes are ephemeral and lost when the container is stopped. To access the host file system, a mount point has to be used, i.e. such as the already configured `/shared` (which - by default - maps to `./shared` on the host).
+
+  ```bash
+  docker compose exec eln chemotion shell
+  ```
+
+- Getting a Ruby on Rails console:
+
+  ```bash
+  docker compose exec eln chemotion railsc
+  ```
+
+- Drop to postgreSQL console in the Chemotion database
+
+  ```bash
+  docker compose exec eln chemotion psql
+  ```
+
+- Display basic version information
+
+  ```bash
+  docker compose exec eln chemotion info
+  ```
+
+- Resetting the Administrator account's password
+
+  ```bash
+  docker compose exec eln chemotion resetAdminPW
+  ```
+
+**Furthermore**, you can use `docker compose logs` or check the `./shared/logs` folder to access docker logs of your system.
+
+### Backing up and Restoring your data
+
+To backup that resides inside docker volumes, it is sufficient to run the following command on your host machine in the folder where your Compose file resides:
+
+```bash
+docker compose run eln chemotion backup
 ```
-production:
-  :url: 'http://ketchersvc/render'
+
+This will place two files: `backup.sql.gz` and `backup.data.tar.gz` in the `./shared/backup` folder.
+
+To restore a backup, clean out the the folder where your Compose file resides, keeping only the backup folder and its files in place. Then run the following:
+
+```bash
+docker compose down --remove-orphans       # stop all services
+docker compose run eln chemotion restore   # restore the latest backup
 ```
 
-Adjust the URL in case you run the service outside the default compose environment/at a different location.
+<details>
+  <summary>How backup and restore works?</summary>This backup script is meant to
+  simplify your life a bit when it comes to backups. However it doesn't do
+  anything magical and if it suits your needs better, you can also do manual
+  backups. To create one, you need to dump your database, i.e. with{" "}
+  <code>pg_dump</code> or by copying the <code>chemotion_db</code> volume when
+  the database is not running.
+  <br />
+  <br />
+  In addition, you need to save all your data, in the folders: <code>
+    /uploads
+  </code> and <code>/public/images</code> (the latter being more a convenience thing
+  preventing you from having to recreate a lots of thumbnails after restoration).
+  These folders are stored in <code>chemotion_data</code> volume, so you can mount
+  it somewhere and use rsync/tar/cp to copy the data. If you already have a container
+  mounting this volume, such as (such as the <code>eln</code> or <code>
+    worker
+  </code> services), you can also simply use <code>docker compose cp</code> or <code>
+    docker cp
+  </code> to copy the data to the host machine.
+  <br />
+  <br />
+  To restore a backup, invert the process: For restoration, you need to stop
+  your services, then remount the backed-up volumes. If you have backup created
+  using <code>pg_dump</code> then use <code>pg_restore</code> to restore it.
+  Similarly, restore the data files into their destination using using
+  cp/tar/rsync etc.
+</details>
 
-#### Converter Service {#converter-141}
+:::caution WARNING
+Backup scripts do not backup data that reside out docker e.g. `services` and `shared` folders. These folder need to be backed up by you separately.
+:::
+:::info
+It is advised to setup an automatic system task (i.e. cron job) to backup regularly. This is highly system specific and thus out of the scope of this documentation. Please refer to your OS's manual to find out how to setup scheduled tasks.
+In addition, you should always backup before upgrading your installation.
+:::
 
-To configure the converter service, please follow the steps described here in the documentation (see side pane).
+## Special Cases
+
+### Only when installing or upgrading to version 1.4.1
+
+**This is not applicable in any other case, e.g. when moving from version v1.3.1 to v1.5.1.**
+
+Finish your [installation](#fresh-installations) or [upgrade](#upgrades) by following the usual steps. Then configure the converter service by following the steps described here:
 
 In short, the following steps have to be taken:
 
@@ -60,10 +237,15 @@ In short, the following steps have to be taken:
 
 These steps would boil down to this:
 
-```
-mkdir -p ./shared/pullin/config/                   # this makes sure a configuration directory for the ELN exists
-mkdir -p ./services/converter/              # this creates a directory holding service configurations
-docker run --entrypoint htpasswd httpd:2 -sbn mysuser mypassword | grep ':' > ./services/converter/htpasswd   # this creates a user in the service's authentication database
+```bash
+mkdir -p ./shared/pullin/config/
+# this makes sure a configuration directory for the ELN exists
+
+mkdir -p ./services/converter/
+# this creates a directory holding service configurations
+
+docker run --entrypoint htpasswd httpd:2 -sbn mysuser mypassword | grep ':' > ./services/converter/htpasswd
+# this creates a user in the service's authentication database
 
 cat >> ./shared/pullin/config/converter.yml <<EOF
 production:
@@ -82,425 +264,66 @@ production:
 EOF
 ```
 
-### Fresh Installation {#fresh-141}
-
-To install, simply download the compose file and place it in an empty directory.
-The ELN does not need any more configuration beside the configuration for the Converter service (again, see converter documentation and [the section above](#fresh-141)) and (optionally) the configuration for the PUBLIC_URL variable as described [here](#publicurl-141).
-
-### Upgrading from 1.3.0 or above
-
-:::info
-Before you upgrade your Chemotion installation, please make sure you have a backup of all your data (docker volume and database data).
-:::
-
-To upgrade a default installation, the following steps need to be taken:
-
-- shutdown your Chemotion instance (`docker compose down --remove-orphans`)
-- replace your docker-compose.yml file with the one for version 1.4.1 (see [this](#version-141)).
-- delete the Chemotion app volume (by default this is named "chemotion_app", `docker volume rm chemotion_app`).
-- configure the PUBLIC_URL variable as described [here](#publicurl-141)
-- configure the converter service as described in the documentation or in the [section above](#fresh-141).
-- restart the system using `docker compose up`.
-
-## Version 1.3.0p220705
-
-:::info
-With version 1.3.0 onwards a new CLI tool is available to support installations, upgrades and other administrative tasks. Please see the [instructions page here](https://github.com/harivyasi/chemotion/tree/chemotion-cli/chemotion-cli).
-:::
-
-To install version 1.3.0 of the ELN, we introduce the container version 1.3.0p220705. The images are available on DockerHub: https://hub.docker.com/r/ptrxyz/chemotion/tags
-
-### Fresh Installation
-
-To install this version on a blank system, follow these steps:
-
-- download the `docker-compose.yml` to a directory of your choice:
-
-```
-wget https://raw.githubusercontent.com/ptrxyz/chemotion/latest-release/docker-compose.yml
-```
-
-- download all images and create the containers, data volumes and networks by running this command in the same folder you downloaded the compose file to:
-
-```
-docker compose create
-```
-
-Note: depending on your Compose version you might get a deprecation warning. The warning can be ignored for now, in the future, `docker compose up --no-start` will be a drop-in replacement for this command.
-
-- Start the ELN containers with
-
-```
-docker compose up
-```
-
-or
-
-```
-docker compose up -d
-```
-
-(the 1st command outputs to stdout, the 2nd starts the ELN as a background service login to the docker's log daemon)
-
-- after a short startup/migration period, the ELN will available on port `<your host IP>:4000`
-- Proceed with the sections [Configuring](#config-112p220401) and [Setting the Base URL](#baseurl-112p220401)
-
-### Upgrade from version 1.1.2
-
-:::caution
-Please do always create a backup of your data before upgrading. No backup - no pity.
-:::
-
-To upgrade to 1.1.3 from 1.1.2, simply follow these steps:
-
-- Stop all running containers: `docker compose down --remove-orphans`
-- Delete the APP volume: `docker volume rm chemotion_app`
-- Get the latest compose file: `wget -O docker-compose.yml https://raw.githubusercontent.com/ptrxyz/chemotion/latest-release/docker-compose.yml`
-- Restart the containers: `docker compose up`
-
-## Version 1.1.2p220401
-
-To install version 1.1.2 of the ELN, we introduce the container version 1.1.2p220401. Please note, the naming convention changed to now encode the ELN version (1.1.2) followed by a single character to denote the intended use ("p" for production, "d" for development and "e" for experimental) followed by the version of the Docker middleware in the form of "YYMMRR" with RR being an increasing integer.
-
-:::info
-From this version onwards, spectra analysis services will be included into the default setup. If you do not like that, you can edit the Compose file accordingly.  
-:::
-
-:::info
-From this version onwards, we rely on Docker volumes to preserve data. Your user data will be stored in the volumes `chemotion_data` and `chemotion_db`. DO NOT delete them if you like your stuff. No backup, no pity.
-:::
-
-### Fresh Installation
-
-To install this version on a blank system, follow these steps:
-
-- download the `docker-compose.yml` to a directory of your choice:
-
-```
-wget https://raw.githubusercontent.com/ptrxyz/chemotion/release-112/release/1.1.2p220401/docker-compose.yml
-```
-
-- download all images and create the containers, data volumes and networks by running this command in the same folder you downloaded the compose file to:
-
-```
-docker compose create
-```
-
-Note: depending on your Compose version you might get a deprecation warning. The warning can be ignored for now, in the future, `docker compose up --no-start` will be a drop-in replacement for this command.
-
-- Start the ELN containers with
-
-```
-docker compose up
-```
-
-or
-
-```
-docker compose up -d
-```
-
-(the 1st command outputs to stdout, the 2nd starts the ELN as a background service login to the docker's log daemon)
-
-- after a short startup/migration period, the ELN will available on port `<your host IP>:4000`
-- Proceed with the sections [Configuring](#config-112p220401) and [Setting the Base URL](#baseurl-112p220401)
-
-### Upgrade from 1.0.3D0.1
+### Upgrading from 1.0.3D0.1 to higher versions
 
 To upgrade from a previous version to this release, a few manual steps have to be done. In the new release, we changed to make use of Docker volumes instead of bind mounts for all user data and shared storage. It is up to the user to transfer previous user data to these volumes.
-All you need to do is to copy/merge your old folders to/with the data volume (mounted at `/chemotion/data` in the ELN container):
 
-- `./shared/eln/uploads` --> `/chemotion/data/uploads`
-- `./shared/eln/public/images` --> `/chemotion/data/public/images`
+- You need to do is to copy/merge your old folders to/with the data volume (mounted at `/chemotion/data` in the ELN container):
+  - `./shared/eln/uploads` → `/chemotion/data/uploads`
+  - `./shared/eln/public/images` → `/chemotion/data/public/images`
 
 We recommend the following steps:
 
-- Bring down your current instance, backup everything:
+- Bring down your current instance, backup everything. In case anything goes wrong, you can always fall back to this backup by simply extracting the archive.
 
-```
-docker compose down --remove-orphans
-sudo tar cvzf /tmp/pre-upgrade.tar.gz ./db-data ./shared ./docker-compose.yml
-```
+  ```bash
+    docker compose down --remove-orphans
+    sudo tar cvzf /tmp/pre-upgrade.tar.gz ./db-data ./shared ./docker-compose.yml
+  ```
 
-In case anything goes wrong, you can always fall back to this backup by simply extracting the archive.
+- clean your directory, since the new containers will also write to `./shared`.
 
-- clean your directory, since the new containers will also write to `./shared`
+  ```bash
+  rm docker-compose.yml
+  sudo mv ./shared ./old
+  ```
 
-```
-rm docker-compose.yml
-sudo mv ./shared ./old
-```
+- download the `docker-compose.yml`
 
-- download the `docker-compose.yml`:
+  ```bash
+  wget https://raw.githubusercontent.com/ptrxyz/chemotion/latest-release/docker-compose.yml
+  ```
 
-```
-wget https://raw.githubusercontent.com/ptrxyz/chemotion/latest-release/docker-compose.yml
-```
+- download all images and create the containers, data volumes and networks by running this command in the same folder you downloaded the compose file to
 
-- download all images and create the containers, data volumes and networks by running this command in the same folder you downloaded the compose file to:
-
-```
-docker compose create
-```
+  ```bash
+  docker compose create
+  ```
 
 - start a disposable sidecar container with an interactive shell attaching your old data and old db stores in addition to the storages defined in `docker-compose.yml`:
 
-```
-docker run -v $(pwd)/old:/old \
-           -v chemotion_data:/new \
-           -v $(pwd)/db-data:/old/db \
-           -v chemotion_db:/new/db \
-           -it --rm ubuntu:latest bash
-```
+  ```bash
+  docker run -v $(pwd)/old:/old \
+            -v chemotion_data:/new \
+            -v $(pwd)/db-data:/old/db \
+            -v chemotion_db:/new/db \
+            -it --rm ubuntu:latest bash
+  ```
 
-- You will find yourself in the root of a fresh container. Copy over the following files:
+- You will find yourself in the root of a fresh container. The point here is that you copy everything from your old `uploads` and `public/images` folder to the new location. By default those are stored in `./eln/`, if you configured things differently, adjust accordingly.
 
-```
-cp -Rf /old/eln/uploads/.        /new/uploads/
-cp -Rf /old/eln/public/images/.  /new/public/images/
-cp -Rf /old/db/.                 /new/db/
-```
-
-Note: the point here is that you copy everything from your old `uploads` and `public/images` folder to the new location. By default those are stored in `./eln/`, if you configured things differently, adjust accordingly.
+  ```bash
+  cp -Rf /old/eln/uploads/.        /new/uploads/
+  cp -Rf /old/eln/public/images/.  /new/public/images/
+  cp -Rf /old/db/.                 /new/db/
+  ```
 
 - Your data is now stored on the data volumes. Type `exit` to quit the interactive shell.
 - start your new instances:
 
-```
-docker compose up
-```
+  ```bash
+  docker compose up -d
+  ```
 
 - after a short startup/migration period, the ELN will available on port `<your host IP>:4000`
-- Proceed with the sections [Configuring](#config-112p220401) and [Setting the Base URL](#baseurl-112p220401)
-
-### Configuring {#config-112p220401}
-
-To keep your new installation clean, we switched to an overlay-based configuration system. The ELN instance will from now on start with (reasonable) defaults and overlay all files found in `./shared/pullin/` onto the ELN application directory. As an example, to configure a `.env` file, it's filename would be `./shared/pullin/.env`. Files you might want to configure:
-
-- `.env` --> `./shared/pullin/.env`
-- `database.yml` --> `./shared/pullin/config/database.yml`
-- `editors.yml` --> `./shared/pullin/config/editors.yml`
-- `welcome-message.md` --> `./shared/pullin/public/welcome-message.md`
-- `editors`-folder --> `./shared/pullin/public/editors`
-
-Have a look at the [Complat/Chemotion-GitHub-Repo](https://github.com/ComPlat/chemotion_ELN) to get an overview where things need to be placed.
-
-### Setting the Base-URL {#baseurl-112p220401}
-
-Please make sure you configure .env to contain at least two settings:
-
-```
-URL_HOST=<your domain here>:<port>
-URL_PROTOCOL=<http or https>
-```
-
-Since Chemotion sends out links that point to the ELN, it needs to know where the ELN is running. So configure those two variables to make sure the ELN can construct the URLs properly. An example for `localhost` would look like this:
-
-(_./shared/pullin/.env_:)
-
-```
-URL_HOST=localhost:4000
-URL_PROTOCOL=http
-```
-
-Of course, if you are using default ports for your protocol (80 or 443) you can omit the `:<port>` part and simply use `URL_HOST=localhost` for example.
-
-Note: Settings protocol to `https` requires you to configure TLS on your machine (i.e. with a HTTP proxy like NGINX). It will NOT magically make it work for you. Those settings are simply used to construct URLs.
-
-### Other Documentation
-
-The new version comes with some quality-of-life changes:
-
-- to check the logs of a service, use either `docker compose logs` or check the `./shared/logs` folder.
-- to create a backup of your data, you can use the embedded Chemotion CLI tools:
-
-```
-docker compose exec eln chemotion backup
-```
-
-This will create a backup in ./shared/backup/
-
-- to restore a backup, clean out your Compose-directory, keep only the backup folder and it's files in place.
-
-```
-docker compose down --remove-orphans       # stop all services
-docker compose run eln chemotion restore   # restore the latest backup
-```
-
-- Resetting the Administrator account's password:
-
-```
-docker compose exec eln chemotion resetAdminPW
-```
-
-- Getting a Rails console:
-
-```
-docker compose exec eln chemotion railsc
-```
-
-- Getting a shell with loaded Chemotion environment variables:
-
-```
-docker compose exec eln chemotion shell
-```
-
-- Drop to Postgres console in the Chemotion database:
-
-```
-docker compose exec eln chemotion psql
-```
-
-- Display basic version information:
-
-```
-docker compose exec eln chemotion info
-```
-
-#### Notes on Backups:
-
-The backup script is meant to simplify your life a bit when it comes to backups. However it doesn't do anything magical and if it suits your needs better, you can also do manual backups. To create on, you need to dump your database, i.e. with `pg_dump` or by copying the `chemotion_db` volume when the database is not running.
-In addition, you need to safe all your data, that is two folders: `/uploads` and the `/public/images` (the latter being more a convenience thing preventing you from having to recreate a lots of thumbnails after restoration). The data is stored on the `chemotion_data` volume, so you can simply mount it somewhere and use rsync/tar/cp to copy the data. If you already have a container mounting this volume, such as (such as the `eln` or `worker` services), you can also simply use `docker compose cp` or `docker cp` to copy the data to the host machine and do anything you like with it.
-
-To restore a backup, invert the process: While backups can be done with running services, for restoration, you need to stop your services, then playback the SQL-dump (pg_restore/psql/copy the volume or data files back) and then playback the data using cp/tar/rsync/etc.
-
-## Version 1.0.3D0.1
-
-With release `1.0.3D0.1`, beside upgrading the ELN version to 1.0.3, we made great improvements to the Docker middleware framework. We introduce the concept of _configuration landscapes_ as bundles of configuration files that describe a certain environment. This is a first step to enabling users to easily switch between production, testing or teaching environments with a single command.
-
-As of now, there is only one landscape shipped with the image and we plan to add more over time depending on user needs. You can always create your own landscapes and quickly move between them. Check out the `docker compose run eln landscape` command for more info.
-
-Further, this changed the config file structure a bit. While in previous versions, the ELN configuration was stored in `./shared/config` and the container configuration was stored in `./config`, there is only one folder now: `./shared`. We hope this change makes it more intuitive for users.
-
-On the inside, we managed to reduce the size of our images by more than 50% by being more selective when it comes to installed packages: using multistage builds to build the big dependencies makes sure that no build artifacts are unnecessarily present in the final image. To ensure consistency we added a dependency scanner that makes sure that all dependencies are still satisfied and no libraries are missing.
-
-## Preparation
-
-To setup the Chemotion ELN using Docker, Docker Engine and Docker Compose have to be installed on the host machine. Please refer to the [Docker distributions documentation](https://docs.docker.com/desktop/install/linux-install/) on how this can be achieved. For Ubuntu-based machines, this can be found [here](https://docs.docker.com/engine/install/ubuntu/).
-
-In addition you need that latest version of our Docker Compose service description as well as some scripts depending on your scenario. The file can be found here:
-
-| File                                                                                                    | Description                                                                                   |
-| ------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| [docker-compose.yml](https://github.com/ptrxyz/chemotion/blob/main/client-chemotion/docker-compose.yml) | service description file                                                                      |
-| [setup.sh](https://raw.githubusercontent.com/ptrxyz/chemotion/v1.0.3D0.1/client-chemotion/setup.sh)     | use this script if you plan to setup a new Chemotion ELN instance                             |
-| [upgrade.sh](https://raw.githubusercontent.com/ptrxyz/chemotion/v1.0.3D0.1/client-chemotion/upgrade.sh) | this script shall be used to perform an upgrade of an existing instance from v0.9.1 to v1.0.3 |
-| [backup.sh](https://raw.githubusercontent.com/ptrxyz/chemotion/v1.0.3D0.1/client-chemotion/backup.sh)   | script to backup your data before messing things up                                           |
-
-(For other releases, check out our repository on DockerHub[^1] and the archived installation on Github[^2])
-[^1]: Chemotion-Images hosted on [DockerHub](https://hub.docker.com/r/ptrxyz/chemotion/tags?ordering=last_updated)
-[^2]: Archived Documentation on [Github](https://github.com/ComPlat/chemotion_saurus/blob/026531e75ced4f31ec2da3884e2a9a450e949192/docs/eln/docker-installation.md)
-
-Download this file and place it in a separate folder (further referred to as `CHEMOTION_PATH` as it will contain all the service description but also Chemotion's configuration and data files):
-
-```
-mkdir -p $CHEMOTION_PATH
-cd $CHEMOTION_PATH
-curl -L -O https://raw.githubusercontent.com/ptrxyz/chemotion/v1.0.3D0.1/client-chemotion/docker-compose.yml
-curl -L -O https://raw.githubusercontent.com/ptrxyz/chemotion/v1.0.3D0.1/client-chemotion/backup.sh
-curl -L -O https://raw.githubusercontent.com/ptrxyz/chemotion/v1.0.3D0.1/client-chemotion/setup.sh
-curl -L -O https://raw.githubusercontent.com/ptrxyz/chemotion/v1.0.3D0.1/client-chemotion/upgrade.sh
-```
-
-As a next step, run the setup script and follow the instructions:
-
-```
-cd $CHEMOTION_PATH
-bash ./setup.sh
-```
-
-## Running Chemotion
-
-You are now ready to run the initialization. Please note that this will create a new database and delete any old database that might exist. Therefore it is crucial that you do only run this command if you want to create a new instance of Chemotion.
-
-```
-cd $CHEMOTION_PATH
-docker compose run eln landscape deploy
-docker compose run eln init
-```
-
-As the previous command finishes, you are ready to start Chemotion:
-
-```
-docker compose up
-```
-
-You will see the system logs in your terminal and after the start-up you can access your fresh instance using a browser. The application is running on `http://localhost:4000`, the seeded administration account is `ADM` (all caps!) with password `PleaseChangeYourPassword`.
-
-To start your instance in background mode, use `docker compose up -d`.
-The services will automatically restart when the docker daemon restarts. This can be configured by removing the lines containing `restart: unless-stopped` in the `docker-compose.yml` file or disabling autostart of your docker daemon on your system:
-
-```docker-compose.yml
-services:
-  db:
-    ...
-  worker:
-    restart: unless-stopped
-    ...
-  eln:
-    restart: unless-stopped
-    ...
-```
-
-Please refer to the Docker documentation on how this property works: https://docs.docker.com/config/containers/start-containers-automatically/
-
-## Managing your instance
-
-### Basic Information
-
-To get basic information about your instance, run:
-
-```
-docker compose run eln info
-```
-
-This will output storage, memory as well as several version information and ensure the fundamentally required runtime is correct.
-
-### Getting a shell inside the container
-
-To get access to the inside of the container, i.e to perform tasks based on the Rails console, one can use the following command:
-
-```
-docker compose run eln shell
-```
-
-This will drop you to a root shell inside the container. You are now free to perform any administrative tasks in the container context, but be aware that all changes are ephemeral and lost when the container is stopped. To access the host file system, a mount point has to be used, i.e. such as the already configured `/shared` (which - by default - maps to `./shared` on the host).
-
-## Backing up your data
-
-To backup your data, it is sufficient to run the following command on your host machine (not inside the container) in the folder, where your Compose file resides:
-
-```
-sudo bash ./backup.sh
-```
-
-:::info
-It is advised to setup an automatic system task (i.e. cron job) to backup regularly. This is highly system specific and thus out of the scope of this documentation. Please refer to your OS's manual to find out how to setup scheduled tasks.
-In addition, you should always backup before upgrading your installation.
-:::
-
-## Upgrading
-
-> Note: Before upgrading anything, we highly advice to create a backup (see above)! No backup? no pity!
-> Note: This upgrade is tailored and tested for the upgrade from 0.9.1 to 1.0.3.
-> Note: downgrading is not supported.
-
-Stop the services: `docker compose stop --remove-orphans`
-
-To upgrade your instance place the new `docker-compose.yml` and `upgrade.sh` in the directory where the Chemotion service files reside and run
-
-```
-sudo bash ./upgrade.sh
-```
-
-This will make sure files are properly configured and the database schemes are adjusted if necessary.
-
-> Note: Without this step, the containers will refuse to start to prevent any possible damage to your installation.
-
-Now, restart the services: `docker compose restart`
-
-### Setting up a Reverse-Proxy
-
-To make the installation available to the public, the container's ports should to be forwarded. We suggest to run NGINX as a reverse-proxy either in docker (by extending the Docker Compose service description file) or stand-alone on the host. The application is (by default) listening on '0.0.0.0:4000'.
-
-A demo service description as well as some sample configuration files for NGINX can be found in the Docker-Chemotion-Monorepo (https://github.com/ptrxyz/chemotion) in the sub-folder `reverse-proxy`.
+- Proceed with [Configuration](configuration).
