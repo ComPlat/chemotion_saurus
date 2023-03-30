@@ -28,6 +28,11 @@ To install the latest version of Chemotion on a blank system, follow these steps
   wget https://raw.githubusercontent.com/ptrxyz/chemotion/latest-release/docker-compose.yml
   ```
 
+- edit the file to change these keys if they exist in the downloaded file:
+
+  - `services.worker.environment.SECRET_KEY_BASE` and `services.eln.environment.SECRET_KEY_BASE` (both should be same)
+  - `services.converter.environment.SECRET_KEY`
+
 - download all images and create the containers, data volumes and networks by running this command in the same folder you downloaded the compose file to:
 
   ```bash
@@ -48,20 +53,21 @@ To install the latest version of Chemotion on a blank system, follow these steps
 
   - after a short startup period, the ELN will available on port `4000` and can be accessed on `<your host IP>:4000`
   - The application is running on `http://localhost:4000`, the seeded administration account is `ADM` (all caps!) with password `PleaseChangeYourPassword`.
+  - Proceed with [Configuration](configuration)
 
 :::info
-We rely on Docker volumes to preserve data. Your user data will be stored in the volumes `chemotion_data` and `chemotion_db`. DO NOT delete them: Having backups is essential to making your data FAIR.
+We rely on docker volumes to preserve data. Your user data will be stored in the volumes `chemotion_data` and `chemotion_db`. DO NOT delete them: Having backups is essential to making your data FAIR.
 :::
 
 ### Setting up a Reverse-Proxy
 
-To make the installation available to the public, the container's ports should to be forwarded. We suggest to run NGINX as a reverse-proxy either in docker (by extending the Docker Compose service description file) or standalone on the host. The application is (by default) listening on `0.0.0.0:4000`.
+To make the installation available to the public, the container's ports should to be forwarded. We suggest to run NGINX as a reverse-proxy either in docker (by extending the docker compose service description file) or standalone on the host. The application is (by default) listening on `0.0.0.0:4000`.
 
 A guidance for setting up reverse proxy by means of some sample configuration files for NGINX can be found [here](https://github.com/ptrxyz/chemotion/tree/v1.0.3D0.1/reverse-proxy).
 
 ### Controlling Services
 
-- Services automatically restart when the docker daemon restarts. This can be configured by removing the lines containing `restart:      unless-stopped` in the `docker-compose.yml` file or disabling autostart of your docker daemon on your system. Please refer to the Docker [documentation](https://docs.docker.com/config/containers/start-containers-automatically/) on how this property works.
+- Services automatically restart when the docker daemon restarts. This can be configured by removing the lines containing `restart: unless-stopped` in the `docker-compose.yml` file or disabling autostart of your docker daemon on your system. Please refer to the docker's [documentation](https://docs.docker.com/config/containers/start-containers-automatically/) on how this property works.
 
   ```yaml
   services:
@@ -108,27 +114,7 @@ Certain upgrades require may require additional/different steps. Please check [t
   docker volume rm chemotion_app
   ```
 
-- Get the latest compose file:
-
-  ```bash
-  wget -O docker-compose.yml https://raw.githubusercontent.com/ptrxyz/chemotion/latest-release/docker-compose.yml
-  ```
-
-- Restart the containers:
-
-  In foreground:
-
-  ```bash
-  docker compose up
-  ```
-
-  Or, in background (recommended)
-
-  ```bash
-  docker compose up -d
-  ```
-
-- Proceed with [Configuration](configuration).
+- Follow instructions for a [fresh installation](#fresh-installations) in the same directory. However, your admin/user credentials and user data should **remain same** as they were before the upgrade.
 
 ## Managing your instance
 
@@ -267,7 +253,7 @@ EOF
 
 ### Upgrading from 1.0.3D0.1 to higher versions
 
-To upgrade from a previous version to this release, a few manual steps have to be done. In the new release, we changed to make use of Docker volumes instead of bind mounts for all user data and shared storage. It is up to the user to transfer previous user data to these volumes.
+To upgrade from a previous version to this release, a few manual steps have to be done. In the new release, we changed to make use of docker volumes instead of bind mounts for all user data and shared storage. It is up to the user to transfer previous user data to these volumes.
 
 - You need to do is to copy/merge your old folders to/with the data volume (mounted at `/chemotion/data` in the ELN container):
   - `./shared/eln/uploads` → `/chemotion/data/uploads`
