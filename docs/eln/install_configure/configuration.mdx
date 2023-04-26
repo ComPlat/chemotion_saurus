@@ -9,23 +9,25 @@ This page is still being edited and reviewed.
 
 ## Getting Started
 
+The default password to the administrative account (username: `ADM`) of a freshly installed instance is `PleaseChangeYourPassword`. Please change this password as soon as possible.
+
 ### Essential Step: Setting the Base URL
 
 In order for file downloads links (e. g., in exporting [collections](../ui/collections)) to work correctly, you have to configure the hostname of your Chemotion ELN. Set the following variable accordingly in the `.env` file:
 
 #### Versions 1.4.1 and above
 
-In our efforts to streamline some settings of the ELN, we introduced a new environment variable `PUBLIC_URL`. This variable is meant to be set to the public URL that points to your ELN installation. This variable is used whenever the ELN has to construct absolute URLs, for example when an E-Mail is send after user registration.
+In our efforts to streamline some settings of the ELN, we introduced a new environment variable `PUBLIC_URL`. This variable is meant to be set to the public URL that points to your ELN installation i.e. if you type "http://my.eln" in your browser to reach the ELN, please set this variable to `PUBLIC_URL=http://my.eln`. This variable is used whenever the ELN has to construct absolute URLs, for example when an E-Mail is send after user registration.
 
 The variable also deprecates the variables "HOST_URL" and "HOST_PROTOCOL". Those are now ignored and can safely be removed.
 
 To set the variable, add it to the sections "services.worker.environment" and "services.eln.environment" just below the already present variables (such as "CONFIG_ROLE" for example) in your `docker-compose.yml`.
 
-i.e. if you type "http://my.eln" in your browser to reach the ELN, please set this variable to `PUBLIC_URL=http://my.eln`
+> The `PUBLIC_URL` variable is a setting that tells the ELN where it _can be reached_. It's not a setting that magically makes it so that the ELN is reachable at the provided URL. Please see [this section](./manual_install.mdx#setting-up-a-reverse-proxy) for more.
 
 #### Versions 1.1.2p220401 to 1.3.0p220705
 
-Please make sure you configure .env to contain at least two settings:
+Please make sure you configure `.env` to contain at least two settings:
 
 ```
 URL_HOST=<your domain here>:<port>
@@ -47,15 +49,17 @@ Setting protocol to `https` requires you to configure TLS on your machine (i.e. 
 
 ### Configuration Files to Consider
 
-To keep your installation clean, we have an overlay-based configuration system. The ELN instance starts with (reasonable) defaults and overlays all files found in `./shared/pullin/` onto the ELN application directory. As an example, to configure a `.env` file, it's filename would be `./shared/pullin/.env`. Files you might want to configure:
+To keep your installation clean, we have an overlay-based configuration system. The ELN instance starts with (reasonable) defaults and overlays all files found in `./shared/pullin/` onto the ELN application directory. As an example, to configure the `.env` file, its folder path + filename would be `./shared/pullin/.env`. (Here `.` is the current working folder, from where you run your `docker compose` command; in case of the [ChemCLI](ChemCLI), a `shared` folder should already exist inside the `instances/instance-name` folder). Files that you might want to configure, their locations in the `./shared/pullin` folder, and the name of their template file (see below), are as follows:
 
-- `.env` → `./shared/pullin/.env`
-- `database.yml` → `./shared/pullin/config/database.yml`
-- `editors.yml` → `./shared/pullin/config/editors.yml`
-- `welcome-message.md` → `./shared/pullin/public/welcome-message.md`
-- `editors` (folder) → `./shared/pullin/public/editors`
+| Filename             | Folder path + filename                      | Folder path + filename of the template |
+| -------------------- | ------------------------------------------- | -------------------------------------- |
+| `.env`               | `./shared/pullin/.env`                      | `.env.production.example`              |
+| `database.yml`       | `./shared/pullin/config/database.yml`       | `config/database.yml.example`          |
+| `editors.yml`        | `./shared/pullin/config/editors.yml`        | `config/editors.yml.example`           |
+| `welcome-message.md` | `./shared/pullin/public/welcome-message.md` | `public/welcome-message-sample.md`     |
+| `editors` (folder)   | `./shared/pullin/public/editors`            | `public/editors`                       |
 
-The generic link to the file(s) is https://github.com/ComPlat/chemotion_ELN/ `tree/v_version_of_chemotion/folder_path/filename.example`.
+A template for these files can be found in our [repository](https://github.com/ComPlat/chemotion_ELN). Please find the [release](https://github.com/ComPlat/chemotion_ELN/releases) corresponding to the version of ELN you are using. Then extract the compressed source code file into a folder. In this folder, you will find the template files at the specified location; remember to rename the file as suggested. For example, `.env.production.example` should be renamed to `.env` and placed in the `./shared/pullin` folder.
 
 ### Secret key
 
@@ -418,12 +422,9 @@ An alternative url for `nmriumwrapper.url` is `http://bare-nmrium-main.eln.hydro
 This feature is still in Beta version.
 :::
 
-This configuration enables sending a welcome message as an email to the new users upon registration. It also displays the same content as a welcome message at the home page. The content is dynamic and can be modified and updated anytime.
+This configuration enables sending a welcome message as an email to the new users upon registration. It also displays the same content as a welcome message at the home page. The content is dynamic and can be modified and updated anytime. Please follow the instructions [above](#configuration-files-to-consider) to edit this file.
 
 ![adminui-welcomemessage](@site/static/img/install_configure/welcomemessage.png)
-
-The message is rendered via .md file, you can find the sample file [here.](https://github.com/ComPlat/chemotion_ELN/blob/main/public/welcome-message-sample.md)
-In order to configure this, you just need to create a similar file as above in the same `public` directory named as `welcome-message.md`. You can copy the content from the sample file and modify the message as you wish.
 
 :::note
 Restarting of server might be required if you are adding the file to an already running instance.
