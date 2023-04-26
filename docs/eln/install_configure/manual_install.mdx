@@ -61,9 +61,25 @@ We rely on docker volumes to preserve data. Your user data will be stored in the
 
 ### Setting up a Reverse-Proxy
 
-To make the installation available to the public, the container's ports should to be forwarded. We suggest to run NGINX as a reverse-proxy either in docker (by extending the docker compose service description file) or standalone on the host. The application is (by default) listening on `0.0.0.0:4000`.
+To make the installation available to the public, the container's ports should to be forwarded: the application is (by default) listening on `0.0.0.0:4000`.
 
-A guidance for setting up reverse proxy by means of some sample configuration files for NGINX can be found [here](https://github.com/ptrxyz/chemotion/tree/v1.0.3D0.1/reverse-proxy).
+We suggest to run an NGINX server (if you don’t already have one) as a reverse-proxy either in docker by extending the `docker-compose.yml` file (and making it target hostname `eln`) or standalone on the host (this would then target host's hostname/IP, port 4000). You can also configure NGINX to use TLS (use your own certificates or i.e. [Let's Encrypt](https://letsencrypt.org/) if your firewall allows). To get further information on how to configure NGINX, please refer to tutorials online (e.g. [here](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/), [here](https://www.cyberciti.biz/faq/configure-nginx-to-use-only-tls-1-2-and-1-3/) and [here](https://github.com/ptrxyz/chemotion/tree/v1.0.3D0.1/reverse-proxy)). The basic outline of a config file is this:
+
+```
+server {
+    listen 443 ssl;
+    ssl_certificate /path/to/your_domain.crt;
+    ssl_certificate_key /path/to/your_domain.key;
+    server_name your_domain.com;
+}
+```
+
+To get everything in place, you have to make sure that:
+
+- DNS resolves to the URL to your server's IP address
+- any potential firewall/networking rules do not get in the way
+- docker exposes and listens on the correct ports
+- the ELN is running
 
 ### Controlling Services
 
