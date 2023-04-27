@@ -5,14 +5,18 @@ sidebar_position: 11
 
 ChemCLI, short for Chemotion CLI, is a tool to help you manage Chemotion ELN on a machine. The goal is to make installation, maintenance and upgradation of (multiple instances of) Chemotion as easy as possible.
 
+:::caution Important Announcement
+If you are using ChemCLI versions 0.2.0 to 0.2.3, you will have to run the following command to (force) run the auto-update feature: `./chemCLI advanced update --force`. You can also (always) [download a new executable of ChemCLI](#download) to manually update the tool. (Apologies for the bug!)
+:::
+
 ## Compatibility with Chemotion ELN
 
 ChemCLI tool supports the following versions of Chemotion ELN:
 
-| ELN Version                                                            | `docker-compose.yml` file                                                                                                   | Supported by chemCLI version                                           |
-| ---------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| [v1.5.1](https://github.com/ComPlat/chemotion_ELN/releases/tag/v1.5.1) | [eln-1.5.1](https://raw.githubusercontent.com/ptrxyz/chemotion/44399a444948a99ddd50ecbea0fbcb84d159f2cc/docker-compose.yml) | [0.2.x](https://github.com/Chemotion/ChemCLI/releases/tag/0.2.2)       |
-| [v1.3.1](https://github.com/ComPlat/chemotion_ELN/releases/tag/v1.3.1) | [eln-1.3.1p220712](https://github.com/ptrxyz/chemotion/blob/cb906ce8d37e0a173ae66b3696a9f039f540eace/docker-compose.yml)    | [0.1.x](https://github.com/Chemotion/ChemCLI/releases/tag/0.1.6-alpha) |
+| ELN Version                                                            | `docker-compose.yml` file                                                                                                   | Supported by chemCLI version                                                                                                             |
+| ---------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| [v1.5.3](https://github.com/ComPlat/chemotion_ELN/releases/tag/v1.5.3) | [eln-1.5.3](https://raw.githubusercontent.com/ptrxyz/chemotion/72eb3b95caa7ce304b9bd80ae7c288645a9823d8/docker-compose.yml) | [0.2.x](https://github.com/Chemotion/ChemCLI/releases/tag/0.2.4)                                                                         |
+| [v1.3.1](https://github.com/ComPlat/chemotion_ELN/releases/tag/v1.3.1) | [eln-1.3.1p220712](https://github.com/ptrxyz/chemotion/blob/cb906ce8d37e0a173ae66b3696a9f039f540eace/docker-compose.yml)    | [0.1.x](https://github.com/Chemotion/ChemCLI/releases/tag/0.1.6-alpha), [0.2.x](https://github.com/Chemotion/ChemCLI/releases/tag/0.2.4) |
 
 > Chemotion ELN version [1.4.x](https://github.com/ComPlat/chemotion_ELN/releases/tag/v1.4.1-3) is **not supported** because it requires [manual changes](https://chemotion.net/docs/eln/install_configure/manual_install#only-when-installing-or-upgrading-to-version-141) to the installation after downloading the [`docker-compose.yml`](https://raw.githubusercontent.com/ptrxyz/chemotion/ba4b4620ab2aaa6be32df78189c29970335b1989/docker-compose.yml) file.
 
