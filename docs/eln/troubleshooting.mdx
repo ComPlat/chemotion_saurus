@@ -60,7 +60,7 @@ examples:
 
 - reprocess  openbabel generated molecule SVGs: `bundle exec rake 'svg:molecule[openbabel]'`
 
-If docker compose is used, the command can be run  from the host where the docker-compose file is located. For an example using the worker service  of the docker compose file:
+If docker compose is used, the command can be run  from the host where the docker-compose file is located. For an example using the worker service as set in the docker compose file:
 
 ```
 docker compose exec worker bundle exec rake 'svg:molecule[openbabel]' 
