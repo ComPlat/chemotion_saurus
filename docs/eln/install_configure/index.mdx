@@ -37,7 +37,7 @@ Please follow the configuration steps (see [here](install_configure/manual_insta
 
 The team behind Chemotion ELN is working hard to introduce new features, bug fixes and security patches. We therefore recommend that you upgrade your ELN instance (at least) once **every three months**. To make it easy for you, most upgrade involve creating a backup (for data safety reasons), replacing a file, stopping the old ELN and starting the new one. This process is further automated if you use [ChemCLI](install_configure/ChemCLI).
 
-# Fixing Sample or Molecule SVG images
+# Fixing Sample or Molecule SVG images (chemotion_ELN v1.5.4 or above)
 
 A script to reprocess the SVGs of molecules and samples is available (see [PR1308](https://github.com/ComPlat/chemotion_ELN/pull/1308/commits/868477dc91cec99b689db2ac93106d04ce8dd694)).For this to run properly, the Ketcher back-end service has to be working. Note that depending on the situation, this could consume a lot of resources.
 To run the script from your application directory with rails environment, use  `bundle exec rake 'svg:{molecule|sample}[{all|missing|openbabel}]'`; 
