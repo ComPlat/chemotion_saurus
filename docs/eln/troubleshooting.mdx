@@ -44,3 +44,25 @@ This error occurs when the SciFinder access has not been released and therefore 
 ![ChemDraw enable_clipboard_button](/img/chemdraw_clipboard_steps.png)
 
 4. After refreshing the page, re-open the ChemDraw and the clipboard button turns green. You can use <kbd>Ctrl</kbd>+<kbd>C</kbd> followed by <kbd>Ctrl</kbd>+<kbd>P</kbd> to copy and paste the drawing.
+
+
+## Fixing Sample or Molecule SVG images (chemotion_ELN v1.5.4 or above)
+
+A script to reprocess the SVGs of molecules and samples is available (see [PR1308](https://github.com/ComPlat/chemotion_ELN/pull/1308/commits/868477dc91cec99b689db2ac93106d04ce8dd694)).For this to run properly, the Ketcher back-end service has to be working. Note that depending on the situation, this could consume a lot of resources.
+To run the script from your application directory with rails environment, use  `bundle exec rake 'svg:{molecule|sample}[{all|missing|openbabel}]'`; 
+examples:
+
+- reprocess missing molecule SVGs: `bundle exec rake svg:molecule`
+
+- reprocess all molecule SVGs with molecule id >= 200: `bundle exec rake 'svg:molecule[all, 200]'`
+
+- reprocess missing sample SVGs with sample 100 <= id <= 200: `bundle exec rake 'svg:sample[missing, 100, 200]'`
+
+- reprocess  openbabel generated molecule SVGs: `bundle exec rake 'svg:molecule[openbabel]'`
+
+If docker compose is used, the command can be run  from the host where the docker-compose file is located. For an example using the worker service  of the docker compose file:
+
+```
+docker compose exec worker bundle exec rake 'svg:molecule[openbabel]' 
+```
+
