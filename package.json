@@ -12,12 +12,12 @@
     "clear": "docusaurus clear"
   },
   "dependencies": {
-    "@docusaurus/core": "^2.4.0",
-    "@docusaurus/plugin-content-docs": "^2.4.0",
-    "@docusaurus/plugin-content-pages": "^2.4.0",
-    "@docusaurus/plugin-sitemap": "^2.4.0",
-    "@docusaurus/theme-classic": "^2.4.0",
-    "@easyops-cn/docusaurus-search-local": "^0.34.0",
+    "@docusaurus/core": "^2.4.1",
+    "@docusaurus/plugin-content-docs": "^2.4.1",
+    "@docusaurus/plugin-content-pages": "^2.4.1",
+    "@docusaurus/plugin-sitemap": "^2.4.1",
+    "@docusaurus/theme-classic": "^2.4.1",
+    "@easyops-cn/docusaurus-search-local": "^0.35.0",
     "@fortawesome/fontawesome-svg-core": "*",
     "@fortawesome/free-solid-svg-icons": "*",
     "@fortawesome/react-fontawesome": "*",
@@ -30,7 +30,7 @@
     "react-dom": "*"
   },
   "devDependencies": {
-    "eslint": "^8.35.0",
+    "eslint": "^8.41.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-jsx-a11y": "^6.7.1",
