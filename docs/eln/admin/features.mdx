@@ -8,7 +8,7 @@ For functions that require authorized access, the administrator can grant or den
 
 ![adminui-uifeatures](@site/static/img/admin_ui/features.png)
 
-<b>Edit Permission</b>
+**Edit Permission**
 
 - Enable globally - when the function is enabled globally, it is available for all users except the users in the "Exclude Users" list
 - Include Users - the user who can access the function
@@ -16,7 +16,7 @@ For functions that require authorized access, the administrator can grant or den
 
 ![adminui-uifeatures-edit_permission](@site/static/img/admin_ui/features-permission.gif)
 
-<b>Edit JSON</b>
+**Edit JSON**
 
 Each function has its own unique features and the administrator can adjust the setting by editing the configuration. Please make sure to find the corresponding information and read the content carefully before changing the settings.
 
@@ -32,32 +32,84 @@ Each function has its own unique features and the administrator can adjust the s
 
 ## ChemDraw Editor
 
-<b>Supported Versions</b>
+**Supported Versions**
 
 | Chemotion ELN | ChemDraw   |
 | ------------- | ---------- |
 | 1.0.2         | 17, 19, 20 |
 | before 1.0.2  | 17         |
 
-<b>JSON</b>
+**JSON**
 
 To active ChemDraw in Chemotion ELN, use
 
-```sh
+```json
 {
-  editor: 'chemdraw'
+  "editor": "chemdraw"
 }
 ```
 
 By default, the web service in enabled. To disable the web service, use
 
-```sh
+```json
 {
-  editor: 'chemdraw',
-  features: {
-    disabled: ['WebService']
+  "editor": "chemdraw",
+  "features": {
+    "disabled": ["WebService"]
   }
 }
 ```
 
 To set up ChemDraw, please see [Structure editor](../install_configure/configuration#structure-editor).
+
+## User Authentication (userProvider)
+
+**Supported Versions**
+
+| Chemotion ELN | protocol/services |
+| ------------- | ----------------- |
+| 1.6.          | OIDC, shibboleth  |
+
+**Setting**
+
+After having saved the settings, the ELN service needs to be restarted to apply changes.
+
+Configuration example:
+
+```sh
+{
+  openid_connect: {
+    host: "oidc.address.edu",
+    icon: "path/to/image.png",
+    enable: true,
+    issuer: "https://oidc.address.edu/path/to/issuer",
+    scheme: "https",
+    client_id: "myClientID",
+    redirect_uri: "https://your.chemotion_eln.address.edu/users/auth/openid_connect/callback",
+    client_secret: "secret",
+    token_endpoint: "/oauth2/token",
+    authorization_endpoint: "/oauth2/auth"
+  },
+  github: {
+    enable: false
+    client_id: null
+    client_secret: null
+  }
+}
+```
+
+| OIDC params            | value                                                          |
+| ---------------------- | -------------------------------------------------------------- |
+| host                   | address of the service                                         |
+| icon                   | path to a public image to display on the sign-in page          |
+| enable                 | `true` or `false`                                              |
+| issuer                 | url of the issuer                                              |
+| scheme                 | 'https'                                                        |
+| client_id              | client ID                                                      |
+| redirect_uri           | your chemotion ELN url + '/users/auth/openid_connect/callback' |
+| client_secret          | secret                                                         |
+| token_endpoint         | '/oauth2/token'                                                |
+| authorization_endpoint | '/oauth2/auth'                                                 |
+
+| Shibboleth params | value |
+| ----------------- | ----- |
