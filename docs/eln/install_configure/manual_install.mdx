@@ -173,6 +173,18 @@ To get access to the inside of the container, i.e to perform tasks based on the 
 
 ### Backing up and Restoring your data
 
+:::info
+It is advised to setup an automatic system task (i.e. cron job) to backup regularly. This is highly system specific and thus out of the scope of this documentation. Please refer to your OS's manual to find out how to setup scheduled tasks.
+
+The backup process, if using ChemCLI is [described on its page](ChemCLI#backup-an-instance).
+
+In addition, you should always backup before upgrading your installation.
+:::
+
+:::caution WARNING
+Backup scripts do not backup data that reside outside docker volumes e.g. `services` and `shared` folders. These folders need to be backed up _separately_ by you.
+:::
+
 To backup that resides inside docker volumes, it is sufficient to run the following command on your host machine in the folder where your Compose file resides:
 
 ```bash
@@ -216,14 +228,6 @@ docker compose run eln chemotion restore   # restore the latest backup
   Similarly, restore the data files into their destination using using
   cp/tar/rsync etc.
 </details>
-
-:::caution WARNING
-Backup scripts do not backup data that reside out docker e.g. `services` and `shared` folders. These folder need to be backed up by you separately.
-:::
-:::info
-It is advised to setup an automatic system task (i.e. cron job) to backup regularly. This is highly system specific and thus out of the scope of this documentation. Please refer to your OS's manual to find out how to setup scheduled tasks.
-In addition, you should always backup before upgrading your installation.
-:::
 
 ## Special Cases
 

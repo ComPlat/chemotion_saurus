@@ -105,6 +105,23 @@ To turn on, and off, the `selected` instance, issue the commands:
 - `./chemCLI on`, and
 - `./chemCLI off`.
 
+### Backup an instance
+
+:::caution WARNING
+This backup process does not backup data that reside out docker e.g. `services` and `shared` folders. These folder need to be backed up by you separately.
+:::
+
+You can backup an instance of the ELN, installed using the CLI, by running the following command:
+`./chemCLI instance backup  -i <name_of_instance> -q`. This command must be run individually for every instance of Chemotion ELN that you have. Two new backup files are created _for each execution_ of the command inside the `instances/<name_of_instance-xxxxxxx>/shared/backup` folder. (These two files can be used to restore data into a new instance using the `./chemCLI instance restore` command.)
+
+If running this as a [cron](https://en.wikipedia.org/wiki/Cron) job, remember to change into the folder where the ChemCLI executable exists. To do this, include `cd path/to/the/folder` in your job script. Therefore an example crontab file that runs at [03:00 on every day-of-week from Tuesday through Saturday](https://crontab.guru/#0_3_*_*_2-6) would look like as follows:
+
+```cron
+0 3 * * 2-6 cd /home/admin/installations/chemotion_ELN && ./chemCLI instance backup -i prodinstance -q
+```
+
+Please also refer to the notes [here](manual_install#backing-up-and-restoring-your-data) for a better understanding of the backup process.
+
 ### Upgrading an instance (for ELN versions 1.3 and above)
 
 As long as you installed an instance of Chemotion using this tool, the upgrade process is quite straightforward:
