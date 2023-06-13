@@ -19,10 +19,6 @@ RAILS_ENV=test bundle exec rake db:test:prepare && bundle exec rspec --exclude-p
 
 ## 3. Acceptance (feature) tests (~~Cyapybara~~ Cypress)
 
-## Cypress
-
-### _Test. Automate. Accelerate._
-
 [![N|Solid](https://www.cypress.io/images/layouts/navbar-brand.svg)](https://www.cypress.io/)
 
 ### Introduction
@@ -165,7 +161,7 @@ cy.createDefaultUser('cu1@complat.edu', 'cu1').then((user) => {
 });
 ```
 
-### General rules of thumb
+## General rules of thumb
 
 - All public methods should be tested, every statement, conditional branch should be covered.
 - Tests should be easy to read and understand. Try to use a maximum of 3 describe/context levels:
@@ -185,7 +181,7 @@ cy.createDefaultUser('cu1@complat.edu', 'cu1').then((user) => {
 - Test files should have the name of the file under test but end with **.spec.js**.
 - For simple plain JavaScript objects, test every "public" method. Without access modifiers, look what methods are called by other components.
 
-### Testing React components
+#### Testing React components
 
 - Use the [Enzyme library](https://enzymejs.github.io/enzyme/) to create React components: `wrapper = shallow(<CLASS_OF_COMPONENT/>);`
 - React components can be used with their JavaScript-state or their HTML representation: `wrapper.instance()` and `wrapper.html()`
@@ -197,14 +193,14 @@ The linter recognizes that the store dependency is not used and tries to elimina
 Example: [ResearchPlanDetails.spec.js](https://github.com/ComPlat/chemotion_ELN/blob/main/spec/javascripts/packs/src/apps/mydb/elements/details/researchPlans/ResearchPlanDetails.spec.js)
 :::
 
-### Stubbing/Mocking
+#### Stubbing/Mocking
 
 - Heavy dependencies like REST calls can be [stubbed/mocked](https://en.wikipedia.org/wiki/Mock_object) in a test
 - We use the library sinon  
   `Sinon.stub(CLASS_TO_MOCK, "METHOD_NAME").callsFake(LAMBDA as replacement of original method);`
 - Example: [ResearchPlanDetailsFieldImage.spec.js](https://github.com/ComPlat/chemotion_ELN/blob/main/spec/javascripts/packs/src/apps/mydb/elements/details/researchPlans/ResearchPlanDetailsFieldImage.spec.js#54)
 
-### Creating models with factories
+#### Creating models with factories
 
 - To create model objects, we use the library [factory-bot](https://github.com/ratson/factory-bot)
 - `const researchPlan = await ResearchPlanFactory.build('empty');`
@@ -215,7 +211,7 @@ Example: [ResearchPlanDetails.spec.js](https://github.com/ComPlat/chemotion_ELN/
 Creating a model is an asynchronous action, so the test must also be asynchronous: `it('no img tag should be rendered', async function (){ }`
 :::
 
-### Snapshot testing
+#### Snapshot testing
 
 :::caution Deprecated chapter
 Currently no snapshot testing is applied due to lack of capacity. In addition, ui testing will be covered by the system tests in the future.
@@ -232,14 +228,14 @@ The `expect` extension by mocha refers to the current test-object by `this`. Usi
 function definition solves this problem.
 :::
 
-## Ruby Unit tests
+### Ruby Unit tests
 
-### Common infos
+#### Common infos
 
 - Tests should reflect the structure of the source package. That means having the exact same location and name ending with `_spec.rb`.
 - [Example test](https://github.com/ComPlat/chemotion_ELN/blob/development-5/spec/api/chemotion/attachment_api_spec.rb)
 
-### Creating database models with factory bot
+#### Creating database models with factory bot
 
 - Models can be created using the library [factory bot](https://github.com/thoughtbot/factory_bot). In factories, desired states of the models are predefined and can then be created using `create` (creates a DB entry) or `build` (creates a model without a DB entry).
 
@@ -248,12 +244,12 @@ Creating an attachment with factorybot must be handled carefully because `create
 By using `build` the `create_derivative` method is not executed, but one has no object in the database and some properties are not initialized.
 :::
 
-### Testing methods without classes
+#### Testing methods without classes
 
 - can be done by adding type :helpers `Rspec.describe GenericHelpers, type: :helper do`.  
   Example [generic_helpers_spec.rb](https://github.com/ComPlat/chemotion_ELN/blob/applying-gem-shrine/spec/api/helpers/generic_helpers_spec.rb)
 
-### Stubbing/Mocking
+#### Stubbing/Mocking
 
 - REST calls  
    `stub_request(REST_METHOD_AS_SYMBOL, 'REST_ADDRESS'`
@@ -270,11 +266,11 @@ Many REST requests that request INCHI keys are already defined in [spec_helper.r
   `allow_any_instance_of(CLASS_NAME).to receive(METHOD_NAME_AS_SYMBOL).and_raise(AN ERROR)`
 - for more infos: [rspec-mocks](https://relishapp.com/rspec/rspec-mocks/docs)
 
-### API - testing
+#### API - testing
 
 - Tests for the api have to be in the subfolder spec/api/... to work properly
 
-## Acceptance tests
+### Acceptance tests
 
 When you have freshly installed Chemotion ELN, make sure to create a `welcome-message.md` file in the public directory inside Chemotion ELN before running acceptance tests. You can create it from the example file:
 
