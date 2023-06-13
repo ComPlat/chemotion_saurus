@@ -17,19 +17,19 @@ npm test
 RAILS_ENV=test bundle exec rake db:test:prepare && bundle exec rspec --exclude-pattern spec/features/**/*_spec.rb
 ```
 
-## 3. Acceptance (feature) tests (~~Cyapybara~~ Cypress)
+## 3. End-to-end (feature) tests (~~Cyapybara~~ Cypress)
 
 [![N|Solid](https://www.cypress.io/images/layouts/navbar-brand.svg)](https://www.cypress.io/)
 
 ### Introduction
 
-Cypress_on_rails is a gem developed by ShakaCode, a software consulting firm. It is designed to help developers with their testing efforts by integrating the popular Cypress testing framework with Ruby on Rails applications. The gem provides a simple and efficient way to run Cypress tests in a Rails environment, allowing developers to write and execute end-to-end tests with ease.
+[cypress-on-rails](https://github.com/shakacode/cypress-on-rails) integrates the Cypress testing framework with Ruby on Rails applications.
+The gem provides a simple and efficient way to run Cypress tests in a Rails environment, allowing developers to write and execute end-to-end tests.
 
-For more details, please follow official documentation.
+For more details, please follow [official documentation](https://github.com/shakacode/cypress-on-rails).
 
 ### Installation
 
-The cypress_on_rails gem is a tool that allows you to use Cypress with your Ruby on Rails application. Here are the steps to install and use it:
 Add this to your Gem file
 
 ```ruby
@@ -38,34 +38,30 @@ group :test, :development do
 end
 ```
 
-It is considered to be a best practice to keep everything inside cypress folder just to make sure isolation and clean way to work with independent technologies. Move cypress.config.js file to the spec/cypress
+In order to have all Cypress related files in on place, move `cypress.config.js` to the `spec/cypress`.
 
 ### Usage
 
-```ruby
-yarn cypress open --config-file spec/cypress/cypress.config.js
-# Alternatively use following command
-yarn cypress open --project spec
-```
-
-To run all tests at once,use following command
+To run all tests, use the following command
 
 ```ruby
 yarn cypress run --config-file spec/cypress/cypress.config.js
 # or alternatively
-yarn cypress run --project spec
+yarn cypress run --project ./spec
 ```
 
 ### Write First Test
 
-As a first step, follow this link to start write your first end 2 end test.
+Follow this link to start writing your first end-to-end test:
 <https://docs.cypress.io/guides/end-to-end-testing/writing-your-first-end-to-end-test>
 
 ### Example of using factory bot
 
-It is always a good idea to create testing states programmatically, so further tests, can be written on top of it. In this regard, factory bots can save you a lot of time.
-To demonstrate this, we are using the concept of factory bots as they are defined natively in the project in ~app/specs/features folder. From there, we can directly use them as they are defined or customize their attributes values as per requirements.
-The example below will simply create a new user in the database, and is ready to be sign in with provided credentials.
+It is always a good idea to set up testing states programmatically, such that further tests can re-use the setup code.
+In this regard, factory bots can save you a lot of time.
+We are using the concept of factory bots as they are originally defined at `app/specs/features`.
+From there, we can directly use them or customize them according to our requirements.
+The example below will create a new user in the database, who is ready to be signed in with the provided credentials.
 
 ```javascript
 describe('create user', () => {
@@ -86,8 +82,9 @@ describe('create user', () => {
 
 ### Commands in Support Folder
 
-There are many cases where you need to repeat chunk of code. In that case, it is better to use Commands. Commands is a concept, where you can call them whereever they are needed. It saves time and enhance clarity in the source code.
-Move the code of creation of user inside spec/cypress/support/commands.js as shown below:
+There are many cases where you need to repeat chunks of code. In that case, it is better to use `commands`.
+You can call `commands` wherever they are needed. It saves time and enhances clarity.
+For example, move the code for the creation of a user to `spec/cypress/support/commands.js` as shown below:
 
 ```javascript
 Cypress.Commands.add('createDefaultUser', (emailAddress, abbr) => {
@@ -105,7 +102,7 @@ Cypress.Commands.add('createDefaultUser', (emailAddress, abbr) => {
 });
 ```
 
-Then your test will look like this. Notice, how your code became less more readable.
+Then your test will look like this. Notice, how your code became much more readable.
 
 ```javascript
 describe('create user', () => {
@@ -116,7 +113,7 @@ describe('create user', () => {
 
 ### Example of user with collection
 
-Here, we are creating a user with an empty collection in it. 'then' enables you to work with the yielded result from previous command.
+Here, we are creating a user with an empty collection. `then` enables you to work with the command's result.
 
 ```javascript
 describe('create user', () => {
@@ -129,7 +126,8 @@ describe('create user', () => {
 
 ### Example of creating a sample
 
-In order to create a sample, one way is to create it by automating all the steps that are required by a user to perform in the browser. (Notice, the before block already include creation of user and collection).
+One way to create a sample is to create it by automating all the steps that are required by a user to perform in the browser.
+(Notice, the before block already including the creation of a user and collection).
 
 ```javascript
 it('create samples', () => {
