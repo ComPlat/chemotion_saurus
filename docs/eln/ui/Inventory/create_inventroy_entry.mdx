@@ -1,0 +1,62 @@
+---
+title: Create Inventory Entry
+sidebar_position: 2
+---
+
+import { Btn } from "@site/src/js/btn.js";
+
+
+### Chemical Entry
+
+A chemical Entry can be created by creating a new sample as an inventory entry. Please refer to [Generate Sample](../elements/samples#generation) section, to learn how to create a new sample. Once a new sample is created, user can check in the inventory check box to enable handling of a sample as a chemical entry.
+
+### Inventory Tab
+
+The inventory tab will appear in the Tabs Layout. User can make the inventory tab visible by drag and drop, if it is hidden by default. Once the inventory tab is active, user can start entering chemical data in the corresponding fields.
+
+![Inventory Tab](/img/inventory_tab.gif)
+
+** The inventory tab is organized into a hierarchical structure consisting of three collapsible lists, outlined below: **
+
+1. [Inventory Information List](#inventory-information-list),
+1. [Safety List](#safety-list),
+1. [Location and Information List](#creating-a-new-group) 
+
+This structure enables convenient navigation and organization of inventory chemicals.
+
+## Inventory Information List:
+
+This section contains the following fields:
+
+* `status:` The status of the chemical.
+* `vendor:` The vendor associated with the chemical.
+* `order number:` The order number of the chemical.
+* `amount:` Contains information about the amount of the chemical.
+* `unit:` The unit of measurement for the chemical's amount.
+* `price:` The price of the ordered chemical.
+* `person:` The name of the person associated with the chemical.
+* `ordered date:` The date when the chemical was ordered.
+* `required data:` The date when person or entity required the chemical.
+* `required by:` The person or entity that requires the chemical.
+
+
+## Safety List:
+
+* The Safety section is an interactive feature that allows users to access safety data sheets (SDS) and safety phrases related to specific chemicals.
+* Users can select the vendor associated with their query, choosing from <Btn mixed={["Vendor"]} color={"secondary"} /> drop down list options such as All, Thermofischer, and Merck. Selecting "All" will search both vendor websites.
+* The <Btn mixed={["Query SDS using"]} color={"secondary"} /> button provides a dropdown list for users to select whether to search using the CAS (Chemical Abstracts Service) number or common name of the chemical.
+* The <Btn mixed={["Choose Language of SDS"]} color={"secondary"} /> dropdown list offers three language options: English, German, and French.
+* After selecting the search parameters, users can initiate the search query by clicking the <Btn mixed={["Search for SDS"]} color={"secondary"} /> button.
+* The search results will be displayed, and users can click on the results *tag link* to open a new tab directing them to the vendor's safety data sheet.
+* It is recommended for users or administrators to verify if the displayed results are associated with the desired chemical.
+* If satisfied, users can save the safety sheet to the Electronic Laboratory Notebook (ELN) by clicking the save button next to the relevant element tag.
+* Once saved, users can initiate additional search queries to retrieve safety phrases or search for chemical and physical properties related to the chemical.
+* Users have the option to delete the saved data sheet by clicking the <Btn mixed={["delete"]} color={"danger"} /> button.
+* Additionally, users can access the vendor's product webpage by copying the link from the <Btn mixed={["Copy Product Link"]} color={"secondary"} /> button.
+
+
+![safety bar](/img/inventory_safety_list.png)
+
+Importing a database is possible using the [`import samples to collection` function](toolbar#importing-data) 
+It is advisable to create the samples with all relevant information in the `Properties` tab, such as CAS number, concentration or molarity, density, etc. However, the information can be updated later by other users, if it is shared with the group with write access (more on this in the section [synchronizing the collection with the group](#synchronizing-the-collection-with-the-group)).
+choose `My groups and Devices` from the drop-down menu on the top right corner by clicking on the account's name next to the sign-out button.
