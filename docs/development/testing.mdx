@@ -16,11 +16,8 @@ npm test
 ```bash
 RAILS_ENV=test bundle exec rake db:test:prepare && bundle exec rspec --exclude-pattern spec/features/**/*_spec.rb
 ```
-
-## 3. End-to-end (feature) tests (~~Cyapybara~~ Cypress)
-
-[![N|Solid](https://www.cypress.io/images/layouts/navbar-brand.svg)](https://www.cypress.io/)
-
+    
+## 3. End-to-end (feature) tests (Cypress)
 ### Introduction
 
 [cypress-on-rails](https://github.com/shakacode/cypress-on-rails) integrates the Cypress testing framework with Ruby on Rails applications.
@@ -37,17 +34,36 @@ group :test, :development do
   gem 'cypress-on-rails', '~> 1.0'
 end
 ```
+Installing Cypress via yarn:
 
-In order to have all Cypress related files in on place, move `cypress.config.js` to the `spec/cypress`.
+```bash
+cd /your/project/path
+yarn add cypress --dev
+```
+
+- It's important to specify the location since, by default, Cypress expects the project (i.e., cypress directory and cypress.config.js) to live under root
+- Cypress app might take some time to start (up to a minute)
+- when run from VSCode devcontainer the Cypress app / interface will open automatically in a new window.
 
 ### Usage
 
+Make sure to start rails server prior starting Cypress. 
+
+```bash
+RAILS_ENV=test $(which bundle) exec rails server -b 0.0.0.0 -p 3000
+```
+Use another tab to run following command.
+
+```bash
+yarn cypress open --project spec
+```
+
 To run all tests, use the following command
 
-```ruby
+```bash
 yarn cypress run --config-file spec/cypress/cypress.config.js
 # or alternatively
-yarn cypress run --project ./spec
+yarn cypress run --project spec
 ```
 
 ### Write First Test
