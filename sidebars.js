@@ -155,6 +155,7 @@ module.exports = {
           "eln/devices/devices_dsc",
           "eln/devices/devices_ir",
           "eln/devices/devices_eis",
+          "eln/devices/devices_tga",
         ]
       },
       "eln/faq_eln",
