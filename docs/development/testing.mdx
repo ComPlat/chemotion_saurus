@@ -7,18 +7,183 @@ We test the Chemotion ELN using three different kinds of tests.
 
 ## 1. JavaScript unit tests (mocha)
 
-     npm test
+```bash
+npm test
+```
 
 ## 2. Ruby unit tests (RSpec)
 
-    RAILS_ENV=test bundle exec rake db:test:prepare && bundle exec rspec --exclude-pattern spec/features/**/*_spec.rb
+```bash
+RAILS_ENV=test bundle exec rake db:test:prepare && bundle exec rspec --exclude-pattern spec/features/**/*_spec.rb
+```
 
-## 3. Acceptance (feature) tests (Capybara)
-:::caution Deprecated chapter
-currently the system testing is in transition to the Cypress framework. Once finished the documentation will be added
-:::
+## 3. End-to-end (feature) tests (Cypress)
 
-    RAILS_ENV=test bundle exec rake db:test:prepare && bundle exec rake assets:precompile && bundle exec rspec spec/features
+### Introduction
+
+[cypress-on-rails](https://github.com/shakacode/cypress-on-rails) integrates the Cypress testing framework with Ruby on Rails applications.
+The gem provides a simple and efficient way to run Cypress tests in a Rails environment, allowing developers to write and execute end-to-end tests.
+
+For more details, please follow [official documentation](https://github.com/shakacode/cypress-on-rails).
+
+### Installation
+
+Add this to your Gem file
+
+```ruby
+group :test, :development do
+  gem 'cypress-on-rails', '~> 1.0'
+end
+```
+
+and follow the installation instructions on <https://github.com/shakacode/cypress-on-rails#installation>.
+Note that you don't have to install Cypress separately with yarn or npm.
+The `cypress-on-rails` gem will take care of that.
+
+It's important to tell `cypress-on-rails` to put the project under `spec` alongside our existing tests.
+Otherwise the Cypress related files (i.e., cypress directory and cypress.config.js) live under root by default.
+You can use the following command (from <https://github.com/shakacode/cypress-on-rails#installation>) to specify the `spec` directory:
+
+```bash
+bin/rails g cypress_on_rails:install --cypress_folder=spec/cypress
+```
+
+### Usage
+
+Make sure to start the Rails server prior to starting Cypress.
+Note that it's important to start the server with `RAILS_ENV-test`,
+Cypress won't recognize the Rails server if it's running in the `development` or `production` env
+(<https://github.com/shakacode/cypress-on-rails/issues/25>).
+
+```bash
+RAILS_ENV=test $(which bundle) exec rails server -b 0.0.0.0 -p 3000
+```
+
+Subsequently, use another tab to run the following command.
+
+```bash
+yarn cypress open --project spec
+```
+
+Note that the Cypress app might take some time to start (up to a minute).
+When you run Cypress from the VSCode devcontainer the Cypress app / interface will open automatically in a new window.
+
+To run all tests, use the following command
+
+```bash
+yarn cypress run --config-file spec/cypress/cypress.config.js
+# or alternatively
+yarn cypress run --project spec
+```
+
+### Write your first test
+
+Follow this link to start writing your first end-to-end test:
+<https://docs.cypress.io/guides/end-to-end-testing/writing-your-first-end-to-end-test>
+
+### Example of using factory bot
+
+It is always a good idea to set up testing states programmatically, such that further tests can re-use the setup code.
+In this regard, factory bots can save you a lot of time.
+We are using the concept of factory bots as they are originally defined at `app/specs/features`.
+From there, we can directly use them or customize them according to our requirements.
+The example below will create a new user in the database, who is ready to be signed in with the provided credentials.
+
+```javascript
+describe('create user', () => {
+  beforeEach(() => {
+    cy.appFactories([
+        ['create', 'user', {
+         first_name: 'User',
+         last_name: 'Complat',
+         password: 'user_password',
+         password_confirmation: 'user_password',
+         email: 'cu1@complat.edu',
+         name_abbreviation: 'cu1',
+         account_active: 'true',
+        }],
+    cy.visit('users/sign_in');
+  });
+```
+
+### Commands in Support Folder
+
+There are many cases where you need to repeat chunks of code. In that case, it is better to use `commands`.
+You can call `commands` wherever they are needed. It saves time and enhances clarity.
+For example, move the code for the creation of a user to `spec/cypress/support/commands.js` as shown below:
+
+```javascript
+Cypress.Commands.add('createDefaultUser', (emailAddress, abbr) => {
+  cy.appFactories([
+    ['create', 'user', {
+      first_name: 'User',
+      last_name: 'Complat',
+      password: 'user_password',
+      password_confirmation: 'user_password',
+      email: emailAddress,
+      name_abbreviation: abbr,
+      account_active: 'true',
+    }],
+  ]);
+});
+```
+
+Then your test will look like this. Notice, how your code became much more readable.
+
+```javascript
+describe('create user', () => {
+  beforeEach(() => {
+    cy.createDefaultUser('cu1@complat.edu', 'cu1')
+  });
+```
+
+### Example of user with collection
+
+Here, we are creating a user with an empty collection. `then` enables you to work with the command's result.
+
+```javascript
+describe('create user', () => {
+  beforeEach(() => {
+    cy.createDefaultUser('cu1@complat.edu', 'cu1').then((user) => {
+      cy.appFactories([['create', 'collection', { user_id: user[0].id }]]);
+    });
+  });
+```
+
+### Example of creating a sample
+
+One way to create a sample is to create it by automating all the steps that are required by a user to perform in the browser.
+(Notice, the before block already including the creation of a user and collection).
+
+```javascript
+it('create samples', () => {
+    cy.visit('users/sign_in');
+    cy.get('#user_login').type('cu1');
+    cy.get('#user_password').type('user_password');
+    cy.get('div').find('[id="tree-id-Collection 1"]').click();
+    cy.get('#create-split-button').click();
+    cy.get('#create-sample-button').click();
+    cy.get('.chem-identifiers-section > .list-group-item').click();
+    cy.get('#smilesInput').type('c1cc(cc(c1)c1ccccc1)c1ccccc1');
+    cy.get('#smile-create-molecule').click();
+    cy.get('#submit-sample-btn').click();
+    cy.url().should('include', '/sample/1');
+});
+```
+
+### Example of creating a sample state
+
+```javascript
+cy.createDefaultUser('cu1@complat.edu', 'cu1').then((user) => {
+  cy.appFactories([['create', 'collection', { user_id: user[0].id }]]).then((collection) => {
+    cy.appFactories([['create', 'molecule', { molecular_weight: 171.03448 }]]).then((molecule) => {
+      cy.appFactories([['create', 'sample', {
+        name: 'Material', target_amount_value: 7.15, molecule_id: molecule[0].id, collection_ids: collection[0].id
+      }]]);
+    });
+  });
+});
+```
 
 ## General rules of thumb
 
@@ -34,13 +199,13 @@ currently the system testing is in transition to the Cypress framework. Once fin
   - <https://github.com/teamcapybara/capybara>
   - <https://rspec.info/>
 
-## Javascript Unit tests
+### Javascript Unit tests
 
 - Test files should be placed in **spec/javascript/...**, mirroring the location of the source file (i.e., the file under test).
 - Test files should have the name of the file under test but end with **.spec.js**.
 - For simple plain JavaScript objects, test every "public" method. Without access modifiers, look what methods are called by other components.
 
-### Testing React components
+#### Testing React components
 
 - Use the [Enzyme library](https://enzymejs.github.io/enzyme/) to create React components: `wrapper = shallow(<CLASS_OF_COMPONENT/>);`
 - React components can be used with their JavaScript-state or their HTML representation: `wrapper.instance()` and `wrapper.html()`
@@ -52,14 +217,14 @@ The linter recognizes that the store dependency is not used and tries to elimina
 Example: [ResearchPlanDetails.spec.js](https://github.com/ComPlat/chemotion_ELN/blob/main/spec/javascripts/packs/src/apps/mydb/elements/details/researchPlans/ResearchPlanDetails.spec.js)
 :::
 
-### Stubbing/Mocking
+#### Stubbing/Mocking
 
 - Heavy dependencies like REST calls can be [stubbed/mocked](https://en.wikipedia.org/wiki/Mock_object) in a test
-- We use the library sinon  
+- We use the library sinon
   `Sinon.stub(CLASS_TO_MOCK, "METHOD_NAME").callsFake(LAMBDA as replacement of original method);`
 - Example: [ResearchPlanDetailsFieldImage.spec.js](https://github.com/ComPlat/chemotion_ELN/blob/main/spec/javascripts/packs/src/apps/mydb/elements/details/researchPlans/ResearchPlanDetailsFieldImage.spec.js#54)
 
-### Creating models with factories
+#### Creating models with factories
 
 - To create model objects, we use the library [factory-bot](https://github.com/ratson/factory-bot)
 - `const researchPlan = await ResearchPlanFactory.build('empty');`
@@ -70,7 +235,8 @@ Example: [ResearchPlanDetails.spec.js](https://github.com/ComPlat/chemotion_ELN/
 Creating a model is an asynchronous action, so the test must also be asynchronous: `it('no img tag should be rendered', async function (){ }`
 :::
 
-### Snapshot testing
+#### Snapshot testing
+
 :::caution Deprecated chapter
 Currently no snapshot testing is applied due to lack of capacity. In addition, ui testing will be covered by the system tests in the future.
 :::
@@ -86,14 +252,14 @@ The `expect` extension by mocha refers to the current test-object by `this`. Usi
 function definition solves this problem.
 :::
 
-## Ruby Unit tests
+### Ruby Unit tests
 
-### Common infos
+#### Common infos
 
 - Tests should reflect the structure of the source package. That means having the exact same location and name ending with `_spec.rb`.
 - [Example test](https://github.com/ComPlat/chemotion_ELN/blob/development-5/spec/api/chemotion/attachment_api_spec.rb)
 
-### Creating database models with factory bot
+#### Creating database models with factory bot
 
 - Models can be created using the library [factory bot](https://github.com/thoughtbot/factory_bot). In factories, desired states of the models are predefined and can then be created using `create` (creates a DB entry) or `build` (creates a model without a DB entry).
 
@@ -102,14 +268,14 @@ Creating an attachment with factorybot must be handled carefully because `create
 By using `build` the `create_derivative` method is not executed, but one has no object in the database and some properties are not initialized.
 :::
 
-### Testing methods without classes
+#### Testing methods without classes
 
-- can be done by adding type :helpers `Rspec.describe GenericHelpers, type: :helper do`.  
+- can be done by adding type :helpers `Rspec.describe GenericHelpers, type: :helper do`.
   Example [generic_helpers_spec.rb](https://github.com/ComPlat/chemotion_ELN/blob/applying-gem-shrine/spec/api/helpers/generic_helpers_spec.rb)
 
-### Stubbing/Mocking
+#### Stubbing/Mocking
 
-- REST calls  
+- REST calls
    `stub_request(REST_METHOD_AS_SYMBOL, 'REST_ADDRESS'`
   `.with(REQUEST_HEADER_INFOS OR/AND PARAMETER)`
   `.to_return(RETURN BODY OR/AND HEADER)`
@@ -119,16 +285,16 @@ By using `build` the `create_derivative` method is not executed, but one has no 
 Many REST requests that request INCHI keys are already defined in [spec_helper.rb](https://github.com/ComPlat/chemotion_ELN/blob/applying-gem-shrine/spec/spec_helper.rb#L86)
 :::
 
-- Methods of classes/objects  
-  `allow_any_instance_of(CLASS_NAME).to receive(METHOD_NAME_AS_SYMBOL).and_return(RESULT)`  
+- Methods of classes/objects
+  `allow_any_instance_of(CLASS_NAME).to receive(METHOD_NAME_AS_SYMBOL).and_return(RESULT)`
   `allow_any_instance_of(CLASS_NAME).to receive(METHOD_NAME_AS_SYMBOL).and_raise(AN ERROR)`
 - for more infos: [rspec-mocks](https://relishapp.com/rspec/rspec-mocks/docs)
 
-### API - testing
+#### API - testing
 
 - Tests for the api have to be in the subfolder spec/api/... to work properly
 
-## Acceptance tests
+### Acceptance tests
 
 When you have freshly installed Chemotion ELN, make sure to create a `welcome-message.md` file in the public directory inside Chemotion ELN before running acceptance tests. You can create it from the example file:
 
