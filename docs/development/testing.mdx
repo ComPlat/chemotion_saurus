@@ -16,8 +16,9 @@ npm test
 ```bash
 RAILS_ENV=test bundle exec rake db:test:prepare && bundle exec rspec --exclude-pattern spec/features/**/*_spec.rb
 ```
-    
+
 ## 3. End-to-end (feature) tests (Cypress)
+
 ### Introduction
 
 [cypress-on-rails](https://github.com/shakacode/cypress-on-rails) integrates the Cypress testing framework with Ruby on Rails applications.
@@ -34,29 +35,38 @@ group :test, :development do
   gem 'cypress-on-rails', '~> 1.0'
 end
 ```
-Installing Cypress via yarn:
+
+and follow the installation instructions on <https://github.com/shakacode/cypress-on-rails#installation>.
+Note that you don't have to install Cypress separately with yarn or npm.
+The `cypress-on-rails` gem will take care of that.
+
+It's important to tell `cypress-on-rails` to put the project under `spec` alongside our existing tests.
+Otherwise the Cypress related files (i.e., cypress directory and cypress.config.js) live under root by default.
+You can use the following command (from <https://github.com/shakacode/cypress-on-rails#installation>) to specify the `spec` directory:
 
 ```bash
-cd /your/project/path
-yarn add cypress --dev
+bin/rails g cypress_on_rails:install --cypress_folder=spec/cypress
 ```
-
-- It's important to specify the location since, by default, Cypress expects the project (i.e., cypress directory and cypress.config.js) to live under root
-- Cypress app might take some time to start (up to a minute)
-- when run from VSCode devcontainer the Cypress app / interface will open automatically in a new window.
 
 ### Usage
 
-Make sure to start rails server prior starting Cypress. 
+Make sure to start the Rails server prior to starting Cypress.
+Note that it's important to start the server with `RAILS_ENV-test`,
+Cypress won't recognize the Rails server if it's running in the `development` or `production` env
+(<https://github.com/shakacode/cypress-on-rails/issues/25>).
 
 ```bash
 RAILS_ENV=test $(which bundle) exec rails server -b 0.0.0.0 -p 3000
 ```
-Use another tab to run following command.
+
+Subsequently, use another tab to run the following command.
 
 ```bash
 yarn cypress open --project spec
 ```
+
+Note that the Cypress app might take some time to start (up to a minute).
+When you run Cypress from the VSCode devcontainer the Cypress app / interface will open automatically in a new window.
 
 To run all tests, use the following command
 
@@ -66,7 +76,7 @@ yarn cypress run --config-file spec/cypress/cypress.config.js
 yarn cypress run --project spec
 ```
 
-### Write First Test
+### Write your first test
 
 Follow this link to start writing your first end-to-end test:
 <https://docs.cypress.io/guides/end-to-end-testing/writing-your-first-end-to-end-test>
@@ -210,7 +220,7 @@ Example: [ResearchPlanDetails.spec.js](https://github.com/ComPlat/chemotion_ELN/
 #### Stubbing/Mocking
 
 - Heavy dependencies like REST calls can be [stubbed/mocked](https://en.wikipedia.org/wiki/Mock_object) in a test
-- We use the library sinon  
+- We use the library sinon
   `Sinon.stub(CLASS_TO_MOCK, "METHOD_NAME").callsFake(LAMBDA as replacement of original method);`
 - Example: [ResearchPlanDetailsFieldImage.spec.js](https://github.com/ComPlat/chemotion_ELN/blob/main/spec/javascripts/packs/src/apps/mydb/elements/details/researchPlans/ResearchPlanDetailsFieldImage.spec.js#54)
 
@@ -260,12 +270,12 @@ By using `build` the `create_derivative` method is not executed, but one has no 
 
 #### Testing methods without classes
 
-- can be done by adding type :helpers `Rspec.describe GenericHelpers, type: :helper do`.  
+- can be done by adding type :helpers `Rspec.describe GenericHelpers, type: :helper do`.
   Example [generic_helpers_spec.rb](https://github.com/ComPlat/chemotion_ELN/blob/applying-gem-shrine/spec/api/helpers/generic_helpers_spec.rb)
 
 #### Stubbing/Mocking
 
-- REST calls  
+- REST calls
    `stub_request(REST_METHOD_AS_SYMBOL, 'REST_ADDRESS'`
   `.with(REQUEST_HEADER_INFOS OR/AND PARAMETER)`
   `.to_return(RETURN BODY OR/AND HEADER)`
@@ -275,8 +285,8 @@ By using `build` the `create_derivative` method is not executed, but one has no 
 Many REST requests that request INCHI keys are already defined in [spec_helper.rb](https://github.com/ComPlat/chemotion_ELN/blob/applying-gem-shrine/spec/spec_helper.rb#L86)
 :::
 
-- Methods of classes/objects  
-  `allow_any_instance_of(CLASS_NAME).to receive(METHOD_NAME_AS_SYMBOL).and_return(RESULT)`  
+- Methods of classes/objects
+  `allow_any_instance_of(CLASS_NAME).to receive(METHOD_NAME_AS_SYMBOL).and_return(RESULT)`
   `allow_any_instance_of(CLASS_NAME).to receive(METHOD_NAME_AS_SYMBOL).and_raise(AN ERROR)`
 - for more infos: [rspec-mocks](https://relishapp.com/rspec/rspec-mocks/docs)
 
