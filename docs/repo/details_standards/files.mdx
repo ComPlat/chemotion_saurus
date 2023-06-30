@@ -153,7 +153,22 @@ Status: in test phase - please contact us for questions: we can assist you to ge
 
 ## Cyclic voltammetry data
 
-Status: in test phase - please contact us for questions: we can assist you to get your data represented.
+If you can't provide the supported data file types, please add an image (.jpg, .png). This should be avoided and only used if there is no option to get access to a digital file.
+Data file types are dependent from your devices software / manufacturer. Please look at the table below.  
+
+| Supported files and manufacturer  | Ending (case sensitive)| Required       |  Explanation                                                            |
+| --------------------------------  | -----------------      | :------:       | ----------------------------------------------------------------------- |
+| Gamry Framework DTA               | .DTA                   |   Yes          | Supported by ChemConverter - please refer to profiles given below       |
+| PalmSens PSTrace                  | .pssession             |   Yes          | Supported by ChemConverter - please refer to profiles given below       |
+| Metrohm Nova                      | .txt                   |   Yes          | Supported by ChemConverter - please refer to profiles given below       |
+
+IKA's csv files are currently in testing state.
+
+| Ending     |  metadata converted | Identifier  | Link/comments                                                                     |
+| -------    | ------------------- | :------:    | --------------------------------------------------------------------------------- |
+| .DTA       | Yes                 | line3 TITLE == "Cyclic" |                                                                       |
+| .pssession | Yes                 | title == "Cyclic Voltammetry"            |                                                      |
+| .txt       | No                  | column_00 == Potential applied (V) & column_02 == "WE(1).Current (A)" |                         |
 
 ## Elemental Analysis
 
@@ -172,6 +187,11 @@ Status: in test phase - please contact us for questions: we can assist you to ge
 
 ## Circular dichroism spectroscopy (CD spectrometry)
 
+Status: in test phase - please contact us for questions: we can assist you to get your data represented.
+
+## Adsorption and desorption
+
+### AIF Files
 Status: in test phase - please contact us for questions: we can assist you to get your data represented.
 
 ## Stefan Bräse group: advices in brief
