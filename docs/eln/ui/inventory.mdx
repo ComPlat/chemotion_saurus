@@ -1,0 +1,141 @@
+---
+id: inventory
+title: Inventory
+sidebar_position: 9
+---
+
+import { Btn } from "@site/src/js/btn.js";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faTrash,
+  faExternalLink,
+  faFileText,
+} from "@fortawesome/free-solid-svg-icons";
+
+:::info
+For using the inventory collection with different users that can move items into or create items in the inventory, please update the system to version 1.1.1 or later.
+:::
+
+## Creating Inventory for a Group
+
+Creating a chemical inventory that can be accessed by all members of a working group requires four steps:
+
+1. [creating a new user](#creating-a-new-user),
+1. [creating a collection in that user's Chemotion ELN and adding all chemicals to that collection as samples](#creating-a-new-collection),
+1. [creating a new group or adding the account to an existing group](#creating-a-new-group) and
+1. [synchronizing the collection with the group](#synchronizing-the-collection-with-the-group).
+
+After creating an inventory, one can proceed to [creating entries](#creating-chemical-entry) in it.
+
+### Creating a new user
+
+A new Chemotion ELN account should be created to manage the chemical database. All new chemicals will need to be created by that account (usually that account is managed by the person in charge of ordering chemicals or receiving the group's chemicals). Once a chemical has been created in that account as a sample it can be edited by any group member (for example to update the amount left in the bottle), if the collection is shared with the right privileges (more on this in the section [synchronizing the collection with the group](#synchronizing-the-collection-with-the-group)).  
+The registration process of that account is identical to registering any other new Chemotion ELN user.
+
+### Creating a new collection
+
+In the newly created account, a collection has to be created where all chemicals can be inserted as samples. If the group is located in different buildings, or uses different chemical subsets, multiple collections can be created for the different buildings or subsets. Each collection can be shared with one or more groups independent of one another.
+Once the collection is created, the chemicals that are part of the database have to be created as samples. Importing a database is possible using the [`import samples to collection` function](toolbar#importing-data) of the Chemotion ELN. For that purpose, an XLS or XLSX Document in the right format and containing all chemicals to be imported, must be available.  
+It is advisable to create the samples with all relevant information in the `Properties` tab, such as CAS number, concentration or molarity, density, etc. However, the information can be updated later by other users, if it is shared with the group with write access (more on this in the section [synchronizing the collection with the group](#synchronizing-the-collection-with-the-group)).
+
+### Creating a new group
+
+It is advisable to share the collection containing the chemical database with a group, not with individual users, as it makes management easier. The group does not have to be created by the same account managing the chemical database. However, both can be also managed by the same account.
+To create a new group, choose `My groups and Devices` from the drop-down menu on the top right corner by clicking on the account's name next to the sign-out button.
+Now proceed to create a new group and then add all group members who should have access to the database of the new group. Multiple groups can be created, if different collections, containing subsets of the chemical database, are to be shared with different group members.  
+Note that only the person who created the group, or the account the administrator rights were transferred to, will be able to manage group members.
+
+### Synchronizing the collection with the group
+
+In the collection settings, the collection containing the chemical database can be synchronized with the group. Please be sure to choose the sync-rights appropriately when synchronizing the collection. Be aware that the chosen sync-rights might limit the ability of group members to update sample properties such as amount of chemical left, storage location, concentration or molarity, etc.
+
+## Creating Chemical Entry
+
+There are three ways to create an entry in the inventory:
+
+### Creating a new sample
+
+A chemical Entry can be created by creating a new sample as an inventory entry. Please refer to [Generate Sample](elements/samples#generation) section, to learn how to create a new sample. Once a new sample is created, user can check in the inventory check box to enable handling of a sample as a chemical entry.
+
+### Splitting sample for chemical entry
+
+The process of creating a chemical entry in the Electronic Laboratory Notebook (ELN) involves initially creating a sample.
+However, users also have the option to generate a new chemical entry through the [Split Sample](elements/samples#generation-of-samples-from-existing-samples-or-molecules) feature.  
+For further information on how to utilize this feature, please consult the [Split Sample](elements/samples#generation-of-samples-from-existing-samples-or-molecules) section.
+When a split sample is performed, the newly generated chemical entry inherits the data from the original entry.
+Subsequently, users are able to modify the data according to their specific requirements.
+
+![Split sample for inventory entry](/img/split_sample_for_chemical_entry.gif)
+
+### Drag and drop chemical entry
+
+Users have the capability to employ a drag-and-drop action to transfer a chemical entry from the inventory list to a reaction, thereby generating a subsample derived from the original chemical entry.
+In this process, only safety information pertaining to the subsample is generated.
+Subsequently, users can conveniently navigate to the inventory tab of the created subsample to access and review the corresponding safety information.
+The gif below illustrates the drag-and-drop action for the generation of a subsample from a chemical entry.
+
+![drag drop chemical sample](/img/drag--drop-chemical-subsample.gif)
+
+## Managing Inventory
+
+The inventory tab will appear in the Tabs Layout. User can make the inventory tab visible by drag and drop, if it is hidden by default. Once the inventory tab is active, user can start entering chemical data in the corresponding fields.
+
+![Inventory Tab](/img/inventory_tab.gif)
+
+** The inventory tab is organized into a hierarchical structure consisting of three collapsible lists, outlined below: **
+
+1. [Inventory Information List](#inventory-information-list),
+1. [Safety List](#safety-list),
+1. [Location and Information List](#location-and-information-list)
+
+This structure enables convenient navigation and organization of data for a chemical inventory entry.
+
+### Inventory Information List
+
+This section contains the following fields:
+
+- `status:` List of 4 options for status of the chemical (available, out of stock, to be ordered, and ordered).
+- `vendor:` The vendor associated with the chemical order.
+- `order number:` The order number of the chemical.
+- `amount:` Contains information about the amount of the chemical.
+- `unit:` The unit of measurement for the chemical's amount.
+- `price:` The price of the ordered chemical.
+- `person:` Contact person associated with the chemical.
+- `ordered date:` The date when the chemical was ordered.
+- `required data:` The date when person or entity required the chemical.
+- `required by:` The person or entity that required or ordered the chemical.
+
+### Safety List
+
+- The Safety section is an interactive feature that allows users to search for and access safety data sheets (SDS) and safety phrases related to specific chemicals.
+- Users can select the vendor associated with their query, choosing from the <Btn mixed={["Vendor"]} color={"secondary"} /> drop-down list options such as All, Thermo Fischer, and Merck. Selecting "All" will search for SDS on both vendors' websites.
+- The <Btn mixed={["Query SDS using"]} color={"secondary"} /> button provides a dropdown list for users to select whether to search using the CAS (Chemical Abstracts Service) number or common name of the chemical.
+- The <Btn mixed={["Choose Language of SDS"]} color={"secondary"} /> dropdown list offers three language options: English, German, and French. If no results are found with the chosen language, results will be displayed with the default query language (English).
+- After selecting the search parameters, users can initiate the search query by clicking the <Btn mixed={["Search for SDS"]} color={"secondary"} /> button.
+- The search results will be displayed, and users can click on the results _tag link_ to open a new tab directing them to the vendor's safety data sheet.
+- It is recommended for users or administrators to first verify if the displayed results are associated with the desired chemical.
+- If results match the specific chemical, users can save the safety sheet to the Electronic Laboratory Notebook (ELN) by clicking the save button next to the relevant result tag. A green check mark icon will appear next to result element tag, if SDS is saved successfully.
+- Once saved, users can initiate additional search queries to retrieve safety phrases or search for chemical and physical properties related to the chemical.
+- Users have the option to delete the saved data sheet by clicking the delete icon <Btn mixed={[faTrash]} color={"danger"}/> button.
+- The <Btn mixed={["Search for SDS"]} color={"secondary"} /> button will be disabled, once one SDS is saved. To enable another search query, user have to delete any saved SDS first.
+- Additionally, users can access the vendor's product webpage by clicking the external link icon <Btn mixed={[faExternalLink]} color={"secondary"} /> button.
+- User can query the safety phrases for this chemical from vendor by clicking the <Btn mixed={["fetch safety phrases"]} color={"secondary"} /> button. Results render below as depicted in the image below.
+  ![safety bar](/img/inventoryTab_safety_list.png)
+
+- The <Btn mixed={["fetch Chemical Properties"]} color={"secondary"} /> button enable users to make a search query for chemical and physical properties related to the chemical and save it to respective fields in sample properties tab.
+  Sometimes fetched results can not be saved automatically if fetched values can not be accepted by ELN for some fields. User in this case can view and modify entered values manually.
+  Fetched properties can be viewed by clicking the results icon <Btn mixed={[faFileText]} color={"secondary"} /> button next to fetch button. An example of fetch chemical properties process is shown below.
+  ![Safety List](/img/fetch_chemical_properties_chemical.gif)
+
+### Location and Information List
+
+The Location field is divided into 2 subsections `host location, host group`, which reflects information about owner of chemical and `current location, current group` in case chemical is borrowed by another group/person. Both subsections have overlapping fields.
+
+- `building, room, cabinet` where the chemical is stored.
+- `group:` related to the chemical.
+- `owner:` the person responsible for the chemical.
+- `by:` the person which borrowed the chemical.
+
+![location and information list](/img/location_info_save_chemicalTab.png)
+
+User can use `Disposal information` field to save any information related to the disposal of the chemical or use `important notes` field to save any other relative information. User can click the save button, after making any changes or updating any field inside the inventory tab to save the changes. The save button is located at the bottom of the inventory tab.
