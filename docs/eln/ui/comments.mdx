@@ -1,11 +1,10 @@
 ---
-title: Comments on Shared Collections
-sidebar_label: User commenting
+title: Commenting on Shared Collections
+sidebar_label: User Comments
 ---
+
 :::info
-
-This feature is available from v1.7
-
+This feature is available from version 1.7 onwards.
 :::
 
 This feature allows the users to make comments in collections, both shared and synchronized. The main idea behind this is for users to be able to communicate with one another, leaving feedback on specific sections of different elements in the collection. Anyone with access to the collection will be able to read the comments and add their own.
@@ -13,9 +12,7 @@ This feature allows the users to make comments in collections, both shared and s
 ## Basic functions
 
 :::info
-
 The admin has to enable this function. It can either be added to the Chemotion ELN interfaces of all users, or made available to specific users. However any functionality will not be visible unless it is activated from the Admin panel
-
 :::
 
 Initially when we navigate to a collection, we will notice a small comment icon in the list of elements, indicating whether there are any comments corresponding to a specific element in the list. We can also see the number of comments for that element if we hover over it.
@@ -35,8 +32,8 @@ toggle arrow button at the top.
 
 There are two categories of comments.
 
-- Comment on the entire element
-- Comment on a specific section of the element
+- [Comment on the entire element](#comment-on-the-element)
+- [Comment on a specific section of the element](#comment-on-specific-section)
 
 ### Comment on the element
 
@@ -53,29 +50,39 @@ A comment area is present under every section of the details tab of the element.
 ![comment_on_section](/img/comments/commenting6.png)
 
 The image above shows how it appears with the grey comment icon only when there are no comments for that particular section yet.
-However if comments are already present in the section, they will be displayed as follows, with one comment icon (green coloured now, indicating that there are comments present) and the comments’ list.
+However if comments are already present in the section, they will be displayed as follows, with [one comment icon](#comment-icon) (green coloured now, indicating that there are comments present) and the [list of comments](#comment-list).
 
-![comment_list](/img/comments/commenting7.png)
+## User Interface
 
-#### Comment icon button
+### Comment Icon
 
 When the user clicks on the small comment icon button, a popup window will appear.
 
-#### Comment popup
+### Comment list
 
-In the comment popup, there is a header that shows the section the user is commenting on.
+A comment can either be resolved or unresolved, as we will discuss [later](#resolve-comments). Only the unresolved comments are displayed in this list. A comment will disappear from this list whenever it has been marked as resolved. There are ways we can check both the resolved and unresolved comments. That has been discussed [here](#complete-list).
+
+![comment_list](/img/comments/commenting13.png)
+
+### Comment Modal
+
+In the comment modal, there is a header that shows the section on which the user is commenting.
 
 ![comment_modal](/img/comments/commenting8.png)
 
-There are three more areas in the comment modal.
+There are three more areas in the comment modal:
 
-##### Comment Complete List
+- [Complete List](#comment-list)
+- [Details List](#details-list)
+- [Input Area](#input-area)
+
+#### Complete List
 
 This table will show all the comments, both resolved and unresolved. If a comment is marked as resolved, it will move to the bottom, keeping all the unresolved comments at the top.
 
 ![complete_list](/img/comments/commenting9.png)
 
-##### Comment Details List
+#### Details List
 
 This section will appear if there are comments in any of the other sections.
 
@@ -87,36 +94,28 @@ This is a collapsible region. Upon expanding, it will show all the comments that
 
 ![details_comments](/img/comments/comment_details.gif)
 
-##### Comment Input Area
+#### Input Area
 
-Lastly, there is an input field where users can create or edit comments.
+There is an input field where users can create or edit comments.
 
 ![input_area](/img/comments/commenting12.png)
 
-#### Comment list
+## Modifying Comments
 
-A comment can either be resolved or unresolved, as we will discuss [later](#resolve-comments). Only the unresolved comments are displayed in this list. A comment will disappear from this list whenever it has been marked as resolved. There are ways we can check both the resolved and unresolved comments. That has been discussed [here](comments-complete-list).
-
-![comment_list](/img/comments/commenting13.png)
-
-### Comment adjustments
-
-#### Edit or Delete Comments
+### Edit or Delete Comments
 
 Users can edit or delete a comment if it is their own. These options are only displayed corresponding to the users' own comments.
 
 ![edit_delete](/img/comments/commenting14.png)
 
-#### Resolve Comments
+### Resolve Comments
 
 Additionally, users can mark/flag a comment as ‘Resolved’. A comment can be marked as resolved by any user with access to the collection. It will show which user resolved a comment in the details modal tab.
 
-Also, the [complete list](#comments-complete-list) will only show comments that have been marked as resolved. It will no longer show in the list view under sections of the elements.
+Also, the [complete list](#complete-list) will only show comments that have been marked as resolved. It will no longer show in the list view under sections of the elements.
 
 ![resolve_comments](/img/comments/resolve_comments.gif)
 
 :::info
-
-If we wish to see all the comments, both resolved and unresolved, we have to open the [complete list](#comments-complete-list).
-
+If we wish to see all the comments, both resolved and unresolved, we have to open the [complete list](#complete-list).
 :::
