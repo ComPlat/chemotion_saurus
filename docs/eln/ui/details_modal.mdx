@@ -79,7 +79,7 @@ The decoupled mode can help to add undefined structures to the Chemotion ELN. Pl
 If you want to assign a name (e.g. a trivial name) to a sample, you can do this by making an entry in the **Name** or **Description** fields. Please note that the **Name** field for samples from reactions is overwritten by additional information. Your created sample will have the selected name, but when a new sample is created by dragging and dropping into a reaction scheme, the **Name** field will be overwritten. Please refer to this [link](elements/samples#generation-of-samples-from-existing-samples-or-molecules) for more details on samples generation from other samples. If you want to save a second or more names for your sample permanently, use the **Description** field.
 
 :::danger Caution
-The **Name** field within the Sample **Properties** tab is overwritten for samples that represent products in a reaction, because it is required to generate a product name.  
+The **Name** field within the Sample **Properties** tab is overwritten for samples that represent products in a reaction, because it is required to generate a product name.
 :::
 
 In addition to the naming options, an **External label** can be saved for each sample. This **External label** should be used to enable your sample to be assigned to another storage system. For example, if you make a sample available for a reference database or send it to a cooperation partner who renames your sample, your sample will receive a sequential number that is not determined by you. Enter this number in the **External label** field. For participants in the [Molecule Archive](https://compound-platform.eu/) of the Compound Platform, the **External label** field is reserved for the X-Vial numbers of the samples.
@@ -88,14 +88,14 @@ In addition to the naming options, an **External label** can be saved for each s
 The Molecule Archive of the Compound Platform is an infrastructure that supports scientists to store their compounds centrally and provide the compounds for diverse re-use cases. If you are interested, please have a look at the website of the Molecule Archive and get in contact to the Compound Platform team. Its free for all chemists from academia.
 :::
 
-Both **Boiling point** and **Melting point** can be provided manually in Celsius **°C**. If the melting or boiling point is to be added as range, please add the first value, space and second value, e.g. "50 60". this is automatically set to 50 - 60 °C by the system.  
+Both **Boiling point** and **Melting point** can be provided manually in Celsius **°C**. If the melting or boiling point is to be added as range, please add the first value, space and second value, e.g. "50 60". this is automatically set to 50 - 60 °C by the system.
 The user can additionally provide any desired information as free text in the **Description** field and specify the location of the samples (e.g. institute, warehouse, etc.) in the **Location** field.
 
 **Values affecting the reaction calculation table:**
 The **Amount** can be provided either as mass or in mole, where providing one of them leads to automatic calculation of the other based on the **Purity** (1 by default but can be modified). Mass unit can be either g or mg, while amount unit is either mol or mmol. Volume data can’t be edited until **Density** or **Molarity** are specified, then the volume is automatically calculated. Changing the volume manually leads to automatic changes in the mass and amount.
 
 :::danger Caution
-Values such as mass/amount/volume in the sample properties are referring to the sample used in a reaction or for another experiment. They are calculated as components for an experiment based on **Density** or **Molarity** depending on the use of the pure substance or a stock solution. The calculation of a molarity of the stock solution is not done in the properties field. Volume (solvent) and amount (molecule) are not used to calculate the molarity. The molarity, if required for dissolved materials, has to be added manually in the properties tab.  
+Values such as mass/amount/volume in the sample properties are referring to the sample used in a reaction or for another experiment. They are calculated as components for an experiment based on **Density** or **Molarity** depending on the use of the pure substance or a stock solution. The calculation of a molarity of the stock solution is not done in the properties field. Volume (solvent) and amount (molecule) are not used to calculate the molarity. The molarity, if required for dissolved materials, has to be added manually in the properties tab.
 :::
 
 **Density** or **Molarity** are not calculated in the properties tab of the sample. The information comes from external sources or is added as a result from other experiments. The user can enter only **density** (for pure substances) or **molarity** (substances in solution).
@@ -115,7 +115,7 @@ The information required for chemical use is supplemented by **Chemical identifi
 To add analytics information to the Chemotion ELN, the **Analyses** tab is available. Here the evaluation of the performed analytical experiments can be entered (field **Content**) and additional files can be uploaded to store the data and its documents (see datasets). The **Content** field supports the check of the entered data for types of data (data types are confirmed by the ontology terms). For 1H NMR and 13C NMR, the **Content** field is checked for the given amount of 1H NMR or 13C NMR signals mentioned and compares the given number with the number of signals expected by the amount of H- or C-atoms.
 
 :::info
-The content of 1H NMR and 13C NMR analyses is checked by screening the information on atoms given in brackets, e.g. 1.11 (s, 3H) -> 3Hs counted. Therefore it is important to add (which is rather unusual) all carbons to the **content**, e.g. 129.3 (s, 2C). Also, if signals are hidden or too broad to be detected or not detected due to H/D exchange, you may indicate this by adding a sentence as explanation: e.g. Missing OH-signal due to H/D exchange (1H). The information in brackets is also counted.  
+The content of 1H NMR and 13C NMR analyses is checked by screening the information on atoms given in brackets, e.g. 1.11 (s, 3H) -> 3Hs counted. Therefore it is important to add (which is rather unusual) all carbons to the **content**, e.g. 129.3 (s, 2C). Also, if signals are hidden or too broad to be detected or not detected due to H/D exchange, you may indicate this by adding a sentence as explanation: e.g. Missing OH-signal due to H/D exchange (1H). The information in brackets is also counted.
 :::
 
 For mass spectrometry, the expected molecular mass is used for a comparison with the data given in the **Content** of the analysis.
@@ -206,11 +206,11 @@ The reaction equation can be zoomed in or out by hovering with the mouse anywher
 
 The <b>Scheme</b> tab contains the scheme of the selected reaction. While the molecular structure of samples (in samples details modal) can be edited by selecting the structure field and opening the [Ketcher](ketcher.mdx) editor, the reaction <b>Scheme</b> (the image) cannot be changed directly. To change the scheme, select the embedded samples and change their structure or use other samples.
 
-:::info  
+:::info
 Edit the reaction scheme by selecting or changing the samples, the scheme cannot be edited directly.
 :::
 
-The following figure shows a typical reaction **Scheme** with a reagent table. Solvents or reaction temperature have not been added yet. In general, you cannot edit grey fields in the reaction table.  
+The following figure shows a typical reaction **Scheme** with a reagent table. Solvents or reaction temperature have not been added yet. In general, you cannot edit grey fields in the reaction table.
 ![Reagents_table](/img/reaction_details_modal.png)
 
 The samples are classified into **Starting materials**, **Reactants** and **Products**. The samples can be moved flexibly from one category to another with the drag & drop symbol <Btn mixed={[faArrowsAlt]} color={"secondary"}/>. **Starting materials** and **Reactants** differ in how their corresponding samples are treated upon generation. This will become clear later on in this chapter when adding samples to a reaction is discussed. Regarding the **Products**, their fields can only be modified to a limited extent to avoid misuse of the notebook. **Products** have a special treatment within the reaction, for example the analyses of the corresponding samples are stored and can be found in the **Analyses** tab.
@@ -237,7 +237,7 @@ Choose either the **Starting materials** or the **Reactants** as a reference usi
 
 Mass can be represented in g, mg or μg, the volume in l, ml, μl, and the amount in mol or mmol. Entering one type of data leads to automatic calculation of the others. The volume is calculated only if the **molarity** of the sample is already set (please set it in the **properties** tab of the **sample**, accessible directly by clicking on the sample's name -> sample modal opens), and the equivalents are calculated unless the sample is a reference, then it gets a fixed equivalent of 1.000. By entering the mass, volume or amount of the reference, the remaining information for the further samples is calculated as soon as at least either their **amount** or **Equiv** is given.
 
-:::info  
+:::info
 When entering the amount of your sample, you can choose a unit by pressing the unit button next to the number.
 Additional information on samples such as **Molarity**, **Purity** and others need to be added in the **Properties** tab of the **Sample** and cannot be added to the Reaction Table entry directly.
 :::
@@ -302,6 +302,62 @@ The analyses tab of the reaction view differs from the analysis tab of the sampl
 ### Green chemistry tab
 
 This tab contains fields for green chemistry metrics to quantify the environmental performance of your reaction. Those fields are **Simple E factor (sEF)**, **Complete E factor (cEF)**, **Custom E factor**, **Atom economy (AE)**, **Custom Atom economy**. Those metrics are calculated automatically based on the masses of the samples in your reaction, and the waste produced through it. All the reaction samples are shown again in the **Green Chemistry** tab, with unmodifiable details about their **Mass**, **Volume**, **Moles**, and equivalents **Equiv**. To modify those fields you need to go back to the corresponding sample and update the numbers, while you can modify the coefficients field **Coeff** directly from the **Green Chemistry** tab. Specify whether the **Starting Materials** and the **Reactants** are **Recyclable**, and whether your **Products** are **Waste** with a checkbox. If you are facing any problems with ticking the checkbox, make sure that you are using Chrome, and try to save the reaction and reload the page.
+
+### Variations tab
+
+:::info
+The variations tab is not part of an official Chemotion ELN release yet.
+This documentation is meant for pre-release demonstrations.
+:::
+
+If you need to record multiple variations of a reaction, this feature is for you.
+Here's an example of a `variations table`:
+
+![variations table](/img/reaction_variations_table.png)
+
+Each row represents a variation of the reaction.
+For example, you might have optimized a reaction regarding its duration.
+Or you might have conducted the same reaction with varying amounts of the reactant(s).
+The feature facilitates recording a variety of experiments, such as catalysis, screening, or kinetics.
+
+The materials in the `variations table` always reflect the materials from the `scheme tab`.
+Whenever a material is added or removed in the `scheme tab`, the `variations table` is updated accordingly.
+Materials cannot be added or removed in the `variations table` itself.
+
+When you save a reaction that has a `variations table`,
+the reactions that are represented by the rows of the `variations table` are not saved individually.
+Instead, the `variations table` is saved as a single data structure that "belongs" to the reaction.
+That is, whenever you export the reaction, or include it in a report, the `variations table` is included as well.
+
+#### Adding, copying, and deleting reaction variations
+
+You can populate the `variations table` by adding, copying, and deleting rows:
+
+![populate variations table](/img/add_copy_delete_reaction_variations.gif)
+
+Add a row by clicking the `Add row` button on the top left of the `variations table`.
+Each new row contains the current state of the `scheme tab` and `properties tab`.
+That is, if you change something in the `scheme tab` or `properties tab` in between adding rows,
+these changes will be reflected in any new row that's added after the change.
+The opposite is not true, edits in the `variations table` don't affect the `scheme tab` or `properties tab`.
+
+Copy or delete a row by clicking the corresponding buttons that are embedded on its left.
+
+You can select the unit of a rows' materials by toggling from `Equiv` (equivalent) to `Amount` (gram) and vice versa.
+Note that toggling the unit does not affect existing rows, that is, the unit can be selected on a per-row basis.
+
+#### Navigating and editing the variations table
+
+![edit variations table](/img/edit_reaction_variations.gif)
+
+Navigate the `variations table` with the arrow keys, and edit a cell by double-clicking it, or selecting the cell and hitting enter.
+Once you've edited the cell, confirm the edit by hitting enter, or leaving the cell (e.g., by clicking somewhere else, or hitting tab).
+
+A cell displays additional, non-editable data when you hover over it with the mouse:
+non-product materials show their coefficient, and if the material serves as reference.
+Products display their coefficient and yield.
+
+Editing is disabled for cells that correspond to a reference material.
 
 ### Search CAS
 
