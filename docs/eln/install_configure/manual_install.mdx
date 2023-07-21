@@ -12,7 +12,7 @@ If you face problems, please let us know; we are there to support you. You may [
 
 ## Latest Version
 
-We distribute the ELN as docker images for ease of distribution and use. The latest images can be found on [DockerHub](https://hub.docker.com/r/ptrxyz/chemotion/tags) and installed using a `docker-compose.yml` file. The latest version of this file can be found [here](https://github.com/ptrxyz/chemotion/blob/latest-release/docker-compose.yml). Older versions of the same file can be found [here](https://github.com/ptrxyz/chemotion/commits/latest-release/docker-compose.yml) and can be used to install older versions of the ELN if desired.
+We distribute the ELN as docker images for ease of distribution and use. The latest images can be found on [DockerHub](https://hub.docker.com/r/ptrxyz/chemotion/tags) and installed using a `docker-compose.yml` file. A version of `docker-compose.yml` file that uses these latest images can be found [here](https://raw.githubusercontent.com/Chemotion/ChemCLI/main/payload/docker-compose.yml).
 
 ## Fresh Installations
 
@@ -25,7 +25,7 @@ To install the latest version of Chemotion on a blank system, follow these steps
 - download the `docker-compose.yml` to a directory of your choice:
 
   ```
-  wget https://raw.githubusercontent.com/ptrxyz/chemotion/latest-release/docker-compose.yml
+  wget https://raw.githubusercontent.com/Chemotion/ChemCLI/main/payload/docker-compose.yml
   ```
 
 - edit the file to change these keys if they exist in the downloaded file:
@@ -239,7 +239,7 @@ Finish your [installation](#fresh-installations) or [upgrade](#upgrades) by foll
 
 In short, the following steps have to be taken:
 
-- create a directory to hold all it's configuration
+- create a directory to hold all its configuration
 - create a user for the ELN to authenticate at the service
 - configure the ELN to use the service and the created user
 
@@ -299,7 +299,7 @@ We recommend the following steps:
 - download the `docker-compose.yml`
 
   ```bash
-  wget https://raw.githubusercontent.com/ptrxyz/chemotion/latest-release/docker-compose.yml
+  wget https://raw.githubusercontent.com/Chemotion/ChemCLI/main/payload/docker-compose.yml
   ```
 
 - download all images and create the containers, data volumes and networks by running this command in the same folder you downloaded the compose file to
