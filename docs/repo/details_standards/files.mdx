@@ -196,17 +196,24 @@ Status: in test phase - please contact us for questions: we can assist you to ge
 
 ## Stefan Bräse group: advices in brief
 
-| Method     | device               | to be provided |  processing |   Explanation   |
-| ---------- | -------------------- | :----------    | ----------- |-----------------|
-| 1D NMR     | all                  | Zip (+jcamp) [SB1]  |   Yes       |  jcamp needed if quality of processed file too low |
-| 2D NMR     | all                  | Zip (+jcamp) [SB1]  |   No        |                 |
-| mass       | ThermoFisher (CS)    | .raw           |   Yes       |                 |
-| mass       | Advion (CN)          | xxx            |   Yes       |                 |
-| IR         | Bruker Alpha (CS, CN)| .dx            |   Yes       |                 |
-| UV-Vis     | Horiba (CN)          | .txt           |   Yes       |                 |
-| UV-Vis     | xxxxxx (CS)          | xxx            |   tbd       |                 |
-| EA         | EA (CS)              | .png           |   No        |                 |
-| X-ray      | all                  | .cif + png     |   No        |                 |
+| Method     | device                  | to be provided      |  processing |   Explanation   |
+| ---------- | --------------------    | :----------         | ----------- |-----------------|
+| 1D NMR     | all                     | Zip (+jcamp) [SB1]  |   Yes       |  jcamp needed if quality of processed file too low |
+| 2D NMR     | all                     | Zip (+jcamp) [SB1]  |   No        |                 |
+| mass       | ThermoFisher (CS)       | .raw                |   Yes       |                 |
+| mass       | Advion Expression-L (CN)| .datx (.cdf)        |   Yes       |  aut. conversion to .cdf               |
+| IR         | Bruker Alpha (CS, CN)   | .dx                 |   Yes       |                 |
+| Raman      | Bruker Multiram (CN)    | .0 (.dx (jcamp)     |   tbd          |                 |
+| UV-Vis     | Horiba (CN)             | .txt                |   Yes       |                 |
+| UV-Vis     | xxxxxx (CS)             | xxx                 |   tbd       |                 |
+| EA         | EA (CS)                 | .png                |   No        |                 |
+| X-ray      | all                     | .cif + png          |   No        |                 |
+| GC-FID/MS  |Shimadzu GC/MS (CN)      | .gcd (.txt (ASCII Format); .cdf (AIA(Andi)-Format))|   No      |
+| GC-BID     |Shimadzu GC-BID 2030 (CN)| .gcd (.txt (ASCII Format); .cdf (AIA(Andi)-Format))|   No        |                  |
+| TGA        | TA Instruments (CN)     | .tri (.xls)         |   No        |  manual conversion into .xls  |
+| LC/MS      | Agilent IQ (CN)         | .sirstl folder (.cdf und .ms (AIA-Format) und .dx (CDS2 raw-Format)) |   No     |
+| Polarimeter| Anton Paar MCP4100 (CN) | .pdf                |   No        |                             |
+| DSC        | TA Instruments (CN/SML) | .tri (.xls)         |   No        | manual conversion into .xls |          
 
 [SB1] please ensure that the zip is the originally provided one. Don't collect data as zip on our own, don't add other data than the provided ones to the original file folder, please don't add mestre file to the zip. Please use the data provided by the instrument (eventually generate the zip from the obtained folder- without other changes). 
 
