@@ -125,7 +125,7 @@ If you can't provide the supported data file types, please add an image (.jpg, .
 
 | Supported files  | Ending            | Required [5.1] |  Explanation                                                            |
 | ---------------- | ----------------- | :------:       | ----------------------------------------------------------------------- |
-| jcamp-dx         | .jdx, .dx, .jcamp |   Yes          |                                                                         |
+| jcamp-dx         | .jdx, .dx, .jcamp |   Yes          | but only if ##DATA TYPE= UV-VIS or UV/VIS SPECTRUM  [5.3]               |
 | Excel            | .xlsx             |   Yes          | Supported by ChemConverter - please refer to profiles given below [5.2] |
 | CSV              | .csv              |   Yes          | Supported by ChemConverter - please refer to profiles given below [5.2] |
 | TEXT             | .txt              |   Yes          | Supported by ChemConverter - please refer to profiles given below [5.2] |
@@ -146,6 +146,10 @@ If you can't provide the supported data file types, please add an image (.jpg, .
 | jcamp            | bagit.peak.jdx    | is generated from zip with automated peak picking (not editable)                         |
 | png              | bagit.png         | is automatically generated from .peak.jdx                                                |
 
+### Fluorescence spectroscopy data
+
+I.a. jcamp-dx data with "##DATA TYPE= FLUORESCENCE SPECTRUM". Currently work in process.
+[5.3] In the meantime you could edit your files to match "##DATA TYPE= UV-VIS or UV/VIS SPECTRUM". 
 
 ## XRD spectroscopy data
 
