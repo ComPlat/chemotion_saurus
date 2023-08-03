@@ -13,7 +13,7 @@ General preparation aspects can be found [here](../devices#general-preparation-a
 Considering all these aspects, this procedure has been conducted on the following system configurations. However it is
 likely to work on systems with different software versions as well.
 
-## Specifications of the DSC PC
+## Specifications of the device's PC
 
 - Operating system: Windows XP
 - Software Name: Agilent ChemStation E.02.01
@@ -39,7 +39,7 @@ General guideline regarding the configurations of remote device control can be f
 
 Data will automatically be transferred to the Chemotion ELN once ChemStation has finished recording data of the current run. The
 user is required to imput a valid file output name according to the [naming convention](../devices#name-conventions) for the Chemotion
-ELN to sort the file into the correct user's inbod.
+ELN to sort the file into the correct user's inbox.
 
 :::info
 Please take care that you communicate [name conventions](../devices#name-conventions) to all users of the Chemotion ELN.
@@ -47,9 +47,9 @@ Please take care that you communicate [name conventions](../devices#name-convent
 
 ### Nescessary configuration in ChemStation
 
-Data transfer is coordinated by a macro configured to be executed Post-method run.
+Data transfer is coordinated by a macro configured to be executed as a post-method macro.
 
-The GC/MS computer and Chemotion ELN need access to a common network storage location that is set up as a virtual network drive on the GC/MS computer. +
+The GC/MS computer and Chemotion ELN need access to a common network storage location that is set up as a virtual network drive on the GC/MS computer. 
 The network storage can be set up on a third-party storage (a NAS server, shared storage of another PC etc.). In this
 case, the LSDF storage service from KIT has been used.
 
@@ -78,7 +78,7 @@ Configuring the method to run the macro:
 In ChemStation load the method that shoud transfer data. NOTE: This configuration needs to be done in every method that will be run on the 
 chromatograph. From the "Method" menu of ChemStation's main window choose "Edit Entire Method...". In the pop-up window choose "Method information"
 and accept. The "Method Information" window will open. Activate the "Post-Run Macros/Commands:" check box and select the previously created
-macro as target in "Instrument Control:" (exampe: C:\msdchem\1\macros\ELN_Export.mac"
+macro as target in "Instrument Control:" (exampe: C:\msdchem\1\macros\ELN_Export.mac")
 
 
 ### Configurations in Chemotion ELN
