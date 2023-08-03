@@ -49,7 +49,7 @@ Please take care that you communicate [name conventions](../devices#name-convent
 
 Data transfer is coordinated by a macro configured to be executed as a post-method macro.
 
-The HPLC or LC/MS computer and Chemotion ELN need access to a common network storage location that is set up as a virtual network drive on the GC/MS computer. 
+The HPLC or LC/MS computer and Chemotion ELN need access to a common network storage location that is set up as a virtual network drive on the device's computer. 
 The network storage can be set up on a third-party storage (a NAS server, shared storage of another PC etc.). In this
 case, the LSDF storage service from KIT has been used.
 
