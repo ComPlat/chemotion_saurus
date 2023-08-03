@@ -58,7 +58,7 @@ permanently stored on the network location. The file connection.txt does not req
 
 Creating the macro:
 
-Create a new file in ChemStation's main program folder: *\Chem32\1\MACROS\ appropialtely named (example: ELN_Export.mac"), make
+Create a new file in ChemStation's main program folder: *\Chem32\CORE\ appropialtely named (example: ELN_Export.mac"), make
 sure the file is of the *.mac file type. If a Folder MACROS does not exist it can be created or the file can be saved to another 
 location. Open the file, for example using Notepad, and insert the following text, then save and close the file.
 
@@ -66,6 +66,7 @@ Name ELN_Export
     
         COPY _DataPath$+ _DataFile$, "Z:\ELN\"+ _DataFile$, DONTASK
         COPY _DataPath$+ _DataFile$, "Z:\data\"+ _DataFile$, DONTASK
+
 endMacro
 
 In the macro substitute:
@@ -76,8 +77,8 @@ Configuring the method to run the macro:
 
 In ChemStation load the method that shoud transfer data. NOTE: This configuration needs to be done in every method that will be run on the 
 chromatograph. From the "Method" menu of ChemStation's main window choose "Edit Entire Method...". In the pop-up window choose "Run Time Checklist"
-and accept with OK. The "Run Time Checklist: Instrument X" window will open. Activate the "Post-Run Command / Macro:" check box and select the previously created
-macro as target: (exampe: C:\Chem32\1\MACROS\ELN_Export.mac")
+and accept with OK. The "Run Time Checklist: Instrument X" window will open. Activate the "Post-Run Command / Macro:" check box and enter the 
+command to rund the macro (exampe: "Macro "ELN_Export.mac", go")
 
 
 ### Configurations in Chemotion ELN
