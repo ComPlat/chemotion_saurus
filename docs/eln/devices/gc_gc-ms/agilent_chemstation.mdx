@@ -3,7 +3,8 @@ title: Agilent ChemStation GC/MS
 ---
 
 In this guideline, the integration process of an Agilent GC/MS controlled via ChemStation E.02.01 in Windows XP into the Chemotion ELN is explained.
-The procedure is split into two aspects that can be set up independently or in parrallel:
+The procedure is split into two aspects that can be set up independently or in parallel:
+
 1. Remote connection to the device and
 2. transfer of experiment data to the ELN.
 
@@ -20,14 +21,13 @@ NOTE: For Chemstation E.04.01 refer to the HPLC & LC/MS Agilent ChemStation inst
 - Operating system: Windows XP
 - Software Name: Agilent ChemStation E.02.01
 - Connected to LAN (Intranet only): Yes
-- Data files generated: ChemStation *.D Folder with multiple files
+- Data files generated: ChemStation \*.D Folder with multiple files
 - Static IP address has been configured
 
 # Objectives
 
 - Remote Device Control
 - Data transfer to Chemotion ELN inbox
-
 
 # Configurations
 
@@ -40,13 +40,13 @@ General guideline regarding the configurations of remote device control can be f
 ## Data transfer
 
 Data will automatically be transferred to the Chemotion ELN once ChemStation has finished recording data of the current run.
-The user is required to imput a valid file output name according to the [naming convention](../devices#name-conventions) for the Chemotion ELN to sort the file into the correct user's inbox.
+The user is required to input a valid file output name according to the [naming convention](../devices#name-conventions) for the Chemotion ELN to sort the file into the correct user's inbox.
 
 :::info
 Please take care that you communicate [name conventions](../devices#name-conventions) to all users of the Chemotion ELN.
 :::
 
-### Nescessary configuration in ChemStation
+### Necessary configuration in ChemStation
 
 Data transfer is coordinated by a macro configured to be executed as a post-method macro.
 
@@ -55,20 +55,20 @@ The network storage can be set up on a third-party storage (a NAS server, shared
 In this case, the LSDF storage service from KIT has been used.
 
 The macro will alert users after running an experiment if the connection to the network location has been lost.
-This is done by reading a file "connection.txt" permanently stored on the network location. The file connection.txt does not requre any content.
+This is done by reading a file "connection.txt" permanently stored on the network location. The file connection.txt does not require any content.
 
 Creating the macro:
 
-Create a new file in ChemStation's main program folder: *\msdchem\1\macros appropialtely named (example: ELN_Export.mac").
-Make sure the file is of the *.mac file type. Open the file, for example using Notepad, and insert the following text, then save and close the file.
+Create a new file in ChemStation's main program folder: _\msdchem\1\macros appropriately named (example: ELN_Export.mac").
+Make sure the file is of the _.mac file type. Open the file, for example using Notepad, and insert the following text, then save and close the file.
 
 name ELN_Export
-    Filesize "Z:\connection.txt"
-    If size > -1 then
-        Copy_DataPath$ + _DataFile$,"Z:\ELN\" + _DataFile$,DONTASK
-    Else
-        Alert "No connection to the network path; Your data could not be backed up and exported to the ELN.",2
-    Endif
+Filesize "Z:\connection.txt"
+If size > -1 then
+Copy_DataPath$ + \_DataFile$,"Z:\ELN\" + _DataFile$,DONTASK
+Else
+Alert "No connection to the network path; Your data could not be backed up and exported to the ELN.",2
+Endif
 remove ELN_Export
 
 In the macro substitute:
@@ -76,12 +76,11 @@ Z:\ELN\ with the drive letter of the virtual network drive and folder path where
 
 Configuring the method to run the macro:
 
-In ChemStation load the method that shoud transfer data.
+In ChemStation load the method that should transfer data.
 NOTE: This configuration needs to be done in every method that will be run on the chromatograph.
 From the "Method" menu of ChemStation's main window choose "Edit Entire Method...".
 In the pop-up window choose "Method information" and accept. The "Method Information" window will open.
-Activate the "Post-Run Macros/Commands:" check box and select the previously created macro as target in "Instrument Control:" (exampe: C:\msdchem\1\macros\ELN_Export.mac)
-
+Activate the "Post-Run Macros/Commands:" check box and select the previously created macro as target in "Instrument Control:" (example: C:\msdchem\1\macros\ELN_Export.mac)
 
 ### Configurations in Chemotion ELN
 

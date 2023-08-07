@@ -3,7 +3,8 @@ title: Shimadzu LabSolutions GC/MS
 ---
 
 In this guideline, the integration process of a Shimadzu GC/MS controlled via LabSolutions ver.4.53SP1 in Windows 10 into the Chemotion ELN is explained.
-The procedure is split into three aspects that can be set up independently or in parrallel:
+The procedure is split into three aspects that can be set up independently or in parallel:
+
 1. Remote connection to the device
 2. Post-Processing conversion of files into open formats
 3. Transfer of experiment data to the ELN.
@@ -20,7 +21,7 @@ However it is likely to work on systems with different software versions as well
 - Operating system: Windows 10
 - Software Name: Shimadzu LabSolutions ver.4.53SP1
 - Connected to LAN (Intranet only): Yes
-- Data files generated: *.gcd 
+- Data files generated: \*.gcd
 - Automatic conversion to: ASCII &/or MS AIA
 - Static IP address has been configured
 
@@ -28,7 +29,6 @@ However it is likely to work on systems with different software versions as well
 
 - Remote Device Control
 - Data transfer to Chemotion ELN inbox
-
 
 # Configurations
 
@@ -41,13 +41,13 @@ General guideline regarding the configurations of remote device control can be f
 ## Data transfer
 
 Data will automatically be transferred to the Chemotion ELN once LabSolutions has finished recording data of the current run.
-The user is required to imput a valid file output name according to the [naming convention](../devices#name-conventions) for the Chemotion ELN to sort the file into the correct user's inbox.
+The user is required to input a valid file output name according to the [naming convention](../devices#name-conventions) for the Chemotion ELN to sort the file into the correct user's inbox.
 
 :::info
 Please take care that you communicate [name conventions](../devices#name-conventions) to all users of the Chemotion ELN.
 :::
 
-### Nescessary configuration in LabSolutions
+### Necessary configuration in LabSolutions
 
 # Data Conversion
 
@@ -61,11 +61,10 @@ For conversions into ASCII format additional considerations are required. In the
 Then choose the "Output per analysis" option and choose the destination folder and the items to be included in the output file.
 NOTE: LabSolutions names the converted files according to the name given in the "Output File:" box.
 The original sample's name and data file name are not taken into account.
-Therefore an additional renaming step is required for the data transfer of these files to the Chemotion ELN inbox to be successfull.
+Therefore an additional renaming step is required for the data transfer of these files to the Chemotion ELN inbox to be successful.
 
 Save the ASCII files to a separate location, not directly to the Data folder.
 Set up the automatic ASCII file rename executable on the device's computer and configure it to automatically rename the ASCII file according to the sample name and move it from LabSolutions' ASCII storage location to the regular data storage location.
-
 
 # Data transfer to the Chemotion ELN
 
@@ -74,9 +73,8 @@ The network storage can be set up on a third-party storage (a NAS server, shared
 In this case, the LSDF storage service from KIT has been used.
 
 An EFW executable needs to be configured, downloaded from the EFW builder and set to run on the device's PC.
-The EFW program will run on the device's computer in the background and transfer the *.gcd data files and the converted files from the local data storage to the network location accessible by both the device's computer and the ELN.
+The EFW program will run on the device's computer in the background and transfer the \*.gcd data files and the converted files from the local data storage to the network location accessible by both the device's computer and the ELN.
 Details can be found [here](configurations/data_transfer).
-
 
 ### Configurations in Chemotion ELN
 

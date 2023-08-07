@@ -3,7 +3,8 @@ title: Bruker OPUS Raman
 ---
 
 In this guideline, the integration process of a Bruker macroRAM controlled via OPUS ver. in Windows 10 into the Chemotion ELN is explained.
-The procedure is split into three aspects that can be set up independently or in parrallel:
+The procedure is split into three aspects that can be set up independently or in parallel:
+
 1. Remote connection to the device
 2. Post-Processing conversion of files into open formats
 3. transfer of experiment data to the ELN
@@ -20,15 +21,14 @@ However it is likely to work on systems with different software versions as well
 - Operating system: Windows 10
 - Software Name: Bruker OPUS ver.6.5
 - Connected to LAN (Intranet only): Yes
-- Data files generated: *.0
-- Automatic conversion to: *.dx JCAMP-DX
+- Data files generated: \*.0
+- Automatic conversion to: \*.dx JCAMP-DX
 - Static IP address has been configured
 
 # Objectives
 
 - Remote Device Control
 - Data transfer to Chemotion ELN inbox
-
 
 # Configurations
 
@@ -41,13 +41,13 @@ General guideline regarding the configurations of remote device control can be f
 ## Data transfer
 
 Data will automatically be transferred to the Chemotion ELN once OPUS has finished recording data of the experiment.
-The user is required to imput a valid file output name according to the [naming convention](../devices#name-conventions) for the Chemotion ELN to sort the file into the correct user's inbox.
+The user is required to input a valid file output name according to the [naming convention](../devices#name-conventions) for the Chemotion ELN to sort the file into the correct user's inbox.
 
 :::info
 Please take care that you communicate [name conventions](../devices#name-conventions) to all users of the Chemotion ELN.
 :::
 
-### Nescessary configuration in LabSolutions
+### Necessary configuration in LabSolutions
 
 # Data Conversion
 
@@ -58,16 +58,14 @@ Example:" RunMacro (, {MPT='C:\Programme\OPUS_65\Macro', MFN='ELN.mtx', LB6='|| 
 If different parameters are required this text and it's parameters can be automatically created using the OPUS interactive mode.
 For this click on the "..." next to the text box of the additional treatment option. Now desire post-processing procedure and data conversion can be configured graphically step-by-step.
 
-
 # Data transfer to the Chemotion ELN
 
 The spectrometer's computer and Chemotion ELN need access to a common network storage location.
 The network storage can be set up on a third-party storage (a NAS server, shared storage of another PC etc.). In this case, the LSDF storage service from KIT has been used.
 
 An EFW executable needs to be configured, downloaded from the EFW builder and set to run on the device's PC.
-The EFW program will run on the device's computer in the background and transfer the *.0 and *.dx data files from the local data storage to the network location accessible by both the device's computer and the ELN.
+The EFW program will run on the device's computer in the background and transfer the _.0 and _.dx data files from the local data storage to the network location accessible by both the device's computer and the ELN.
 Details can be found [here](configurations/data_transfer).
-
 
 ### Configurations in Chemotion ELN
 
