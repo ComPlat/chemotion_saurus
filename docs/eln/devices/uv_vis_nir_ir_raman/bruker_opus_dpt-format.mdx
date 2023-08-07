@@ -7,7 +7,7 @@ enables remote access to the PC connected to the device, which runs the software
 the experiment data to the Chemotion ELN’s inbox.
 
 :::info
-General preparation aspects can be found [here](../devices#general-preparation-aspects).
+General preparation aspects can be found [here](../../devices#general-preparation-aspects).
 :::
 
 Considering all these aspects, this procedure has been conducted on the following system configurations. However it is
@@ -33,17 +33,17 @@ For the IR device integration, we have decided to configure both these features.
 ## Remote Device Control
 
 :::info
-General guideline regarding the configurations of remote device control can be found [here](configurations/remote_control).
+General guideline regarding the configurations of remote device control can be found [here](../configurations/remote_control).
 :::
 
 ## Data transfer
 
 Data will automatically be transferred to the Chemotion ELN once the data has been saved locally on the computer. The
-user only needs to make sure to name the output file according to the [naming convention](../devices#name-conventions)
+user only needs to make sure to name the output file according to the [naming convention](../../devices#name-conventions)
 before saving it to the local machine.
 
 :::info
-Please take care that you communicate [name conventions](../devices#name-conventions) to all users of the Chemotion ELN.
+Please take care that you communicate [name conventions](../../devices#name-conventions) to all users of the Chemotion ELN.
 :::
 
 ### Configurations in IR PC
@@ -52,7 +52,7 @@ The IR PC and the Chemotion ELN both need access to a common network storage loc
 third-party storage (a NAS server, shared storage of another PC etc.) or it can be set up locally on the IR PC. In this
 case, the LSDF storage service from KIT has been used.
 
-We need to download an executable file from the EFW builder that will run on the computer to transfer data from a predefined source (local location on the computer) to a destination (LSDF server in this case) and schedule a task at startup so that the process keeps running on the computer. Details can be found [here](configurations/data_transfer).
+We need to download an executable file from the EFW builder that will run on the computer to transfer data from a predefined source (local location on the computer) to a destination (LSDF server in this case) and schedule a task at startup so that the process keeps running on the computer. Details can be found [here](../configurations/data_transfer).
 
 In this step, we have to restart the PC for the scheduler to run.
 
@@ -69,5 +69,5 @@ Here in this guide we have used the second mechanism where the files are collect
 distributed to specific users based on the file-name matching the name abbreviation of the user.
 
 :::note See details
-[File collector setting page](../install_configure/configuration#file-collection)
+[File collector setting page](../../install_configure/configuration#file-collection)
 :::

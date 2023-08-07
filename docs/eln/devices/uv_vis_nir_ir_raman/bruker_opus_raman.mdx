@@ -10,7 +10,7 @@ The procedure is split into three aspects that can be set up independently or in
 3. transfer of experiment data to the ELN
 
 :::info
-General preparation aspects can be found [here](../devices#general-preparation-aspects).
+General preparation aspects can be found [here](../../devices#general-preparation-aspects).
 :::
 
 Considering all these aspects, this procedure has been conducted on the following system configurations.
@@ -35,16 +35,16 @@ However it is likely to work on systems with different software versions as well
 ## Remote Device Control
 
 :::info
-General guideline regarding the configurations of remote device control can be found [here](configurations/remote_control).
+General guideline regarding the configurations of remote device control can be found [here](../configurations/remote_control).
 :::
 
 ## Data transfer
 
 Data will automatically be transferred to the Chemotion ELN once OPUS has finished recording data of the experiment.
-The user is required to input a valid file output name according to the [naming convention](../devices#name-conventions) for the Chemotion ELN to sort the file into the correct user's inbox.
+The user is required to input a valid file output name according to the [naming convention](../../devices#name-conventions) for the Chemotion ELN to sort the file into the correct user's inbox.
 
 :::info
-Please take care that you communicate [name conventions](../devices#name-conventions) to all users of the Chemotion ELN.
+Please take care that you communicate [name conventions](../../devices#name-conventions) to all users of the Chemotion ELN.
 :::
 
 ### Necessary configuration in LabSolutions
@@ -65,7 +65,7 @@ The network storage can be set up on a third-party storage (a NAS server, shared
 
 An EFW executable needs to be configured, downloaded from the EFW builder and set to run on the device's PC.
 The EFW program will run on the device's computer in the background and transfer the _.0 and _.dx data files from the local data storage to the network location accessible by both the device's computer and the ELN.
-Details can be found [here](configurations/data_transfer).
+Details can be found [here](../configurations/data_transfer).
 
 ### Configurations in Chemotion ELN
 
@@ -79,5 +79,5 @@ As for the file collector mechanism, there are two options.
 For this procedure the folder collection from local drives or over SCP needs to be chosen and configured to collect the data from the network drive where the EFW program has uploaded it to.
 
 :::note See details
-[File collector setting page](../install_configure/configuration#file-collection)
+[File collector setting page](../../install_configure/configuration#file-collection)
 :::
