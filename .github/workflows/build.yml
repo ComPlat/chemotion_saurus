@@ -32,8 +32,8 @@ jobs:
           #!/usr/bin/env bash
           set -euo pipefail
           eval $(ssh-agent -s);
-          mkdir ~/public
-          mv ~/build ~/public/.
+          mkdir ./public
+          mv ./build ./public/.
           mkdir ~/.ssh/
           chmod 700 ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
