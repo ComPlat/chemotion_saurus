@@ -7,24 +7,19 @@ jobs:
   build_deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
+      - uses: actions/checkout@v3
 
-      - uses: actions/cache@v2
+      - uses: actions/setup-node@v3
         with:
-          path: build
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gems-
+          cache: "npm"
 
-      - name: build
+      - name: Build
         id: build
         run: |
           npm install
           npm run build --if-present
 
-      - name: deploy
+      - name: Deploy
         if: steps.build.outcome == 'success' && github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message, 'skip deploy')
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
