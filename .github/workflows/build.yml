@@ -1,13 +1,10 @@
 name: chemotion_saurus GitHub Actions
 
 on:
-  workflow_dispatch:
   push:
-    branches: [main]
 
 jobs:
-  build:
-    if: ${{ true }}
+  build_deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -21,39 +18,22 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gems-
 
-      - name: Build
-        env:
-          ALGOLIA_SEARCH_API_KEY: ${{ secrets.ALGOLIA_SEARCH_API_KEY }}
-          ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
-          INDEX_NAME: ${{ secrets.INDEX_NAME }}
+      - name: build
+        id: build
         run: |
-          npm i
+          npm install
           npm run build --if-present
 
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: public
-          path: build
-
-  deploy:
-    if: "!contains(github.event.commits[0].message, 'skip deploy')"
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Download build artifacts
-        uses: actions/download-artifact@v2
-        with:
-          name: public
-          path: public
-
-      - name: Setup ssh and deploy2
+      - name: deploy
+        if: steps.build.outcome == 'success' && github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message, 'skip deploy')
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
           #!/usr/bin/env bash
           set -euo pipefail
           eval $(ssh-agent -s);
+          mkdir ~/public
+          mv ~/build ~/public/.
           mkdir ~/.ssh/
           chmod 700 ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
