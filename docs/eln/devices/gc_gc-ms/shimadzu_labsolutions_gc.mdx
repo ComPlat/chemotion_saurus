@@ -1,0 +1,91 @@
+---
+title: Shimadzu LabSolutions GC
+---
+
+In this guideline, the integration process of a Shimadzu GC controlled via LabSolutions ver.5.110 in Windows 10 into the Chemotion ELN is explained.
+The procedure is split into three aspects that can be set up independently or in parallel:
+
+1. Remote connection to the device
+2. Post-Processing conversion of files into open formats
+3. transfer of experiment data to the ELN.
+
+:::info
+General preparation aspects can be found [here](../../devices#general-preparation-aspects).
+:::
+
+Considering all these aspects, this procedure has been conducted on the following system configurations.
+However it is likely to work on systems with different software versions as well.
+
+## Specifications of the device's PC
+
+- Operating system: Windows 10
+- Software Name: Shimadzu LabSolutions ver.5.110
+- Connected to LAN (Intranet only): Yes
+- Data files generated: \*.lcd
+- Automatic conversion to: ASCII &/or AIA(Andi)
+- Static IP address has been configured
+
+# Objectives
+
+- Remote Device Control
+- Data transfer to Chemotion ELN inbox
+
+# Configurations
+
+## Remote Device Control
+
+:::info
+General guideline regarding the configurations of remote device control can be found [here](../configurations/remote_control).
+:::
+
+## Data transfer
+
+Data will automatically be transferred to the Chemotion ELN once LabSolutions has finished recording data of the current run.
+The user is required to input a valid file output name according to the [naming convention](../../devices#name-conventions) for the Chemotion ELN to sort the file into the correct user's inbox.
+
+:::info
+Please take care that you communicate [name conventions](../../devices#name-conventions) to all users of the Chemotion ELN.
+:::
+
+### Necessary configuration in LabSolutions
+
+# Data Conversion
+
+Data conversion is coordinated by the Batch's settings configurations.
+
+In LabSolutions Realtime Analysis enter the Realtime Batch tab, then expand the "Batch" menu and choose "Settings...".
+In the "File Conversion" tab activate the check boxes of of each file type the data is to be converted to.
+The converted files will be named according to the original sample's name.
+
+For conversions into ASCII format additional considerations are required. In the ASCII Conversion tab of the Batch's settings window activate the "Export ASCII File(s)" check box.
+Then choose the "Output each analysis" option and choose the destination folder and the items to be included in the output file.
+NOTE: LabSolutions names the converted files according to the name given in the "Output File:" box.
+The original sample's name and data file name are not taken into account.
+Therefore an additional renaming step is required for the data transfer of these files to the Chemotion ELN inbox to be successful.
+
+Save the ASCII files to a separate location, not directly to the Data folder.
+Set up the automatic ASCII file rename executable on the device's computer and configure it to automatically rename the ASCII file according to the sample name and move it from LabSolutions' ASCII storage location to the regular data storage location.
+
+# Data transfer to the Chemotion ELN
+
+The GC computer and Chemotion ELN need access to a common network storage location. The network storage can be set up on a third-party storage (a NAS server, shared storage of another PC etc.).
+In this case, the LSDF storage service from KIT has been used.
+
+An EFW executable needs to be configured, downloaded from the EFW builder and set to run on the device's PC.
+The EFW program will run on the device's computer in the background and transfer the \*.gcd data files and the converted files from the local data storage to the network location accessible by both the device's computer and the ELN.
+Details can be found [here](../configurations/data_transfer).
+
+### Configurations in Chemotion ELN
+
+The Chemotion ELN’s data collector has to be configured to collect the GC data files from the network location.
+
+As for the file collector mechanism, there are two options.
+
+- Collecting attachment files from emails
+- Collecting file or folder from local drives or over SCP
+
+For this procedure the file collection from local drives or over SCP needs to be chosen and configured to collect the data from the network drive where the EFW program has uploaded it to.
+
+:::note See details
+[File collector setting page](../../install_configure/configuration#file-collection)
+:::

@@ -1,0 +1,83 @@
+---
+title: Bruker OPUS Raman
+---
+
+In this guideline, the integration process of a Bruker macroRAM controlled via OPUS ver. in Windows 10 into the Chemotion ELN is explained.
+The procedure is split into three aspects that can be set up independently or in parallel:
+
+1. Remote connection to the device
+2. Post-Processing conversion of files into open formats
+3. transfer of experiment data to the ELN
+
+:::info
+General preparation aspects can be found [here](../../devices#general-preparation-aspects).
+:::
+
+Considering all these aspects, this procedure has been conducted on the following system configurations.
+However it is likely to work on systems with different software versions as well.
+
+## Specifications of the device's PC
+
+- Operating system: Windows 10
+- Software Name: Bruker OPUS ver.6.5
+- Connected to LAN (Intranet only): Yes
+- Data files generated: \*.0
+- Automatic conversion to: \*.dx JCAMP-DX
+- Static IP address has been configured
+
+# Objectives
+
+- Remote Device Control
+- Data transfer to Chemotion ELN inbox
+
+# Configurations
+
+## Remote Device Control
+
+:::info
+General guideline regarding the configurations of remote device control can be found [here](../configurations/remote_control).
+:::
+
+## Data transfer
+
+Data will automatically be transferred to the Chemotion ELN once OPUS has finished recording data of the experiment.
+The user is required to input a valid file output name according to the [naming convention](../../devices#name-conventions) for the Chemotion ELN to sort the file into the correct user's inbox.
+
+:::info
+Please take care that you communicate [name conventions](../../devices#name-conventions) to all users of the Chemotion ELN.
+:::
+
+### Necessary configuration in LabSolutions
+
+# Data Conversion
+
+Data conversion is automatically done by the "additional data treatment" option in OPUS' measurement settings.
+
+In OPUS open the "Measurement" settings window and navigate to the "Advanced" tab. activate the "Additional data treatment" checkbox and configure it to automatically convert to JCAMP-DX format.
+Example:" RunMacro (, {MPT='C:\Programme\OPUS_65\Macro', MFN='ELN.mtx', LB6='|| |Load 1 C:\Meas_Raman\OPUS LAB| |RunMacro 1| '}); "
+If different parameters are required this text and it's parameters can be automatically created using the OPUS interactive mode.
+For this click on the "..." next to the text box of the additional treatment option. Now desire post-processing procedure and data conversion can be configured graphically step-by-step.
+
+# Data transfer to the Chemotion ELN
+
+The spectrometer's computer and Chemotion ELN need access to a common network storage location.
+The network storage can be set up on a third-party storage (a NAS server, shared storage of another PC etc.). In this case, the LSDF storage service from KIT has been used.
+
+An EFW executable needs to be configured, downloaded from the EFW builder and set to run on the device's PC.
+The EFW program will run on the device's computer in the background and transfer the _.0 and _.dx data files from the local data storage to the network location accessible by both the device's computer and the ELN.
+Details can be found [here](../configurations/data_transfer).
+
+### Configurations in Chemotion ELN
+
+The Chemotion ELN’s data collector has to be configured to collect the Raman spectrometer's data from the network location.
+
+As for the file collector mechanism, there are two options.
+
+- Collecting attachment files from emails
+- Collecting file or folder from local drives or over SCP
+
+For this procedure the folder collection from local drives or over SCP needs to be chosen and configured to collect the data from the network drive where the EFW program has uploaded it to.
+
+:::note See details
+[File collector setting page](../../install_configure/configuration#file-collection)
+:::
