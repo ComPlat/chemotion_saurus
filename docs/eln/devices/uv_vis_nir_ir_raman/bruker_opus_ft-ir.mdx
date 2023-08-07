@@ -53,8 +53,13 @@ Please take care that you communicate [name conventions](../../devices#name-conv
 
 Data conversion is automatically done by the "additional data treatment" option in OPUS' measurement settings.
 
-In OPUS open the "Measurement" settings window and navigate to the "Advanced" tab. activate the "Additional data treatment" checkbox and configure it to automatically convert to JCAMP-DX format.
-Example:" SaveAs ([<FILE>:TR], {DAP='D:\JCAMP_Bruker-Alpha-II', OEX='0', SAN='', COF=32, INP='C:\Users\Public\Documents\Bruker\OPUS_8.5.29\METHODS', IFP='C:\Users\Public\Documents\Bruker\OPUS_8.5.29\METHODS', INM='DEFAULT', IFN='DEFAULT', DPA=5, DPO=5, SEP=',', YON='0', ADP='1', X64='1'}); "
+In OPUS open the "Measurement" settings window and navigate to the "Advanced" tab. Activate the "Additional data treatment" checkbox and configure it to automatically convert to JCAMP-DX format.
+Example:
+
+```
+SaveAs ([<FILE>:TR], {DAP='D:\JCAMP_Bruker-Alpha-II', OEX='0', SAN='', COF=32, INP='C:\Users\Public\Documents\Bruker\OPUS_8.5.29\METHODS', IFP='C:\Users\Public\Documents\Bruker\OPUS_8.5.29\METHODS', INM='DEFAULT', IFN='DEFAULT', DPA=5, DPO=5, SEP=',', YON='0', ADP='1', X64='1'});
+```
+
 If different parameters are required this text and it's parameters can be automatically created using the OPUS interactive mode.
 For this click on the "..." next to the text box of the additional treatment option. Now desire post-processing procedure and data conversion can be configured graphically step-by-step.
 
