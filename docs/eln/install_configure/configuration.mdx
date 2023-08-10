@@ -413,10 +413,19 @@ production:
   :chemspectra:
     :url: "http://spectra:4000"
   :nmriumwrapper:
-    :url: "https://nmrium.nmrxiv.org/releases/v0.4.0/"
+    :url: "https://nmrium.nmrxiv.org/releases/v0.3.0/"
 ```
 
-Please note ELN versions 1.5.0 to 1.7.1 only support nmriumwrapper version 0.1, and therefore for these ELNs, the `nmriumwrapper.url` value should be `https://nmrium.nmrxiv.org/releases/v0.1.0/`. To be able to access these URLs successfully, you must register with the hosting service. Please see [here](https://github.com/NFDI4Chem/nmrium-react-wrapper#public-instance) for more details.
+Here the `nmriumwrapper.url` value depends on the version of Chemotion ELN you are using. The compatibility between the ELN and the wrapper is as follows:
+
+| Version of Chemotion ELN | Version of NMRium wrapper |
+| ------------------------ | ------------------------- |
+| 1.5 & 1.6                | 0.1.0                     |
+| 1.7.0 - 1.7.2            | 0.1.0 - 0.3.0             |
+
+So, if you are using e.g. ELN version 1.5.3, please `nmriumwrapper.url` to `https://nmrium.nmrxiv.org/releases/v0.1.0/`.
+
+To be able to access these URLs successfully, you must register with the hosting service. Please see [here](https://github.com/NFDI4Chem/nmrium-react-wrapper#public-instance) for more details.
 
 ## Dynamic Welcome email and Message (optional)
 
