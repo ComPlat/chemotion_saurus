@@ -8,8 +8,18 @@ sidebar_position: 1
 
 Profile list
 
-| Ontology          | availability       | name                                |Measurement technique: device and/or software               | file format | download  |
-| ----------------- | -----------------  | ----------------------------------- | ------------------------------------------------- | --------- | --------- |
-| Cyclic Voltammetry (CV)  | v0.8.0+     | CV Gamry       |      CV: Gamry     |     .dta          | [Link](https://github.com/ComPlat/chemotion_saurus/blob/main/static/files/shared_ChemConverter_files/profiles/CVprofile_Gamry.json)       |
-| Cyclic Voltammetry (CV)  | v0.8.0+     | Nova           | CV: Metrohm NOVA	CV: Metrohm NOVA	  | *.csv | [Link](https://github.com/ComPlat/chemotion_saurus/blob/main/static/files/shared_ChemConverter_files/profiles/CVprofile_Nova.json)       |
-| Cyclic Voltammetry (CV)  | v0.8.0+     | CV pssession           | CV: PalmSens PSTrace                   | .pssession | [Link](https://github.com/ComPlat/chemotion_saurus/blob/main/static/files/shared_ChemConverter_files/profiles/CVprofile_pssession.json)       |
+currently include in Repo
+
+| Ontology          | availability       | internal name                       | generic name & <br /> description (1)                                                  | measurement technique: device and/or software     | file format | download  |
+| ----------------- | -----------------  | ----------------------------------- | --------------------------------------------------------------------------------| ------------------------------------------------- | --------- | --------- |
+| Cyclic Voltammetry (CV)  | v0.8.0+     | CV Gamry                            | CV data from DTA, data: +, metadata: +  <br /> Gamry Interface Framework; ref location: KIT CN, data: +, metadata: +   | CV: Gamry            | *.dta       | [Link](https://github.com/ComPlat/chemotion_saurus/blob/main/static/files/shared_ChemConverter_files/profiles/CVprofile_Gamry.json)       |
+| Cyclic Voltammetry (CV)  | v0.8.0+     | Nova                                | CV data from txt, data: +, metadata: (+) <br /> Metrohm Autolab Nova; ref location: Uni Aachen, data: +, metadata: (-) | CV: Metrohm NOVA	    | *.csv      | [Link](https://github.com/ComPlat/chemotion_saurus/blob/main/static/files/shared_ChemConverter_files/profiles/CVprofile_Nova.json)       |
+| Cyclic Voltammetry (CV)  | v0.8.0+     | CV pssession                        | CV data from pssession, data: +, metadata: + <br /> PalmSens PSTrace; ref location: IPB Leibniz, data: +, metadata: +  | CV: PalmSens PSTrace  | *.pssession | [Link](https://github.com/ComPlat/chemotion_saurus/blob/main/static/files/shared_ChemConverter_files/profiles/CVprofile_pssession.json)       |
+| Material testing         |             | Tensile Test hight Temp             | Tensile test data from txt, data: +, metadata: - <br /> Inspect Table 50kN; ref location: Fraunhofer IWS, data: +, metadata: - ; <br /> HighTemp | Inspect Table 50kN | *.txt | Link |
+| Material testing         |             | Tensile Test low Temp               | Tensile test data from txt, data: +, metadata: - <br /> Inspect Table 50kN; ref location: Fraunhofer IWS, data: +, metadata: - ; <br /> LowTemp  | Inspect Table 50kN | *.txt | Link |
+| UV-VIS                   |             | Cary60 UV-Vis                       | UV-VIS data from csv, data: +, metadata: - <br /> Cary 60; ref location: KIT CN, data: +, metadata: +                  | Agilent Cary 60 Spectrophotometer | *.csv | Link |
+| X-ray diffraction        |             | brml                                | X-ray diffraction data from brml, data: +, metadata: - <br /> ???; ref location: ---, data: +, metadata: -             | ???                       | *.txt | Link |
+
+
+(1) The generic name follows the convention that the names should give us a hind about what the profile does (marked by a +) and the description should tell us i.a. what the file could provide.
+(+) In this case, the file itself does not provide Metadata but some could be calculated by the Reader.
