@@ -185,6 +185,39 @@ cy.createDefaultUser('cu1@complat.edu', 'cu1').then((user) => {
 });
 ```
 
+## Example of Testing an API endpoint with Cypress
+You can also use Cypress to test APIs in a developer-friendly way. 
+One nice thing about Cypress API Testing is that you can conveniently work with the response data right from the test Runner. 
+When you click on the request step, Cypress will display the corresponding response data in the browser's console.
+
+Consider following example, where we are testing 'Collection API (GET request)'
+
+```javascript
+cy.request('/api/v1/collections/roots.json').as('roots');
+cy.get('@roots').then(response => {
+    expect(response.status).to.eq(200);
+    const collectionData = response.body['collections'][0];
+    expect(collectionData.id).to.eq(3);
+    expect(collectionData.label).to.eq('Col1');
+});
+```
+Here, were are sending http GET request to a 'api/v1/collections/roots.json' endpoint and checking its response.status field to be matched with code '200'. The response body can contain many objects, arrays, attributes, etc. This is how we can access a specific component from its body and perform some checks on it.
+
+```javascript
+// Whole object 
+const collectionData = response.body['collections'];
+
+// single item from the object list
+const collectionData = response.body['collections'][0];
+
+// Check length of object
+expect(response.body['collections'].length).to.eq(0)
+
+// check if returned fields are matching exactly what t be expected
+expect(collectionData.id).to.eq(3);
+expect(collectionData.label).to.eq('Col1');
+```
+
 ## General rules of thumb
 
 - All public methods should be tested, every statement, conditional branch should be covered.
