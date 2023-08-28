@@ -4,20 +4,85 @@ author: Nicole Jung
 sidebar_position: 2
 ---
 
-::: Important information for this page
+:::caution Important information for this page
 This page contains a collection of ideas to give inline notations for analytical data in the future. We provide this page to discuss options for a clear formatting of descriptions - but there is no need to adapt to the given rules at the moment. This is a test area. Nevertheless: if you have suggestitons and comments: please let us know or provide your ideas via the issue tracking option. 
 https://github.com/ComPlat/chemotion_saurus/issues  
 :::
 
 
+## Inline notation for 1H NMR data 
+The inline notation gives a short summary of the metadata and a list of all signals or signals group (for signals that cannot be separated from each other). For each signal, the shift should be provided along with at least the following information (given in parentheses): multiplet abbreviations, coupling constants, and number of atoms represented by each signal should be provided. An example is described in example No 1.
 
+### Explanation for metadata 
+- In a standard example, the metadata includes the type of the NMR measurement and further details in brackets. The details consist of the resonant frequency, the solvent in which the sample is dissolved and the temperature of the sample. 
+- If a solvent is used as reference (most common method), the reference shift has to be set to the available standards(Gottlieb et al. 1997), (Fulmer et al. 2010)
+- If a solvent is used as standard and there are different options which signal to be used as reference (THF-d8, DMF-d7, ethanol-d6, methanol-d4, pyridine-d5, toluene-d8), the used reference shift has to be added.
+- If solvent ratios are used for the NMR experiment, the solvent types and ratio needs to be given. Please define the ratio by integration of the solvents in the NMR
+- Add the temperature at which the measurement was done (shift depends on the temperature).
+- If TMS is used as a standard reference, then “TMS” has to be added (see example 4), it is assumed that the reference is set to 0.00 ppm.
+
+### Details for NMR data formatting
+Signals are given from low field to high field
+Signals should be reported to the nearest 0.01 ppm. [3]
+Multiplet abbreviations, coupling constant and number of atoms represented by each signal  should be provided in the order.
+If possible, the assignment of atoms to signals should be provided. If the assignments are given, they are added as the last part of the information in parentheses. 
+Signal assignment: if signals are assigned, the assignment is given as the last information in the description in brackets. 
+Always give coupling constants for well-resolved peaks. Sorting of coupling constants from large to small coupling
+Amount of protons is given without space: 1H instead of 1 H 
+
+#### Coupling and coupling constants
+each signal has to be given with the identified multiplicity and coupling constant(s) if it can be measured.
+Use the following abbreviations for defining the type of multiplicity of a signal: multiplet (m), singulet (s), doublet (d), triplet (t), quartet (q), quintet, sextet, septet, octet, and nonet. For further more complex signals, please see: https://www.chem.uci.edu/~jsnowick/groupweb/files/MultipletGuideV4.pdf 
+Use in addition for defining the shape of the signal: br.s, br.t 
+Indicate if a detected multiplicity does not correspond to the expected multiplicity (due to equivalent protons) and is observed due to coincidentally equal coupling constants: ps.t
+Coupling constants are given in the following order: large to small. 
+Range of the coupling: please give the range if known. If the range is given, the format for giving coupling constants should be changed to example  No 5. 
+If there are other couplings than H,H couplings, this needs to be indicated in the inline notation according to example 6.
+Mutually coupled protons in 1H NMR spectra must be quoted with precisely matching J values to assist thorough interpretation.[3 and 5]
+
+
+#### Assignments 
+**Option 1** for giving explicit and clear assignments: The assignment of signals to atoms by number is valid in two cases: (1) If one has a standardized numbering of the compound according to IUPAC and the numbering is clear with the structure and the use of the standardized chemical name as part of the description, (2) if one provides a numbered structure as image format. This image has to be given as an additional dataset for the analysis.
+
+![](/img/docs/image_repo_infrastructure.png)
+
+(S)-4-methyl-1,2,3,4-tetrahydroquinoline
+In the case given above, we could add the information on the atom assigned as follows: H-1, H-2, Ha-3, Hb-3, H-4, H-5, H-6, H-8.
+
+**Option 2** for giving explicit and clear assignments: The assignment can be done by giving fragments that describe the chemical environment of the proton sufficiently. In that case, the assigned nucleus is indicated by italicisation. In the example of (S)-4-methyl-1,2,3,4-tetrahydroquinoline, the assignment can be given as follows (from N-1 to C-8):  NH, NHCH2, CHa, CHb, CHCH3, NHCCH, NHCCHCH, CHCCH, CHCCHCH.
+
+
+#### Additional general aspects
+If there are missing signals due to H/D exchange, line broadening, signal overlap this needs to be stated as additional information to the analysis. https://www.chemotion.net/docs/repo/details_standards/analyses#missing-signals 
+To be discussed, can be part of the description, question is whether is makes sense for all compound types
+
+
+
+### Additional aspects important for the data in chemotion repository
+
+
+
+**Impurities** 
+Please check carefully the purity of your compounds before you provide your data. If the data includes by-products or solvents in the spectra that are not mentioned in the content/description the data will be sent back for revision or will be rejected. <!--truncate-->
+If your spectra contain impurities that can't be removed (isomerization during measurement or similar issues) please indicate the impurities, the percentage of impurities and their origin (if known) clearly in all types of analysis, therefore also as part of the 1H NMR analysis. Examples are: <br />
+
+Information on impurities has to be added to the analytical description. If possible, the type of impurity and the amount (in mol%) has to be defined. The information on impurities does not have to be given in the analytical data exported to give supplemental information for journals. It is not part of the inline notation. The information on the purity has to be added not only as information to the analytics but needs to be considered for the calculation of the yield for products. 
+
+Integrate all peaks in the 1H NMR arising from the compound [5]
+The largest peak in the 1H NMR spectrum should normally be full scale and arise from the compound, not the solvent or impurities [5]
+NMR spectra should have sufficiently high signal-to-noise ratios so that all peaks can be adequately resolved.[3]
+The minimum chemical shift range for 1H NMR spectra should be −1 to 10 ppm and for 13C NMR spectra −10 to 200 ppm. All peaks should be labeled and integrated.[3]
+
+
+:::caution Old info
+Outdated advices are listed here  
+:::
 
 ## Purity of the measured samples and quality of datasets
 
 ## Purity and impurities
 
-Please check carefully the purity of your compounds before you provide your data. If the data includes by-products or solvents in the spectra that are not mentioned in the content/description the data will be sent back for revision or will be rejected. <!--truncate-->
-If your spectra contain impurities that can't be removed (isomerization during measurement or similar issues) please indicate the impurities, the percentage of impurities and their origin (if known) clearly in all types of analysis. Examples are: <br />
+
 
 
 - <sup>1</sup>H NMR (500 MHz, DMSO-d<sub>6</sub> [2.50 ppm], ppm) δ = [...] 8.05 (m, 2H, CH), 7.49 (m,
