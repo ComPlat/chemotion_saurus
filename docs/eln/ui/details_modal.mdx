@@ -318,15 +318,15 @@ Here's an example of a `variations table`:
 
 Each row represents a variation of the reaction.
 For example, you might have optimized a reaction regarding its duration.
-Or you might have conducted the same reaction with varying amounts of the reactant(s).
-The feature facilitates recording a variety of experiments, such as catalysis, screening, or kinetics.
+Or you might have conducted a reaction with varying amounts of reactant(s).
+The `variations table` facilitates recording a variety of experiments, such as catalysis, screening, or kinetics.
 
 The materials in the `variations table` always reflect the materials from the `scheme tab`.
 Whenever a material is added or removed in the `scheme tab`, the `variations table` is updated accordingly.
 Materials cannot be added or removed in the `variations table` itself.
 
 When you save a reaction that has a `variations table`,
-the reactions that are represented by the rows of the `variations table` are not saved individually.
+the reactions (and its samples) that are represented by the rows of the `variations table` are not saved individually.
 Instead, the `variations table` is saved as a single data structure that "belongs" to the reaction.
 That is, whenever you export the reaction, or include it in a report, the `variations table` is included as well.
 
@@ -334,7 +334,7 @@ That is, whenever you export the reaction, or include it in a report, the `varia
 
 You can populate the `variations table` by adding, copying, and deleting rows:
 
-![populate variations table](/img/add_copy_delete_reaction_variations.gif)
+![populate variations table](/img/reaction_variations_table_curate.gif)
 
 Add a row by clicking the `Add row` button on the top left of the `variations table`.
 Each new row contains the current state of the `scheme tab` and `properties tab`.
@@ -344,21 +344,38 @@ The opposite is not true, edits in the `variations table` don't affect the `sche
 
 Copy or delete a row by clicking the corresponding buttons that are embedded on its left.
 
-You can select the unit of a rows' materials by toggling from `Equiv` (equivalent) to `Amount` (gram) and vice versa.
-Note that toggling the unit does not affect existing rows, that is, the unit can be selected on a per-row basis.
-
 #### Navigating and editing the variations table
 
-![edit variations table](/img/edit_reaction_variations.gif)
+![edit variations table](/img/reaction_variations_table_navigate_edit.gif)
 
 Navigate the `variations table` with the arrow keys, and edit a cell by double-clicking it, or selecting the cell and hitting enter.
+Doing so opens a pop-up dialog that contains all editable attributes of the cell. For example, you can edit the unit, amount, and equivalent of starting materials.
 Once you've edited the cell, confirm the edit by hitting enter, or leaving the cell (e.g., by clicking somewhere else, or hitting tab).
 
-A cell displays additional, non-editable data when you hover over it with the mouse:
-non-product materials show their coefficient, and if the material serves as reference.
-Products display their coefficient and yield.
+Cells that represent materials display additional, non-editable data when you hover over them with the mouse.
 
-Editing is disabled for cells that correspond to a reference material.
+#### Customizing the table layout
+
+![layout variations table](/img/reaction_variations_table_layout.gif)
+
+##### Columns
+
+You can customize the headers of materials using the `Identify materials by` dropdown on top of the variations tab.
+
+It's likely that not all columns fit on your screen.
+You can move to columns that are currently off-screen by using the scroll bar at the bottom of the tab.
+You can adjust a column's width by dragging the border-handles between columns to the left or right.
+This can be useful if you want to hide irrelevant columns.
+If you want to change the order of columns, click on a column header and drag it to the left or right.
+
+##### Rows
+
+You can sort the tables' rows by specific columns by clicking on the column's header.
+For example, you might want to sort the table by the amount of a product.
+The first click sorts the rows in ascending order, a second click in descending order.
+The order is marked by an arrow in the header.
+Note that the units must be the same throughout the column in order for the sorting to work.
+You can also sort rows manually: click anywhere on the row and keep the mouse button depressed while dragging the row up or down.
 
 ### Search CAS
 
