@@ -9,9 +9,21 @@ This page contains a collection of ideas to give inline notations for analytical
 https://github.com/ComPlat/chemotion_saurus/issues  
 :::
 
+## Order of analyses
+
+Please order the analysis part of your molecules/samples according to: 
+
+1. <sup>1</sup>H NMR
+2. <sup>13</sup>C NMR 
+3. any other NMR data
+3. mass data
+4. IR data
+5. others (EA, crystal structures)
+For collecting data in the ELN/repository, please use the "order mode" button in the analysis tab. For inline notation, please add one technique after the other, separated by ".".
+
 
 ## Inline notation for 1H NMR data 
-The inline notation gives a short summary of the metadata and a list of all signals or signals group (for signals that cannot be separated from each other). For each signal, the shift should be provided along with at least the following information given in parentheses: multiplet abbreviations, coupling constants, and number of atoms represented by each signal should be provided. (see example 1)
+The inline notation gives a short summary of the metadata and a list of all signals or signals group (for signals that cannot be separated from each other). For each signal, the shift should be provided along with at least the following information given in parentheses: multiplet abbreviations, coupling constants, and number of atoms represented by each signal should be provided. (see **example No 1**)
 
 ### Examples for desired formatting:
 (1) Standard example:<br /><sup>1</sup>H NMR (400 MHz, CDCl<sub>3</sub>, 25 °C): δ [ppm] = 7.28 (dd, <i>J</i> = 1.6, 7.7 Hz, 1H), 7.14 (ddd, <i>J</i> = 8.2, 7.3, 1.6 Hz, 1H), 6.74–6.66 (m, 2H), 4.94 (s, 2H), 4.04 (br.s, 2H), 2.12 (s, 3H).<br /> <br /> 
@@ -24,23 +36,28 @@ The inline notation gives a short summary of the metadata and a list of all sign
 (5) Example with order of coupling constants, if available and required: <br /> 
 <sup>1</sup>H NMR (400 MHz, DMF-d7 [2.75 ppm], 25 °C): δ [ppm] = 7.28 (dd, <i>J</i> = 7.7,  1.6 Hz, 1H), 7.14 (ddd, 3<i>J</i> = 8.2, 3<i>J</i> = 7.3, 4<i>J</i> = 1.6 Hz, 1H), 6.74–6.66 (m, 2H), 4.94 (s, 2H), 4.04 (br.s, 2H), 2.12 (s, 3H). <br /> <br /> 
 (6) Example with couplings which are not H,H couplings: <br /> 
-<sup>1</sup>H NMR (400 MHz, DMF-d7 [2.75 ppm], 25 °C): δ [ppm] = 7.28 (dd, <i>J</i> = 1.6, J = 7.7 Hz, 1H), 7.14 (ddd, 3<i>J</i> = 8.2, 3<i>J</i>H,F = 7.3, 4<i>J</i> = 1.6 Hz, 1H),  6.74–6.66 (m, 2H), 4.94 (s, 2H), 4.04 (br.s, 2H), 2.12 (s, 3H).<br /> <br /> 
+<sup>1</sup>H NMR (400 MHz, DMF-d7 [2.75 ppm], 25 °C): δ [ppm] = 7.28 (dd, <i>J</i> = 1.6, J = 7.7 Hz, 1H), 7.14 (ddd, 3<i>J</i> = 8.2, 3<i>J</i>H,F = 7.3, 4<i>J</i> = 1.6 Hz, 1H),  6.74–6.66 (m, 2H), 4.94 (s, 2H), 4.04 (br.s, 2H), 2.12 (s, 3H). <br /> 
 (7) Example with missing protons and impurities: <br /> 
 <sup>1</sup>H NMR (400 MHz, MeOD-d4, 25 °C): δ [ppm] = 7.28 (dd, <i>J</i> = 1.6, <i>J</i> = 7.7 Hz, 1H), 7.14 (ddd, 3<i>J</i> = 8.2, 3<i>J</i>H,F = 7.3, 4<i>J</i> = 1.6 Hz, 1H),  6.74–6.66 (m, 2H), 4.94 (s, 2H), 4.04 (br.s, 2H), 2.12 (s, 3H). Missing signal (1H, OH) due to H/D exchange in MeOD. Impurities: 10% impurities due to the formation of the cis-isomer during the measurement of the sample.<br /> <br /> 
 (8)  Example for isomers: <br /> 
 <sup>1</sup>H NMR (500 MHz, MeOD-d<sub>4</sub> [3.31 ppm], ppm) δ = 13.23 (bs, 0.4H, CO<sub>2</sub>H-isomer1), 12.98 (bs, 0.6H, CO<sub>2</sub>H-isomer2), 8.24 (d, 0.6H, <i>J</i> = 1.5 Hz, CH-isomer2), 8.21 (d, 0.4H, <i>J</i> = 1.5 Hz, CH-isomer1), 3.30 (s, 3H, CH<sub>3</sub>-isomer1+-isomer2) etc.<br /> 
+(9)  Example for assignment according to option 1: <br /> 
+<sup>1</sup>H NMR (250 MHz, CDCl<sub>3</sub>, ppm) δ = 7.08 (dd, <i>J</i> = 7.6, 1.2 Hz, 1H, H-5), 6.97 (pstd, <i>J</i> = 7.6, 1.2 Hz, 1H, H-7), 6.63 (pstd, <i>J</i> = 7.6, 1.2 Hz, 1H, H-6), 6.48 (dd, <i>J</i> = 7.6, 1.2 Hz, 1H, H-8), 3.85 (bs, 1H, N<i>H</i>), 3.40–3.22 (m, 2H), 3.02–2.84 (m, 1H), 2.07–1.92 (m, 1H), 1.76–1.61 (m, 1H), 1.30 (d, <i>J</i> = 7.0 Hz, 3H, CH<sub>3</sub>).
+(10)  Example for assignment according to option 2: <br /> 
+
+(11)  Example for assignment according to option 3: <br /> 
+<sup>1</sup>H NMR (250 MHz, CDCl<sub>3</sub>, ppm) δ = 7.08 (dd, <i>J</i> = 7.6, 1.2 Hz, 1H, H<sub>ar</sub>), 6.97 (pstd, <i>J</i> = 7.6, 1.2 Hz, 1H, H<sub>ar</sub>), 6.63 (pstd, <i>J</i> = 7.6, 1.2 Hz, 1H, H<sub>ar</sub>), 6.48 (dd, <i>J</i> = 7.6, 1.2 Hz, 1H, H<sub>ar</sub>), 3.85 (bs, 1H, N<i>H</i>), 3.40–3.22 (m, 2H), 3.02–2.84 (m, 1H), 2.07–1.92 (m, 1H), 1.76–1.61 (m, 1H), 1.30 (d, <i>J</i> = 7.0 Hz, 3H, CH<sub>3</sub>). 
 
 ### Explanation of metadata for 1H NMR data 
 - In a standard example, the metadata includes the type of the NMR measurement and further details in brackets. The details consist of the resonant frequency, the solvent in which the sample is dissolved and the temperature of the sample. 
 - If a solvent is used as reference (most common method), the reference shift has to be set to the available standards. (Gottlieb et al. 1997), (Fulmer et al. 2010)
-- If a solvent is used as reference and there are different options which signal to be used (e.g. THF-d8, DMF-d7, ethanol-d6, pyridine-d5, toluene-d8), the used reference shift has to be added.
-- If solvent combinations are used in the NMR experiment, the respective solvents and their proportions must be indicated. Please define the ratio by integration of the solvents in the NMR. Please take care that the degree of deuteration of the solvents is considered.
-- Please indicate the temperature at which the measurement was performed. The value is recorded during NMR measuremnt and can be extracted from the dataset.  
-- If TMS is used as reference, "TMS" must be added to the parentheses (see example 4). It is assumed that in this case the reference shift is set to 0.00 ppm.
+- If a solvent is used as reference and there are different options which signal to be used (e.g. THF-d8, DMF-d7, ethanol-d6, pyridine-d5, toluene-d8), the used reference shift has to be added (see **example No 2**).
+- If solvent combinations are used in the NMR experiment, the respective solvents and their proportions must be indicated. Please define the ratio by integration of the solvents in the NMR. Please take care that the degree of deuteration of the solvents is considered (see **example No 3**).
+- If TMS is used as reference, "TMS" must be added to the parentheses (see **example No 4**). It is assumed that in this case the reference shift is set to 0.00 ppm.
 
 ### Details of NMR data formatting - NMR signals
 - Signal shifts are given from low field to high field.
-- Signal details are given in parentheses in the following order: (1) multiplet abbreviations, (2) coupling constant, (3) number of atoms represented by the signal, (4) signal to atom assignment (optional, please refer to examples X and Y regarding assignment styles).
+- Signal details are given in parentheses in the following order: (1) multiplet abbreviations, (2) coupling constant, (3) number of atoms represented by the signal, (4) signal to atom assignment (optional, please refer to **examples No 8 and No 9** regarding assignment styles).
 - Signals should be reported to the nearest 0.01 ppm.
 
 #### Multiplicity and coupling constants
@@ -54,21 +71,21 @@ The inline notation gives a short summary of the metadata and a list of all sign
 - Use the following abbreviations for defining the multiplicity of a signal: multiplet (m), singulet (s), doublet (d), triplet (t), quartet (q), quintet, sextet, septet, octet, and nonet. For further more complex signals, please see: https://www.chem.uci.edu/~jsnowick/groupweb/files/MultipletGuideV4.pdf 
 - Use "br." in addition for defining broadly shaped signals: br.s, br.t 
 - Indicate if a detected multiplicity does not correspond to the expected multiplicity (due to equivalent protons) and is observed due to coincidentally equal coupling constants: ps.t
-- Range of the coupling: please give the range of the coupling (= distance in bonds) if known. If the range is given, the format for giving coupling constants should be changed to example 5. 
-- If there are other couplings than H,H couplings, this needs to be indicated in the inline notation according to example 6.
+- Range of the coupling: please give the range of the coupling (= distance in bonds) if known. If the range is given, the format for giving coupling constants should be changed to **example No 5**. 
+- If there are other couplings than H,H couplings, this needs to be indicated in the inline notation according to **example No 6**.
 
 #### Number of protons
 - Amount of protons is given without space: 1H instead of 1 H 
 
 **Missing signals**
-If there are missing signals due to H/D exchange, line broadening or signal overlap this needs to be stated as additional information to the analysis as in example 7. Proton and carbon spectra will be automatically validated by the number of protons and carbons given in the analysis in comparison with the number of atoms given by the sum formula. Please use the following standard phrases if applicable:
+If there are missing signals due to H/D exchange, line broadening or signal overlap this needs to be stated as additional information to the analysis as in **example No 7**. Proton and carbon spectra will be automatically validated by the number of protons and carbons given in the analysis in comparison with the number of atoms given by the sum formula. Please use the following standard phrases if applicable:
 -- Missing signal (1H, OH) due to H/D exchange in MeOD
 -- Missing signals (2H, H-2) due to line broadening
 -- Missing signal (1H, H-7) due to overlap of signal with solvent
 Important with respect to the format: please add the information on the number and type of missing signals in brackets and use a comma to separate from other information such as the assignment within the bracket (1H, xx).
 
 ** Description for compounds that are obtained as mixtures of isomers and cannot be separated**
-- Please give the number of protons per signal to achieve 1H/proton as combination of all isomers, see example No 8. 
+- Please give the number of protons per signal to achieve 1H/proton as combination of all isomers, see **example No 8**. 
 
 
 #### Assignments 
@@ -76,12 +93,14 @@ Wherever possible, assignments should be given -but are not mandatory. Following
 
 ![](/img/docs/tetrahydroquinoline.jpg)
 
-**Option 1** for giving explicit and clear assignments: The assignment of signals to atoms by number is valid in two cases: 
+**Option 1** for giving explicit and clear assignments: The assignment of signals to atoms by **number** is valid in two cases: 
 - If one has a standardized numbering of the compound according to IUPAC and the numbering is clear with the structure and the use of the standardized chemical name as part of the description, 
 - If one provides a numbered structure as image format. This image has to be given as an additional dataset for the analysis. 
-In the case given above, we could add the information on the atom assigned as follows: H-1, H-2, H<sub>a</sub>-3, H<sub>b</sub>-3, H-4, H-5, H-6, H-8.
+In the case given above, we could add the information on the atom assigned as follows: H-1, H-2, H<sub>a</sub>-3, H<sub>b</sub>-3, H-4, H-5, H-6, H-8 (see **example No 9**).
 
-**Option 2** for giving explicit and clear assignments: The assignment can be done by giving fragments that describe the chemical environment of the proton sufficiently. In that case, the assigned nucleus is indicated by italicisation. In the example of (<i>S</i>)-4-methyl-1,2,3,4-tetrahydroquinoline, the assignment can be given as follows (from N-1 to C-8):  NH, NHC<i>H</i>2, CH<sub>a</sub>, CH<sub>b</sub>, C<i>H</i>CH<sub>3</sub>, CHC<i>H</i><sub>3</sub>, NHCC<i>H</i>, NHCCHC<i>H</i>, CHCC<i>H</i>, CHCCHC<i>H</i>.
+**Option 2** for giving explicit and clear assignments: The assignment can be done by giving fragments that describe the chemical environment of the proton sufficiently. In that case, the assigned nucleus is indicated by italicisation. In the example of (<i>S</i>)-4-methyl-1,2,3,4-tetrahydroquinoline, the assignment can be given as follows (from N-1 to C-8):  NH, NHC<i>H</i>2, CH<sub>a</sub>, CH<sub>b</sub>, C<i>H</i>CH<sub>3</sub>, CHC<i>H</i><sub>3</sub>, NHCC<i>H</i>, NHCCHC<i>H</i>, CHCC<i>H</i>, CHCCHC<i>H</i>.(see **example No 10**)
+
+**Option 3** In some cases, an explicit and clear assignments might be (partly difficult). In such cases, the assignment of groups can be done by giving fragment descriptions such as "ar" (=aryl) that describe the chemical environment. For the example of (<i>S</i>)-4-methyl-1,2,3,4-tetrahydroquinoline, the assignment can be given as described in **example No 11**. 
 
 
 ### Additional aspects important for the data in chemotion repository
@@ -92,16 +111,12 @@ In the case given above, we could add the information on the atom assigned as fo
 - The minimum chemical shift range for 1H NMR spectra should be −1 to 10 ppm and for 13C NMR spectra −10 to 200 ppm.
 
 **Impurities:** 
-Please check the purity of your compounds carefully before submitting your data. If the spectra contain by-products or solvents not mentioned in the content/description, the data will be returned for revision or rejected. <!--truncate-->.
-If your spectra contain impurities that cannot be eliminated, please indicate the percentage and origin (if known) of these impurities in all submitted analyses. This information is not part of the inline notation and will therefore not be included in the analytical data exported to journal supplementary information files. See the following statements and example 7 for the correct way to report impurities: <br /> 
+Please check the purity of your compounds carefully before submitting your data. If the spectra contain by-products or solvents not mentioned in the content/description, the data will be returned for revision or rejected. <br />
+If your spectra contain impurities that cannot be eliminated, please indicate the percentage and origin (if known) of these impurities in all submitted analyses. This information is not part of the inline notation and will therefore not be included in the analytical data exported to journal supplementary information files. See the following statements and **example No 7** for the correct way to report impurities: <br /> 
 -- Impurities: 10% impurities due to the formation of the <i>cis</i>-isomer during the measurement of the sample.
 -- Impurities: 1% ethyl acetate, unknown impurities at 1.11–2.22 ppm and 3.33 ppm.
 -- Impurities: approx. 5% impurities at 7.66 ppm and 2.44 ppm due to an unknown by-product. <br /> 
 Keep in mind that these must also be considered in the yield calculations.
-
-
-
-
 
 
 
@@ -111,23 +126,16 @@ Outdated advices are listed here
 
 
 
-
-
-
-## Order of analyses
-
-Please order the analysis part of your molecules/samples according to
-
-1. <sup>1</sup>H NMR
-2. <sup>13</sup>C NMR and other NMR data
-3. mass data
-4. IR data
-5. others (EA, crystal structures)
-   Please use the "order mode" button in the analysis tab.
-
-
-
-
+H-NMR (CDCl3): d =  13C-NMR (CDCl3): d = 144.2, 128.4, 126.7, 126.6, 116.9, 114.1,
+39.0, 30.2, 29.9, 22.6; MS (FD): m/z (%) = 147.8 (100) [M+]; IR
+(KBr): 3407, 3051, 3016, 2955, 2925, 2864, 1606, 1498, 1315, 745
+cm-1
+. HPLC conditions: OD-H column, n-hexane/2-propanol =
+98/2, flow rate = 0.6 mL min-1
+, major enantiomer: tR = 17.15 min;
+minor enantiomer: tR = 18.63 min; [a]
+25
+D -23.6 (c 1.0, CHCl3).
 
 
 5. Don't forget to give coupling constants for <sup>13</sup>C NMR data if applicable (e.g. C-F coupling, C-P coupling)
