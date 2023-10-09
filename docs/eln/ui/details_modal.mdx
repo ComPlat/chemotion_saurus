@@ -27,6 +27,7 @@ import {
   faTimesCircle,
   faDownload,
   faSlidersH,
+  faClone
 } from "@fortawesome/free-solid-svg-icons";
 import { Btn } from "@site/src/js/btn.js";
 
@@ -306,11 +307,6 @@ This tab contains fields for green chemistry metrics to quantify the environment
 
 ### Variations tab
 
-:::info
-The variations tab is not part of an official Chemotion ELN release yet.
-This documentation is meant for pre-release demonstrations.
-:::
-
 If you need to record multiple variations of a reaction, this feature is for you.
 Here's an example of a `variations table`:
 
@@ -336,14 +332,15 @@ You can populate the `variations table` by adding, copying, and deleting rows:
 
 ![populate variations table](/img/reaction_variations_table_curate.gif)
 
-Add a row by clicking the `Add row` button on the top left of the `variations table`.
+Add a row by clicking the <Btn mixed={[faPlus]} color={"success"}/> button on the top left of the `variations table`.
 Each new row contains the current state of the `scheme tab` and `properties tab`.
 That is, if you change something in the `scheme tab` or `properties tab` in between adding rows,
 these changes will be reflected in any new row that's added after the change.
-Note that changes in the `scheme tab` aren't applied to _existing_ rows in the `variations table`.
+Note that changes in the `scheme tab` or `properties tab` aren't applied to _existing_ rows in the `variations table`.
 Changes in the `variations table` don't affect the `scheme tab` or `properties tab`.
 
-Copy or delete a row by clicking the corresponding buttons that are embedded on its left.
+Copy (<Btn mixed={[faClone]} color={"success"}/>) or delete (<Btn mixed={[faTrashAlt]} color={"danger"}/>)
+a row by clicking the corresponding buttons that are embedded on its left.
 
 #### Navigating and editing the variations table
 
