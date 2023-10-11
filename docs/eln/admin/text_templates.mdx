@@ -1,0 +1,26 @@
+---
+title: Text Templates
+sidebar_label: Text Templates
+---
+
+import {
+  faPlus,
+  faTrashAlt,
+} from "@fortawesome/free-solid-svg-icons";
+import { Btn } from "@site/src/js/btn.js";
+
+Throughout the ELN, users work with text editors in many different contexts.
+`Text templates` are meant to help users with writing by providing ready-made paragraphs that can be inserted in any text editor.
+Users can insert a `text template` by clicking on the corresponding icon on top of the text editors.
+
+Click on `Text Templates` in the sidebar of the administrator interface in order to
+open an editor that lets you configure custom `text templates`:
+
+![text_template_editor](/img/admin_ui/text_template_editor.png)
+
+Click on the <Btn mixed={[faPlus]} color={"primary"}/> button to generate a new `text template`.
+You can then configure an icon (TODO: which icons can be used?), a `Text` (TODO: what's that for?), as well as a the paragraph that's meant to appear as a template in the users' text editors.
+
+![text_template_edited](/img/admin_ui/text_template_edited.png)
+
+Remove a `text template` by clicking the <Btn mixed={[faTrashAlt]} color={"danger"}/> button next to a template in the list on the left.
