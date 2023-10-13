@@ -1,5 +1,36 @@
 ---
-title: Richtext editor and text blocks
+title: Text Templates
+sidebar_label: Text Templates
 ---
 
+import {
+  faPlus,
+  faTrashAlt,
+} from "@fortawesome/free-solid-svg-icons";
+import { Btn } from "@site/src/js/btn.js";
 
+Throughout the ELN, you can work with text editors in many different contexts.
+`Text templates` are meant to help you write by providing ready-made paragraphs that can be inserted in many text editors.
+
+
+
+![](/img/20231013_customTextblocks.png)
+
+**Formatting utilities**: standard utilities for formatting text (like in Word)  
+**User-defined custom text templates:** icons of predefined `text templates`  
+**Configuration text templates**: Pop-up menu for configuration of `text templates` in editor  
+
+## Using and customizing icons
+You can use predefined `text templates` if your cursor is active in the editor.
+By clicking on an icon the`text template` content will appear at your cursor.
+
+The following video shows you how to customize your toolbar:  
+
+![text_template_editor](/img/20231013_configTextTemplatesIcon.gif)
+
+## Using and customizing text templates dropdown menus
+In addition you can organize your `text templates` in dropdown menus:  
+
+![text_template_editor](/img/20231013_configTextTemplatesDropDown.gif)
+
+You can remove all elements by clicking <Btn mixed={[faTrashAlt]} color={"danger"}/>
