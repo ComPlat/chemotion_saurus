@@ -19,7 +19,7 @@ currently include in Repo
 | Dynamic light scattering (DLS) |       | DLS                                 | DLS data from txt, data: +, metadata: - <br /> ---; ref location: ---, data: +, metadata: -                                                      | DLS                | *.txt | Link |
 | Mass spectrometry        |             | MS Finnigian                        | Mass spectrometry from txt, data: +, metadata: - <br /> Finnigian MAT8230, ref location: ---, data: +, metadata: -                               | MS Finnigian MAT8230              | *.txt | Link |
 | Mass spectrometry        |             | MS xy                               | Mass spectrometry from general xy format, data: +, metadata: - <br /> generic data table only; ref location: Uni Aachen, data: +, metadata: -    | MS                 | *.xy  | Link |
-| Material testing         |             | Tensile Test hight Temp             | Tensile test data from txt, data: +, metadata: - <br /> Inspect Table 50kN; ref location: Fraunhofer IWS, data: +, metadata: - ; <br /> HighTemp | Inspect Table 50kN | *.txt | Link |
+| Material testing         |             | Tensile Test high Temp             | Tensile test data from txt, data: +, metadata: - <br /> Inspect Table 50kN; ref location: Fraunhofer IWS, data: +, metadata: - ; <br /> HighTemp | Inspect Table 50kN | *.txt | Link |
 | Material testing         |             | Tensile Test low Temp               | Tensile test data from txt, data: +, metadata: - <br /> Inspect Table 50kN; ref location: Fraunhofer IWS, data: +, metadata: - ; <br /> LowTemp  | Inspect Table 50kN | *.txt | Link |
 | Single-crystal X-ray Diffraction|      | CIF                                 | crystallographic metadata from cif, data: -, metadata: + <br /> Stoe StadiVari diffractometer; ref location: KIT CN, data: +, metadata: +        | Stoe StadiVari diffractometer     | *.cif | Link |
 | Sorption-Desorption Measurement |      | AIF                                 | (AIF) Sorption-Desorption Measurement from txt, data: +, metadata: + <br /> ---; ref location: TU Dresden, data: +, metadata: +                  | raw2aifv004        | *.txt | Link |
@@ -34,14 +34,28 @@ currently include in Repo
 (+) In this case, the file itself does not provide Metadata but some could be calculated by the Reader.
 
 
-### <a name="c9d63af9"></a> Profile: Tensile test data from txt
+### <a name="c9d63af9"></a> Profile: Tensile test HighTemp
 
-Inspect Table 50kN; reference location: Fraunhofer IWS, with data conversion, without metadata extraction ;HighTemp
+Material testing, Inspect Table 50kN; reference location: Fraunhofer IWS, with data conversion, without metadata extraction ;HighTemp
+* File Format: *.txt
 * Data Type: Cyclic Voltammetry
 * Data Class: XYPOINTS
 * X Unit: 2Theta, X Value: Table#0, Column#3
 * Y Unit: Intensity, Y Value: Table#0, Column#4*1e6
 * Profile id: c9d63af9-2ce7-425e-895c-c04b8497c26c
+* Reader: CSVReader
+
+
+### <a name="6d344bc4"></a> Profile: Tensile test LowTemp
+
+Material testing, Inspect Table 50kN; reference location: Fraunhofer IWS, with data conversion, without metadata extraction ;LowTemp
+* File Format: *.txt
+* Data Type: Cyclic Voltammetry
+* Data Class: XYPOINTS
+* X Unit: 2Theta, X Value: Table#0, Column#5
+* Y Unit: Intensity, Y Value: Table#0, Column#3*1e6
+* Profile id: 6d344bc4-c4fb-4306-9d56-1e754e7e0590
+* Reader: CSVReader
 
 
 ### <a name="5b206281"></a> Profile: Mass spectrometry from general xy format
