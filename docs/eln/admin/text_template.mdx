@@ -7,17 +7,24 @@ import { Btn } from "@site/src/js/btn.js";
 
 Throughout the ELN, users work with text editors in many different contexts.
 Text template are meant to help users with writing by providing ready-made paragraphs that can be inserted in any text editor.
-Users can insert a template by clicking on the corresponding icon on top of the text editors.
+Users can insert a predefined text block by clicking on the corresponding icon on top of the text editors.
+For the text-editor of an Analysis section, or a Reaction-description, this Menu-bar can be customized by the user.
+The available text templates the user can chose from are managed by the Admin as described here.
+
 
 Click on `Text Templates` in the sidebar of the administrator interface in order to
 open an editor that lets you configure custom text template:
 
 ![text_template_editor](/img/admin_ui/text_template_editor.png)
 
-Click on the <Btn mixed={[faPlus]} color={"primary"}/> button to generate a new `text template`.
-You can then configure an icon ([Font Awesome](https://fontawesome.com/),[Bootstrap glyphicons](https://getbootstrap.com/docs/3.3/components/) or internal chemotion eln icons), a `Text` , as well as a the paragraph that's meant to appear as a template in the users' text editors.
+Click on the <Btn mixed={[faPlus]} color={"primary"}/> button to generate a new `text template` and name it appropriately.
+Then set the icon (from [Font Awesome](https://fontawesome.com/v4/icons/),[Bootstrap glyphicons](https://getbootstrap.com/docs/3.3/components/) or internal chemotion eln icon libraries), the `Text` title, and the paragraph that is meant to be added to the users' text.
 
-The icon will appear in the header of the editor, the text entry in a user definable dropdown menu.
+Icon examples:
+- a thermoter icon: "fa fa-thermometer-quarter"
+- an asterisk: "glyphicon glyphicon-asterisk"
+
+The icon will appear if the entry is added directly in the header of the editor, the text, when the entry is added in a user-defined dropdown menu.
 
 ![text_template_edited](/img/admin_ui/text_template_edited.png)
 
