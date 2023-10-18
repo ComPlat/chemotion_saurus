@@ -61,6 +61,7 @@ Material testing, Inspect Table 50kN; reference location: Fraunhofer IWS, with d
 ### <a name="5b206281"></a> Profile: Mass spectrometry from general xy format
 
 generic data table only; ref location: Uni Aachen, with data conversion, without metadata extraction
+* File Format: *.xy
 * Data Type: Mass Spectrum
 * Data Class: XYPOINTS
 * X Unit: m/z, X Value: Table#0, Column#0
@@ -71,8 +72,20 @@ generic data table only; ref location: Uni Aachen, with data conversion, without
 ### <a name="d9be2928"></a> Profile: Dynamic light scattering (DLS)
 
 Dynamic light scattering (DLS) data from txt, with data conversion, without metadata extraction
+* File Format: *.txt
 * Data Type: UV-VIS
 * Data Class: XYPOINTS
 * X Unit: NANOMETERS, X Value: Table#0, Column#0
-* Y Unit: Intensity, Y Value: Table#0, Column#$
+* Y Unit: Intensity, Y Value: Table#0, Column#2
 * Profile id: d9be2928-fd8e-4abe-bbe0-3e419330875f
+
+
+### <a name="5cb879d1"></a> Profile: Sorption-Desorption Measurement (AIF) from txt
+
+Sorption-Desorption Measurement (AIF) from txt, with data conversion, with metadata extraction
+* File Format: *.txt
+* Data Type: Sorption-Desorption Measurement
+* Data Class: XYPOINTS
+* X Unit: p/p0, X Value: Table#0, Column#0 : Table#0, Column#1
+* Y Unit: ml/g, Y Value: Table#0, Column#2
+* Profile id: 5cb879d1-2b3f-4778-8e06-1a198500c8db
