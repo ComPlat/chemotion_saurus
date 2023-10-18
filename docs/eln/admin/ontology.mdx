@@ -1,0 +1,41 @@
+---
+title: Ontology
+author: Claire Lin
+---
+
+# Ontology Administration
+
+To accommodate the diverse needs of different applications, we have introduced the "Load OLS Terms" feature, empowering system administrators to enable or disable ontology terminology within the system.
+
+![ontology_admin](/img/ontology/ontology_admin.png)
+
+## Usage
+
+When the instance is installed, the "CHMO" and "RXNO" ontologies are installed by default. To customize the ontology terms in the system, follow these steps:
+
+Note: The system administrator can use "Import OLS Terms" to get the complete and refresh installation from the EMBL-EBI file.
+
+### 1. Select OLS Terms
+
+By clicking the "OLS Terms" option, you can access a dropdown that lists the existing Ontology Terms in the system. After selecting the desired Ontology Terms, the system will automatically load the corresponding terms.
+
+<video controls height={"80%"} width={"80%"}>
+  <source
+    src={require("@site/static/img/ontology/switch_ontology.webm").default}
+  />
+</video>
+
+### 2. Switch Mode
+
+The system provides two modes for system administrators to use: "Check Strictly" and "Associated." In "Check Strictly" mode, the system administrator can select a single Ontology Term. In "Associated" mode, the system administrator can choose the Ontology Term, and its associated data will be selected automatically.
+
+
+<video controls height={"80%"} width={"80%"}>
+  <source
+    src={require("@site/static/img/ontology/switch_mode.webm").default}
+  />
+</video>
+
+### 3. Save
+
+After selecting the desired Ontology Terms, click the "Save" button to save the changes and restart the application.
