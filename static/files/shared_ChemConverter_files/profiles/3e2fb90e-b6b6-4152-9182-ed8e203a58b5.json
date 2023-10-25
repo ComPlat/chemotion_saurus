@@ -1,0 +1,380 @@
+{
+  "data": {
+    "metadata": {
+      "content_type": "text/csv",
+      "delimiter": "semicolon",
+      "doublequote": "False",
+      "extension": ".csv",
+      "file_name": "ExpDat_SCH-179-3.csv",
+      "lineterminator": "\\r\\n",
+      "mime_type": "text/plain",
+      "quotechar": "\"",
+      "quoting": "0",
+      "reader": "CSVReader",
+      "skipinitialspace": "False",
+      "uploaded": "2023-06-12T07:08:33.386592"
+    },
+    "tables": [
+      {
+        "columns": [
+          {
+            "key": "0",
+            "name": "Column #0 (##Temp./°C)"
+          },
+          {
+            "key": "1",
+            "name": "Column #1 (DSC/(mW/mg))"
+          }
+        ],
+        "header": [
+          "#EXPORTTYPE:                 ;DATA COMPARE               ",
+          "#FILE:                       ;SCH-179.ngb-sdg            ",
+          "#FORMAT:                     ;NETZSCH5                   ",
+          "#FTYPE:                      ;ANSI                       ",
+          "#IDENTITY:                   ;SCH                        ",
+          "#DECIMAL:                    ;COMMA                      ",
+          "#SEPARATOR:                  ;SEMICOLON                  ",
+          "#MTYPE:                      ;DSC                        ",
+          "#INSTRUMENT:                 ;NETZSCH DSC 214            ",
+          "#PROJECT:                    ;                           ",
+          "#DATE/TIME:                  ;20.09.2022 12:44:19 (UTC+2)",
+          "#CORR. FILE:                 ;                           ",
+          "#TEMPCAL:                    ;02-09-2022 07:23           ",
+          "#SENSITIVITY:                ;01-09-2022 19:10           ",
+          "#LABORATORY:                 ;                           ",
+          "#OPERATOR:                   ;                           ",
+          "#REMARK:                     ;                           ",
+          "#SAMPLE:                     ;SCH-179                    ",
+          "#SAMPLE MASS /mg:            ;5,21                       ",
+          "#MATERIAL:                   ;                           ",
+          "#REFERENCE:                  ;-----                      ",
+          "#REFERENCE MASS /mg:         ;0                          ",
+          "#TYPE OF CRUCIBLE:           ;Concavus Al, pierced lid   ",
+          "#SAMPLE CRUCIBLE MASS /mg:   ;0                          ",
+          "#REFERENCE CRUCIBLE MASS /mg:;51,142                     ",
+          "#PURGE 2 MFC:                ;NITROGEN,250,0 ml/min      ",
+          "#PROTECTIVE MFC:             ;NITROGEN,250,0 ml/min      ",
+          "#M.RANGE /µV:                ;5000                       ",
+          "#TAU-R:                      ;---                        ",
+          "#CORR. CODE:                 ;000                        ",
+          "#EXO:                        ;+1                         ",
+          "#RANGE:                      ;-50°C/10,0(K/min)/100°C    ",
+          "#SEGMENT:                    ;S3/3                       ",
+          "#SEG. 3:                     ;-50°C/10,0(K/min)/100°C    ",
+          ""
+        ],
+        "metadata": {
+          "column_00": "##Temp./°C",
+          "column_01": "DSC/(mW/mg)",
+          "columns": "2",
+          "rows": "151"
+        },
+        "rows": [
+          [
+            "-50.41463",
+            "      0,18933"
+          ],
+          [
+            "-49.41463",
+            "      0,17147"
+          ],
+          [
+            "-48.41463",
+            " 7,571247e-02"
+          ],
+          [
+            "-47.41463",
+            "-1.991063e-02"
+          ],
+          [
+            "-46.41463",
+            "     -0,10555"
+          ],
+          [
+            "-45.41463",
+            "     -0,17119"
+          ],
+          [
+            "-44.41463",
+            "     -0,20034"
+          ],
+          [
+            "-43.41463",
+            "     -0,17517"
+          ],
+          [
+            "-42.41463",
+            "     -0,13197"
+          ],
+          [
+            "-41.41463",
+            "     -0,11781"
+          ]
+        ]
+      },
+      {
+        "columns": [],
+        "header": [
+          ""
+        ],
+        "metadata": {
+          "columns": "0",
+          "rows": "0"
+        },
+        "rows": []
+      }
+    ]
+  },
+  "description": "differential scanning calorimetry",
+  "id": "3e2fb90e-b6b6-4152-9182-ed8e203a58b5",
+  "identifiers": [
+    {
+      "key": "reader",
+      "match": "exact",
+      "optional": false,
+      "type": "fileMetadata",
+      "value": "CSVReader"
+    },
+    {
+      "key": "column_01",
+      "match": "exact",
+      "optional": false,
+      "tableIndex": 0,
+      "type": "tableMetadata",
+      "value": "DSC/(mW/mg)"
+    },
+    {
+      "key": "column_00",
+      "match": "exact",
+      "optional": false,
+      "tableIndex": 0,
+      "type": "tableMetadata",
+      "value": "##Temp./°C"
+    },
+    {
+      "lineNumber": 1,
+      "match": "exact",
+      "optional": false,
+      "tableIndex": 0,
+      "type": "tableHeader",
+      "value": "#EXPORTTYPE:                 ;DATA COMPARE"
+    },
+    {
+      "lineNumber": 18,
+      "match": "regex",
+      "optional": true,
+      "outputKey": "sample",
+      "outputLayer": "sample_details",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableHeader",
+      "value": "#SAMPLE:\\s+;(\\S+)"
+    },
+    {
+      "lineNumber": "",
+      "match": "regex",
+      "optional": true,
+      "outputKey": "amount",
+      "outputLayer": "sample_details",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableHeader",
+      "value": "#SAMPLE MASS \\/mg:\\s+;(\\S+)"
+    },
+    {
+      "lineNumber": "",
+      "match": "regex",
+      "optional": true,
+      "outputKey": "date",
+      "outputLayer": "general",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableHeader",
+      "value": "#DATE\\/TIME:\\s+;(\\d+.\\d+.\\d+)"
+    },
+    {
+      "lineNumber": "",
+      "match": "regex",
+      "optional": true,
+      "outputKey": "time",
+      "outputLayer": "general",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableHeader",
+      "value": "#DATE\\/TIME:\\s+;\\S+\\s(\\d+:\\d+:\\d+\\s\\S+)"
+    },
+    {
+      "lineNumber": "",
+      "match": "regex",
+      "optional": true,
+      "outputKey": "reference",
+      "outputLayer": "meas",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableHeader",
+      "value": "#REFERENCE:\\s+;(\\S+)"
+    },
+    {
+      "lineNumber": "",
+      "match": "regex",
+      "operations": [
+        {
+          "operator": ":",
+          "value": "1000"
+        }
+      ],
+      "optional": true,
+      "outputKey": "reference_mass",
+      "outputLayer": "meas",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableHeader",
+      "value": "REFERENCE MASS /mg:\\s+;(\\d+)"
+    },
+    {
+      "lineNumber": "",
+      "match": "regex",
+      "optional": true,
+      "outputKey": "temp_cal",
+      "outputLayer": "meas",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableHeader",
+      "value": "#TEMPCAL:\\s+;(\\S+)"
+    },
+    {
+      "lineNumber": "",
+      "match": "regex",
+      "optional": true,
+      "outputKey": "sensFile",
+      "outputLayer": "meas",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableHeader",
+      "value": "#SENSITIVITY:\\s+;(\\S+)"
+    },
+    {
+      "lineNumber": "",
+      "match": "regex",
+      "optional": true,
+      "outputKey": "segments",
+      "outputLayer": "meas",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableHeader",
+      "value": "#SEGMENT:\\s+;S(\\d*\\/\\d*)"
+    },
+    {
+      "lineNumber": "",
+      "match": "regex",
+      "optional": true,
+      "outputKey": "brand",
+      "outputLayer": "instrument",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableHeader",
+      "value": "#INSTRUMENT:\\s+;(\\S+)\\s"
+    },
+    {
+      "lineNumber": "",
+      "match": "regex",
+      "optional": true,
+      "outputKey": "instrument",
+      "outputLayer": "instrument",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableHeader",
+      "value": "#INSTRUMENT:\\s+;\\S+\\s(\\S+\\s\\d+)"
+    },
+    {
+      "lineNumber": "",
+      "match": "regex",
+      "optional": true,
+      "outputKey": "crucible",
+      "outputLayer": "set",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableHeader",
+      "value": "#TYPE OF CRUCIBLE:\\s+;(.*)"
+    },
+    {
+      "lineNumber": "",
+      "match": "regex",
+      "optional": true,
+      "outputKey": "atmosphere",
+      "outputLayer": "set",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableHeader",
+      "value": "#PROTECTIVE MFC:\\s+;(.*)"
+    },
+    {
+      "lineNumber": "",
+      "match": "regex",
+      "operations": [
+        {
+          "operator": ":",
+          "value": "1000"
+        }
+      ],
+      "optional": true,
+      "outputKey": "range",
+      "outputLayer": "set",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableHeader",
+      "value": "#M.RANGE /µV:\\s+;(\\d*)"
+    },
+    {
+      "lineNumber": "",
+      "match": "regex",
+      "optional": true,
+      "outputKey": "temperature",
+      "outputLayer": "set",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableHeader",
+      "value": "#RANGE:\\s+;(.*)"
+    },
+    {
+      "lineNumber": "",
+      "match": "regex",
+      "optional": true,
+      "outputKey": "operator",
+      "outputLayer": "general",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableHeader",
+      "value": "#IDENTITY:\\s+;(\\S{2,3})"
+    },
+    {
+      "key": "extension",
+      "match": "exact",
+      "optional": false,
+      "type": "fileMetadata",
+      "value": ".csv"
+    }
+  ],
+  "ols": "CHMO:0000684",
+  "tables": [
+    {
+      "header": {
+        "DATA CLASS": "XYPOINTS",
+        "DATA TYPE": "THERMOGRAVIMETRIC ANALYSIS",
+        "XUNITS": "DEGREES CELSIUS",
+        "YUNITS": "W/g"
+      },
+      "table": {
+        "xColumn": {
+          "columnIndex": 0,
+          "tableIndex": 0
+        },
+        "yColumn": {
+          "columnIndex": 1,
+          "tableIndex": 0
+        }
+      }
+    }
+  ],
+  "title": "DSC without time"
+}
