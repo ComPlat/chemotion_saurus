@@ -142,11 +142,12 @@ ACF graphs from xlsx, with data conversion, without metadata extraction
 
 Size Exclusion Chromatography (SEC) with one Detector Output; reference location: KIT, with data conversion, with metadata extraction
 
+| Output Tables      | Data Type                     | Data Class | X Unit     | X Value           | Y Unit         | Y Value           |
+|--------------------|-------------------------------|------------|------------|-------------------|----------------|-------------------|
+| **Output table 0** | Size Exclusion Chromatography | XYPOINTS   | MILILITERS | Table#6, Column#0 | ARBITARY UNITS | Table#6, Column#2 |
+| **Output table 1** | Size Exclusion Chromatography | XYPOINTS   | G/MOL      | Table#7, Column#0 | ARBITARY UNITS | Table#7, Column#1 |
+
 * File Format: *.txt
-* Data Type: Size Exclusion Chromatography
-* Data Class: XYPOINTS
-* X Unit: G/MOL, X Value: Table#7, Column#0
-* Y Unit: ARBITARY UNITS, Y Value: Table#7, Column#1
 * Profile id: 44f5bfbb-ae1f-4da0-b43b-0d33b649c24a
 * Reader: SecReader
 * [Download Link](https://raw.githubusercontent.com/ComPlat/chemotion_saurus/main/static/files/shared_ChemConverter_files/profiles/44f5bfbb-ae1f-4da0-b43b-0d33b649c24a.json)
@@ -155,11 +156,14 @@ Size Exclusion Chromatography (SEC) with one Detector Output; reference location
 
 Size Exclusion Chromatography (SEC) with two Detector Outputs; reference location: KIT, with data conversion, with metadata extraction
 
+| Output Tables      | Data Type                     | Data Class | X Unit     | X Value           | Y Unit         | Y Value           |
+|--------------------|-------------------------------|------------|------------|-------------------|----------------|-------------------|
+| **Output table 0** | Size Exclusion Chromatography | XYPOINTS   | G/MOL      | Table#7, Column#0 | ARBITARY UNITS | Table#7, Column#1 |
+| **Output table 1** | Size Exclusion Chromatography | XYPOINTS   | G/MOL      | Table#7, Column#0 | ARBITARY UNITS | Table#7, Column#3 |
+| **Output table 2** | Size Exclusion Chromatography | XYPOINTS   | MILILITERS | Table#6, Column#0 | ARBITARY UNITS | Table#6, Column#2 |
+| **Output table 3** | Size Exclusion Chromatography | XYPOINTS   | MILILITERS | Table#6, Column#0 | ARBITARY UNITS | Table#6, Column#4 |
+
 * File Format: *.txt
-* Data Type: Size Exclusion Chromatography
-* Data Class: XYPOINTS
-* X Unit: G/MOL, X Value: Table#7, Column#0
-* Y Unit: ARBITARY UNITS, Y Value: Table#7, Column#1
 * Profile id: 71883827-4472-48d8-becf-64ea89324f3e
 * Reader: SecReader
 * [Download Link](https://raw.githubusercontent.com/ComPlat/chemotion_saurus/main/static/files/shared_ChemConverter_files/profiles/71883827-4472-48d8-becf-64ea89324f3e.json)
@@ -177,22 +181,9 @@ INFRARED SPECTRUM (IR); reference location: KIT, with data conversion, without m
 * Reader: CSVReader
 * [Download Link](https://raw.githubusercontent.com/ComPlat/chemotion_saurus/main/static/files/shared_ChemConverter_files/profiles/0cd6596c-83d2-49ab-a982-1dfec98d16ba.json)
 
-### Profile: TGA (Thermogravimetric Analysis) {#e7a4ee04}
-
-TGA (Thermogravimetric Analysis) with Isothermal; reference location: KIT, with data conversion, with metadata extraction
-
-* File Format: *.xls
-* Data Type: THERMOGRAVIMETRIC ANALYSIS
-* Data Class: XYPOINTS
-* X Unit: DEGREE CELCIUS, X Value: Table#2, Column#1
-* Y Unit: Weight %, Y Value: Table#2, Column#3
-* Profile id: e7a4ee04-cdf6-4da6-a82c-ba6909af6cee
-* Reader: OldExcelReader
-* [Download Link](https://raw.githubusercontent.com/ComPlat/chemotion_saurus/main/static/files/shared_ChemConverter_files/profiles/e7a4ee04-cdf6-4da6-a82c-ba6909af6cee.json)
-
 ### Profile: TGA (Thermogravimetric Analysis) without Isothermal {#fb63e718}
 
-TGA (Thermogravimetric Analysis) without Isothermal; reference location: KIT, with data conversion, with metadata extraction
+TGA (Thermogravimetric Analysis) without Isothermal; basic one, only the ramp; reference location: KIT, with data conversion, with metadata extraction
 
 * File Format: *.xls
 * Data Type: THERMOGRAVIMETRIC ANALYSIS
@@ -203,15 +194,31 @@ TGA (Thermogravimetric Analysis) without Isothermal; reference location: KIT, wi
 * Reader: OldExcelReader
 * [Download Link](https://raw.githubusercontent.com/ComPlat/chemotion_saurus/main/static/files/shared_ChemConverter_files/profiles/fb63e718-3842-4d45-9b39-84a53b27e483.json)
 
+### Profile: TGA (Thermogravimetric Analysis) {#e7a4ee04}
+
+TGA (Thermogravimetric Analysis) with Isothermal; reference location: KIT, with data conversion, with metadata extraction
+
+| Output Tables      | Data Type                  | Data Class | X Unit         | X Value           | Y Unit   | Y Value           |
+|--------------------|----------------------------|------------|----------------|-------------------|----------|-------------------|
+| **Output table 0** | THERMOGRAVIMETRIC ANALYSIS | XYPOINTS   | DEGREE CELCIUS | Table#2, Column#1 | Weight % | Table#2, Column#3 |
+| **Output table 1** | THERMOGRAVIMETRIC ANALYSIS | XYPOINTS   | DEGREE CELCIUS | Table#1, Column#1 | Weight % | Table#1, Column#3 |
+
+* File Format: *.xls
+* Profile id: e7a4ee04-cdf6-4da6-a82c-ba6909af6cee
+* Reader: OldExcelReader
+* [Download Link](https://raw.githubusercontent.com/ComPlat/chemotion_saurus/main/static/files/shared_ChemConverter_files/profiles/e7a4ee04-cdf6-4da6-a82c-ba6909af6cee.json)
+
+
 ### Profile: TGA (Thermogravimetric Analysis) with derivative {#e845bc85}
 
 TGA (Thermogravimetric Analysis) with Isothermal and Derivative; reference location: KIT, with data conversion, with metadata extraction
 
+| Output Tables      | Data Type                  | Data Class | X Unit         | X Value           | Y Unit                   | Y Value           |
+|--------------------|----------------------------|------------|----------------|-------------------|--------------------------|-------------------|
+| **Output table 0** | THERMOGRAVIMETRIC ANALYSIS | XYPOINTS   | DEGREE CELCIUS | Table#2, Column#1 | Weight %                 | Table#2, Column#3 |
+| **Output table 1** | THERMOGRAVIMETRIC ANALYSIS | XYPOINTS   | DEGREE CELCIUS | Table#2, Column#1 | DERIVATIVE WEIGHT (%/°C) | Table#2, Column#4 |
+
 * File Format: *.xls
-* Data Type: THERMOGRAVIMETRIC ANALYSIS
-* Data Class: XYPOINTS
-* X Unit: DEGREE CELCIUS, X Value: Table#2, Column#1
-* Y Unit: Weight %, Y Value: Table#2, Column#3
 * Profile id: e845bc85-07b9-4e21-8bdf-4daa4a74fa15
 * Reader: OldExcelReader
 * [Download Link](https://raw.githubusercontent.com/ComPlat/chemotion_saurus/main/static/files/shared_ChemConverter_files/profiles/e845bc85-07b9-4e21-8bdf-4daa4a74fa15.json)
@@ -231,7 +238,7 @@ DSC (Differential Scanning Calorimetry) with time; reference location: KIT, with
 
 ### Profile: DSC (Differential Scanning Calorimetry) without Time {#3e2fb90e}
 
-DSC (Differential Scanning Calorimetry) with time; reference location: KIT, with data conversion, with metadata extraction
+DSC (Differential Scanning Calorimetry) without time; reference location: KIT, with data conversion, with metadata extraction
 
 * File Format: *.csv
 * Data Type: THERMOGRAVIMETRIC ANALYSIS
@@ -244,7 +251,7 @@ DSC (Differential Scanning Calorimetry) with time; reference location: KIT, with
 
 ### Profile: UV-VIS Spectrum from txt {#c7e3130f}
 
-UV VIS from txt, with data conversion, with metadata extraction
+UV/VIS from txt; reference location: KIT, Campus West, with data conversion, with metadata extraction
 
 * File Format: *.txt
 * Data Type: UV-VIS
@@ -255,15 +262,33 @@ UV VIS from txt, with data conversion, with metadata extraction
 * Reader: CSVReader
 * [Download Link](https://raw.githubusercontent.com/ComPlat/chemotion_saurus/main/static/files/shared_ChemConverter_files/profiles/c7e3130f-6c23-432a-a886-a82d11632da2.json)
 
+### Profile: UV-VIS Spectrum from csv file {#d8e6bf8f}
+
+UV/VIS with multicolumn (4) file with no header, csv file with 4 spectra in one file; reference location: KIT, Campus South, with data conversion, with metadata extraction
+
+| Output Tables      | Data Type | Data Class | X Unit          | X Value           | Y Unit     | Y Value           |
+|--------------------|-----------|------------|-----------------|-------------------|------------|-------------------|
+| **Output table 0** | UV-VIS    | XYPOINTS   | wavelength (nm) | Table#0, Column#0 | ABSORBANCE | Table#0, Column#1 |
+| **Output table 1** | UV-VIS    | XYPOINTS   | wavelength (nm) | Table#0, Column#2 | ABSORBANCE | Table#0, Column#3 |
+| **Output table 2** | UV-VIS    | XYPOINTS   | wavelength (nm) | Table#0, Column#4 | ABSORBANCE | Table#0, Column#5 |
+| **Output table 3** | UV-VIS    | XYPOINTS   | wavelength (nm) | Table#0, Column#6 | ABSORBANCE | Table#0, Column#7 |
+
+* File Format: *.csv
+* Data Type: UV-VIS
+* Profile id: d8e6bf8f-6de1-4743-9513-04cbd0c6c712
+* Reader: CSVReader
+* [Download Link](https://raw.githubusercontent.com/ComPlat/chemotion_saurus/main/static/files/shared_ChemConverter_files/profiles/15400217-b730-47db-9d5c-a300bce7ae95.json)
+
 ### Profile: UV-VIS Spectrum from XLSX file {#15400217}
 
 UV VIS with multicolumn (2) XLSX file with header at the end, with data conversion, with metadata extraction
 
+| Output Tables      | Data Type | Data Class | X Unit          | X Value           | Y Unit     | Y Value           |
+|--------------------|-----------|------------|-----------------|-------------------|------------|-------------------|
+| **Output table 0** | UV-VIS    | XYPOINTS   | wavelength (nm) | Table#0, Column#0 | ABSORBANCE | Table#0, Column#1 |
+| **Output table 1** | UV-VIS    | XYPOINTS   | wavelength (nm) | Table#0, Column#2 | ABSORBANCE | Table#0, Column#3 |
+
 * File Format: *.xlsx
-* Data Type: UV-VIS
-* Data Class: XYPOINTS
-* X Unit: wavelength (nm), X Value: Table#0, Column#0
-* Y Unit: ABSORBANCE, Y Value: Table#0, Column#1
 * Profile id: 15400217-b730-47db-9d5c-a300bce7ae95
 * Reader: ExcelReader
 * [Download Link](https://raw.githubusercontent.com/ComPlat/chemotion_saurus/main/static/files/shared_ChemConverter_files/profiles/15400217-b730-47db-9d5c-a300bce7ae95.json)
