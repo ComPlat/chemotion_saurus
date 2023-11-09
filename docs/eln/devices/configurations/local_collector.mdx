@@ -1,0 +1,108 @@
+---
+title: Local collectors in docker containers
+---
+
+The ELN allows data to be collected automatically from an folder using the data-collector feature. This is useful for
+sharing files between e.g. an instrument and the ELN. On the instrument side, the (analyses, result etc.) files can be
+put in a (networked shared) folder. On the ELN side, we can monitor this folder for any changes and import files from
+the instrument directly into the ELN.
+
+## Configuration outside Chemotion ELN
+
+Once the computer that is running the Chemotion ELN (docker container) has access to the shared folder, this folder can
+then be mounted into the Chemotion ELN’s containers. To do so:
+
+- Mount the shared folder in the containers using the `docker-compose.yml` file by adding the folder as a volume in the
+keys `services.eln.volumes` and `services.worker.volumes`. In case you are using ChemCLI, make the changes in the
+`docker-compose.cli.yml` file.
+
+- Once added, the `docker-compose(.cli).yml` file could similar to the following:
+
+```
+services:
+  eln:
+    image: ...
+     ...
+    volumes:
+      - ...
+      - /path/to/folder/with/data:/chemotion/datacollector/instrument-name
+
+  worker:
+    image: ...
+     ...
+    volumes:
+      - ...
+      - /path/to/folder/with/data:/chemotion/datacollector/instrument-name
+
+```
+
+- We then will add this path to the config/datacollector.yml file which is located on the host in
+`(instances/<instance-name>)/shared/pullin/config/datacollector.yml` as shown below. One has to create a new
+config/datacollector.yml file if it does not exist.
+
+  Note that, you can input multiple paths i.e. mount different
+  instruments. For example, the second commented line here mounts the folder `/tmp/datacollector` which can point to some
+  other instrument.
+
+```
+:localcollectors:
+  - :path: '/chemotion/datacollector'
+# - :path: '<%= Rails.root.join(*%w[tmp datacollector]).to_s %>'
+```
+
+- The ELN needs to be restarted once these changes have been made.
+For more information, for example, configuring the frequency for collecting the files, please check
+[Data collector settings](https://www.chemotion.net/docs/eln/install_configure/configuration#data-collector-settings)
+
+## Configurations in Chemotion ELN: Admin Panel
+
+We have to navigate to _Groups & Devices_ in the admin panel and create a new device instance. It will register the device
+information to the database of the Chemotion ELN.
+
+![collector_configuration_1](/img/collector_configuration1.png)
+
+### File Collector
+
+Along with that a data collector profile will be automatically generated. For the local collectors, we only need to
+specify the following,
+  - Watch Method (_filewatcherlocal/folderwatcherlocal_)
+  - Watch Directory - Specify the directory created inside the locally mounted folder. Here CV-data, for example, has
+  been created within the mounted folder, datacollector
+
+In this case we will configure the watch method as `filewatcherlocal` as we intend to collect files from the
+specified Watch Directory.
+
+![collector_configuration_1](/img/collector_configuration2.png)
+
+As the next step, files from the `./datacollector/CV-data` will now keep being collected by the collector in the
+Chemotion ELN. We have to make sure that the name of the files start with the name abbreviation (Kürzel) of a specific
+user. The file will reach the inbox of that particular user. In case the name abbreviation is not valid, then the file
+will be discarded.
+
+:::info
+
+Please take care that you communicate [name conventions](https://www.chemotion.net/docs/eln/devices#name-conventions)
+to all users of the Chemotion ELN.
+
+:::
+
+:::danger
+
+The directories watched by the collector service will be emptied at each collection i. e. all files within the watched
+directories will be removed.
+
+:::
+
+### Folder Collector
+
+All the configurations are more or less the same as in the File Collector. Here we will need to configure the Watch
+Method as `folderwatcherlocal`.
+
+![collector_configuration_1](/img/collector_configuration3.png)
+
+Here is a new input to consider, i.e. `Number of files`. As mentioned in the info text in the Chemotion ELN, if the
+folders to be collected may contain a variable number of files, then we have to set it to 0. Otherwise if the number of
+files within the collectable folder is known, we can set it as that.
+
+Here also we have to make sure that the name of the folder to be collected has to start with the name abbreviation
+(Kürzel) of a specific user.
