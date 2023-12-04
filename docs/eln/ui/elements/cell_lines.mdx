@@ -4,27 +4,119 @@ sidebar_position: 4
 ---
 
 ## Meaning
-A cell line is a general term defining specific population of cells that can maintain in vitro culture for an extended period of time, and is usually clonal meaning that the entire population originated from a single, common, ancestor cell. [link to source]
+A cell line is a general term defining specific population of cells that can maintain in vitro culture for an extended period of time, and is usually clonal meaning that the entire population originated from a single, common, ancestor cell. <sup>1</sup>
 
 ## Model
-A cell line object in chemotion eln is divided into a conceptual and a physical part. The conceptual part describes general information like the name of the cell line, the origin or the source origanism. The physical part describes a concrete realization of the conceptual part and can be seen as a real object with properties like number, location or current passage. Multiple physical objects can share the same conceptual part.
-[hier Bild des Modells]
+A cell line object in chemotion eln is divided into a conceptual and a physical part. The conceptual part describes general information like the name of the cell line, the origin or the source organism. The physical part describes a concrete realization of the conceptual part and can be seen as a real object with properties like number, location or current passage. Multiple physical objects can share the same conceptual part.
 ## Representation in ELN
 Cell lines are represented and treated analogously to other elements (Sample, Reaction, ... )
 ### Tabular form
-[hier Bild der Tabellen form]
+<img
+  src={require("@site/static/img/user_interface/elements/cell_lines/20231204_cell_line_table_form.png").default}
+  alt={"Cell lines in table form"}
+/>
+
+1. Group of cell line samples of a cell line concept. It is uniquely identified by the cell line
+name and the source. Additional information can be made visible or hidden by toggling button
+<img
+  src={require("@site/static/img/user_interface/elements/cell_lines/20231204_cell_line_info_button.png").default}
+  alt={"Cell lines in table form"}
+/>
+2. Button to create a sample of the current cell line concept. All properties of the current concept are filled in automatically.
+3. Button to hide or show additional information 
+4. Button to show or hide elements of the group
+
+All other buttons or functionalities (such as the time restriction of the cell lines, visibility/position of the element tab) function in the same way as the other elements of the ELN
+
 
 ### Detailed view
-[hier Bild der Details form]
+#### Properties tab
+<img
+  src={require("@site/static/img/user_interface/elements/cell_lines/20231204_cell_line_details_1.png").default}
+  alt={"Common properties"}
+/>
 
-Properties Tab beschreiben -> Tabellenform der Eigenschaften samot erklärung
-Analyse Tab -> hier eingehen auf neue Ontology
-References Tab -> hier eingehen aif Link zum Material
+The properties tab describes the properties of the conceptual area of the cell lines (common properties) and the properties of the physical area (item specific properties).
 
-## Erstellung von Zell linien
+The following properties can be defined in the common properties area:
+
+|property name |description                         |optional|
+|-----|--|---|
+|cell line name|the name of the cell line           |no      |
+|source        |the source of the original cell line|no      |
+|disease        |Disease which is present in the cells|yes      |
+|organism|Donor organism of the cells|yes|
+|tissue|tissue from what the cells are extracted|yes|
+|growth medium||yes|
+|mutation|any known mutation of the cell line|yes|
+|variant|any variant of the cell line|yes|
+|biosafety level|the biosafety level of the cells|no|
+|cryopreservation medium||yes|
+|opt. growth temperature|in degrees celcius|yes|
+|gender|gender of the donor organism|yes|
+|cell type|type of the cell|yes|
+|description|any aditional information|yes|
+
+When selecting the name of the cell lines, the user is supported by a preselection of existing cell lines. It is also possible to create new cell line names.
+<img
+  src={require("@site/static/img/user_interface/elements/cell_lines/20231204_cell_line_details_2.png").default}
+  alt={"Item specific properties"}
+/>
+
+The following properties can be defined in the item specific properties area:
+
+property name |description                         |optional|
+|-----|--|---|
+|amount|numerical or scientific notation|yes      |
+|unit|predefined or custom unit of amount|yes      |
+|contamination        |any known contamination of cell line sample|yes      |
+|name of specific probe|can be used to identify specific probes|yes      |
+|description|any aditional information|yes|
+
+The represantation of the amount can be switched with <img
+  src={require("@site/static/img/user_interface/elements/cell_lines/20231204_cell_line_details_button.png").default}
+  alt={"Item specific properties"}
+/>
+
+#### Analyses tab
+The analysis tab works in exactly the same way as for other elements, with one exception. Instead of the Chemical Methods Ontology for the method, terms from the BioAssayOntology are used.<sup>2</sup>
+
+#### References tab
+
+<img
+  src={require("@site/static/img/user_interface/elements/cell_lines/20231204_cell_line_details_details_references.png").default}
+  alt={"Item specific properties"}
+/>
+
+Instead of the literature categories (cited own work, cited reference and referring to) the user can add the literature to the categories **official literature** and **additional literature**. 
+The references are linked to the conceptual part of the cell line instead to the physical sample.
+
+## Creation of cell line samples
+Cell lines can be generated in several ways:
+
+1. By selecting a collection, a new cell line can be created in this collection using the button in the top menu
+
+2. The button <img
+  src={require("@site/static/img/user_interface/elements/cell_lines/20231204_cell_line_create_button.png").default}
+  alt={"Item specific properties"}
+/> can be used to create a new sample for an existing cell line. To do this, the collection of the cell line sample must be active.
+
+3. By importing a collection with cell lines, cell line samples can be created.
 
 ## Import/Export
 
-## Suche
+Collections with cell lines can be exported and imported as with other elements
+## Search
 
-## Features to come
+Cell lines can be searched for and found using the basic search. The following properties are taken into account in the search: name of the cell line and the specific name of the sample
+
+<img
+  src={require("@site/static/img/user_interface/elements/cell_lines/20230206_cell_line_search.png").default}
+  alt={"Item specific properties"}
+/>
+
+## Sources
+
+[1] Young, M. (2019). Comprehensive Biotechnology (3rd edition)
+
+[2] http://bioassayontology.org/bioassayontology/
