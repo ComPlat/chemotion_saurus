@@ -206,32 +206,45 @@ For each registered Device, a collection job can be set up through the administr
 
 ## Structure editor
 
-Chemotion ELN uses Ketcher as the default structure editor. To use other editors, configure the required files and the license (if needed) in the `structure_editors.yml` file. After editing the `structure_editors.yml` the service needs to be restarted.
+The default structure editor for Chemotion ELN is Ketcher, specifically version v1, seamlessly integrated through the ketcher-rails project; therefore, no additional configuration is needed.
+If you wish to utilize other supported structure editors, such as Ketcher v2, ChemDraw, or Marvin JS, additional configuration is required. In such cases, you'll need to adjust the necessary files and, potentially, provide a license. Please be aware that any modifications to the `structure_editors.yml` file will necessitate a service restart for the changes to take effect.
 
-The `structure_editors.yml` configuration file is in the `config` folder. To create the file for the first time,
+The `structure_editors.yml` configuration file is located in the `config` folder. To configure other structure editors, follow these steps:
 
+1. Navigate to the application directory (/var/www/chemotion_ELN/current).
 ```sh
-# from the application dir (/var/www/chemotion_ELN/current) copy the config file
+cd /var/www/chemotion_ELN/current
+```
+
+2. Copy the example configuration file to create a new one if the file doesn't exist yet.
+```sh
 cp config/structure_editors.yml.example config/structure_editors.yml
+```
 
-# edit it
-vim config/structure_editors.yml
+3. Open the file and edit it. Make the necessary edits, followed by [Complete structure_editors.yml example](#complete-structure_editorsyml-example).
 
-# restart the application (assuming Passenger is being used)
+4. Restart the application (assuming Passenger is being used)
+```sh
 touch tmp/restart.txt
+```
 
-# keep the configuration for future Chemotion ELN updates (assuming Capistrano is used)
+5. Keep the configuration for future Chemotion ELN updates (assuming Capistrano is used)
+```sh
 mv config/structure_editors.yml /var/www/chemotion_ELN/shared/config/structure_editors.yml
 ln -s  /var/www/chemotion_ELN/shared/config/structure_editors.yml /var/www/chemotion_ELN/current/config/structure_editors.yml
 ```
 
-### Currently supported editors
+### Supported editors
 
 | Name        | Version                                                                                     |
 | ----------- | ------------------------------------------------------------------------------------------- |
-| ChemDraw JS | 17, 20                                                                                      |
+| ChemDraw JS | 17+                                                                                         |
 | Ketcher 2   | [2.4](https://drive.google.com/drive/folders/1TZLEVyKs0Fhz8vmjOHK6Xii8MFfrifFI?usp=sharing) |
 | Marvin JS   | 21.8                                                                                        |
+
+### Complete structure_editors.yml example
+
+```yaml
 
 ```yaml
 ### example of structure_editors.yml
@@ -362,7 +375,7 @@ Chemotion ELN provides users with an easy way to query information in SciFinder<
 This is managed by the Chemotion team at KIT to facilitate the process.
 
 :::caution Important note
-At the moment, CAS offers a process for Chemotion users in Germany to request SciFinder access through the API. This is managed by the consortium HBZ. For all oher institutions not located in Germany: please let us know about your need to integrate the SciFinder API - we will try to clarify the options with CAS.  
+At the moment, CAS offers a process for Chemotion users in Germany to request SciFinder access through the API. This is managed by the consortium HBZ. For all oher institutions not located in Germany: please let us know about your need to integrate the SciFinder API - we will try to clarify the options with CAS.
 :::
 
 #### Instance Registration
