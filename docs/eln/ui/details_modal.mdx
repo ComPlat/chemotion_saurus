@@ -1,5 +1,5 @@
 ---
-title: Details Modal
+title: Details Panel
 sidebar_position: 5
 ---
 
@@ -27,27 +27,121 @@ import {
   faTimesCircle,
   faDownload,
   faSlidersH,
-  faClone
+  faClone,
+  faEdit,
 } from "@fortawesome/free-solid-svg-icons";
 import { Btn } from "@site/src/js/btn.js";
 
-The details modal or details window is opened by clicking on the desired element from element lists. It shows the information about the element that is stored or available through external databases such as PubChem. The modal/window can be set to full screen mode. Its frame is identified by two colors: dark blue and light blue. The color light blue means that changes have been made within the modal, but they have not been saved yet. If this is the case, a small save symbol also appears in the modal bar <Btn mixed={[faSave]} color={"warning"}/>. As soon as you have saved all the entered data, the frame color changes to dark blue and the symbol disappears. This can be observed in the animation below.
+The details panel or details window is opened by clicking on the desired element from element lists. It shows the information about the element that is stored or available through external databases such as PubChem. The panel/window can be set to full screen mode. Its frame is identified by two colors: dark blue and light blue. The color light blue means that changes have been made within the panel, but they have not been saved yet. If this is the case, a small save symbol also appears in the panel bar <Btn mixed={[faSave]} color={"warning"}/>. As soon as you have saved all the entered data, the frame color changes to dark blue and the symbol disappears. This can be observed in the animation below.
 
 ![Frame](/img/frame.gif)
 
-There are three different types of fields within the details modal:
+There are three different types of fields within the details panel:
 
 - Fields for freely entering either text or numbers. Example: sample's <b>Name</b> and <b>Description</b>.
 - Fields with predefined drop-down menus to pick from. Example: <b>Solvents</b>.
 - Fields with data made available from other databases and applications based on your structural input. Example: The calculation of the sum formula or the generation of the SMILES.
 
-Tabs were introduced to organize the information within the details modals. They enable information structuring and displaying as in folders. Different tabs are available based on the type of the element. Tabs can be made visible and invisible. This will become clear in the later chapters.
+Tabs were introduced to organize the information within the details panel. They enable information structuring and displaying as in folders. Different tabs are available based on the type of the element. Tabs can be made visible and invisible. This will become clear in the later chapters.
 
 Users can config their own tabs, these tabs can be hidden or shown in the user's preferred ordering. By clicking the small blue symbol <Btn mixed={[faSlidersH]} color={"info"}/> on the right of tabs, drag and drop the tab to change the ordering or into the dark block to hide the tab.
 
 ![Change_Tabs](/img/change_tabs.gif)
 
-## Details modal for samples
+There are some tabs which are common for multiple elements while some tabs are specific to each element.
+
+## Common tabs in Details panel
+
+### Analyses tab
+
+:::info
+Chemotion ELN uses **analyses**, **datasets** and **attachments** to structure analytical data. Please ensure that you use it in the intended manner (see description below).
+:::
+
+![Analyses](/img/analyses_tab.gif)
+
+The **Analyses** tab allows you to add analytics to the Chemotion ELN. You can enter experimental results (field **Content**) and upload associated files (see **Dataset**). The **Content** field supports the validation according to specific data types (data types are confirmed by the ontology terms). For 1H NMR and 13C NMR, the **Content** field is checked for the entered amount of 1H NMR or 13C NMR signals and compares the given number with the number of signals expected according to the amount of H- or C-atoms.
+
+:::info
+The content of 1H NMR and 13C NMR analyses is validated by screening the information on atoms given in brackets, e.g. 1.11 (s, 3H) -> 3Hs counted. Therefore it is important to add all carbons to the **Content**, e.g. 129.3 (s, 2C). Also, if signals are hidden or too broad to be detected or not detected due to H/D exchange, you may indicate this by adding a sentence as explanation: e.g. "Missing OH-signal due to H/D exchange (1H)". The information in brackets is also counted.
+:::
+
+For mass spectrometry, the expected molecular mass is used for a comparison with the data given in the **Content** of the analysis.
+
+A green checkmark indicates if the **Content** of the analysis matches the expected data (calculated from the molecular structure).
+
+#### 1H NMR analysis
+
+![1H Green Checkmark](/img/sample_analysis_green_hook.gif)
+
+#### 13C NMR analysis
+
+![13C Green Checkmark](/img/sample_analysis_13c.gif)
+
+Reference: <https://dx.doi.org/10.14272/HGMIATOQJCNPOO-UHFFFAOYSA-N.1>
+
+You can create as many analyses for a sample as you need with the button <Btn mixed={[faPlus, "Add analysis"]} color={"success"}/>. For each analysis you can upload as many datasets (files) as you want with the button <Btn mixed={[faPlus]} color={"success"}/>. Please pay attention to the structure of the data storage and take care of the input fields, this will allow you to search your results quickly. Any information you define through the fields is available to the Chemotion ELN for processing and this data can be displayed or summarized in lists.
+
+The uploaded records can be supplemented with information in an input popup window available for each data file. The input popup window opens either when you create a new data record, or when you click on the link generated by the name of existing data records.
+
+#### Intended structure of analytical data
+
+The hierarchy of analytical data is structured as follows. One or more `analyses` can be associated with a sample. Each analysis can contain one or more `datasets`. The latter can contain one or more `attachments`.
+More specifically, an `analysis` is created for every measurements type (e.g., 1H NMR).
+A `dataset` is created for every measurement within a measurement type. For example, you create an analysis for a 1H NMR measurement that you've repeated once with 16 scans, and once with 64 scans. Those two scanning runs can be represented as two separate datasets in the same analysis. The latter analysis could be further extended with 1H NMR experiments that tested different solvents.
+`Attachments` are data files associated with a dataset. Different data files can be attached to a dataset (e.g., images, raw data in open or proprietary formats). Chemotion ELN offers various file conversion procedures. They result in an increased number of attachments. One example is the creation of image files to support the preview of data.
+
+You can find out at a glance which data you have added to an analysis, since they are shown in short form e.g. in the sample list. The illustration shows the sample list with symbols such as <Btn mixed={[faChartBar, " 1 ?"]} color={"secondary"}/> or <Btn mixed={[faChartBar, " 1", faCheck]} color={"secondary"}/>. The first case means that you have set an analysis for the analyzed sample, but its **Status** is **Unconfirmed**. The second symbol informs you again about an existing analysis whose **Status** has already been **Confirmed**, and therefore, considered correct. The displayed count refers to the number of analyses, not to the number of uploaded data files. If analyses have no status, they are not visible in the samples list.
+
+The supported analysis methods are listed in the drop-down menu **Type (Chemical Methods Ontology)**.
+
+:::info
+Choosing an ontology term is required to enable the transfer of data to the chemotion repository. Without adding the chemical methods ontology, the transfer won't be successful.
+:::
+
+You can delete datasets from an analysis by clicking <Btn mixed={[faTrashAlt]} color={"danger"}/>, or download it as a zip file with <Btn mixed={[faDownload]} color={"info"}/>. Please note that uploaded data and entered information are not saved until you confirm with <Btn mixed={["Save"]} color={"warning"}/> or <Btn mixed={[faSave]} color={"warning"}/>. Failure to do so leads to the loss of data.
+
+The analyses tab of the reaction view differs from the analysis tab of the sample view. While samples can always have analyses, reaction **Analyses** can only contain **Products** samples that are supported by analyses. The **Analyses** tab of the reactions therefore only shows analyses by means of a link. To edit the data, the link (name of the product sample) to the analysis of the sample must be followed.
+
+The wellplate analysis tab is identical to the sample analysis tab.
+
+:::caution WARNING
+You shouldn't forget one important property of the Chemotion ELN: the uploaded data files and entered information are not saved until you confirm that with <Btn mixed={["Save"]} color={"warning"}/> or <Btn mixed={[faSave]} color={"warning"}/>. This point, if overlooked, can lead to the loss of the data you have set.
+:::
+
+#### Direct import of files from inbox
+
+You can choose to drag and drop files directly from the inbox when working with datasets.
+
+![Drag and Drop](/img/analyses_drag_inbox_files.gif)
+
+#### Ordering Analyses
+
+You can change the ordering of the analyses by drag and drop by clicking the <Btn mixed={[faEdit, "Edit mode"]} color={"primary"} />  button at the top of the analyses
+tab. It will then switch to the `Order mode`. With the help of drag-and-drop functionality, you can now easily rearrange the
+order of analyses after activating the `Order mode`.
+
+![Ordering Analyses](/img/analyses_ordering.gif)
+
+:::caution WARNING
+Don’t forget to save your changes with <Btn mixed={["Save"]} color={"warning"}/> so that the ordering persists
+:::
+
+### References tab
+
+![Literature](/img/literature_tab.gif)
+
+The **References** tab of the sample allows you to manage your literature and link it to your **Sample**. You can specify as many references as you think are needed. It is possible to specify the reference either by its DOI or ISBN, or by giving it a title and a URL. In both cases, you can add whether this reference is citing you or cited by you. When all details of a reference are entered, press <Btn mixed={[faPlus]} color={"success"}/>. Once a reference is created, it cannot be edited, it can only be deleted instead, so if you need to edit a reference, delete it and create a new one.
+
+The created references are added to a list and they are shown in blue to indicate their functionality in linking to some resources by clicking on them. Each reference can be copied by using <Btn mixed={[faPaste]} color={"secondary"}/>, which will copy the information provided in the list. Additional details about the reference, as by whom it was created and whether it is referring to or cited by you, can be shown by pressing the button <Btn mixed={[faAngleRight]} color={"secondary"}/>, which also shows the delete button <Btn mixed={[faTrashAlt]} color={"danger"}/>.
+
+:::caution WARNING
+Don’t forget to save your changes with <Btn mixed={["Save"]} color={"warning"}/>
+:::
+
+The **References** tab of a reaction is identical to the **Literature** tab of a sample. It allows you to manage your literature and link it to your reaction.
+
+## Details panel for samples
 
 ![Details modal](/img/details_modal_samp.png)
 Once you have entered and saved the structure of the sample, either with [Ketcher](ketcher.mdx) or using the <b>Chemical identifiers</b> from the [Properties tab](#properties-tab), some additional information will be provided automatically. This applies to all information that can be generated by Open Babel based on the structure of your sample (sum formula, molecular weight). Likewise, the name of your molecule and its exact mass are created automatically, as far as the molecule is known via the PubChem database and this information is available, along with symbols of chemical safety. More details about chemical safety is provided as a link to PubChem as well.
@@ -109,63 +203,6 @@ The information required for chemical use is supplemented by **Chemical identifi
 
 ![InChI_IncHIKey](/img/InChI_IncHIKey.gif)
 
-### Analyses tab
-
-:::info
-Chemotion ELN uses **analyses**, **datasets** and **attachments** to structure analytical data. Please ensure that you use it in the intended manner (see description below).
-:::
-
-![Analyses](/img/analyses_tab.gif)
-
-The **Analyses** tab allows you to add analytics to the Chemotion ELN. You can enter experimental results (field **Content**) and upload associated files (see **Dataset**). The **Content** field supports the validation according to specific data types (data types are confirmed by the ontology terms). For 1H NMR and 13C NMR, the **Content** field is checked for the entered amount of 1H NMR or 13C NMR signals and compares the given number with the number of signals expected according to the amount of H- or C-atoms.
-
-:::info
-The content of 1H NMR and 13C NMR analyses is validated by screening the information on atoms given in brackets, e.g. 1.11 (s, 3H) -> 3Hs counted. Therefore it is important to add all carbons to the **Content**, e.g. 129.3 (s, 2C). Also, if signals are hidden or too broad to be detected or not detected due to H/D exchange, you may indicate this by adding a sentence as explanation: e.g. "Missing OH-signal due to H/D exchange (1H)". The information in brackets is also counted.
-:::
-
-For mass spectrometry, the expected molecular mass is used for a comparison with the data given in the **Content** of the analysis.
-
-A green checkmark indicates if the **Content** of the analysis matches the expected data (calculated from the molecular structure).
-
-#### 1H NMR analysis
-
-![1H Green Checkmark](/img/sample_analysis_green_hook.gif)
-
-#### 13C NMR analysis
-
-![13C Green Checkmark](/img/sample_analysis_13c.gif)
-
-Reference: <https://dx.doi.org/10.14272/HGMIATOQJCNPOO-UHFFFAOYSA-N.1>
-
-You can create as many analyses for a sample as you need with the button <Btn mixed={[faPlus, "Add analysis"]} color={"success"}/>. For each analysis you can upload as many datasets (files) as you want with the button <Btn mixed={[faPlus]} color={"success"}/>. Please pay attention to the structure of the data storage and take care of the input fields, this will allow you to search your results quickly. Any information you define through the fields is available to the Chemotion ELN for processing and this data can be displayed or summarized in lists.
-
-The uploaded records can be supplemented with information in an input modal available for each data file. The input modal opens either when you create a new data record, or when you click on the link generated by the name of existing data records.
-
-#### Intended structure of analytical data
-
-The hierarchy of analytical data is structured as follows. One or more `analyses` can be associated with a sample. Each analysis can contain one or more `datasets`. The latter can contain one or more `attachments`.
-More specifically, an `analysis` is created for every measurements type (e.g., 1H NMR).
-A `dataset` is created for every measurement within a measurement type. For example, you create an analysis for a 1H NMR measurement that you've repeated once with 16 scans, and once with 64 scans. Those two scanning runs can be represented as two separate datasets in the same analysis. The latter analysis could be further extended with 1H NMR experiments that tested different solvents.
-`Attachments` are data files associated with a dataset. Different data files can be attached to a dataset (e.g., images, raw data in open or proprietary formats). Chemotion ELN offers various file conversion procedures. They result in an increased number of attachments. One example is the creation of image files to support the preview of data.
-
-You can find out at a glance which data you have added to an analysis, since they are shown in short form e.g. in the sample list. The illustration shows the sample list with symbols such as <Btn mixed={[faChartBar, " 1 ?"]} color={"secondary"}/> or <Btn mixed={[faChartBar, " 1", faCheck]} color={"secondary"}/>. The first case means that you have set an analysis for the analyzed sample, but its **Status** is **Unconfirmed**. The second symbol informs you again about an existing analysis whose **Status** has already been **Confirmed**, and therefore, considered correct. The displayed count refers to the number of analyses, not to the number of uploaded data files. If analyses have no status, they are not visible in the samples list.
-
-The supported analysis methods are listed in the drop-down menu **Type (Chemical Methods Ontology)**.
-
-:::info
-Choosing an ontology term is required to enable the transfer of data to the chemotion repository. Without adding the chemical methods ontology, the transfer won't be successful.
-:::
-
-You can delete datasets from an analysis by clicking <Btn mixed={[faTrashAlt]} color={"danger"}/>, or download it as a zip file with <Btn mixed={[faDownload]} color={"info"}/>. Please note that uploaded data and entered information are not saved until you confirm with <Btn mixed={["Save"]} color={"warning"}/> or <Btn mixed={[faSave]} color={"warning"}/>. Failure to do so leads to the loss of data.
-
-### References tab
-
-![Literature](/img/literature_tab.gif)
-
-The **References** tab allows you to manage your literature and link it to your **Sample**. You can specify as many references as you think are needed. It is possible to specify the reference either by its DOI or ISBN, or by giving it a title and a URL. In both cases, you can add whether this reference is citing you or cited by you. When all details of a reference are entered, press <Btn mixed={[faPlus]} color={"success"}/>. Once a reference is created, it cannot be edited, it can only be deleted instead, so if you need to edit a reference, delete it and create a new one.
-
-The created references are added to a list and they are shown in blue to indicate their functionality in linking to some resources by clicking on them. Each reference can be copied by using <Btn mixed={[faPaste]} color={"secondary"}/>, which will copy the information provided in the list. Additional details about the reference, as by whom it was created and whether it is referring to or cited by you, can be shown by pressing the button <Btn mixed={[faAngleRight]} color={"secondary"}/>, which also shows the delete button <Btn mixed={[faTrashAlt]} color={"danger"}/>. Don’t forget to save your changes with <Btn mixed={["Save"]} color={"warning"}/>.
-
 ### Search CAS
 
 :::danger CAUTION
@@ -191,9 +228,9 @@ This tab is not supported at the moment as it is still being developed.
 The QC and curation tab is part of the beta-testing of the Chemotion ELN. You may use it to gain additional information on your data. The QC and curation tool uses data from the **Content** of the **analysis** (checks the calculated 1H NMR and 13C NMR data as well as mass data as described above for **Content**). The feature uses also information directly from the data files that were added to the **Attachments** of the different **Analyses** and extracts information that is compared to either simulated data (1H NMR and 13C NMR data) and evaluations done by machine learning tools (IR data). Requirement for running the QC and curation tool is the definition of the ontology to define the type of the measurement that is used for the analysis. Another part of the QC and curation check is the investigation for availability of open file formats. The tool checks the attachments for file types JCAMP, MzML, MzXML (either added by the user or created by the Chemotion ELN processing functions).
 A detailed description of the feature will follow.
 
-## Details modal for reactions
+## Details panel for reactions
 
-This modal includes 5 tabs named `Scheme`, `Properties`, `Analyses`, `References` and `Green Chemistry`.
+This panel includes 5 tabs named `Scheme`, `Properties`, `Analyses`, `References` and `Green Chemistry`.
 All of these share the reaction panel, which includes the reaction equation.
 The order and the visibility of these tabs can be changed by clicking on the sky-blue tabs layout button
 <img src={require('@site/static/img/tabs_layout.png').default} width={"20px"} alt={"tabs layout"}/> on the right side.
@@ -206,7 +243,7 @@ The reaction equation can be zoomed in or out by hovering with the mouse anywher
 
 ### Scheme tab
 
-The <b>Scheme</b> tab contains the scheme of the selected reaction. While the molecular structure of samples (in samples details modal) can be edited by selecting the structure field and opening the [Ketcher](ketcher.mdx) editor, the reaction <b>Scheme</b> (the image) cannot be changed directly. To change the scheme, select the embedded samples and change their structure or use other samples.
+The <b>Scheme</b> tab contains the scheme of the selected reaction. While the molecular structure of samples (in samples details panel) can be edited by selecting the structure field and opening the [Ketcher](ketcher.mdx) editor, the reaction <b>Scheme</b> (the image) cannot be changed directly. To change the scheme, select the embedded samples and change their structure or use other samples.
 
 :::info
 Edit the reaction scheme by selecting or changing the samples, the scheme cannot be edited directly.
@@ -237,7 +274,7 @@ Select samples from the samples list and drag and drop them by using the <Btn mi
 
 Choose either the **Starting materials** or the **Reactants** as a reference using the **Ref** switch. As a result, the selected reference is automatically assigned an equivalent **Equiv** of 1.000. Several **Starting materials** and **Reactants** can be added, but only one sample can be marked as reference material.
 
-Mass can be represented in g, mg or μg, the volume in l, ml, μl, and the amount in mol or mmol. Entering one type of data leads to automatic calculation of the others. The volume is calculated only if the **molarity** of the sample is already set (please set it in the **properties** tab of the **sample**, accessible directly by clicking on the sample's name -> sample modal opens), and the equivalents are calculated unless the sample is a reference, then it gets a fixed equivalent of 1.000. By entering the mass, volume or amount of the reference, the remaining information for the further samples is calculated as soon as at least either their **amount** or **Equiv** is given.
+Mass can be represented in g, mg or μg, the volume in l, ml, μl, and the amount in mol or mmol. Entering one type of data leads to automatic calculation of the others. The volume is calculated only if the **molarity** of the sample is already set (please set it in the **properties** tab of the **sample**, accessible directly by clicking on the sample's name -> sample panel opens), and the equivalents are calculated unless the sample is a reference, then it gets a fixed equivalent of 1.000. By entering the mass, volume or amount of the reference, the remaining information for the further samples is calculated as soon as at least either their **amount** or **Equiv** is given.
 
 :::info
 When entering the amount of your sample, you can choose a unit by pressing the unit button next to the number.
@@ -290,16 +327,6 @@ Finally, <Btn mixed={["Save"]} color={"warning"}/> the reaction, <Btn mixed={["C
 The **Properties** tab allows you to enter further details on the reaction. In addition to the fields **Name**, **Status**, **Temperature**, and **Type (Chemical Methods Ontology)** that are also found in the **Scheme** tab, new fields are introduced such as **Dangerous Products** where you can list whether dangerous substances occur in your reaction and classify their hazard from a drop-down menu.
 
 In order to be able to reproduce the control of a reaction via thin-layer chromatography, two fields have been developed which are supposed to store the solvents used and their ratio on the one hand, and the **Rf value** of the target product of the reaction on the other hand. Please enter the solvent information in the **Solvents (parts)** field followed by a space and the ratio of solvents to each other according to this example: ethyl acetate/hexane 2:1. You can also provide further details about your thin-layer chromatography in the **Description** field, e.g. the shape of the spots or special features of the implementation. Here you can also state how the compounds were identified, i.e. which staining solutions were used or which wavelength was selected for the UV detection.
-
-### References tab
-
-The **References** tab of a reaction is identical to the **Literature** tab of a sample. It allows you to manage your literature and link it to your reaction. It is possible to specify the references either by their DOI or ISBN, or by giving them a title and a URL. In both cases, you can add whether a reference is citing you or cited by you. When all details of a reference are entered, press <Btn mixed={[faPlus]} color={"success"}/>. Once a reference is created, it cannot be edited, it can only be deleted instead, so if you need to edit a reference, delete it and create a new one.
-
-The created references are added to a list and they are shown in blue to indicate their functionality in linking to some resources by clicking on them. Each reference can by copied by using <Btn mixed={[faPaste]} color={"secondary"}/>, which will copy the information provided in the list. Additional details about the reference, as by whom it was created and whether it is referring to or cited by you, can be shown by pressing the button <Btn mixed={[faAngleRight]} color={"secondary"}/>, which also shows the delete button <Btn mixed={[faTrashAlt]} color={"danger"}/>. Don’t forget to save your changes with <Btn mixed={["Save"]} color={"warning"}/>.
-
-### Analyses tab
-
-The analyses tab of the reaction view differs from the analysis tab of the sample view. While samples can always have analyses, reaction **Analyses** can only contain **Products** samples that are supported by analyses. The **Analyses** tab of the reactions therefore only shows analyses by means of a link. To edit the data, the link (name of the product sample) to the analysis of the sample must be followed.
 
 ### Green chemistry tab
 
@@ -379,14 +406,14 @@ You can also sort rows manually: click anywhere on the row and keep the mouse bu
 
 Please refer to [Search CAS](details_modal#search-cas).
 
-## Detail modal for wellplates
+## Detail panel for wellplates
 
 ### Designer tab
 
 ![Wellplate designer](/img/wellplate_designer.png)
 ![Wellplate well](/img/wellplate_well.png)
 
-The **Designer** tab graphically displays the wells and shows how they are filled with samples. Since the representation of the individual samples may not be sufficient for some applications due to the limited space, it can be enlarged by selecting the appropriate well within the designer, which provides insight into selected information on the underlying samples and their sample number, **Readout** and **Imported Readout**. It also enables deleting the sample from the wellplate with the button <Btn mixed={[faTrashAlt]} color={"danger"}/>. The **Readout** field can’t be edited from within the **Designer** tab, but rather from the **List** tab, while the **Imported Readout** can be edited from within the sample’s details modal from the **Results** tab.
+The **Designer** tab graphically displays the wells and shows how they are filled with samples. Since the representation of the individual samples may not be sufficient for some applications due to the limited space, it can be enlarged by selecting the appropriate well within the designer, which provides insight into selected information on the underlying samples and their sample number, **Readout** and **Imported Readout**. It also enables deleting the sample from the wellplate with the button <Btn mixed={[faTrashAlt]} color={"danger"}/>. The **Readout** field can’t be edited from within the **Designer** tab, but rather from the **List** tab, while the **Imported Readout** can be edited from within the sample’s details panel from the **Results** tab.
 
 ### List tab
 
@@ -400,23 +427,13 @@ The **List** tab can be used to organize the samples collected in the wellplate.
 
 The **Properties** tab allows you to enter additional information about a wellplate, such as a **Name**, its **Size** (which is fixed as 96 at the moment) and a **Description**.
 
-### Analyses tab
-
-You can create as many analyses for a sample as you need with the button <Btn mixed={[faPlus, "Add analysis"]} color={"success"}/>, and for each analysis you can upload as many datasets (files) as you want with the button <Btn mixed={[faPlus]} color={"success"}/>. Please pay attention to the structure of the data storage and take care of the input fields, this will allow you to search your results quickly. Any information that you define through the created fields is available to the Chemotion ELN for processing and this data can be displayed or summarized in lists.
-
-The uploaded records can be supplemented with information in an input modal available for each data file. The input modal opens either when you create a new data record, or when you click on the link generated by the name of existing data records.
-
-The analysis methods, from which you can choose, are given by the drop-down menu **Type (Chemical Methods Ontology)**. You shouldn't forget one important property of the Chemotion ELN: the uploaded data files and entered information are not saved until you confirm that with <Btn mixed={["Save"]} color={"warning"}/> or <Btn mixed={[faSave]} color={"warning"}/>. This point, if overlooked, can lead to the loss of the data you have set.
-
-You can delete your datasets from within your analysis by clicking <Btn mixed={[faTrashAlt]} color={"danger"}/>, or install it as a zip file with <Btn mixed={[faDownload]} color={"info"}/>
-
-## Detail modal for screens
+## Detail panel for screens
 
 In the future, it should also be possible to use the Chemotion ELN for the documentation of biological experiments. The structure of this biological work should be possible through the element **Screen**. All descriptions and procedures of biological work for a planned experiment are recorded on a screen while the wellplates define the localization of the substances and materials used. Wellplates can therefore also be assigned to the individual screens in order to make their affiliation clear.
 
 So far, only a rudimentary structure for entering the screens has been programmed. The further development is an important task within the project in the coming months. The most important data of a biological study can be saved by entering free text in the **Name**, **Collaborator**, **Requirements**, **Conditions**, **Result** and **Description** fields. The allocation of the wellplates required for the examination can be done via drag & drop directly under the heading **Wellplates**. The selected wellplates are added and directly available through a link.
 
-## Detail modal for research plan
+## Detail panel for research plan
 
 ![Research plan](/img/research_plan.png)
 
@@ -463,7 +480,7 @@ You can rename columns by right-clicking on the column cell and choose 'Rename c
 
   - Click on 'Table schemes' button.
 
-  - The 'Table schemes' modal will appear.
+  - The 'Table schemes' popup window will appear.
 
   - Then input the scheme name and click 'Save' button.
 
@@ -473,7 +490,7 @@ You can rename columns by right-clicking on the column cell and choose 'Rename c
 
   - Click on 'Table schemes' button.
 
-  - The 'Table schemes' modal will appear.
+  - The 'Table schemes' popup window will appear.
 
   - Click 'Use' button to apply the table scheme name.
 
