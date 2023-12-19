@@ -93,7 +93,7 @@ A `dataset` is created for every measurement within a measurement type. For exam
 
 You can find out at a glance which data you have added to an analysis, since they are shown in short form e.g. in the sample list. The illustration shows the sample list with symbols such as <Btn mixed={[faChartBar, " 1 ?"]} color={"secondary"}/> or <Btn mixed={[faChartBar, " 1", faCheck]} color={"secondary"}/>. The first case means that you have set an analysis for the analyzed sample, but its **Status** is **Unconfirmed**. The second symbol informs you again about an existing analysis whose **Status** has already been **Confirmed**, and therefore, considered correct. The displayed count refers to the number of analyses, not to the number of uploaded data files. If analyses have no status, they are not visible in the samples list.
 
-The supported analysis methods are listed in the drop-down menu **Type (Chemical Methods Ontology)**.
+The supported analysis methods are listed in the drop-down menu **Type ([Chemical Methods Ontology](/docs/eln/ui/ontology.mdx))**.
 
 :::info
 Choosing an ontology term is required to enable the transfer of data to the chemotion repository. Without adding the chemical methods ontology, the transfer won't be successful.
@@ -140,6 +140,14 @@ Don’t forget to save your changes with <Btn mixed={["Save"]} color={"warning"}
 :::
 
 The **References** tab of a reaction is identical to the **Literature** tab of a sample. It allows you to manage your literature and link it to your reaction.
+
+## Customization tabs in Details panel
+
+Leveraging **[Chemotion LabIMotion](/docs/labimotion)**'s Segment function, scientists acquire the capability to intricately craft and personalize the user interface with remarkable versatility. Furthermore, by accessing templates from the Template Hub perfectly aligned with specific applications, users can enhance their interface customization experience. A standout feature of segments is their seamless assignability to individual elements, empowering users to refine the layout and appearance strategically. This distinctive attribute ensures a dynamic and flexible approach to designing interfaces.
+
+:::tip
+Ready for more? Explore the possibilities with **[Chemotion LabIMotion](/docs/labimotion)** for inspiration.
+:::
 
 ## Details panel for samples
 
@@ -329,7 +337,7 @@ Finally, <Btn mixed={["Save"]} color={"warning"}/> the reaction, <Btn mixed={["C
 
 ![Reaction properties](/img/reaction_properties.png)
 
-The **Properties** tab allows you to enter further details on the reaction. In addition to the fields **Name**, **Status**, **Temperature**, and **Type (Chemical Methods Ontology)** that are also found in the **Scheme** tab, new fields are introduced such as **Dangerous Products** where you can list whether dangerous substances occur in your reaction and classify their hazard from a drop-down menu.
+The **Properties** tab allows you to enter further details on the reaction. In addition to the fields **Name**, **Status**, **Temperature**, and **Type ([Name Reaction Ontology](/docs/eln/ui/ontology.mdx))** that are also found in the **Scheme** tab, new fields are introduced such as **Dangerous Products** where you can list whether dangerous substances occur in your reaction and classify their hazard from a drop-down menu.
 
 In order to be able to reproduce the control of a reaction via thin-layer chromatography, two fields have been developed which are supposed to store the solvents used and their ratio on the one hand, and the **Rf value** of the target product of the reaction on the other hand. Please enter the solvent information in the **Solvents (parts)** field followed by a space and the ratio of solvents to each other according to this example: ethyl acetate/hexane 2:1. You can also provide further details about your thin-layer chromatography in the **Description** field, e.g. the shape of the spots or special features of the implementation. Here you can also state how the compounds were identified, i.e. which staining solutions were used or which wavelength was selected for the UV detection.
 
