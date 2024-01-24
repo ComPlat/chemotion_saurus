@@ -23,6 +23,7 @@
         },
         "cSpell.enableFiletypes": ["md", "mdx", "!js", "!json", "!jsonc"],
         "cSpell.words": ["Chemotion", "helpdesk"],
+        "cSpell.suggestionMenuType": "quickFix",
         "markdownlint.config": {
           "MD033": { "allowed_elements": ["kbd"] }
         },
