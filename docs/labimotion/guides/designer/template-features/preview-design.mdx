@@ -1,9 +1,11 @@
 ---
 title: Preview Design
 author: Claire Lin
-sidebar_position: 1
+sidebar_position: 2
 ---
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashCan, faDownload, faReply, faClock } from "@fortawesome/free-solid-svg-icons";
 import { FigCaption, SubTitle, YouTubeFrame, Reader } from '@site/src/js/layout';
 
 <SubTitle text="The LabIMotion template offers a preview feature that allows the designer to preview their design before releasing it to the user page." />
@@ -11,5 +13,30 @@ import { FigCaption, SubTitle, YouTubeFrame, Reader } from '@site/src/js/layout'
 
 The **Preview Design** feature offers a peer view of the user's page, but it does not support the following types: dragging elements, dragging samples, and dragging molecules.
 
+## Sketch
+
 ![Preview Design](/img/labimotion/designer_preview.png)
 <FigCaption text="Preview Design" />
+
+## Revisions
+
+The revision feature displays the latest 10 versions of the released templates, including their version UUIDs and release times in UTC format.
+
+![Designer - Generic Segment](/img/labimotion/designer-template-features.png)
+<FigCaption text="Revisions" />
+
+### Preview this version <FontAwesomeIcon icon={faClock} />
+
+The preview feature is available not only for the current version but also for all versions.
+
+### Retrieve <FontAwesomeIcon icon={faReply} />
+
+You can retrieve each version of templates, and once retrieved, it will be in draft status. You need to release it if you want to use the retrieved version.
+
+### Download <FontAwesomeIcon icon={faDownload} />
+
+Each version of the templates can be downloaded in a file. The file is in the `.json` format, and the file name is the system prefix plus template name plus the version UUID. For example, if the system prefix is `abc`, the template name is `template1` and the version UUID is `123e4567-e89b-12d3-a456-426614174000`, the file name will be `abc_template1-123e4567-e89b-12d3-a456-426614174000.json`.
+
+### Delete <FontAwesomeIcon icon={faTrashCan} />
+
+You can delete the old versions if you don't want to keep them. However, please note that once deleted, this action cannot be undone.
