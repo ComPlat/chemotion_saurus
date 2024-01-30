@@ -1,0 +1,40 @@
+---
+title: Work Area
+author: Claire Lin
+sidebar_position: 1
+---
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUpload, faFloppyDisk } from "@fortawesome/free-solid-svg-icons";
+import { FigCaption, SubTitle, YouTubeFrame, Reader } from '@site/src/js/layout';
+
+<SubTitle text="The template work area." />
+<Reader text="Designer" />
+
+The work area is the main area for designing templates. Utilize a diverse range of [Components](../../designer/components) to craft a template tailored to suit your application.
+
+## Screenshot
+
+![Preview Design](/img/labimotion/designer-template-workarea.png)
+<FigCaption text="Work area" />
+
+## Toolbar of Work Area
+
+![Preview Design](/img/labimotion/designer-template-save.png)
+<FigCaption text="Toolbar of Work area" />
+
+### Upload template <FontAwesomeIcon icon={faUpload} />
+
+You can upload a template file to the work area. It is a convenient way to create a template.
+
+### Save and Release (Major) <FontAwesomeIcon icon={faFloppyDisk} />
+
+You can save and release the template to the user page. The template will be in major release. For example, if the current version is `1.0`, the next version will be `2.0`.
+
+### Save and Release (Minor) <FontAwesomeIcon icon={faFloppyDisk} />
+
+You can save and release the template to the user page. The template will be in minor release. For example, if the current version is `1.0`, the next version will be `1.1`.
+
+### Save as draft <FontAwesomeIcon icon={faFloppyDisk} />
+
+You can save the template as a draft. The template will not be released to the user page.
