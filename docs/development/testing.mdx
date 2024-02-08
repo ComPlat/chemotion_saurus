@@ -36,13 +36,13 @@ group :test, :development do
 end
 ```
 
-and follow the installation instructions on <https://github.com/shakacode/cypress-on-rails#installation>.
+and follow the [installation instructions](https://github.com/shakacode/cypress-on-rails#installation).
 Note that you don't have to install Cypress separately with yarn or npm.
 The `cypress-on-rails` gem will take care of that.
 
 It's important to tell `cypress-on-rails` to put the project under `spec` alongside our existing tests.
 Otherwise the Cypress related files (i.e., cypress directory and cypress.config.js) live under root by default.
-You can use the following command (from <https://github.com/shakacode/cypress-on-rails#installation>) to specify the `spec` directory:
+You can use the following command from [Cypress docs](https://github.com/shakacode/cypress-on-rails#installation) to specify the `spec` directory:
 
 ```bash
 bin/rails g cypress_on_rails:install --cypress_folder=spec/cypress
@@ -52,8 +52,7 @@ bin/rails g cypress_on_rails:install --cypress_folder=spec/cypress
 
 Make sure to start the Rails server prior to starting Cypress.
 Note that it's important to start the server with `RAILS_ENV-test`,
-Cypress won't recognize the Rails server if it's running in the `development` or `production` env
-(<https://github.com/shakacode/cypress-on-rails/issues/25>).
+Cypress won't recognize the Rails server if it's running in the `development` or `production` env; see [here](https://github.com/shakacode/cypress-on-rails/issues/25) for more.
 
 ```bash
 RAILS_ENV=test $(which bundle) exec rails server -b 0.0.0.0 -p 3000
@@ -78,8 +77,7 @@ yarn cypress run --project spec
 
 ### Write your first test
 
-Follow this link to start writing your first end-to-end test:
-<https://docs.cypress.io/guides/end-to-end-testing/writing-your-first-end-to-end-test>
+Follow the instructions [here](https://docs.cypress.io/guides/end-to-end-testing/writing-your-first-end-to-end-test) to write your first end-to-end test.
 
 ### Example of using factory bot
 
@@ -229,10 +227,10 @@ expect(collectionData.label).to.eq('Col1');
   - **It**: What do I expect?
 - Verifying UI state should not be the focus of unit testing (with the exception of snapshot testing in JavaScript).
 - Useful resources
-  - <https://mochajs.org/>
-  - <https://www.betterspecs.org>
-  - <https://github.com/teamcapybara/capybara>
-  - <https://rspec.info/>
+  - https://mochajs.org/
+  - https://www.betterspecs.org
+  - https://github.com/teamcapybara/capybara
+  - https://rspec.info/
 
 ### Javascript Unit tests
 

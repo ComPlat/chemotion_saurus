@@ -39,8 +39,8 @@ This document pertains to the Beta version of **LabIMotion**, formerly known as 
 
 ## Generic segments, elements and datasets
 
-Generic elements and segments are organized by <b>layers</b> and <b>fields</b>.
-Each generic element or segment can contain multiple <b>layers</b> and each layer can consist of multiple <b>fields</b>.
+Generic elements and segments are organized by **layers** and **fields**.
+Each generic element or segment can contain multiple **layers** and each layer can consist of multiple **fields**.
 
 ![generic feature outline](/img/generic_feature_outline.png)
 
@@ -48,7 +48,7 @@ Each generic element or segment can contain multiple <b>layers</b> and each laye
 
 A generic segment can be embedded in other elements, such as samples and reactions, as well as in generic elements.
 
-After clicking on the menu item <b>Generic Segment</b>, you find
+After clicking on the menu item **Generic Segment**, you find
 a button <Btn mixed={["New Segment", faPlus]} color={"primary"}/>
 as well as a list of editable, existing segments.
 
@@ -84,14 +84,14 @@ Optionally, _generic_ elements can be added by the administration.
   alt={"Create generic element"}
 />
 
-To create a generic element, go to the page <b>Generic Elements</b> and press <Btn mixed={["New Element", faPlus]} color={"primary"} />.
-This opens the window <b>New Element</b> to enter the following attributes:
+To create a generic element, go to the page **Generic Elements** and press <Btn mixed={["New Element", faPlus]} color={"primary"} />.
+This opens the window **New Element** to enter the following attributes:
 
 | attribute   | required | explanation                                                                                                                                                                                                                                      |
 | ----------- | :------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Klass       |   Yes    | The name used to identify the element.                                                                                                                                                                                                           |
-| Prefix      |   Yes    | A prefix for naming the generated objects that belong to the generic element, e.g., if the user name abbreviation is "user" and the <b>Prefix</b> is "t", then new "Mixture" will be called: "user-t1 New Mixture", "user-t2 New Mixture", etc.. |
-| Label       |   Yes    | The name displayed in the UI, e.g., the labels <b>Sample</b>, <b>Reaction</b>, <b>Wellplate</b>.                                                                                                                                                 |
+| Prefix      |   Yes    | A prefix for naming the generated objects that belong to the generic element, e.g., if the user name abbreviation is "user" and the **Prefix** is "t", then new "Mixture" will be called: "user-t1 New Mixture", "user-t2 New Mixture", etc.. |
+| Label       |   Yes    | The name displayed in the UI, e.g., the labels **Sample**, **Reaction**, **Wellplate**.                                                                                                                                                 |
 | Icon        |   Yes    | The icon to be displayed in the elements list and in the toolbar for creating new objects. Icons can be obtained from [Font Awesome 4](https://fontawesome.com/v4.7/icons/).                                                                     |
 | Description |    No    | Explanation of the intended functionality of the element.                                                                                                                                                                                        |
 
@@ -105,11 +105,11 @@ Once all the required attributes are provided, press <Btn mixed={["Create", faSa
 After an element is created, it can either be added to the Chemotion ELN interfaces of all users,
 or made available to specific users. This option is also controlled by the administration.
 Users with access to an element have to add it manually to their accounts.
-To do so, they have to go to their <b>Account & Profile</b>, go to the <b>Element Counter</b>,
+To do so, they have to go to their **Account & Profile**, go to the **Element Counter**,
 and update the counter of the element with <Btn mixed={["Update counter"]} color={"primary"}/>.
 Still, the element will be hidden by default, and it will not appear in the element bar unless the user manually adds it.
 
-In the administration account, in the <b>Generic Elements</b> page,
+In the administration account, in the **Generic Elements** page,
 the element appears in the elements list (not to be confused with the elements list in the Chemotion ELN).
 The elements list includes all the elements generated by the admin’s account,
 along with their attributes and further functions.
@@ -127,24 +127,18 @@ The elements are sorted alphabetically by status (active first), element label, 
 | <FontAwesomeIcon icon={faFileAlt} size="lg"/>   | Edit the element template.                                    |
 | <FontAwesomeIcon icon={faFileCode} size="lg"/>  | Edit the element template in json format.                     |
 
-Editing the element's template allows adding new layers and lists to the <b>Properties</b> tab of the element.
+Editing the element's template allows adding new layers and lists to the **Properties** tab of the element.
 More on that in the next chapter.
 
 ## Generic datasets
 
 ## Layers
 
-<b>Layers</b> are the fundamental building blocks that contain the content of generic
+**Layers** are the fundamental building blocks that contain the content of generic
 elements/segments/datasets. They can be used to group related fields with a custom
 layout and appearance.
-<b>Layers</b> can be added to elements and segments by clicking on <b>
-  edit element/segment template
-</b> <FontAwesomeIcon icon={faFileAlt} size="lg" />
-in the elements/segments list, and then clicking <Btn
-  mixed={["Add new layer", faPlus]}
-  color={"secondary"}
-/>
-.
+**Layers** can be added to elements and segments by clicking on **edit element/segment template** <FontAwesomeIcon icon={faFileAlt} size="lg" />
+in the elements/segments list, and then clicking <Btn mixed={["Add new layer", faPlus]} color={"secondary"}/>.
 
 <img
   src={require("@site/static/img/add_layer.gif").default}
@@ -169,7 +163,7 @@ The following attributes can be configured on a layer:
 />
 
 After a new layer is created, it appears in the layers list, where its Name, Display name,
-the number of columns per row, and the number of <b>fields</b> can be found.
+the number of columns per row, and the number of **fields** can be found.
 Layers can be edited with the following functions:
 
 | symbol                                           | explanation                  |
@@ -186,11 +180,11 @@ access to the element or segment will be able to see the new layer upon
 reloading the page in their account, and pressing the button <Btn
   mixed={["Reload"]}
   color={"danger"}
-/>. Admins can add <b>fields</b> to a layer, as discussed below.
+/>. Admins can add **fields** to a layer, as discussed below.
 
 ## Fields
 
-<b>Fields</b> provide a wide variety of input, display, and drag-and-drop functions.
+**Fields** provide a wide variety of input, display, and drag-and-drop functions.
 They can be customized using the following attributes.
 
 | attribute    | required | explanation                                                                                                                                                                         |
@@ -218,7 +212,7 @@ They can be customized using the following attributes.
 
 ### Field-type: System-defined
 
-The field type <b>System-defined</b> allows to add values with a unit.
+The field type **System-defined** allows to add values with a unit.
 Units are assigned to certain standards in the research field but should meet common conventions and definitions.
 Depending on the unit, different conversions are available.
 
