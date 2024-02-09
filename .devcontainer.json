@@ -21,11 +21,10 @@
           "source.fixAll.eslint": true,
           "source.fixAll.markdownlint": true
         },
+        "Workspace_Formatter.includePattern": ["*.mdx","*.md"],
         "cSpell.enableFiletypes": ["md", "mdx", "!js", "!json", "!jsonc"],
-        "cSpell.words": ["Chemotion", "helpdesk"],
-        "cSpell.suggestionMenuType": "quickFix",
-        "markdownlint.config": {
-          "MD033": { "allowed_elements": ["kbd"] }
+        "cSpell.words": ["Chemotion", "helpdesk","Labimotion"],
+        "cSpell.suggestionMenuType": "quickFix"
         },
         "markdownlint.run": "onSave"
       },
@@ -34,7 +33,8 @@
       "extensions": [
         "dbaeumer.vscode-eslint",
         "streetsidesoftware.code-spell-checker",
-        "DavidAnson.vscode-markdownlint"
+        "esbenp.prettier-vscode",
+        "franneck94.workspace-formatter"
       ]
     }
   },
