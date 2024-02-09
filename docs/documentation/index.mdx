@@ -66,7 +66,7 @@ The landing (start) page can be edited [on GitHub](https://github.com/ComPlat/ch
 - use `.mdx` as filename ending in GitHub
 - at the top of every page, insert the following metadata section:
 
-```
+```markdown
 ---
 id: videos_eln
 sidebar_label: Videos
@@ -130,11 +130,11 @@ import Sample from "@site/static/img/sample.svg";
 #### regular buttons with text and icon content
 
 For creating buttons use a button function and import it on the page. Every button gets a **color** and can have multiple text elements and icons **mixed** in its content.
-For icon buttons get icons from [https://fontawesome.com](https://fontawesome.com/) and import them on the page.
+For icon buttons get icons from [Fontawesome](https://fontawesome.com) and import them on the page.
 The color palette is from the [Infima library](https://infima.dev/docs/components/button).
 For example, the following code snippet...
 
-```
+```javascript
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChartBar, faCheck } from '@fortawesome/free-solid-svg-icons'
 import { Btn } from '@site/src/js/btn.js'
@@ -149,7 +149,7 @@ import { Btn } from '@site/src/js/btn.js'
 To create a button different from the regular one, e.g., with a different size, you need to use a React button with `<button></button>` tags.
 You can change the size of a button in its style attribute with values in `%`, pixel (`px`), `rem` or `em`. Common icon sizes inside buttons are `xs`, `sm` and `lg`.
 
-```
+```javascript
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faShareAlt } from '@fortawesome/free-solid-svg-icons'
 
@@ -323,13 +323,13 @@ random number with a dot
 
 ### Text Formatting
 
-**bold**
+#### bold
 
 ```
 **bold**
 ```
 
-`highlight elements, e. g. UI elements`
+#### highlight elements, e. g. UI elements
 
 ```
 `Collection Bar`
