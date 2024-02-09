@@ -35,7 +35,15 @@
         ],
         "Workspace_Formatter.includePattern": ["*.mdx", "*.md"],
         "cSpell.enableFiletypes": ["md", "mdx", "!js", "!json", "!jsonc"],
-        "cSpell.words": ["Chemotion", "helpdesk", "Labimotion"],
+        "cSpell.words": [
+          "Chemotion",
+          "helpdesk",
+          "Labimotion",
+          "fortawesome",
+          "fontawesome",
+          "subcomponent",
+          "wellplate"
+        ],
         "cSpell.suggestionMenuType": "quickFix"
       },
 

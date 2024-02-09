@@ -185,7 +185,7 @@ and insert a Download Button with the (comma-separated) filepath(s) in `files` a
 ```
 import { DownloadBtn } from '@site/src/js/download_files.js'
 
-<p><DownloadBtn files={['/chemotionsaurus/files/template_sample_import.xlsx, docker-compose.yml']}  text={"Download XLSX Template here "}/></p>
+<p><DownloadBtn files={['/files/template_sample_import.xlsx, docker-compose.yml']}  text={"Download XLSX Template here "}/></p>
 ```
 
 ### Escape signs
@@ -268,13 +268,13 @@ In Markdown, link to another page within the documentation using its `slug` or `
 ```
 
 Link to another chapter on the same page using the last segment of the URL.
-For example, link to `eln.chemotion.net/chemotionsaurus/docs/instructions#toc` by using
+For example, link to `chemotion.net/docs/instructions#toc` by using
 
 ```md
 [link to TOC](#toc)
 ```
 
-In React insert a link to another page using the relative path after the base url `/chemotionsaurus/`:
+In React insert a link to another page using the relative path after the base url `/`:
 
 ```js
 <Link to="/docs/eln/structure">Structure of the Chemotion ELN</Link>
@@ -283,7 +283,7 @@ In React insert a link to another page using the relative path after the base ur
 :::info Recommendation
 For links to internal pages it is not recommended to use https links from the server, where the website is hosted.
 In order for links to resolve independently of the host, use Markdown syntax with relative internal linking.
-For example, better use `[samples](elements/samples)` instead of `[contact](https://www.chemotion.net/chemotionsaurus/docs/eln/ui/elements/samples)`.
+For example, better use `[samples](elements/samples)` instead of `[contact](https://www.chemotion.net/docs/eln/ui/elements/samples)`.
 :::
 
 ### Lists
