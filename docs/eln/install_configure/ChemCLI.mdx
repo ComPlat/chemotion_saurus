@@ -5,7 +5,7 @@ sidebar_position: 11
 
 ChemCLI, short for Chemotion CLI, is a tool to help you manage Chemotion ELN on a machine. The goal is to make installation, maintenance and upgradation of (multiple instances of) Chemotion as easy as possible.
 
-:::caution Important Announcements
+:::info Important Announcements
 
 1. You must manually update to version 0.2.12 of the CLI. This is because GitHub is blocking download of the `docker-compose.yml` file causing versions 0.2.11 and below to fail on start. To do so, go to [Releases](https://github.com/Chemotion/ChemCLI/releases) and download the required executable. See [Updating the Tool](#updating-the-tool) for more.
 
@@ -122,7 +122,7 @@ To turn on, and off, the `selected` instance, issue the commands:
 
 ### Backup an instance
 
-:::caution WARNING
+:::warning Warning
 This backup process does not backup data that reside out docker e.g. `services` and `shared` folders. These folder need to be backed up by you separately.
 :::
 

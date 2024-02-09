@@ -171,7 +171,7 @@ Further information on how to configure nginx, please refer to tutorials online 
 Certain upgrades require may require additional/different steps. Please check [this section](#special-cases) to see if your current version and/or desired version needs such treatment.
 :::
 
-:::caution Before Upgrades
+:::warning Before Upgrades
 
 - ALWAYS perform a [backup](#backing-up-and-restoring-your-data) before doing upgrades. We cannot help you restore data if there is no backup and things go wrong during upgrade processes.
 - Inform your users of downtime that may accompany the upgrade.
@@ -238,7 +238,7 @@ The backup process, if using ChemCLI is [described on its page](ChemCLI#backup-a
 In addition, you should always backup before upgrading your installation.
 :::
 
-:::caution WARNING
+:::warning Warning
 Backup scripts do not backup data that reside outside docker volumes e.g. `services` and `shared` folders. These folders need to be backed up _separately_ by you.
 :::
 

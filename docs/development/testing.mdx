@@ -244,7 +244,7 @@ expect(collectionData.label).to.eq('Col1');
 - React components can be used with their JavaScript-state or their HTML representation: `wrapper.instance()` and `wrapper.html()`
 - Example: [ResearchPlanDetailsFieldImage.spec.js](https://github.com/ComPlat/chemotion_ELN/blob/main/spec/javascripts/packs/src/apps/mydb/elements/details/researchPlans/ResearchPlanDetailsFieldImage.spec.js)
 
-:::caution Important
+:::warning Important
 When testing a component which includes a store you need to explicitly import he store in the test file. The import must be before the import statement of the component to test.
 The linter recognizes that the store dependency is not used and tries to eliminate it. You can prevent this by manually disabling the linter rule for these lines.
 Example: [ResearchPlanDetails.spec.js](https://github.com/ComPlat/chemotion_ELN/blob/main/spec/javascripts/packs/src/apps/mydb/elements/details/researchPlans/ResearchPlanDetails.spec.js)
@@ -264,13 +264,13 @@ Example: [ResearchPlanDetails.spec.js](https://github.com/ComPlat/chemotion_ELN/
 - By using a pseudoRandomGenerator in the factory for ids and checksums we can create reproducible objects
 - One can reset the generator by adding a build option: `const researchPlan = await ResearchPlanFactory.build('empty', {}, { reset: true });`
 
-:::caution Important
+:::warning Important
 Creating a model is an asynchronous action, so the test must also be asynchronous: `it('no img tag should be rendered', async function (){ }`
 :::
 
 #### Snapshot testing
 
-:::caution Deprecated chapter
+:::warning Deprecated chapter
 Currently no snapshot testing is applied due to lack of capacity. In addition, ui testing will be covered by the system tests in the future.
 :::
 
@@ -280,7 +280,7 @@ Currently no snapshot testing is applied due to lack of capacity. In addition, u
 - Snapshots are not only restricted to HTML but can also be used for JSON or JavaScript-objects
 - Example: [ResearchPlanDetailsFieldImage.spec.js](https://github.com/ComPlat/chemotion_ELN/blob/applying-gem-shrine/spec/javascripts/packs/src/apps/mydb/elements/details/researchPlans/ResearchPlanDetailsFieldImage.spec.js#L52)
 
-:::caution Important
+:::warning Important
 The `expect` extension by mocha refers to the current test-object by `this`. Using an lambda expression at the it definition, mocha have no access to it. Using an explicit
 function definition solves this problem.
 :::
@@ -296,7 +296,7 @@ function definition solves this problem.
 
 - Models can be created using the library [factory bot](https://github.com/thoughtbot/factory_bot). In factories, desired states of the models are predefined and can then be created using `create` (creates a DB entry) or `build` (creates a model without a DB entry).
 
-:::caution IMPORTANT
+:::warning Important
 Creating an attachment with factorybot must be handled carefully because `create` also triggers the `create_derivative` method and could remove a fixture file.
 By using `build` the `create_derivative` method is not executed, but one has no object in the database and some properties are not initialized.
 :::
