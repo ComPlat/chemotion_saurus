@@ -36,8 +36,7 @@
         "Workspace_Formatter.includePattern": ["*.mdx", "*.md"],
         "cSpell.enableFiletypes": ["md", "mdx", "!js", "!json", "!jsonc"],
         "cSpell.words": ["Chemotion", "helpdesk", "Labimotion"],
-        "cSpell.suggestionMenuType": "quickFix",
-        "markdownlint.run": "onSave"
+        "cSpell.suggestionMenuType": "quickFix"
       },
 
       // Add the IDs of extensions you want installed when the container is created.
