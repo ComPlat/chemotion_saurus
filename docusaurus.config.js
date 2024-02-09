@@ -15,6 +15,13 @@ module.exports = {
   customFields: {
     fund: 'Funded By',
   },
+  markdown: {
+    mdx1Compat: {
+      comments: false,
+      admonitions: false,
+      headingIds: false,
+    },
+  },
   themeConfig: {
     navbar: {
       title: 'Chemotion',

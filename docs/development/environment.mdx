@@ -20,9 +20,9 @@ This keeps your machine free of clutter, and more importantly,
 it can ensure consistent development environments across contributors (i.e., avoiding "works on my machine" scenarios).
 
 In the following you find guides for setting up a dockerized development environment for the Chemotion ELN on
-[Windows](#windows-heading-id), [Linux](#linux-heading-id), and [macOS](#macos-heading-id).
+[Windows](environment#windows), [Linux](environment#linux), and [macOS](environment#macos).
 
-## Windows {#windows-heading-id}
+## Windows
 
 :::important Call to action
 The following instructions are tested on Windows 10 only.
@@ -74,9 +74,9 @@ You won't be able to run bash scripts from PowerShell.
 
 On your Windows machine, [open the `Ubuntu` terminal](https://devblogs.microsoft.com/commandline/a-guide-to-invoking-wsl/#comments).
 Next, start `Docker Desktop`. You can confirm that `Docker Desktop` is running by typing `docker --version` in the `Ubuntu` terminal.
-If you get a response you're now ready to run the ELN in a [Docker container](#eln-in-docker) (any IDE) or in a [Visual Studio Code devcontainer](#eln-in-devcontainer) (recommended!).
+If you get a response you're now ready to run the ELN in a [Docker container](#eln-in-docker-container) (any IDE) or in a [Visual Studio Code devcontainer](#eln-in-devcontainer) (recommended!).
 
-## Linux {#linux-heading-id}
+## Linux
 
 We assume that you're on a fresh installation of a Linux operating system, either on a physical or virtual machine.
 The instructions have been tested on 64-bit Ubuntu Focal 20.04 (LTS) and 22.04 (LTS).
@@ -88,9 +88,9 @@ The instructions have been tested on 64-bit Ubuntu Focal 20.04 (LTS) and 22.04 (
 Install Docker Engine according to the [official instructions](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository),
 and make sure that non-root users can issue Docker commands by following the post-installation [instructions](https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user).
 
-You're now ready to run the ELN in a [Docker container](#eln-in-docker) (any IDE) or in a [Visual Studio Code devcontainer](#eln-in-devcontainer) (recommended!).
+You're now ready to run the ELN in a [Docker container](#eln-in-docker-container) (any IDE) or in a [Visual Studio Code devcontainer](#eln-in-devcontainer) (recommended!).
 
-## macOS {#macos-heading-id}
+## macOS
 
 :::important Call to action
 We haven't extensively tested our containerized development environment on macOS.
@@ -99,15 +99,15 @@ You can propose additions / changes to this documentation by opening a pull requ
 :::
 
 [Install Docker](https://docs.docker.com/desktop/install/mac-install/)
-and run the ELN in a [Docker container](#eln-in-docker) (any IDE)
+and run the ELN in a [Docker container](#eln-in-docker-container) (any IDE)
 or in a [Visual Studio Code devcontainer](#eln-in-devcontainer) (recommended!).
 
-Alternatively, we recommend setting up a Ubuntu virtual machine and following the [Linux installation](#linux-heading-id).
+Alternatively, we recommend setting up a Ubuntu virtual machine and following the [Linux installation](environment#linux).
 
-## ELN in a Docker container {#eln-in-docker}
+## ELN in Docker container
 
 :::info operating system requirements
-Make sure you've followed the instructions for your operating system ([Windows](#windows-heading-id), [Linux](#linux-heading-id), [macOS](#macos-heading-id)).
+Make sure you've followed the instructions for your operating system ([Windows](environment#windows), [Linux](environment#linux), [macOS](environment#macos)).
 :::
 
 Start by cloning the [repository](https://github.com/ComPlat/chemotion_ELN). It contains the ELN's source code and Docker configuration (`docker-compose.dev.yml`).
@@ -158,7 +158,7 @@ docker compose -f docker-compose.dev.yml down
 ## ELN in devcontainer
 
 :::info operating system requirements
-Make sure you've followed the instructions for your operating system ([Windows](#windows-heading-id), [Linux](#linux-heading-id), [macOS](#macos-heading-id)).
+Make sure you've followed the instructions for your operating system ([Windows](#windows), [Linux](#linux), [macOS](#macos)).
 :::
 
 :::info Windows Docker Desktop
