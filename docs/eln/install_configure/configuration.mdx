@@ -212,11 +212,13 @@ If you wish to utilize other supported structure editors, such as Ketcher v2, Ch
 The `structure_editors.yml` configuration file is located in the `config` folder. To configure other structure editors, follow these steps:
 
 1. Navigate to the application directory (/var/www/chemotion_ELN/current).
+
 ```sh
 cd /var/www/chemotion_ELN/current
 ```
 
 2. Copy the example configuration file to create a new one if the file doesn't exist yet.
+
 ```sh
 cp config/structure_editors.yml.example config/structure_editors.yml
 ```
@@ -224,11 +226,13 @@ cp config/structure_editors.yml.example config/structure_editors.yml
 3. Open the file and edit it. Make the necessary edits, followed by [Complete structure_editors.yml example](#complete-structure_editorsyml-example).
 
 4. Restart the application (assuming Passenger is being used)
+
 ```sh
 touch tmp/restart.txt
 ```
 
 5. Keep the configuration for future Chemotion ELN updates (assuming Capistrano is used)
+
 ```sh
 mv config/structure_editors.yml /var/www/chemotion_ELN/shared/config/structure_editors.yml
 ln -s  /var/www/chemotion_ELN/shared/config/structure_editors.yml /var/www/chemotion_ELN/current/config/structure_editors.yml
@@ -244,7 +248,7 @@ ln -s  /var/www/chemotion_ELN/shared/config/structure_editors.yml /var/www/chemo
 
 ### Complete structure_editors.yml example
 
-```yaml
+````yaml
 
 ```yaml
 ### example of structure_editors.yml
@@ -262,7 +266,7 @@ production:
       :license: "license file" # license file of MarvinJS
       :extJs: ["external javascript files to be included"] # js of MarvinJS
       :extSrc: "external file" # file of MarvinJS
-```
+````
 
 :bulb: **Tip:** To install ChemDraw JS or Ketcher 2 library, unzip the (library).zip, and then copy the sub-folders and files to the folder which the system loads scripts.
 

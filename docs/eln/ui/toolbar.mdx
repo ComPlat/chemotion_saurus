@@ -22,7 +22,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Btn } from "@site/src/js/btn.js";
 import { DownloadBtn } from "@site/src/js/download_files.js";
-import { FigCaption, YouTubeFrame } from '@site/src/js/layout';
+import { FigCaption, YouTubeFrame } from "@site/src/js/layout";
 
 ![whole window](/img/screen.png)
 
@@ -36,7 +36,10 @@ The user can search the entire collection or selected elements by clicking on <B
 
 Possible search terms are **IUPAC** names, **InChI**, **SMILES**, **RInChI**. The user can also use the element **Name** or **Short Label**. Enter the search term and press "Enter" which shows a list of filtered results. While the user is typing their search term, a menu of suggestions appear, and it keeps getting updated throughout typing. Another option will be to use Ketcher editor, which opens when pressing <Btn mixed={[faPen]} color={"primary"}/>, and to draw a structure to perform **Similarity Search** or **Substructure Search**, and to decide the degree of similarity too. When the structure is ready to be used, the user can choose <Btn mixed={["Search"]} color={"primary"}/> or simply <Btn mixed={["Cancel"]} color={"warning"}/>. To cancel the search process or delete the current search term, press <Btn mixed={[faTimes]} color={"danger"}/>
 
-<YouTubeFrame src="https://www.youtube-nocookie.com/embed/4sAUs20QS0Q" title="Substructure search" />
+<YouTubeFrame
+  src="https://www.youtube-nocookie.com/embed/4sAUs20QS0Q"
+  title="Substructure search"
+/>
 <FigCaption text="Substructure search" />
 
 <img
