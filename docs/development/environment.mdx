@@ -3,7 +3,9 @@ title: Development Environment
 ---
 
 :::info
+
 [Contact us](/helpdesk) us if you're having trouble setting up your development environment.
+
 :::
 
 ## Prerequisites
@@ -25,9 +27,11 @@ In the following you find guides for setting up a dockerized development environ
 ## Windows
 
 :::important Call to action
+
 The following instructions are tested on Windows 10 only.
 If you're on Windows 11, please consider contributing your experiences.
 You can propose additions / changes to this documentation by opening a pull request in its [repository](https://github.com/ComPlat/chemotion_saurus). Thank you!
+
 :::
 
 This guide will help you getting started developing with containers on Windows using `Docker Desktop` along with the [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/about) (referred to as `WSL` in the following).
@@ -93,9 +97,11 @@ You're now ready to run the ELN in a [Docker container](#eln-in-docker-container
 ## macOS
 
 :::important Call to action
+
 We haven't extensively tested our containerized development environment on macOS.
 If you're on macOS, please consider contributing your experiences.
 You can propose additions / changes to this documentation by opening a pull request in its [repository](https://github.com/ComPlat/chemotion_saurus). Thank you!
+
 :::
 
 [Install Docker](https://docs.docker.com/desktop/install/mac-install/)
@@ -107,7 +113,9 @@ Alternatively, we recommend setting up a Ubuntu virtual machine and following th
 ## ELN in Docker container
 
 :::info operating system requirements
+
 Make sure you've followed the instructions for your operating system ([Windows](environment#windows), [Linux](environment#linux), [macOS](environment#macos)).
+
 :::
 
 Start by cloning the [repository](https://github.com/ComPlat/chemotion_ELN). It contains the ELN's source code and Docker configuration (`docker-compose.dev.yml`).
@@ -158,12 +166,16 @@ docker compose -f docker-compose.dev.yml down
 ## ELN in devcontainer
 
 :::info operating system requirements
+
 Make sure you've followed the instructions for your operating system ([Windows](#windows), [Linux](#linux), [macOS](#macos)).
+
 :::
 
 :::info Windows Docker Desktop
+
 If you're using Docker Desktop (opposed to the Docker Engine on Linux)
 make sure that Docker Desktop is running before starting the devcontainer.
+
 :::
 
 Visual Studio Code devcontainers allow you to run your entire development environment inside a Docker container.
