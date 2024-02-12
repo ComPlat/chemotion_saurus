@@ -4,7 +4,9 @@ sidebar_position: 5
 ---
 
 :::danger Caution
+
 This page is still being edited and reviewed.
+
 :::
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -55,7 +57,9 @@ There are some tabs which are common for multiple elements while some tabs are s
 ### Analyses tab
 
 :::info
+
 Chemotion ELN uses **analyses**, **datasets** and **attachments** to structure analytical data. Please ensure that you use it in the intended manner (see description below).
+
 :::
 
 ![Analyses](/img/analyses_tab.gif)
@@ -63,7 +67,9 @@ Chemotion ELN uses **analyses**, **datasets** and **attachments** to structure a
 The **Analyses** tab allows you to add analytics to the Chemotion ELN. You can enter experimental results (field **Content**) and upload associated files (see **Dataset**). The **Content** field supports the validation according to specific data types (data types are confirmed by the ontology terms). For 1H NMR and 13C NMR, the **Content** field is checked for the entered amount of 1H NMR or 13C NMR signals and compares the given number with the number of signals expected according to the amount of H- or C-atoms.
 
 :::info
+
 The content of 1H NMR and 13C NMR analyses is validated by screening the information on atoms given in brackets, e.g. 1.11 (s, 3H) -> 3Hs counted. Therefore it is important to add all carbons to the **Content**, e.g. 129.3 (s, 2C). Also, if signals are hidden or too broad to be detected or not detected due to H/D exchange, you may indicate this by adding an explanation: e.g. "Missing OH-signal due to H/D exchange (1H)". The information in brackets is also counted.
+
 :::
 
 For mass spectrometry, the expected molecular mass is used for a comparison with the data given in the **Content** of the analysis.
@@ -96,7 +102,9 @@ You can find out at a glance which data you have added to an analysis, since the
 The supported analysis methods are listed in the drop-down menu **Type ([Chemical Methods Ontology](/docs/eln/ui/ontology))**.
 
 :::info
+
 Choosing an ontology term is required to enable the transfer of data to the chemotion repository. Without adding the chemical methods ontology, the transfer won't be successful.
+
 :::
 
 You can delete datasets from an analysis by clicking <Btn mixed={[faTrashAlt]} color={"danger"}/>, or download it as a zip file with <Btn mixed={[faDownload]} color={"info"}/>. Please note that uploaded data and entered information are not saved until you confirm with <Btn mixed={["Save"]} color={"warning"}/> or <Btn mixed={[faSave]} color={"warning"}/>. Failure to do so leads to the loss of data.
@@ -106,7 +114,9 @@ The analyses tab of the reaction view differs from the analysis tab of the sampl
 The wellplate analysis tab is identical to the sample analysis tab.
 
 :::warning Warning
+
 You shouldn't forget one important property of the Chemotion ELN: the uploaded data files and entered information are not saved until you confirm that with <Btn mixed={["Save"]} color={"warning"}/> or <Btn mixed={[faSave]} color={"warning"}/>. This point, if overlooked, can lead to the loss of the data you have set.
+
 :::
 
 #### Direct import of files from inbox
@@ -123,7 +133,9 @@ order of analyses after activating the `Order mode`.
 ![Ordering Analyses](/img/analyses_ordering.gif)
 
 :::warning Warning
+
 Don’t forget to save your changes with <Btn mixed={["Save"]} color={"warning"}/> so that the ordering persists.
+
 :::
 
 ### References tab
@@ -135,7 +147,9 @@ The **References** tab of the sample allows you to manage your literature and li
 The created references are added to a list and they are shown in blue to indicate their functionality in linking to some resources by clicking on them. Each reference can be copied by using <Btn mixed={[faPaste]} color={"secondary"}/>, which will copy the information provided in the list. Additional details about the reference, as by whom it was created and whether it is referring to or cited by you, can be shown by pressing the button <Btn mixed={[faAngleRight]} color={"secondary"}/>, which also shows the delete button <Btn mixed={[faTrashAlt]} color={"danger"}/>.
 
 :::warning Warning
+
 Don’t forget to save your changes with <Btn mixed={["Save"]} color={"warning"}/>
+
 :::
 
 The **References** tab of a reaction is identical to the **Literature** tab of a sample. It allows you to manage your literature and link it to your reaction.
@@ -145,7 +159,9 @@ The **References** tab of a reaction is identical to the **Literature** tab of a
 Leveraging **[Chemotion LabIMotion](/docs/labimotion)**'s Segment function, scientists acquire the capability to intricately craft and personalize the user interface with remarkable versatility. Furthermore, by accessing templates from the Template Hub perfectly aligned with specific applications, users can enhance their interface customization experience. A standout feature of segments is their seamless assignability to individual elements, empowering users to refine the layout and appearance strategically. This distinctive attribute ensures a dynamic and flexible approach to designing interfaces.
 
 :::tip
+
 Ready for more? Explore the possibilities with **[Chemotion LabIMotion](/docs/labimotion)** for inspiration.
+
 :::
 
 ## Details panel for samples
@@ -154,7 +170,9 @@ Ready for more? Explore the possibilities with **[Chemotion LabIMotion](/docs/la
 Once you have entered and saved the structure of the sample, either with [Ketcher](ketcher) or using the **Chemical identifiers** from the [Properties tab](#properties-tab), some additional information will be provided automatically. This applies to all information that can be generated by Open Babel based on the structure of your sample (sum formula, molecular weight). Likewise, the name of your molecule and its exact mass are created automatically, as far as the molecule is known via the PubChem database and this information is available, along with symbols of chemical safety. More details about chemical safety is provided as a link to PubChem as well.
 
 :::info
+
 Internal remark TO DO: Info to be added image of the sample frame and information
+
 :::
 
 ### Properties tab
@@ -169,7 +187,9 @@ The first tab (in the standard Chemotion ELN configuration) that allows the desc
 - resemble materials that contain compound mixtures
 
 :::info
+
 The decoupled mode can help to add undefined structures to the Chemotion ELN. Please add "undefined structure" (default) as **Sum formula** if the structure is not known.
+
 :::
 
 **Decoupled mode properties**
@@ -181,13 +201,17 @@ The decoupled mode can help to add undefined structures to the Chemotion ELN. Pl
 If you want to assign a name (e.g. a trivial name) to a sample, you can do this by making an entry in the **Name** or **Description** fields. Please note that the **Name** field for samples from reactions is overwritten by additional information. Your created sample will have the selected name, but when a new sample is created by dragging and dropping into a reaction scheme, the **Name** field will be overwritten. Please refer to this [link](elements/samples#generation-of-samples-from-existing-samples-or-molecules) for more details on samples generation from other samples. If you want to save a second or more names for your sample permanently, use the **Description** field.
 
 :::danger Caution
+
 The **Name** field within the Sample **Properties** tab is overwritten for samples that represent products in a reaction, because it is required to generate a product name.
+
 :::
 
 In addition to the naming options, an **External label** can be saved for each sample. This **External label** should be used to enable your sample to be assigned to another storage system. For example, if you make a sample available for a reference database or send it to a cooperation partner who renames your sample, your sample will receive a sequential number that is not determined by you. Enter this number in the **External label** field. For participants in the [Molecule Archive](https://compound-platform.eu/) of the Compound Platform, the **External label** field is reserved for the X-Vial numbers of the samples.
 
 :::info
+
 The Molecule Archive of the Compound Platform is an infrastructure that supports scientists to store their compounds centrally and provide the compounds for diverse re-use cases. If you are interested, please have a look at the website of the Molecule Archive and get in contact to the Compound Platform team. Its free for all chemists from academia.
+
 :::
 
 Both **Boiling point** and **Melting point** can be provided manually in Celsius **°C**. If the melting or boiling point is to be added as range, please add the first value, space and second value, e.g. "50 60". this is automatically set to 50 - 60 °C by the system.
@@ -197,7 +221,9 @@ The user can additionally provide any desired information as free text in the **
 The **Amount** can be provided either as mass or in mole, where providing one of them leads to automatic calculation of the other based on the **Purity** (1 by default but can be modified). Mass unit can be either g or mg, while amount unit is either mol or mmol. Volume data can’t be edited until **Density** or **Molarity** are specified, then the volume is automatically calculated. Changing the volume manually leads to automatic changes in the mass and amount.
 
 :::danger Caution
+
 Values such as mass/amount/volume in the sample properties are referring to the sample used in a reaction or for another experiment. They are calculated as components for an experiment based on **Density** or **Molarity** depending on the use of the pure substance or a stock solution. The calculation of a molarity of the stock solution is not done in the properties field. Volume (solvent) and amount (molecule) are not used to calculate the molarity. The molarity, if required for dissolved materials, has to be added manually in the properties tab.
+
 :::
 
 **Density** or **Molarity** are not calculated in the properties tab of the sample. The information comes from external sources or is added as a result from other experiments. The user can enter only **density** (for pure substances) or **molarity** (substances in solution).
@@ -212,8 +238,10 @@ The information required for chemical use is supplemented by **Chemical identifi
 
 ### Search CAS
 
-:::danger CAUTION
+:::danger Caution
+
 If you have not used this feature before, please read [SciFinder/SciFindern Credential](first_steps#scifinderscifindern-credential) first.
+
 :::
 
 The Search CAS function (query information in SciFinder<sup>n</sup> by using an API) is available in Samples and Reactions. Four different search types - substances, reactions, references, suppliers - help you to find the data that match your query.
@@ -258,7 +286,9 @@ The reaction equation can be zoomed in or out by hovering with the mouse anywher
 The **Scheme** tab contains the scheme of the selected reaction. While the molecular structure of samples (in samples details panel) can be edited by selecting the structure field and opening the [Ketcher](ketcher) editor, the reaction **Scheme** (the image) cannot be changed directly. To change the scheme, select the embedded samples and change their structure or use other samples.
 
 :::info
+
 Edit the reaction scheme by selecting or changing the samples, the scheme cannot be edited directly.
+
 :::
 
 The following figure shows a typical reaction **Scheme** with a reagent table. Solvents or reaction temperature have not been added yet. In general, you cannot edit grey fields in the reaction table.
@@ -276,7 +306,9 @@ Press <Btn mixed={[faPlus]} color={"success"}/> in the corresponding categories 
 The creation of samples does not directly result in a representation in the reaction scheme. Please save the reaction once after adding samples to it. After saving the reaction, all added samples also appear in the image of the reaction scheme.
 
 :::info Recommendation
+
 If you want to see a reactant displayed in the samples list, change its status from Reactants to Starting materials. By definition, Reactants are not displayed in the samples list.
+
 :::
 
 2. Select samples from the samples list:
@@ -289,11 +321,16 @@ Choose either the **Starting materials** or the **Reactants** as a reference usi
 Mass can be represented in g, mg or μg, the volume in l, ml, μl, and the amount in mol or mmol. Entering one type of data leads to automatic calculation of the others. The volume is calculated only if the **molarity** of the sample is already set (please set it in the **properties** tab of the **sample**, accessible directly by clicking on the sample's name -> sample panel opens), and the equivalents are calculated unless the sample is a reference, then it gets a fixed equivalent of 1.000. By entering the mass, volume or amount of the reference, the remaining information for the further samples is calculated as soon as at least either their **amount** or **Equiv** is given.
 
 :::info
+
 When entering the amount of your sample, you can choose a unit by pressing the unit button next to the number.
 Additional information on samples such as **Molarity**, **Purity** and others need to be added in the **Properties** tab of the **Sample** and cannot be added to the Reaction Table entry directly.
+
 :::
+
 :::danger Caution
+
 The calculation and display of the volume can only be correct if the molarity of the sample has been entered correctly and precisely in the sample.
+
 :::
 
 An additional function is included within the reaction table, allowing to differentiate between reaction planning and implementation. You can find the function under the title **T/R**. <button className={"button button--xs button--success"} style={{padding:"2px", width:"27px", height:"27px"}}>t</button> means that you can enter/calculate inputs according to the reaction plan. If you switch from <button className={"button button--xs button--primary"} style={{padding:"2px", width:"27px", height:"27px"}}>r</button>, you can enter the quantities actually received. This function was created so that in the event of a deviation (e.g. due to accuracy in the dosage) from the planned experiments, the values of both procedures are still available.
@@ -306,7 +343,9 @@ The solvent can be given a **Label** which is transferred to the reaction arrow 
 In the grey area **Conditions**, **Select** special conditions required for the reaction from a drop-down menu. Those conditions include **UV**, **microwave**, **ultrasound**, **visible light**. Other conditions can be added as free text in the text field.
 
 :::info
+
 Internal remark TODO: showing the conditions in a gif would be great
+
 :::
 
 Below the **Conditions** area, specify a **Name** and describe it with a **Status** from a drop-down. The **Status** is reflected in the list of reactions by a symbol, so you can see at a glance your evaluation of the reactions. The following table shows all the possible **Status** and the corresponding symbols.
@@ -394,8 +433,10 @@ Cells that represent materials display additional, non-editable data when you ho
 #### Adding analyses to variations
 
 :::info
+
 This feature is not part of an official Chemotion ELN release yet.
 The documentation is meant for pre-release demonstrations.
+
 :::
 
 Each row in the `variations table` can be associated with one or more analyses.
@@ -491,7 +532,9 @@ The order of the segments added to the research plan can be changed by drag and 
 The research plan has an edit and a view mode. The view mode offers options to export the information to different file formats (.docx, .odt, HTML, Markdown, LaTeX).
 
 :::info
+
 Internal remark TO DO: gif showing export functions
+
 :::
 
 ### Research plan table functions
