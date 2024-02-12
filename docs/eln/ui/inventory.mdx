@@ -115,7 +115,7 @@ This section contains the following fields:
 - After selecting the search parameters, users can initiate the search query by clicking the <Btn mixed={["Search for SDS"]} color={"secondary"} /> button.
 - The search results will be displayed, and users can click on the results _tag link_ to open a new tab directing them to the vendor's safety data sheet.
 - It is recommended for users or administrators to first verify if the displayed results are associated with the desired chemical.
-- If results match the specific chemical, users can save the safety sheet to the Electronic Laboratory Notebook (ELN) by clicking the save button next to the relevant result tag. A green check mark icon will appear next to result element tag, if SDS is saved successfuly.
+- If results match the specific chemical, users can save the safety sheet to the Electronic Laboratory Notebook (ELN) by clicking the save button next to the relevant result tag. A green check mark icon will appear next to result element tag, if SDS is saved successfully.
 - Once saved, users can initiate additional search queries to retrieve safety phrases or search for chemical and physical properties related to the chemical.
 - Users have the option to delete the saved data sheet by clicking the delete icon <Btn mixed={[faTrash]} color={"danger"}/> button.
 - The <Btn mixed={["Search for SDS"]} color={"secondary"} /> button will be disabled, once one SDS is saved. To enable another search query, user have to delete any saved SDS first.
@@ -151,7 +151,6 @@ Users are provided with the flexibility to choose between exporting/importing in
 
 ### Export Chemicals
 
-
 To initiate the export of a chemical sample, the user is required to select the export samples selection from Export/Import Menu toolbar option. Within the Select Data to Export menu, the user is afforded the opportunity to designate their preferred chemical options for export, in conjunction with the fundamental sample properties that have already been designated.
 Additionally, the user can opt to include further sample or molecule properties to the exported sheet. An example of export chemical process is shown below.
 
@@ -160,10 +159,11 @@ Additionally, the user can opt to include further sample or molecule properties 
 ### Import Chemicals
 
 To start the import of chemical samples process, users should follow these steps:
+
 - Access the import chemicals to collection option located within the Export/Import Selection Menu toolbar.
 - Click the import chemicals to collection menu button to open an interface for uploading the chemical sheet.
 - It is strongly recommended that users utilize the provided chemical template below, as importing chemicals necessitates specific data points. In order to import a sample into Chemotion ELN, it is generally required to have at least one of the following columns present in the import data:
-Canonical Smiles (Smiles) or Molfile. while the remaining columns are optional, providing more details is encouraged for comprehensive record-keeping.
+  Canonical Smiles (Smiles) or Molfile. while the remaining columns are optional, providing more details is encouraged for comprehensive record-keeping.
 - Additionally, users have the capability to import safety data sheets into Chemotion ELN by entering relevant information into the designated fields such as safety data sheet and vendor. Please note that this option is presently compatible only with the Merck vendor.
 - Importing is also feasible for samples and chemicals that do not possess a chemical structure (referred to as decoupled samples). In such instances, users should indicate the value yes in the column of decoupled. If the sample has chemical structure, it is imperative to ensure that any of the columns relevant to the chemical structure, such as molfile and canonical smiles contain valid data.
 
@@ -177,4 +177,3 @@ Canonical Smiles (Smiles) or Molfile. while the remaining columns are optional, 
 Following these steps enables the comprehensive import of chemical samples while maintaining the integrity of essential data for efficient management within the Chemotion ELN system. An example of import chemical process is shown below.
 
 ![Import Samples](/img/import_chemicals.gif)
-

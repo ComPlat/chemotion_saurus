@@ -36,13 +36,13 @@ group :test, :development do
 end
 ```
 
-and follow the installation instructions on <https://github.com/shakacode/cypress-on-rails#installation>.
+and follow the [installation instructions](https://github.com/shakacode/cypress-on-rails#installation).
 Note that you don't have to install Cypress separately with yarn or npm.
 The `cypress-on-rails` gem will take care of that.
 
 It's important to tell `cypress-on-rails` to put the project under `spec` alongside our existing tests.
 Otherwise the Cypress related files (i.e., cypress directory and cypress.config.js) live under root by default.
-You can use the following command (from <https://github.com/shakacode/cypress-on-rails#installation>) to specify the `spec` directory:
+You can use the following command from [Cypress docs](https://github.com/shakacode/cypress-on-rails#installation) to specify the `spec` directory:
 
 ```bash
 bin/rails g cypress_on_rails:install --cypress_folder=spec/cypress
@@ -52,8 +52,7 @@ bin/rails g cypress_on_rails:install --cypress_folder=spec/cypress
 
 Make sure to start the Rails server prior to starting Cypress.
 Note that it's important to start the server with `RAILS_ENV-test`,
-Cypress won't recognize the Rails server if it's running in the `development` or `production` env
-(<https://github.com/shakacode/cypress-on-rails/issues/25>).
+Cypress won't recognize the Rails server if it's running in the `development` or `production` env; see [here](https://github.com/shakacode/cypress-on-rails/issues/25) for more.
 
 ```bash
 RAILS_ENV=test $(which bundle) exec rails server -b 0.0.0.0 -p 3000
@@ -78,8 +77,7 @@ yarn cypress run --project spec
 
 ### Write your first test
 
-Follow this link to start writing your first end-to-end test:
-<https://docs.cypress.io/guides/end-to-end-testing/writing-your-first-end-to-end-test>
+Follow the instructions [here](https://docs.cypress.io/guides/end-to-end-testing/writing-your-first-end-to-end-test) to write your first end-to-end test.
 
 ### Example of using factory bot
 
@@ -113,17 +111,21 @@ You can call `commands` wherever they are needed. It saves time and enhances cla
 For example, move the code for the creation of a user to `spec/cypress/support/commands.js` as shown below:
 
 ```javascript
-Cypress.Commands.add('createDefaultUser', (emailAddress, abbr) => {
+Cypress.Commands.add("createDefaultUser", (emailAddress, abbr) => {
   cy.appFactories([
-    ['create', 'user', {
-      first_name: 'User',
-      last_name: 'Complat',
-      password: 'user_password',
-      password_confirmation: 'user_password',
-      email: emailAddress,
-      name_abbreviation: abbr,
-      account_active: 'true',
-    }],
+    [
+      "create",
+      "user",
+      {
+        first_name: "User",
+        last_name: "Complat",
+        password: "user_password",
+        password_confirmation: "user_password",
+        email: emailAddress,
+        name_abbreviation: abbr,
+        account_active: "true",
+      },
+    ],
   ]);
 });
 ```
@@ -156,68 +158,82 @@ One way to create a sample is to create it by automating all the steps that are 
 (Notice, the before block already including the creation of a user and collection).
 
 ```javascript
-it('create samples', () => {
-    cy.visit('users/sign_in');
-    cy.get('#user_login').type('cu1');
-    cy.get('#user_password').type('user_password');
-    cy.get('div').find('[id="tree-id-Collection 1"]').click();
-    cy.get('#create-split-button').click();
-    cy.get('#create-sample-button').click();
-    cy.get('.chem-identifiers-section > .list-group-item').click();
-    cy.get('#smilesInput').type('c1cc(cc(c1)c1ccccc1)c1ccccc1');
-    cy.get('#smile-create-molecule').click();
-    cy.get('#submit-sample-btn').click();
-    cy.url().should('include', '/sample/1');
+it("create samples", () => {
+  cy.visit("users/sign_in");
+  cy.get("#user_login").type("cu1");
+  cy.get("#user_password").type("user_password");
+  cy.get("div").find('[id="tree-id-Collection 1"]').click();
+  cy.get("#create-split-button").click();
+  cy.get("#create-sample-button").click();
+  cy.get(".chem-identifiers-section > .list-group-item").click();
+  cy.get("#smilesInput").type("c1cc(cc(c1)c1ccccc1)c1ccccc1");
+  cy.get("#smile-create-molecule").click();
+  cy.get("#submit-sample-btn").click();
+  cy.url().should("include", "/sample/1");
 });
 ```
 
 ### Example of creating a sample state
 
 ```javascript
-cy.createDefaultUser('cu1@complat.edu', 'cu1').then((user) => {
-  cy.appFactories([['create', 'collection', { user_id: user[0].id }]]).then((collection) => {
-    cy.appFactories([['create', 'molecule', { molecular_weight: 171.03448 }]]).then((molecule) => {
-      cy.appFactories([['create', 'sample', {
-        name: 'Material', target_amount_value: 7.15, molecule_id: molecule[0].id, collection_ids: collection[0].id
-      }]]);
-    });
-  });
+cy.createDefaultUser("cu1@complat.edu", "cu1").then((user) => {
+  cy.appFactories([["create", "collection", { user_id: user[0].id }]]).then(
+    (collection) => {
+      cy.appFactories([
+        ["create", "molecule", { molecular_weight: 171.03448 }],
+      ]).then((molecule) => {
+        cy.appFactories([
+          [
+            "create",
+            "sample",
+            {
+              name: "Material",
+              target_amount_value: 7.15,
+              molecule_id: molecule[0].id,
+              collection_ids: collection[0].id,
+            },
+          ],
+        ]);
+      });
+    }
+  );
 });
 ```
 
 ### Example of testing an API endpoint with Cypress
 
-You can also use Cypress to test APIs in a developer-friendly way. 
-You can conveniently access the API response data from the test runner. 
+You can also use Cypress to test APIs in a developer-friendly way.
+You can conveniently access the API response data from the test runner.
 When you click on the request step, Cypress will display the corresponding response data in the browser's console.
 
 Consider the following example, where we are testing `Collection API (GET request)`.
 
 ```javascript
-cy.request('/api/v1/collections/roots.json').as('roots');
-cy.get('@roots').then(response => {
-    expect(response.status).to.eq(200);
-    const collectionData = response.body['collections'][0];
-    expect(collectionData.id).to.eq(3);
-    expect(collectionData.label).to.eq('Col1');
+cy.request("/api/v1/collections/roots.json").as("roots");
+cy.get("@roots").then((response) => {
+  expect(response.status).to.eq(200);
+  const collectionData = response.body["collections"][0];
+  expect(collectionData.id).to.eq(3);
+  expect(collectionData.label).to.eq("Col1");
 });
 ```
+
 Here, were are sending a GET request to the `api/v1/collections/roots.json` endpoint and verify that its `response.status` is `200`.
 The response body can contain objects, arrays, attributes, etc. This is how we can access a specific component from its body and perform checks on it.
 
 ```javascript
-// whole object 
-const collectionData = response.body['collections'];
+// whole object
+const collectionData = response.body["collections"];
 
 // single item from the object list
-const collectionData = response.body['collections'][0];
+const collectionData = response.body["collections"][0];
 
 // check length of object
-expect(response.body['collections'].length).to.eq(0)
+expect(response.body["collections"].length).to.eq(0);
 
 // check if returned fields are matching exactly what's expected
 expect(collectionData.id).to.eq(3);
-expect(collectionData.label).to.eq('Col1');
+expect(collectionData.label).to.eq("Col1");
 ```
 
 ## General rules of thumb
@@ -229,10 +245,10 @@ expect(collectionData.label).to.eq('Col1');
   - **It**: What do I expect?
 - Verifying UI state should not be the focus of unit testing (with the exception of snapshot testing in JavaScript).
 - Useful resources
-  - <https://mochajs.org/>
-  - <https://www.betterspecs.org>
-  - <https://github.com/teamcapybara/capybara>
-  - <https://rspec.info/>
+  - https://mochajs.org/
+  - https://www.betterspecs.org
+  - https://github.com/teamcapybara/capybara
+  - https://rspec.info/
 
 ### Javascript Unit tests
 
@@ -246,7 +262,7 @@ expect(collectionData.label).to.eq('Col1');
 - React components can be used with their JavaScript-state or their HTML representation: `wrapper.instance()` and `wrapper.html()`
 - Example: [ResearchPlanDetailsFieldImage.spec.js](https://github.com/ComPlat/chemotion_ELN/blob/main/spec/javascripts/packs/src/apps/mydb/elements/details/researchPlans/ResearchPlanDetailsFieldImage.spec.js)
 
-:::caution Important
+:::warning Important
 When testing a component which includes a store you need to explicitly import he store in the test file. The import must be before the import statement of the component to test.
 The linter recognizes that the store dependency is not used and tries to eliminate it. You can prevent this by manually disabling the linter rule for these lines.
 Example: [ResearchPlanDetails.spec.js](https://github.com/ComPlat/chemotion_ELN/blob/main/spec/javascripts/packs/src/apps/mydb/elements/details/researchPlans/ResearchPlanDetails.spec.js)
@@ -266,13 +282,13 @@ Example: [ResearchPlanDetails.spec.js](https://github.com/ComPlat/chemotion_ELN/
 - By using a pseudoRandomGenerator in the factory for ids and checksums we can create reproducible objects
 - One can reset the generator by adding a build option: `const researchPlan = await ResearchPlanFactory.build('empty', {}, { reset: true });`
 
-:::caution Important
+:::warning Important
 Creating a model is an asynchronous action, so the test must also be asynchronous: `it('no img tag should be rendered', async function (){ }`
 :::
 
 #### Snapshot testing
 
-:::caution Deprecated chapter
+:::warning Deprecated chapter
 Currently no snapshot testing is applied due to lack of capacity. In addition, ui testing will be covered by the system tests in the future.
 :::
 
@@ -282,7 +298,7 @@ Currently no snapshot testing is applied due to lack of capacity. In addition, u
 - Snapshots are not only restricted to HTML but can also be used for JSON or JavaScript-objects
 - Example: [ResearchPlanDetailsFieldImage.spec.js](https://github.com/ComPlat/chemotion_ELN/blob/applying-gem-shrine/spec/javascripts/packs/src/apps/mydb/elements/details/researchPlans/ResearchPlanDetailsFieldImage.spec.js#L52)
 
-:::caution Important
+:::warning Important
 The `expect` extension by mocha refers to the current test-object by `this`. Using an lambda expression at the it definition, mocha have no access to it. Using an explicit
 function definition solves this problem.
 :::
@@ -298,7 +314,7 @@ function definition solves this problem.
 
 - Models can be created using the library [factory bot](https://github.com/thoughtbot/factory_bot). In factories, desired states of the models are predefined and can then be created using `create` (creates a DB entry) or `build` (creates a model without a DB entry).
 
-:::caution IMPORTANT
+:::warning Important
 Creating an attachment with factorybot must be handled carefully because `create` also triggers the `create_derivative` method and could remove a fixture file.
 By using `build` the `create_derivative` method is not executed, but one has no object in the database and some properties are not initialized.
 :::
@@ -311,7 +327,7 @@ By using `build` the `create_derivative` method is not executed, but one has no 
 #### Stubbing/Mocking
 
 - REST calls
-   `stub_request(REST_METHOD_AS_SYMBOL, 'REST_ADDRESS'`
+  `stub_request(REST_METHOD_AS_SYMBOL, 'REST_ADDRESS'`
   `.with(REQUEST_HEADER_INFOS OR/AND PARAMETER)`
   `.to_return(RETURN BODY OR/AND HEADER)`
   Example: [spec_helper.rb](https://github.com/ComPlat/chemotion_ELN/blob/applying-gem-shrine/spec/spec_helper.rb#L86)

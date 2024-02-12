@@ -4,7 +4,12 @@ author: Claire Lin
 sidebar_position: 2
 ---
 
-import { FigCaption, SubTitle, YouTubeFrame, Reader } from '@site/src/js/layout';
+import {
+  FigCaption,
+  SubTitle,
+  YouTubeFrame,
+  Reader,
+} from "@site/src/js/layout";
 
 <Reader text="Designer" />
 
@@ -13,7 +18,6 @@ A **Field** can be thought of as a subcomponent within a layer. It encapsulates 
 :::info
 The attributes are listed below in the order presented within the user interface.
 :::
-
 
 ## Field Attributes
 
@@ -24,7 +28,11 @@ A distinctive identifier within the field. It won't be editable once the layer i
 ### Term(Terminology)
 
 A terminology used to express the concept of this data field, providing a link to the terminology service.
-<YouTubeFrame src="https://www.youtube-nocookie.com/embed/P5OOXB0RyqU?list=PLZoVOhxCsajnl5_tveYUvtD0Y57devzdn" title="Designer - Linking an Ontology Term to a Field (HD)" />
+
+<YouTubeFrame
+  src="https://www.youtube-nocookie.com/embed/P5OOXB0RyqU?list=PLZoVOhxCsajnl5_tveYUvtD0Y57devzdn"
+  title="Designer - Linking an Ontology Term to a Field (HD)"
+/>
 <FigCaption text="Designer - Linking an Ontology Term to a Field" />
 
 ### Display Name
@@ -44,4 +52,3 @@ The **Type** of a field refers to the category or format of data that a particul
 ### Has Its Own Line&#x20;
 
 Indicate this field will take a single row. Not applicable when the type is Datetime range or Table.
-

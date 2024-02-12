@@ -17,27 +17,45 @@
           "*.mdx": "markdown"
         },
         "editor.rulers": [100],
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
         "editor.codeActionsOnSave": {
           "source.fixAll.eslint": true,
           "source.fixAll.markdownlint": true
         },
-        "cSpell.enableFiletypes": ["md", "mdx", "!js", "!json", "!jsonc"],
-        "cSpell.words": ["Chemotion", "helpdesk"],
-        "markdownlint.config": {
-          "MD033": { "allowed_elements": ["kbd"] }
+        "eslint.options": {
+          "extensions": [".js", ".jsx", ".md", ".mdx", ".ts", ".tsx"]
         },
-        "markdownlint.run": "onSave"
+        "eslint.validate": [
+          "markdown",
+          "mdx",
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact"
+        ],
+        "Workspace_Formatter.includePattern": ["*.mdx", "*.md"],
+        "cSpell.enableFiletypes": ["md", "mdx", "!js", "!json", "!jsonc"],
+        "cSpell.words": [
+          "Chemotion",
+          "helpdesk",
+          "Labimotion",
+          "fortawesome",
+          "fontawesome",
+          "subcomponent",
+          "wellplate"
+        ],
+        "cSpell.suggestionMenuType": "quickFix"
       },
 
       // Add the IDs of extensions you want installed when the container is created.
       "extensions": [
         "dbaeumer.vscode-eslint",
         "streetsidesoftware.code-spell-checker",
-        "DavidAnson.vscode-markdownlint"
+        "esbenp.prettier-vscode",
+        "franneck94.workspace-formatter"
       ]
     }
   },
-
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   "forwardPorts": [3000],
 

@@ -4,7 +4,7 @@ author: Nicole Jung
 sidebar_position: 2
 ---
 
-:::caution Important information for this page
+:::info Important information for this page
 This page contains a collection of ideas to give inline notations for analytical data in the future. We provide this page to discuss options for a clear formatting of descriptions - but there is no need to adapt to the given rules at the moment. This is a test area. Nevertheless: if you have suggestions and comments: please let us know or provide your ideas via the issue tracking option.
 https://github.com/ComPlat/chemotion_saurus/issues  
 :::
@@ -49,29 +49,21 @@ Please order the analysis part of your molecules/samples according to:
 6. Others (EA, crystal structures)
    For collecting data in the ELN/repository, please use the "order mode" button in the analysis tab. For inline notation, please add one technique after the other, separated by ".".
 
-If detailed peak assignments are made, the type of NOESY or COSY methods used to establish atom connectivities and spatial <br />relationships should be identified in the Supporting Information.
+If detailed peak assignments are made, the type of NOESY or COSY methods used to establish atom connectivity and spatial <br />relationships should be identified in the Supporting Information.
 
 ## Datasets assigned to analyses
-Adding data to a sample/reaction/other entities in the Chemotion repository (and Chemotion ELN) follows a certain structure that consists of: <br /> 
- -- analyses <br />
- --- datasets <br />
- ---- attachments <br /> <br /> 
+
+Adding data to a sample/reaction/other entities in the Chemotion repository (and Chemotion ELN) follows a certain structure that consists of: <br />
+-- analyses <br />
+--- datasets <br />
+---- attachments <br /> <br />
 You can assign as many datasets to an analysis as you have and want to provide. You can add as many attachments to each dataset as you have and want to provide
 Please keep the following rules in mind: <br />
- -- **analyses** -> each measurement type should be added with a new analysis section. Whenever you can assign another ontology term, this means you need another analysis type to describe your data <br />
- --- **datasets** ->  a dataset summarizes the data that were gained in a specific measurement. Each measurement is added as a dataset. If you repeat the measurement with a change of one or several parameters (e.g. other solvent, increase of temperature, number of scans etc, then please add another dataset to the same analysis section) <br />
- ---- **attachments** -> attachments are considered as different representations of a certain measurement (= dataset). You can add as many files as you have as long as they describe the same measurement with the same parameters <br />
-That also means: please add all represenations (file formats, images, original data etc) that you gained for one experiment as multiple attachments to the same dataset.
+-- **analyses** -> each measurement type should be added with a new analysis section. Whenever you can assign another ontology term, this means you need another analysis type to describe your data <br />
+--- **datasets** -> a dataset summarizes the data that were gained in a specific measurement. Each measurement is added as a dataset. If you repeat the measurement with a change of one or several parameters (e.g. other solvent, increase of temperature, number of scans etc, then please add another dataset to the same analysis section) <br />
+---- **attachments** -> attachments are considered as different representations of a certain measurement (= dataset). You can add as many files as you have as long as they describe the same measurement with the same parameters <br />
+That also means: please add all representations (file formats, images, original data etc) that you gained for one experiment as multiple attachments to the same dataset.
 
-**Examples:** 
-How to add an NMR experiment done in differnt solvents such as CDCl<sub>3</sub>, DMSO-d<sub>6</sub>? <br />
-Please create two datasets within one analysis and name them according to the different setting, e.g. 1H NMR in DMSO-d<sub>6</sub>, 1H NMR in CDCl<sub>3</sub>. 
-
-
-
-
-
-
-
-
-
+**Examples:**
+How to add an NMR experiment done in different solvents such as CDCl<sub>3</sub>, DMSO-d<sub>6</sub>? <br />
+Please create two datasets within one analysis and name them according to the different setting, e.g. 1H NMR in DMSO-d<sub>6</sub>, 1H NMR in CDCl<sub>3</sub>.

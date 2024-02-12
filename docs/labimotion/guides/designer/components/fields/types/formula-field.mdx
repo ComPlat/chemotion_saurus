@@ -3,15 +3,22 @@ title: Formula-Field
 author: Claire Lin
 sidebar_position: 7
 ---
-import { FigCaption, SubTitle, YouTubeFrame, Reader } from '@site/src/js/layout';
+
+import {
+  FigCaption,
+  SubTitle,
+  YouTubeFrame,
+  Reader,
+} from "@site/src/js/layout";
 
 A **Formula-Field** type field is used to perform calculations based on specified inputs.
 
 :::info
-When setting up the calculation formula, use the [Field Name](../#field-name) if you want to use the [Integer](integer) type field.
+When setting up the calculation formula, use the [Field Name](../../fields#field-name) if you want to use the [Integer](integer) type field.
 :::
 
 ## Extra Field Attributes
+
 ### Decimal
 
 The decimal of the calculation result.
@@ -26,15 +33,18 @@ The calculation formula.
 
 For example:
 
-* Field A: Field Name - field\_a, Type - Integer
-* Field B: Field Name - field\_b, Type - Integer
-* Field C: Field Name - field\_c, Type - Formula-Field
+- Field A: Field Name - field_a, Type - Integer
+- Field B: Field Name - field_b, Type - Integer
+- Field C: Field Name - field_c, Type - Formula-Field
 
-Let's set up the formula: (field\_a + field\_b) / 0.33
+Let's set up the formula: (field_a + field_b) / 0.33
 
 When an end-user enters "330" in Field A and "30" in Field B, the formula calculation (330 + 30) / 0.33 will be displayed in Field C.
 
 Watch the video below to see how easy it is to perform sorting and filtering tasks in a list.
 
-<YouTubeFrame src="https://www.youtube-nocookie.com/embed/KQiWymP4M-g" title="Designer - Formula Field" />
+<YouTubeFrame
+  src="https://www.youtube-nocookie.com/embed/KQiWymP4M-g"
+  title="Designer - Formula Field"
+/>
 <FigCaption text="LabIMotion: Designer - Formula Field" />
