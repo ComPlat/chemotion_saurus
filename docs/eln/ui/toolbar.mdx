@@ -49,7 +49,7 @@ Possible search terms are **IUPAC** names, **InChI**, **SMILES**, **RInChI**. Th
 
 In the **Advanced Search**, the user can **Select search type** which opens a menu to pick from looking up the **EXACT** term, or entering a substring to look up for, and here the substring can either be included for the search (**LIKE (case insensitive substring)**) or excluded (**NOT LIKE (case insensitive substring)**). In both cases, more strict case sensitive searches can be done with **LIKE (substring)** and **NOT LIKE (substring)**. Another menu enables the user to choose the term type. Available options are **Sample Name**, **Sample Short Label**, **Sample External Label**, and **CAS**. Finally, there is the field for the **Search value**. When the user enters all the entries, they should choose <Btn mixed={["Search"]} color={"primary"}/>. If they want to cancel the search, they could choose <Btn mixed={["Close"]} color={"warning"}/>.
 
-:::danger Caution
+:::danger[Caution]
 
 Although the **Advanced Search** states **Sample** in its menus, e.g. **Sample Name**, it could actually be applied to other elements too.
 
@@ -150,7 +150,7 @@ The window above opens where the user picks the properties to be exported with t
 
 To export reactions, the user has two options, either to use the above mentioned **Export samples from selection**, where details about the samples included in the reaction are exported, or to use **Export reactions from selection**. In this case, only the **SMILES** are extracted. The window above opens where the user can pick which parts of the reaction to extract (starting materials, reactants, products, solvents). They could also choose the format of ordering those **SMILES**. If they want to proceed, they press <Btn mixed={["Smiles Export",faSortUp]} color={"warning"}/>. Otherwise, press <Btn mixed={["Cancel"]} color={"primary"}/>.
 
-:::info Recommendation
+:::info[Recommendation]
 
 To export reactions, wellplates, or analyses, you can use **Export samples from selection**.
 
@@ -177,7 +177,7 @@ stereo_rel: any, syn, anti, p-geminal, p-ortho, p-meta, p-para, cis, trans, fac
 After downloading the XLSX template, you can import it in your Chemotion ELN as shown below:
 ![Collection View](/img/import_samples_short.gif)
 
-:::info Recommendation
+:::info[Recommendation]
 
 Please add either molfile or **SMILES**-Code to the import template. The import process will fail if both are entered.
 
@@ -213,11 +213,12 @@ Generation of new samples with molecular structures that are already used by ano
 
 To copy a sample, first select the sample whose structure you want to copy from the Samples list and then press the <Btn mixed={[faSortDown]} color={"primary"}/> button in the action bar. The **Copy Sample** function is offered there in the lower area. When the function is selected, a details modal is opened for a new sample to be edited.
 
-:::danger Caution
+:::danger[Caution]
 
 With the **Copy sample** action you only copy the molecular structure of the sample, all other information is not available and will not be adopted. Only the general data available from the molecular structure are transferred.
 
 :::
+
 When creating a new sample using the split function **Split Sample**, a new sample is created that is directly dependent on the original sample. In contrast to copy, with split not only the structure-dependent information of the original sample is taken over for the creation of a new sample. All available data are used to generate the new sample. The action is intended to represent those cases in the laboratory in which something is removed from a batch and used for a new purpose. Examples of a split action are therefore e.g., the removal from a chemical container or the further use of a product from a reaction. For more details on Samples generation, visit this [link](elements/samples#generation).
 
 ### Function "copy" for reactions

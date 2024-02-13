@@ -18,7 +18,7 @@ We distribute the ELN as docker images for ease of distribution and use. The lat
 
 ## Fresh Installations
 
-:::info IMPORTANT
+:::info[Important]
 
 Certain installations require may require additional/different steps. Please check [this section](#special-cases) to see if your desired version needs such treatment.
 
@@ -174,13 +174,13 @@ Further information on how to configure nginx, please refer to tutorials online 
 
 ## Upgrades
 
-:::info IMPORTANT
+:::info[Important]
 
 Certain upgrades require may require additional/different steps. Please check [this section](#special-cases) to see if your current version and/or desired version needs such treatment.
 
 :::
 
-:::warning Before Upgrades
+:::warning[Before Upgrades]
 
 - ALWAYS perform a [backup](#backing-up-and-restoring-your-data) before doing upgrades. We cannot help you restore data if there is no backup and things go wrong during upgrade processes.
 - Inform your users of downtime that may accompany the upgrade.
@@ -249,7 +249,7 @@ In addition, you should always backup before upgrading your installation.
 
 :::
 
-:::warning Warning
+:::warning[Warning]
 
 Backup scripts do not backup data that reside outside docker volumes e.g. `services` and `shared` folders. These folders need to be backed up _separately_ by you.
 

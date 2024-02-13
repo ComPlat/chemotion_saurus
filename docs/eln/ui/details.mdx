@@ -3,7 +3,7 @@ title: Details Panel
 sidebar_position: 5
 ---
 
-:::danger Caution
+:::danger[Caution]
 
 This page is still being edited and reviewed.
 
@@ -103,7 +103,7 @@ The supported analysis methods are listed in the drop-down menu **Type ([Chemica
 
 :::info
 
-Choosing an ontology term is required to enable the transfer of data to the chemotion repository. Without adding the chemical methods ontology, the transfer won't be successful.
+Choosing an ontology term is required to enable the transfer of data to the Chemotion repository. Without adding the chemical methods ontology, the transfer won't be successful.
 
 :::
 
@@ -113,7 +113,7 @@ The analyses tab of the reaction view differs from the analysis tab of the sampl
 
 The wellplate analysis tab is identical to the sample analysis tab.
 
-:::warning Warning
+:::warning[Warning]
 
 You shouldn't forget one important property of the Chemotion ELN: the uploaded data files and entered information are not saved until you confirm that with <Btn mixed={["Save"]} color={"warning"}/> or <Btn mixed={[faSave]} color={"warning"}/>. This point, if overlooked, can lead to the loss of the data you have set.
 
@@ -132,7 +132,7 @@ order of analyses after activating the `Order mode`.
 
 ![Ordering Analyses](/img/analyses_ordering.gif)
 
-:::warning Warning
+:::warning[Warning]
 
 Don’t forget to save your changes with <Btn mixed={["Save"]} color={"warning"}/> so that the ordering persists.
 
@@ -146,7 +146,7 @@ The **References** tab of the sample allows you to manage your literature and li
 
 The created references are added to a list and they are shown in blue to indicate their functionality in linking to some resources by clicking on them. Each reference can be copied by using <Btn mixed={[faPaste]} color={"secondary"}/>, which will copy the information provided in the list. Additional details about the reference, as by whom it was created and whether it is referring to or cited by you, can be shown by pressing the button <Btn mixed={[faAngleRight]} color={"secondary"}/>, which also shows the delete button <Btn mixed={[faTrashAlt]} color={"danger"}/>.
 
-:::warning Warning
+:::warning[Warning]
 
 Don’t forget to save your changes with <Btn mixed={["Save"]} color={"warning"}/>
 
@@ -200,7 +200,7 @@ The decoupled mode can help to add undefined structures to the Chemotion ELN. Pl
 
 If you want to assign a name (e.g. a trivial name) to a sample, you can do this by making an entry in the **Name** or **Description** fields. Please note that the **Name** field for samples from reactions is overwritten by additional information. Your created sample will have the selected name, but when a new sample is created by dragging and dropping into a reaction scheme, the **Name** field will be overwritten. Please refer to this [link](elements/samples#generation-of-samples-from-existing-samples-or-molecules) for more details on samples generation from other samples. If you want to save a second or more names for your sample permanently, use the **Description** field.
 
-:::danger Caution
+:::danger[Caution]
 
 The **Name** field within the Sample **Properties** tab is overwritten for samples that represent products in a reaction, because it is required to generate a product name.
 
@@ -220,7 +220,7 @@ The user can additionally provide any desired information as free text in the **
 **Values affecting the reaction calculation table:**
 The **Amount** can be provided either as mass or in mole, where providing one of them leads to automatic calculation of the other based on the **Purity** (1 by default but can be modified). Mass unit can be either g or mg, while amount unit is either mol or mmol. Volume data can’t be edited until **Density** or **Molarity** are specified, then the volume is automatically calculated. Changing the volume manually leads to automatic changes in the mass and amount.
 
-:::danger Caution
+:::danger[Caution]
 
 Values such as mass/amount/volume in the sample properties are referring to the sample used in a reaction or for another experiment. They are calculated as components for an experiment based on **Density** or **Molarity** depending on the use of the pure substance or a stock solution. The calculation of a molarity of the stock solution is not done in the properties field. Volume (solvent) and amount (molecule) are not used to calculate the molarity. The molarity, if required for dissolved materials, has to be added manually in the properties tab.
 
@@ -238,7 +238,7 @@ The information required for chemical use is supplemented by **Chemical identifi
 
 ### Search CAS
 
-:::danger Caution
+:::danger[Caution]
 
 If you have not used this feature before, please read [SciFinder/SciFindern Credential](first_steps#scifinderscifindern-credential) first.
 
@@ -305,7 +305,7 @@ Press <Btn mixed={[faPlus]} color={"success"}/> in the corresponding categories 
 
 The creation of samples does not directly result in a representation in the reaction scheme. Please save the reaction once after adding samples to it. After saving the reaction, all added samples also appear in the image of the reaction scheme.
 
-:::info Recommendation
+:::info[Recommendation]
 
 If you want to see a reactant displayed in the samples list, change its status from Reactants to Starting materials. By definition, Reactants are not displayed in the samples list.
 
@@ -327,7 +327,7 @@ Additional information on samples such as **Molarity**, **Purity** and others ne
 
 :::
 
-:::danger Caution
+:::danger[Caution]
 
 The calculation and display of the volume can only be correct if the molarity of the sample has been entered correctly and precisely in the sample.
 
