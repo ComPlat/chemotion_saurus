@@ -31,6 +31,9 @@ import {
   faSlidersH,
   faClone,
   faEdit,
+  faChevronUp,
+  faChevronDown,
+  faTimes
 } from "@fortawesome/free-solid-svg-icons";
 import { Btn } from "@site/src/js/btn.js";
 
@@ -388,7 +391,7 @@ This tab contains fields for green chemistry metrics to quantify the environment
 If you need to record multiple variations of a reaction, this feature is for you.
 Here's an example of a `variations table`:
 
-![variations table](/img/reaction_variations_table.png)
+![reaction_variations_table](/img/reaction_variations_table.png)
 
 Each row represents a variation of the reaction.
 For example, you might have optimized a reaction regarding its duration.
@@ -406,10 +409,7 @@ That is, whenever you export the reaction, or include it in a report, the `varia
 
 #### Adding, copying, and deleting reaction variations
 
-You can populate the `variations table` by adding, copying, and deleting rows:
-
-![populate variations table](/img/reaction_variations_table_curate.gif)
-
+You can populate the `variations table` by adding, copying, and deleting rows.
 Add a row by clicking the <Btn mixed={[faPlus]} color={"success"}/> button on the top left of the `variations table`.
 Each new row contains the current state of the `scheme tab` and `properties tab`.
 That is, if you change something in the `scheme tab` or `properties tab` in between adding rows,
@@ -422,12 +422,11 @@ a row by clicking the corresponding buttons that are embedded on its left.
 
 #### Navigating and editing the variations table
 
-![edit variations table](/img/reaction_variations_table_navigate_edit.gif)
-
-Navigate the `variations table` with the arrow keys, and edit a cell by double-clicking it, or selecting the cell and hitting enter.
-Doing so opens a pop-up dialog that contains all editable attributes of the cell. For example, you can edit the unit, amount, and equivalent of starting materials.
-Once you've edited the cell, confirm the edit by hitting enter, or leaving the cell (e.g., by clicking somewhere else, or hitting tab).
-
+Navigate the `variations table` with the arrow keys,
+and edit a cell by double-clicking it,
+or tab into the cell and hit enter.
+Once you've edited the cell, confirm the edit by hitting enter,
+or leaving the cell (e.g., by clicking somewhere else, or hitting tab).
 Cells that represent materials display additional, non-editable data when you hover over them with the mouse.
 
 #### Adding analyses to variations
@@ -445,7 +444,7 @@ The `Analyses` tab contains analyses pertaining to
 A) the reaction's products (left sub-tab), as well as
 B) to the reaction in general (right sub-tab):
 
-![reaction_analyses_tab](/img/reaction_analyses_tab.png)
+![TODO update reaction_analyses_tab](/img/reaction_analyses_tab.png)
 
 Variations can only be associated with B), and for the remainder of this section,
 whenever we refer to an analysis, we refer to B).
@@ -453,14 +452,14 @@ Each analysis contains a dropdown menu of variations.
 Note that this dropdown menu is only active when the analysis has been saved.
 In the dropdown, the variations are identified by their ID, the same that's displayed in the `variations table`:
 
-![reaction_variations_dropdown](/img/reaction_variations_dropdown.png)
+![TODO reaction_variations_dropdown](/img/reaction_variations_dropdown.png)
 
 Once you've selected a variation's ID,
 the corresponding row in the `variations table` lists the analysis in the `Analyses` column.
 When you click on the row's cell in the `Analyses` column,
 you'll see a dropdown of all analyses that are associated with the row:
 
-![reaction_analyses_dropdown](/img/reaction_analyses_dropdown.png)
+![TODO reaction_analyses_dropdown](/img/reaction_analyses_dropdown.png)
 
 Clicking on an analysis name in the dropdown opens the corresponding analysis in the `Analyses` tab.
 You can associate multiple analyses with the same variation.
@@ -470,26 +469,37 @@ or remove the association by selecting "Not associated" from the dropdown menu.
 
 #### Customizing the table layout
 
-![layout variations table](/img/reaction_variations_table_layout.gif)
-
 ##### Columns
-
-You can customize the headers of materials using the `Identify materials by` dropdown on top of the variations tab.
 
 It's likely that not all columns fit on your screen.
 You can move to columns that are currently off-screen by using the scroll bar at the bottom of the tab.
-You can adjust a column's width by dragging the border-handles between columns to the left or right.
-This can be useful if you want to hide irrelevant columns.
 If you want to change the order of columns, click on a column header and drag it to the left or right.
+
+###### Units
+
+You can select the unit a column by clicking on the green unit button in the column header.
+For example, switch from <Btn mixed={["mg"]} color={"success"}/> to <Btn mixed={["g"]} color={"success"}/>.
+
+###### Material names
+
+Click on material names to change them.
+
+###### Material attributes
+
+Material columns can represent different attributes of a material.
+For example, (non-reference) materials columns can represent the material's
+mass or equivalent by toggling the corresponding button in the column header
+to <Btn mixed={["mass"]} color={"secondary"}/> or <Btn mixed={["equivalent"]} color={"secondary"}/>.
 
 ##### Rows
 
-You can sort the tables' rows by specific columns by clicking on the column's header.
-For example, you might want to sort the table by the amount of a product.
-The first click sorts the rows in ascending order, a second click in descending order.
-The order is marked by an arrow in the header.
-Note that the units must be the same throughout the column in order for the sorting to work.
-You can also sort rows manually: click anywhere on the row and keep the mouse button depressed while dragging the row up or down.
+Click on the sort icons in the column's header to sort the rows by that column.
+Sort the rows by a column in ascending (<Btn mixed={[faChevronUp]} color={"secondary"}/>)
+or descending (<Btn mixed={[faChevronDown]} color={"secondary"}/>) order.
+To remove the sorting, click <Btn mixed={[faTimes]} color={"secondary"}/>.
+You can also sort rows manually:
+click anywhere on the row and keep the mouse button depressed while dragging the row up or down.
+Note that the manual sort is disabled as soon as the table is sorted by a column.
 
 ### Search CAS
 
