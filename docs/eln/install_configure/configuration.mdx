@@ -403,27 +403,27 @@ Once the process is complete, you will receive a Client ID which you can enable 
 
 #### Settings
 
-To enable this feature, the necessary information needs to be configured in the `scfinder_n.yml` file. After editing the `scfinder_n.yml` file the service needs to be restarted.
+To enable this feature, the necessary information needs to be configured in the `scifinder_n.yml` file. After editing the `scifinder_n.yml` file the service needs to be restarted.
 
-The `scfinder_n.yml` configuration file is in the `config` folder. To create the file for the first time,
+The `scifinder_n.yml` configuration file is in the `config` folder. To create the file for the first time,
 
 ```sh
 # from the application dir (/var/www/chemotion_ELN/current) copy the config file
-cp config/scfinder_n.yml.example config/scfinder_n.yml
+cp config/scifinder_n.yml.example config/scifinder_n.yml
 
 # edit it
-vim config/scfinder_n.yml
+vim config/scifinder_n.yml
 
 # restart the application (assuming Passenger is being used)
 touch tmp/restart.txt
 
 # keep the configuration for future Chemotion ELN updates (assuming Capistrano is used)
-mv config/scfinder_n.yml /var/www/chemotion_ELN/shared/config/scfinder_n.yml
-ln -s  /var/www/chemotion_ELN/shared/config/scfinder_n.yml /var/www/chemotion_ELN/current/config/scfinder_n.yml
+mv config/scifinder_n.yml /var/www/chemotion_ELN/shared/config/scifinder_n.yml
+ln -s  /var/www/chemotion_ELN/shared/config/scifinder_n.yml /var/www/chemotion_ELN/current/config/scifinder_n.yml
 ```
 
 ```yaml
-### example of scfinder_n.yml
+### example of scifinder_n.yml
 production:
   :provider:
     :metadata: "api/oauth2/metadata" # DON'T CHANGE
