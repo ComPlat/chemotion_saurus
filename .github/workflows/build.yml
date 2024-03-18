@@ -18,8 +18,9 @@ jobs:
       - name: Build
         id: build
         run: |
+          npm install -g npm
           npm install
-          npm run build --if-present
+          npm run build
 
       - name: Deploy
         if: steps.build.outcome == 'success' && github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message, 'skip deploy')

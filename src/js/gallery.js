@@ -13,8 +13,6 @@ export function Gallery({ links, titles }) {
               width="320"
               height="180"
               src={link}
-              // title={this.state.titles[idx]}
-              frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             />
