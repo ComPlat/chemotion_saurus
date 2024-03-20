@@ -1,0 +1,99 @@
+---
+title: Labeling
+author: Claire Lin
+sidebar_position: 5
+---
+import { FigCaption } from "@site/src/js/layout";
+import myLabelsMenu from "@site/static/img/repo/labeling/my_labels_menu.png";
+import myLabelsList from "@site/static/img/repo/labeling/my_labels_list.png";
+import myLabelsEdit from "@site/static/img/repo/labeling/my_labels_edit.png";
+import sampleListLabels from "@site/static/img/repo/labeling/sample_list_labels.png";
+import sampleDetailLabels from "@site/static/img/repo/labeling/sample_detail_labels.png";
+import labeling from "@site/static/img/repo/labeling/labeling1.gif";
+import globalLabel from "@site/static/img/repo/labeling/global_label.png";
+
+Labeling enables easy identification and differentiation of various samples. Labels associated with samples aid in data management and analysis. Clear labeling within a system promotes collaboration among you and your collaborators by providing a standardized way to reference and share samples. You can create and manage labeling options in the **My Labels**. This page provides an overview of the different types of labeling options and how to create and manage them.
+
+## Types of Labels
+
+There are three types of labels:
+- **Private**: Exclusive access for you.
+- **Public**: Shareable before publication, Visible to all users.
+- **Global**: Open to everyone.
+
+### Private Labels
+
+Private labels are only visible to you. You can use Private Labels to organize and manage your samples in a way that is meaningful to you.
+
+### Public Labels
+
+Public labels are visible to all users. You can associate samples with Public Labels before publication and share them with collaborators.
+
+### Global Labels
+
+Global labels are open to everyone. You can use Global labels to standardize the labeling of samples across the entire system. Only authorized users can create and edit Global labels.
+
+Chemotion Repository provides a global label called <span style={{display: 'inline-block', padding: '.2em .6em .4em', fontSize: '75%', fontWeight: '700', lineHeight: '1', color: '#fff', textAlign: 'center', whiteSpace: 'nowrap', verticalAlign: 'middle', borderRadius: '10px', backgroundColor: 'purple'}}>Commercial</span> to define the compounds obtained from suppliers for the purpose of analyzing derivatives.
+
+<p align="center">
+  <img src={globalLabel} alt="Global Label - Commercial" />
+</p>
+
+
+## Manage Labels
+
+1. Go to **My Labels**. A list of existing labels will be displayed.
+
+<p align="center">
+  <img src={myLabelsMenu} alt="My Labels" />
+  <FigCaption text="My Labels" />
+</p>
+
+<p align="center">
+  <img src={myLabelsList} alt="My Labels" />
+  <FigCaption text="My Labels List" />
+</p>
+
+2. Click **Create** if you want to create a new label. You can also click **Edit** to modify an existing label.
+3. Select the type of label you want to create or edit. Input the title and description. You can also pick a color for the label. Click **Save** to finish.
+
+<p align="center">
+  <img src={myLabelsEdit} alt="My Labels" />
+  <FigCaption text="My Labels" />
+</p>
+
+:::info
+
+Only authorized user can create/edit [**Global Labels**](#global-labels).
+
+:::
+
+## Use Labels
+
+You can assign labels to samples to help you organize and manage your samples. The labels display on the sample list and the header of sample details.
+
+:::tip
+
+With different types of labels, you can easily establish a standard method for referencing and sharing your samples among yourself and your collaborators, or manage your samples using your own private labels.
+
+:::
+
+1. Go to sample list. You can see the labels of each sample. In the below example, the labels like `MOF-SE` and `MOF-XRD` are displayed for you on the sample list.
+
+<p align="center">
+  <img src={sampleListLabels} alt="My Labels" />
+  <FigCaption text="Labels are displayed on Sample list" />
+</p>
+
+2. Select a sample from sample list. You can also see the labels are displayed on the header.
+
+<p align="center">
+  <img src={sampleDetailLabels} alt="My Labels" />
+  <FigCaption text="Labels are displayed on the sample detail header" />
+</p>
+
+3. Go to the **Properties** of sample detail page. Scroll down to locate the **My Labels**. Select the label from the list to assign a label to the sample. You can also click **x** to remove the label. Click **Save** to finish.
+
+<p align="center">
+  <img src={labeling} alt="My Labels" />
+</p>
