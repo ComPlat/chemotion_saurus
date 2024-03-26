@@ -2,9 +2,6 @@
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.195.0/containers/javascript-node
 {
   "name": "Docusaurus",
-  // Update 'VARIANT' to pick a Node version: 16, 14, 12.
-  // Append -bullseye or -buster to pin to an OS version.
-  // Use -bullseye variants on local arm64/Apple Silicon.
   "image": "mcr.microsoft.com/devcontainers/javascript-node",
 
   // Configure tool-specific properties.
@@ -19,8 +16,8 @@
         "editor.rulers": [100],
         "editor.defaultFormatter": "esbenp.prettier-vscode",
         "editor.codeActionsOnSave": {
-          "source.fixAll.eslint": true,
-          "source.fixAll.markdownlint": true
+          "source.fixAll.eslint": "always",
+          "source.fixAll.markdownlint": "always"
         },
         "eslint.options": {
           "extensions": [".js", ".jsx", ".md", ".mdx", ".ts", ".tsx"]
@@ -59,7 +56,10 @@
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   "forwardPorts": [3000],
 
-  // Use 'postCreateCommand' to run commands after the container is created.
+  // Use 'updateContentCommand' to run commands after the container is created and before the project is cloned.
+  "updateContentCommand": "npm install -g npm",
+
+  // Use 'postCreateCommand' to run commands after the project has been cloned into the container.
   "postCreateCommand": "npm install",
 
   // Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
