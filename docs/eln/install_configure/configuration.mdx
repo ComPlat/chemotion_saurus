@@ -215,42 +215,63 @@ For each registered Device, a collection job can be set up through the administr
 The default structure editor for Chemotion ELN is Ketcher, specifically version v1, seamlessly integrated through the ketcher-rails project; therefore, no additional configuration is needed.
 If you wish to utilize other supported structure editors, such as Ketcher v2, ChemDraw, or Marvin JS, additional configuration is required. In such cases, you'll need to adjust the necessary files and, potentially, provide a license. Please be aware that any modifications to the `structure_editors.yml` file will necessitate a service restart for the changes to take effect.
 
-The `structure_editors.yml` configuration file is located in the `config` folder. To configure other structure editors, follow these steps:
+The `structure_editors.yml` configuration file is located in the `config` folder. To configure other structure editors and assuming a docker installation, follow these steps:
 
-1. Navigate to the application directory (/var/www/chemotion_ELN/current).
+1. create directories and a config/structure_editors.yml in your pullin folder
 
-```sh
-cd /var/www/chemotion_ELN/current
+```
+mkdir -p shared/pullin/{public/editors,config} && \
+wget  https://raw.githubusercontent.com/ComPlat/chemotion_ELN/v1.8.2/config/structure_editors.yml.example && \
+mv structure_editors.yml.example shared/pullin/config/structure_editors.yml 
 ```
 
-2. Copy the example configuration file to create a new one if the file doesn't exist yet.
+NB:
+- replace the version tag (here `v1.8.2` with your actual version)
+- be sure you do not have a structure_editors.yml config file in place already
 
-```sh
-cp config/structure_editors.yml.example config/structure_editors.yml
+
+2. Unpack your editor src code
+
+For Ketcher2 v2.18.0
+
+```
+wget https://github.com/epam/ketcher/releases/download/v2.18.0/ketcher-standalone-2.18.0.zip
+unzip ketcher-standalone-2.18.0.zip -d shared/pullin/public/editors/ketcher218
 ```
 
-3. Open the file and edit it. Make the necessary edits, followed by [Complete structure_editors.yml example](#complete-structure_editorsyml-example).
+3. Edit your structure_editors.yml
+ [Complete structure_editors.yml example](#complete-structure_editorsyml-example).
 
-4. Restart the application (assuming Passenger is being used)
+4. Restart the application 
 
-```sh
-touch tmp/restart.txt
+5. Go to Admin page -> UI Features and enable the editor
+
+NB. Ensure the UI-Features JSON configuration is correct
+
+Ketcher2
+```
+{
+  editor: 'ketcher2'
+}
 ```
 
-5. Keep the configuration for future Chemotion ELN updates (assuming Capistrano is used)
-
-```sh
-mv config/structure_editors.yml /var/www/chemotion_ELN/shared/config/structure_editors.yml
-ln -s  /var/www/chemotion_ELN/shared/config/structure_editors.yml /var/www/chemotion_ELN/current/config/structure_editors.yml
+ChemdrawJS
 ```
+{
+  editor: 'chemdraw'
+}
+```
+
+
 
 ### Supported editors
 
-| Name        | Version                                                                                     |
-| ----------- | ------------------------------------------------------------------------------------------- |
-| ChemDraw JS | 17+                                                                                         |
-| Ketcher 2   | [2.4](https://drive.google.com/drive/folders/1TZLEVyKs0Fhz8vmjOHK6Xii8MFfrifFI?usp=sharing) |
-| Marvin JS   | 21.8                                                                                        |
+| Name        | ELN Version   | Editor Version                                                                                             |
+| ----------- | ------------- | ---------------------------------------------------------------------------------------------------------- |
+| ChemDraw JS | >= 1.7        | 17 ~> 23                                                                                                   |
+| Ketcher 2   | < 1.9         | [2.4.2](https://github.com/epam/ketcher/releases/download/v2.4.2/ketcher-standalone-2.4.2.zip)             |
+| Ketcher 2   | >= 1.9        | 2.4.2 ~> [2.18.0](https://github.com/epam/ketcher/releases/download/v2.18.0/ketcher-standalone-2.18.0.zip) |
+| Marvin JS   | >= 1.7        | 21.8                                                                                                       |
 
 ### Complete structure_editors.yml example
 
@@ -266,7 +287,7 @@ production:
       :extJs: ["/chemdraw/chemdrawweb/chemdrawweb.js"] # js of ChemDraw
     :ketcher2:
       :label: "Ketcher 2"
-      :extSrc: "/editors/ketcher/index.html"
+      :extSrc: "/editors/ketcher218/standalone/index.html"
     :marvinjs:
       :label: "MarvinJS"
       :license: "license file" # license file of MarvinJS
