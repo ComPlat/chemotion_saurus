@@ -4,6 +4,11 @@ author: Claire Lin
 sidebar_position: 2
 ---
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowDown, faArrowUp, faPlus } from "@fortawesome/free-solid-svg-icons";
+import fieldCreation from "@site/static/img/labimotion/field-creation.png";
+import fieldTypes from "@site/static/img/labimotion/field-types.png";
+import fieldMove from "@site/static/img/labimotion/field-move.png";
 import {
   FigCaption,
   SubTitle,
@@ -15,13 +20,30 @@ import {
 
 A **Field** can be thought of as a subcomponent within a layer. It encapsulates a single piece of data or a specific input/output element. Multiple "Fields" can coexist within a single "Layer," each contributing its unique properties to the layer's overall functionality.
 
-:::info
+## Create a Field
 
-The attributes are listed below in the order presented within the user interface.
+After creating a layer, you will notice an input field with a hint "Input new field name" next to the layer name. Simply enter the desired name for the field, ensuring that it consists of letters, numbers, and/or underscores ('_'). Then, click the <FontAwesomeIcon icon={faPlus} /> button to create the new field.
 
-:::
+<p align="center">
+  <img src={fieldCreation} alt="LabIMotion - Create Field" />
+</p>
+
+The default field type is a [Text](fields/types/text) field. Change the field type using the dropdown menu. Depending on the field type different options are available.
+You refer to the **[Available Field Types](fields/types/)** to find the right field type for you.
+
+<p align="center">
+  <img src={fieldTypes} alt="LabIMotion - Field Types" />
+</p>
+
+Change the order of fields by clicking the <FontAwesomeIcon icon={faArrowUp} /> or <FontAwesomeIcon icon={faArrowDown} /> arrow-button in the field heading.
+
+<p align="center">
+  <img src={fieldMove} alt="LabIMotion - Field Order" />
+</p>
 
 ## Field Attributes
+
+The attributes are listed below in the order presented within the user interface.
 
 ### Field Name
 
@@ -49,8 +71,8 @@ A message is shown when hovering over the field.
 
 The **Type** of a field refers to the category or format of data that a particular field can store or represent. It defines the nature of the information that can be input or stored within that field.
 
-:dart: Check out the **[Supported types](fields/types/)**
+:dart: Check out the **[Available Field Types](fields/types/)**
 
-### Has Its Own Line&#x20;
+### Has Its Own Line
 
 Indicate this field will take a single row. Not applicable when the type is Datetime range or Table.
