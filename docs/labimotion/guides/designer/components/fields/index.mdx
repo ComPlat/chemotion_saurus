@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowDown, faArrowUp, faPlus } from "@fortawesome/free-solid-svg-icons";
 import fieldCreation from "@site/static/img/labimotion/field-creation.png";
 import fieldTypes from "@site/static/img/labimotion/field-types.png";
+import fieldMove from "@site/static/img/labimotion/field-move.png";
 import {
   FigCaption,
   SubTitle,
@@ -34,15 +35,15 @@ You refer to the **[Available Field Types](fields/types/)** to find the right fi
   <img src={fieldTypes} alt="LabIMotion - Field Types" />
 </p>
 
-You can always add a hover info and a title. Change the order of fields by clicking the <FontAwesomeIcon icon={faArrowUp} /> or <FontAwesomeIcon icon={faArrowDown} /> arrow-button in the field heading.
+Change the order of fields by clicking the <FontAwesomeIcon icon={faArrowUp} /> or <FontAwesomeIcon icon={faArrowDown} /> arrow-button in the field heading.
 
-:::info
-
-The attributes are listed below in the order presented within the user interface.
-
-:::
+<p align="center">
+  <img src={fieldMove} alt="LabIMotion - Field Order" />
+</p>
 
 ## Field Attributes
+
+The attributes are listed below in the order presented within the user interface.
 
 ### Field Name
 
@@ -72,6 +73,6 @@ The **Type** of a field refers to the category or format of data that a particul
 
 :dart: Check out the **[Available Field Types](fields/types/)**
 
-### Has Its Own Line&#x20;
+### Has Its Own Line
 
 Indicate this field will take a single row. Not applicable when the type is Datetime range or Table.
