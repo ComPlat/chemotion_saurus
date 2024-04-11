@@ -33,7 +33,8 @@ import {
   faEdit,
   faChevronUp,
   faChevronDown,
-  faTimes
+  faTimes,
+  faExternalLink,
 } from "@fortawesome/free-solid-svg-icons";
 import { Btn } from "@site/src/js/btn.js";
 
@@ -429,7 +430,7 @@ Once you've edited the cell, confirm the edit by hitting enter,
 or leaving the cell (e.g., by clicking somewhere else, or hitting tab).
 Cells that represent materials display additional, non-editable data when you hover over them with the mouse.
 
-#### Adding analyses to variations
+#### Linking analyses to variations
 
 :::info
 
@@ -438,34 +439,32 @@ The documentation is meant for pre-release demonstrations.
 
 :::
 
-Each row in the `variations table` can be associated with one or more analyses.
-You can associate analyses with variations in the [Analyses tab](#analyses-tab) of the reaction.
+Each row in the `variations table` can be linked to analyses from the [Analyses tab](#analyses-tab).
 The `Analyses` tab contains analyses pertaining to
-A) the reaction's products (left sub-tab), as well as
+A) the reaction's product(s) (left sub-tab), as well as
 B) to the reaction in general (right sub-tab):
 
-![TODO update reaction_analyses_tab](/img/reaction_analyses_tab.png)
+![reaction_analyses_tab](/img/reaction_variations_analyses_tab.png)
 
-Variations can only be associated with B), and for the remainder of this section,
+Variations can only be linked to B), and for the remainder of this section,
 whenever we refer to an analysis, we refer to B).
-Each analysis contains a dropdown menu of variations.
-Note that this dropdown menu is only active when the analysis has been saved.
-In the dropdown, the variations are identified by their ID, the same that's displayed in the `variations table`:
 
-![TODO reaction_variations_dropdown](/img/reaction_variations_dropdown.png)
+You can link analyses with a variation by clicking on a cell in the `Analyses` column.
 
-Once you've selected a variation's ID,
-the corresponding row in the `variations table` lists the analysis in the `Analyses` column.
-When you click on the row's cell in the `Analyses` column,
-you'll see a dropdown of all analyses that are associated with the row:
+![reaction_variations_analyses_column](/img/reaction_variations_analyses_column.png)
 
-![TODO reaction_analyses_dropdown](/img/reaction_analyses_dropdown.png)
+Clicking on the cell opens the following menu:
 
-Clicking on an analysis name in the dropdown opens the corresponding analysis in the `Analyses` tab.
-You can associate multiple analyses with the same variation.
-However, one analysis can only be associated with a single variation.
-You can change the association anytime by selecting another variation's ID from the analysis' dropdown menu,
-or remove the association by selecting "Not associated" from the dropdown menu.
+![reaction_variations_analyses_cell_modal](/img/reaction_variations_analyses_cell_modal.png)
+
+The modal shows all names of (saved) analyses from the `Analyses` tab.
+Check the box next to an analysis name to link this analysis to the variation.
+You can jump to the analysis by clicking the <Btn mixed={[faExternalLink]} color={"secondary"}/> button. Finally, you can save the links with the <Btn mixed={["Save"]} color={"secondary"}/> button, which also closes the modal. Once you've closed the modal, you can view the names of all linked analyses by hovering the mouse over a cell in the `Analyses` column.
+
+Once you've linked an analysis, the corresponding entry in the `Analyses` tab displays a badge
+containing the number of linked analyses:
+
+![reaction_variations_analyses_subtab](/img/reaction_variations_analyses_subtab.png)
 
 #### Customizing the table layout
 
