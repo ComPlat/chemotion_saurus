@@ -3,9 +3,12 @@ title: UI Features
 author: Claire Lin
 ---
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPenToSquare, faGear } from "@fortawesome/free-solid-svg-icons";
+
 # UI features
 
-For functions that require authorized access, the administrator can grant or deny users access to the function.
+The administrator can manage the features that require authorized access through the **UI features**. Two actions are available for each feature: **Edit Permission** <FontAwesomeIcon icon={faPenToSquare} /> and **Edit JSON** <FontAwesomeIcon icon={faGear} />.
 
 ![adminui-uifeatures](@site/static/img/admin_ui/features.png)
 
@@ -25,16 +28,16 @@ Each feature has its own unique characteristics and administrators have the righ
 
 :::warning[Warning]
 
-It is important to be fully informed before making any changes.
+Before making any changes, it's crucial to be fully informed. It's recommended to back up the current configuration beforehand. After saving the settings, the instance will require a restart to apply the changes.
 
 :::
 
-Here are the features available for customization:
+The following features are available for customization (in alphabetical order)
 
-- Computed Prop
-- Reaction Prediction
 - [ChemDraw Editor](#chemdraw-editor)
+- Computed Prop
 - [Ketcher 2 Editor](#ketcher-2-editor)
+- Reaction Prediction
 - [User Authentication (userProvider)](#user-authentication-userprovider)
 
 ### ChemDraw Editor
@@ -43,7 +46,7 @@ Here are the features available for customization:
 
 | Chemotion ELN     | ChemDraw   |
 | ----------------- | ---------- |
-| 1.5.3 and after   | 22, 23     |
+| 1.5.3 and after   | 22         |
 | 1.0.2 to 1.5.3    | 17, 19, 20 |
 | 1.0.2 and earlier | 17         |
 
@@ -85,7 +88,7 @@ For detailed setup instructions for Ketcher 2, please refer to [Structure editor
 
 | Chemotion ELN | Protocol/Services |
 | ------------- | ----------------- |
-| 1.6.          | OIDC, shibboleth  |
+| 1.6 and after | OIDC, shibboleth  |
 
 **Setting**
 
