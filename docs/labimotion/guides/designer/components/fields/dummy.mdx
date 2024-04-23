@@ -4,10 +4,38 @@ author: Claire Lin
 sidebar_position: 3
 ---
 
-import { Reader } from "@site/src/js/layout";
-import { faChartBar, faCheck, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { FigCaption, Reader } from "@site/src/js/layout";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
+import fieldDummy from "@site/static/img/labimotion/field-dummy.png";
+import fieldDummyCreation from "@site/static/img/labimotion/field-dummy-add.png";
+import fieldDummyDesign from "@site/static/img/labimotion/field-dummy-design.png";
+import fieldDummyLayout from "@site/static/img/labimotion/field-dummy-layout.png";
 
 <Reader text="Designer" />
 
 A **Dummy** field serves as a placeholder to occupy space within a column and remains invisible to users. This can be a helpful strategy in certain template designs.
-Simply click the :heavy_plus_sign: button next to every field heading to add it.
+
+<p align="center">
+  <img src={fieldDummy} alt="LabIMotion - Layout with Dummy Field" />
+  <FigCaption text="Dummy field type" />
+</p>
+
+
+For example, in the following design,
+
+<p align="center">
+  <img src={fieldDummyDesign} alt="LabIMotion - Design with Dummy Field" />
+</p>
+
+two Dummy fields will be created and will occupy the space after the "Half cell separation" field.
+
+<p align="center">
+  <img src={fieldDummyLayout} alt="LabIMotion - Design with Dummy Field" />
+</p>
+
+To create a **Dummy** field, simply click the <FontAwesomeIcon icon={faCirclePlus} /> button next to every field heading to add it.
+
+<p align="center">
+  <img src={fieldDummyCreation} alt="LabIMotion - Create Dummy Field" />
+</p>
