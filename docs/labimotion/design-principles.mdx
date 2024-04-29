@@ -6,6 +6,7 @@ sidebar_position: 1
 ---
 
 import { FigCaption, SubTitle } from "@site/src/js/layout";
+import designBase from "@site/static/img/labimotion/design-base.png";
 
 # Template Guidelines
 
@@ -19,7 +20,24 @@ Generic **[Elements](./guides/designer/elements/)**, **[Segments](./guides/desig
   src={require("@site/static/img/labimotion/labimotion_modules.png").default}
   alt="labimotion_modules"
 />
-<FigCaption text="labimotion_modules" />
+<FigCaption text="Generic Elements, Segments, and Datasets are structured using Components" />
+
+:::info
+
+**What is Element, Segement, Dataset?**
+
+In case you are not familiar with the terms **Element**, **Segment**, and **Dataset**, here is a brief overview:
+
+- **Element**: An element is a fundamental enetity which represent an essential aspect within your domain. For example, the sample element or reaction element in Chemotion ELN.
+- **Segment**: A segment is a distinct section that usually has its own identifiable characteristics. You can use it to represent a specific subset of an element.
+- **Dataset**: Within the system, a predefined segment named "Analyses" is provided to capture analysis results. The dataset of the analysis comprises individual data points. Additionally, through **[integration with the ChemConverter service](./guides/user/datasets/converter-metadata)**, metadata extraction from raw files is automatically triggered, facilitating mapping into the dataset.
+
+<p align="center">
+  <img src={designBase} alt="LabIMotion - Generic Element, Segement, and Dataset" />
+  <FigCaption text="Generic Element, Segement, and Dataset" />
+</p>
+
+:::
 
 ## Roles and Resources
 
