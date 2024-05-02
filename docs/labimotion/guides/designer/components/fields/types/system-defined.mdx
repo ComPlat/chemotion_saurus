@@ -4,7 +4,7 @@ author: Claire Lin
 sidebar_position: 11
 ---
 
-import { FigCaption, Reader } from "@site/src/js/layout";
+import { FigCaption, Reader, YouTubeFrame } from "@site/src/js/layout";
 import fieldSystemDefined from "@site/static/img/labimotion/field-system-defined.gif";
 
 <Reader text="Designer" />
@@ -17,6 +17,14 @@ When users click on the unit selector, the system automatically converts the ent
   <img src={fieldSystemDefined} alt="LabIMotion - System-Defined Field" />
   <FigCaption text="System-Defined field (Length)" />
 </p>
+
+As a Designer, you can set a preferred unit for a field as the default option within the template. A visual demonstration is provided below:
+
+<YouTubeFrame
+  src="https://www.youtube-nocookie.com/embed/mEmDDS9z19s"
+  title="Designer - Customize Default Unit for Field"
+/>
+<FigCaption text="Customize Default Unit for System-Defined field (Temperature)" />
 
 :::tip
 System-Defined fields can be used in [Formula](formula-field) fields.
