@@ -1,0 +1,64 @@
+---
+title: User Management
+sidebar_label: User Management
+author: Pierre Tremouilhac
+---
+
+# User management
+
+![adminui-usermanagement](@site/static/img/admin_ui/admin_ui-user_management.png)
+
+The page offer a basic listing of the registered users.
+User are of 4 types:
+- Person: standard ELN user have access to /mydb page 
+- Admin: ELN adminstrator do not have access to /mydb page
+- Group: a group of users
+- Device: a device (deprecated for >= v2.0.0)
+
+A ELN Admin can do the following:
+- create a or multiple user accounts
+- delete a user account
+- restore a deleted account
+- edit current user information
+- reset a user password
+- (un)lock a user account
+- (de)activate a user account
+- give a user account specific privileges
+
+## Create user accounts 
+
+Press the following to open the dialogue window:
+![adminui-usermanagement-createuser](@site/static/img/admin_ui/admin_ui-user_management-newuser.png)
+
+Add the information for the new user account or upload a csv file containing the accounts' information.
+
+![adminui-usermanagement-createuser-modal](@site/static/img/admin_ui/admin_ui-user_management-newuser-mod.png)
+
+## Editing or delete an existing account
+
+An existing account can be edited or deleted. 
+Press the following to open the edit/delete dialogue window for a given account: 
+![adminui-usermanagement-editing-modal](@site/static/img/admin_ui/admin_ui-user_management-editing.png)
+
+![adminui-usermanagement-editing-modal](@site/static/img/admin_ui/admin_ui-user_management-deleting-mod.png)
+
+
+
+## (De-)activating vs (Un-)locking an account
+
+![adminui-usermanagement-lock-activate](@site/static/img/admin_ui/admin_ui-user_management-lock-activate.png)
+
+A user account is locked automatically after too many failed login attempts (5 successive failed attempts).
+The account will be automatically unlock after 10 mins.
+Alternately an Admin can unlock it from this interface.
+
+An account can be frozen by deactivating it here. Login to this account is then not possible.
+__The user cannot reactivate it. Only an Admin can.__
+If the user is currently logged-in, its session will be invalidated.
+The data shared by the user to other users is still accessible to them.
+
+
+
+
+
+
