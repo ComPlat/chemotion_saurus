@@ -12,12 +12,12 @@
     "clear": "docusaurus clear"
   },
   "dependencies": {
-    "@docusaurus/core": "^3.1.1",
-    "@docusaurus/plugin-content-docs": "^3.1.1",
-    "@docusaurus/plugin-content-pages": "^3.1.1",
-    "@docusaurus/plugin-sitemap": "^3.1.1",
-    "@docusaurus/theme-classic": "^3.1.1",
-    "@easyops-cn/docusaurus-search-local": "^0.40.0",
+    "@docusaurus/core": "^3",
+    "@docusaurus/plugin-content-docs": "^3",
+    "@docusaurus/plugin-content-pages": "^3",
+    "@docusaurus/plugin-sitemap": "^3",
+    "@docusaurus/theme-classic": "^3",
+    "@easyops-cn/docusaurus-search-local": "*",
     "@fortawesome/fontawesome-svg-core": "*",
     "@fortawesome/free-solid-svg-icons": "*",
     "@fortawesome/react-fontawesome": "*",
