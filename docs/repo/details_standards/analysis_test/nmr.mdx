@@ -28,20 +28,19 @@ The inline notation gives a short summary of the metadata and a list of all sign
 **(2) Example for a solvent that needs signal definition:**
 
 <sup>1</sup>H NMR (400 MHz, DMF-d<sub>7</sub> [2.75 ppm], 25 °C): δ [ppm] = 7.28
-(dd, <i>J</i> = 1.6, 7.7 Hz, 1H), 7.14 (ddd, <i>J</i> = 8.2, 7.3, 1.6 Hz, 1H), 6.74–6.66
+(dd, <i>J</i> = 7.7, 1.6 Hz, 1H), 7.14 (ddd, <i>J</i> = 8.2, 7.3, 1.6 Hz, 1H), 6.74–6.66
 (m, 2H), 4.94 (s, 2H), 4.04 (br.s, 2H), 2.12 (s, 3H). <br />
 
 **(3) Example with solvent ratio where CDCl<sub>3</sub> is used as a reference:**
 
 <sup>1</sup>H NMR (400 MHz, CDCl<sub>3</sub>/DMF-d7 5:1, 25 °C): δ [ppm] = 7.28
-(dd, <i>J</i> = 1.6, 7.7 Hz, 1H), 7.14 (ddd, <i>J</i> = 8.2, 7.3, 1.6 Hz, 1H),
+(dd, <i>J</i> = 7.7, 1.6 Hz, 1H), 7.14 (ddd, <i>J</i> = 8.2, 7.3, 1.6 Hz, 1H),
 6.74–6.66 (m, 2H), 4.94 (s, 2H), 4.04 (br.s, 2H), 2.12 (s, 3H).
 
 **(4) Example with additional standard TMS:**
 
-<sup>1</sup>H NMR (400 MHz, CDCl<sub>3</sub>, 25 °C, TMS): δ [ppm] = 7.28 (dd, <i>
-  J
-</i> = 1.6, 7.7 Hz, 1H), 7.14 (ddd, <i>J</i> = 8.2, 7.3, 1.6 Hz, 1H), 6.74–6.66
+<sup>1</sup>H NMR (400 MHz, CDCl<sub>3</sub>, 25 °C, TMS): δ [ppm] = 7.28
+(dd, <i>J</i> = 7.7, 1.6 Hz, 1H), 7.14 (ddd, <i>J</i> = 8.2, 7.3, 1.6 Hz, 1H), 6.74–6.66
 (m, 2H), 4.94 (s, 2H), 4.04 (br.s, 2H), 2.12 (s, 3H).
 
 **(5) Example with order of coupling constants, if available and required:**
@@ -56,18 +55,18 @@ The inline notation gives a short summary of the metadata and a list of all sign
 **(6) Example with couplings which are not H,H couplings:**
 
 <sup>1</sup>H NMR (400 MHz, DMF-d<sub>7</sub> [2.75 ppm], 25 °C): δ [ppm] = 7.28
-(dd, <i>J</i> = 1.6, J = 7.7 Hz, 1H), 7.14 (ddd, <sup>3</sup>
+(dd, <i>J</i> = 7.7, 1.6 Hz, 1H), 7.14 (ddd, <sup>3</sup>
 <i>J</i> = 8.2, <sup>3</sup>
 <i>J</i>
 <sub>H,F</sub> = 7.3, <sup>4</sup>
-<i>J</i> = 1.6 Hz, 1H), 6.74–6.66 (m, 2H), 4.94 (s, 2H), 4.04 (br.s, 2H), 2.12(s,
+<i>J</i> = 1.6 Hz, 1H), 6.74–6.66 (m, 2H), 4.94 (s, 2H), 4.04 (br.s, 2H), 2.12 (s,
 3H).
 
 **(7) Example with missing protons and impurities:**
 
 <sup>1</sup>H NMR (400 MHz, MeOD-d<sub>4</sub>, 25 °C): δ [ppm] = 7.28 (dd, <i>
   J
-</i> = 1.6, <i>J</i> = 7.7 Hz, 1H), 7.14 (ddd, <sup>3</sup>
+</i> = 7.7, <i>J</i> = 1.6 Hz, 1H), 7.14 (ddd, <sup>3</sup>
 <i>J</i> = 8.2, <sup>3</sup>
 <i>J</i>
 <sub>H,F</sub> = 7.3, <sup>4</sup>
@@ -217,6 +216,7 @@ see chapter "Explanation of metadata for <sup>1</sup>H NMR data" and **example N
 - Give the amount of carbons if there is more than one carbon to be assigned to one signal (**example No 1**). Please assign atoms to the signals whenever possible and reasonable. In cases where the assignment of protons (e.g. of 6 protons for two methyl groups in a symmetrical compound) to one signal in 1H NMR is clear - the assignment of the corresponding (in that case 2) carbons to one signal in 13C NMR should be done as well.
 - Isomers: If you can assign all signals: please give separate lists of 13C assignments for isomer 1 and isomer 2 and separate both analytical descriptions with the
   text-fragment: "Other isomer:"
+- Rotamers: List all signals with their ratio that contributes to 1C. The sum of all <sup>13</sup>C signals should correspond to the overall number of <sup>13</sup>C atoms in the molecule. 
 
 Important for entries in the repository:
 

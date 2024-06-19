@@ -195,20 +195,13 @@ For each registered device, a collection job can be set up through the administr
 
 ## Structure editor
 
-The default structure editor for Chemotion ELN is Ketcher version 1. It is seamlessly integrated through the ketcher-rails project and therefore no additional configuration is needed. If you wish to utilize other supported structure editors, such as Ketcher v2, ChemDraw, or Marvin JS, additional configuration is required. In such cases, you'll need to adjust the necessary files and, potentially, provide a license. Please be aware that any modifications to the structure_editors.yml file will necessitate a service restart for the changes to take effect.
+The default structure editor for Chemotion ELN is Ketcher version 1. It is seamlessly integrated through the ketcher-rails project and therefore no additional configuration is needed. If you wish to utilize other supported structure editors, such as Ketcher v2 or Marvin JS, additional configuration is required. In such cases, you'll need to adjust the necessary files and, potentially, provide a license. Please be aware that any modifications to the structure_editors.yml file will necessitate a service restart for the changes to take effect.
 
-### Supported editors
+For the detail supported versions of the structure editors, please refer to the release note of Chemotion ELN.
 
-The following editors are currently supported:
+### Setup
 
-| Name        | ELN Versions | Compatible Editor Versions                                                                                           |
-| ----------- | ------------ | -------------------------------------------------------------------------------------------------------------------- |
-| ChemDraw JS | >= 1.0       | 17 to 22                                                                                                    |
-| Ketcher 2   | < 1.9        | [2.4.2](https://github.com/epam/ketcher/releases/download/v2.4.2/ketcher-standalone-2.4.2.zip)                       |
-| Ketcher 2   | >= 1.9       | versions 2.4.2 and [2.18.0](https://github.com/epam/ketcher/releases/download/v2.18.0/ketcher-standalone-2.18.0.zip) |
-| Marvin JS   | >= 1.0       | 21.8                                                                                                                 |
-
-If you wish to utilize these, additional configuration is required in the `structure_editors.yml` file following the steps described [above](#optional-modify-configuration-files). You will also have to put the resource files/folders/license at the required location(s). You can follow these steps to accomplish the same:
+An additional configuration is required in the `structure_editors.yml` file following the steps described [above](#optional-modify-configuration-files) to setup the additional structure editors. You will also have to put the resource files/folders/license at the required location(s). You can follow these steps to accomplish the same:
 
 1. The configuration file is called `structure_editors.yml` and is located in the `./shared/pullin/config` folder. You will also need to create a folder called `editors` in the `./shared/pullin/public` folder. The template file is called `structure_editors.yml.example`. You can get this template file quickly by running the following command.
 
@@ -217,7 +210,7 @@ wget  https://raw.githubusercontent.com/ComPlat/chemotion_ELN/vM.m.n/config/stru
 # Here, replace the version tag (`vM.m.n` with your current version)
 ```
 
-2. To install ChemDraw JS or Ketcher 2 library, unzip the editor's zip file, and then copy the sub-folders and files to the folder which the system loads the editors. If you wish to have multiple editors available, you can create a sub-folder for each editor. For example, you can create a folder called `chemdraw` in the `./shared/pullin/public/editors` folder and copy the extracted files there. Similarly, create another folder called `ketcher2` for Ketcher 2.
+2. To setup the supported editors, unzip the editor's zip file, and then copy the sub-folders and files to the folder which the system loads the editors. If you wish to have multiple editors available, you can create a sub-folder for each editor. For example, you can create a folder called `ketcher2` in the `./shared/pullin/public/editors` folder and copy the extracted files there. Similarly, create another folder called `editor-abc` for another editor.
 
 For example, for Ketcher2 (version 2.18.0), you can run the following commands to download and extract the source code.
 
@@ -232,10 +225,6 @@ unzip ketcher-standalone-2.18.0.zip -d shared/pullin/public/editors/ketcher218
 ### example of structure_editors.yml
 production:
   :editors:
-    :chemdraw:
-      :label: "ChemDrawJS"
-      :license: "/editors/chemdraw/ChemDraw-JS-License.xml" # license file of ChemDraw
-      :extJs: ["/editors/chemdraw/chemdrawweb/chemdrawweb.js"] # js of ChemDraw
     :ketcher2:
       :label: "Ketcher 2"
       :extSrc: "/editors/ketcher218/standalone/index.html"
@@ -248,7 +237,7 @@ production:
 
 4. Restart the ELN.
 
-### Enable Supported Editors
+### Enable
 
 Given that the supported editor is disabled by default, administrators have the capability to enable it once the setting is completed. For further information, please refer to the [Admin Interface > UI features](../admin/features) for further information.
 
