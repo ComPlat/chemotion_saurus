@@ -31,6 +31,14 @@ Please use Chrome as browser for the Chemotion ELN and Repository.
 
 Installing the ELN makes it available on port 4000 (default location is `0.0.0.0:4000`) of the computer on which it is installed. To make it accessible on a domain name, e.g. `https://myeln.edu` or over a network requires you to setup proxy. Detailed instructions for this are system/network dependent (and beyond the scope of this documentation). However, some hints are provided [here](manual_install.mdx#setting-up-a-reverse-proxy).
 
+:::warning[Single User Installation]
+
+The ELN is designed to be used by multiple users. This means that it is usually installed on a server computer that is then served on a domain name (see [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) for more) across a lab/department/institution/university. While it possible to use the ELN as a single user on private computer, this is not encouraged given the limitations that may arise in relation to device integration, deploying email service, and data sharing etc.
+
+If you still wish to install Chemotion ELN on your private computer (especially for testing etc.), we highly recommend the use of [ChemCLI](install_configure/ChemCLI) to do so. If you do not provide a web-address during installation then the ELN should start running at http://localhost:4000 when you use the tool.
+
+:::
+
 ## After Installation
 
 Please follow the configuration steps (see [here](install_configure/manual_install#network-configuration) and [here](install_configure/configuration) to personalize your installation and then perform a [system check](install_configure/system_check) to make sure that all features are working as intended.
