@@ -4,10 +4,13 @@ author: Nicole Jung
 sidebar_position: 1
 ---
 
+import { YouTubeFrame } from "@site/src/js/layout";
+import dataTransfer from "@site/static/img/repo/publication/data_transfer.png";
+
 ## Adding data without ELN support
 
-To add data to the repository, you have to follow five steps:  
-You may have a look on Youtube where we added an example of how to add data after step 5:  
+To add data to the repository, you have to follow five steps:
+You may have a look on Youtube where we added an example of how to add data after step 5:
 https://youtu.be/TSAuiqdkM4Y
 
 (1) create an account
@@ -58,3 +61,23 @@ If you return to your account in the repository, the data can be found in the co
 
 (5) Check in Repository
 ![](/img/docs/create-new-entry/3f837263-364d-48a6-871e-2166b9316f61_image_20191030-26466-919en8.png)
+
+### Status Tracking
+
+During the data transfer process, you will receive the first message with a Job ID in Chemotion ELN once the data has been packed and sent to the Chemotion Repository. After the Chemotion Repository has received the data, you will receive the second message with the same Job ID. As the import process runs in the background in the Chemotion Repository, you will receive the third message with the same Job ID once the data has been processed.
+
+<p align="center">
+  <img src={dataTransfer} alt="Data Transfer from ELN to Repository" />
+</p>
+
+### Link Back to ELN
+You can click on the button at the top of the detail page with the tooltip "Go to original ELN xxx," which will directly link back to the original data in ELN.
+
+### Video Tutorial
+
+Please refer to the visualized video below:
+
+<YouTubeFrame
+  src="https://www.youtube-nocookie.com/embed/PMeDUJlISVI"
+  title="Sync Dataset from LabIMotion Hub"
+/>
