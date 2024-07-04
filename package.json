@@ -27,11 +27,12 @@
     "dotenv": "*",
     "react": "*",
     "react-bootstrap": "*",
-    "react-dom": "*"
+    "react-dom": "*",
+    "video-privacy": "*"
   },
   "devDependencies": {
-    "eslint": "^8",
-    "eslint-plugin-import": "^2"
+    "eslint": "*",
+    "eslint-plugin-import": "*"
   },
   "browserslist": {
     "production": [
