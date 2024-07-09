@@ -20,7 +20,7 @@ jobs:
         run: |
           for file in $(grep -roP 'youtube-nocookie.com/embed/.{11}' docs | rev | cut -d / -f 1 | rev); do
             if [ ! -f "static/img/yt_thumbnails/$file.jpg" ]; then
-              wget -O "static/img/yt_thumbnails/$file-hq.jpg" "https://img.youtube.com/vi/$file/hqdefault.jpg" || wget -O "static/img/yt_thumbnails/$file.jpg" "https://img.youtube.com/vi/$file/0.jpg"
+              wget -O "static/img/yt_thumbnails/$file.jpg" "https://img.youtube.com/vi/$file/hqdefault.jpg" || wget -O "static/img/yt_thumbnails/$file.jpg" "https://img.youtube.com/vi/$file/0.jpg"
             fi
           done
 
