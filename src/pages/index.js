@@ -5,6 +5,7 @@ import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from './styles.module.css';
+import { YouTubeFrame } from "@site/src/js/layout";
 
 const features = [
   {
@@ -82,13 +83,11 @@ function Home() {
           </div>
           <div className="column">
             <div style={{ margin: '2rem auto 0 auto', textAlign: 'center' }}>
-              <iframe
+              <YouTubeFrame
                 width="640"
                 height="360"
                 src="https://www.youtube-nocookie.com/embed/tZHaP6DW-Dw"
-                title="YouTube video player"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
+                title="Chemotion ELN and repository"
               />
             </div>
           </div>
@@ -146,7 +145,7 @@ function Home() {
           />
         </Link>
       </div>
-    </Layout>
+    </Layout >
   );
 }
 
