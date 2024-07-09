@@ -165,6 +165,13 @@ Here, you are accessing the files `....crt` and `....key`. These files are certi
 
 Further information on how to configure nginx, please refer to tutorials online (e.g. [here](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/) and [here](https://www.cyberciti.biz/faq/configure-nginx-to-use-only-tls-1-2-and-1-3/)).
 
+NB: When setting the CSP headers, be sure to allow commonchemistry.cas.org (for creating sample by cas-rn) and dx.doi.org doi.org and api.crossref.org (to fetch literature references by doi). For example the directive could look like:
+
+```nginx
+add_header Content-Security-Policy "default-src 'self'  'unsafe-inline' 'unsafe-eval';connect-src 'self' ws: blob:  commonchemistry.cas.org dx.doi.org doi.org api.crossref.org; font-src 'self' data: ; frame-src 'self' nmrium.chemotion.scc.kit.edu ; img-src 'self' data:" ;
+
+```
+
 #### To summarize, you have to make sure that:
 
 - Reverse proxy is setup properly (i.e. DNS resolves to the URL to your server's IP address).
