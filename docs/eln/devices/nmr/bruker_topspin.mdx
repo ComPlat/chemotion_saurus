@@ -44,17 +44,7 @@ Enter “Advanced …” -> select Permissions -> shared (check), forever (check
 
 ### File Transfer Setup TopSpin:
 
-**TopSpin Configurations:** A shared network storage location needs to be made
-available to the NMR’s PC and the Chemotion ELN. This can either be set up on a
-third-party (a NAS server, another PC’s shared storage, etc.) or it can be set
-up locally on the NMR’s PC. For this guide the KIT’s LSDF service was used. If a
-third-party service is used the network location needs to be mounted in Linux.
-For this guide the LSDF folder was mounted into the home directory of the NMR’s
-PC using the KIT LSDF’s SMB Samba server. In TopSpin change to the “Publish tab
-and select the dropdown of the “Mobile” option. Choose “configure” and set the
-following settings: (herein described are the minimum configurations that need
-to be set, depending on your local requirements further adaptations might need
-to be necessary).
+**TopSpin Configurations:** A shared network storage location needs to be made available to the NMR’s PC and the Chemotion ELN. This can either be set up on a third-part (a NAS server, another PC’s shared storage, etc.) or it can be set up locally on the NMR’s PC. For this guide the KIT’s LSDF service was used. If a third-party service is used the network location needs to be mounted in Linux. For this guide the LSDF folder was mounted into the home directory of the NMR’s PC using the KIT LSDF’s SMB Samba server. In TopSpin change to the “Publish tab and select the dropdown of the “Mobile” option. Choose “configure” and set the following settings: (herein described are the minimum configurations that need to be set, depending on your local requirements further adaptations might need to be necessary).
 
 ![device_NMR_2](/img/device_NMR_2.png)
 
@@ -73,7 +63,7 @@ transferred to the network storage location for pickup by the Chemotion ELN’s 
 
 ### File Transfer Setup IconNMR:
 
-<b>IconNMR Configurations:</b> Data transfer via mail client (data is sent as email
+**IconNMR Configurations:** Data transfer via mail client (data is sent as email
 attachment) from IconNMR to the Chemotion ELN can be set up when the Chemotion ELN’s
 email address is added as recipient to the IconNMR user settings. This method requires
 every user setting up their experiment under their own account. In the user’s setting
@@ -93,7 +83,7 @@ Under “Permissions” select ZIP DataMail and if desired JDX DataMail.
 
 ![device_NMR_3](/img/device_NMR_3.png)
 
-<b>Config Chemotion ELN’s data collector:</b> The Chemotion ELN's data collector
+**Config Chemotion ELN’s data collector:** The Chemotion ELN's data collector
 has to be configured to collect emails with NMR data attachments.
 
 :::note[Links]
