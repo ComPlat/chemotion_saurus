@@ -5,11 +5,11 @@ sidebar_position: 11
 
 ChemCLI, short for Chemotion CLI, is a tool to help you manage Chemotion ELN on a machine. The goal is to make installation, maintenance and upgradation of (multiple instances of) Chemotion as easy as possible.
 
-:::caution Important Announcements
+:::info[Important Announcements]
 
-1. You must manually update to version 0.2.12 of the CLI. This is because GitHub is blocking download of the `docker-compose.yml` file causing versions 0.2.11 and below to fail on start. To do so, go to [Releases](https://github.com/Chemotion/ChemCLI/releases) and download the required executable. See [Updating the Tool](#updating-the-tool) for more.
+1. You must manually update the CLI for versions 0.2.11 and lower. To do so, go to [Releases](https://github.com/Chemotion/ChemCLI/releases) and download the required executable. See [Updating the Tool](#updating-the-tool) for more.
 
-   Manually updating the tool will trigger a warning about version mismatch whenever you run ChemCLI. To get around it, run `./chemCLI advanced update --force` after putting the new executable in place.
+   Manually updating the tool will trigger a warning about version mismatch whenever you run ChemCLI. To get around it, run `./chemCLI advanced update --force` once after putting the new executable in place.
 
 1. Have a bug that looks as follows when trying to update an instance?
 
@@ -19,22 +19,15 @@ ChemCLI, short for Chemotion CLI, is a tool to help you manage Chemotion ELN on 
 
    Then please have a look at the `docker-compose.cli.yml` files in the `instances` folder. The section `services.executor.image` should be changed so that it matches `services.eln.image` in the `docker-compose.yml` file.
 
-1. If you are using ChemCLI versions 0.2.0 to 0.2.3, you will have to run the following command to (force) run the auto-update feature: `./chemCLI advanced update --force`. You can also (always) [download a new executable of ChemCLI](#download) to manually update the tool. (Apologies for the bug!)
+1. Please note that support for version 0.1.x of the CLI has been completely deprecated on 31.12.2023. The codes that help you migrate from version 0.1 to 0.2 will be removed in next major release of the CLI.
 
-1. Please note that support for version 0.1.x will be completely deprecated on 31.12.2023. The codes that help you migrate from version 0.1 to 0.2 will be removed in releases after 31.12.2023.
 :::
 
 ## Compatibility with Chemotion ELN
 
-ChemCLI tool supports the following versions of Chemotion ELN:
+The ChemCLI tool supports the last three major releases and last three minor releases of the ELN. However, it possible that certain versions are not available for installation based on user feedback.
 
-| ELN Version                                                            | `docker-compose.yml` file                                                                                                            | Supported by chemCLI version                                  |
-| ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------- |
-| [v1.7.x](https://github.com/ComPlat/chemotion_ELN/releases/tag/v1.7.3) | [eln-1.7.3](https://raw.githubusercontent.com/Chemotion/ChemCLI/446e23aac22b4477887d474e1c79c744f415e1f5/payload/docker-compose.yml) | [0.2.x](https://github.com/Chemotion/ChemCLI/releases/latest) |
-| [v1.6.x](https://github.com/ComPlat/chemotion_ELN/releases/tag/v1.6.2) | [eln-1.6.2](https://raw.githubusercontent.com/Chemotion/ChemCLI/e577832edaba14fa21ee9aa9288e4b00052729c8/payload/docker-compose.yml) | [0.2.x](https://github.com/Chemotion/ChemCLI/releases/latest) |
-| [v1.5.x](https://github.com/ComPlat/chemotion_ELN/releases/tag/v1.5.4) | [eln-1.5.4](https://raw.githubusercontent.com/Chemotion/ChemCLI/548ead617a552307f30d5051e72c01d95e99b30f/payload/docker-compose.yml) | [0.2.x](https://github.com/Chemotion/ChemCLI/releases/latest) |
-
-> Chemotion ELN version [1.4.x](https://github.com/ComPlat/chemotion_ELN/releases/tag/v1.4.1-3) is **not supported** because it requires [manual changes](https://chemotion.net/docs/eln/install_configure/manual_install#only-when-installing-or-upgrading-to-version-141) to the installation after downloading the [`docker-compose.yml`](https://raw.githubusercontent.com/ptrxyz/chemotion/ba4b4620ab2aaa6be32df78189c29970335b1989/docker-compose.yml) file.
+Releases older than 1 year are generally not included in the CLI.
 
 ## Concept for chemCLI
 
@@ -122,8 +115,10 @@ To turn on, and off, the `selected` instance, issue the commands:
 
 ### Backup an instance
 
-:::caution WARNING
+:::warning Warning
+
 This backup process does not backup data that reside out docker e.g. `services` and `shared` folders. These folder need to be backed up by you separately.
+
 :::
 
 You can backup an instance of the ELN, installed using the CLI, by running the following command:
@@ -166,9 +161,9 @@ If you are using chemCLI version 0.1 (then called `chemotion CLI`), please do th
 - [Download](#download) the latest version and [make it an executable](#making-it-an-executable).
 - Create copy of the file `chemotion-cli.yml` as `chem_cli.yml` by executing: `cp chemotion-cli.yml chem_cli.yml`.
 - Run the new executable (`./chemCLI`). It should guide you through an automated update. After a successful update, it is safe to remove `chemotion-cli.yml` and `chemotion-cli.log` files.
-- This update does not upgrade the instances
+- This update does not upgrade the instances.
 
-> Please note that support for version 0.1.x will be completely deprecated on 31.12.2023.
+> Please note that support for version 0.1.x has been completely deprecated on 31.12.2023.
 
 ## Advanced Usage
 

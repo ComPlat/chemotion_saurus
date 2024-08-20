@@ -5,9 +5,11 @@ sidebar_position: 12
 ---
 
 :::info
+
 This install process involves direct interaction with Docker, and is targeted at advanced users who have some experience with Docker. For an easier experience, consider using [ChemCLI](ChemCLI).
 
 If you face problems, please let us know; we are there to support you. You may [contact us directly](/helpdesk) if you plan to install Chemotion or have problems installing/using it.
+
 :::
 
 ## Latest Version
@@ -16,8 +18,10 @@ We distribute the ELN as docker images for ease of distribution and use. The lat
 
 ## Fresh Installations
 
-:::info IMPORTANT
+:::info[Important]
+
 Certain installations require may require additional/different steps. Please check [this section](#special-cases) to see if your desired version needs such treatment.
+
 :::
 
 To install the latest version of Chemotion on a blank system, follow these steps:
@@ -56,7 +60,9 @@ To install the latest version of Chemotion on a blank system, follow these steps
   - Proceed with [Configuration](configuration)
 
 :::info
+
 We rely on docker volumes to preserve data. Your user data will be stored in the volumes `chemotion_data` and `chemotion_db`. DO NOT delete them: Having backups is essential to making your data FAIR.
+
 :::
 
 ### Controlling Services
@@ -126,6 +132,7 @@ networks:
   proxy:
     external: true
 ```
+
 This declares the proxy network as external i.e. it is allowed to talk to the host's network. To link this `proxy` network with the ELN's network, include the it as a key-value pair for the `eln` service i.e. create a new YAML key called `services.eln.networks: [proxy]`.
 
 Additionally, you also need to create such a network explicitly by running the following command in your shell:
@@ -158,6 +165,13 @@ Here, you are accessing the files `....crt` and `....key`. These files are certi
 
 Further information on how to configure nginx, please refer to tutorials online (e.g. [here](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/) and [here](https://www.cyberciti.biz/faq/configure-nginx-to-use-only-tls-1-2-and-1-3/)).
 
+NB: When setting the CSP headers, be sure to allow commonchemistry.cas.org (for creating sample by cas-rn) and dx.doi.org doi.org and api.crossref.org (to fetch literature references by doi). For example the directive could look like:
+
+```nginx
+add_header Content-Security-Policy "default-src 'self'  'unsafe-inline' 'unsafe-eval';connect-src 'self' ws: blob:  commonchemistry.cas.org dx.doi.org doi.org api.crossref.org; font-src 'self' data: ; frame-src 'self' nmrium.chemotion.scc.kit.edu ; img-src 'self' data:" ;
+
+```
+
 #### To summarize, you have to make sure that:
 
 - Reverse proxy is setup properly (i.e. DNS resolves to the URL to your server's IP address).
@@ -167,11 +181,13 @@ Further information on how to configure nginx, please refer to tutorials online 
 
 ## Upgrades
 
-:::info IMPORTANT
+:::info[Important]
+
 Certain upgrades require may require additional/different steps. Please check [this section](#special-cases) to see if your current version and/or desired version needs such treatment.
+
 :::
 
-:::caution Before Upgrades
+:::warning[Before Upgrades]
 
 - ALWAYS perform a [backup](#backing-up-and-restoring-your-data) before doing upgrades. We cannot help you restore data if there is no backup and things go wrong during upgrade processes.
 - Inform your users of downtime that may accompany the upgrade.
@@ -231,15 +247,19 @@ To get access to the inside of the container, i.e to perform tasks based on the 
 ### Backing up and Restoring your data
 
 :::info
+
 It is advised to setup an automatic system task (i.e. cron job) to backup regularly. This is highly system specific and thus out of the scope of this documentation. Please refer to your OS's manual to find out how to setup scheduled tasks.
 
 The backup process, if using ChemCLI is [described on its page](ChemCLI#backup-an-instance).
 
 In addition, you should always backup before upgrading your installation.
+
 :::
 
-:::caution WARNING
+:::warning[Warning]
+
 Backup scripts do not backup data that reside outside docker volumes e.g. `services` and `shared` folders. These folders need to be backed up _separately_ by you.
+
 :::
 
 To backup that resides inside docker volumes, it is sufficient to run the following command on your host machine in the folder where your Compose file resides:

@@ -11,12 +11,12 @@ This chapter provides some guidance on how to investigate performance.
 We follow the example of investigating the performance of creating a reaction.
 We'll only deal with the backend for the moment, meaning the performance investigation will be limited to Ruby.
 
-For a good general primer on performance investigations have a look at <https://youtu.be/XL51vf-XBTs>.
+For a good general primer on performance investigations have a look at this [YouTube video](https://youtu.be/XL51vf-XBTs).
 
 ## Isolating the issue
 
 Once you've identified a performance issue (e.g., creating a reaction is slow), you need a quick, repeatable way to reproduce it.
-This is why we start by setting up an `rspec` test (<https://rspec.info>) to isolate the issue.
+This is why we start by setting up an [`rspec` test](https://rspec.info) to isolate the issue.
 
 ```ruby title="spec/api/reaction_api_performance_spec.rb"
 # frozen_string_literal: true
@@ -103,7 +103,7 @@ In order for those improvements to be objective, we need a baseline:
 How long does it take (on your system) to create a reaction? If you have that number,
 you have a target for your improvements.
 You can quantifying performance by using a benchmarking tool.
-We use `rspec-benchmark` (<https://github.com/piotrmurach/rspec-benchmark>) to benchmark the `rspec` test we set up earlier.
+We use [`rspec-benchmark`](https://github.com/piotrmurach/rspec-benchmark) to benchmark the `rspec` test we set up earlier.
 After installing the framework (`bundle add rspec-benchmark`) you can make it available as follows.
 
 ```ruby title="spec/spec_helper.rb"
@@ -144,7 +144,7 @@ You can use this baseline to start improving the performance.
 
 In order to improve performance, we now need to identify hot spots in the code that lend themselves for optimization.
 Profiling can help finding these hot spots by breaking down how much time (or CPU cycles) a program spends in each of its components (e.g., methods).
-We can use the `stackprof` (<https://github.com/tmm1/stackprof>) gem to profile our `rspec` test.
+We can use the [`stackprof`](https://github.com/tmm1/stackprof) gem to profile our `rspec` test.
 After installing the gem with `bundle add stackprof` we need to configure it as follows.
 
 ```ruby title="spec/spec_helper.rb"
@@ -180,8 +180,8 @@ bundle exec stackprof --d3-flamegraph tmp/stackprof.dump > tmp/stackprof-flamegr
 
 Have a look at the following resources for details on how to read flamegraphs:
 
-- <https://youtu.be/6uKZXIwd6M0> (5:20-13:00)
-- <https://www.brendangregg.com/flamegraphs.html>
+- https://youtu.be/6uKZXIwd6M0?t=320
+- https://www.brendangregg.com/flamegraphs.html
 
 `stackprof` can also break down how much time the tests spends on each line of a function call.
 This can help zooming in on hot spots.

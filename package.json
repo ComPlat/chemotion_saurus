@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
-    "start": "docusaurus start",
+    "start": "docusaurus start --host 127.0.0.1 --port 3000",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
@@ -12,30 +12,27 @@
     "clear": "docusaurus clear"
   },
   "dependencies": {
-    "@docusaurus/core": "^2.4.1",
-    "@docusaurus/plugin-content-docs": "^2.4.1",
-    "@docusaurus/plugin-content-pages": "^2.4.1",
-    "@docusaurus/plugin-sitemap": "^2.4.1",
-    "@docusaurus/theme-classic": "^2.4.1",
-    "@easyops-cn/docusaurus-search-local": "^0.35.0",
+    "@docusaurus/core": "^3",
+    "@docusaurus/plugin-content-docs": "^3",
+    "@docusaurus/plugin-content-pages": "^3",
+    "@docusaurus/plugin-sitemap": "^3",
+    "@docusaurus/theme-classic": "^3",
+    "@easyops-cn/docusaurus-search-local": "*",
     "@fortawesome/fontawesome-svg-core": "*",
     "@fortawesome/free-solid-svg-icons": "*",
     "@fortawesome/react-fontawesome": "*",
-    "@mdx-js/react": "^1",
+    "@mdx-js/react": "^3",
     "bootstrap": "*",
     "clsx": "*",
     "dotenv": "*",
     "react": "*",
     "react-bootstrap": "*",
-    "react-dom": "*"
+    "react-dom": "*",
+    "video-privacy": "*"
   },
   "devDependencies": {
-    "eslint": "^8.41.0",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-jsx-a11y": "^6.7.1",
-    "eslint-plugin-react": "^7.32.2",
-    "eslint-plugin-react-hooks": "^4.6.0"
+    "eslint": "*",
+    "eslint-plugin-import": "*"
   },
   "browserslist": {
     "production": [

@@ -1,0 +1,81 @@
+---
+title: User-Level Data Collection
+sidebar_label: User-Level Data Collection
+---
+
+Recently user-level data collection (files/folders) has been added in Chemotion ELN. This feature will be available from
+v1.9. It will be available along with the existing mechanism.
+
+## Existing Mechanism
+
+Here is a brief overview of the existing mechanism. Either file or folder is collected in the data collector mechanism.
+
+### File Collection
+
+Different data files are kept under folders, each of which typically contains files specific to a particular analytical
+device. The files must begin with the name abbreviation of a valid user who is registered with Chemotion for the
+Chemotion to collect the files and send them to the user's inbox in ELN. These files are then extracted from the
+device folders and sent to the appropriate user's inbox based on the name abbreviations. All the files (marked as read)
+are removed from the device folders after this process is finished.
+
+![file_collection_1](/img/data_collector/data_collector_file_1.png)
+
+### Folder Collection
+
+In this mechanism, instead of files, folders are directly collected from various device folders. Each device folder
+generally contains the experimental data folders from a particular device. In a similar manner, now the folders have to
+begin with the name abbreviation of a valid user registered with Chemotion in order to collect them and send them to the
+specific user's inbox in Chemotion ELN. Eventually, these folders are collected from the device folders, and based on the
+name abbreviations, they are sent to the inbox of respective users. Upon the completion of this operation,
+all the folders are deleted from the device folders.
+
+:::info
+
+Folders along with their contents marked in red zone will be delete
+
+:::
+
+![folder_collection_1](/img/data_collector/data_collector_folder_1.png)
+
+:::caution Warning
+
+Whether it is a file or folder, they will be deleted from the device folder after each collection operation
+
+:::
+
+## User-Level Data Collection Mechanism
+
+Along with the existing mechanism, now the user has the option to enable user-level data collection in the
+Chemotion ELN.
+
+### User-Level File Collection
+
+In this case, now the device folder will contain subfolders, each identified by the name abbreviations of the
+Chemotion Users. These user-specific folders will contain the experimental data files. When the data collection
+operation is run by the Chemotion, then only the data files within the user-specific folders (marked in red) will be
+deleted. These user-specific folders will remain undeleted after each operation.
+
+:::info
+
+- Data folders/user-level folders within the device folder have to start with user identifier
+- Data files do not need to start with user identifiers
+
+:::
+
+![file_collection_new](/img/data_collector/data_collector_file_new.png)
+
+### User-Level Folder Collection
+
+In a similar manner, the folders that need to be collected will now be kept inside user-specific folders, which are
+kept inside device folders. After each successful data collection operation, the user-specific folders will remain
+undeleted while all their contents (marked in red zone) will be deleted.
+
+![folder_collection_new](/img/data_collector/data_collector_folder_new.png)
+
+### How to enable
+
+This functionality has to be enabled from the `Data Collector` section in the admin panel. If the checkbox `Enable
+user level data collection` remain unchecked, then the conventional data collection mechanism will remain effective.
+If this checkbox is checked, then the newly added user-level data collection will be enabled.
+
+![user_level_selection](/img/data_collector/user_level_selection.gif)

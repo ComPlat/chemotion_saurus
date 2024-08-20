@@ -13,13 +13,23 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
+          node-version: 20
           cache: "npm"
+
+      - name: Download YT Thumbnails
+        run: |
+          for file in $(grep -roP 'youtube-nocookie.com/embed/.{11}' docs | rev | cut -d / -f 1 | rev); do
+            if [ ! -f "static/img/yt_thumbnails/$file.jpg" ]; then
+              wget -O "static/img/yt_thumbnails/$file.jpg" "https://img.youtube.com/vi/$file/hqdefault.jpg" || wget -O "static/img/yt_thumbnails/$file.jpg" "https://img.youtube.com/vi/$file/0.jpg"
+            fi
+          done
 
       - name: Build
         id: build
         run: |
+          npm install -g npm
           npm install
-          npm run build --if-present
+          npm run build
 
       - name: Deploy
         if: steps.build.outcome == 'success' && github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message, 'skip deploy')

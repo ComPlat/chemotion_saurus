@@ -4,13 +4,32 @@ author: Claire Lin
 sidebar_position: 13
 ---
 
-A **Text** type field is used for entering and displaying textual information.
+import { FigCaption, Reader } from "@site/src/js/layout";
+import fieldText from "@site/static/img/labimotion/field-text.png";
 
+<Reader text="Designer" />
 
-## Placeholder
+A **Text** type field is used for entering and displaying textual information. You can use this field to enter any short, written information.
+
+<p align="center">
+  <img src={fieldText} alt="LabIMotion - Text Field" />
+  <FigCaption text="Text field type" />
+</p>
+
+:::tip
+Text fields can be used in [Text Formula](text-formula) fields.
+:::
+
+## Extra Field Attributes
+
+### Placeholder
 
 A brief or example text that is displayed within the field.
 
-## Read-only
+### Read-only
 
-The field is not editable.
+This field is non-editable. When in read-only mode, it appears as plain text with a placeholder if available.
+
+### Required
+
+This field must be filled out before saving the form. Please note that this attribute is only available when the Text field is used in the Element.

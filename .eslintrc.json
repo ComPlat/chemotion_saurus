@@ -1,15 +1,7 @@
 {
-  "env": {
-    "browser": true,
-    "es2021": true,
-    "node": true
-  },
-  "extends": ["plugin:react/recommended", "airbnb"],
-  "overrides": [],
+  "extends": ["plugin:@docusaurus/recommended"],
   "parserOptions": {
-    "ecmaVersion": "latest",
-    "sourceType": "module"
+    "ecmaVersion": "latest"
   },
-  "plugins": ["react"],
-  "rules": {}
+  "plugins": ["react", "frontmatter"]
 }

@@ -3,9 +3,12 @@ title: UI Features
 author: Claire Lin
 ---
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPenToSquare, faGear } from "@fortawesome/free-solid-svg-icons";
+
 # UI features
 
-For functions that require authorized access, the administrator can grant or deny users access to the function.
+The administrator can manage the features that require authorized access through the **UI features**. Two actions are available for each feature: **Edit Permission** <FontAwesomeIcon icon={faPenToSquare} /> and **Edit JSON** <FontAwesomeIcon icon={faGear} />.
 
 ![adminui-uifeatures](@site/static/img/admin_ui/features.png)
 
@@ -23,39 +26,11 @@ When it comes to editing permissions, there are three crucial aspects to conside
 
 Each feature has its own unique characteristics and administrators have the right to fine-tune the configuration.
 
-:::caution WARNING
-It is important to be fully informed before making any changes.
+:::warning[Warning]
+
+Before making any changes, it's crucial to be fully informed. It's recommended to back up the current configuration beforehand. After saving the settings, the instance will require a restart to apply the changes.
+
 :::
-
-Here are the features available for customization:
-
-- Computed Prop
-- Reaction Prediction
-- [ChemDraw Editor](#chemdraw-editor)
-- Ketcher 2 Editor
-- [User Authentication (userProvider)](#user-authentication-userprovider)
-
-### ChemDraw Editor
-
-**Compatible Versions**
-
-| Chemotion ELN     | ChemDraw   |
-| ----------------- | ---------- |
-| 1.5.3 and after   | 22         |
-| 1.0.2 to 1.5.3    | 17, 19, 20 |
-| 1.0.2 and earlier | 17         |
-
-**Configuration in JSON**
-
-To activate ChemDraw in Chemotion ELN, use the following JSON configuration:
-
-```json
-{
-  "editor": "chemdraw"
-}
-```
-
-For detailed setup instructions for ChemDraw, please refer to [Structure editor](../install_configure/configuration#structure-editor).
 
 ### User Authentication (userProvider)
 
@@ -63,7 +38,7 @@ For detailed setup instructions for ChemDraw, please refer to [Structure editor]
 
 | Chemotion ELN | Protocol/Services |
 | ------------- | ----------------- |
-| 1.6.          | OIDC, shibboleth  |
+| 1.6 and after | OIDC, shibboleth  |
 
 **Setting**
 
@@ -115,25 +90,25 @@ Configuration example:
 | issuer                 | URL of the issuer                                              |
 | scheme                 | 'https'                                                        |
 | client_id              | client ID                                                      |
-| redirect_uri           | your chemotion ELN URL + '/users/auth/openid_connect/callback' |
+| redirect_uri           | your Chemotion ELN URL + '/users/auth/openid_connect/callback' |
 | client_secret          | secret                                                         |
 | token_endpoint         | '/oauth2/token'                                                |
 | authorization_endpoint | '/oauth2/auth'                                                 |
 
 #### Shibboleth Parameters
 
-| Parameters        | Value                         |
-| ----------------- | ----------------------------- |
-| enable            | `true` or `false`             |
-| uid               | 'pairwise-id'                 |
-| email             | 'mail'                        |
-| last_name         | 'sn'                          |
-| first_name        | 'givenName'                   |
+| Parameters | Value             |
+| ---------- | ----------------- |
+| enable     | `true` or `false` |
+| uid        | 'pairwise-id'     |
+| email      | 'mail'            |
+| last_name  | 'sn'              |
+| first_name | 'givenName'       |
 
 #### Extra Rules Parameters
 
-| Parameters         | Value                         |
-| ------------------ | ----------------------------- |
-| enable             | `true` or `false`             |
-| disable_signup     | `true` or `false`             |
-| disable_db_login   | `true` or `false` (Please make sure the system has an administrator account that can log in via third-party credentials before disabling DB login.)            |
+| Parameters       | Value                                                                                                                                               |
+| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| enable           | `true` or `false`                                                                                                                                   |
+| disable_signup   | `true` or `false`                                                                                                                                   |
+| disable_db_login | `true` or `false` (Please make sure the system has an administrator account that can log in via third-party credentials before disabling DB login.) |

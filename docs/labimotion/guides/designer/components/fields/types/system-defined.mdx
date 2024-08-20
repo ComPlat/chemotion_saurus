@@ -4,9 +4,33 @@ author: Claire Lin
 sidebar_position: 11
 ---
 
+import { FigCaption, Reader, YouTubeFrame } from "@site/src/js/layout";
+import fieldSystemDefined from "@site/static/img/labimotion/field-system-defined.gif";
+
+<Reader text="Designer" />
 
 A **System-Defined** type field consists of a numeric field and a corresponding unit selector. Users can enter a value in the input field while choosing from a set of predefined units in the selector.
 
-When users click on the unit selector, the system automatically converts the entered value to the equivalent value in the newly selected unit. For instance, entering "100" in the input field with "cm" selected, and then switching to "m," will display "1" in the input field.
+When users click on the unit selector, the system automatically converts the entered value to the equivalent value in the newly selected unit. For instance, entering "100" in the input field with "cm" selected, and then switching to "m," will display "1" in the input field. Please note, the calculation result is rounded to 5 decimal places.
 
-The list of units can be found here.
+<p align="center">
+  <img src={fieldSystemDefined} alt="LabIMotion - System-Defined Field" />
+  <FigCaption text="System-Defined field (Length)" />
+</p>
+
+As a Designer, you can set a preferred unit for a field as the default option within the template. A visual demonstration is provided below:
+
+<YouTubeFrame
+  src="https://www.youtube-nocookie.com/embed/mEmDDS9z19s"
+  title="Designer - Customize Default Unit for Field"
+  width="400"
+/>
+<FigCaption text="Customize Default Unit for System-Defined field (Temperature)" />
+
+:::tip
+System-Defined fields can be used in [Formula](formula-field) fields.
+:::
+
+## Supported Units
+
+Check the full list of [Supported Units](https://github.com/LabIMotion/labimotion/wiki/Supported-Units-of-System-Defined-Field).

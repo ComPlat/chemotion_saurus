@@ -5,13 +5,30 @@ author: Nicole Jung
 sidebar_position: 6
 ---
 
-:::caution Important information for this page
-This page contains a collection of ideas to give inline notations for analytical data in the future. We provide this page to discuss options for a clear formatting of descriptions - but there is no need to adapt to the given rules at the moment. This is a test area. Nevertheless: if you have suggestions and comments: please let us know or provide your ideas via the issue tracking option.
-https://github.com/ComPlat/chemotion_saurus/issues  
+:::info[Important information for this page] 
+
+This page contains a collection of information how to reference analytical data. We provide this page to describe the preferred formatting of analytical evaluations in the Chemotion repository. The given preferences follow standards of journals/publishers and other stakeholders wherever we could find them. Currently, the in particular the format of the metadata of the analytical data (everything before "=") is not reviewed critically. If you have suggestions and comments: please let us know or provide your ideas via the issue tracking option. 
+https://github.com/ComPlat/chemotion_saurus/issues
+Updated: 05.03.2024
 :::
 
-CV (1 mM in MeCN vs. RefE = Ag/AgNO<sub>3</sub> (0.01 M AgNO<sub>3</sub>, 0.1 M TBAP in MeCN), 1 mM Fc, 100 mV/s): E1/2 (ΔE<sub>p</sub>) = −0.373 V (85 mV) [[Cu(TMGqu)<sub>2</sub>]<sup>2+/+</sup>], +0.060 V (80 mV) [Fc<sup>+</sup>/Fc].
+**General description of CV measurement routines**
 
-CV (1 mM in MeCN vs. Fc<sup>+</sup>/Fc, 100 mV/s): E<sub>1/2</sub>,ref (ΔEp) = −0.433 V (85 mV), [[Cu(TMGqu)<sub>2</sub>]<sup>2+/+</sup>]. The measurement started in the direction of negative potentials.
+1. measurement of a blank (solvent with electrolyte) sample (facultative)
+2. the analyte is added and measured 
+3. Fc or other (e.g. Me<sub>10</sub>Fc) reference is added and measured.
 
-Details: 
+Hint: Polish the working electrode (glassy carbon or others e.g. platinum) and degas (with solvent saturated Ar, at least 5 min, or N2) between the runs.
+
+**Shifting Potentials**
+
+Because the measured potentials are strongly dependent on the reference electrode, it's important to shift your potentials and report them against a well-known reference.
+The following references are recommended:
+1. Ferrocene and setting the Fc<sup>+</sup>/Fc couple to 0 V
+2. SCE and setting the Fc<sup>+</sup>/Fc couple to 0.38 V (value for Fc in MeCN) 
+
+**Inline notation**
+
+CV (1 mM in MeCN vs. Ref (Fc<sup>+</sup>/Fc) = 0 V, ν = 0.1 V/s, to neg.): E<sub>1/2</sub> ([Cu(TMGqu)2]<sup>2+</sup>/[Cu(TMGqu)2]<sup>+</sup>, ΔE<sub>p</sub>) = −0.44 V (90 mV)
+
+Details:
