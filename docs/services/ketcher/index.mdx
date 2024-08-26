@@ -1,0 +1,102 @@
+---
+id: Ketcher2
+title: Ketcher2
+sidebar_position: 4
+---
+
+:::info[Info]
+
+This page is still being edited and reviewed.
+
+:::
+
+# Overview of the Ketcher2 Editor
+
+  Ketcher is an open-source web-based chemical structure editor. Ketcher is designed for chemists, laboratory scientists and technicians who draw structures and reactions. Ketcher is completely free and open-source, while also available on a commercial basis. Ketcher Official Documentation is available [here](https://lifescience.opensource.epam.com/ketcher/).
+
+## Modes
+  Ketcher is provided in 2 modes: Standalone and Remote. <br/><br/>
+  The Standalone mode incorporates Indigo backend services in the Ketcher build.
+  It allows for Ketcher to work in browser with no server and even without the Internet connection. In this mode the pictures recognition provided by Indigo service is not available.
+  The Remote mode requires Indigo server deployed and connected. It will provide all the Ketcher abilities leveraging Indigo.
+
+## Technical aspect
+
+#### File formats supported
+  Ketcher provides the ability to load and save structures and reactions in:
+  - DL Molfile (v2000 and v3000)
+  - RXN file format
+  - InChI String
+  - ChemAxon Extended SMILES
+  - ChemAxon Extended CML file formats
+
+
+#### Supported browsers
+  Ketcher is supported and tested in the majority of the modern browsers:
+  - Microsoft Edge
+  - Mozilla Firefox
+  - Safari
+  - Chrome
+
+#### Enable ketcher Editor
+  After you have chemotion running on your machine. Here are some further steps to enable Ketcher2.
+
+# Integration Steps
+This section will take you through integration steps to have Ketcher2 running. Follow the steps below to ensure a smooth setup.
+
+  ### Installation Steps
+  #### 1. Ensure you have `jq` installed on your system (Ubuntu only):
+    ```bash
+      sudo apt install jq
+    ```
+
+  #### 2. Add Ketcher2 Files to public/editor/ketcher2/ using script
+  Run the installation script (Choose one script based on release requried):
+    
+    fetching build assets from github release
+
+    ```bash
+    bin/chem-ket2-install.sh  -s epam/ketcher@v2.21.0
+    ```
+
+    building from src at  v2.22.0-rc.9
+    ```bash
+    bin/chem-ket2-install.sh -b -s epam/ketcher@v2.22.0-rc.9
+    ```
+    (*Not recommended) You can check list of releases available by [EPAM Ketcher Releases](https://github.com/epam/ketcher/tags). Version can be changed to fetcher different release.
+    
+  #### 3. Adding ketcher2 source path
+    Go to file: /config/structure_editors.yml
+
+    ```
+    :ketcher2:
+      :label: "ketcher2"
+      :extSrc: "/editors/ketcher2/built/v2.21.0/standalone/index.html"
+    ```
+
+    ketcher2.extSrc should always target to index.html (follow correct path in ./public/ketche..../index.html)
+
+  #### 4. Restart Your container
+    After completing the above steps, restart your server or container to apply the changes.
+
+  #### 5. Configure User Access
+  Ensure that Ketcher2 is allowed for the user(s) by the admin. This step is necessary to provide appropriate access permissions.
+
+
+## Features
+
+- ### Common Templates
+  Chemotion has made common templates feature available with ketcher Editor. For more details please checkout [Link](/docs/services/ketcher/commontemplates).
+
+- ### User Templates 
+  Chemotion has made user templates feature available with ketcher Editor. Now, user can make new templates and save them for later use. For more details please checkout [Link](/docs/services/ketcher/usertemplates).
+
+- ### Ketcher Editor Settings
+  Chemotion has now linked ketcher editor Setting to your chemotion user account. Settings are not limited to a specific machine anymore. For more details please checkout [Link](/docs/services/ketcher/ketchersettings).
+
+## License
+
+  Ketcher version 1.0 was released under GNU Affero General Public License v3.0 Ketcher version 2.0 was re-licensed under Apache License, Version 2.
+  This program is free software: You can redistribute it and/or modify it under the terms of the the Apache License, Version 2.0.
+
+  You should have received a copy of the Apache License along with this program. If you did not not, please see https://www.apache.org/licenses/LICENSE-2.0
