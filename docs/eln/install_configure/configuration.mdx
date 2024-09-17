@@ -241,6 +241,98 @@ production:
 
 Given that the supported editor is disabled by default, administrators have the capability to enable it once the setting is completed. For further information, please refer to the [Admin Interface > UI features](../admin/features) for further information.
 
+
+
+## Ketcher 2 Structure Editor
+
+Ketcher is an open-source web-based chemical structure editor. Ketcher is designed for chemists, laboratory scientists and technicians who draw structures and reactions. Ketcher is completely free and open-source, while also available on a commercial basis. Ketcher Official Documentation is available [here](https://lifescience.opensource.epam.com/ketcher/).
+
+### Modes
+
+Ketcher is provided in 2 modes: Standalone and Remote.
+
+The Standalone mode incorporates Indigo backend services in the Ketcher build.
+It allows for Ketcher to work in browser with no server and even without the Internet connection. In this mode the pictures recognition provided by Indigo service is not available.
+
+The Remote mode requires Indigo server deployed and connected. It will provide all the Ketcher abilities leveraging Indigo.
+
+## Technical aspect
+
+#### File formats supported
+
+Ketcher provides the ability to load and save structures and reactions in:
+
+- DL Molfile (v2000 and v3000)
+- RXN file format
+- InChI String
+- ChemAxon Extended SMILES
+- ChemAxon Extended CML file formats
+
+#### Supported browsers
+
+Ketcher is supported and tested in the majority of the modern browsers:
+
+- Microsoft Edge
+- Mozilla Firefox
+- Safari
+- Chrome
+
+### License
+
+Ketcher version 1.0 was released under GNU Affero General Public License v3.0 Ketcher version 2.0 was re-licensed under Apache License, Version 2.
+This program is free software: You can redistribute it and/or modify it under the terms of the the Apache License, Version 2.0.
+
+You should have received a copy of the Apache License along with this program. If you did not not, please see https://www.apache.org/licenses/LICENSE-2.0
+
+
+### Enable ketcher 2 Editor
+
+After you have Chemotion running on your machine, here are some further steps to have Ketcher2 running. Follow them to ensure a smooth setup.
+
+
+### Installation Steps
+
+#### 1. Ensure you have `jq` installed on your system (Ubuntu only):
+
+```bash
+  sudo apt install jq
+```
+
+#### 2. Add Ketcher2 Files to public/editor/ketcher2/ using script
+
+  Run the installation script (Choose one script based on release required):
+
+```bash
+bin/chem-ket2-install.sh  -s epam/ketcher@v2.21.0
+```
+
+building from release at v2.22.0-rc.9
+
+```bash
+bin/chem-ket2-install.sh -b -s epam/ketcher@v2.22.0-rc.9
+```
+
+#### 3. Adding ketcher2 source path
+
+Go to file: /config/structure_editors.yml
+
+```yaml
+:ketcher2:
+  :label: "ketcher2"
+  :extSrc: "/editors/ketcher2/built/v2.21.0/standalone/index.html"
+```
+
+ketcher2.extSrc should always target to index.html (follow correct path in ./public/ketche..../index.html)
+
+#### 4. Restart Your container
+
+After completing the above steps, restart your server or container to apply the changes.
+
+#### 5. Configure User Access
+
+Ensure that Ketcher2 is allowed for the user(s) by the admin. This step is necessary to provide appropriate access permissions.
+
+
 ## ChemSpectra
 
 If you are using the docker production setup, the service is already installed and configured, but you can still decide to overwrite the configuration file and use another instance of this service. The instructions to install another instance are available [here](https://github.com/ComPlat/chem-spectra-app/blob/master/INSTALL.md). Then you can modify the `spectra.yml` file in the located in the `./shared/pullin/config` folder. If you followed the aforementioned installation guide you may edit the `spectra.yml` to look as follows. Then, as always, restart the ELN.
