@@ -10,9 +10,11 @@ function imageUrlForYouTube(url) {
 
 export const SubTitle = ({ text }) => (<h3 className="subTitle">{text}</h3>);
 export const FigCaption = ({ text }) => (<h3 className="figCaption">{text}</h3>);
-export const YouTubeFrame = ({ src, title, width, height }) =>
-(<VideoPrivacy customButtonClass="button button--primary" info="YouTube will track your interaction with them." width={width + "px"} imageUrl={imageUrlForYouTube(src)}>
-    <iframe src={src} title={title} width={width} height={height} allowFullScreen
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" />
-</VideoPrivacy>);
+export const YouTubeFrame = ({ src, title }) =>
+(<div style={{ position: "relative", aspectRatio: 1.7778 }}>
+    <VideoPrivacy customButtonClass="button button--primary" info="YouTube will track your interaction with them." width="100%" imageUrl={imageUrlForYouTube(src)}>
+        <iframe src={src} title={title} position="relative" width="100%" height="100%"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" />
+    </VideoPrivacy >
+</div>);
 export const Reader = ({ text }) => (<span className="theme-doc-version-badge badge badge--secondary reader-badge">Reader: {text}</span>);

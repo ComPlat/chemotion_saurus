@@ -53,7 +53,7 @@ This step is important for correct calculations of the yield.
 ## Reactions in the element bar
 
 <img
-  src={require("@site/static/img/reactions_list.png").default}
+  src={require("@site/static/img/reaction/reactions_list.png").default}
   alt={"Reactions list"}
 />
 
@@ -83,13 +83,62 @@ Another method for filtering is using text search or structure search from the t
 
 By clicking on the reaction list, a [details panel for reactions](../details#details-panel-for-reactions) opens on the right side.
 
-## Export sample from selection
 
-"Export sample from selection" is a function which allows the user to export sample data from the selected reaction, sample, or else.
-To export sample data, navigate to the action bar and click the dropdown export menu <img src={require('@site/static/img/dropdown_menu.png').default} width={"50px"} alt={"dropdown menu"}/>. A panel **Select Data to Export** will open up when **Export samples from selection** in the dropdown export menu is clicked.
-This panel offers the user a set of data about the sample to select for export. The data, which can be exported are divided into 5 main types as shown in the image below.
-The Export of the data is offered into 2 data formats (XLSX/SDF) by clicking on the orange export button at the end of the window.
+## Gas Phase Reaction Scheme
+The new Gas Phase Reaction Scheme feature introduces a mode to handle reactions involving gaseous reactants and products. This feature allows users to input and calculate parameters specifically for gas-phase reactions, differing from the default reaction mode that is typically used for liquid or solid phases.
 
-<center>
-  <img src={require("@site/static/img/export_menu.png").default} />
-</center>
+<img
+  src={require("@site/static/img/reaction/gas_scheme.png").default}
+  alt={"Reactions list"}
+/>
+
+### Key Features:
+ **Selection Toggle Button:** Users can select between the Default mode (for liquid/solid phases) and the new **Gas mode** via a toggle button:
+- **Default Mode:** Operates as a default mode, where inputs and calculations are based on liquid or solid reactants.
+- **Gas Mode:** Introduces new fields and buttons tailored for handling gas-phase reactions.
+
+**UI Changes in Gas Mode:**
+When **Gas Mode** is selected, the UI will display additional options and fields specific to gas reactions.
+Each sample (starting material, reactant, or product) gets an extra button:
+
+- **FS (Feedstock):** Appears for all starting materials and reactants. When selected, it sets the sample as a feedstock gas.
+- **CAT (Catalyst):** Appears for all starting materials and reactants. When selected, it sets the sample as a catalyst.
+- **Gas:** Appears for all products. When selected, it expands the UI to include five additional fields: Time, Temperature,
+Part Per Million (ppm), Turnover Number (TON), and Turnover Frequency (TOF).
+- **Off:** Appears as a default option for all samples. It means that the sample is none of the above options (neither feedsotck, catalyst, nor gas)
+
+**Input Fields for Gaseous Products:**
+
+Upon selecting the **gas** button for a product, additional fields are displayed:
+- **Time:** The duration for which the reaction is carried out to prepare the relative product.
+- **Temperature:** Temperature of the reaction, input in *°C*, *°F*, or *K*.
+- **ppm (Part Per Million):** Concentration of the gas in parts per million.
+- **TON (Turnover Number):** Calculated as the ratio of moles of product to moles of reference (catalyst).
+- **TOF (Turnover Frequency):** Calculated as the ratio of TON to time.
+
+**Further Equations:**
+It is important to mention that certain calculations differ when operating in Gas Phase mode. The following equations are applicable exclusively under these gas phase conditions and use the following constants:
+  - Pressure in atm = 1
+  - Volume in *L*
+  - Number of moles in *mol*
+  - Ideal gas constant (R) = 0.0821 atm *L/(mol*K)*
+  - Temperature in *K*
+  - default temperature (defined as 294)
+  - parts per million factor (1000000)
+
+**Equations:**
+
+  - **Calculation for moles of gas product equation:** N = part per million *  pressure  *  reaction vessel volume / (R *  temperature (entered in temperature field) *  parts per million factor)
+  - **Calculation for moles of feedstock reference:** purity *  pressure *  volume of feedstock  / R *  default temperature
+  - **Yield Calculation for gas products:** this is the ratio of product moles to feedstock moles (using reaction vessel volume instead of feedstock volume).  Substituting the values into the equation, the yield can be calculated as follows:
+    - part per million * default temperature / purity * parts per million factor * temperature (entered in temperature field)
+
+**User Interface Functionality:**
+The system automatically recalculates and synchronizes data for the input fields as necessary information is entered. For product samples, click the **gas** button to expand the input fields. enter the Temperature, reaction vessel size, Time, and part per million value of the product gas.
+Using the values entered for the input fields of moles for catalyst and feedstock samples, the system will automatically calculate:
+- The amount of the product in moles
+- The Turnover Number (TON)
+- The Turnover Frequency (TOF)
+- The product yield
+
+Aside from the functionalities mentioned above, all other features of the default reaction scheme remain fully available when using the gas mode scheme.
