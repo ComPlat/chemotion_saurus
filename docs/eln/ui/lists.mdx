@@ -1,7 +1,6 @@
 ---
-id: lists
 title: Lists
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 Lists form one main organization instrument in the Chemotion ELN.
@@ -23,7 +22,37 @@ Thus, the image representing the molecule (and therewith the samples) changes if
 
 The list of samples contains further information.
 
-### Sorting of the samples list
+### Filtering of the sample list
 
-Sorting can be done by filtering according to a date, filtering the lists using structure search or text search.
+Filtering can be done according to a date, filtering the lists using structure search or text search.
+
+This option does not sort the sample list. It only sets a parameter for filtering and the filtering will be done based
+on the specified date range in the From and To fields.
+
+When it shows `currently filtered by creation date` then it will show all the entries that were created in the specified
+date range.
+
+Similarly when it shows `currently filtered by update date` then it will show all the entries that were updated in the
+specified date range.
+
+![sample_filtering](/img/sample_filtering.gif)
+
 To be continued...
+
+### Sorting of the sample list
+
+Currently, the sample list is sorted by the updated date, by default. It is in our <u>ToDo</u> to implement the
+option to sort this list based on various other parameters, like creation date, etc.
+
+## Lists for reactions
+
+Initially, the reaction list will remain sorted by the descending order of creation date.
+
+### Sorting of the reaction list
+
+It is possible to sort the reaction list based on various parameters. Initially, it is sorted by the descending order
+of creation date, which, later on, can be changed to update date. The sorting direction can also be changed to
+ascending or descending order. Additionally, when the reaction list has been
+[grouped](elements/grouping#reaction-grouping), then the list can be further sorted by RInChI, reaction type, etc.
+
+![reaction_sorting](/img/reaction_sorting.gif)

@@ -2,9 +2,6 @@
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.195.0/containers/javascript-node
 {
   "name": "Docusaurus",
-  // Update 'VARIANT' to pick a Node version: 16, 14, 12.
-  // Append -bullseye or -buster to pin to an OS version.
-  // Use -bullseye variants on local arm64/Apple Silicon.
   "image": "mcr.microsoft.com/devcontainers/javascript-node",
 
   // Configure tool-specific properties.
@@ -17,34 +14,52 @@
           "*.mdx": "markdown"
         },
         "editor.rulers": [100],
-        "[markdown]": {
-          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": "always",
+          "source.fixAll.markdownlint": "always"
         },
-        "[javascript]": {
-          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "eslint.options": {
+          "extensions": [".js", ".jsx", ".md", ".mdx", ".ts", ".tsx"]
         },
+        "eslint.validate": [
+          "markdown",
+          "mdx",
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact"
+        ],
+        "Workspace_Formatter.includePattern": ["*.mdx", "*.md"],
         "cSpell.enableFiletypes": ["md", "mdx", "!js", "!json", "!jsonc"],
-        "cSpell.words": ["Chemotion", "helpdesk"],
-        "markdownlint.config": {
-          "MD033": { "allowed_elements": ["kbd"] }
-        },
-        "markdownlint.run": "onSave"
+        "cSpell.words": [
+          "Chemotion",
+          "helpdesk",
+          "Labimotion",
+          "fortawesome",
+          "fontawesome",
+          "subcomponent",
+          "wellplate"
+        ],
+        "cSpell.suggestionMenuType": "quickFix"
       },
 
       // Add the IDs of extensions you want installed when the container is created.
       "extensions": [
         "dbaeumer.vscode-eslint",
         "streetsidesoftware.code-spell-checker",
-        "DavidAnson.vscode-markdownlint",
-        "esbenp.prettier-vscode"
+        "esbenp.prettier-vscode",
+        "franneck94.workspace-formatter"
       ]
     }
   },
-
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   "forwardPorts": [3000],
 
-  // Use 'postCreateCommand' to run commands after the container is created.
+  // Use 'updateContentCommand' to run commands after the container is created and before the project is cloned.
+  "updateContentCommand": "npm install -g npm",
+
+  // Use 'postCreateCommand' to run commands after the project has been cloned into the container.
   "postCreateCommand": "npm install",
 
   // Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.

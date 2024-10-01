@@ -1,0 +1,27 @@
+---
+title: Details
+author: Claire Lin
+sidebar_position: 1
+---
+
+import {
+  FigCaption,
+  SubTitle,
+  YouTubeFrame,
+  Reader,
+} from "@site/src/js/layout";
+
+<SubTitle text="The detail modal displays the primary content of the dataset metadata." />
+<Reader text="User" />
+
+## Details modal for segments
+
+When the user clicks on the analysis dataset, the generic dataset metadata is shown in the second part of the pop-up modal. The dataset content is generated from the template associated with the selected 'Chemical Methods Ontology' Type, provided the template has been released by the designer.
+
+![Detail Modal](/img/labimotion/dataset-detail-modal.png)
+
+:::info[Permissions and Configuration]
+
+The available generic dataset must be defined by the designer first, then released and activated. The UI feature for generic dataset needs to be either globally enabled or the user must be included in the allow list.
+
+:::

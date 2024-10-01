@@ -1,0 +1,5 @@
+position: 5
+label: Services
+collapsible: false # make the category collapsible
+collapsed: false # keep the category closed by default
+

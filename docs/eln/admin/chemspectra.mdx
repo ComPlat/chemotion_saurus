@@ -1,0 +1,29 @@
+---
+title: ChemSpectra Layouts
+---
+
+# ChemSpectra Layouts
+
+Within the admin interface, users can access the default data-types-to-spectra-layouts mapping and add new entries.
+
+### Data Types and Layouts
+
+A **data type** serves as an identifier found in the metadata of an output spectrum file.
+For instance, the following JCAMP-DX output file obtained from a fluorometer is labeled with the data type 'FLUORESCENCE SPECTRUM'.
+
+![adminui-chemspectra](@site/static/img/admin_ui/data_type_fluorescence.png)
+
+It's worth noting that different devices of the same technique may have slightly different data types (e.g., 'FL SPECTRUM' instead of 'FLUORESCENCE SPECTRUM').
+
+In ChemSpectra, a **layout** refers to a spectrum type. So when a data file is sent to ChemSpectra, the data type is mapped to its corresponding layout and processed accordingly.
+
+If your data file is from a supported technique and extension but isn't processed by ChemSpectra as expected, it may be due to an unrecognized data type. You can seamlessly update the data types list through the ELN admin.
+
+### Add New Data Types
+
+1. Navigate to the 'ChemSpectra Layouts' page.
+2. Click on the "Add New Data Type" button.
+3. Enter the data type exactly as it appears in your data file.
+4. Select a layout from the dropdown list and click 'Add Data Type'.
+
+![adminui-chemspectra](@site/static/img/admin_ui/add_data_type_demo.gif)

@@ -1,49 +1,50 @@
-require("dotenv").config();
+require('dotenv').config();
 
 module.exports = {
-  title: "Chemotion",
-  tagline: "Electronic Laboratory Notebook & Repository for Research Data",
-  url: "https://chemotion.net",
-  baseUrl: "/",
-  onBrokenLinks: "throw",
-  onBrokenMarkdownLinks: "warn",
-  favicon: "img/logos/favicon.ico",
-  organizationName: "Complat", // Usually your GitHub org/user name.
-  projectName: "chemotion_saurus", // Usually your repo name.
+  title: 'Chemotion',
+  tagline: 'Electronic Laboratory Notebook & Repository for Research Data',
+  url: 'https://chemotion.net',
+  baseUrl: '/',
+  onBrokenLinks: 'throw',
+  onBrokenAnchors: 'throw',
+  onBrokenMarkdownLinks: 'throw',
+  favicon: 'img/logos/favicon.ico',
+  trailingSlash: false,
+  organizationName: 'Complat', // Usually your GitHub org/user name.
+  projectName: 'chemotion_saurus', // Usually your repo name.
   customFields: {
-    fund: "Funded By",
+    fund: 'Funded By',
+  },
+  markdown: {
+    mdx1Compat: {
+      comments: false,
+      admonitions: false,
+      headingIds: false,
+    },
   },
   themeConfig: {
-    announcementBar: {
-      id: "restructuring",
-      content:
-        "The Documentation has been significantly restructured. If your referring link is broken, it would be best to use the Search feature.",
-      backgroundColor: "#03e8fc",
-      textColor: "#000000",
-      isCloseable: true,
-    },
     navbar: {
-      title: "Chemotion",
+      title: 'Chemotion',
       logo: {
-        alt: "Chemotion",
-        src: "img/logos/favicon.ico",
+        alt: 'Chemotion',
+        src: 'img/logos/favicon.ico',
       },
       items: [
         {
-          label: "Documentation 📖",
-          position: "left",
-          docId: "welcome",
-          type: "doc",
+          label: 'Documentation 📖',
+          position: 'left',
+          docId: 'welcome',
+          type: 'doc',
         },
         {
-          label: "Helpdesk 🤝",
-          position: "right",
-          to: "/helpdesk",
+          label: 'Helpdesk 🤝',
+          position: 'right',
+          to: '/helpdesk',
         },
         {
-          label: "Chemotion Repository ↗️",
-          position: "right",
-          to: "https://www.chemotion-repository.net/",
+          label: 'Chemotion Repository ↗️',
+          position: 'right',
+          to: 'https://www.chemotion-repository.net/',
         },
       ],
     },
@@ -54,23 +55,23 @@ module.exports = {
       },
     },
     prism: {
-      additionalLanguages: ["ruby"],
+      additionalLanguages: ['ruby'],
     },
     footer: {
-      style: "light",
+      style: 'light',
       links: [
         {
           items: [
             {
               // using html to ensure centered alignment
-              html: `<p style="text-align:center"><a href="https://github.com/ComPlat/chemotion_ELN">Chemotion ELN Source Code ↗</a></p>`,
+              html: '<p style="text-align:center"><a href="https://github.com/ComPlat/chemotion_ELN">Chemotion ELN Source Code ↗</a></p>',
             },
           ],
         },
         {
           items: [
             {
-              html: `<p style="text-align:center"><a href="/about">About Us</a></p>`,
+              html: '<p style="text-align:center"><a href="/about">About Us</a></p>',
             },
           ],
         },
@@ -79,35 +80,35 @@ module.exports = {
     },
 
     colorMode: {
-      defaultMode: "light",
+      defaultMode: 'light',
       disableSwitch: true,
       respectPrefersColorScheme: false,
     },
   },
 
   plugins: [
-    "@docusaurus/plugin-sitemap",
-    "@docusaurus/plugin-content-pages",
+    '@docusaurus/plugin-sitemap',
+    '@docusaurus/plugin-content-pages',
     [
-      "@docusaurus/plugin-content-docs",
+      '@docusaurus/plugin-content-docs',
       {
-        sidebarPath: require.resolve("./sidebars.js"),
-        editUrl: "https://github.com/ComPlat/chemotion_saurus/edit/main/",
+        sidebarPath: require.resolve('./sidebars.js'),
+        editUrl: 'https://github.com/ComPlat/chemotion_saurus/edit/main/',
         showLastUpdateTime: true,
         showLastUpdateAuthor: false,
-        routeBasePath: "/docs",
+        routeBasePath: '/docs',
       },
     ],
     [
-      "@docusaurus/theme-classic",
+      '@docusaurus/theme-classic',
       {
-        customCss: require.resolve("./src/css/custom.css"),
+        customCss: require.resolve('./src/css/custom.css'),
       },
     ],
   ],
   themes: [
     [
-      require.resolve("@easyops-cn/docusaurus-search-local"),
+      require.resolve('@easyops-cn/docusaurus-search-local'),
       {
         hashed: true,
         highlightSearchTermsOnTargetPage: true,

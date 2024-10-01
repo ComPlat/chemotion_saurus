@@ -1,0 +1,71 @@
+---
+title: For Analyses
+author: Nicole Jung
+sidebar_position: 2
+---
+
+:::info[Important information for this page] 
+
+This page contains a collection of information how to reference analytical data. We provide this page to describe the preferred formatting of analytical evaluations in the Chemotion repository. The given preferences follow standards of journals/publishers and other stakeholders wherever we could find them. Currently, in particular the format of the metadata of the analytical data (everything before "=") is not reviewed critically. If you have suggestions and comments: please let us know or provide your ideas via the issue tracking option. 
+https://github.com/ComPlat/chemotion_saurus/issues
+Updated: 01.03.2024
+:::
+
+## Completeness
+
+**New compounds:** New compounds (not literature known compounds) must be provided with analytical data that adequately approve the identity and degree of purity (homogeneity) of the compound. <br />
+Typically, the following data needs to be provided:
+**NMR data:** 1H NMR, 13C NMR data, methods to gain information on Hydrogen multiplicity (C, CH, CH2, CH3) such as DEPT, HSQC, HMBC or NOESY NMR data for approving the assignment of signals to atoms. For details, please see [NMR](analysis_test/nmr) <br />
+**Mass spectrometry data** including HRMS: <br />
+**IR or Raman** spectra <br />
+**melting point (range)**: should be reported for all crystalline compounds. Melting points of noncrystalline amorphous compounds should not be reported. <br />
+**Elemental analysis**:.<br />
+
+Missing data
+If a required type of data is not obtainable, the reason for the absence of the data should be noted. For example, if the compound is little soluble and recording a 13C NMR spectrum is not possible or if the compound can be hardly ionized and mass spec cannot be gained, please add a note to "Additional information for publication and purification details". For cases where the data was gained but does not meet the requirements, please see the information in the section <i>analyses</i> of this documentation. <br />
+
+Chemical shift values should be included for all peaks arising from the compound in the 1H and 13C spectra <br />
+Display the NMR baseline and include the minimum chemical shift range: <br />
+-1-9 ppm for 1H spectra <br />
+-10-190 ppm for 13C spectra <br />
+Extended range for functional groups that resonate from 9-14 ppm <br />
+
+All new organic, organometallic, and inorganic compounds, and materials must be fully characterized by appropriate analytical methods with sufficient evidence for composition, structure, and purity (e.g., elemental analysis, 1H and 13C NMR spectroscopies, high-resolution mass spectrometry, mass spectrometry, IR spectroscopy, specific rotation, physical state and melting point, X-ray crystallography, electron microscopy, X-ray diffraction, etc.). The identity and bulk purity of compounds and materials should be verified with elemental analysis or, in exceptional circumstances, by another appropriate method. For instance, when the compound is unstable or not available in sufficient quantities for complete analysis, the exact relative molecular mass obtained by high-resolution mass spectrometry and clean 1H and 13C NMR spectra (appended to the Supporting Information for inspection by the referees) should be supplied. Reasons should be provided if a type of data could not be obtained for a compound or compound class.<br />
+
+In any cases where elemental analysis cannot be carried out (e.g., for air-sensitive compounds) an explanation for the omission or inaccuracy of this data should be given, alongside additional evidence for purity. HPLC or GC chromatograms are suitable, but other techniques (e.g., NMR spectroscopy or powder X-ray diffraction) will be considered.<br />
+For known organic, organometallic, and inorganic compounds, characterization by 1H and 13C NMR spectroscopies and mass spectrometry is sufficient and purity should be verified. A reference to the fully characterized compound should be provided. Any soluble organometallic or inorganic diamagnetic compound with an organic fragment should be characterized using NMR spectroscopy (1H, 13C, and any other appropriate nucleus) in the same manner as organic compounds. For soluble paramagnetic compounds (e.g., CuII complexes), paramagnetic NMR techniques are encouraged but not essential.<br />
+Isomeric mixtures: Where isomeric mixtures are reported, such as diastereomeric or enantioenriched mixtures, please provide percentage compositions and information about how these values were obtained (e.g., NMR spectroscopy, HPLC, etc.). If certain spectroscopic signals (e.g., NMR signals) can be attributed to either of the isomers, these data should be reported in separate lists and not in combined lists.<br />
+Microscopy images should be captured at an appropriate magnification to show a representative sample. When high-magnification images of selected particles are used they must be supplemented by low-magnification images of the broader sample, and the use of histograms and statistics to describe size and shape distributions is encouraged.<br />
+
+Instruments: commercially available instruments are referred to by their stock numbers (for example, Perkin-Elmer 457 or Varian HA-100 spectrometers)
+
+## Order of analyses
+
+Please order the analysis part of your molecules/samples according to:
+
+1. <sup>1</sup>H NMR,
+2. <sup>13</sup>C NMR,
+3. Other [NMR](analysis_test/nmr) data,
+4. [Mass Spectroscopy](analysis_test/ms) data,
+5. IR data, and
+6. Others (EA, crystal structures)
+   For collecting data in the ELN/repository, please use the "order mode" button in the analysis tab. For inline notation, please add one technique after the other, separated by ".".
+
+If detailed peak assignments are made, the type of NOESY or COSY methods used to establish atom connectivity and spatial <br />relationships should be identified in the Supporting Information.
+
+## Datasets assigned to analyses
+
+Adding data to a sample/reaction/other entities in the Chemotion repository (and Chemotion ELN) follows a certain structure that consists of: <br />
+-- analyses <br />
+--- datasets <br />
+---- attachments <br /> <br />
+You can assign as many datasets to an analysis as you have and want to provide. You can add as many attachments to each dataset as you have and want to provide
+Please keep the following rules in mind: <br />
+-- **analyses** -> each measurement type should be added with a new analysis section. Whenever you can assign another ontology term, this means you need another analysis type to describe your data <br />
+--- **datasets** -> a dataset summarizes the data that were gained in a specific measurement. Each measurement is added as a dataset. If you repeat the measurement with a change of one or several parameters (e.g. other solvent, increase of temperature, number of scans etc, then please add another dataset to the same analysis section) <br />
+---- **attachments** -> attachments are considered as different representations of a certain measurement (= dataset). You can add as many files as you have as long as they describe the same measurement with the same parameters <br />
+That also means: please add all representations (file formats, images, original data etc) that you gained for one experiment as multiple attachments to the same dataset.
+
+**Examples:**
+How to add an NMR experiment done in different solvents such as CDCl<sub>3</sub>, DMSO-d<sub>6</sub>? <br />
+Please create two datasets within one analysis and name them according to the different setting, e.g. 1H NMR in DMSO-d<sub>6</sub>, 1H NMR in CDCl<sub>3</sub>.

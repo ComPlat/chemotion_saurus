@@ -1,5 +1,4 @@
 ---
-id: ci
 title: Continuous Integration
 ---
 
@@ -16,11 +15,10 @@ Our CI is configured in this following workflow [file](https://github.com/ComPla
 
 Because of large Ruby and npm dependencies, the CI is running inside a Docker container with prebuilt libraries
 in order to speed up CI runs.
-Our Docker image for CI is hosted at <https://hub.docker.com/r/complat/complat-ubuntu-runner>.
+Our Docker image for CI is hosted at [here](https://hub.docker.com/r/complat/complat-ubuntu-runner).
 The CI image is built from the following [Dockerfile](https://github.com/ComPlat/chemotion_ELN/blob/main/Dockerfile.github-ci).
 
-We're using a PostgreSQL container to run the database alongside the ELN application:
-<https://hub.docker.com/_/postgres>.
+We're using a [PostgreSQL container](https://hub.docker.com/_/postgres) to run the database alongside the ELN application.
 
 ## Troubleshooting
 

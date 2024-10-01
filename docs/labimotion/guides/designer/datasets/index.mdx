@@ -1,0 +1,59 @@
+---
+title: Datasets
+author: Claire Lin
+sidebar_position: 3
+---
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faList } from "@fortawesome/free-solid-svg-icons";
+import {
+  FigCaption,
+  SubTitle,
+  YouTubeFrame,
+  Reader,
+} from "@site/src/js/layout";
+import elementList from "@site/static/img/labimotion/element-designer-list.png";
+
+<SubTitle text="Shares commonalities with both the Elements and Segments functions and is associated with the Chemical Methods Ontology." />
+<Reader text="Designer" />
+
+The **Datasets** function shares commonalities with both the [Elements](elements/) and [Segments](segments/) functions, affording you the ability to intricately design the user interface through the integration of [Layers](components/layers/) and [Fields](components/fields/). Notably, the distinctive aspect of the "Datasets" function lies in its association with the Chemical Methods Ontology. To initiate the design of a Dataset, you are required to first select the relevant Ontology. Subsequently, they can seamlessly begin shaping and refining the Dataset's user interface using [Layers](components/layers/) and [Fields](components/fields/), thus offering a specialized and comprehensive approach to interface design tailored to chemical methodologies.
+
+## User Interface
+
+### Dataset Template List
+
+Following the same approach of delivering a user-friendly user interface in a grid format, Dataset templates are displayed in a grid layout for your ease of use.
+
+- :white_check_mark: **Sort** the grid by clicking on the column headers.
+- :white_check_mark: **Filter** the grid by clicking on the filter icon <FontAwesomeIcon icon={faList} size="lg"/> located at the right of the column headers.
+
+For a practical demonstration of sorting and filtering tasks in a list, you can watch the video in the [Element Template List](../designer/elements#element-template-list) section.
+
+![Designer - Generic Dataset](/img/labimotion/designer-generic-dataset.png)
+
+## Dataset Attributes
+
+### Chemical Methods Ontology
+
+A more easily readable and understandable name is presented to end-users, aiding them in recognizing and understanding the dataset they are interacting with.
+
+### Version
+
+The version number of the released element.
+
+### Released at
+
+The timestamp indicating when the selected element was last released.
+
+### Updated at
+
+The timestamp indicating the last update time of the selected element.
+
+### Id
+
+The unique identifier of the selected element.
+
+### Sync Time
+
+The most recent synchronization timestamp.

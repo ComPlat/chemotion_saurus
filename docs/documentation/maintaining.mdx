@@ -1,11 +1,12 @@
 ---
-id: maintaining
 title: Maintaining
 ---
 
 :::info
+
 This page contains general information on how to set up a Docusaurus instance anywhere.
 It follows the workflow used at KIT using Linux (Ubuntu), GitHub, and npm, but the principles can be adapted to other hosts, OS, etc..
+
 :::
 
 ## Installation Process
@@ -67,7 +68,7 @@ For detailed description look into [This Documentation](../documentation#markdow
 
 Setting paths can get complicated when you are [deploying](#deployment) your website under another directory on the server or if you are using [versioning](#versioning).
 Detailed information can be found in the [Docusaurus documentation about assets](https://docusaurus.io/docs/static-assets) and [versioning](https://docusaurus.io/docs/versioning#use-absolute-import-within-the-docs)
-as well as in the [This Documentation](../documentation#paths) chapter.
+as well as in the [this Documentation](../documentation#links) chapter.
 
 ### React/JavaScript
 
@@ -81,68 +82,6 @@ React is the main frontend framework in Docusaurus. Beside React components in M
 
 The TOC (`sidebars.js`) is a JavaScript module. It must contain every single page that you wish to be visible.
 If you create a new page add its `slug` or `id` here. The structure of a nested TOC is also defined there.
-
-## Search bar
-
-### Set Up
-
-Docusaurus can be enhanced with a search function. It is integrated in the `@docusaurus/preset-classic`.
-If other presets or plugins are used, additional steps may be needed for setting up a search function.
-The default search function is offered by Algolia. The best way is to integrate the search function after Docusaurus is fully set up and went online.
-This is because your URL need to be publicly available in order to apply the Algolia search function.
-
-If you plan to use a more customized search (e. g. with your own index) look at the [Docusaurus official documentation](https://docusaurus.io/docs/search)
-or the Algolia and DocSearch documentations. Algolia itself offers different options.
-One of them is free, if you have a non-profit documentation website and the website is publicly available (i. e. not behind a firewall).
-It is also recommended to have a fixed URL that does not change, otherwise you have to tell Algolia your new URL.
-Algolia needs the URL to crawl your website every 24 hours. The built index is then stored on the Algolia servers.
-For the free plan you must [register your website for DocSearch provided by Algolia](https://docsearch.algolia.com/apply/).
-After that it can take several days until Algolia has checked your website and sent you an e-mail with instructions on how to set up their search function.
-It is important to know that the instructions from the e-mail are general for clients and more complicated than it is necessary and useful(!) for Docusaurus.
-
-<b>Do not follow all instructions from Algolia when using Docusaurus!</b>
-It is mostly just necessary to insert a key and the index name in `docusaurus.config.js`
-and save those values (key and index name) as environment variables:
-
-```js
-module.exports = {
-  // ...
-  themeConfig: {
-    // ...
-    algolia: {
-      appId: "YOUR_APP_ID",
-      apiKey: "YOUR_API_KEY",
-      indexName: "YOUR_INDEX_NAME",
-    },
-  },
-};
-```
-
-Algolia also provides the ability to create an account for accessing statistics and configuring their products: [Algolia Sign Up](https://www.algolia.com/users/sign_up).
-If you are using a free plan it is not necessary to use an account because you are very limited in configurations and your configuration options are on the Docusaurus site.
-If you encounter problems with your search you can directly access the [Algolia API](https://www.algolia.com/doc/api-client/getting-started/what-is-the-api-client/javascript/?client=javascript) written in different programming languages or write the Algolia customer service.
-Here are small snippets in JavaScript and Python to check if your search works:
-
-```js
-// npm install algoliasearch
-
-import algoliasearch from "algoliasearch";
-
-const client = algoliasearch("YOUR_APP_ID", "YOUR_API_KEY");
-console.log(client);
-```
-
-```py
-# pip install --upgrade 'algoliasearch>=2.0,<3.0'
-
-from algoliasearch.search_client import SearchClient
-
-client = SearchClient.create('YOUR_APP_ID', 'YOUR_API_KEY');
-index = client.init_index('YOUR_INDEX_NAME');
-index.search('YOUR_SEARCH_WORD');
-```
-
-Error messages are also displayed in the browser console of a production Docusaurus.
 
 ## Presets, Plugins and Themes
 
@@ -229,7 +168,7 @@ To know how to install it look at the example in [This Documentation](../documen
 ## Version Control System (e. g. GitHub)
 
 The Docusaurus instance can be saved in a VCS to enable development by multiple people.
-A VCS is also needed to enable [online editing](#contribution-to-online-version-via-verison-control-system) and online Continuous Integration/Deployment.
+A VCS is also needed to enable [online editing](maintaining#contribution-to-online-version-via-version-control-system) and online Continuous Integration/Deployment.
 Docusaurus supports the usage of the `dotenv` npm package. For that, import it in the [configuration file](#configuration-file). Environment variables are typically used there.
 
 ```js
@@ -318,9 +257,11 @@ A static Docusaurus website can be build with a npm or yarn command and then onl
 npm run build --if-present
 ```
 
-:::caution Recommendation
+:::info[Recommendation]
+
 If you are serving your Docusaurus website under another directory than the default `/` you may encounter problems with paths for assets (images, files etc.).
 Look in the Docusaurus documentation for solutions: [https://docusaurus.io/docs/static-assets](https://docusaurus.io/docs/static-assets).
+
 :::
 
 ### Via GitHub Actions

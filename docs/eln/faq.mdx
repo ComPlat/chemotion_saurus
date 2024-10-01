@@ -1,5 +1,4 @@
 ---
-id: faq
 title: Frequently Asked Questions (FAQ)
 sidebar_label: FAQ
 sidebar_position: 3
@@ -10,9 +9,17 @@ import { Btn } from "@site/src/js/btn.js";
 
 ### Access
 
+#### Where can I try Chemotion ELN?
+
+A [test version](https://demo.chemotion.ibcs.kit.edu/) is available for demonstration purposes and time-limited applications. It is freely available to all interested users. The test version enables you to evaluate the latest version of Chemotion ELN without prior installation with regard to its suitability for your individual application. We ask you not to do any logging via the test version since data may be lost due to system updates and database changes. Some functions cannot be accessed in the test version, e.g. the SciFinder plug-in.
+
+#### How can I install Chemotion ELN?
+
+For routine use in operations, Chemotion ELN can be installed on IT facilities of your group/institution/university. Please refer to our [Installation Guide](install_configure) for more.
+
 #### Is it possible to use Chemotion ELN offline?
 
-- **Answer:** Chemotion ELN is a web based application that can only be used through internet connection. PLease make sure to use Chrome browser.
+- **Answer:** Chemotion ELN is a web based application that can only be used over a network connection. PLease make sure to use Chrome browser.
 
 #### Is there a standalone version from Chemotion ELN?
 
@@ -20,7 +27,7 @@ import { Btn } from "@site/src/js/btn.js";
 
 #### What are the prerequisites for proper Chemotion ELN use?
 
-- **Answer:** Standard laptop/pc is sufficient, internet connection and Chrome browser. PLease be careful not to use other browsers as they seem to function, but this functionality is never complete.
+- **Answer:** A standard laptop/desktop, internet connection and Chrome browser is sufficient. Please do not use other browsers as they seem to function, but this functionality is never complete and/or tested.
 
 ### Collections
 
@@ -38,7 +45,7 @@ import { Btn } from "@site/src/js/btn.js";
 
 #### Why can’t I find the elements I have created in a collection when I look in its upper collection?
 
-- **Answer:** Subcollections are not mirrored in the upper collection, they are rather just an optical structuring tool.
+- **Answer:** Sub-collections are not mirrored in the upper collection, they are rather just an optical structuring tool.
 
 #### Why can’t I see the elements added by my partner to the shared collection?
 
@@ -48,7 +55,7 @@ import { Btn } from "@site/src/js/btn.js";
 
 #### Why can’t I find SciFinder tab in the sample’s details modal?
 
-- **Answer:** The SciFinder tab is only available in versions of ELN prior to 1.0.0. ELN 1.3 and above offers a new feature - [Search CAS](ui/details_modal#search-cas).
+- **Answer:** The SciFinder tab is only available in versions of ELN prior to 1.0.0. ELN 1.3 and above offers a new feature - [Search CAS](ui/details#search-cas).
 
 #### Why can’t I see any other tab in the sample’s details modal rather than **Properties**?
 
@@ -78,17 +85,17 @@ import { Btn } from "@site/src/js/btn.js";
 
 #### How can I add coefficients to balance my reaction?
 
-- **Answer:** To balance your equation, changing coefficients is still not possible, so you need multiple samples to express a single molecule when it has a coefficient more than one. This step is important for correct calculations of the yield.
+- **Answer:** Yes, coefficients to balance your equation can be added in the reaction table (since v1.4.0). Those coefficients are not yet displayed in the reaction image but we are working on this.
 
-### Restoring and Tracking
+### Tracking Changes and Making Backups
 
-#### Are images of the Chemotion ELN created, e.g., to retrieve data in case of accidental deletion of a collection?
+#### How are changes in data (e.g., time, author) tracked? Is there a versioning / time-stamping / auditing system in place?
 
-- **Answer:** Only the current state of the data is saved in the database, but images of data and database are backed up (according to a backup plan). Most of the entries are soft deleted (marked as deleted in the database but are not removed). However, there is no user interface yet to easily restore them. Please pay attention that deleting a collection does not remove its elements, it rather removes the association between them and the collection. Elements can still be picked out individually from **All** collection to a new collection.
+- **Answer:** We are currently working on versioning and auditing systems.
 
-#### How is the Chemotion ELN documenting the changes in data (e.g., time, author)? Is there a versioning/ time stamp? Any auditing capabilities?
+#### Is it possible to to retrieve deleted data e.g. in case of accidental deletion of a collection?
 
-- **Answer:** work-in-progress on versioning and auditing.
+- **Answer:** Most of the entries are soft deleted (marked as deleted in the database but are not removed). However, there is no user interface to restore them easily. Please pay attention that deleting a collection does not remove its elements, it rather removes the association between the elements and the collection. Elements can still be picked out individually from **All** collection to (re-create) a new collection. If for some reason, you lose all your data or would like to restore the ELN to a previous state, it is necessary to have backups in place. For this reason, we recommend creating a [backup plan](install_configure/manual_install.mdx#backing-up-and-restoring-your-data) and automating a regular backup process.
 
 ### Integrated Devices
 

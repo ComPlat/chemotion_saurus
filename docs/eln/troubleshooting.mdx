@@ -1,48 +1,44 @@
 ---
-id: troubleshooting
-title: Hints for Common Problems
-sidebar_label: Troubleshooting
+title: Troubleshooting
 sidebar_position: 4
 ---
 
 ## Chemotion ELN is not responding
 
-In individual cases, it may happen that the Chemotion ELN does not react to an action. If you have the feeling that your application is not giving any feedback, please reload the page by pressing <b>F5</b>. If the problem persists, please contact us using the [helpdesk](/helpdesk).
+In individual cases, it may happen that the Chemotion ELN does not react to an action. If you have the feeling that your application is not giving any feedback, please reload the page by pressing <kbd>F5</kbd>. If the problem persists, please contact us using the [helpdesk](/helpdesk).
 
 ## Actions are not activated
 
-Check whether you are in your work collection. The <b>All Collection</b> is not intended for changes.
+Check whether you are in your work collection. The **All Collection** tab is not intended for changes.
 
 ## Functions are not allowed
 
-If you want to carry out an action and the corresponding button for carrying it out is not activated, it may be because you first have to save your previous entries. This error occurs, for example, if you want to edit a sample in a reaction, but the sample has recently been inserted into the reaction table (by <b>split</b> or <b>copy</b>). If the new sample has not yet been saved in the reaction table, you cannot use various functions.
+If you want to carry out an action and the corresponding button for carrying it out is not activated, it may be because you first have to save your previous entries. This error occurs, for example, if you want to edit a sample in a reaction, but the sample has recently been inserted into the reaction table (by **split** or **copy**). If the new sample has not yet been saved in the reaction table, you cannot use various functions.
 
-## Scifinder error 500
+## SciFinder error 500
 
-A possible error message that can appear when using the SciFinder function to search for samples or reactions is the error code Error 500.  
-![SciFinder error 500](/img/scifinder_error_500.png)  
-This error occurs when the SciFinder access has not been released and therefore access to the database is denied. Please check whether your SciFinder token is still valid by checking the date in the action bar under <b>Log in as your name</b> and <b>Settings</b>. If the validity date has been exceeded, you can easily renew it by deleting the token and creating a new one by entering your SciFinder access data. The new token is then valid again for one week.
+A possible error message that can appear when using the SciFinder function to search for samples or reactions is the error code Error 500.
+![SciFinder error 500](/img/scifinder_error_500.png)
+This error occurs when the SciFinder access has not been released and therefore access to the database is denied. Please check whether your SciFinder token is still valid by checking the date in the action bar under **Log in as your name** and **Settings**. If the validity date has been exceeded, you can easily renew it by deleting the token and creating a new one by entering your SciFinder access data. The new token is then valid again for one week.
 
-## Molecule Editors
+## Fixing Sample or Molecule SVG images
 
-### How do I enable extended copy and paste functionality for ChemDraw JS?
+**(in ELN v1.5.4 and above)**
 
-1. When you select “ChemDrawJS”, you will be notified to click the clipboard icon to enable the extended copy and paste functionality.
+A script to reprocess the SVGs of molecules and samples is available (see [PR1308](https://github.com/ComPlat/chemotion_ELN/pull/1308/commits/868477dc91cec99b689db2ac93106d04ce8dd694)). For this to run properly, the Ketcher backend service has to be working. Note that depending on the situation, this could consume a lot of resources.
+To run the script from your application directory with rails environment, use `bundle exec rake 'svg:{molecule|sample}[{all|missing|openbabel}]'`;
+examples:
 
-![ChemDraw clipboard_message](/img/chemdraw_clipboard_msg.png)
+- reprocess missing molecule SVGs: `bundle exec rake svg:molecule`
 
-2. Click the “Enable Extended Clipboard button”
+- reprocess all molecule SVGs with molecule id &gt;= 200: `bundle exec rake 'svg:molecule[all, 200]'`
 
-![ChemDraw clipboard_button](/img/chemdraw_clipboard_button.png)
+- reprocess missing sample SVGs with sample 100 &lt;= id &lt;= 200: `bundle exec rake 'svg:sample[missing, 100, 200]'`
 
-3. The instruction to enable the copy and paste function is displayed. Please do as follows:
+- reprocess openbabel generated molecule SVGs: `bundle exec rake 'svg:molecule[openbabel]'`
 
-- Click on “ChemDraw Web Clipboard” to download the program
+If docker compose is used, the command can be run from the host where the `docker-compose.yml` file is located. For example, to run the command using the `worker` service:
 
-- Double click to execute the program and the extension will be installed automatically. Note: you might get the notification “New extension added (ChemDraw Web Clipboard)”
-
-- Refresh the page
-
-![ChemDraw enable_clipboard_button](/img/chemdraw_clipboard_steps.png)
-
-4. After refreshing the page, re-open the ChemDraw and the clipboard button turns green. You can use <kbd>Ctrl</kbd>+<kbd>C</kbd> followed by <kbd>Ctrl</kbd>+<kbd>P</kbd> to copy and paste the drawing.
+```
+docker compose exec worker bundle exec rake 'svg:molecule[openbabel]'
+```

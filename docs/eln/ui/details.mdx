@@ -1,0 +1,604 @@
+---
+title: Details Panel
+sidebar_position: 5
+---
+
+:::danger[Caution]
+
+This page is still being edited and reviewed.
+
+:::
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faPlus,
+  faChartBar,
+  faCheck,
+  faSave,
+  faAngleRight,
+  faTrashAlt,
+  faPaste,
+  faArrowsAlt,
+  faSyncAlt,
+  faChartArea,
+  faClock,
+  faHourglassHalf,
+  faHourglassEnd,
+  faEllipsisH,
+  faCheckCircle,
+  faTimesCircle,
+  faDownload,
+  faSlidersH,
+  faClone,
+  faEdit,
+  faChevronUp,
+  faChevronDown,
+  faTimes,
+  faExternalLink,
+} from "@fortawesome/free-solid-svg-icons";
+import { Btn } from "@site/src/js/btn.js";
+
+The details panel or details window is opened by clicking on the desired element from element lists. It shows the information about the element that is stored or available through external databases such as PubChem. The panel/window can be set to full screen mode. Its frame is identified by two colors: dark blue and light blue. The color light blue means that changes have been made within the panel, but they have not been saved yet. If this is the case, a small save symbol also appears in the panel bar <Btn mixed={[faSave]} color={"warning"}/>. As soon as you have saved all the entered data, the frame color changes to dark blue and the symbol disappears. This can be observed in the animation below.
+
+![Frame](/img/frame.gif)
+
+There are three different types of fields within the details panel:
+
+- Fields for freely entering either text or numbers. Example: sample's **Name** and **Description**.
+- Fields with predefined drop-down menus to pick from. Example: **Solvents**.
+- Fields with data made available from other databases and applications based on your structural input. Example: The calculation of the sum formula or the generation of the SMILES.
+
+Tabs were introduced to organize the information within the details panel. They enable information structuring and displaying as in folders. Different tabs are available based on the type of the element. Tabs can be made visible and invisible. This will become clear in the later chapters.
+
+Users can config their own tabs, these tabs can be hidden or shown in the user's preferred ordering. By clicking the small blue symbol <Btn mixed={[faSlidersH]} color={"info"}/> on the right of tabs, drag and drop the tab to change the ordering or into the dark block to hide the tab.
+
+![Change_Tabs](/img/change_tabs.gif)
+
+There are some tabs which are common for multiple elements while some tabs are specific to each element.
+
+## Common tabs in Details panel
+
+### Analyses tab
+
+:::info
+
+Chemotion ELN uses **analyses**, **datasets** and **attachments** to structure analytical data. Please ensure that you use it in the intended manner (see description below).
+
+:::
+
+![Analyses](/img/analyses_tab.gif)
+
+The **Analyses** tab allows you to add analytics to the Chemotion ELN. You can enter experimental results (field **Content**) and upload associated files (see **Dataset**). The **Content** field supports the validation according to specific data types (data types are confirmed by the ontology terms). For 1H NMR and 13C NMR, the **Content** field is checked for the entered amount of 1H NMR or 13C NMR signals and compares the given number with the number of signals expected according to the amount of H- or C-atoms.
+
+:::info
+
+The content of 1H NMR and 13C NMR analyses is validated by screening the information on atoms given in brackets, e.g. 1.11 (s, 3H) -> 3Hs counted. Therefore it is important to add all carbons to the **Content**, e.g. 129.3 (s, 2C). Also, if signals are hidden or too broad to be detected or not detected due to H/D exchange, you may indicate this by adding an explanation: e.g. "Missing OH-signal due to H/D exchange (1H)". The information in brackets is also counted.
+
+:::
+
+For mass spectrometry, the expected molecular mass is used for a comparison with the data given in the **Content** of the analysis.
+
+A green checkmark indicates if the **Content** of the analysis matches the expected data (calculated from the molecular structure).
+
+#### 1H NMR analysis
+
+![1H Green Checkmark](/img/sample_analysis_green_hook.gif)
+
+#### 13C NMR analysis
+
+![13C Green Checkmark](/img/sample_analysis_13c.gif)
+
+For reference, see [here](https://dx.doi.org/10.14272/HGMIATOQJCNPOO-UHFFFAOYSA-N.1)
+
+You can create as many analyses as you need with the button <Btn mixed={[faPlus, "Add analysis"]} color={"success"}/>. For each analysis you can upload as many datasets (files) as you want with the button <Btn mixed={[faPlus]} color={"success"}/>. Please pay attention to the structure of the data storage and take care of the input fields, this will allow you to search your results quickly. Any information you define through the fields is available to the Chemotion ELN for processing and this data can be displayed or summarized in lists.
+
+The uploaded records can be supplemented with information in an input popup window available for each data file. The input popup window opens either when you create a new data record, or when you click on the link generated by the name of existing data records.
+
+#### Intended structure of analytical data
+
+The hierarchy of analytical data is structured as follows. One or more `analyses` can be associated with an element (e.g., sample). Each analysis can contain one or more `datasets`. The latter can contain one or more `attachments`.
+More specifically, an `analysis` is created for every measurements type (e.g., 1H NMR).
+A `dataset` is created for every measurement within a measurement type. For example, you create an analysis for a 1H NMR measurement that you've repeated once with 16 scans, and once with 64 scans. Those two scanning runs can be represented as two separate datasets in the same analysis. The latter analysis could be further extended with 1H NMR experiments that tested different solvents.
+`Attachments` are data files associated with a dataset. Different data files can be attached to a dataset (e.g., images, raw data in open or proprietary formats). Chemotion ELN offers various file conversion procedures. They result in an increased number of attachments. One example is the creation of image files to support the preview of data.
+
+You can find out at a glance which data you have added to an analysis, since they are shown in short form e.g. in the sample list. The illustration shows the sample list with symbols such as <Btn mixed={[faChartBar, " 1 ?"]} color={"secondary"}/> or <Btn mixed={[faChartBar, " 1", faCheck]} color={"secondary"}/>. The first case means that you have set an analysis for the analyzed sample, but its **Status** is **Unconfirmed**. The second symbol informs you again about an existing analysis whose **Status** has already been **Confirmed**, and therefore, considered correct. The displayed count refers to the number of analyses, not to the number of uploaded data files. If analyses have no status, they are not visible in the samples list.
+
+The supported analysis methods are listed in the drop-down menu **Type ([Chemical Methods Ontology](/docs/eln/ui/ontology))**.
+
+:::info
+
+Choosing an ontology term is required to enable the transfer of data to the Chemotion repository. Without adding the chemical methods ontology, the transfer won't be successful.
+
+:::
+
+You can delete datasets from an analysis by clicking <Btn mixed={[faTrashAlt]} color={"danger"}/>, or download it as a zip file with <Btn mixed={[faDownload]} color={"info"}/>. Please note that uploaded data and entered information are not saved until you confirm with <Btn mixed={["Save"]} color={"warning"}/> or <Btn mixed={[faSave]} color={"warning"}/>. Failure to do so leads to the loss of data.
+
+The analyses tab of the reaction view differs from the analysis tab of the sample view. While samples can always have analyses, reaction **Analyses** can only contain **Products** samples that are supported by analyses. The **Analyses** tab of the reactions therefore only shows analyses by means of a link. To edit the data, the link (name of the product sample) to the analysis of the sample must be followed.
+
+The wellplate analysis tab is identical to the sample analysis tab.
+
+:::warning[Warning]
+
+You shouldn't forget one important property of the Chemotion ELN: the uploaded data files and entered information are not saved until you confirm that with <Btn mixed={["Save"]} color={"warning"}/> or <Btn mixed={[faSave]} color={"warning"}/>. This point, if overlooked, can lead to the loss of the data you have set.
+
+:::
+
+#### Direct import of files from inbox
+
+You can choose to drag and drop files directly from the inbox when working with datasets.
+
+![Drag and Drop](/img/analyses_drag_inbox_files.gif)
+
+#### Ordering Analyses
+
+You can change the ordering of the analyses by drag and drop by clicking the <Btn mixed={[faEdit, "Edit mode"]} color={"primary"} /> button at the top of the analyses tab. It will then switch to the `Order mode`. With the help of drag-and-drop functionality, you can now easily rearrange the
+order of analyses after activating the `Order mode`.
+
+![Ordering Analyses](/img/analyses_ordering.gif)
+
+:::warning[Warning]
+
+Don’t forget to save your changes with <Btn mixed={["Save"]} color={"warning"}/> so that the ordering persists.
+
+:::
+
+### References tab
+
+![Literature](/img/literature_tab.gif)
+
+The **References** tab of the sample allows you to manage your literature and link it to your **Sample**. You can specify as many references as you think are needed. It is possible to specify the reference either by its DOI or ISBN, or by giving it a title and a URL. In both cases, you can add whether this reference is citing you or cited by you. When all details of a reference are entered, press <Btn mixed={[faPlus]} color={"success"}/>. Once a reference is created, it cannot be edited, it can only be deleted instead, so if you need to edit a reference, delete it and create a new one.
+
+The created references are added to a list and they are shown in blue to indicate their functionality in linking to some resources by clicking on them. Each reference can be copied by using <Btn mixed={[faPaste]} color={"secondary"}/>, which will copy the information provided in the list. Additional details about the reference, as by whom it was created and whether it is referring to or cited by you, can be shown by pressing the button <Btn mixed={[faAngleRight]} color={"secondary"}/>, which also shows the delete button <Btn mixed={[faTrashAlt]} color={"danger"}/>.
+
+:::warning[Warning]
+
+Don’t forget to save your changes with <Btn mixed={["Save"]} color={"warning"}/>
+
+:::
+
+The **References** tab of a reaction is identical to the **Literature** tab of a sample. It allows you to manage your literature and link it to your reaction.
+
+## Customization tabs in Details panel
+
+Leveraging **[Chemotion LabIMotion](/docs/labimotion)**'s Segment function, scientists acquire the capability to intricately craft and personalize the user interface with remarkable versatility. Furthermore, by accessing templates from the Template Hub perfectly aligned with specific applications, users can enhance their interface customization experience. A standout feature of segments is their seamless assignability to individual elements, empowering users to refine the layout and appearance strategically. This distinctive attribute ensures a dynamic and flexible approach to designing interfaces.
+
+:::tip
+
+Ready for more? Explore the possibilities with **[Chemotion LabIMotion](/docs/labimotion)** for inspiration.
+
+:::
+
+## Details panel for samples
+
+![Details modal](/img/details_modal_samp.png)
+Once you have entered and saved the structure of the sample, either with [Ketcher](ketcher) or using the **Chemical identifiers** from the [Properties tab](#properties-tab), some additional information will be provided automatically. This applies to all information that can be generated by Open Babel based on the structure of your sample (sum formula, molecular weight). Likewise, the name of your molecule and its exact mass are created automatically, as far as the molecule is known via the PubChem database and this information is available, along with symbols of chemical safety. More details about chemical safety is provided as a link to PubChem as well.
+
+:::info
+
+Internal remark TO DO: Info to be added image of the sample frame and information
+
+:::
+
+### Properties tab
+
+![Sample properties](/img/sample_properties.png)
+The first tab (in the standard Chemotion ELN configuration) that allows the description of samples is the **Properties** tab. In the **Molecule** field, the user can pick the preferred naming convention for a molecule or write a new one. You can also specify the absolute and the relative configuration of the molecule in the fields **Stereo Abs** and **Stereo Rel** respectively from drop-downs. The descriptors for stereo information are recommended if the chemoinformatics tools of the Chemotion ELN (such as structure editors and toolkits) don't support full identification of the stereochemistry. The information on the given stereoconfiguration is added to the information that is used to structure molecules in the molecules' list. It allows e.g. the differentiation of certain paracyclophane isomers or other planar chiral molecules which are usually hard to distinguish by chemoinformatic toolkits.
+
+**Decoupled** mode: Selecting decoupled in the properties tab allows to draw structures in the embedded structure editors without the generation of identifiers and calculation of molecular mass. The user is then asked to add the molecular mass and the formula of the molecule to an additionally appearing interface. This gives the option to use the samples in the reaction table even though the automatic mass calculation is disabled. The function can be used for all types of molecules that
+
+- the structure editors fail (e.g. large structures such as macromolecules).
+- contain undefined parts which cannot be explicitly drawn (such as polymers)
+- resemble materials that contain compound mixtures
+
+:::info
+
+The decoupled mode can help to add undefined structures to the Chemotion ELN. Please add "undefined structure" (default) as **Sum formula** if the structure is not known.
+
+:::
+
+**Decoupled mode properties**
+
+![Decoupled_sample](/img/decoupled_sample.png)
+
+**Top secret** mode: In the properties tab, the users can mark their confidential data as **Top secret**. The top secret mode affects the sharing of data with others. **Top secret** samples cannot be shared with full information.
+
+If you want to assign a name (e.g. a trivial name) to a sample, you can do this by making an entry in the **Name** or **Description** fields. Please note that the **Name** field for samples from reactions is overwritten by additional information. Your created sample will have the selected name, but when a new sample is created by dragging and dropping into a reaction scheme, the **Name** field will be overwritten. Please refer to this [link](elements/samples#generation-of-samples-from-existing-samples-or-molecules) for more details on samples generation from other samples. If you want to save a second or more names for your sample permanently, use the **Description** field.
+
+:::danger[Caution]
+
+The **Name** field within the Sample **Properties** tab is overwritten for samples that represent products in a reaction, because it is required to generate a product name.
+
+:::
+
+In addition to the naming options, an **External label** can be saved for each sample. This **External label** should be used to enable your sample to be assigned to another storage system. For example, if you make a sample available for a reference database or send it to a cooperation partner who renames your sample, your sample will receive a sequential number that is not determined by you. Enter this number in the **External label** field. For participants in the [Molecule Archive](https://compound-platform.eu/) of the Compound Platform, the **External label** field is reserved for the X-Vial numbers of the samples.
+
+:::info
+
+The Molecule Archive of the Compound Platform is an infrastructure that supports scientists to store their compounds centrally and provide the compounds for diverse re-use cases. If you are interested, please have a look at the website of the Molecule Archive and get in contact to the Compound Platform team. Its free for all chemists from academia.
+
+:::
+
+Both **Boiling point** and **Melting point** can be provided manually in Celsius **°C**. If the melting or boiling point is to be added as range, please add the first value, space and second value, e.g. "50 60". this is automatically set to 50 - 60 °C by the system.
+The user can additionally provide any desired information as free text in the **Description** field and specify the location of the samples (e.g. institute, warehouse, etc.) in the **Location** field.
+
+**Values affecting the reaction calculation table:**
+The **Amount** can be provided either as mass or in mole, where providing one of them leads to automatic calculation of the other based on the **Purity** (1 by default but can be modified). Mass unit can be either g or mg, while amount unit is either mol or mmol. Volume data can’t be edited until **Density** or **Molarity** are specified, then the volume is automatically calculated. Changing the volume manually leads to automatic changes in the mass and amount.
+
+:::danger[Caution]
+
+Values such as mass/amount/volume in the sample properties are referring to the sample used in a reaction or for another experiment. They are calculated as components for an experiment based on **Density** or **Molarity** depending on the use of the pure substance or a stock solution. The calculation of a molarity of the stock solution is not done in the properties field. Volume (solvent) and amount (molecule) are not used to calculate the molarity. The molarity, if required for dissolved materials, has to be added manually in the properties tab.
+
+:::
+
+**Density** or **Molarity** are not calculated in the properties tab of the sample. The information comes from external sources or is added as a result from other experiments. The user can enter only **density** (for pure substances) or **molarity** (substances in solution).
+
+**Solvent**s can be specified from a predefined drop-down or can be added per drag and drop from the molecules' list. Solvents can be added with a ratio of the solvents if several of them are present.
+
+The **Elemental composition** is automatically calculated based on the formula, but the user can still provide their experimental numbers in fields that correspond to each atom in the molecule.
+
+The information required for chemical use is supplemented by **Chemical identifiers** such as **InChI** and **InChIKey** (clicking on the InCHI/InChIkey button allows to switch), **Canonical SMILES** and **CAS** number. Molecular structure is also provided in the **Molfile** format. You can provide the **Canonical SMILES** to create a new **Sample**, but you can’t modify the SMILES after creation (vice versa, SMILES is changed if the molecular structure changes). The other identifiers can only be copied after a **Sample** is created, and they can’t be used to generate Samples.
+
+![InChI_IncHIKey](/img/InChI_IncHIKey.gif)
+
+### Search CAS
+
+:::danger[Caution]
+
+If you have not used this feature before, please read [SciFinder/SciFindern Credential](first_steps#scifinderscifindern-credential) first.
+
+:::
+
+The Search CAS function (query information in SciFinder<sup>n</sup> by using an API) is available in Samples and Reactions. Four different search types - substances, reactions, references, suppliers - help you to find the data that match your query.
+
+![SciFiner-n search](/img/scifindern_search.gif)
+
+If your SciFinder<sup>n</sup> token is not set up properly, or has expired, there will be a warning message "Unauthorized. Please refresh your token" prompt. You can get your token by going to "Accounts and profiles" and then clicking the <Btn mixed={["Get token"]} color={"primary"} /> button in SciFinder-n Credential.
+
+![SciFiner-n refresh token](/img/scifindern_token.gif)
+
+### Results tab
+
+This tab is not supported at the moment as it is still being developed.
+
+### QC & curation tab
+
+![QC & curation tab](/img/qc_tab.png)
+
+The QC and curation tab is part of the beta-testing of the Chemotion ELN. You may use it to gain additional information on your data. The QC and curation tool uses data from the **Content** of the **analysis** (checks the calculated 1H NMR and 13C NMR data as well as mass data as described above for **Content**). The feature uses also information directly from the data files that were added to the **Attachments** of the different **Analyses** and extracts information that is compared to either simulated data (1H NMR and 13C NMR data) and evaluations done by machine learning tools (IR data). Requirement for running the QC and curation tool is the definition of the ontology to define the type of the measurement that is used for the analysis. Another part of the QC and curation check is the investigation for availability of open file formats. The tool checks the attachments for file types JCAMP, MzML, MzXML (either added by the user or created by the Chemotion ELN processing functions).
+A detailed description of the feature will follow.
+
+## Details panel for reactions
+
+This panel includes 6 tabs named `Scheme`, `Properties`, `Analyses`, `References`, `Green Chemistry`, and `Variations`.
+All of these share the reaction panel, which includes the reaction equation.
+The order and the visibility of these tabs can be changed by clicking on the sky-blue tabs layout button
+
+<img
+  src={require("@site/static/img/tabs_layout.png").default}
+  width={"20px"}
+  alt={"tabs layout"}
+/> on the right side. When the tabs layout button is clicked, a small table window
+pops up. The order of any tab can be changed simply by clicking and dropping it to
+the position where the user wants. To hide a tab, the user has to click and drag
+it to the far right side of the table. To make it visible, drag and drop it again
+at the desired position.
+
+The reaction equation can be zoomed in or out by hovering with the mouse anywhere over the reaction panel and scrolling the mouse cursor up or down.
+
+### Scheme tab
+
+The **Scheme** tab contains the scheme of the selected reaction. While the molecular structure of samples (in samples details panel) can be edited by selecting the structure field and opening the [Ketcher](ketcher) editor, the reaction **Scheme** (the image) cannot be changed directly. To change the scheme, select the embedded samples and change their structure or use other samples.
+
+:::info
+
+Edit the reaction scheme by selecting or changing the samples, the scheme cannot be edited directly.
+
+:::
+
+The following figure shows a typical reaction **Scheme** with a reagent table. Solvents or reaction temperature have not been added yet. In general, you cannot edit grey fields in the reaction table.
+![Reagents_table](/img/reaction_details_modal.png)
+
+The samples are classified into **Starting materials**, **Reactants** and **Products**. The samples can be moved flexibly from one category to another with the drag & drop symbol <Btn mixed={[faArrowsAlt]} color={"secondary"}/>. **Starting materials** and **Reactants** differ in how their corresponding samples are treated upon generation. This will become clear later on in this chapter when adding samples to a reaction is discussed. Regarding the **Products**, their fields can only be modified to a limited extent to avoid misuse of the notebook. **Products** have a special treatment within the reaction, for example the analyses of the corresponding samples are stored and can be found in the **Analyses** tab.
+
+A reaction can be populated with samples in two different ways:
+
+1. Create new sample:
+   ![Reaction create smaples](/img/reaction_create_samples.gif)
+
+Press <Btn mixed={[faPlus]} color={"success"}/> in the corresponding categories **Starting materials**, **Reactants** or **Products** to create a new sample. **Starting materials** and the **Products** created this way will be added to the samples list. The **Reactants** will be saved as samples, and they are initially displayed in the samples list, but when you save the reaction and reload the page, no **Reactants** are displayed in the list anymore in order to avoid unnecessary accumulation of samples. The **Reactants** samples are still accessible from within the reaction **Scheme** by pressing the reactant name. The **Reactants** can be selected from the drop-down menu **Reagents**, and they are also not added to the samples list.
+
+The creation of samples does not directly result in a representation in the reaction scheme. Please save the reaction once after adding samples to it. After saving the reaction, all added samples also appear in the image of the reaction scheme.
+
+:::info[Recommendation]
+
+If you want to see a reactant displayed in the samples list, change its status from Reactants to Starting materials. By definition, Reactants are not displayed in the samples list.
+
+:::
+
+2. Select samples from the samples list:
+   ![Reaction drag samples](/img/reaction_drag_sample.gif)
+
+Select samples from the samples list and drag and drop them by using the <Btn mixed={[faArrowsAlt]} color={"secondary"}/> symbol next to its molecular structure or next to the sample name and place the sample in the reaction. If you only want to adopt the molecular structure, use the <Btn mixed={[faArrowsAlt]} color={"secondary"}/> symbol next to the molecular structure in the sample list for the drag & drop action. The internal process corresponds to the **copy** action. If you want to carry out a reaction that uses existing samples, e.g. a subsequent reaction including a product from a previous reaction as starting material or a chemical from a chemical container, you should use the symbol <Btn mixed={[faArrowsAlt]} color={"secondary"}/> next to a sample name in the sample list and place the sample into the reaction using drag & drop. A **split** of the sample is generated internally by the system (recognizable by the generation of the sample number). This applies only to the **Starting materials** as dragging and dropping of samples to the **Reactants** section does not add anything to the samples list. Splitting is not possible for products, as they always have to be recreated, but **copy** is possible.
+
+Choose either the **Starting materials** or the **Reactants** as a reference using the **Ref** switch. As a result, the selected reference is automatically assigned an equivalent **Equiv** of 1.000. Several **Starting materials** and **Reactants** can be added, but only one sample can be marked as reference material.
+
+Mass can be represented in g, mg or μg, the volume in l, ml, μl, and the amount in mol or mmol. Entering one type of data leads to automatic calculation of the others. The volume is calculated only if the **molarity** of the sample is already set (please set it in the **properties** tab of the **sample**, accessible directly by clicking on the sample's name -> sample panel opens), and the equivalents are calculated unless the sample is a reference, then it gets a fixed equivalent of 1.000. By entering the mass, volume or amount of the reference, the remaining information for the further samples is calculated as soon as at least either their **amount** or **Equiv** is given.
+
+:::info
+
+When entering the amount of your sample, you can choose a unit by pressing the unit button next to the number.
+Additional information on samples such as **Molarity**, **Purity** and others need to be added in the **Properties** tab of the **Sample** and cannot be added to the Reaction Table entry directly.
+
+:::
+
+:::danger[Caution]
+
+The calculation and display of the volume can only be correct if the molarity of the sample has been entered correctly and precisely in the sample.
+
+:::
+
+An additional function is included within the reaction table, allowing to differentiate between reaction planning and implementation. You can find the function under the title **T/R**. <button className={"button button--xs button--success"} style={{padding:"2px", width:"27px", height:"27px"}}>t</button> means that you can enter/calculate inputs according to the reaction plan. If you switch from <button className={"button button--xs button--primary"} style={{padding:"2px", width:"27px", height:"27px"}}>r</button>, you can enter the quantities actually received. This function was created so that in the event of a deviation (e.g. due to accuracy in the dosage) from the planned experiments, the values of both procedures are still available.
+
+![Reaction solvents](/img/reaction_solvents.png)
+The solvents can be introduced by expanding the grey area **Solvents**. Pick a solvent from the drop-down **Default solvents**, or use a sample as a solvent. Solvents added as a sample are stored as a reactant sample, i.e. the solvent can be created with <Btn mixed={[faPlus]} color={"success"}/>, but it is not displayed in the samples list. If the sample is already in the samples list, it can be dragged and dropped with <Btn mixed={[faArrowsAlt]} color={"secondary"}/>, but no **copy** or **split** happens.
+
+The solvent can be given a **Label** which is transferred to the reaction arrow when updated by the symbol <Btn mixed={[faSyncAlt]} color={"secondary"}/>. When specifying the solvents volumes **Vol** (in l, ml, or μl), the molarity of the reaction mixture **Conc** is automatically calculated based on the individual samples in the reaction table. You can add as many solvents as you want. If you are using more than one solvent, the volume ratio **Vol ratio** of the solvents to each other is displayed. You can also distinguish between solvent details in the planned and implemented reaction with <button className={"button button--xs button--success"} style={{padding:"2px", width:"27px", height:"27px"}}>t</button> (planned) and <button className={"button button--xs button--primary"} style={{padding:"2px", width:"27px", height:"27px"}}>r</button> (implemented). Samples and solvents in a reaction can be removed from the reaction using the button <Btn mixed={[faTrashAlt]} color={"danger"}/>.
+
+In the grey area **Conditions**, **Select** special conditions required for the reaction from a drop-down menu. Those conditions include **UV**, **microwave**, **ultrasound**, **visible light**. Other conditions can be added as free text in the text field.
+
+:::info
+
+Internal remark TODO: showing the conditions in a gif would be great
+
+:::
+
+Below the **Conditions** area, specify a **Name** and describe it with a **Status** from a drop-down. The **Status** is reflected in the list of reactions by a symbol, so you can see at a glance your evaluation of the reactions. The following table shows all the possible **Status** and the corresponding symbols.
+
+| symbol                                              | status           |
+| --------------------------------------------------- | ---------------- |
+| <FontAwesomeIcon icon={faClock} size="lg"/>         | planned          |
+| <FontAwesomeIcon icon={faHourglassHalf} size="lg"/> | running          |
+| <FontAwesomeIcon icon={faHourglassEnd} size="lg"/>  | done             |
+| <FontAwesomeIcon icon={faEllipsisH} size="lg"/>     | analyses pending |
+| <FontAwesomeIcon icon={faCheckCircle} size="lg"/>   | successful       |
+| <FontAwesomeIcon icon={faTimesCircle} size="lg"/>   | not successful   |
+
+The temperature of a reaction is specified via the **Temperature** field. If a **Temperature** has been defined, it is also displayed on the reaction arrow. When entering the temperature, you can choose between the Kelvin **K**, Celsius **°C** and Fahrenheit **°F** scale. You can also enter a temperature profile by selecting the graph symbol for the temperature field <Btn mixed={[faChartArea]} color={"secondary"}/>. A window opens that allows you to enter temperature changes with time, and it displays those changes in a chart. Use "+" to add a temperature change and "–" to remove it.
+
+Specify the **Duration** of the reaction by adding its **Start** and **Stop** in the following format: DD/MM/YYYY hh:mm:ss or DD.MM.YYYY hh:mm:ss. The **Duration** is calculated automatically. You can also choose the current time with the <Btn mixed={[faClock]} color={"secondary"}/> button. The calculated **Duration** can be copied with <Btn mixed={[faPaste]} color={"secondary"}/>, or rounded to the next field either in **Week(s)**, **Day(s)**, **Hour(s)**, **Minute(s)**, or **Second(s)**.
+
+The **Type** of reactions can be chosen from the **Name Reaction Ontology** drop-down. The selection of an ontology is required if the data should be added to the repository **Chemotion**, it is also recommended for all other reactions. Also, the **Role** can be assigned to a reaction. Available options are **General Procedure**, **Parts of GP**, and **Single**. The role is reflected in the reaction list and it is important for the use of the reporting function. The reporting function separates general procedures from reactions that were done according to a general procedure and reactions that are described as single (independent) reactions without assignment to a general procedure. For reactions that are **Parts of GP** (Parts of General Procedures), the description is not added to the report as it is assumed that the description of the reaction is the same for reactions done according to general procedures. In these cases, it is important to add the purification details to the field "additional information for publication and purification details" as this information is given in the report anyhow.
+
+The **Description** field is intended for recording your reaction implementation.
+
+For a quick overview of the **Purification** methods used to isolate your target compound, a drop-down menu **Purification** has been introduced. The methods **Flash-Chromatography**, **TLC**, **HPLC**, **Extraction**, **Distillation**, **Sublimation** and **Crystallization** are available. **Purification Solvents** can be added, and they are treated exactly the same way as the reaction **Solvents**. Description of the purification process can be included in the field **Additional information for publication and purification details**.
+
+Finally, <Btn mixed={["Save"]} color={"warning"}/> the reaction, <Btn mixed={["Close"]} color={"primary"}/> without saving, or <Btn mixed={["Export samples"]} color={"info"}/> as an xlsx file.
+
+### Properties tab
+
+![Reaction properties](/img/reaction_properties.png)
+
+The **Properties** tab allows you to enter further details on the reaction. In addition to the fields **Name**, **Status**, **Temperature**, and **Type ([Name Reaction Ontology](/docs/eln/ui/ontology))** that are also found in the **Scheme** tab, new fields are introduced such as **Dangerous Products** where you can list whether dangerous substances occur in your reaction and classify their hazard from a drop-down menu.
+
+In order to be able to reproduce the control of a reaction via thin-layer chromatography, two fields have been developed which are supposed to store the solvents used and their ratio on the one hand, and the **Rf value** of the target product of the reaction on the other hand. Please enter the solvent information in the **Solvents (parts)** field followed by a space and the ratio of solvents to each other according to this example: ethyl acetate/hexane 2:1. You can also provide further details about your thin-layer chromatography in the **Description** field, e.g. the shape of the spots or special features of the implementation. Here you can also state how the compounds were identified, i.e. which staining solutions were used or which wavelength was selected for the UV detection.
+
+### Green chemistry tab
+
+This tab contains fields for green chemistry metrics to quantify the environmental performance of your reaction. Those fields are **Simple E factor (sEF)**, **Complete E factor (cEF)**, **Custom E factor**, **Atom economy (AE)**, **Custom Atom economy**. Those metrics are calculated automatically based on the masses of the samples in your reaction, and the waste produced through it. All the reaction samples are shown again in the **Green Chemistry** tab, with unmodifiable details about their **Mass**, **Volume**, **Moles**, and equivalents **Equiv**. To modify those fields you need to go back to the corresponding sample and update the numbers, while you can modify the coefficients field **Coeff** directly from the **Green Chemistry** tab. Specify whether the **Starting Materials** and the **Reactants** are **Recyclable**, and whether your **Products** are **Waste** with a checkbox. If you are facing any problems with ticking the checkbox, make sure that you are using Chrome, and try to save the reaction and reload the page.
+
+### Variations tab
+
+If you need to record multiple variations of a reaction, this feature is for you.
+Here's an example of a `variations table`:
+
+![reaction_variations_table](/img/reaction_variations_table.png)
+
+Each row represents a variation of the reaction.
+For example, you might have optimized a reaction regarding its duration.
+Or you might have conducted a reaction with varying amounts of reactant(s).
+The `variations table` facilitates recording a variety of experiments, such as catalysis, screening, or kinetics.
+
+The materials in the `variations table` always reflect the materials from the `scheme tab`.
+Whenever a material is added or removed in the `scheme tab`, the `variations table` is updated accordingly.
+Materials cannot be added or removed in the `variations table` itself.
+
+When you save a reaction that has a `variations table`,
+the reactions (and its samples) that are represented by the rows of the `variations table` are not saved individually.
+Instead, the `variations table` is saved as a single data structure that "belongs" to the reaction.
+That is, whenever you export the reaction, or include it in a report, the `variations table` is included as well.
+
+#### Adding, copying, and deleting reaction variations
+
+You can populate the `variations table` by adding, copying, and deleting rows.
+Add a row by clicking the <Btn mixed={[faPlus]} color={"success"}/> button on the top left of the `variations table`.
+Each new row contains the current state of the `scheme tab` and `properties tab`.
+That is, if you change something in the `scheme tab` or `properties tab` in between adding rows,
+these changes will be reflected in any new row that's added after the change.
+Note that changes in the `scheme tab` or `properties tab` aren't applied to _existing_ rows in the `variations table`.
+Changes in the `variations table` don't affect the `scheme tab` or `properties tab`.
+
+Copy (<Btn mixed={[faClone]} color={"success"}/>) or delete (<Btn mixed={[faTrashAlt]} color={"danger"}/>)
+a row by clicking the corresponding buttons that are embedded on its left.
+
+#### Navigating and editing the variations table
+
+Navigate the `variations table` with the arrow keys,
+and edit a cell by double-clicking it,
+or tab into the cell and hit enter.
+Once you've edited the cell, confirm the edit by hitting enter,
+or leaving the cell (e.g., by clicking somewhere else, or hitting tab).
+Cells that represent materials display additional, non-editable data when you hover over them with the mouse.
+
+#### Linking analyses to variations
+
+Each row in the `variations table` can be linked to analyses from the [Analyses tab](#analyses-tab).
+The `Analyses` tab contains analyses pertaining to
+A) the reaction's product(s) (left sub-tab), as well as
+B) to the reaction in general (right sub-tab):
+
+![reaction_analyses_tab](/img/reaction_variations_analyses_tab.png)
+
+Variations can only be linked to B), and for the remainder of this section,
+whenever we refer to an analysis, we refer to B).
+
+You can link analyses with a variation by clicking on a cell in the `Analyses` column.
+
+![reaction_variations_analyses_column](/img/reaction_variations_analyses_column.png)
+
+Clicking on the cell opens the following menu:
+
+![reaction_variations_analyses_cell_modal](/img/reaction_variations_analyses_cell_modal.png)
+
+The modal shows all names of (saved) analyses from the `Analyses` tab.
+Check the box next to an analysis name to link this analysis to the variation.
+You can jump to the analysis by clicking the <Btn mixed={[faExternalLink]} color={"secondary"}/> button. Finally, you can save the links with the <Btn mixed={["Save"]} color={"secondary"}/> button, which also closes the modal. Once you've closed the modal, you can view the names of all linked analyses by hovering the mouse over a cell in the `Analyses` column.
+
+Once you've linked an analysis, the corresponding entry in the `Analyses` tab displays a badge
+containing the number of linked analyses:
+
+![reaction_variations_analyses_subtab](/img/reaction_variations_analyses_subtab.png)
+
+#### Adding notes to variations
+
+Each row in the `variations table` can be annotated with notes.
+
+![reaction_variations_notes](/img/reaction_variations_notes.png)
+
+A note is a text that can be up to 1000 characters long.
+A note is text-only, meaning it cannot include images.
+To edit the note, double-click the corresponding cell, or tab into it and hit enter, which will open a text editor.
+
+![reaction_variations_notes_editor](/img/reaction_variations_notes_editor.png)
+
+You can finish editing by hitting enter again.
+
+#### Customizing the table layout
+
+##### Columns
+
+It's likely that not all columns fit on your screen.
+You can move to columns that are currently off-screen by using the scroll bar at the bottom of the tab.
+If you want to change the order of columns, click on a column header and drag it to the left or right.
+
+###### Units
+
+You can select the unit a column by clicking on the green unit button in the column header.
+For example, switch from <Btn mixed={["mg"]} color={"success"}/> to <Btn mixed={["g"]} color={"success"}/>.
+
+###### Material names
+
+Click on material names to change them.
+
+###### Material attributes
+
+Material columns can represent different attributes of a material.
+For example, (non-reference) materials columns can represent the material's
+mass or equivalent by toggling the corresponding button in the column header
+to <Btn mixed={["mass"]} color={"secondary"}/> or <Btn mixed={["equivalent"]} color={"secondary"}/>.
+
+##### Rows
+
+Click on the sort icons in the column's header to sort the rows by that column.
+Sort the rows by a column in ascending (<Btn mixed={[faChevronUp]} color={"secondary"}/>)
+or descending (<Btn mixed={[faChevronDown]} color={"secondary"}/>) order.
+To remove the sorting, click <Btn mixed={[faTimes]} color={"secondary"}/>.
+You can also sort rows manually:
+click anywhere on the row and keep the mouse button depressed while dragging the row up or down.
+Note that the manual sort is disabled as soon as the table is sorted by a column.
+
+### Search CAS
+
+Please refer to [Search CAS](details#search-cas).
+
+## Details panel for wellplates
+
+### Designer tab
+
+![Wellplate designer](/img/wellplate_designer.png)
+![Wellplate well](/img/wellplate_well.png)
+
+The **Designer** tab graphically displays the wells and shows how they are filled with samples. Since the representation of the individual samples may not be sufficient for some applications due to the limited space, it can be enlarged by selecting the appropriate well within the designer, which provides insight into selected information on the underlying samples and their sample number, **Readout** and **Imported Readout**. It also enables deleting the sample from the wellplate with the button <Btn mixed={[faTrashAlt]} color={"danger"}/>. The **Readout** field can’t be edited from within the **Designer** tab, but rather from the **List** tab, while the **Imported Readout** can be edited from within the sample’s details panel from the **Results** tab.
+
+### List tab
+
+![Wellplate list](/img/wellplate_list.png)
+
+The **List** tab can be used to organize the samples collected in the wellplate. All inserted samples appear automatically in list form according to their assignment in the **Designer** (**Position**). The table of the list also contains the information about molecular structure (**Molecule**), **Name**, **External label**, **Sum Formula**, **Readout** and **Imported Readout**. The **Readout** field values are displayed again in the **Designer** tab when selecting individual wells.
+
+### Properties tab
+
+![Wellplate properties](/img/wellplate_properties.png)
+
+The **Properties** tab allows you to enter additional information about a wellplate, such as a **Name**, its **Size** (which is fixed as 96 at the moment) and a **Description**.
+
+## Detail panel for screens
+
+In the future, it should also be possible to use the Chemotion ELN for the documentation of biological experiments. The structure of this biological work should be possible through the element **Screen**. All descriptions and procedures of biological work for a planned experiment are recorded on a screen while the wellplates define the localization of the substances and materials used. Wellplates can therefore also be assigned to the individual screens in order to make their affiliation clear.
+
+So far, only a rudimentary structure for entering the screens has been programmed. The further development is an important task within the project in the coming months. The most important data of a biological study can be saved by entering free text in the **Name**, **Collaborator**, **Requirements**, **Conditions**, **Result** and **Description** fields. The allocation of the wellplates required for the examination can be done via drag & drop directly under the heading **Wellplates**. The selected wellplates are added and directly available through a link.
+
+## Detail panel for research plan
+
+![Research plan](/img/research_plan.png)
+
+A research plan is a generic element that can be used in a flexible manner to describe a particular process. The research plan contains a **Name**, and there are plenty of fields that can be added in the form of text (**Add Text Editor**), tables (**Add Table Editor**), images (either a molecular structure with **Add Ketcher Editor**, or a regular image with **Add Image** where you can control its **Zoom**). You can add other elements such as samples (**Add Sample**) and reactions (**Add Reaction**) with drag and drop.
+The order of the segments added to the research plan can be changed by drag and drop.
+
+The research plan has an edit and a view mode. The view mode offers options to export the information to different file formats (.docx, .odt, HTML, Markdown, LaTeX).
+
+:::info
+
+Internal remark TO DO: gif showing export functions
+
+:::
+
+### Research plan table functions
+
+#### Add/remove columns and rows
+
+You can add or remove columns and rows by right-clicking on the table body. Then you can choose the action you want to make.
+
+![Research plan](/img/manage_column_row.gif)
+
+#### Reorder/sort columns and rows
+
+Reorder:
+
+- You can reorder rows by clicking on the icon in each cell and drag-drop.(You cannot reorder rows when in sorted mode)
+
+- You can reorder columns by clicking on the respective column header and drag-drop.
+
+Sort:
+
+- You can sort by column by clicking on the column header.
+
+![Research plan](/img/reorder_column_row.gif)
+
+#### Rename columns
+
+You can rename columns by right-clicking on the column cell and choose 'Rename column', the rename popup will appear. Then input the new name and click 'Rename column' button.
+
+![Research plan](/img/rename_column.gif)
+
+#### Manage table schemes
+
+- When you want to store a table scheme:
+
+  - Click on 'Table schemes' button.
+
+  - The 'Table schemes' popup window will appear.
+
+  - Then input the scheme name and click 'Save' button.
+
+![Research plan](/img/Table_Schema_Save.gif)
+
+- When you want to apply a table scheme:
+
+  - Click on 'Table schemes' button.
+
+  - The 'Table schemes' popup window will appear.
+
+  - Click 'Use' button to apply the table scheme name.
+
+![Research plan](/img/Table_Schema_Apply.gif)

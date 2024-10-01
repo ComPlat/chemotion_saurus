@@ -1,0 +1,74 @@
+---
+title: Reactions
+author: Nicole Jung
+sidebar_position: 1
+---
+
+## General aspects
+
+- Please ensure that the description of the reaction is as comprehensive as possible. You should provide descriptions of the experiments in enough detail so that a skilled researcher is able to repeat them. This means that each step of the work needs to be described sufficiently with all relevant details.
+- The description of the reaction needs to be understandable and reproducible including all details of a reaction. Common practices - as accepted by some journals - such as giving only one general description used for different reactions are not matching the needs of the repository. Please give a distinct description including the name and amount of the reagents that were used.
+- Synthetic procedures should contain reactant quantities, equipment details, such as reaction vessel, type of heating (conventional, microwave, or photoirradiation), irradiation wavelength, optical irradiance, cut-off filters. Details of purification techniques and solvents, among others, should be included. The description contains further the obtained target compounds, their obtained quantities, degree of purity, physical state and further properties (e.g. color) and assigned to them the full characterization of the obtained target compounds.
+- Please take care: solids or liquids are usually not white -> they are colorless
+- Information on weights, temperatures, durations etc need to be given in explicit numbers/values. Please add the distinct temperature instead of RT/rt/room temperature, if not otherwise possible, please add the temperature as a range such as "21-25 °C". Please add the duration of a reaction as precisely as possible and avoid "overnight"
+- Non-standard apparatus should be described.
+- Identify the materials used and give information on the degree of and criteria for purity if non-standard purity (as ordered) is required for the experiment.
+- Give the chemical names of all compounds. Use meaningful nomenclature; that is, use standard systematic nomenclature (IUPAC name) or use trivial nomenclature where it will adequately and unambiguously define a well-established compound. Please do not use general terms such as "the amine", "the aldehyde", the "starting material".
+  Exception: for very long or hardly understandable chemical names, please add the compound in the form of the sum formula in combination with the type of the compound.
+  Example: The carbazole tetramer, C112H112N10O2 (65.7 mg, 40 µmol) was added to the solution.
+- Please ensure that no labels from a journals publication are included (e.g. information such as compound No **233c** should be removed)
+- Chemical names are not capitalized unless they are the first word of a sentence or are part of a title or heading. Then, the first letter of the syllabic portion is capitalized, not the locant, stereoisomer descriptor, or positional prefix.
+- Note and emphasize any hazards, such as explosive or pyrophoric tendencies and toxicity, in a separate paragraph introduced by the heading “Caution:”. Include precautionary handling procedures, special waste disposal procedures, and any other safety considerations in adequate detail so that workers repeating the experiments can take appropriate safety measures.
+- Please ensure that no abbreviations are used that need further explanations. A list of common abbreviations are given in the section "abbreviations" of this documentation. If you need to add abbreviations, please define them in "additional information for publication and purification". For common abbreviations, please see section [Abbreviations](abbreviations)
+- The description of the reaction should end with a sentence that includes the name of the isolated/gained compound and its amount in mg/g, mmol/mol and %. E.g. "After purification, 1-naphthyl-\{1-[4-(trifluoromethyl)benzyl]indol-3-yl\}methanone (62.3 mg, 145 μmol) was obtained in 27% yield as a colorless solid". The name can be omitted and replaced by "the target compound" or "the product" if the name can only be hardly accessed or is very long.
+- Avoid using trademarks and brand names of equipment and reagents. Use generic names; include the trademark in parentheses after the generic name only if the material or product used is somehow different from others. Remember that trademarks often are recognized and available as such only in the country of origin.
+
+## Molecules and their details
+
+Please give all necessary details of the molecules/samples used in the reaction, this includes with respect to the sample
+
+- information on the stereochemistry of chiral molecules. If the compound is racemic, please add this information in the field for abs stereoinformation
+- information on the melting point for products that are obtained as solid material
+
+:::warning[Change in sample required]
+
+Information on the stereochemistry of a sample or the melting points of samples need to be added in the sample entity of the repository
+
+:::
+
+#### Chemicals used with less than 100% purity or added as mixture, solution or others
+
+Usually, reactions in Chemotion repository are generated in the reaction mode and chemicals are used as they were defined in the sample. For adaptations which might be required due to a lower purity of the sample or the use of a solution that contains the sample, please open the sample and change the value in the sample edit mode. Typical examples are: <br/>
+Use of Pd/C (10%) -> please change the purity of the sample Pd from 1.0 to 0.1.<br/>
+Use of an impure reagent (90% purity) -> please change the purity of the reagent from 1.0 to 0.9.<br/>
+Use of 1 M reagent -> please set the molarity of the reagent in the sample to 1 M. <br/>
+The reaction table in the repository changes the values according to the added purities, molarities.
+
+#### Giving the amount of solvents/chemicals
+
+Valid options are:  
+(a) 100 mL of ethyl acetate were added,
+(b) ethyl acetate (100 mL) was added
+
+#### Giving the amount of chemicals used as reagent or reactant
+
+- Reactant quantities should be reported in weight, volume (if applicable), molar units and equivalents.
+  Valid options are:  
+  (a) quinoline-4-carboxylic acid (20.0 g, 115 mmol, 1.00 equiv), <br/>
+  (b) …20.0 g of quinoline-4-carboxylic acid (115 mmol, 1.00 equiv)
+
+#### Giving the amount of chemicals as a product of a reaction
+
+The yield of a product of a reaction is given for pure products. The yield of a reaction should be given in weight, mmol/mol and percentage in parentheses after the compound name (or its equivalent). The information in parentheses is separated by a comma.
+Valid options are: <br/>
+(a) Methyl quinoline-4-carboxylate (16.4 g, 87.5 mmol, 76% yield) was isolated as a colorless solid.<br/>
+(b) Methyl quinoline-4-carboxylate (16.4 g, 87.5 mmol) was isolated as a colorless solid in 76% yield.<br/>
+(c) Methyl quinoline-4-carboxylate was isolated as a colorless solid in 76% yield (16.4 g, 87.5 mmol).<br/>
+If the product is gained as crude compound which was not purified this has to be clearly given in the form: "crude product was gained". If the compound was obtained with impurities, the impurities have to be mentioned in the analyses of the characterization of the sample, and the impurities have to be included to the yield of the reaction by changing the purity/concentration value of the sample. In such a case, please mention the correction of yield in the description as follows (example a): <br/>
+(a) Methyl quinoline-4-carboxylate (16.4 g, 90% purity, 78.8 mmol, 68% yield) was isolated as a colorless solid.<br/>
+
+:::warning[Change in sample required]
+
+Information on the purity of a product need to be added in the sample entity of the repository. A purity of 90% corresponds to a the value of 0.9 in the field concentration of a sample.
+
+:::

@@ -1,0 +1,17 @@
+---
+id: ChemScanner
+title: ChemScanner
+sidebar_position: 2
+---
+
+## Overview of ChemScanner Functions
+
+The purpose of ChemScanner is to take a docx file containing at least one ChemDraw object (cdx object) and to extract the information from the file and associated supporting information (e.g. NMR, MS,UV-Vis spectrum peaks) into a machine readable format. The program can work with single molecules and reactions. ChemScanner is able to determine the molecule because the cdx object contains the molecular information. This can then be sent to the Ketcher system of the Chemotion ELN and will render the molecule. This means that running ChemScanner on a paper with multiple molecules and the supporting information it can extract each section into an independent experiment. In extracting and sorting supporting info the code uses the synonyms for each term from the CHMO ontology.
+
+## Future developments
+
+As the systems requires a cdx object it only works with files in the docx format. Optical character recognition (OCR) is being worked on so that the OCR can detect a picture of a molecular structure and identify the molecule. After this is finished we would be able to start work on getting ChemScanner compatible with the pdf file format.
+
+## Below is the link to the current ChemScanner demo
+
+[ChemScanner Demo](http://eln.chemotion.net/chemscanner)

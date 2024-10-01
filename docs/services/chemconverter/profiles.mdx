@@ -1,0 +1,295 @@
+---
+title: ChemConverter Profiles
+author: Paggy Huang
+sidebar_position: 1
+---
+
+Profile list
+
+currently include in Repo
+
+| Ontology                         | availability | internal name          | generic name & <br /> description (1)                                                                                                            | measurement technique: device and/or software | file format  | download                                                                                                                                                 |
+| -------------------------------- | ------------ | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Circular dichroism spectroscopy  |              | CDS                    | CD MS Spectra data from txt, data: +, metadata: - <br /> LCMSsolution; ref location: KIT CN, data: +, metadata: +                                | LCMS                                          | \*.txt       | Link                                                                                                                                                     |
+| Cyclic Voltammetry (CV)          | v0.8.0+      | CV Gamry               | CV data from DTA, data: +, metadata: + <br /> Gamry Interface Framework; ref location: KIT CN, data: +, metadata: +                              | CV: Gamry                                     | \*.dta       | [Link](https://github.com/ComPlat/chemotion_saurus/blob/main/static/files/shared_ChemConverter_files/profiles/CVprofile_Gamry.json)                      |
+| Cyclic Voltammetry (CV)          | v0.8.0+      | Nova                   | CV data from txt, data: +, metadata: (+) <br /> Metrohm Autolab Nova; ref location: Uni Aachen, data: +, metadata: (-)                           | CV: Metrohm NOVA                              | \*.csv       | [Link](https://github.com/ComPlat/chemotion_saurus/blob/main/static/files/shared_ChemConverter_files/profiles/CVprofile_Nova.json)                       |
+| Cyclic Voltammetry (CV)          | v0.8.0+      | CV pssession           | CV data from pssession, data: +, metadata: + <br /> PalmSens PSTrace; ref location: IPB Leibniz, data: +, metadata: +                            | CV: PalmSens PSTrace                          | \*.pssession | [Link](https://github.com/ComPlat/chemotion_saurus/blob/main/static/files/shared_ChemConverter_files/profiles/CVprofile_pssession.json)                  |
+| Dynamic light scattering (DLS)   |              | DLS                    | DLS data from txt, data: +, metadata: - <br /> ---; ref location: ---, data: +, metadata: -                                                      | DLS                                           | \*.txt       | [Link](https://github.com/ComPlat/chemotion_saurus/blob/main/static/files/shared_ChemConverter_files/profiles/d9be2928-fd8e-4abe-bbe0-3e419330875f.json) |
+| Mass spectrometry                |              | MS Finnigian           | Mass spectrometry from txt, data: +, metadata: - <br /> Finnigian MAT8230, ref location: ---, data: +, metadata: -                               | MS Finnigian MAT8230                          | \*.txt       | Link                                                                                                                                                     |
+| Mass spectrometry                |              | MS xy                  | Mass spectrometry from general xy format, data: +, metadata: - <br /> generic data table only; ref location: Uni Aachen, data: +, metadata: -    | MS                                            | \*.xy        | Link                                                                                                                                                     |
+| Material testing                 |              | Tensile Test high Temp | Tensile test data from txt, data: +, metadata: - <br /> Inspect Table 50kN; ref location: Fraunhofer IWS, data: +, metadata: - ; <br /> HighTemp | Inspect Table 50kN                            | \*.txt       | [Link](https://github.com/ComPlat/chemotion_saurus/blob/main/static/files/shared_ChemConverter_files/profiles/c9d63af9-2ce7-425e-895c-c04b8497c26c.json) |
+| Material testing                 |              | Tensile Test low Temp  | Tensile test data from txt, data: +, metadata: - <br /> Inspect Table 50kN; ref location: Fraunhofer IWS, data: +, metadata: - ; <br /> LowTemp  | Inspect Table 50kN                            | \*.txt       | [Link](https://github.com/ComPlat/chemotion_saurus/blob/main/static/files/shared_ChemConverter_files/profiles/6d344bc4-c4fb-4306-9d56-1e754e7e0590.json) |
+| Single-crystal X-ray Diffraction |              | CIF                    | crystallographic metadata from cif, data: -, metadata: + <br /> Stoe StadiVari diffractometer; ref location: KIT CN, data: +, metadata: +        | Stoe StadiVari diffractometer                 | \*.cif       | Link                                                                                                                                                     |
+| Sorption-Desorption Measurement  |              | AIF                    | (AIF) Sorption-Desorption Measurement from txt, data: +, metadata: + <br /> ---; ref location: TU Dresden, data: +, metadata: +                  | raw2aifv004                                   | \*.txt       | Link                                                                                                                                                     |
+| UV-VIS                           |              | Cary60 UV-Vis          | UV-VIS data from csv, data: +, metadata: - <br /> Cary 60; ref location: KIT CN, data: +, metadata: +                                            | Agilent Cary 60 Spectrophotometer             | \*.csv       | Link                                                                                                                                                     |
+| UV-VIS                           |              | Horiba UV-Vis          | UV-VIS data from txt, data: +, metadata: - <br /> Horiba Duetta; ref location: KIT CN, data: +, metadata: +                                      | Horiba Duetta                                 | \*.txt       | Link                                                                                                                                                     |
+| UV-VIS                           |              | JASCO UV-Vis           | UV-VIS data from txt, data: +, metadata: - <br /> JASCO V-570; ref location: KIT CN, data: +, metadata: +                                        | JASCO Corp., V-570                            | \*.txt       | Link                                                                                                                                                     |
+| UV-VIS                           |              | generic UV-Vis         | UV-VIS data from general txt, data: +, metadata: - <br /> generic data table only; ref location: ---, data: +, metadata: -                       | ???                                           | \*.txt       | Link                                                                                                                                                     |
+| X-ray diffraction                |              | brml                   | X-ray diffraction data from brml, data: +, metadata: - <br /> ???; ref location: ---, data: +, metadata: -                                       | ???                                           | \*.txt       | Link                                                                                                                                                     |
+
+(1) The generic name follows the convention that the names should give us a hind about what the profile does (marked by a +) and the description should tell us i.a. what the file could provide. <br />
+(+) In this case, the file itself does not provide Metadata but some could be calculated by the Reader.
+
+### Profile: Tensile test HighTemp \{#c9d63af9}
+
+Material testing, Inspect Table 50kN; reference location: Fraunhofer IWS, with data conversion, without metadata extraction ;HighTemp
+
+- File Format: \*.txt
+- Data Type: Cyclic Voltammetry
+- Data Class: XYPOINTS
+- X Unit: 2Theta, X Value: Table#0, Column#3
+- Y Unit: Intensity, Y Value: Table#0, Column#4\*1e6
+- Profile id: c9d63af9-2ce7-425e-895c-c04b8497c26c
+- Reader: CSVReader
+- [Download Link](https://raw.githubusercontent.com/ComPlat/chemotion_saurus/main/static/files/shared_ChemConverter_files/profiles/c9d63af9-2ce7-425e-895c-c04b8497c26c.json)
+
+### Profile: Tensile test LowTemp \{#6d344bc4}
+
+Material testing, Inspect Table 50kN; reference location: Fraunhofer IWS, with data conversion, without metadata extraction ;LowTemp
+
+- File Format: \*.txt
+- Data Type: Cyclic Voltammetry
+- Data Class: XYPOINTS
+- X Unit: 2Theta, X Value: Table#0, Column#5
+- Y Unit: Intensity, Y Value: Table#0, Column#3\*1e6
+- Profile id: 6d344bc4-c4fb-4306-9d56-1e754e7e0590
+- Reader: CSVReader
+- [Download Link](https://raw.githubusercontent.com/ComPlat/chemotion_saurus/main/static/files/shared_ChemConverter_files/profiles/6d344bc4-c4fb-4306-9d56-1e754e7e0590.json)
+
+### Profile: Mass spectrometry from general xy format \{#5b206281}
+
+generic data table only; ref location: Uni Aachen, with data conversion, without metadata extraction
+
+- File Format: \*.xy
+- Data Type: Mass Spectrum
+- Data Class: XYPOINTS
+- X Unit: m/z, X Value: Table#0, Column#0
+- Y Unit: Intensity, Y Value: Table#0, Column#1
+- Profile id: 5b206281-49f6-437b-99ca-c64a621eb903
+- [Download Link](https://raw.githubusercontent.com/ComPlat/chemotion_saurus/main/static/files/shared_ChemConverter_files/profiles/5b206281-49f6-437b-99ca-c64a621eb903.json)
+
+### Profile: Dynamic light scattering (DLS) \{#d9be2928}
+
+Dynamic light scattering (DLS) data from txt, with data conversion, without metadata extraction
+
+- File Format: \*.txt
+- Data Type: UV-VIS
+- Data Class: XYPOINTS
+- X Unit: NANOMETERS, X Value: Table#0, Column#0
+- Y Unit: Intensity, Y Value: Table#0, Column#2
+- Profile id: d9be2928-fd8e-4abe-bbe0-3e419330875f
+- [Download Link](https://raw.githubusercontent.com/ComPlat/chemotion_saurus/main/static/files/shared_ChemConverter_files/profiles/d9be2928-fd8e-4abe-bbe0-3e419330875f.json)
+
+### Profile: Sorption-Desorption Measurement (AIF) from txt \{#5cb879d1}
+
+Sorption-Desorption Measurement (AIF) from txt, with data conversion, with metadata extraction
+
+- File Format: \*.txt
+- Data Type: Sorption-Desorption Measurement
+- Data Class: XYPOINTS
+- X Unit: p/p0, X Value: Table#0, Column#0 : Table#0, Column#1
+- Y Unit: ml/g, Y Value: Table#0, Column#2
+- Profile id: 5cb879d1-2b3f-4778-8e06-1a198500c8db
+- [Download Link](https://raw.githubusercontent.com/ComPlat/chemotion_saurus/main/static/files/shared_ChemConverter_files/profiles/5cb879d1-2b3f-4778-8e06-1a198500c8db.json)
+
+### Profile: UV-VIS Spectrum from txt \{#2a913039}
+
+UV VIS from txt, with data conversion, without metadata extraction
+
+- File Format: \*.txt
+- Data Type: UV-VIS
+- Data Class: XYPOINTS
+- X Unit: wavelength (nm), X Value: Table#0, Column#0
+- Y Unit: ABSORBANCE, Y Value: Table#0, Column#1
+- Profile id: 2a913039-c48d-4fd5-9fbb-706733e53f76
+- [Download Link](https://raw.githubusercontent.com/ComPlat/chemotion_saurus/main/static/files/shared_ChemConverter_files/profiles/2a913039-c48d-4fd5-9fbb-706733e53f76.json)
+
+### Profile: Fluorescence Emission Spectrum from txt \{#cddfe1ff}
+
+Fluorescence emission spectrum from txt, with data conversion, with metadata extraction
+
+- File Format: \*.txt
+- Data Type: Emissions
+- Data Class: XYPOINTS
+- X Unit: wavelength (nm), X Value: Table#0, Column#0
+- Y Unit: Intensity, Y Value: Table#0, Column#1
+- Profile id: cddfe1ff-ef5a-44fb-a6ba-443a870c7a27
+- [Download Link](https://raw.githubusercontent.com/ComPlat/chemotion_saurus/main/static/files/shared_ChemConverter_files/profiles/cddfe1ff-ef5a-44fb-a6ba-443a870c7a27.json)
+
+### Profile: Dynamic Light Scattering (DLS) Intensity Distributions from xlsx \{#e10cd71e}
+
+DLS intensity distributions from xlsx, with data conversion, without metadata extraction
+
+- File Format: \*.xlsx
+- Data Type: DLS intensity
+- Data Class: XYPOINTS
+- X Unit: Hydrodynamic diameter (nm), X Value: Table#0, Column#0
+- Y Unit: relative intensity (%), Y Value: Table#0, Column#1
+- Profile id: e10cd71e-b44f-4493-b7ad-ca231ccd324f
+- [Download Link](https://raw.githubusercontent.com/ComPlat/chemotion_saurus/main/static/files/shared_ChemConverter_files/profiles/e10cd71e-b44f-4493-b7ad-ca231ccd324f.json)
+
+### Profile: Dynamic Light Scattering (DLS) Autocorrelation Function (ACF) Graphs from xlsx \{#fbbe088a}
+
+ACF graphs from xlsx, with data conversion, without metadata extraction
+
+- File Format: \*.xlsx
+- Data Type: DLS ACF
+- Data Class: XYPOINTS
+- X Unit: Lag time (microseconds), X Value: Table#0, Column#0
+- Y Unit: ACF (a.u.), Y Value: Table#0, Column#1
+- Profile id: fbbe088a-b688-4609-8c00-086a149f61ba
+- [Download Link](https://raw.githubusercontent.com/ComPlat/chemotion_saurus/main/static/files/shared_ChemConverter_files/profiles/fbbe088a-b688-4609-8c00-086a149f61ba.json)
+
+### Profile: Size Exclusion Chromatography (SEC) with one Detector Output \{#44f5bfbb}
+
+Size Exclusion Chromatography (SEC) with one Detector Output; reference location: KIT, with data conversion, with metadata extraction
+
+| Output Tables      | Data Type                     | Data Class | X Unit      | X Value           | Y Unit          | Y Value           |
+| ------------------ | ----------------------------- | ---------- | ----------- | ----------------- | --------------- | ----------------- |
+| **Output table 0** | Size Exclusion Chromatography | XYPOINTS   | MILLILITERS | Table#6, Column#0 | ARBITRARY UNITS | Table#6, Column#2 |
+| **Output table 1** | Size Exclusion Chromatography | XYPOINTS   | G/MOL       | Table#7, Column#0 | ARBITRARY UNITS | Table#7, Column#1 |
+
+- File Format: \*.txt
+- Profile id: 44f5bfbb-ae1f-4da0-b43b-0d33b649c24a
+- Reader: SecReader
+- [Download Link](https://raw.githubusercontent.com/ComPlat/chemotion_saurus/main/static/files/shared_ChemConverter_files/profiles/44f5bfbb-ae1f-4da0-b43b-0d33b649c24a.json)
+
+### Profile: Size Exclusion Chromatography (SEC) with two Detector Outputs \{#71883827}
+
+Size Exclusion Chromatography (SEC) with two Detector Outputs; reference location: KIT, with data conversion, with metadata extraction
+
+| Output Tables      | Data Type                     | Data Class | X Unit      | X Value           | Y Unit          | Y Value           |
+| ------------------ | ----------------------------- | ---------- | ----------- | ----------------- | --------------- | ----------------- |
+| **Output table 0** | Size Exclusion Chromatography | XYPOINTS   | G/MOL       | Table#7, Column#0 | ARBITRARY UNITS | Table#7, Column#1 |
+| **Output table 1** | Size Exclusion Chromatography | XYPOINTS   | G/MOL       | Table#7, Column#0 | ARBITRARY UNITS | Table#7, Column#3 |
+| **Output table 2** | Size Exclusion Chromatography | XYPOINTS   | MILLILITERS | Table#6, Column#0 | ARBITRARY UNITS | Table#6, Column#2 |
+| **Output table 3** | Size Exclusion Chromatography | XYPOINTS   | MILLILITERS | Table#6, Column#0 | ARBITRARY UNITS | Table#6, Column#4 |
+
+- File Format: \*.txt
+- Profile id: 71883827-4472-48d8-becf-64ea89324f3e
+- Reader: SecReader
+- [Download Link](https://raw.githubusercontent.com/ComPlat/chemotion_saurus/main/static/files/shared_ChemConverter_files/profiles/71883827-4472-48d8-becf-64ea89324f3e.json)
+
+### Profile: INFRARED SPECTRUM (IR) \{#0cd6596c}
+
+INFRARED SPECTRUM (IR); reference location: KIT, with data conversion, without metadata extraction
+
+- File Format: \*.dpt
+- Data Type: INFRARED SPECTRUM
+- Data Class: XYPOINTS
+- X Unit: 1/CM, X Value: Table#0, Column#0
+- Y Unit: TRANSMITTANCE, Y Value: Table#0, Column#1
+- Profile id: 0cd6596c-83d2-49ab-a982-1dfec98d16ba
+- Reader: CSVReader
+- [Download Link](https://raw.githubusercontent.com/ComPlat/chemotion_saurus/main/static/files/shared_ChemConverter_files/profiles/0cd6596c-83d2-49ab-a982-1dfec98d16ba.json)
+
+### Profile: TGA (Thermogravimetric Analysis) without Isothermal \{#fb63e718}
+
+TGA (Thermogravimetric Analysis) without Isothermal; basic one, only the ramp; reference location: KIT, with data conversion, with metadata extraction
+
+- File Format: \*.xls
+- Data Type: THERMOGRAVIMETRIC ANALYSIS
+- Data Class: XYPOINTS
+- X Unit: DEGREE CELSIUS, X Value: Table#1, Column#1
+- Y Unit: Weight %, Y Value: Table#1, Column#3
+- Profile id: fb63e718-3842-4d45-9b39-84a53b27e483
+- Reader: OldExcelReader
+- [Download Link](https://raw.githubusercontent.com/ComPlat/chemotion_saurus/main/static/files/shared_ChemConverter_files/profiles/fb63e718-3842-4d45-9b39-84a53b27e483.json)
+
+### Profile: TGA (Thermogravimetric Analysis) \{#e7a4ee04}
+
+TGA (Thermogravimetric Analysis) with Isothermal; reference location: KIT, with data conversion, with metadata extraction
+
+| Output Tables      | Data Type                  | Data Class | X Unit         | X Value           | Y Unit   | Y Value           |
+| ------------------ | -------------------------- | ---------- | -------------- | ----------------- | -------- | ----------------- |
+| **Output table 0** | THERMOGRAVIMETRIC ANALYSIS | XYPOINTS   | DEGREE CELSIUS | Table#2, Column#1 | Weight % | Table#2, Column#3 |
+| **Output table 1** | THERMOGRAVIMETRIC ANALYSIS | XYPOINTS   | DEGREE CELSIUS | Table#1, Column#1 | Weight % | Table#1, Column#3 |
+
+- File Format: \*.xls
+- Profile id: e7a4ee04-cdf6-4da6-a82c-ba6909af6cee
+- Reader: OldExcelReader
+- [Download Link](https://raw.githubusercontent.com/ComPlat/chemotion_saurus/main/static/files/shared_ChemConverter_files/profiles/e7a4ee04-cdf6-4da6-a82c-ba6909af6cee.json)
+
+### Profile: TGA (Thermogravimetric Analysis) with derivative \{#e845bc85}
+
+TGA (Thermogravimetric Analysis) with Isothermal and Derivative; reference location: KIT, with data conversion, with metadata extraction
+
+| Output Tables      | Data Type                  | Data Class | X Unit         | X Value           | Y Unit                   | Y Value           |
+| ------------------ | -------------------------- | ---------- | -------------- | ----------------- | ------------------------ | ----------------- |
+| **Output table 0** | THERMOGRAVIMETRIC ANALYSIS | XYPOINTS   | DEGREE CELSIUS | Table#2, Column#1 | Weight %                 | Table#2, Column#3 |
+| **Output table 1** | THERMOGRAVIMETRIC ANALYSIS | XYPOINTS   | DEGREE CELSIUS | Table#2, Column#1 | DERIVATIVE WEIGHT (%/°C) | Table#2, Column#4 |
+
+- File Format: \*.xls
+- Profile id: e845bc85-07b9-4e21-8bdf-4daa4a74fa15
+- Reader: OldExcelReader
+- [Download Link](https://raw.githubusercontent.com/ComPlat/chemotion_saurus/main/static/files/shared_ChemConverter_files/profiles/e845bc85-07b9-4e21-8bdf-4daa4a74fa15.json)
+
+### Profile: DSC (Differential Scanning Calorimetry) with Time \{#0d04f3c5}
+
+DSC (Differential Scanning Calorimetry) with time; reference location: KIT, with data conversion, with metadata extraction
+
+- File Format: \*.csv
+- Data Type: THERMOGRAVIMETRIC ANALYSIS
+- Data Class: XYPOINTS
+- X Unit: DEGREE CELSIUS, X Value: Table#0, Column#0
+- Y Unit: W/g, Y Value: Table#0, Column#2
+- Profile id: 0d04f3c5-43d4-408a-85ef-34b33975020a
+- Reader: CSVReader
+- [Download Link](https://raw.githubusercontent.com/ComPlat/chemotion_saurus/main/static/files/shared_ChemConverter_files/profiles/0d04f3c5-43d4-408a-85ef-34b33975020a.json)
+
+### Profile: DSC (Differential Scanning Calorimetry) without Time \{#3e2fb90e}
+
+DSC (Differential Scanning Calorimetry) without time; reference location: KIT, with data conversion, with metadata extraction
+
+- File Format: \*.csv
+- Data Type: THERMOGRAVIMETRIC ANALYSIS
+- Data Class: XYPOINTS
+- X Unit: DEGREE CELSIUS, X Value: Table#0, Column#0
+- Y Unit: W/g, Y Value: Table#0, Column#1
+- Profile id: 3e2fb90e-b6b6-4152-9182-ed8e203a58b5
+- Reader: CSVReader
+- [Download Link](https://raw.githubusercontent.com/ComPlat/chemotion_saurus/main/static/files/shared_ChemConverter_files/profiles/3e2fb90e-b6b6-4152-9182-ed8e203a58b5.json)
+
+### Profile: UV-VIS Spectrum from txt \{#c7e3130f}
+
+UV/VIS from txt; reference location: KIT, Campus West, with data conversion, with metadata extraction
+
+- File Format: \*.txt
+- Data Type: UV-VIS
+- Data Class: XYPOINTS
+- X Unit: %, X Value: Table#0, Column#0
+- Y Unit: ABSORBANCE, Y Value: Table#0, Column#1
+- Profile id: c7e3130f-6c23-432a-a886-a82d11632da2
+- Reader: CSVReader
+- [Download Link](https://raw.githubusercontent.com/ComPlat/chemotion_saurus/main/static/files/shared_ChemConverter_files/profiles/c7e3130f-6c23-432a-a886-a82d11632da2.json)
+
+### Profile: UV-VIS Spectrum from csv file \{#d8e6bf8f}
+
+UV/VIS with multicolumn (4) file with no header, csv file with 4 spectra in one file; reference location: KIT, Campus South, with data conversion, with metadata extraction
+
+| Output Tables      | Data Type | Data Class | X Unit          | X Value           | Y Unit     | Y Value           |
+| ------------------ | --------- | ---------- | --------------- | ----------------- | ---------- | ----------------- |
+| **Output table 0** | UV-VIS    | XYPOINTS   | wavelength (nm) | Table#0, Column#0 | ABSORBANCE | Table#0, Column#1 |
+| **Output table 1** | UV-VIS    | XYPOINTS   | wavelength (nm) | Table#0, Column#2 | ABSORBANCE | Table#0, Column#3 |
+| **Output table 2** | UV-VIS    | XYPOINTS   | wavelength (nm) | Table#0, Column#4 | ABSORBANCE | Table#0, Column#5 |
+| **Output table 3** | UV-VIS    | XYPOINTS   | wavelength (nm) | Table#0, Column#6 | ABSORBANCE | Table#0, Column#7 |
+
+- File Format: \*.csv
+- Data Type: UV-VIS
+- Profile id: d8e6bf8f-6de1-4743-9513-04cbd0c6c712
+- Reader: CSVReader
+- [Download Link](https://raw.githubusercontent.com/ComPlat/chemotion_saurus/main/static/files/shared_ChemConverter_files/profiles/15400217-b730-47db-9d5c-a300bce7ae95.json)
+
+### Profile: UV-VIS Spectrum from XLSX file \{#15400217}
+
+UV VIS with multicolumn (2) XLSX file with header at the end, with data conversion, with metadata extraction
+
+| Output Tables      | Data Type | Data Class | X Unit          | X Value           | Y Unit     | Y Value           |
+| ------------------ | --------- | ---------- | --------------- | ----------------- | ---------- | ----------------- |
+| **Output table 0** | UV-VIS    | XYPOINTS   | wavelength (nm) | Table#0, Column#0 | ABSORBANCE | Table#0, Column#1 |
+| **Output table 1** | UV-VIS    | XYPOINTS   | wavelength (nm) | Table#0, Column#2 | ABSORBANCE | Table#0, Column#3 |
+
+- File Format: \*.xlsx
+- Profile id: 15400217-b730-47db-9d5c-a300bce7ae95
+- Reader: ExcelReader
+- [Download Link](https://raw.githubusercontent.com/ComPlat/chemotion_saurus/main/static/files/shared_ChemConverter_files/profiles/15400217-b730-47db-9d5c-a300bce7ae95.json)

@@ -1,0 +1,65 @@
+---
+title: FAQ & Troubleshooting
+sidebar_position: 9
+---
+
+:::info[Info]
+
+This page is still being edited and reviewed.
+
+:::
+
+If you need help with the ChemConverter, it's right here!
+
+## Troubleshooting
+
+#### I cannot create a profile on the admin GUI (Webserver does nothing or ERROR Message)
+
+- **Answer:** There can be multiple reasons, but the most common are:
+
+  - You are trying to upload a binary file (not supported yet!)
+  - There's no reader (yet) for your specific data type and the standard reader don't work either.
+  - You are in the wrong menu, please press the right button. <br/> <img src="/img/converter/dontImport.svg" alt="Please do not click import, create instead" width="400" height="200" />
+
+#### I created a profile for my data file on the admin GUI but after uploading it to the ELN it will not be converted.
+
+- **Answer:** If you are sure, that the reason is not the converter itself (because you tested it on a standalone version and it works), we need to add your file extension/type to our whitelist. Please let us know.
+
+#### Even after choosing a suitable [data type](../chemconverter#data-type) (and a correct conversion) the ELN says "Preview not available" and/or "Spectra Editor: Reprocess"
+
+![Preview not available](/img/converter/naPreview.png)
+
+- **Answer:** The two common mistakes occur if there
+
+  - was a freeze, loose of connection or other bug during the upload or the conversion process. You can try to click on the orange button to regenerate the spectra.
+  - isn't a working layout for this technique yet. You can wait for the next update and try again later or help us with your expertise to create a suitable layout.
+
+- **Workaround:** Just to have basic features for looking at the curves, an already more accomplished layout like CV, UV/VIS or NMR is recommended to be used.
+
+## Frequently Asked Questions (FAQ)
+
+#### Why using .jdx and not e.g. .csv for the converter output?
+
+- **Answer:** There are mostly two reasons:
+
+  1. Jcamp .jdx is well know and used among chemists and companies (like Bruker), belongs to the IUPAC and it's [standardized with multiple extensions](https://doi.org/10.1366/0003702884428734).
+  2. [CSV is it not!](https://doi.org/10.17487/RFC4180)
+
+#### What data formats are supported as input
+
+- **Short answer:** Mostly all common non-binary files (txt, csv, dta ...) are at least with basic feature.
+
+- **Long answer:** We encourage you to look at the [reader documentation page](readers). Here you will also find a list of readers with advanced features.
+
+#### I'm a (LabView, Simulink, Matlab ...) developer, coder or IT person. Are there any guidelines how to design the output files of my test stand / experiment / script?
+
+- **Answer:** Of course there are and we are happy to help you against closed, unreadable and proprietary data! Therefore, a document with simple and basic guidelines (currently in beta status) was created.
+
+:::note[Links]
+[Guideline: How to design own files for ChemConverter](https://docs.google.com/document/d/1agVGyN2wPEQnnm75HdSJW228u6D34EWOnN8bnu0m2z0/edit?usp=sharing)
+
+:::
+
+## Your Questions
+
+If you have access to [GitHub](https://github.com/ComPlat/chemotion-converter-app/issues), you can write your questions there and maybe they become part of the next Q&A update or some other user can provide you with an answer.

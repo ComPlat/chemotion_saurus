@@ -1,5 +1,4 @@
 ---
-id: documentation
 title: About this Documentation
 sidebar_label: This Documentation
 sidebar_position: 99
@@ -10,8 +9,10 @@ import { faChartBar, faCheck, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Btn } from "@site/src/js/btn.js";
 
 :::info
+
 This page contains information on how to edit a page in the Docusaurus instance for the Chemotion ELN hosted at KIT.
 The information also applies to editing other Docusaurus instances. In the latter case, replace special links, references etc. with the counterpart of your instance.
+
 :::
 
 This website is based on the [Docusaurus framework](https://docusaurus.io) using Markdown with JavaScript (MDX).
@@ -20,7 +21,7 @@ The most important components are explained below. More information about Markdo
 
 ## Editing
 
-To ensure consistent style and naming throughout the documentation, please make sure to have a look at our [style guide](style_guide).
+To ensure consistent style and naming throughout the documentation, please make sure to have a look at our [style guide](documentation/style_guide).
 
 ### Contributors without write access to the `chemotion_saurus` GitHub repository
 
@@ -34,10 +35,12 @@ If you haven't edited any pages before (i.e., you're making your first contribut
 "Forking" means that you're making your own copy of the repository.
 In order to fork the repository you only need to click the green `Fork this repository` button. Note that you need to fork only once, prior to your first contribution.
 
-:::caution Important
+:::warning[Important]
+
 It is important that you keep your fork in sync with the `chemotion_saurus` GitHub repository.
 Every time you start editing, make sure to first sync your fork by [clicking the `Fetch upstream` button](https://docs.github.com/en/github/collaborating-with-pull-requests/working-with-forks/syncing-a-fork).
 Without syncing, your fork might be out of date and you might be editing a page that someone else (or yourself) already edited in the past.
+
 :::
 
 Once you've forked the repository, editing pages works as follows.
@@ -56,10 +59,10 @@ The maintainers will review the pull request and then merge your changes into th
 
 ### Contributors with write access to the `chemotion_saurus` GitHub repository
 
-For advanced contributions to the Docusaurus, you can clone the repository and directly push your changes (follow the instructions in the [maintenance chapter](maintaining#development)).
+For advanced contributions to the Docusaurus, you can clone the repository and directly push your changes (follow the instructions in the [maintenance chapter](documentation/maintaining#development)).
 Successful changes are directly deployed online.
-You can check [GitHub Actions](https://github.com/ComPlat/chemotion_saurus/actions/workflows/build.yml) to see if your changes are merged successfully merged.
-More information about GitHub Actions (in general and for the Chemotion ELN) can be found in the [testing chapter](../development/ci).
+You can check [GitHub Actions](https://github.com/ComPlat/chemotion_saurus/actions/workflows/build.yml) to see if your changes are successfully merged.
+More information about GitHub Actions (in general and for the Chemotion ELN) can be found in the [testing chapter](development/ci).
 The landing (start) page can be edited [on GitHub](https://github.com/ComPlat/chemotion_saurus/edit/main/src/pages/index.js).
 
 ## New Page
@@ -67,7 +70,7 @@ The landing (start) page can be edited [on GitHub](https://github.com/ComPlat/ch
 - use `.mdx` as filename ending in GitHub
 - at the top of every page, insert the following metadata section:
 
-```
+```markdown
 ---
 id: videos_eln
 sidebar_label: Videos
@@ -130,17 +133,17 @@ import Sample from "@site/static/img/sample.svg";
 
 #### regular buttons with text and icon content
 
-For creating buttons use a button function and import it on the page. Every button gets a <b>color</b> and can have multiple text elements and icons <b>mixed</b> in its content.
-For icon buttons get icons from [https://fontawesome.com](https://fontawesome.com/) and import them on the page.
+For creating buttons use a button function and import it on the page. Every button gets a **color** and can have multiple text elements and icons **mixed** in its content.
+For icon buttons get icons from [Fontawesome](https://fontawesome.com) and import them on the page.
 The color palette is from the [Infima library](https://infima.dev/docs/components/button).
 For example, the following code snippet...
 
-```
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChartBar, faCheck } from '@fortawesome/free-solid-svg-icons'
-import { Btn } from '@site/src/js/btn.js'
+```javascript
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChartBar, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { Btn } from "@site/src/js/btn.js";
 
-<Btn mixed={[faChartBar, " 1", faCheck]} color={"secondary"}/>
+<Btn mixed={[faChartBar, " 1", faCheck]} color={"secondary"} />;
 ```
 
 ...produces <Btn mixed={[faChartBar, " 1", faCheck]} color={"warning"}/>
@@ -150,7 +153,7 @@ import { Btn } from '@site/src/js/btn.js'
 To create a button different from the regular one, e.g., with a different size, you need to use a React button with `<button></button>` tags.
 You can change the size of a button in its style attribute with values in `%`, pixel (`px`), `rem` or `em`. Common icon sizes inside buttons are `xs`, `sm` and `lg`.
 
-```
+```javascript
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faShareAlt } from '@fortawesome/free-solid-svg-icons'
 
@@ -186,7 +189,7 @@ and insert a Download Button with the (comma-separated) filepath(s) in `files` a
 ```
 import { DownloadBtn } from '@site/src/js/download_files.js'
 
-<p><DownloadBtn files={['/chemotionsaurus/files/template_sample_import.xlsx, docker-compose.yml']}  text={"Download XLSX Template here "}/></p>
+<p><DownloadBtn files={['/files/template_sample_import.xlsx, docker-compose.yml']}  text={"Download XLSX Template here "}/></p>
 ```
 
 ### Escape signs
@@ -222,11 +225,11 @@ The number of `#` you use determines the heading level. A single `#` designates 
 
 ### Info Boxes
 
-Highlighted info boxes ([like on the eln intro page](../eln)) with further information are called `Admonitions` in [Docusaurus](https://docusaurus.io/docs/markdown-features/admonitions).
+Highlighted info boxes ([like on the eln intro page](eln)) with further information are called `Admonitions` in [Docusaurus](https://docusaurus.io/docs/markdown-features/admonitions).
 
 ### Line Breaks
 
-Insert <b>two white spaces</b> at the end of the line.
+Insert **two white spaces** at the end of the line.
 
 ### Links
 
@@ -269,22 +272,24 @@ In Markdown, link to another page within the documentation using its `slug` or `
 ```
 
 Link to another chapter on the same page using the last segment of the URL.
-For example, link to `eln.chemotion.net/chemotionsaurus/docs/instructions#toc` by using
+For example, link to `chemotion.net/docs/instructions#toc` by using
 
 ```md
 [link to TOC](#toc)
 ```
 
-In React insert a link to another page using the relative path after the base url `/chemotionsaurus/`:
+In React insert a link to another page using the relative path after the base url `/`:
 
 ```js
 <Link to="/docs/eln/structure">Structure of the Chemotion ELN</Link>
 ```
 
-:::caution Recommendation
+:::info[Recommendation]
+
 For links to internal pages it is not recommended to use https links from the server, where the website is hosted.
 In order for links to resolve independently of the host, use Markdown syntax with relative internal linking.
-For example, better use `[samples](elements/samples)` instead of `[contact](https://www.chemotion.net/chemotionsaurus/docs/eln/ui/elements/samples)`.
+For example, better use `[samples](elements/samples)` instead of `[contact](https://www.chemotion.net/docs/eln/ui/elements/samples)`.
+
 :::
 
 ### Lists
@@ -324,13 +329,13 @@ random number with a dot
 
 ### Text Formatting
 
-<b>bold</b>
+#### bold
 
 ```
-<b>bold</b>
+**bold**
 ```
 
-`highlight elements, e. g. UI elements`
+#### highlight elements, e. g. UI elements
 
 ```
 `Collection Bar`
@@ -347,7 +352,7 @@ Replace them with React elements.
 
 ## TOC
 
-The TOC on the left of every documentation page must be manually updated via <b>[sidebars.js](https://github.com/ComPlat/chemotion_saurus/edit/main/sidebars.js)</b> on GitHub.
+The TOC on the left of every documentation page must be manually updated via **[sidebars.js](https://github.com/ComPlat/chemotion_saurus/edit/main/sidebars.js)** on GitHub.
 If you have inserted a new page or want to change the order, change it there.
 
 ## Versioning
@@ -359,7 +364,7 @@ However, this can be adapted in the future. To create a new documentation versio
 1. In `docusaurus.config.js`: Change the `current` version to the new version and add the previous version to the other versions below.
 1. In `sidebar Chemotion ELN.js`, add the new version to the `Versions` category.
 1. After the first three steps, you can create a new version with `npm run docusaurus docs:version:elnID <former version number>`, e. g. `npm run docusaurus docs:version:elnID 0.9`.
-   The version number should be the <b>last</b> version, but not the latest/current. The latest version will be stored in `docs/eln` folder and should be the version that is currently under development.
+   The version number should be the **last** version, but not the latest/current. The latest version will be stored in `docs/eln` folder and should be the version that is currently under development.
    `npm run docusaurus docs:version ...` creates a new folder with the version number, that ideally should not be edited anymore.
    For example: you are planning a new version 0.10, that is already the current version of the code.
    Then you probably have a version 0.8 and a current version with the label 0.9 (but not with a versioned folder 0.9) in Docusaurus.
