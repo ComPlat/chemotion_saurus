@@ -13,11 +13,11 @@ The following list contains the file formats that should be available. In many c
 
 ### NMR Spectroscopy - 1D data
 
-| Supported files | Ending            | Required | Explanation                                                                           |
-| --------------- | ----------------- | :------: | ------------------------------------------------------------------------------------- |
-| zip             | .zip              |   Yes    | Original data from device - please add this in any case                               |
-| jcamp-dx        | .jdx, .dx, .jcamp |    No    | Please add in addition to zip if the automatically generated one has low quality[1.1] |
-| NMRium          | .nmrium           |    No    | If NMRium data is available, you can add it additionally to the zip[1.2]              |
+| Supported files | Ending            | Required | Explanation                                                                            |
+| --------------- | ----------------- | :------: | -------------------------------------------------------------------------------------- |
+| zip             | .zip              |   Yes    | Original data from device - please add this in any case                                |
+| jcamp-dx        | .jdx, .dx, .jcamp |    No    | Please add in addition to zip if the automatically generated one has low quality[^1.1] |
+| NMRium          | .nmrium           |    No    | If NMRium data is available, you can add it additionally to the zip[^1.2]              |
 
 | Generated files | Ending      | Explanation                                                                    |
 | --------------- | ----------- | ------------------------------------------------------------------------------ |
@@ -26,25 +26,25 @@ The following list contains the file formats that should be available. In many c
 | png             | .peak.png   | is automatically generated from .peak.jdx                                      |
 | png             | .edit.png   | is automatically generated from .edit.jdx                                      |
 | json            | .infer.json | is automatically generated from .edit.jdx, data exchange format for NMRshiftDB |
-| NMRium          | .nmrium     | is generated from zip if NMRium editor is selected (not automatically)[1.2]    |
+| NMRium          | .nmrium     | is generated from zip if NMRium editor is selected (not automatically)[^1.2]   |
 
-[1.2] the automatic processing from zip to jcamp with the embedded software gives sometimes bad results. In those cases, please provide a jcamp file that was processed with a suitable external software to allow the provision of clear, high quality data.<br/>
-[2.2] NMRium is supported from version 1.5 of Chemotion ELN (March 2023).
+[^1.1]: the automatic processing from zip to jcamp with the embedded software gives sometimes bad results. In those cases, please provide a jcamp file that was processed with a suitable external software to allow the provision of clear, high quality data.
+[^1.2]: NMRium is supported from version 1.5 of Chemotion ELN (March 2023).
 
 ### NMR Spectroscopy - 2D data
 
-| Supported files | Ending            | Required | Explanation                                                                           |
-| --------------- | ----------------- | :------: | ------------------------------------------------------------------------------------- |
-| zip             | .zip              |   Yes    | Original data from device - please add this in any case                               |
-| jcamp-dx        | .jdx, .dx, .jcamp |    No    | Please add in addition to zip if the automatically generated one has low quality[2.1] |
-| NMRium          | .nmrium           |    No    | If NMRium data is available, you can add it additionally to the zip[2.2]              |
+| Supported files | Ending            | Required | Explanation                                                                            |
+| --------------- | ----------------- | :------: | -------------------------------------------------------------------------------------- |
+| zip             | .zip              |   Yes    | Original data from device - please add this in any case                                |
+| jcamp-dx        | .jdx, .dx, .jcamp |    No    | Please add in addition to zip if the automatically generated one has low quality[^2.1] |
+| NMRium          | .nmrium           |    No    | If NMRium data is available, you can add it additionally to the zip[^2.2]              |
 
-| Generated files | Ending  | Explanation                                                                 |
-| --------------- | ------- | --------------------------------------------------------------------------- |
-| NMRium          | .nmrium | is generated from zip if NMRium editor is selected (not automatically)[2.2] |
+| Generated files | Ending  | Explanation                                                                  |
+| --------------- | ------- | ---------------------------------------------------------------------------- |
+| NMRium          | .nmrium | is generated from zip if NMRium editor is selected (not automatically)[^2.2] |
 
-[2.1] the automatic processing from zip to jcamp with the embedded software gives sometimes bad results. In those cases, please provide a jcamp file that was processed with a suitable external software to allow the provision of clear, high quality data.<br/>
-[2.2] NMRium is supported from version 1.5 of Chemotion ELN (March 2023).
+[^2.1]: the automatic processing from zip to jcamp with the embedded software gives sometimes bad results. In those cases, please provide a jcamp file that was processed with a suitable external software to allow the provision of clear, high quality data.
+[^2.2]: NMRium is supported from version 1.5 of Chemotion ELN (March 2023).
 
 Please take care that your files are given with an analysis including the listing of the observed signals. The information is supposed to be given as analyzed signals. Peak lists in form of non-analyzed signals (without coupling constants) are not suitable.
 
@@ -52,18 +52,18 @@ Please take care that your files are given with an analysis including the listin
 
 If you can't provide the supported data file types, please add an image (.jpg, .png). This should be avoided and only used if there is no option to get access to a digital file.
 
-| Supported files (SF) | Ending            |  Required  | Explanation                                                                       |
-| -------------------- | ----------------- | :--------: | --------------------------------------------------------------------------------- |
-| raw                  | .zip              | (Yes)[3.1] | Original data from device [3.2]                                                   |
-| MzML                 | .jdx, .dx, .jcamp | (Yes)[3.1] |                                                                                   |
-| jcamp-dx             | .jdx, .dx, .jcamp | (Yes)[3.1] |                                                                                   |
-| Excel                | .xlsx             | (Yes)[3.1] | Supported by Converter - please refer to ChemConverter Profiles given below [3.3] |
-| CSV                  | .jdx, .dx, .jcamp | (Yes)[3.1] | Supported by Converter - please refer to ChemConverter Profiles given below [3.3] |
-| xy                   | .xy               | (Yes)[3.1] | Supported by Converter - please refer to ChemConverter Profiles given below [3.3] |
+| Supported files (SF) | Ending            |  Required   | Explanation                                                                       |
+| -------------------- | ----------------- | :---------: | --------------------------------------------------------------------------------- |
+| raw                  | .zip              | (Yes)[^3.1] | Original data from device [^3.2]                                                  |
+| MzML                 | .jdx, .dx, .jcamp | (Yes)[^3.1] |                                                                                   |
+| jcamp-dx             | .jdx, .dx, .jcamp | (Yes)[^3.1] |                                                                                   |
+| Excel                | .xlsx             | (Yes)[^3.1] | Supported by Converter - please refer to ChemConverter Profiles given below[^3.3] |
+| CSV                  | .jdx, .dx, .jcamp | (Yes)[^3.1] | Supported by Converter - please refer to ChemConverter Profiles given below[^3.3] |
+| xy                   | .xy               | (Yes)[^3.1] | Supported by Converter - please refer to ChemConverter Profiles given below[^3.3] |
 
-[3.1] one of these files should be given.<br/>
-[3.2] RAW data is supported for selected instruments of ThermoFisher currently.<br/>
-[3.3] Excel and CSV: some standard versions are supported (see list below) and described in the section ChemConverter- for others, please contact us. [Link to all ChemConverter Profiles](https://www.chemotion-repository.net/converter_admin).
+[^3.1]: one of these files should be given.
+[^3.2]: RAW data is supported for selected instruments of ThermoFisher currently.
+[^3.3]: Excel and CSV: some standard versions are supported (see list below) and described in the section ChemConverter- for others, please contact us. [Link to all ChemConverter Profiles](https://www.chemotion-repository.net/converter_admin).
 
 | Ending | metadata converted |                            Identifier                            | Link                                                         |
 | ------ | ------------------ | :--------------------------------------------------------------: | ------------------------------------------------------------ |
@@ -95,14 +95,14 @@ If the added file is .xy, then the following data file types are generated:
 
 If you can't provide the supported data file types, please add an image (.jpg, .png). This should be avoided and only used if there is no option to get access to a digital file.
 
-| Supported files | Ending            | Required [4.1] | Explanation                                                             |
-| --------------- | ----------------- | :------------: | ----------------------------------------------------------------------- |
-| jcamp-dx        | .jdx, .dx, .jcamp |      Yes       |                                                                         |
-| Excel           | .xlsx             |      Yes       | Supported by ChemConverter - please refer to profiles given below [4.2] |
-| CSV             | .csv              |      Yes       | Supported by ChemConverter - please refer to profiles given below [4.2] |
+| Supported files | Ending            | Required [^4.1] | Explanation                                                              |
+| --------------- | ----------------- | :-------------: | ------------------------------------------------------------------------ |
+| jcamp-dx        | .jdx, .dx, .jcamp |       Yes       |                                                                          |
+| Excel           | .xlsx             |       Yes       | Supported by ChemConverter - please refer to profiles given below [^4.2] |
+| CSV             | .csv              |       Yes       | Supported by ChemConverter - please refer to profiles given below [^4.2] |
 
-[4.1] One of the files in this list should be given.<br/>
-[4.2] Excel and CSV: some standard versions are supported (see list below) and described in the section ChemConverter- for others, please contact us. [Link to all ChemConverter Profiles](https://www.chemotion-repository.net/converter_admin).
+[^4.1]: One of the files in this list should be given.
+[^4.2]: Excel and CSV: some standard versions are supported (see list below) and described in the section ChemConverter- for others, please contact us. [Link to all ChemConverter Profiles](https://www.chemotion-repository.net/converter_admin).
 
 | Ending | metadata converted | Identifier | Link |
 | ------ | ------------------ | :--------: | ---- |
@@ -121,15 +121,15 @@ If you can't provide the supported data file types, please add an image (.jpg, .
 
 If you can't provide the supported data file types, please add an image (.jpg, .png). This should be avoided and only used if there is no option to get access to a digital file.
 
-| Supported files | Ending            | Required [5.1] | Explanation                                                             |
-| --------------- | ----------------- | :------------: | ----------------------------------------------------------------------- |
-| jcamp-dx        | .jdx, .dx, .jcamp |      Yes       |                                                                         |
-| Excel           | .xlsx             |      Yes       | Supported by ChemConverter - please refer to profiles given below [5.2] |
-| CSV             | .csv              |      Yes       | Supported by ChemConverter - please refer to profiles given below [5.2] |
-| TEXT            | .txt              |      Yes       | Supported by ChemConverter - please refer to profiles given below [5.2] |
+| Supported files | Ending            | Required [^5.1] | Explanation                                                              |
+| --------------- | ----------------- | :-------------: | ------------------------------------------------------------------------ |
+| jcamp-dx        | .jdx, .dx, .jcamp |       Yes       |                                                                          |
+| Excel           | .xlsx             |       Yes       | Supported by ChemConverter - please refer to profiles given below [^5.2] |
+| CSV             | .csv              |       Yes       | Supported by ChemConverter - please refer to profiles given below [^5.2] |
+| TEXT            | .txt              |       Yes       | Supported by ChemConverter - please refer to profiles given below [^5.2] |
 
-[5.1] One of the files in this list should be given.<br/>
-[5.2] Excel, CSV, Text: some standard versions are supported (see list below) and described in the section ChemConverter- for others, please contact us. Link to all Chemconverter Profiles: https://www.chemotion-repository.net/converter_admin
+[^5.1]: One of the files in this list should be given.
+[^5.2]: Excel, CSV, Text: some standard versions are supported (see list below) and described in the section ChemConverter- for others, please contact us. Link to all Chemconverter Profiles: https://www.chemotion-repository.net/converter_admin
 
 | Ending | metadata converted |            Identifier            | Link/comments                 |
 | ------ | ------------------ | :------------------------------: | ----------------------------- |
@@ -185,7 +185,7 @@ Status: in test phase - please contact us for questions: we can assist you to ge
 | EA     | EA (CS)               | .png               | No         |                                                   |
 | X-ray  | all                   | .cif + png         | No         |                                                   |
 
-[SB1] please ensure that the zip is the originally provided one. Don't collect data as zip on our own, don't add other data than the provided ones to the original file folder, please don't add mestre file to the zip. Please use the data provided by the instrument (eventually generate the zip from the obtained folder- without other changes).
+[SB1]: please ensure that the zip is the originally provided one. Don't collect data as zip on our own, don't add other data than the provided ones to the original file folder, please don't add mestre file to the zip. Please use the data provided by the instrument (eventually generate the zip from the obtained folder- without other changes).
 
 ### SHP Group:
 
@@ -200,4 +200,4 @@ Status: in test phase - please contact us for questions: we can assist you to ge
 | EA     | EA                               | .png           | No         |                                                   |
 | X-ray  | all                              | .cif + png     | No         |                                                   |
 
-[SB1] please ensure that the zip is the originally provided one. Don't collect data as zip on our own, don't add other data than the provided ones to the original file folder, please don't add mestre file to the zip. Please use the data provided by the instrument (eventually generate the zip from the obtained folder- without other changes).
+[SB1]: please ensure that the zip is the originally provided one. Don't collect data as zip on our own, don't add other data than the provided ones to the original file folder, please don't add mestre file to the zip. Please use the data provided by the instrument (eventually generate the zip from the obtained folder- without other changes).
