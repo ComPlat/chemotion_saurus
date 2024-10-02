@@ -1,5 +1,4 @@
 ---
-id: files
 title: For Data Files
 author: Nicole Jung
 sidebar_position: 3
@@ -63,7 +62,7 @@ If you can't provide the supported data file types, please add an image (.jpg, .
 
 [^3.1]: one of these files should be given.
 [^3.2]: RAW data is supported for selected instruments of ThermoFisher currently.
-[^3.3]: Excel and CSV: some standard versions are supported (see list below) and described in the section ChemConverter- for others, please contact us. [Link to all ChemConverter Profiles](https://www.chemotion-repository.net/converter_admin).
+[^3.3]: Excel and CSV: some standard versions are supported (see list below) and described in the section ChemConverter- for others, please contact us. You can find all ChemConverter Profiles [here](https://www.chemotion-repository.net/converter_admin).
 
 | Ending | metadata converted |                            Identifier                            | Link                                                         |
 | ------ | ------------------ | :--------------------------------------------------------------: | ------------------------------------------------------------ |
@@ -102,7 +101,7 @@ If you can't provide the supported data file types, please add an image (.jpg, .
 | CSV             | .csv              |       Yes       | Supported by ChemConverter - please refer to profiles given below [^4.2] |
 
 [^4.1]: One of the files in this list should be given.
-[^4.2]: Excel and CSV: some standard versions are supported (see list below) and described in the section ChemConverter- for others, please contact us. [Link to all ChemConverter Profiles](https://www.chemotion-repository.net/converter_admin).
+[^4.2]: Excel and CSV: some standard versions are supported (see list below) and described in the section ChemConverter- for others, please contact us. You can find all ChemConverter Profiles [here](https://www.chemotion-repository.net/converter_admin).
 
 | Ending | metadata converted | Identifier | Link |
 | ------ | ------------------ | :--------: | ---- |
@@ -123,13 +122,13 @@ If you can't provide the supported data file types, please add an image (.jpg, .
 
 | Supported files | Ending            | Required [^5.1] | Explanation                                                              |
 | --------------- | ----------------- | :-------------: | ------------------------------------------------------------------------ |
-| jcamp-dx        | .jdx, .dx, .jcamp |       Yes       |                                                                          |
+| jcamp-dx        | .jdx, .dx, .jcamp |       Yes       | but only if ##DATA TYPE= UV-VIS or UV/VIS SPECTRUM [^5.3]                |
 | Excel           | .xlsx             |       Yes       | Supported by ChemConverter - please refer to profiles given below [^5.2] |
 | CSV             | .csv              |       Yes       | Supported by ChemConverter - please refer to profiles given below [^5.2] |
 | TEXT            | .txt              |       Yes       | Supported by ChemConverter - please refer to profiles given below [^5.2] |
 
 [^5.1]: One of the files in this list should be given.
-[^5.2]: Excel, CSV, Text: some standard versions are supported (see list below) and described in the section ChemConverter- for others, please contact us. Link to all Chemconverter Profiles: https://www.chemotion-repository.net/converter_admin
+[^5.2]: Excel, CSV, Text: some standard versions are supported (see list below) and described in the section ChemConverter- for others, please contact us. You can find all ChemConverter Profiles [here](https://www.chemotion-repository.net/converter_admin).
 
 | Ending | metadata converted |            Identifier            | Link/comments                 |
 | ------ | ------------------ | :------------------------------: | ----------------------------- |
@@ -144,13 +143,32 @@ If you can't provide the supported data file types, please add an image (.jpg, .
 | jcamp           | bagit.peak.jdx | is generated from zip with automated peak picking (not editable) |
 | png             | bagit.png      | is automatically generated from .peak.jdx                        |
 
+### Fluorescence spectroscopy data
+
+[^5.3] jcamp-dx data with `##DATA TYPE= FLUORESCENCE SPECTRUM` are currently work in process. In the meantime you could edit your files to match `##DATA TYPE= UV-VIS or UV/VIS SPECTRUM`.
+
 ## XRD spectroscopy data
 
 Status: in test phase - please contact us for questions: we can assist you to get your data represented.
 
 ## Cyclic voltammetry data
 
-Status: in test phase - please contact us for questions: we can assist you to get your data represented.
+If you can't provide the supported data file types, please add an image (.jpg, .png). This should be avoided and only used if there is no option to get access to a digital file.
+Data file types are dependent from your devices software / manufacturer. Please look at the table below.
+
+| Supported files and manufacturer | Ending (case sensitive) | Required | Explanation                                                       |
+| -------------------------------- | ----------------------- | :------: | ----------------------------------------------------------------- |
+| Gamry Framework DTA              | .DTA                    |   Yes    | Supported by ChemConverter - please refer to profiles given below |
+| PalmSens PSTrace                 | .pssession              |   Yes    | Supported by ChemConverter - please refer to profiles given below |
+| Metrohm Nova                     | .txt                    |   Yes    | Supported by ChemConverter - please refer to profiles given below |
+
+IKA's csv files are currently in testing state.
+
+| Ending     | metadata converted |                              Identifier                               | Link/comments |
+| ---------- | ------------------ | :-------------------------------------------------------------------: | ------------- |
+| .DTA       | Yes                |                        line3 TITLE == "Cyclic"                        |               |
+| .pssession | Yes                |                     title == "Cyclic Voltammetry"                     |               |
+| .txt       | No                 | column_00 == Potential applied (V) & column_02 == "WE(1).Current (A)" |               |
 
 ## Elemental Analysis
 
@@ -169,35 +187,49 @@ Status: in test phase - please contact us for questions: we can assist you to ge
 
 Status: in test phase - please contact us for questions: we can assist you to get your data represented.
 
-## Advices in brief
+## Adsorption and desorption
 
-### Stefan Bräse Group:
+### AIF Files
 
-| Method | device                | to be provided     | processing | Explanation                                       |
-| ------ | --------------------- | :----------------- | ---------- | ------------------------------------------------- |
-| 1D NMR | all                   | Zip (+jcamp) [SB1] | Yes        | jcamp needed if quality of processed file too low |
-| 2D NMR | all                   | Zip (+jcamp) [SB1] | No         |                                                   |
-| mass   | ThermoFisher (CS)     | .raw               | Yes        |                                                   |
-| mass   | Advion (CN)           | xxx                | Yes        |                                                   |
-| IR     | Bruker Alpha (CS, CN) | .dx                | Yes        |                                                   |
-| UV-Vis | Horiba (CN)           | .txt               | Yes        |                                                   |
-| UV-Vis | xxxxxx (CS)           | xxx                | tbd        |                                                   |
-| EA     | EA (CS)               | .png               | No         |                                                   |
-| X-ray  | all                   | .cif + png         | No         |                                                   |
+Status: in test phase - please contact us for questions: we can assist you to get your data represented.
 
-[SB1]: please ensure that the zip is the originally provided one. Don't collect data as zip on our own, don't add other data than the provided ones to the original file folder, please don't add mestre file to the zip. Please use the data provided by the instrument (eventually generate the zip from the obtained folder- without other changes).
+## Stefan Bräse group: advices in brief
 
-### SHP Group:
+| Method      | device                        | to be provided                                | processing | Explanation                                       |
+| ----------- | ----------------------------- | :-------------------------------------------- | ---------- | ------------------------------------------------- |
+| 1D NMR      | all                           | Zip (+jcamp)[^6.1]                            | Yes        | jcamp needed if quality of processed file too low |
+| 2D NMR      | all                           | Zip (+jcamp)[^6.1]                            | No         |                                                   |
+| mass        | ThermoFisher (CS)             | .raw                                          | Yes        |                                                   |
+| mass        | Advion Expression-L (CN)      | .cdf                                          | Yes        | aut. conversion .datx -> .cdf                     |
+| IR          | Bruker Alpha (CS, CN)         | .dx                                           | Yes        | aut. conversion .0 (OPUS) -> .dx                  |
+| Raman       | Bruker Multiram (CN)          | .dx                                           | tbd        | aut. conversion .0 (OPUS) -> .dx                  |
+| UV-Vis      | Horiba (CN)                   | .txt                                          | Yes        | manual conversion .ezspec_data -> .txt            |
+| UV-Vis      | Analytik Jena Specord 50 (CS) | .csv                                          | tbd        | aut. conversion .auv -> .csv                      |
+| EA          | EA (CS)                       | .png                                          | No         |                                                   |
+| X-ray       | all                           | .cif + png                                    | No         |                                                   |
+| GC-FID/MS   | Shimadzu GC/MS (CN)           | .cdf (AIA(Andi))                              | No         | aut. conversion .gcd -> .cdf and .txt (ASCII);    |
+| GC-BID      | Shimadzu GC-BID 2030 (CN)     | .cdf (AIA(Andi))                              | No         | aut. conversion .gcd -> .cdf and .txt (ASCII);    |
+| TGA         | TA Instruments (CN)           | .xls                                          | No         | manual conversion .tri -> .xls                    |
+| LC/MS       | Agilent IQ (CN)               | .cdf, .ms (AIA-Format), .dx (CDS2 raw-Format) | No         | aut. conversion .sirstl -> .cdf, .ms and .dx      |
+| Polarimeter | Anton Paar MCP4100 (CN)       | .pdf                                          | No         |                                                   |
+| DSC         | TA Instruments (CN/SML)       | .xls                                          | No         | manual conversion .tri -> .xls                    |
+
+[^6.1] please ensure that the zip is the originally provided one. Don't collect data as zip on our own, don't add other data than the provided ones to the original file folder, please don't add mestre file to the zip. Please use the data provided by the instrument (eventually generate the zip from the obtained folder- without other changes).
+
+## Sonja Herres-Pawlis group: advices in brief
 
 | Method | device                           | to be provided | processing | Explanation/comment                               |
 | ------ | -------------------------------- | :------------- | ---------- | ------------------------------------------------- |
 | 1D NMR | all                              | Zip (+jcamp)   | Yes        | jcamp needed if quality of processed file too low |
 | 2D NMR | all                              | Zip (+jcamp)   | No         |                                                   |
-| mass   | UHR-TOF Bruker Daltonik maXis II | .xy            | Yes        | file needs adaptation before upload!              |
+| mass   | UHR-TOF Bruker Daltonik maXis II | .xy            | Yes        | file needs adaptation before upload![^6.3]        |
 | IR     | Perkin Elmer BX FT-IR            | .jdx           | Yes        | supported                                         |
 | UV-Vis | JASCO V770                       | .dx            |            |                                                   |
 | UV-Vis | CARY60                           | .csv           | Yes        | supported, type "a" not added yet                 |
 | EA     | EA                               | .png           | No         |                                                   |
 | X-ray  | all                              | .cif + png     | No         |                                                   |
+| CV     |                                  | .mnova         | Yes        |                                                   |
 
-[SB1]: please ensure that the zip is the originally provided one. Don't collect data as zip on our own, don't add other data than the provided ones to the original file folder, please don't add mestre file to the zip. Please use the data provided by the instrument (eventually generate the zip from the obtained folder- without other changes).
+[^6.3] According to Table "mass spectrometry", the file needs to be opened and a new line on the top of the file has to be inserted: line1:
+"mass_spectrometry, general_xy" <br/>
+This additional line allows to identify the file and enables conversion.
