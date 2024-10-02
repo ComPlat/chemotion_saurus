@@ -214,7 +214,7 @@ Status: in test phase - please contact us for questions: we can assist you to ge
 | Polarimeter | Anton Paar MCP4100 (CN)       | .pdf                                          | No         |                                                   |
 | DSC         | TA Instruments (CN/SML)       | .xls                                          | No         | manual conversion .tri -> .xls                    |
 
-[^6.1] please ensure that the zip is the originally provided one. Don't collect data as zip on our own, don't add other data than the provided ones to the original file folder, please don't add mestre file to the zip. Please use the data provided by the instrument (eventually generate the zip from the obtained folder- without other changes).
+[^6.1]: Please ensure that the zip is the originally provided one. Don't collect data as zip on our own, don't add other data than the provided ones to the original file folder, please don't add mestre file to the zip. Please use the data provided by the instrument (eventually generate the zip from the obtained folder- without other changes).
 
 ## Sonja Herres-Pawlis group: advices in brief
 
@@ -222,7 +222,7 @@ Status: in test phase - please contact us for questions: we can assist you to ge
 | ------ | -------------------------------- | :------------- | ---------- | ------------------------------------------------- |
 | 1D NMR | all                              | Zip (+jcamp)   | Yes        | jcamp needed if quality of processed file too low |
 | 2D NMR | all                              | Zip (+jcamp)   | No         |                                                   |
-| mass   | UHR-TOF Bruker Daltonik maXis II | .xy            | Yes        | file needs adaptation before upload![^6.3]        |
+| mass   | UHR-TOF Bruker Daltonik maXis II | .xy            | Yes        | file needs adaptation before upload![^6.2]        |
 | IR     | Perkin Elmer BX FT-IR            | .jdx           | Yes        | supported                                         |
 | UV-Vis | JASCO V770                       | .dx            |            |                                                   |
 | UV-Vis | CARY60                           | .csv           | Yes        | supported, type "a" not added yet                 |
@@ -230,6 +230,4 @@ Status: in test phase - please contact us for questions: we can assist you to ge
 | X-ray  | all                              | .cif + png     | No         |                                                   |
 | CV     |                                  | .mnova         | Yes        |                                                   |
 
-[^6.3] According to Table "mass spectrometry", the file needs to be opened and a new line on the top of the file has to be inserted: line1:
-"mass_spectrometry, general_xy" <br/>
-This additional line allows to identify the file and enables conversion.
+[^6.2]: According to Table "mass spectrometry", the file needs to be opened and a new line on the top of the file has to be inserted as line1: `mass_spectrometry, general_xy"`. This additional line allows to identify the file and enables conversion.
