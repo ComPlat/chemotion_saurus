@@ -273,8 +273,8 @@ This will place two files: `backup.sql.gz` and `backup.data.tar.gz` in the `./sh
 To restore a backup, clean out the the folder where your Compose file resides, keeping only the backup folder and its files in place. Then run the following:
 
 ```bash
-docker compose down --remove-orphans       # stop all services
-docker compose run eln chemotion restore   # restore the latest backup
+docker compose down --remove-orphans                           # stop all services
+docker compose run -e FORCE_DB_RESET=1 eln chemotion restore   # restore the latest backup while resetting any database corresponding to this compose file, if already created
 ```
 
 <details>
