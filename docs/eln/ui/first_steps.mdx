@@ -37,7 +37,7 @@ This function is not accessible to all users, please ask your instance administr
 
 When you first see the SciFinder-n Credential, the expiry date is blank.
 
-![SciFinderN No Credential](/img/scifindern_no_credential.png)
+![SciFinderN No Credential](/img/sciFinder-n-credential.png)
 
 After pressing the <Btn mixed={["Get token"]} color={"primary"} /> button, you will be redirected to the CAS login page. Please enter your CAS username and password to request an access token.
 
@@ -84,12 +84,24 @@ Please think about a smart structure for your Chemotion ELN and create your firs
 The account & profile settings allow the user to
 
 - define a reaction label and adjust the counter for reactions
-- define a sample inventory label and adjust the counter for a collection
+- define a sample inventory label and adjust the inventory label counter for a collection
 - change the visibility of labels/numbers for samples
 - choose a curation standard for the analytical section
 - [add SciFinder/SciFinder<sup>n</sup> credentials](#scifinderscifindern-credential)
 - adjust the counter for different elements in the Chemotion ELN
 - set up his/her default structure editor
+
+## Define a sample inventory label and adjust the counter inventory label for a collection
+
+Users can select one or multiple collections and assign a name, prefix, and starting counter to define an inventory label for the collection(s).
+Any changes made can be saved by clicking the "Update User Settings" button within the "Sample Inventory Label" box.
+Afterward, users can return to the Chemotion main page, where the inventory label will appear next to the collection name in the collections tree.
+
+When creating a new sample, a sample inventory label will automatically be generated with the next available counter number.
+Additionally, users can generate a new label for existing samples by clicking the "Auto-Generate Inventory Label" button next to the inventory label field.
+
+!["SciFinderN Profile"](/img/inventory_label_assignment.gif)
+
 
 ### User Settings: Template management
 
