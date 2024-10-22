@@ -5,6 +5,7 @@ import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from './styles.module.css';
+import VideoPrivacy from "video-privacy"
 
 const features = [
   {
@@ -82,14 +83,16 @@ function Home() {
           </div>
           <div className="column">
             <div style={{ margin: '2rem auto 0 auto', textAlign: 'center' }}>
-              <iframe
-                width="640"
-                height="360"
-                src="https://www.youtube-nocookie.com/embed/tZHaP6DW-Dw"
-                title="YouTube video player"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
+              <VideoPrivacy customButtonClass="button button--primary" info="YouTube will track your interaction with them." width="640px" imageUrl="/img/yt_thumbnails/tZHaP6DW-Dw.jpg">
+                <iframe
+                  width="640"
+                  height="360"
+                  src="https://www.youtube-nocookie.com/embed/tZHaP6DW-Dw"
+                  title="YouTube video player"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </VideoPrivacy>
             </div>
           </div>
         </div>
@@ -146,7 +149,7 @@ function Home() {
           />
         </Link>
       </div>
-    </Layout>
+    </Layout >
   );
 }
 

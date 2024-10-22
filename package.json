@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
-    "start": "docusaurus start",
+    "start": "docusaurus start --host 127.0.0.1 --port 3000",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
@@ -27,11 +27,12 @@
     "dotenv": "*",
     "react": "*",
     "react-bootstrap": "*",
-    "react-dom": "*"
+    "react-dom": "*",
+    "video-privacy": "*"
   },
   "devDependencies": {
-    "eslint": "^8",
-    "eslint-plugin-import": "^2"
+    "eslint": "*",
+    "eslint-plugin-import": "*"
   },
   "browserslist": {
     "production": [

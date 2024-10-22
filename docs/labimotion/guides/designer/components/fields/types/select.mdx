@@ -4,7 +4,12 @@ author: Claire Lin
 sidebar_position: 10
 ---
 
-import { FigCaption, SubTitle, YouTubeFrame, Reader } from "@site/src/js/layout";
+import {
+  FigCaption,
+  SubTitle,
+  YouTubeFrame,
+  Reader,
+} from "@site/src/js/layout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import fieldSelect from "@site/static/img/labimotion/field-select.png";
@@ -29,11 +34,12 @@ The **Select** field can be used as a restrictive field. Therefore, the values f
 :::
 
 To set up a **Select** field, follow these steps:
+
 1. (optional) Create a `Select List` you need.
 
-    Click on `Add new select list` :heavy_plus_sign: button located on the right side of the [Work Area](../../../template-features/workarea.mdx) to create a new option list you need. Then, enter the desired options into the `Input new option` field and click the :heavy_plus_sign: button to add them to the list. You can change the display text to better suit end users. To remove the option, simply click the <FontAwesomeIcon icon={faTrashCan} />  button next to it.
+   Click on `Add new select list` :heavy_plus_sign: button located on the right side of the [Work Area](../../../template-features/workarea.mdx) to create a new option list you need. Then, enter the desired options into the `Input new option` field and click the :heavy_plus_sign: button to add them to the list. You can change the display text to better suit end users. To remove the option, simply click the <FontAwesomeIcon icon={faTrashCan} /> button next to it.
 
-    You can create multiple Select Lists and use them in all layers of the element.
+   You can create multiple Select Lists and use them in all layers of the element.
 
 <p align="center">
   <img src={fieldSelectList} alt="LabIMotion - Select List" />
@@ -41,7 +47,7 @@ To set up a **Select** field, follow these steps:
 
 2. Choose the `Select Lists` that you want this **Select** field represent.
 
-    In the `Options` field, select the `Select List` you created in the previous step.
+   In the `Options` field, select the `Select List` you created in the previous step.
 
 <p align="center">
   <img src={fieldSelectOptions} alt="LabIMotion - Select Field" />
