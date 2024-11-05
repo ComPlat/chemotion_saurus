@@ -1,6 +1,9 @@
 require('dotenv').config();
 
 module.exports = {
+  future: {
+    experimental_faster: true,
+  },
   title: 'Chemotion',
   tagline: 'Electronic Laboratory Notebook & Repository for Research Data',
   url: 'https://chemotion.net',

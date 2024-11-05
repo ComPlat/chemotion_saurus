@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@docusaurus/core": "^3",
+    "@docusaurus/faster": "^3",
     "@docusaurus/plugin-content-docs": "^3",
     "@docusaurus/plugin-content-pages": "^3",
     "@docusaurus/plugin-sitemap": "^3",
