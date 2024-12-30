@@ -7,9 +7,9 @@ sidebar_position: 6
 
 :::info[Important information for this page] 
 
-This page contains a collection of information how to reference analytical data. We provide this page to describe the preferred formatting of analytical evaluations in the Chemotion repository. The given preferences follow standards of journals/publishers and other stakeholders wherever we could find them. Currently, the in particular the format of the metadata of the analytical data (everything before "=") is not reviewed critically. If you have suggestions and comments: please let us know or provide your ideas via the issue tracking option. 
+This page contains a collection of information how to reference analytical data. We provide this page to describe the preferred formatting of analytical evaluations in the Chemotion repository. The given preferences follow standards of journals/publishers and other stakeholders wherever we could find them. Currently, in particular the format of the metadata of the analytical data (everything before "=") is not reviewed critically. If you have suggestions and comments: please let us know or provide your ideas via the issue tracking option. 
 https://github.com/ComPlat/chemotion_saurus/issues
-Updated: 05.03.2024
+Updated: 30.12.2024
 :::
 
 **General description of CV measurement routines**
@@ -27,8 +27,22 @@ The following references are recommended:
 1. Ferrocene and setting the Fc<sup>+</sup>/Fc couple to 0 V
 2. SCE and setting the Fc<sup>+</sup>/Fc couple to 0.38 V (value for Fc in MeCN) 
 
-**Inline notation**
+**Reporting data and metadata**
 
+Analytical measurements should be given with all available metadata. In the Chemotion repository, metadata can be added to forms dedicated to a certain range of measurements, ensureing the standardized representation of the metadata. To enable the metadata forms for cyclic voltammetry, select the term "cyclic voltammetry" in the type field (Chemical Methods Ontology) of the analytical section. In the resulting metadata form, information such as the following one, is requested: 
+- the setting of the measurement and preparation if applicable
+- the material and size of the working electrode (WE), counter electrode (CE), and reference electrode (RE), including modifications if applicable
+- applied voltage corrected for IR compensation?
+- the solvent, the electrolyte and its concentration, the analyte and its concentration and the purging gas.
+- further parameters such as temperature, atmosphere.
+- starting point of the scan, the direction of the scan, and scan rate.
+
+In addition to the metadata requested in the form, an inline notation summarizes the results gained from the measurement and gives additionally the most important metadata. The inline notation should be provided in the following form: 
+
+if the experiment was done at 21 °C under air as atmosphere, the inline notation can be shortened to:  
 CV (1 mM in MeCN vs. Ref (Fc<sup>+</sup>/Fc) = 0 V, ν = 0.1 V/s, to neg.): E<sub>1/2</sub> ([Cu(TMGqu)2]<sup>2+</sup>/[Cu(TMGqu)2]<sup>+</sup>, ΔE<sub>p</sub>) = −0.44 V (90 mV)
 
-Details:
+if more parameters need to be considered, please add the inline notation in the following form: 
+CV (1 mM in MeCN vs. Ref (Fc<sup>+</sup>/Fc) = 0 V, ν = 0.1 V/s, to neg., 40 °C, <sub>/CO2</sub>/): E<sub>1/2</sub> ([Cu(TMGqu)2]<sup>2+</sup>/[Cu(TMGqu)2]<sup>+</sup>, ΔE<sub>p</sub>) = −0.44 V (90 mV)
+
+
