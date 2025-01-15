@@ -26,6 +26,8 @@ jobs:
 
       - name: Build
         id: build
+        env:
+          DOCUSAURUS_IGNORE_SSG_WARNINGS: true
         run: |
           npm install -g npm
           npm install
