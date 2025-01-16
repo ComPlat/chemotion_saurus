@@ -1,0 +1,21 @@
+---
+title: 3rd party app
+sidebar_label: User Management
+author: Pierre Tremouilhac
+---
+
+# Third Party Apps
+
+![adminui-3rd-party-app](@site/static/img/admin_ui/admin-3rd-party-app.png)
+
+The Admin can register third-party apps. The ELN users are then able to send attachment files directly from their ELN session to a registered app, as well as getting processed files back and directly uploaded at the same location of the original file in the ELN.
+
+To register an app, the url of the app is needed. the ELN server and the app have to be in the same network for the file transfers to work.
+The `name` entered will be displayed to the user. A MIME type filter ensures that the app option is only shown to the user for files with compatible types. If the file type does not match the filter, the app option will be hidden. Examples:
+* Enter `*` to allow sending any file to the app.
+* Enter `image` to allow any image type, such as image/png or image/jpg.
+* Enter `image/png` to restrict sending to only PNG files.
+
+
+[Biostats](https://github.com/ComPlat/Biostats) is an example of Apps that can be integrated with the ELN ([see biostats documentation](https://chemotion.net/search/?q=biostats))
+
