@@ -100,6 +100,81 @@ This will create the first (production-grade) `instance` of Chemotion on your sy
 
 > :warning: **chem_cli.yml**: Installation also creates a file called `chem_cli.yml`. This file is critical as it contains information regarding existing installations. Removing the file will render chemCLI clueless about existing installations and it will behave as if Chemotion was never installed. Please do not remove the file. Ideally there should be no need for you to modify it manually.
 
+### Setting up a Reverse-Proxy
+
+> We **strongly** recommend getting in touch with the IT services for this part of the installation. Getting it wrong can have security implications for your data/network.
+
+The ELN runs inside a container and is therefore not available on your computer's network; other than on **one** exposed port. To make the installation available on the network, the container's port should be then linked an  external network. We suggest that you setup a [reverse-proxy service](#setting-up-a-reverse-proxy). Such a service forwards a domain name (e.g. https://chemotion.dept.uni.de) to your ELN so that your users can visit the domain name to use the ELN. A rough guideline on how to do so is provided here.
+
+We suggest to run an [nginx](https://nginx.org/en/docs/) reverse-proxy server if you don’t already have one. In case you want to use Shibboleth, please use [Apache](https://httpd.apache.org/). You can also choose to run something similar like [Traefik](https://traefik.io/traefik/) if you are familiar with the process.
+
+The simplest way to setup nginx is as follows:
+
+1. Include `nginx` as a service (in form of a container) in the `docker-compose.cli.yml` file that you use to run Chemotion ELN. The service's description should look like as follows:
+
+```yaml
+# This block is to be included in the `services` block.
+nginx:
+  image: nginx
+  restart: always
+  volumes:
+    - ./nginx.conf:/etc/nginx/conf.d/nginx.conf:ro
+    - ./ssl/:/ssl/:ro
+  ports:
+    - "443:443"
+  networks:
+    - proxy
+```
+
+Here we name a new network called `proxy` which is used to bridge the ELN's network and the host's network. To use it successfully, please also include the following at the end of your file:
+
+```yaml
+networks:
+  proxy:
+    external: true
+```
+
+This declares the proxy network as external i.e. it is allowed to talk to the host's network. To link this `proxy` network with the ELN's network, include the it as a key-value pair for the `eln` service i.e. create a new YAML key called `services.eln.networks: [proxy]`.
+
+Additionally, you also need to create such a network explicitly by running the following command in your shell:
+
+```sh
+docker network create proxy
+```
+
+2. Then, you need to create the `nginx.conf` file in the same folder as where you have the `docker-compose` file. The contents of the file should look as follows:
+
+```nginx
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+
+    server_name chemotion.dept.uni.de;
+
+    ssl_certificate /ssl/chemotion.dept.uni.de.crt;
+    ssl_certificate_key /ssl/chemotion.dept.uni.de.key;
+
+    resolver 127.0.0.11; # this bit is very important as it allows nginx and docker to cooperate
+
+    add_header Content-Security-Policy "default-src 'self' 'unsafe-inline' 'unsafe-eval';connect-src 'self' ws: blob: commonchemistry.cas.org dx.doi.org doi.org api.crossref.org; font-src 'self' data: ; frame-src 'self' nmrium.nmrxiv.org ; img-src 'self' data:" ;
+
+    location / {
+        proxy_pass http://eln:4000;
+    }
+}
+```
+
+Here, you are accessing the files `....crt` and `....key`. These files are certificates that allow your connection to use encryption (i.e. use https). These certificate files should be provided to you by your IT department, or you can use a service like [Let's Encrypt](https://letsencrypt.org/) to generate them as long as your IT and firewall policies allow that. Please put these files in a folder called `ssh` and put this folder in the folder where you have your `docker-compose.yml` (and `docker-compose.cli.yml) file. The add_header block allows you to access external services e.g. allow commonchemistry.cas.org (for creating sample by cas-rn), as well as dx.doi.org, doi.org, and api.crossref.org (to fetch literature references by doi).
+
+Further information on how to configure nginx, please refer to tutorials online (e.g. [here](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/) and [here](https://www.cyberciti.biz/faq/configure-nginx-to-use-only-tls-1-2-and-1-3/)).
+
+#### To summarize, you have to make sure that:
+
+- Reverse proxy is setup properly (i.e. DNS resolves to the URL to your server's IP address).
+- Any potential firewall/networking rules do not get in the way.
+- Docker exposes and listens on the correct ports.
+- The ELN is running.
+
 ### The `selected` instance
 
 Once you install multiple instances of Chemotion, the actions of chemCLI pertain to only one of them i.e. you actively operate only one of them when you run a command in the `./chemCLI` > `instance` section. This instance is referred to as the `selected` instance and its name is stored in a local file (`chem_cli.yml`). You can do `./chemCLI instance switch` to switch to another instance if you have more than one instance.
