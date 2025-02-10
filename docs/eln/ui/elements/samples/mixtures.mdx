@@ -1,0 +1,100 @@
+---
+title: "Mixtures: a Sample extension"
+sidebar_label: "Mixtures"
+sidebar_position: 1
+---
+
+:::info
+
+This feature is available from version 2.1 onwards.
+
+:::
+
+:::danger[Caution]
+
+This page is still being edited and reviewed.
+
+:::
+
+## Overview
+
+Currently, samples are treated as single molecules without categorization. However, we plan to classify samples into
+different types, including:
+- Mixtures
+- Polymers
+- Metal organic framework
+- Other specialized categories
+
+The Mixture module extends the samples feature by providing advanced tools for managing chemical mixtures.
+It allows users to define, modify, and calculate various mixture properties, including:
+- Components and their properties
+- Concentration calculations
+- Volume and amount adjustments
+
+Each mixture consists of multiple components, making it a powerful tool for handling complex sample formulations.
+
+## Key Features
+
+- **Component Management**
+  - Allows adding, removing, and modifying components in a mixture.
+- **Advanced Calculations**
+  - Computes total concentration based on individual component concentrations.
+  - Recalculate volume and amount dynamically.
+- **Stock and Reference Tracking**
+  - Supports stock concentration tracking and recalculations based on a reference component.
+- **Intuitive Drag-and-Drop UI**
+  - Rearrange components effortlessly using drag-and-drop functionality.
+
+## Integration with UI Components
+
+The Mixtures module integrates seamlessly with the Sample element, offering an intuitive UI for managing mixtures.
+
+### Sample Type Selection
+
+!["Sample type selection"](/img/mixtures/mixture_1.png)
+!["Sample type selection options"](/img/mixtures/mixture_2.png)
+
+### Sample Element Updates
+
+Here is an overview of the default Sample interface:
+
+!["Default sample"](/img/mixtures/mixture_3.png)
+
+Once the Mixtures option is selected, the primary focus shifts to the **Components Table**:
+
+!["Sample with mixture"](/img/mixtures/mixture_4.png)
+
+### Key UI Elements
+- **Component List:** Displays all components within the mixture.
+- **Input Fields:** Allows users to modify various attributes like concentration, volume, amount, stock data etc.
+- **Drag-and-Drop Support:** Enables reordering of components.
+- **Component Category:** Separate sections for **Liquids** and **Solids** to ensure organized mixture management.
+
+## Creating Mixtures
+Users can add components to a mixture using:
+
+1. **Drag-and-Drop:** Select components from the sample list and add them directly.
+2. **Drawing in Ketcher:** Draw the mixture using Ketcher 1 or 2.
+3. **Hybrid Approach:** Combine both methods (e.g., draw two components and drag in a third to create a three-component
+mixture).
+
+### Example: Creating a Mixture
+
+!["Demo 1"](/img/mixtures/mixture_5.gif)
+
+Another example:
+
+!["Demo 2"](/img/mixtures/mixture_6.gif)
+
+## Changes in the Solvents Table
+- **Volume Column** added for mixtures.
+- **Ratio Adjustments** occur automatically when volume is updated.
+- **Non-Visualized Solvents:** Some buffer solutions/solvents can be excluded from the combined SVG representation.
+
+!["Demo 2"](/img/mixtures/mixture_7.png)
+
+## Future Enhancements
+
+✅ Use mixtures in reaction schemes
+✅ Enable import/export of mixture samples, including components
+✅ Improve searchability by mixture components
