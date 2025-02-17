@@ -87,6 +87,52 @@ Another example:
 
 !["Demo 2"](/img/mixtures/mixture_6.gif)
 
+## Calculations and Dependencies
+
+This section outlines the key calculations and dependencies between various attributes in the Component list. Each
+attribute plays a specific role in determining the values of other related attributes. Some values remain fixed
+unless explicitly modified by the user, while others dynamically adjust based on dependencies.
+
+### Stock/Density
+- These attributes serve as the foundation for all calculations.
+- Users can enter either the stock or density value for each component.
+- By default, these values are locked to prevent unintended modifications.
+- If a user drags and drops an existing sample as a component, these values are automatically populated.
+- To modify them, the user must unlock the field.
+- These values do not change dynamically when other attributes are updated; instead, modifying them resets other
+attribute values.
+- The lock indicates that these values rely solely on user input and are never recalculated based on changes in other
+attributes.
+
+### Volume/Amount
+- These two attributes are interdependent.
+- A change in one automatically adjusts the other to maintain consistency.
+- Updates to these values can also impact other attributes such as Ratio and Total Concentration, which are
+recalculated based on predefined conditions.
+
+### Ratio/Reference (Ref)
+- These values define how components relate to each other in terms of their proportion in a mixture.
+- When a component is selected as the Reference, its Ratio is automatically set to 1.
+- The Volume, Amount, and other values of non-reference components are adjusted according to their assigned Ratios.
+
+### Total Concentration (Total Conc.)
+- Represents the final concentration of the mixture.
+- Users can choose to lock or unlock this field for specific components.
+- If unlocked, it will be dynamically adjusted based on other attribute changes.
+- If locked, other attributes, along with the Total volume, will be recalculated while keeping this value fixed.
+- This value will be calculated only when there is a Total volume.
+
+### Total volume
+- Indicates the overall volume of the mixture.
+- The sum of the volumes of all components must not exceed this total value.
+- It is only a value given manually, i.e. volume by definition - not (re)calculated. Recalculation occurs only when
+the attributes of a component with a locked total concentration are modified.
+
+### Required volume
+- This is a calculated value based on the Reference component.
+- It is used for informational purposes only and does not directly affect other attributes.
+- This value is determined using input from the row where the reference component is defined.
+
 ## Changes in the Solvents Table
 - **Volume Column** added for mixtures.
 - **Ratio Adjustments** occur automatically when volume is updated.
