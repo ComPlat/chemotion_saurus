@@ -3,7 +3,10 @@ title: Designer View
 author: Claire Lin
 sidebar_position: 3
 ---
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowUpRightFromSquare,
+} from "@fortawesome/free-solid-svg-icons";
 import DocCardList from "@theme/DocCardList";
 import {
   FigCaption,
@@ -11,7 +14,8 @@ import {
   YouTubeFrame,
   Reader,
 } from "@site/src/js/layout";
-import designerMenu from "@site/static/img/labimotion/generic-designer-menu.png";
+import menu from "@site/static/img/labimotion/menu.png";
+import designerMenu from "@site/static/img/labimotion/designer-menu.png";
 
 <SubTitle text="Designer supports a wild range of component types, from simple text field to table, and allow to set up a workflow." />
 <Reader text="Designer" />
@@ -27,7 +31,7 @@ As a Designer, you can take advantage of the following capabilities:
 
 The Designer role encompasses Element, Segment, and Dataset functions, which are accessible to individuals with designer permissions. If you cannot locate the **Generic Designer** option in the menu, kindly reach out to your system administrator for assistance.
 
-<img src={designerMenu} alt="Generic Designer (menu)" />
+<img src={menu} alt="Menu" />
 
 :::
 
@@ -44,6 +48,8 @@ Watch the video below to see how a designer can efficiently sync templates to yo
   title="Sync Dataset from LabIMotion Hub"
 />
 
+<FigCaption text="LabIMotion - Sync Dataset Template from LabIMotion Hub" />
+
 :::tip
 
 Find templates that are suitable for your application in the **[LabIMotion Hub](https://www.chemotion-repository.net/home/genericHub)**.
@@ -52,9 +58,25 @@ Find templates that are suitable for your application in the **[LabIMotion Hub](
 
 ## Getting Started
 
-1. Choose the Element, Segment, or Dataset that you intend to work with, and then click on [**Template**](./template-features/index.mdx). The system will automatically navigate you to the [**Work Area**](./template-features/workarea.mdx).
-2. Utilize the [**Preview Design**](./template-features/preview-design.mdx) feature to gain a visual representation of the template's appearance.
-3. Access the [**Work Area**](./template-features/workarea.mdx) to integrate essential components, arrange them to your preferences, and establish the desired layout.
+1. Select [**Generic Element Designer**](./elements/index.mdx), [**Generic Segment Designer**](./segments/index.mdx), or [**Generic Dataset Designer**](./datasets/index.mdx) from the menu.
+
+<img src={designerMenu} alt="Designer Menu" />
+
+2. Locate the template you want to work with and click the [**Template**](./template-features/index.mdx) button - the system will automatically navigate you to the [**Work Area**](./template-features/workarea.mdx).
+
+Starting from LabIMotion v2.1, you can use **Quick Filter** to quickly find a template by entering a piece of text.
+
+
+<YouTubeFrame
+  src="https://www.youtube-nocookie.com/embed/uYP60ApVTsI"
+  title="Designer, you design what you need."
+/>
+
+<FigCaption text="LabIMotion - Quick Filter" />
+
+
+3. Utilize the [**Preview Design**](./template-features/preview-design.mdx) feature to gain a visual representation of the template's appearance.
+4. Access the [**Work Area**](./template-features/workarea.mdx) to integrate essential components, arrange them to your preferences, and establish the desired layout.
 
 <YouTubeFrame
   src="https://www.youtube-nocookie.com/embed/8o1U4QXU-B0"
