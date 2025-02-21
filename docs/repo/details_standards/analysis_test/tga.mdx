@@ -15,31 +15,35 @@ Updated: 21.11.2024
 ## Inline notation for thermal gravimetric analysis (TGA) 
 
 The inline notation gives a short summary of the metadata and a list of the results of the TGA measurement. 
-The analysis of the TGA measurements should contain at least the values for T<sub>5%</sub> (Temperature at which 5% are decomposed), T<sub>95%</sub> (Temperature at which 95% are decomposed), and T<sub>max</sub> (Temperature with the highest decomposition, maximum of first derivative). The latter one should be labelled with "*". Additional decompositions steps should be included if detected and listed between T<sub>5%</sub> and T<sub>95%</sub>. If there are known decomposition reasons (such as loss of water) this information should be added in brackets after the listing of the corresponding air of temperature/%.
+The analysis of the TGA measurements should contain at least the values for T<sub>5%</sub> (Temperature at which 5% weight loss is observed), T<sub>95%</sub> (Temperature at which 95% are decomposed), and T<sub>max</sub> (Temperature with the highest decomposition rate, maximum of first derivative). The latter one should be labelled with "*". The value T95% (Temperature at which 95% weight loss is observed) should further be reported if observable. Additional decompositions steps should be included if detected and listed between T<sub>5%</sub> and T<sub>95%</sub>. If there are known decomposition reasons (such as loss of water) this information should be added in brackets after the listing of the corresponding temperature. At the end, the final value of the residue should be reported in %.
+Normally, the process consists of an isothermal step to equilibrate the material, then a temperature ramp to the desired maximum temperature, and a final isothermal step. The process description should contain information about the starting temperature in °C, the time intervals for the isothermal steps in min, and the increasing rate of the temperature in °C/min.
+For each step: onset, maximum, endset, how much is lost in total
+If applicable, IR detection can be used to obtain more information about the decomposition products. The IR spectra should be reported according to the standardized protocol of IR.
+
 
 ### Examples for desired formatting:
 
-** (1) Standard example:**<br /> 
+**(1) Standard example:** <br /> 
 TGA (Pt; N<sub>2</sub>; 30 °C (3 min), 30 °C to 900 °C (10 °C/min), 900 °C (5 min)): Temp. in °C (weight loss, %) = 50 (5), 80* (30) [-EtOH], 100 (95) [-H<sub>2</sub>O]. <br />
 
-** (2) Gas loss during measurements:**<br /> 
+**(2) Gas loss during measurements:** <br /> 
 TGA (Pt; N<sub>2</sub>; 30 °C (3 min), 30 °C to 900 °C (10 °C/min), 900 °C (5 min)): Temp. in °C (weight loss, %) = 283 (5) [-HCl], 300* (30), 310 (95). <br /> 
 
-** (3) Sample with a residue >5%:**<br /> 
+**(3) Sample with a residue >5%:** <br /> 
 TGA (Pt; N<sub>2</sub>; 30 °C (3 min), 30 °C to 900 °C (10 °C/min), 900 °C (5 min)): Temp. in °C (weight loss, %) = 283 (5) [-HCl], 300* (30). Residual: 20%. <br />
 
-** (4) Several degradation steps:**<br /> 
+**(4) Several degradation steps:** <br /> 
 TGA (Pt; N<sub>2</sub>; 30 °C (3 min), 30 °C to 900 °C (10 °C/min), 900 °C (5 min)): Temp. in °C (weight loss, %) = 50 (5), 200 (95). First step: 78-80-83 (25). Second step: 123-130-140 (60). <br />
 
 
 
 **Explanation:**<br /> 
 Metadata<br /> 
-- Pt = support material used for the measurement
-- N<sub>2</sub> = gas used in the process
-- 30 °C (3 min), 30 °C to 900 °C (10 °C/min), 900 °C = process description in short form
-- Temp. in °C = Onset temperature at which a certain loss of material is recorded in °C
-- Weight loss, % = weight loss at a certain temperature 
+- Pt = support material used for the measurement (other materials are possible, e.g. Al)
+- N<sub>2</sub> = carrier gas used in the process (other possibilities: e.g. air)
+- 30 °C (3 min), 30 °C to 900 °C (10 °C/min), 900 °C (5 min) = process description in short form
+- Temp. in °C = temperature at which a certain weight loss in percentage is recorded
+- Weight loss, % = weight loss at a certain temperature in %
 - [-H<sub>2</sub>O] = Additional information on the loss of a certain known component
 <br />
 
