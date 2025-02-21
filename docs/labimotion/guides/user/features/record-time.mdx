@@ -1,0 +1,49 @@
+---
+title: Record Time
+author: Claire Lin
+sidebar_position: 2
+---
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faClock,
+  faCircleXmark,
+  faArrowUpRightFromSquare,
+} from "@fortawesome/free-solid-svg-icons";
+
+import { FigCaption, SubTitle, Reader } from "@site/src/js/layout";
+
+<SubTitle text="Keep record time" />
+<Reader text="User" />
+
+The **Record Time** function is available on each layer header. This feature allows users to manually record a specific date and time for reference.
+
+The **Record Time** <FontAwesomeIcon icon={faClock} /> button is located at the top-right corner of the layer. When clicked, users can enter a desired date and time to associate with the layer. Once the data is saved, the record time will be displayed.
+
+![RecordTime](/img/labimotion/record-time.png)
+
+Simply click the <FontAwesomeIcon icon={faCircleXmark} /> icon to remove the record time.
+
+<div
+  style={{
+    display: "flex",
+    justifyContent: "center",
+    marginTop: 0,
+    flexDirection: "column",
+  }}
+>
+  <span className="figCaption" style={{ textAlign: "left" }}>(Click to view in a new window{" "} <FontAwesomeIcon icon={faArrowUpRightFromSquare} />)</span>
+  <a
+    href="/img/labimotion/record-time.mp4"
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{ display: "block" }}
+  >
+    <video width="100%" controls autoPlay loop muted>
+      <source src="/img/labimotion/record-time.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </a>
+</div>
+
+<FigCaption text="LabIMotion - Record Time (User View)" />
