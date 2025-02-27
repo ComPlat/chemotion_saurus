@@ -12,15 +12,24 @@ https://github.com/ComPlat/chemotion_saurus/issues
 Updated: 06.11.2024
 :::
 
-## Inline notation for TGA thermal gravimetric analysis (DSC) 
+## Inline notation for differential scanning calorimetry  (DSC) 
 
 The inline notation gives a short summary of the metadata and a list of the results of the DSC measurement. 
-The analysis of the DSC measurements should report values from all segments. To be reported are the glass transition temperature (Tg) (maximum/minimum of first derivative), the melting temperature (Tm) (maximum/minimum of first derivative) inlcuding the melting enthalpy (area under the curve for the melting peak). System peaks need to be omitted (by cutting the analysis temperature by  ~20 °C on every side)
+The analysis of the DSC measurements should report values from all segments. To be reported are the glass transition temperature (Tg) (maximum/minimum of first derivative), the melting temperature (Tm) (maximum/minimum of the heat flow) including the melting enthalpy (area under the curve for the melting peak). If present, a crystallization temperature (Tc) (maximum/ minimum of the heat flow) can be detected during a cooling cycle.
+Normally, DSC measurements consist of three segments, a first heating program to delete the thermal history of the sample, then a cooling program, and finally a second heating ramp. For the determination of Tg and Tm values, the second heating step should be considered.  
+System peaks need to be omitted (by cutting the analysis temperature by  ~20 °C on every side)
+The first heating step should only be considered for evaluation if relevant transitions are observed.
+Apart from standard polymer measurements, DSC can be used to observe different kinds of phase transitions within solid or liquid materials. For first order phase transitions, the maximum of the first derivative should be reported. For second order phase transitions, the maximum/ minimum of the heat flow should be reported as well as the enthalpy, noted as area under the curve.
+Segments should be defined.
+
 
 ### Examples for desired formatting:
 
-**Standard example:** <br /> 
-DSC (150 to -150, 10 °C/min): Temp. in °C (heat flow in mW/mg, Tx, Seg) = 50 (T<sub>g</sub>, S2), 100 (area, T<sub>m</sub>, S2), 55 (T<sub>g</sub>, S4), 102 (area, T<sub>m</sub>, S4). <br />
+**Standard example for semicrystalline polymer sample:** <br /> 
+DSC (S1: 25 to 150 °C, S2: 150 to -150 °C, S3: -150 to 150 °C, 10 °C/min): Temp. in °C (heat flow in mW/mg, Tx, Seg) = 50 (T<sub>g</sub>, S3), 90 (area, T<sub>c</sub>, S2), 100 (area, T<sub>m</sub>, S3). <br />
+
+**Standard example for amorphous polymer sample:** <br /> 
+DSC (S1: 25 to 150 °C, S2:150 to -150 °C, S3: -150 to 150 °C, 10 °C/min): Temp. in °C (heat flow in mW/mg, Tx, Seg) = 50 (Tg, S3).
 
 
 **Explanation:** <br /> 
