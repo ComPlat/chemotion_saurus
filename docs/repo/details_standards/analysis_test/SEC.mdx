@@ -7,19 +7,33 @@ sidebar_position: 20
 
 Size exclusion chromatography (SEC)
 
-## Inline notation for thermal gravimetric analysis (TGA) 
+## Inline notation for size exclusion chromatography (SEC) 
 
-The inline notation gives a short summary of the metadata and a list of the results of the SEC measurement.
-The notation of measurement should at least include the solvent, calibration, average molecular weight and dispersity of the measured sample.
+The inline notation gives a short summary of the metadata and a list of the results of the SEC measurement. To be reported are the number average molecular weight Mn in Da, the weight average molecular weight Mw in Da, and the dispersity Đ, which is defined as Mw/Mn. If applicable, the viscosity molecular weight Mv in Da or the size average molecular weight Mz in Da can be reported.
+The used solvent, the standard used in the calibration, and the detector should be defined. The temperature should be reported if deviating from room temperature. 
+Further, the calibration range should be defined.
 
-SEC (THF, PMMA): Mn = 20.000 g/mol, Mw = 25.000 g/mol, (ggf Mv = 22.000 g/mol), D = 1.21.
-SEC (solvent, standard): Mn = 20.000 g/mol, Mw = 25.000 g/mol, (ggf Mv = 22.000 g/mol), D = 1.21.
+**Examples for a suitable formatting:**<br /> 
+
+(1) Standard example:<br /> 
+SEC (THF, PMMA, RID, 102–10000 Da): Mn = 20.000 Da, Mw = 25.000 Da, Đ = 1.21.<br /> 
+(2) Example of SEC measurement at elevated temperature:
+SEC (TCB, PMMA, RID, 120 °C): Mn = 20.000 Da, Mw = 25.000 g/mol, Đ = 1.21. 
+
 
 **Explanation:**<br /> 
-Metadata<br /> 
-solvent = mobile phase of the SEC instrument<br />
-standard = polymer standard used for the calibration of the instrument and analyzing the measured sample<br />
+
+solvent = mobile phase of the SEC instrument. In example (1), the solvent is THF <br />
+standard = polymer standard used for the calibration of the instrument and analyzing the measured sample. In example (1), the standard is PMMA<br />
 Mn = number average molecular weight<br />
 Mw = weight average molecular weight<br />
 Mv = viscosity average molecular weight<br />
 D = dispersity of the molecular weight; D = Mw/Mn<br />
+
+Typical conditions: <br />
+THF = solvent used as mobile phase (other possible solvents include DMAc, water, DMSO, HFIP, CHCl3, TCB)<br />
+PMMA = standard used for the calibration (other common examples: PS, dextrane)<br />
+RID = detector used to determine the signals (other common examples: UV, RALS/LALS or MALS, viscosimeter, IR)<br />
+102–10000 Da = calibration range for molecular weight determination<br />
+T in °C: temperature if deviating from room temperature<br />
+
