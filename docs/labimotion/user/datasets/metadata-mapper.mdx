@@ -1,0 +1,57 @@
+---
+title: Metadata Auto Mapper
+author: Claire Lin
+sidebar_position: 4
+---
+
+import {
+  FigCaption,
+  SubTitle,
+  YouTubeFrame,
+  Reader,
+} from "@site/src/js/layout";
+
+import mapperConcept from "@site/static/img/labimotion/metadata-mapper.png";
+
+<SubTitle text="Metadata Auto Mapper extract the metadata and fill into the dataset for you" />
+<Reader text="User" />
+
+The **Metadata Auto Mapper** automatically maps file data to the corresponding dataset template, displaying it in the predefined form.
+
+:::info[Prerequisites]
+
+Ensure the following prerequisites are met before proceeding:
+
+1. The corresponding dataset template exists and is active in your system.
+2. The file format is supported by the Metadata Auto Mapper.
+
+:::
+
+<p align="center">
+  <img src={mapperConcept} alt="LabIMotion - Generic Dataset: Metadata Auto Mapper" />
+  <FigCaption text="LabIMotion - Generic Dataset: Metadata Auto Mapper" />
+</p>
+
+Let's take a look at the following examples:
+
+### NMR File
+
+The video demonstrates how the Metadata Auto Mapper extracts the metadata from an NMR file and fills it into the dataset.
+
+<YouTubeFrame
+  src="https://www.youtube-nocookie.com/embed/dUSl0yTDTvk"
+  title="Metadata Auto Mapper"
+/>
+
+<FigCaption text="Generic Dataset: Metadata Auto Mapper - NMR file data extraction" />
+
+### BagIt format file
+
+The video demonstrates how the Metadata Auto Mapper extracts the metadata from a BagIt format file and fills it into the dataset.
+
+<YouTubeFrame
+  src="https://www.youtube-nocookie.com/embed/OeY4ebfzfDg"
+  title="Converter Metadata"
+/>
+
+<FigCaption text="Generic Dataset: Metadata Auto Mapper - BagIt file data extraction" />

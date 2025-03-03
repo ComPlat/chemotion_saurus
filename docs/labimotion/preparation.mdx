@@ -1,7 +1,7 @@
 ---
 title: Preparation
 author: Claire Lin
-sidebar_position: 1
+sidebar_position: 3
 ---
 
 import DocCardList from "@theme/DocCardList";
@@ -20,11 +20,11 @@ import menu from "@site/static/img/labimotion/menu.png";
 
 ## Before You Start...
 
-LabIMotion divides users into two distinct roles: [Designer](../designer/index.mdx) and [User](../user/index.mdx), each with specific responsibilities and permissions tailored to their needs. We strongly recommend that you have a clear understanding of your role before proceeding.
+LabIMotion divides users into two distinct roles: [**Designer**](./designer/index.mdx) and [**User**](./user/index.mdx), each with specific responsibilities and permissions tailored to their needs. We strongly recommend that you have a clear understanding of your role before proceeding.
 
-## Words for System Administrators
+## Words for **System Administrators**
 
-### Assigning the **Designer** role
+### Assigning the Designer role
 
 Given the importance of this **Designer** role, we recommend that you assign it to users who are responsible for creating and managing templates.
 
@@ -46,7 +46,11 @@ Navigate to the **UI features** menu, choose the generic feature (Element, Segme
   <img src={permissionUI} alt="UI Feature" width="500" />
 </div>
 
-## Words for Designers
+### Allowing access to Terminology Service
+
+Ensure your instance can connected to the Terminology Service (https://service.tib.eu and https://api.terminology.tib.eu) to retrieve complete and up-to-date ontology terms and data. If access to these URLs is restricted, the related functionality will still work, but users may receive incomplete information.
+
+## Words for **Designers**
 
 To access the Designer function, you must have the necessary permissions. If you can't find the **Generic Designer** option in the menu, please contact your system administrator for assistance.
 
@@ -56,8 +60,8 @@ To access the Designer function, you must have the necessary permissions. If you
 
 ### Recommended practices
 
-Utilize the Template Hub, a user-friendly collaboration center designed for scientists to effortlessly share templates across different applications. Learn how to synchronize templates from the Template Hub in the **[Template Sync & Publish](../../template-sync-and-publish.mdx)**.
+Utilize the Template Hub, a user-friendly collaboration center designed for scientists to effortlessly share templates across different applications. Learn how to synchronize templates from the Template Hub in the **[Template Sync & Publish](./template-sync-and-publish.mdx)**.
 
-## Words for Users
+## Words for **Users**
 
 Make sure you have the necessary permissions to access **Generic Elements, Segments, or  Datasets**. If these generic features are not visible, please contact your system administrator for assistance.
