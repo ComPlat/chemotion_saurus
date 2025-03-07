@@ -19,6 +19,14 @@ For using the inventory collection with different users that can move items into
 
 :::
 
+:::danger[Caution]
+
+importing storage temperature, expiration date, and volume fields for chemical samples will be available with version 2.0, which will be released soon.
+
+If you are interested, please feel free to test it around in our [test server](https://unrelated.chemotion.ibcs.kit.edu/)
+
+:::
+
 ## Creating Inventory for a Group
 
 Creating a chemical inventory that can be accessed by all members of a working group requires four steps:
@@ -170,6 +178,15 @@ To start the import of chemical samples process, users should follow these steps
   Canonical Smiles (Smiles) or Molfile. while the remaining columns are optional, providing more details is encouraged for comprehensive record-keeping.
 - Additionally, users have the capability to import safety data sheets into Chemotion ELN by entering relevant information into the designated fields such as safety data sheet and vendor. Please note that this option is presently compatible only with the Merck vendor.
 - Importing is also feasible for samples and chemicals that do not possess a chemical structure (referred to as decoupled samples). In such instances, users should indicate the value yes in the column of decoupled. If the sample has chemical structure, it is imperative to ensure that any of the columns relevant to the chemical structure, such as molfile and canonical smiles contain valid data.
+
+:::info[Recommendation]
+
+For the import process of a chemical inventory entry, **Amount** in the inventory tab should be entered using the column header labeled **Amount**, which refers to the amount of the chemical inventory entry in grams.
+
+The **Target/Real Amount** column headers, however, refers to the **Amount** field in the [**Sample Properties tab**](https://chemotion.net/docs/eln/ui/details?_highlight=properties&_highlight=tab#properties-tab), which is specific to the sample and not related to the inventory entry.
+
+:::
+
 
 <p>
   <DownloadBtn
