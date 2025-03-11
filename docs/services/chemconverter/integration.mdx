@@ -12,9 +12,14 @@ This page is still being edited and reviewed.
 
 # ELN integration
 
-The Chemotion Converter is integrated as a background process, so the normal user will not notice it.
-If using a file from your inbox coming from an integrated device, you should use the already ChemConverted file among it (if a conversion is necessary / possible for this kind of file).
+The Chemotion Converter is integrated as a background process, so the user will not notice it but by the presence of additional files along the original.
+If using a file of your inbox that comes from an integrated device, you should use the ChemConverter-produced file (if a conversion is necessary / possible for this kind of file).
 To do so, just drag & drop it from the inbox to the wanted field of the ELN GUI.
 The exact workflow is shown in the animated picture.
 
 ![Workflow for converted files from integrated devices](/img/converter/ConvertedFileFromDevice.gif)
+
+
+:::warning[warning]
+Note that drag-n-dropping the orignal file only from the inbox into an anlysis will not trigger the converter if the converter already has processed it and deposited the resulting zip along the original.
+To keep the original and trigger the spectra view, the user should move both files into an analysis dataset.  
