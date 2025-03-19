@@ -1,0 +1,901 @@
+{
+  "data": {
+    "metadata": {
+      "content_type": "application/vnd.ms-excel",
+      "extension": ".xls",
+      "file_name": "PH-Nylon 6.xls",
+      "mime_type": "application/vnd.ms-excel",
+      "reader": "OldExcelReader",
+      "uploaded": "2025-03-19T12:44:39.975562"
+    },
+    "tables": [
+      {
+        "columns": [],
+        "header": [
+          "Filename\tPH-Nylon 6",
+          "Instrument name\tDSC2A-01428 (172.21.63.171)",
+          "Operator\t",
+          "rundate\t07.03.2025",
+          "Sample name\tPH-Nylon 6",
+          "proceduresegments\tRamp 10,00 °C/min to 350,00 °C; Ramp 5,00 °C/min to -50,00 °C; Ramp 10,00 °C/min to 350,00 °C",
+          "[File Parameters]\t",
+          "Run date\t07.03.2025 04:36:50",
+          "Trios version\t5.1.1.46572",
+          "Original File Name\t",
+          "Current File Name\tD:\\Data\\PH-Nylon 6.tri",
+          "[Procedure]\t",
+          "Procedure Name\tHeat Cool Heat",
+          "Sample Name\tPH-Nylon 6",
+          "Sample Mass\t11,1 mg",
+          "Reference Sample Mass\t0 mg",
+          "Pan Mass\t0 mg",
+          "Pan Number\t38.0",
+          "Reference Pan Mass\t52,06 mg",
+          "Reference Pan Number\t54.0",
+          "Pan Type\tTzero Aluminum Hermetic",
+          "Comments\t",
+          "Project Name\t",
+          "Operator\t",
+          "Test\tHeat Cool Heat",
+          "Unload Max Temperature\t40.0",
+          "Unload Min Temperature\t40.0",
+          "Load Max Temperature\t40.0",
+          "Load Min Temperature\t40.0",
+          "Stop on Gas Flow Error\tYes",
+          "[Signal List]\t",
+          "Signal #1\tTime (min)",
+          "Signal #2\tTemperature (°C)",
+          "Signal #3\tHeat Flow (mW)",
+          "Signal #4\tDelta T (µV)",
+          "Signal #5\tDelta Tzero (µV)",
+          "Signal #6\tTzero Temperature (°C)",
+          "Signal #7\tCell Purge (mL/min)",
+          "Signal #8\tHeater Temp (°C)",
+          "Signal #9\tPower Delivered (W)",
+          "Signal #10\tReference Junction Temperature (°C)",
+          "Signal #11\tFlange Temperature (°C)",
+          "Signal #12\tHeat Flow Phase (rad)",
+          "Signal #13\tTotal Heat Capacity (J/°C)",
+          "Signal #14\tHeat Capacity (J/°C)",
+          "[Configuration]\t",
+          "Company Name\tKIT",
+          "Instrument Name\tDSC2A-01428",
+          "Instrument Type\tDSC2500",
+          "Serial Number\tDSC2A-01428",
+          "IP\t172.21.63.171",
+          "Location of Instrument\tManufacturing Test",
+          "DisplayType\tTianmaV2",
+          "Sample Interval \t0,1 s/pt",
+          "Selected Heat Flow\tT4P",
+          "Exotherm Direction\tUp",
+          "Cell Serial\tDRC2-02891",
+          "Lid Type\tStandard",
+          "Cooler\tRCS 90",
+          "Leave Cooler on at End of Sequence\tOff",
+          "Gas 2\tAir",
+          "Gas Selected\tChannel 1",
+          "Flow Rate\t50 mL/min",
+          "Secondary Purge\tOn",
+          "Licensed Heat Flow\tHeat Flow T4P",
+          "Modulation Licensed\tYes",
+          "[Versions]\t",
+          "Common IDD Version\t1.0",
+          "Cortex Version\tVER 2.10.2.31",
+          "Driver\t5.0.0.6",
+          "GDM Version\t1.0.3.3",
+          "TouchscreenVersion\t1.0.0.16145",
+          "FEP Version\t1.2.1.21",
+          "FEP Bootloader\t2.0.0.5",
+          "AutoSampler Version\t2.1.1.26",
+          "Auto Sampler Bootloader\t2.0.0.5",
+          "FCM Version\t1.1.0.3",
+          "FCM Bootloader\t2.0.0.5",
+          "[Experiment Logs]\t",
+          "Experiment Log Entry # 1\tRamp Segment 10 C/min to 350 Started",
+          "Experiment Log Entry # 3\tAir Cool is off.",
+          "Experiment Log Entry # 5\tRamp Segment 5 C/min to -50 Started",
+          "Experiment Log Entry # 7\tRamp Segment 10 C/min to 350 Started",
+          "[Method Log]\t",
+          "Method Log Entry # 1\t(Ramp 381021) Ramp 10 °C/minute to 350 °C",
+          "Method Log Entry # 2\t(Ramp 381022) Ramp 5 °C/minute to -50 °C",
+          "Method Log Entry # 3\t(Ramp 381023) Ramp 10 °C/minute to 350 °C",
+          "Cell Serial\tDRC2-02891",
+          "[T1 Calibration]\t",
+          "Date Applied\t06.11.2019 14:40:19",
+          "Description\t",
+          "Gas Type\tNitrogen",
+          "Pan Type\tNone",
+          "Slope\t-0,02160154",
+          "Offset\t3685388.0",
+          "Initial Temperature\t9821333.0",
+          "GUID\t8113abf2-90f1-4ae7-9144-2b0d973f0d90",
+          "[TZero Calibration]\t",
+          "Date Applied\t05.07.2021 19:04:57",
+          "Description\tFrom -88,728 °C to 396,551 °C at 20,000°C/min",
+          "Gas Type\tNitrogen",
+          "Pan Type\tNone",
+          "Source Files 1\tC:\\ProgramData\\TA Instruments\\TRIOS\\Data\\Tzero-CAL(2).tri",
+          "Source Files 2\tC:\\ProgramData\\TA Instruments\\TRIOS\\Data\\Tzero-CAL(3).tri",
+          "Delta T Offset\t8391029.0",
+          "Delta T Slope\t-0,0184149",
+          "Delta T0 Offset\t-2761761.0",
+          "Delta T0 Slope\t0,0527046",
+          "[Temperature Calibration]\t",
+          "Date Applied\t18.10.2022 13:36:25",
+          "Description\tFrom 56,590 °C to 216,590 °C at 20,000°C/min",
+          "Gas Type\tNitrogen",
+          "Pan Type\tTzero Aluminum Hermetic",
+          "Source Files 1\tC:\\ProgramData\\TA Instruments\\TRIOS\\Data\\Indium(53).tri",
+          "Measured 1\t1580134.0",
+          "Known 1\t156598.0",
+          "[Cell Constant Calibration]\t",
+          "Date Applied\t18.10.2022 13:36:25",
+          "Description\tFrom 56,590 °C to 216,590 °C at 20,000°C/min",
+          "Gas Type\tNitrogen",
+          "Pan Type\tTzero Aluminum Hermetic",
+          "Source Files 1\tC:\\ProgramData\\TA Instruments\\TRIOS\\Data\\Indium(53).tri",
+          "T4P KCell\t1056254.0",
+          "Onset Slope\t-46,32671 mW/°C",
+          "[Direct Cp Calibration]\t",
+          "(Not Applied)\t",
+          "[Rev Cp Calibration]\t",
+          "(Not Applied)\t"
+        ],
+        "metadata": {
+          "(Not Applied)": "",
+          "(Not Applied) (1)": "",
+          "Auto Sampler Bootloader": "2.0.0.5",
+          "AutoSampler Version": "2.1.1.26",
+          "Cell Serial": "DRC2-02891",
+          "Cell Serial (1)": "DRC2-02891",
+          "Comments": "",
+          "Common IDD Version": 1,
+          "Company Name": "KIT",
+          "Cooler": "RCS 90",
+          "Cortex Version": "VER 2.10.2.31",
+          "Current File Name": "D:\\Data\\PH-Nylon 6.tri",
+          "Date Applied": "06.11.2019 14:40:19",
+          "Date Applied (1)": "05.07.2021 19:04:57",
+          "Date Applied (2)": "18.10.2022 13:36:25",
+          "Date Applied (3)": "18.10.2022 13:36:25",
+          "Delta T Offset": 8391029,
+          "Delta T Slope": "-0,0184149",
+          "Delta T0 Offset": -2761761,
+          "Delta T0 Slope": "0,0527046",
+          "Description": "",
+          "Description (1)": "From -88,728 °C to 396,551 °C at 20,000°C/min",
+          "Description (2)": "From 56,590 °C to 216,590 °C at 20,000°C/min",
+          "Description (3)": "From 56,590 °C to 216,590 °C at 20,000°C/min",
+          "DisplayType": "TianmaV2",
+          "Driver": "5.0.0.6",
+          "Exotherm Direction": "Up",
+          "Experiment Log Entry # 1": "Ramp Segment 10 C/min to 350 Started",
+          "Experiment Log Entry # 3": "Air Cool is off.",
+          "Experiment Log Entry # 5": "Ramp Segment 5 C/min to -50 Started",
+          "Experiment Log Entry # 7": "Ramp Segment 10 C/min to 350 Started",
+          "FCM Bootloader": "2.0.0.5",
+          "FCM Version": "1.1.0.3",
+          "FEP Bootloader": "2.0.0.5",
+          "FEP Version": "1.2.1.21",
+          "Filename": "PH-Nylon 6",
+          "Flow Rate": "50 mL/min",
+          "GDM Version": "1.0.3.3",
+          "GUID": "8113abf2-90f1-4ae7-9144-2b0d973f0d90",
+          "Gas 2": "Air",
+          "Gas Selected": "Channel 1",
+          "Gas Type": "Nitrogen",
+          "Gas Type (1)": "Nitrogen",
+          "Gas Type (2)": "Nitrogen",
+          "Gas Type (3)": "Nitrogen",
+          "IP": "172.21.63.171",
+          "Initial Temperature": 9821333,
+          "Instrument Name": "DSC2A-01428",
+          "Instrument Type": "DSC2500",
+          "Instrument name": "DSC2A-01428 (172.21.63.171)",
+          "Known 1": 156598,
+          "Leave Cooler on at End of Sequence": "Off",
+          "Licensed Heat Flow": "Heat Flow T4P",
+          "Lid Type": "Standard",
+          "Load Max Temperature": 40,
+          "Load Min Temperature": 40,
+          "Location of Instrument": "Manufacturing Test",
+          "Measured 1": 1580134,
+          "Method Log Entry # 1": "(Ramp 381021) Ramp 10 °C/minute to 350 °C",
+          "Method Log Entry # 2": "(Ramp 381022) Ramp 5 °C/minute to -50 °C",
+          "Method Log Entry # 3": "(Ramp 381023) Ramp 10 °C/minute to 350 °C",
+          "Modulation Licensed": "Yes",
+          "Offset": 3685388,
+          "Onset Slope": "-46,32671 mW/°C",
+          "Operator": "",
+          "Operator (1)": "",
+          "Original File Name": "",
+          "Pan Mass": "0 mg",
+          "Pan Number": 38,
+          "Pan Type": "Tzero Aluminum Hermetic",
+          "Pan Type (1)": "None",
+          "Pan Type (2)": "None",
+          "Pan Type (3)": "Tzero Aluminum Hermetic",
+          "Pan Type (4)": "Tzero Aluminum Hermetic",
+          "Procedure Name": "Heat Cool Heat",
+          "Project Name": "",
+          "Reference Pan Mass": "52,06 mg",
+          "Reference Pan Number": 54,
+          "Reference Sample Mass": "0 mg",
+          "Run date": "07.03.2025 04:36:50",
+          "Sample Interval ": "0,1 s/pt",
+          "Sample Mass": "11,1 mg",
+          "Sample Name": "PH-Nylon 6",
+          "Sample name": "PH-Nylon 6",
+          "Secondary Purge": "On",
+          "Selected Heat Flow": "T4P",
+          "Serial Number": "DSC2A-01428",
+          "Signal #1": "Time (min)",
+          "Signal #10": "Reference Junction Temperature (°C)",
+          "Signal #11": "Flange Temperature (°C)",
+          "Signal #12": "Heat Flow Phase (rad)",
+          "Signal #13": "Total Heat Capacity (J/°C)",
+          "Signal #14": "Heat Capacity (J/°C)",
+          "Signal #2": "Temperature (°C)",
+          "Signal #3": "Heat Flow (mW)",
+          "Signal #4": "Delta T (µV)",
+          "Signal #5": "Delta Tzero (µV)",
+          "Signal #6": "Tzero Temperature (°C)",
+          "Signal #7": "Cell Purge (mL/min)",
+          "Signal #8": "Heater Temp (°C)",
+          "Signal #9": "Power Delivered (W)",
+          "Slope": "-0,02160154",
+          "Source Files 1": "C:\\ProgramData\\TA Instruments\\TRIOS\\Data\\Tzero-CAL(2).tri",
+          "Source Files 1 (1)": "C:\\ProgramData\\TA Instruments\\TRIOS\\Data\\Indium(53).tri",
+          "Source Files 1 (2)": "C:\\ProgramData\\TA Instruments\\TRIOS\\Data\\Indium(53).tri",
+          "Source Files 2": "C:\\ProgramData\\TA Instruments\\TRIOS\\Data\\Tzero-CAL(3).tri",
+          "Stop on Gas Flow Error": "Yes",
+          "T4P KCell": 1056254,
+          "Test": "Heat Cool Heat",
+          "TouchscreenVersion": "1.0.0.16145",
+          "Trios version": "5.1.1.46572",
+          "Unload Max Temperature": 40,
+          "Unload Min Temperature": 40,
+          "[Cell Constant Calibration]": "",
+          "[Configuration]": "",
+          "[Direct Cp Calibration]": "",
+          "[Experiment Logs]": "",
+          "[File Parameters]": "",
+          "[Method Log]": "",
+          "[Procedure]": "",
+          "[Rev Cp Calibration]": "",
+          "[Signal List]": "",
+          "[T1 Calibration]": "",
+          "[TZero Calibration]": "",
+          "[Temperature Calibration]": "",
+          "[Versions]": "",
+          "columns": "0",
+          "proceduresegments": "Ramp 10,00 °C/min to 350,00 °C; Ramp 5,00 °C/min to -50,00 °C; Ramp 10,00 °C/min to 350,00 °C",
+          "rows": "0",
+          "rundate": "07.03.2025"
+        },
+        "rows": []
+      },
+      {
+        "columns": [
+          {
+            "key": "0",
+            "name": "Column #0"
+          }
+        ],
+        "header": [
+          "Ramp 10,00 °C/min to 350,00 °C\t\t",
+          "Time\tTemperature\tHeat Flow (Normalized)",
+          "min\t°C\tW/g"
+        ],
+        "metadata": {
+          "Ramp 10,00 °C/min to 350,00 °C": "",
+          "Ramp 10,00 °C/min to 350,00 °C (1)": "",
+          "Time": "Temperature",
+          "Time (1)": "Heat Flow (Normalized)",
+          "columns": "1",
+          "min": "°C",
+          "min (1)": "W/g",
+          "rows": "5"
+        },
+        "rows": [
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0.01
+          ],
+          [
+            0.01
+          ]
+        ]
+      },
+      {
+        "columns": [
+          {
+            "key": "0",
+            "name": "Column #0"
+          },
+          {
+            "key": "1",
+            "name": "Column #1"
+          }
+        ],
+        "header": [],
+        "metadata": {
+          "columns": "2",
+          "rows": "30"
+        },
+        "rows": [
+          [
+            0.01,
+            39.57
+          ],
+          [
+            0.01,
+            39.58
+          ],
+          [
+            0.01,
+            39.59
+          ],
+          [
+            0.01,
+            39.6
+          ],
+          [
+            0.01,
+            39.61
+          ],
+          [
+            0.02,
+            39.61
+          ],
+          [
+            0.02,
+            39.62
+          ],
+          [
+            0.02,
+            39.63
+          ],
+          [
+            0.02,
+            39.64
+          ],
+          [
+            0.02,
+            39.64
+          ]
+        ]
+      },
+      {
+        "columns": [
+          {
+            "key": "0",
+            "name": "Column #0"
+          },
+          {
+            "key": "1",
+            "name": "Column #1"
+          },
+          {
+            "key": "2",
+            "name": "Column #2"
+          }
+        ],
+        "header": [],
+        "metadata": {
+          "columns": "3",
+          "rows": "18539"
+        },
+        "rows": [
+          [
+            0.06,
+            39.8,
+            -0.393
+          ],
+          [
+            0.06,
+            39.81,
+            -0.393
+          ],
+          [
+            0.06,
+            39.81,
+            -0.392
+          ],
+          [
+            0.06,
+            39.82,
+            -0.389
+          ],
+          [
+            0.07,
+            39.83,
+            -0.385
+          ],
+          [
+            0.07,
+            39.84,
+            -0.382
+          ],
+          [
+            0.07,
+            39.85,
+            -0.38
+          ],
+          [
+            0.07,
+            39.86,
+            -0.378
+          ],
+          [
+            0.07,
+            39.87,
+            -0.376
+          ],
+          [
+            0.07,
+            39.88,
+            -0.374
+          ]
+        ]
+      },
+      {
+        "columns": [
+          {
+            "key": "0",
+            "name": "Column #0"
+          },
+          {
+            "key": "1",
+            "name": "Column #1"
+          },
+          {
+            "key": "2",
+            "name": "Column #2"
+          }
+        ],
+        "header": [
+          "Ramp 5,00 °C/min to -50,00 °C\t\t",
+          "Time\tTemperature\tHeat Flow (Normalized)",
+          "min\t°C\tW/g"
+        ],
+        "metadata": {
+          "Ramp 5,00 °C/min to -50,00 °C": "",
+          "Ramp 5,00 °C/min to -50,00 °C (1)": "",
+          "Time": "Temperature",
+          "Time (1)": "Heat Flow (Normalized)",
+          "columns": "3",
+          "min": "°C",
+          "min (1)": "W/g",
+          "rows": "48000"
+        },
+        "rows": [
+          [
+            30.96,
+            348.34,
+            -0.431
+          ],
+          [
+            30.96,
+            348.35,
+            -0.431
+          ],
+          [
+            30.96,
+            348.37,
+            -0.432
+          ],
+          [
+            30.96,
+            348.39,
+            -0.432
+          ],
+          [
+            30.96,
+            348.4,
+            -0.432
+          ],
+          [
+            30.97,
+            348.42,
+            -0.432
+          ],
+          [
+            30.97,
+            348.44,
+            -0.432
+          ],
+          [
+            30.97,
+            348.45,
+            -0.432
+          ],
+          [
+            30.97,
+            348.47,
+            -0.432
+          ],
+          [
+            30.97,
+            348.49,
+            -0.432
+          ]
+        ]
+      },
+      {
+        "columns": [
+          {
+            "key": "0",
+            "name": "Column #0"
+          },
+          {
+            "key": "1",
+            "name": "Column #1"
+          },
+          {
+            "key": "2",
+            "name": "Column #2"
+          }
+        ],
+        "header": [
+          "Ramp 10,00 °C/min to 350,00 °C\t\t",
+          "Time\tTemperature\tHeat Flow (Normalized)",
+          "min\t°C\tW/g"
+        ],
+        "metadata": {
+          "Ramp 10,00 °C/min to 350,00 °C": "",
+          "Ramp 10,00 °C/min to 350,00 °C (1)": "",
+          "Time": "Temperature",
+          "Time (1)": "Heat Flow (Normalized)",
+          "columns": "3",
+          "min": "°C",
+          "min (1)": "W/g",
+          "rows": "23965"
+        },
+        "rows": [
+          [
+            110.96,
+            -49,
+            0.086
+          ],
+          [
+            110.96,
+            -49.01,
+            0.086
+          ],
+          [
+            110.96,
+            -49.02,
+            0.086
+          ],
+          [
+            110.96,
+            -49.03,
+            0.086
+          ],
+          [
+            110.96,
+            -49.04,
+            0.086
+          ],
+          [
+            110.96,
+            -49.05,
+            0.086
+          ],
+          [
+            110.97,
+            -49.06,
+            0.086
+          ],
+          [
+            110.97,
+            -49.06,
+            0.086
+          ],
+          [
+            110.97,
+            -49.07,
+            0.086
+          ],
+          [
+            110.97,
+            -49.08,
+            0.086
+          ]
+        ]
+      },
+      {
+        "columns": [
+          {
+            "key": "0",
+            "name": "Column #0"
+          },
+          {
+            "key": "1",
+            "name": "Column #1"
+          }
+        ],
+        "header": [],
+        "metadata": {
+          "columns": "2",
+          "rows": "30"
+        },
+        "rows": [
+          [
+            150.9,
+            347.71
+          ],
+          [
+            150.9,
+            347.73
+          ],
+          [
+            150.9,
+            347.75
+          ],
+          [
+            150.9,
+            347.76
+          ],
+          [
+            150.9,
+            347.78
+          ],
+          [
+            150.91,
+            347.8
+          ],
+          [
+            150.91,
+            347.81
+          ],
+          [
+            150.91,
+            347.83
+          ],
+          [
+            150.91,
+            347.85
+          ],
+          [
+            150.91,
+            347.86
+          ]
+        ]
+      },
+      {
+        "columns": [
+          {
+            "key": "0",
+            "name": "Column #0"
+          }
+        ],
+        "header": [],
+        "metadata": {
+          "columns": "1",
+          "rows": "5"
+        },
+        "rows": [
+          [
+            150.95
+          ],
+          [
+            150.95
+          ],
+          [
+            150.95
+          ],
+          [
+            150.95
+          ],
+          [
+            150.95
+          ]
+        ]
+      }
+    ]
+  },
+  "description": "---; ref location: ---, data: +, metadata: +\n;Heating up and cooling down phases are ignored because of no recorded Heat Flow",
+  "id": "13d412b7-e462-44bd-a642-56a22e558640",
+  "identifiers": [
+    {
+      "key": "extension",
+      "match": "exact",
+      "optional": false,
+      "type": "fileMetadata",
+      "value": ".xls"
+    },
+    {
+      "key": "reader",
+      "match": "exact",
+      "optional": false,
+      "type": "fileMetadata",
+      "value": "OldExcelReader"
+    },
+    {
+      "key": "Instrument Type",
+      "match": "regex",
+      "optional": false,
+      "tableIndex": 0,
+      "type": "tableMetadata",
+      "value": "(DSC)"
+    },
+    {
+      "key": "Pan Type",
+      "match": "any",
+      "optional": true,
+      "outputKey": "pan_type",
+      "outputLayer": "sample_preparation",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableMetadata",
+      "value": "Tzero Aluminum Hermetic"
+    },
+    {
+      "key": "Flow Rate",
+      "match": "regex",
+      "optional": true,
+      "outputKey": "nitrogen_flowrate",
+      "outputLayer": "set",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableMetadata",
+      "value": "(\\d+\\.?\\d*)\\smL\\/min"
+    },
+    {
+      "key": "proceduresegments",
+      "match": "any",
+      "optional": true,
+      "outputKey": "methods",
+      "outputLayer": "set",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableMetadata",
+      "value": "Ramp 10,00 °C/min to 350,00 °C; Ramp 5,00 °C/min to -50,00 °C; Ramp 10,00 °C/min to 350,00 °C"
+    },
+    {
+      "key": "Description (3)",
+      "match": "any",
+      "optional": true,
+      "outputKey": "calibration",
+      "outputLayer": "set",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableMetadata",
+      "value": "From 56,590 °C to 216,590 °C at 20,000°C/min"
+    },
+    {
+      "key": "Operator",
+      "match": "any",
+      "optional": true,
+      "outputKey": "operator",
+      "outputLayer": "general",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableMetadata",
+      "value": ""
+    },
+    {
+      "key": "Instrument Type",
+      "match": "any",
+      "optional": true,
+      "outputKey": "type",
+      "outputLayer": "instrument",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableMetadata",
+      "value": "DSC2500"
+    },
+    {
+      "key": "Serial Number",
+      "match": "any",
+      "optional": true,
+      "outputKey": "serial",
+      "outputLayer": "instrument",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableMetadata",
+      "value": "DSC2A-01428"
+    },
+    {
+      "key": "Instrument name",
+      "match": "any",
+      "optional": true,
+      "outputKey": "instrument",
+      "outputLayer": "instrument",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableMetadata",
+      "value": "DSC2A-01428 (172.21.63.171)"
+    },
+    {
+      "key": "Trios version",
+      "match": "any",
+      "optional": true,
+      "outputKey": "Version",
+      "outputLayer": "software",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableMetadata",
+      "value": "5.1.1.46572"
+    },
+    {
+      "lineNumber": 9,
+      "match": "regex",
+      "optional": true,
+      "outputKey": "Name",
+      "outputLayer": "software",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableHeader",
+      "value": "(Trios)\\sversion"
+    }
+  ],
+  "ols": "CHMO:0000684",
+  "tables": [
+    {
+      "header": {
+        "DATA CLASS": "XYPOINTS",
+        "DATA TYPE": "DIFFERENTIAL SCANNING CALORIMETRY",
+        "XUNITS": "DEGREES CELSIUS",
+        "YUNITS": "W/g"
+      },
+      "table": {
+        "xColumn": {
+          "columnIndex": 1,
+          "tableIndex": 3
+        },
+        "yColumn": {
+          "columnIndex": 2,
+          "tableIndex": 3
+        }
+      }
+    },
+    {
+      "header": {
+        "DATA CLASS": "XYPOINTS",
+        "DATA TYPE": "DIFFERENTIAL SCANNING CALORIMETRY",
+        "XUNITS": "DEGREES CELSIUS",
+        "YUNITS": "W/g"
+      },
+      "table": {
+        "xColumn": {
+          "columnIndex": 1,
+          "tableIndex": 4
+        },
+        "yColumn": {
+          "columnIndex": 2,
+          "tableIndex": 4
+        }
+      }
+    },
+    {
+      "header": {
+        "DATA CLASS": "XYPOINTS",
+        "DATA TYPE": "CIRCULAR DICHROISM SPECTROSCOPY",
+        "XUNITS": "DEGREES CELSIUS",
+        "YUNITS": "W/g"
+      },
+      "table": {
+        "xColumn": {
+          "columnIndex": 1,
+          "tableIndex": 5
+        },
+        "yColumn": {
+          "columnIndex": 2,
+          "tableIndex": 5
+        }
+      }
+    }
+  ],
+  "title": "DSC data from xls with 3 ramps, data: +, metadata: x"
+}
