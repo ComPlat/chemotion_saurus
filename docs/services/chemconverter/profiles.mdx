@@ -20,7 +20,7 @@ currently include in Repo
 | Material testing                 |              | Tensile Test high Temp | Tensile test data from txt, data: +, metadata: - <br /> Inspect Table 50kN; ref location: Fraunhofer IWS, data: +, metadata: - ; <br /> HighTemp | Inspect Table 50kN                            | \*.txt       | [Link](https://github.com/ComPlat/chemotion_saurus/blob/main/static/files/shared_ChemConverter_files/profiles/c9d63af9-2ce7-425e-895c-c04b8497c26c.json) |
 | Material testing                 |              | Tensile Test low Temp  | Tensile test data from txt, data: +, metadata: - <br /> Inspect Table 50kN; ref location: Fraunhofer IWS, data: +, metadata: - ; <br /> LowTemp  | Inspect Table 50kN                            | \*.txt       | [Link](https://github.com/ComPlat/chemotion_saurus/blob/main/static/files/shared_ChemConverter_files/profiles/6d344bc4-c4fb-4306-9d56-1e754e7e0590.json) |
 | Single-crystal X-ray Diffraction |              | CIF                    | crystallographic metadata from cif, data: -, metadata: + <br /> Stoe StadiVari diffractometer; ref location: KIT CN, data: +, metadata: +        | Stoe StadiVari diffractometer                 | \*.cif       | Link                                                                                                                                                     |
-| Sorption-Desorption Measurement  |              | AIF                    | (AIF) Sorption-Desorption Measurement from txt, data: +, metadata: + <br /> ---; ref location: TU Dresden, data: +, metadata: +                  | raw2aifv004                                   | \*.txt       | Link                                                                                                                                                     |
+| Sorption-Desorption Measurement  |              | AIF                    | (AIF) Sorption-Desorption Measurement from txt and aif, data: +, metadata: + <br /> ---; ref location: TU Dresden, data: +, metadata: +          | raw2aif                                       | \*.txt       | [Link](https://github.com/ComPlat/chemotion_saurus/blob/main/static/files/shared_ChemConverter_files/profiles/5cb879d1-2b3f-4778-8e06-1a198500c8db.json) |
 | UV-VIS                           |              | Cary60 UV-Vis          | UV-VIS data from csv, data: +, metadata: - <br /> Cary 60; ref location: KIT CN, data: +, metadata: +                                            | Agilent Cary 60 Spectrophotometer             | \*.csv       | Link                                                                                                                                                     |
 | UV-VIS                           |              | Horiba UV-Vis          | UV-VIS data from txt, data: +, metadata: - <br /> Horiba Duetta; ref location: KIT CN, data: +, metadata: +                                      | Horiba Duetta                                 | \*.txt       | Link                                                                                                                                                     |
 | UV-VIS                           |              | JASCO UV-Vis           | UV-VIS data from txt, data: +, metadata: - <br /> JASCO V-570; ref location: KIT CN, data: +, metadata: +                                        | JASCO Corp., V-570                            | \*.txt       | Link                                                                                                                                                     |
@@ -82,9 +82,9 @@ Dynamic light scattering (DLS) data from txt, with data conversion, without meta
 
 ### Profile: Sorption-Desorption Measurement (AIF) from txt \{#5cb879d1}
 
-Sorption-Desorption Measurement (AIF) from txt, with data conversion, with metadata extraction
+Sorption-Desorption Measurement (AIF) from txt and aif, with data conversion, with metadata extraction
 
-- File Format: \*.txt
+- File Format: \*.txt or \*.aif
 - Data Type: Sorption-Desorption Measurement
 - Data Class: XYPOINTS
 - X Unit: p/p0, X Value: Table#0, Column#0 : Table#0, Column#1
@@ -210,6 +210,21 @@ TGA (Thermogravimetric Analysis) with Isothermal; reference location: KIT, with 
 - Reader: OldExcelReader
 - [Download Link](https://raw.githubusercontent.com/ComPlat/chemotion_saurus/main/static/files/shared_ChemConverter_files/profiles/e7a4ee04-cdf6-4da6-a82c-ba6909af6cee.json)
 
+### Profile: TGA 3 (Thermogravimetric Analysis)
+
+TGA (Thermogravimetric Analysis) with one Ramp and one Isothermal; reference location: KIT Campus North, with data conversion, with metadata extraction
+compatible with latest Metadata Schema
+
+| Output Tables      | Data Type                  | Data Class | X Unit         | X Value           | Y Unit   | Y Value           |
+| ------------------ | -------------------------- | ---------- | -------------- | ----------------- | -------- | ----------------- |
+| **Output table 0** | THERMOGRAVIMETRIC ANALYSIS | XYPOINTS   | DEGREE CELSIUS | Table#1, Column#1 | Weight % | Table#1, Column#3 |
+| **Output table 1** | THERMOGRAVIMETRIC ANALYSIS | XYPOINTS   | DEGREE CELSIUS | Table#2, Column#1 | Weight % | Table#2, Column#3 |
+
+- File Format: \*.xls
+- Profile id: 71c30d37-6822-45c7-ac65-0386277a3327
+- Reader: OldExcelReader
+- [Download Link](https://raw.githubusercontent.com/ComPlat/chemotion_saurus/main/static/files/shared_ChemConverter_files/profiles/71c30d37-6822-45c7-ac65-0386277a3327.json)
+
 ### Profile: TGA (Thermogravimetric Analysis) with derivative \{#e845bc85}
 
 TGA (Thermogravimetric Analysis) with Isothermal and Derivative; reference location: KIT, with data conversion, with metadata extraction
@@ -249,6 +264,20 @@ DSC (Differential Scanning Calorimetry) without time; reference location: KIT, w
 - Profile id: 3e2fb90e-b6b6-4152-9182-ed8e203a58b5
 - Reader: CSVReader
 - [Download Link](https://raw.githubusercontent.com/ComPlat/chemotion_saurus/main/static/files/shared_ChemConverter_files/profiles/3e2fb90e-b6b6-4152-9182-ed8e203a58b5.json)
+
+### Profile: DSC (Differential Scanning Calorimetry) data from xls with 3 ramps, data: +, metadata: +
+
+"---; ref location: ---, data: +, metadata: +
+Heating up and cooling down phases are ignored because of no recorded Heat Flow
+
+- File Format: \*.xls
+- Data Type: THERMOGRAVIMETRIC ANALYSIS
+- Data Class: XYPOINTS
+- X Unit: DEGREE CELSIUS, X Value: Table#3&4&5, Column#1
+- Y Unit: W/g, Y Value: Table#3&4&5, Column#2
+- Profile id: 13d412b7-e462-44bd-a642-56a22e558640.json
+- Reader: OldExcelReader
+- [Download Link](https://raw.githubusercontent.com/ComPlat/chemotion_saurus/main/static/files/shared_ChemConverter_files/profiles/13d412b7-e462-44bd-a642-56a22e558640.json)
 
 ### Profile: UV-VIS Spectrum from txt \{#c7e3130f}
 
