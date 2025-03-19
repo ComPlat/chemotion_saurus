@@ -1,0 +1,67 @@
+---
+title: Restriction Setting
+author: Claire Lin
+sidebar_position: 1
+---
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCogs } from "@fortawesome/free-solid-svg-icons";
+import {
+  FigCaption,
+  SubTitle,
+  YouTubeFrame,
+  Reader,
+} from "@site/src/js/layout";
+
+<Reader text="Designer" />
+
+When a restriction is applied, the layer is hidden. It will only be shown when the criteria are met. If there are multiple restrictions that have been applied, the layer will be displayed when any one of them is matched.
+
+Just few steps to set up the restriction:
+
+1. Click the **Restriction Setting** <FontAwesomeIcon icon={faCogs} /> button on the top right corner of the layer.
+2. Start to set up the condition - Layer, Field, and Value.
+3. Done!
+
+:::tip
+
+Use [**Preview Design**](../../template-features/preview-design.mdx) function to see how your design look like.
+
+:::
+
+## Match Condition
+
+Designers will now have the flexibility to configure the condition as follows:
+
+1. **Match One** (default) - The layer/field will be displayed when at least one of the criteria is met.
+2. **Match All** - The layer/field will be displayed only when all of the specified criteria are met.
+3. **Match None** - The layer/field will be displayed when none of the provided criteria is met.
+
+<p align="center">
+  <img
+    src="https://github.com/LabIMotion/labimotion/assets/42910431/a25811cf-5f2f-40ed-a7c3-20d75317d2e3"
+    alt="LabIMotion - Match Condition of Restriction Setting"
+  />
+  <FigCaption text="Match Condition of Restriction Setting" />
+</p>
+
+Quick catch up with the video below to see how to set up the restriction.
+
+<YouTubeFrame
+  src="https://www.youtube-nocookie.com/embed/Ra6ro2F-ZLY"
+  title="Designer: Layer Restriction Setting."
+/>
+
+<FigCaption text="Designer: Layer Restriction Setting." />
+
+## Display As
+
+**Display as** effective only when Match One is set. Designers can now set an alternative display name for the field when a restriction is configured to "Match One." This feature provides further customization options for refining the user interface based on specific conditions.
+
+<p align="center">
+  <img
+    src="https://github.com/LabIMotion/labimotion/assets/42910431/037d0860-3403-4628-825d-62da606ccf5f"
+    alt="LabIMotion - Display As of Restriction Setting"
+  />
+  <FigCaption text="Display As of Restriction Setting" />
+</p>

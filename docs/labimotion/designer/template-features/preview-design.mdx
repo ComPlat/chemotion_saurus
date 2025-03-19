@@ -1,0 +1,84 @@
+---
+title: Preview & Versions
+author: Claire Lin
+sidebar_position: 2
+---
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowUpRightFromSquare,
+  faEye,
+  faTrashCan,
+  faDownload,
+  faReply,
+  faClock,
+} from "@fortawesome/free-solid-svg-icons";
+import {
+  FigCaption,
+  SubTitle,
+  YouTubeFrame,
+  Reader,
+} from "@site/src/js/layout";
+
+<SubTitle text="A feature that allows you to preview the design before releasing it to users and manage different template versions efficiently." />
+<Reader text="Designer" />
+
+The **Preview & Versions** feature feature provides a preview of the user's page, allowing you to view the layout of a specific version by selecting it from the [Version List](#version-list) on the left side.
+
+Some components remain functional in this preview mode, such as entering text into a text component or selecting an option from a dropdown. However, certain interactions, like dragging and dropping a sample, may not work because they require an initial draggable item.
+
+<div
+  style={{
+    display: "flex",
+    justifyContent: "center",
+    marginTop: 0,
+    flexDirection: "column",
+  }}
+>
+  <span className="figCaption" style={{ textAlign: "left" }}>(Click to view in a new window{" "} <FontAwesomeIcon icon={faArrowUpRightFromSquare} />)</span>
+  <a
+    href="/img/labimotion/designer-preview.mp4"
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{ display: "block" }}
+  >
+    <video width="100%" controls autoPlay loop muted>
+      <source src="/img/labimotion/designer-preview.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </a>
+</div>
+
+<FigCaption text="Designer - Preview Design" />
+
+## Version List
+
+The **Version List** displays the latest 10 released template versions, including their unique version UUIDs and release timestamps in UTC format.
+
+![Designer - Generic Segment](/img/labimotion/designer-version-list.png)
+
+<FigCaption text="Designer - Version List" />
+
+### Version number
+
+The version number is displayed in the format `X.Y`, where `X` represents the major version and `Y` the minor version, highlighted in blue.
+
+:::info
+Refer to the [Save and Release](/docs/labimotion/designer/template-features/workarea#-save-and-release-major) guidelines for more information.
+:::
+
+### <FontAwesomeIcon icon={faEye} /> Preview this version
+
+The preview feature is available not only for the current version but also for all versions.
+
+### <FontAwesomeIcon icon={faReply} /> Retrieve
+
+You can retrieve each version of templates, and once retrieved, it will be in draft status. You need to release it if you want to use the retrieved version.
+
+### <FontAwesomeIcon icon={faDownload} /> Download
+
+Each version of the templates can be downloaded in a file. The file is in the `.json` format, and the file name is the system prefix plus template name plus the version UUID. For example, if the system prefix is `abc`, the template name is `template1` and the version UUID is `123e4567-e89b-12d3-a456-426614174000`, the file name will be `abc_template1-123e4567-e89b-12d3-a456-426614174000.json`.
+
+### <FontAwesomeIcon icon={faTrashCan} /> Delete
+
+You can delete the old versions if you don't want to keep them. However, please note that once deleted, this action cannot be undone.

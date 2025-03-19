@@ -1,0 +1,147 @@
+---
+title: "Mixtures: a Sample extension"
+sidebar_label: "Mixtures"
+sidebar_position: 1
+---
+
+:::info
+
+This feature is currently in development. If you are interested, please feel free to test it around in our
+[test server](https://unrelated.chemotion.ibcs.kit.edu/)
+
+:::
+
+:::danger[Caution]
+
+This page is still being edited and reviewed.
+
+:::
+
+## Overview
+
+Currently, samples are treated as single molecules without categorization. However, we plan to classify samples into
+different types, including:
+- Mixtures
+- Polymers
+- Metal organic framework
+- Other specialized categories
+
+The Mixture module extends the samples feature by providing advanced tools for managing chemical mixtures.
+It allows users to define, modify, and calculate various mixture properties, including:
+- Components and their properties
+- Concentration calculations
+- Volume and amount adjustments
+
+Each mixture consists of multiple components, making it a powerful tool for handling complex sample formulations.
+
+## Key Features
+
+- **Component Management**
+  - Allows adding, removing, and modifying components in a mixture.
+- **Advanced Calculations**
+  - Computes total concentration based on individual component concentrations.
+  - Recalculate volume and amount dynamically.
+- **Stock and Reference Tracking**
+  - Supports stock concentration tracking and recalculations based on a reference component.
+- **Intuitive Drag-and-Drop UI**
+  - Rearrange components effortlessly using drag-and-drop functionality.
+
+## Integration with UI Components
+
+The Mixtures module integrates seamlessly with the Sample element, offering an intuitive UI for managing mixtures.
+
+### Sample Type Selection
+
+!["Sample type selection"](/img/mixtures/mixture_1.png)
+!["Sample type selection options"](/img/mixtures/mixture_2.png)
+
+### Sample Element Updates
+
+Here is an overview of the default Sample interface:
+
+!["Default sample"](/img/mixtures/mixture_3.png)
+
+Once the Mixtures option is selected, the primary focus shifts to the **Components Table**:
+
+!["Sample with mixture"](/img/mixtures/mixture_4.png)
+
+### Key UI Elements
+- **Component List:** Displays all components within the mixture.
+- **Input Fields:** Allows users to modify various attributes like concentration, volume, amount, stock data etc.
+- **Drag-and-Drop Support:** Enables reordering of components.
+- **Component Category:** Separate sections for **Liquids** and **Solids** to ensure organized mixture management.
+
+## Creating Mixtures
+Users can add components to a mixture using:
+
+1. **Drag-and-Drop:** Select components from the sample list and add them directly.
+2. **Drawing in Ketcher:** Draw the mixture using Ketcher 1 or 2.
+3. **Hybrid Approach:** Combine both methods (e.g., draw two components and drag in a third to create a three-component
+mixture).
+
+### Example: Creating a Mixture
+
+!["Demo 1"](/img/mixtures/mixture_5.gif)
+
+Another example:
+
+!["Demo 2"](/img/mixtures/mixture_6.gif)
+
+## Calculations and Dependencies
+
+This section outlines the key calculations and dependencies between various attributes in the Component list. Each
+attribute plays a specific role in determining the values of other related attributes. Some values remain fixed
+unless explicitly modified by the user, while others dynamically adjust based on dependencies.
+
+### Stock/Density
+- These attributes serve as the foundation for all calculations.
+- Users can enter either the stock or density value for each component.
+- By default, these values are locked to prevent unintended modifications.
+- If a user drags and drops an existing sample as a component, these values are automatically populated.
+- To modify them, the user must unlock the field.
+- These values do not change dynamically when other attributes are updated; instead, modifying them resets other
+attribute values.
+- The lock indicates that these values rely solely on user input and are never recalculated based on changes in other
+attributes.
+
+### Volume/Amount
+- These two attributes are interdependent.
+- A change in one automatically adjusts the other to maintain consistency.
+- Updates to these values can also impact other attributes such as Ratio and Total Concentration, which are
+recalculated based on predefined conditions.
+
+### Ratio/Reference (Ref)
+- These values define how components relate to each other in terms of their proportion in a mixture.
+- When a component is selected as the Reference, its Ratio is automatically set to 1.
+- The Volume, Amount, and other values of non-reference components are adjusted according to their assigned Ratios.
+
+### Total Concentration (Total Conc.)
+- Represents the final concentration of the mixture.
+- Users can choose to lock or unlock this field for specific components.
+- If unlocked, it will be dynamically adjusted based on other attribute changes.
+- If locked, other attributes, along with the Total volume, will be recalculated while keeping this value fixed.
+- This value will be calculated only when there is a Total volume.
+
+### Total volume
+- Indicates the overall volume of the mixture.
+- The sum of the volumes of all components must not exceed this total value.
+- It is only a value given manually, i.e. volume by definition - not (re)calculated. Recalculation occurs only when
+the attributes of a component with a locked total concentration are modified.
+
+### Required volume
+- This is a calculated value based on the Reference component.
+- It is used for informational purposes only and does not directly affect other attributes.
+- This value is determined using input from the row where the reference component is defined.
+
+## Changes in the Solvents Table
+- **Volume Column** added for mixtures.
+- **Ratio Adjustments** occur automatically when volume is updated.
+- **Non-Visualized Solvents:** Some buffer solutions/solvents can be excluded from the combined SVG representation.
+
+!["Demo 2"](/img/mixtures/mixture_7.png)
+
+## Future Enhancements
+
+✅ Use mixtures in reaction schemes
+✅ Enable import/export of mixture samples, including components
+✅ Improve searchability by mixture components
