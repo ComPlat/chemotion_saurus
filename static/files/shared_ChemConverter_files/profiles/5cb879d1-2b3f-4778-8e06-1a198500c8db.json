@@ -198,7 +198,7 @@
       }
     ]
   },
-  "description": "---; ref location: TU Dresden, data: +, metadata: + \n",
+  "description": "---; ref location: TU Dresden, data: +, metadata: + \nhttps://github.com/AIF-development-team/adsorptioninformationformat/blob/master/aifdictionary.json\n",
   "id": "5cb879d1-2b3f-4778-8e06-1a198500c8db",
   "identifiers": [
     {
@@ -221,7 +221,7 @@
       "match": "any",
       "optional": true,
       "outputKey": "operator",
-      "outputLayer": "meas",
+      "outputLayer": "general",
       "outputTableIndex": null,
       "tableIndex": 0,
       "type": "tableMetadata",
@@ -232,7 +232,7 @@
       "match": "regex",
       "optional": true,
       "outputKey": "date",
-      "outputLayer": "gener",
+      "outputLayer": "general",
       "outputTableIndex": null,
       "tableIndex": 0,
       "type": "tableMetadata",
@@ -243,11 +243,11 @@
       "match": "regex",
       "optional": true,
       "outputKey": "serial",
-      "outputLayer": "dev",
+      "outputLayer": "instrument",
       "outputTableIndex": null,
       "tableIndex": 0,
       "type": "tableMetadata",
-      "value": "\\d+"
+      "value": "(\\d[\\d.]*)"
     },
     {
       "key": "_exptl_adsorptive",
@@ -265,8 +265,8 @@
       "match": "any",
       "operations": [
         {
-          "operator": "+",
-          "value": "273,15"
+          "operator": "-",
+          "value": "273.15"
         }
       ],
       "optional": true,
@@ -276,17 +276,6 @@
       "tableIndex": 0,
       "type": "tableMetadata",
       "value": "111.00"
-    },
-    {
-      "key": "_exptl_sample_mass",
-      "match": "any",
-      "optional": true,
-      "outputKey": "amount",
-      "outputLayer": "sam_details",
-      "outputTableIndex": null,
-      "tableIndex": 0,
-      "type": "tableMetadata",
-      "value": "0.00980"
     },
     {
       "key": "_sample_id",
@@ -315,29 +304,29 @@
       "match": "regex",
       "optional": true,
       "outputKey": "software",
-      "outputLayer": "soft",
+      "outputLayer": "software",
       "outputTableIndex": null,
       "tableIndex": 0,
       "type": "tableHeader",
-      "value": "\\S*\\_\\S*_(\\S*)v"
+      "value": "^(?:.*_)(\\w+?)(?:v\\d+)?$"
     },
     {
       "lineNumber": 1,
       "match": "regex",
       "optional": true,
       "outputKey": "software_version",
-      "outputLayer": "soft",
+      "outputLayer": "software",
       "outputTableIndex": null,
       "tableIndex": 0,
       "type": "tableHeader",
-      "value": "\\S*\\_\\S*_\\S*(v\\d+)"
+      "value": "v\\d+$"
     },
     {
       "key": "_exptl_date",
       "match": "regex",
       "optional": true,
       "outputKey": "time",
-      "outputLayer": "gener",
+      "outputLayer": "general",
       "outputTableIndex": 0,
       "tableIndex": 0,
       "type": "tableMetadata",
@@ -348,11 +337,44 @@
       "match": "regex",
       "optional": true,
       "outputKey": "brand",
-      "outputLayer": "dev",
+      "outputLayer": "instrument",
       "outputTableIndex": 0,
       "tableIndex": 0,
       "type": "tableMetadata",
-      "value": "[^0-9\\s]+"
+      "value": "([^0-9\\s]+)\\s"
+    },
+    {
+      "lineNumber": "",
+      "match": "regex",
+      "optional": true,
+      "outputKey": "amount",
+      "outputLayer": "sample_details",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableHeader",
+      "value": ".+_sample_mass\\s(\\d+\\.\\d+)"
+    },
+    {
+      "lineNumber": "",
+      "match": "regex",
+      "optional": true,
+      "outputKey": "sample_cid",
+      "outputLayer": "custom_id",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableHeader",
+      "value": ".+_sample_id\\s'(.+)'"
+    },
+    {
+      "lineNumber": "",
+      "match": "regex",
+      "optional": true,
+      "outputKey": "sample_mat_id",
+      "outputLayer": "custom_id",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableHeader",
+      "value": ".+_material_id\\s'(.+)'"
     }
   ],
   "matchTables": true,
@@ -387,5 +409,5 @@
       }
     }
   ],
-  "title": "(AIF) Sorption-Desorption Measurement from txt, data: +, metadata: +"
+  "title": "(AIF) Sorption-Desorption Measurement from txt und aif, data: +, metadata: +"
 }

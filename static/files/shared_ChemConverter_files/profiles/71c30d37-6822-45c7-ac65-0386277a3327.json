@@ -1,0 +1,658 @@
+{
+  "data": {
+    "metadata": {
+      "content_type": "application/vnd.ms-excel",
+      "extension": ".xls",
+      "file_name": "Kopie von PH-PVC_NJ.xls",
+      "mime_type": "application/vnd.ms-excel",
+      "reader": "OldExcelReader",
+      "uploaded": "2025-03-17T13:51:08.857385"
+    },
+    "tables": [
+      {
+        "columns": [],
+        "header": [
+          "Filename\tPH-Nylon 6,6",
+          "Instrument name\t5500-0621 (172.21.63.175)",
+          "Operator\t",
+          "rundate\t45811.0",
+          "Sample name\tPH-Nylon 6,6",
+          "proceduresegments\tRamp 10,00 °C/min to 900,00 °C; Select Gas: Gas 2 ; Isothermal 5,0 min",
+          "[File Parameters]\t",
+          "Run date\t45811.934282407405",
+          "Trios version\t5.4.0.300",
+          "Original File Name\t",
+          "Current File Name\tD:\\Data\\PH-Nylon 6,6.tri",
+          "User at run start\tIBG-3-SML-PC-TG\\Operator",
+          "[Procedure]\t",
+          "Procedure Name\tMeryem procedure",
+          "Sample Name\tPH-Nylon 6,6",
+          "Pan Number\t10.0",
+          "Sample Mass\t9,661 mg",
+          "Pan Type\tPlatinum HT",
+          "Comments\t",
+          "Project Name\t",
+          "Operator\t",
+          "Test\tCustom",
+          "Skip Weight Stabilization\t0",
+          "Sample mass pre-weigh\tNot Available",
+          "Stop on Gas Flow Error\tNo",
+          "[Signal List]\t",
+          "Signal #1\tTime (min)",
+          "Signal #2\tTemperature (°C)",
+          "Signal #3\tWeight (mg)",
+          "Signal #4\tTemperature Difference (°C)",
+          "Signal #5\tSample Purge (mL/min)",
+          "Signal #6\tBalance Purge (mL/min)",
+          "Signal #7\tSet Point Temperature (°C)",
+          "Signal #8\tPower Delivered (W)",
+          "Signal #9\tRamp Rate (°C/min)",
+          "[Configuration]\t",
+          "Company Name\tKIT",
+          "Instrument Name\t5500-0621",
+          "Instrument Type\tTGA5500",
+          "Serial Number\t5500-0621",
+          "IP\t172.21.63.175",
+          "Location of Instrument\tManufacturing Test",
+          "DisplayType\tTianmaV2andV3",
+          "Sample Interval \t0,1 s/pt",
+          "Gas 1\tNitrogen",
+          "Gas 2\tAir",
+          "Selected Gas Channel\t1.0",
+          "MTGA HiRes Licensed\tYes",
+          "[Versions]\t",
+          "Common IDD Version\t1.0",
+          "Cortex Version\tVER 2.1.2.69",
+          "Driver\t5.0.0.7",
+          "GDM Version\t1.2.1.2",
+          "TouchscreenVersion\t1.0.3.1802",
+          "PCU Version\t1.2.0.22",
+          "Transducer Version\t1.1.0.32",
+          "[Experiment Logs]\t",
+          "Experiment Log Entry # 1\tRamp Segment 10 C/min to 900 C Started",
+          "Experiment Log Entry # 3\tGas Select Segment is 2",
+          "Experiment Log Entry # 5\tIsothermal Segment 5 min started",
+          "[Method Log]\t",
+          "Method Log Entry # 1\t(Ramp 273884) Ramp 10 °C/minute to 900 °C",
+          "Method Log Entry # 2\tGas Selected 2",
+          "Method Log Entry # 3\tIsothermal 5 minutes",
+          "[Weight Calibration]\t",
+          "Date Applied\t45393.68181712963",
+          "Empty Pan Number\t23.0",
+          "Empty Pan Weight\t341,649 mg",
+          "Low Reference Weight Pan Number\t24.0",
+          "Low Reference Weight\t441,332 mg",
+          "High Reference Weight Pan Number\t25.0",
+          "High Reference Weight\t1.235,195 mg",
+          "Low Gain Meter Reading\t9,7799E-006 mg/count",
+          "High Gain Meter Reading\t7,7874E-005 mg/count",
+          "Low Meter Offset\t31,1205 mg",
+          "High Meter Offset\t601,3216 mg",
+          "[Curie Calibration]\t",
+          "Date Applied\t28/01/2022 11:45:51",
+          "Description\tFrom 258,200 °C to 458,200 °C at 20,000°C/min",
+          "Gas Type\tNitrogen",
+          "Pan Type\tPlatinum HT",
+          "Source Files 1\tC:\\ProgramData\\TA Instruments\\TRIOS\\Data\\Nickel(2).tri",
+          "Source Files 2\tC:\\ProgramData\\TA Instruments\\TRIOS\\Data\\Alumel(2).tri",
+          "Measured 1\t1523602.0",
+          "Known 1\t152,6",
+          "Measured 2\t3554649.0",
+          "Known 2\t358,2"
+        ],
+        "metadata": {
+          "Comments": "",
+          "Common IDD Version": 1,
+          "Company Name": "KIT",
+          "Cortex Version": "VER 2.1.2.69",
+          "Current File Name": "D:\\Data\\PH-Nylon 6,6.tri",
+          "Date Applied": 45393.68181712963,
+          "Date Applied (1)": "28/01/2022 11:45:51",
+          "Description": "From 258,200 °C to 458,200 °C at 20,000°C/min",
+          "DisplayType": "TianmaV2andV3",
+          "Driver": "5.0.0.7",
+          "Empty Pan Number": 23,
+          "Empty Pan Weight": "341,649 mg",
+          "Experiment Log Entry # 1": "Ramp Segment 10 C/min to 900 C Started",
+          "Experiment Log Entry # 3": "Gas Select Segment is 2",
+          "Experiment Log Entry # 5": "Isothermal Segment 5 min started",
+          "Filename": "PH-Nylon 6,6",
+          "GDM Version": "1.2.1.2",
+          "Gas 1": "Nitrogen",
+          "Gas 2": "Air",
+          "Gas Type": "Nitrogen",
+          "High Gain Meter Reading": "7,7874E-005 mg/count",
+          "High Meter Offset": "601,3216 mg",
+          "High Reference Weight": "1.235,195 mg",
+          "High Reference Weight Pan Number": 25,
+          "IP": "172.21.63.175",
+          "Instrument Name": "5500-0621",
+          "Instrument Type": "TGA5500",
+          "Instrument name": "5500-0621 (172.21.63.175)",
+          "Known 1": "152,6",
+          "Known 2": "358,2",
+          "Location of Instrument": "Manufacturing Test",
+          "Low Gain Meter Reading": "9,7799E-006 mg/count",
+          "Low Meter Offset": "31,1205 mg",
+          "Low Reference Weight": "441,332 mg",
+          "Low Reference Weight Pan Number": 24,
+          "MTGA HiRes Licensed": "Yes",
+          "Measured 1": 1523602,
+          "Measured 2": 3554649,
+          "Method Log Entry # 1": "(Ramp 273884) Ramp 10 °C/minute to 900 °C",
+          "Method Log Entry # 2": "Gas Selected 2",
+          "Method Log Entry # 3": "Isothermal 5 minutes",
+          "Operator": "",
+          "Operator (1)": "",
+          "Original File Name": "",
+          "PCU Version": "1.2.0.22",
+          "Pan Number": 10,
+          "Pan Type": "Platinum HT",
+          "Pan Type (1)": "Platinum HT",
+          "Procedure Name": "Meryem procedure",
+          "Project Name": "",
+          "Run date": 45811.934282407405,
+          "Sample Interval ": "0,1 s/pt",
+          "Sample Mass": "9,661 mg",
+          "Sample Name": "PH-Nylon 6,6",
+          "Sample mass pre-weigh": "Not Available",
+          "Sample name": "PH-Nylon 6,6",
+          "Selected Gas Channel": 1,
+          "Serial Number": "5500-0621",
+          "Signal #1": "Time (min)",
+          "Signal #2": "Temperature (°C)",
+          "Signal #3": "Weight (mg)",
+          "Signal #4": "Temperature Difference (°C)",
+          "Signal #5": "Sample Purge (mL/min)",
+          "Signal #6": "Balance Purge (mL/min)",
+          "Signal #7": "Set Point Temperature (°C)",
+          "Signal #8": "Power Delivered (W)",
+          "Signal #9": "Ramp Rate (°C/min)",
+          "Skip Weight Stabilization": 0,
+          "Source Files 1": "C:\\ProgramData\\TA Instruments\\TRIOS\\Data\\Nickel(2).tri",
+          "Source Files 2": "C:\\ProgramData\\TA Instruments\\TRIOS\\Data\\Alumel(2).tri",
+          "Stop on Gas Flow Error": "No",
+          "Test": "Custom",
+          "TouchscreenVersion": "1.0.3.1802",
+          "Transducer Version": "1.1.0.32",
+          "Trios version": "5.4.0.300",
+          "User at run start": "IBG-3-SML-PC-TG\\Operator",
+          "[Configuration]": "",
+          "[Curie Calibration]": "",
+          "[Experiment Logs]": "",
+          "[File Parameters]": "",
+          "[Method Log]": "",
+          "[Procedure]": "",
+          "[Signal List]": "",
+          "[Versions]": "",
+          "[Weight Calibration]": "",
+          "columns": "0",
+          "proceduresegments": "Ramp 10,00 °C/min to 900,00 °C; Select Gas: Gas 2 ; Isothermal 5,0 min",
+          "rows": "0",
+          "rundate": 45811
+        },
+        "rows": []
+      },
+      {
+        "columns": [
+          {
+            "key": "0",
+            "name": "Column #0"
+          },
+          {
+            "key": "1",
+            "name": "Column #1"
+          },
+          {
+            "key": "2",
+            "name": "Column #2"
+          },
+          {
+            "key": "3",
+            "name": "Column #3"
+          }
+        ],
+        "header": [
+          "Ramp 10,00 °C/min to 900,00 °C\t\t\t",
+          "Time\tTemperature\tWeight\tWeight",
+          "min\t°C\tmg\t%"
+        ],
+        "metadata": {
+          "Ramp 10,00 °C/min to 900,00 °C": "",
+          "Ramp 10,00 °C/min to 900,00 °C (1)": "",
+          "Ramp 10,00 °C/min to 900,00 °C (2)": "",
+          "Time": "Temperature",
+          "Time (1)": "Weight",
+          "Time (2)": "Weight",
+          "columns": "4",
+          "min": "°C",
+          "min (1)": "mg",
+          "min (2)": "%",
+          "rows": "52905"
+        },
+        "rows": [
+          [
+            0,
+            29.78,
+            9.661,
+            100
+          ],
+          [
+            0,
+            29.78,
+            9.661,
+            100
+          ],
+          [
+            0,
+            29.78,
+            9.661,
+            100
+          ],
+          [
+            0.01,
+            29.78,
+            9.661,
+            100
+          ],
+          [
+            0.01,
+            29.78,
+            9.661,
+            100
+          ],
+          [
+            0.01,
+            29.78,
+            9.661,
+            100
+          ],
+          [
+            0.01,
+            29.78,
+            9.661,
+            100
+          ],
+          [
+            0.01,
+            29.78,
+            9.661,
+            100
+          ],
+          [
+            0.01,
+            29.78,
+            9.661,
+            100
+          ],
+          [
+            0.01,
+            29.78,
+            9.661,
+            100
+          ]
+        ]
+      },
+      {
+        "columns": [
+          {
+            "key": "0",
+            "name": "Column #0"
+          },
+          {
+            "key": "1",
+            "name": "Column #1"
+          },
+          {
+            "key": "2",
+            "name": "Column #2"
+          },
+          {
+            "key": "3",
+            "name": "Column #3"
+          },
+          {
+            "key": "4",
+            "name": "Column #4"
+          }
+        ],
+        "header": [
+          "Isothermal 5,0 min\t\t\t\t",
+          "Time\tTemperature\tWeight\tWeight\tDeriv. Weight",
+          "min\t°C\tmg\t%\t% / °C"
+        ],
+        "metadata": {
+          "Isothermal 5,0 min": "",
+          "Isothermal 5,0 min (1)": "",
+          "Isothermal 5,0 min (2)": "",
+          "Isothermal 5,0 min (3)": "",
+          "Time": "Temperature",
+          "Time (1)": "Weight",
+          "Time (2)": "Weight",
+          "Time (3)": "Deriv. Weight",
+          "columns": "5",
+          "min": "°C",
+          "min (1)": "mg",
+          "min (2)": "%",
+          "min (3)": "% / °C",
+          "rows": "3000"
+        },
+        "rows": [
+          [
+            88.18,
+            898.44,
+            -0.07,
+            -0.722,
+            -0.00371356
+          ],
+          [
+            88.18,
+            898.46,
+            -0.07,
+            -0.722,
+            -0.00337644
+          ],
+          [
+            88.18,
+            898.47,
+            -0.07,
+            -0.722,
+            -0.00309279
+          ],
+          [
+            88.18,
+            898.49,
+            -0.07,
+            -0.722,
+            -0.00252682
+          ],
+          [
+            88.18,
+            898.5,
+            -0.07,
+            -0.722,
+            -0.00210935
+          ],
+          [
+            88.18,
+            898.52,
+            -0.07,
+            -0.722,
+            -0.00170585
+          ],
+          [
+            88.19,
+            898.53,
+            -0.07,
+            -0.722,
+            -0.00137366
+          ],
+          [
+            88.19,
+            898.55,
+            -0.07,
+            -0.722,
+            -0.00106747
+          ],
+          [
+            88.19,
+            898.57,
+            -0.07,
+            -0.722,
+            -0.000770647
+          ],
+          [
+            88.19,
+            898.58,
+            -0.07,
+            -0.722,
+            -0.000375261
+          ]
+        ]
+      }
+    ]
+  },
+  "description": "TGA - Campus Nord, KIT with Isothermal",
+  "id": "71c30d37-6822-45c7-ac65-0386277a3327",
+  "identifiers": [
+    {
+      "key": "reader",
+      "match": "exact",
+      "optional": false,
+      "type": "fileMetadata",
+      "value": "OldExcelReader"
+    },
+    {
+      "key": "extension",
+      "match": "exact",
+      "optional": false,
+      "type": "fileMetadata",
+      "value": ".xls"
+    },
+    {
+      "key": "Instrument Type",
+      "match": "exact",
+      "optional": false,
+      "tableIndex": 0,
+      "type": "tableMetadata",
+      "value": "TGA5500"
+    },
+    {
+      "key": "Trios version",
+      "match": "any",
+      "optional": true,
+      "outputKey": "Version",
+      "outputLayer": "software",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableMetadata",
+      "value": "5.4.0.300"
+    },
+    {
+      "key": "Sample Mass",
+      "match": "regex",
+      "optional": true,
+      "outputKey": "amount",
+      "outputLayer": "sample_details",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableMetadata",
+      "value": "(\\d+\\,\\d+)(\\smg)"
+    },
+    {
+      "key": "Pan Type",
+      "match": "any",
+      "optional": true,
+      "outputKey": "pan_type",
+      "outputLayer": "sample_preparation",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableMetadata",
+      "value": "Platinum HT"
+    },
+    {
+      "key": "proceduresegments",
+      "match": "any",
+      "optional": true,
+      "outputKey": "methods",
+      "outputLayer": "measurement_settings",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableMetadata",
+      "value": "Ramp 10,00 °C/min to 900,00 °C; Select Gas: Gas 2 ; Isothermal 5,0 min"
+    },
+    {
+      "key": "Instrument name",
+      "match": "any",
+      "optional": true,
+      "outputKey": "Serial",
+      "outputLayer": "ddevice",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableMetadata",
+      "value": "5500-0621 (172.21.63.175)"
+    },
+    {
+      "key": "Instrument Type",
+      "match": "any",
+      "optional": true,
+      "outputKey": "Type",
+      "outputLayer": "ddevice",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableMetadata",
+      "value": "TGA5500"
+    },
+    {
+      "key": "Gas Type",
+      "match": "any",
+      "optional": true,
+      "outputKey": "gas_type",
+      "outputLayer": "measurement_settings",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableMetadata",
+      "value": "Nitrogen"
+    },
+    {
+      "key": "Filename",
+      "match": "any",
+      "optional": true,
+      "outputKey": "title",
+      "outputLayer": "general",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableMetadata",
+      "value": "PH-Nylon 6,6"
+    },
+    {
+      "key": "Procedure Name",
+      "match": "any",
+      "optional": true,
+      "outputKey": "procedure",
+      "outputLayer": "measurement_settings",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableMetadata",
+      "value": "Meryem procedure"
+    },
+    {
+      "key": "Sample Interval ",
+      "match": "any",
+      "optional": true,
+      "outputKey": "sample_interval",
+      "outputLayer": "measurement_settings",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableMetadata",
+      "value": "0,1 s/pt"
+    },
+    {
+      "key": "Gas 1",
+      "match": "any",
+      "optional": true,
+      "outputKey": "gas_1",
+      "outputLayer": "measurement_settings",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableMetadata",
+      "value": "Nitrogen"
+    },
+    {
+      "key": "Gas 2",
+      "match": "any",
+      "optional": true,
+      "outputKey": "gas_2",
+      "outputLayer": "measurement_settings",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableMetadata",
+      "value": "Air"
+    },
+    {
+      "key": "Experiment Log Entry # 1",
+      "match": "any",
+      "optional": true,
+      "outputKey": "log_entry_1",
+      "outputLayer": "logs",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableMetadata",
+      "value": "Ramp Segment 10 C/min to 900 C Started"
+    },
+    {
+      "key": "Experiment Log Entry # 3",
+      "match": "any",
+      "optional": true,
+      "outputKey": "log_entry_2",
+      "outputLayer": "logs",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableMetadata",
+      "value": "Gas Select Segment is 2"
+    },
+    {
+      "key": "Experiment Log Entry # 5",
+      "match": "any",
+      "optional": true,
+      "outputKey": "log_entry_3",
+      "outputLayer": "logs",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableMetadata",
+      "value": "Isothermal Segment 5 min started"
+    },
+    {
+      "key": "rundate",
+      "match": "any",
+      "optional": true,
+      "outputKey": "date",
+      "outputLayer": "general",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableMetadata",
+      "value": 45811
+    }
+  ],
+  "matchTables": false,
+  "ols": "CHMO:0000690",
+  "tables": [
+    {
+      "header": {
+        "DATA CLASS": "XYPOINTS",
+        "DATA TYPE": "THERMOGRAVIMETRIC ANALYSIS",
+        "XUNITS": "DEGREES CELSIUS",
+        "YUNITS": "Weight %"
+      },
+      "table": {
+        "xColumn": {
+          "columnIndex": 1,
+          "tableIndex": 1
+        },
+        "yColumn": {
+          "columnIndex": 3,
+          "tableIndex": 1
+        }
+      }
+    },
+    {
+      "header": {
+        "DATA CLASS": "XYPOINTS",
+        "DATA TYPE": "THERMOGRAVIMETRIC ANALYSIS",
+        "XUNITS": "DEGREES CELSIUS",
+        "YUNITS": "Weight %"
+      },
+      "table": {
+        "xColumn": {
+          "columnIndex": 1,
+          "tableIndex": 2
+        },
+        "yColumn": {
+          "columnIndex": 4,
+          "tableIndex": 2
+        }
+      }
+    }
+  ],
+  "title": "TGA 3"
+}
