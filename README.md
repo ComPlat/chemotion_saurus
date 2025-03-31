@@ -52,15 +52,13 @@ npm run serve
 
 The website is deployed with GitHub Actions [here](https://github.com/ComPlat/chemotion_saurus/blob/aa6fe5cc1ade8517f855a7df1ef4f6d648c67f26/.github/workflows/build.yml#L40).
 
-
 ## Acknowledgments
 
 This project has been funded by the **[DFG]**.
 
 [![DFG Logo]][DFG]
 
-
 Funded by the [Deutsche Forschungsgemeinschaft (DFG, German Research Foundation)](https://www.dfg.de/) under the [National Research Data Infrastructure – NFDI4Chem](https://nfdi4chem.de/) – Projektnummer **441958208** since 2020.
 
 [DFG]: https://www.dfg.de/en/
-[DFG Logo]: https://chemotion.net/img/logos/DFG_logo.png
+[DFG Logo]: https://chemotion.net/docs/img/logos/DFG_logo.png
