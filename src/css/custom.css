@@ -64,10 +64,6 @@ footer {
   width: 100%;
 }
 
-.navbar__title {
-  color: #606770;
-}
-
 button[name="downloadBtn"]:hover {
   background: white;
   color: #337ab7;
@@ -127,7 +123,7 @@ a:hover {
 }
 
 main {
-  background-color: #f5f6f7;
+  background-color: #fafafa;
 }
 
 /*sidebar*/
@@ -167,4 +163,80 @@ main {
 
 .reader-badge {
   margin-bottom: 10px;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/GeistVF.woff") format("woff");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+.navbar {
+  top: 0;
+  z-index: 50;
+  height: 66px;
+  padding: 0 1rem;
+  background-color: #f5f5f5;
+  box-shadow: 0 2px 4px rgba(49, 49, 49, 0.2);
+  display: flex;
+  align-items: center;
+  font-family: "Geist", sans-serif;
+}
+
+.navbar__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.navbar__logo {
+  display: flex;
+  align-items: center;
+}
+
+.navbar__logo img {
+  height: 35px;
+  width: auto;
+  vertical-align: middle;
+}
+
+.navbar__title {
+  font-size: 1.1rem;
+  margin-left: 0.5rem;
+}
+
+.navbar__items a {
+  position: relative;
+  padding: 0.5rem;
+  color: #374151;
+  background-color: transparent;
+}
+
+.navbar__items a:hover {
+  color: #374151;
+}
+
+.navbar__item.custom-nav-link {
+  transition: color 0.3s ease;
+  margin-right: 1rem;
+}
+
+.navbar__item.custom-nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  height: 3px;
+  width: 0;
+  background-color: #374151;
+  transition: all 0.3s ease;
+}
+
+.navbar__item.custom-nav-link:hover::after {
+  left: 5%;
+  width: 90%;
 }

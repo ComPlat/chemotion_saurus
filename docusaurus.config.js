@@ -10,7 +10,7 @@ module.exports = {
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenAnchors: 'throw',
-  favicon: 'img/logos/favicon.ico',
+  favicon: 'img/navbar/favicon.png',
   trailingSlash: false,
   organizationName: 'Complat', // Usually your GitHub org/user name.
   projectName: 'chemotion_saurus', // Usually your repo name.
@@ -30,27 +30,29 @@ module.exports = {
   },
   themeConfig: {
     navbar: {
-      title: 'Chemotion',
+      title: "Documentation 📖",
       logo: {
-        alt: 'Chemotion',
-        src: 'img/logos/favicon.ico',
+        alt: "Chemotion",
+        src: "img/navbar/open-c.png",
       },
       items: [
         {
-          label: 'Documentation 📖',
-          position: 'left',
-          docId: 'welcome',
-          type: 'doc',
+          label: "Who are we",
+          to: "https://chemotion.net/about",
+          position: "right",
+          className: "custom-nav-link",
         },
         {
-          label: 'Helpdesk 🤝',
-          position: 'right',
-          to: '/helpdesk',
+          label: "Helpdesk",
+          to: "https://chemotion.net/helpdesk",
+          position: "right",
+          className: "custom-nav-link",
         },
         {
-          label: 'Chemotion Repository ↗️',
-          position: 'right',
-          to: 'https://www.chemotion-repository.net/',
+          label: "Chemotion.net",
+          position: "right",
+          to: "https://chemotion.net/",
+          className: "custom-nav-link",
         },
       ],
     },
