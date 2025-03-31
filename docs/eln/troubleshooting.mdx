@@ -5,7 +5,7 @@ sidebar_position: 4
 
 ## Chemotion ELN is not responding
 
-In individual cases, it may happen that the Chemotion ELN does not react to an action. If you have the feeling that your application is not giving any feedback, please reload the page by pressing <kbd>F5</kbd>. If the problem persists, please contact us using the [helpdesk](/helpdesk).
+In individual cases, it may happen that the Chemotion ELN does not react to an action. If you have the feeling that your application is not giving any feedback, please reload the page by pressing <kbd>F5</kbd>. If the problem persists, please contact us using the [helpdesk](https://chemotion.net/helpdesk).
 
 ## Actions are not activated
 
@@ -45,7 +45,6 @@ docker compose exec worker bundle exec rake 'svg:molecule[openbabel]'
 
 ## Molecules are not imported correctly using CAS number
 
-Importing molecules into the ELN is supported e.g. using CAS numbers. In certain cases, the molecule generated with the CAS number is not displayed/stored correctly. In those cases, the structures contain additional protons in the displayed structure and the associated formula. E.g. known reported cases are K2CO3 or AgNO3. At the moment, we are not able to solve this issue as the information on the molecules is fetched from the CAS Common Chemistry API based on the CAS number. The explanation from CAS is cited here: 
+Importing molecules into the ELN is supported e.g. using CAS numbers. In certain cases, the molecule generated with the CAS number is not displayed/stored correctly. In those cases, the structures contain additional protons in the displayed structure and the associated formula. E.g. known reported cases are K2CO3 or AgNO3. At the moment, we are not able to solve this issue as the information on the molecules is fetched from the CAS Common Chemistry API based on the CAS number. The explanation from CAS is cited here:
 "Salts derived from oxygen-containing acids are treated as multicomponent substances represented by dot-disconnect MF with the acidic hydrogens retained in the formula. This convention has often caused confusion in molecular formula searching since even a simple compound like sodium sulfate [7757-82-6] is assigned the CAS MF 'H2O4S.2Na' [...] The reason for this goes back to the earliest days of the Registry System in the mid-1960s. Print indexes were still the only means of access to Chemical Abstracts. This convention permitted all the salts of sulfuric acid to appear in one place in the Chemical Substance Index."
-The only solution that we have in those cases is to open and correct those molecules in the chemical structure editor manually. 
-
+The only solution that we have in those cases is to open and correct those molecules in the chemical structure editor manually.
