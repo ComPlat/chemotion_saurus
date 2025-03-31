@@ -1,11 +1,7 @@
 {
   "index_name": "chemotion",
-  "start_urls": [
-    "https://chemotion.net/"
-  ],
-  "sitemap_urls": [
-    "https://chemotion.net/sitemap.xml"
-  ],
+  "start_urls": ["https://docs.chemotion.net/"],
+  "sitemap_urls": ["https://docs.chemotion.net/sitemap.xml"],
   "sitemap_alternate_links": true,
   "stop_urls": [],
   "selectors": {
@@ -25,12 +21,7 @@
   "strip_chars": " .,;:#",
   "custom_settings": {
     "separatorsToIndex": "_",
-    "attributesForFaceting": [
-      "language",
-      "version",
-      "type",
-      "docusaurus_tag"
-    ],
+    "attributesForFaceting": ["language", "version", "type", "docusaurus_tag"],
     "attributesToRetrieve": [
       "hierarchy",
       "content",
@@ -40,8 +31,6 @@
       "type"
     ]
   },
-  "conversation_id": [
-    "1419639046"
-  ],
+  "conversation_id": ["1419639046"],
   "nb_hits": 361
 }
