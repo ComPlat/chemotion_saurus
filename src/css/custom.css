@@ -185,7 +185,6 @@ main {
 }
 
 .navbar__inner {
-  max-width: 1280px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -205,8 +204,7 @@ main {
 }
 
 .navbar__title {
-  font-size: 1.1rem;
-  margin-left: 0.5rem;
+  margin-left: 0.3rem;
 }
 
 .navbar__items a {
