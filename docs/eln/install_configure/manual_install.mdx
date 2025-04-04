@@ -191,32 +191,30 @@ docker compose run -e FORCE_DB_RESET=1 eln chemotion restore   # restore the lat
 ```
 
 <details>
-  <summary>How backup and restore works?</summary>This backup script is meant to
-  simplify your life a bit when it comes to backups. However it doesn't do
-  anything magical and if it suits your needs better, you can also do manual
-  backups. To create one, you need to dump your database, i.e. with{" "}
-  <code>pg_dump</code> or by copying the <code>chemotion_db</code> volume when
-  the database is not running.
-  <br />
-  <br />
-  In addition, you need to save all your data, in the folders: <code>
-    /uploads
-  </code> and <code>/public/images</code> (the latter being more a convenience thing
-  preventing you from having to recreate a lots of thumbnails after restoration).
-  These folders are stored in <code>chemotion_data</code> volume, so you can mount
-  it somewhere and use rsync/tar/cp to copy the data. If you already have a container
-  mounting this volume, such as (such as the <code>eln</code> or <code>
-    worker
-  </code> services), you can also simply use <code>docker compose cp</code> or <code>
-    docker cp
-  </code> to copy the data to the host machine.
-  <br />
-  <br />
-  To restore a backup, invert the process: For restoration, you need to stop
-  your services, then remount the backed-up volumes. If you have backup created
-  using <code>pg_dump</code> then use <code>pg_restore</code> to restore it.
-  Similarly, restore the data files into their destination using using
-  cp/tar/rsync etc.
+  <summary>How backup and restore works?</summary>
+  <div>
+    This backup script is meant to simplify your life a bit when it comes to
+    backups. However it doesn't do anything magical and if it suits your needs
+    better, you can also do manual backups. To create one, you need to dump your
+    database, i.e. with <code>pg_dump</code> or by copying the{" "}
+    <code>chemotion_db</code> volume when the database is not running.
+    <br />
+    In addition, you need to save all your data, in the folders:{" "}
+    <code>/uploads</code> and <code>/public/images</code> (the latter being more
+    a convenience thing preventing you from having to recreate a lots of
+    thumbnails after restoration). These folders are stored in{" "}
+    <code>chemotion_data</code> volume, so you can mount it somewhere and use
+    rsync/tar/cp to copy the data. If you already have a container mounting this
+    volume, such as (such as the <code>eln</code> or <code>worker</code>{" "}
+    services), you can also simply use <code>docker compose cp</code> or{" "}
+    <code>docker cp</code> to copy the data to the host machine.
+    <br />
+    To restore a backup, invert the process: For restoration, you need to stop
+    your services, then remount the backed-up volumes. If you have backup
+    created using <code>pg_dump</code> then use <code>pg_restore</code> to
+    restore it. Similarly, restore the data files into their destination using
+    using cp/tar/rsync etc.
+  </div>
 </details>
 
 ## Special Cases
