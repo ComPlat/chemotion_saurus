@@ -1,0 +1,31 @@
+---
+title: History Tracker
+author: Adrian Herrmann
+sidebar_label: History
+---
+
+:::info[Currently tracked Elements]
+samples, reactions, wellplates (including wells), research plans, screens
+:::
+
+## Versions Tab
+This feature can be found in each element under the "Versions" tab.
+If you can't see the tab, look [here](./view#adjust-the-tabs-in-detail-modal)
+how to display hidden tabs.
+In this tab you can see a version for each change: ![versions](/img/history/versions.png)
+By clicking on a version, the change it caused is shown.
+|  previous version  |  updated version  |  current version  |
+|--------------------|-------------------|-------------------|
+|  The version before the change occurred.  |  The version after the change occurred.  |  The current version of the affected fields. If you view the most recent change, this is equivalent to the "updated version".  |
+
+### Reverting
+To revert a change click the Revert button. This opens the following: ![revert](/img/history/revert.png)
+Here you can cancel this or select the fields you want to revert and click the Revert button.
+This immediately reverts the changes of the selected fields to the value shown in "previous version" in the element and generate a new version,
+which is directly visible without reloading the page.
+:::warning[Important]
+Not all changes can be reverted:
+* The first version cannot be reverted (this would remove the element; if you want that, use the "remove from collection" feature instead).
+* If reverting would change nothing (previous version = current version), it cannot be reverted.
+* Some parameters are irreversible (e.g. automatically generated fields)!
+:::
