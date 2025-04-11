@@ -13,7 +13,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: "npm"
 
       - name: Download YT Thumbnails
@@ -26,8 +26,6 @@ jobs:
 
       - name: Build
         id: build
-        env:
-          DOCUSAURUS_IGNORE_SSG_WARNINGS: true
         run: |
           npm install -g npm
           npm install
