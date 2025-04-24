@@ -1,0 +1,142 @@
+{
+  "data": {
+    "metadata": {
+      "content_type": "text/csv",
+      "delimiter": "semicolon",
+      "doublequote": "False",
+      "extension": ".csv",
+      "file_name": "2b.csv",
+      "lineterminator": "\\r\\n",
+      "mime_type": "text/plain",
+      "quotechar": "\"",
+      "quoting": "0",
+      "reader": "CSVReader",
+      "skipinitialspace": "False",
+      "uploaded": "2025-04-24T10:51:50.359661"
+    },
+    "tables": [
+      {
+        "columns": [
+          {
+            "key": "0",
+            "name": "Column #0 (Notiz)"
+          },
+          {
+            "key": "1",
+            "name": "Column #1 (DCM)"
+          }
+        ],
+        "header": [
+          "Nr.;10",
+          "Typ;Messung",
+          "Name;MCC-OM-2b",
+          "Datum/Zeit;29.11.2024 12:42"
+        ],
+        "metadata": {
+          "column_00": "Notiz",
+          "column_01": "DCM",
+          "columns": "2",
+          "rows": "601"
+        },
+        "rows": [
+          [
+            "200",
+            "0.1575"
+          ],
+          [
+            "201",
+            "0.1688"
+          ],
+          [
+            "202",
+            "0.2195"
+          ],
+          [
+            "203",
+            "0.1894"
+          ],
+          [
+            "204",
+            "0.27"
+          ],
+          [
+            "205",
+            "0.3199"
+          ],
+          [
+            "206",
+            "0.2507"
+          ],
+          [
+            "207",
+            "0.1802"
+          ],
+          [
+            "208",
+            "0.2147"
+          ],
+          [
+            "209",
+            "0.1846"
+          ]
+        ]
+      }
+    ]
+  },
+  "description": "SPECORD 50; ref location: KIT CS, data: +, metadata: -",
+  "id": "688305e6-c11c-481e-b66b-1bd78634e8fe",
+  "identifiers": [
+    {
+      "key": "reader",
+      "match": "exact",
+      "optional": false,
+      "type": "fileMetadata",
+      "value": "CSVReader"
+    },
+    {
+      "key": "extension",
+      "match": "exact",
+      "optional": false,
+      "type": "fileMetadata",
+      "value": ".csv"
+    },
+    {
+      "key": "column_00",
+      "match": "exact",
+      "optional": false,
+      "tableIndex": 0,
+      "type": "tableMetadata",
+      "value": "Notiz"
+    },
+    {
+      "lineNumber": 2,
+      "match": "exact",
+      "optional": false,
+      "tableIndex": 0,
+      "type": "tableHeader",
+      "value": "Typ;Messung"
+    }
+  ],
+  "ols": "CHMO:0000292",
+  "tables": [
+    {
+      "header": {
+        "DATA CLASS": "XYPOINTS",
+        "DATA TYPE": "UV-VIS",
+        "XUNITS": "wavelength (nm)",
+        "YUNITS": "ABSORBANCE"
+      },
+      "table": {
+        "xColumn": {
+          "columnIndex": 0,
+          "tableIndex": 0
+        },
+        "yColumn": {
+          "columnIndex": 1,
+          "tableIndex": 0
+        }
+      }
+    }
+  ],
+  "title": "UV-VIS data from csv, data: +, metadata: -"
+}
