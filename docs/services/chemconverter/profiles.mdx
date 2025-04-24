@@ -25,6 +25,7 @@ currently include in Repo
 | UV-VIS                           |              | Horiba UV-Vis          | UV-VIS data from txt, data: +, metadata: - <br /> Horiba Duetta; ref location: KIT CN, data: +, metadata: +                                      | Horiba Duetta                                 | \*.txt       | Link                                                                                                                                                     |
 | UV-VIS                           |              | JASCO UV-Vis           | UV-VIS data from txt, data: +, metadata: - <br /> JASCO V-570; ref location: KIT CN, data: +, metadata: +                                        | JASCO Corp., V-570                            | \*.txt       | Link                                                                                                                                                     |
 | UV-VIS                           |              | generic UV-Vis         | UV-VIS data from general txt, data: +, metadata: - <br /> generic data table only; ref location: ---, data: +, metadata: -                       | ???                                           | \*.txt       | Link                                                                                                                                                     |
+| UV-VIS                           |              | SPECORD 50 -> single sample | UV-VIS data from csv, data: +, metadata: - <br /> UV-VIS data from csv, data: +, metadata: -                    | UV/VIS: SPECORD 50        | \*.csv       | [Link](https://github.com/ComPlat/chemotion_saurus/blob/main/static/files/shared_ChemConverter_files/profiles/688305e6-c11c-481e-b66b-1bd78634e8fe.json)                                                                                                                                                     |
 | X-ray diffraction                |              | brml                   | X-ray diffraction data from brml, data: +, metadata: - <br /> ???; ref location: ---, data: +, metadata: -                                       | ???                                           | \*.txt       | Link                                                                                                                                                     |
 
 (1) The generic name follows the convention that the names should give us a hind about what the profile does (marked by a +) and the description should tell us i.a. what the file could provide. <br />
@@ -322,3 +323,19 @@ UV VIS with multicolumn (2) XLSX file with header at the end, with data conversi
 - Profile id: 15400217-b730-47db-9d5c-a300bce7ae95
 - Reader: ExcelReader
 - [Download Link](https://raw.githubusercontent.com/ComPlat/chemotion_saurus/main/static/files/shared_ChemConverter_files/profiles/15400217-b730-47db-9d5c-a300bce7ae95.json)
+
+### Profile: UV-VIS Spectrum from csv
+
+UV/VIS from csv; reference location: KIT, Campus South, with data conversion, without metadata extraction
+
+Content must be "Typ;Messung" at header line 2 and "Notiz" as headline for Column#0! Info is from the SPECORD 50 device.
+Otherwise please reach out to us or change it in the profile settings in your own (ELN) instance. 
+
+- File Format: \*.csv
+- Data Type: UV-VIS
+- Data Class: XYPOINTS
+- X Unit: wavelength (nm), X Value: Table#0, Column#0
+- Y Unit: ABSORBANCE, Y Value: Table#0, Column#1
+- Profile id: 688305e6-c11c-481e-b66b-1bd78634e8fe
+- Reader: CSVReader
+- [Download Link](https://github.com/ComPlat/chemotion_saurus/blob/main/static/files/shared_ChemConverter_files/profiles/688305e6-c11c-481e-b66b-1bd78634e8fe.json) 
