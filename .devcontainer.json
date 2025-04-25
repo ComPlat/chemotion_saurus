@@ -31,7 +31,7 @@
           "typescriptreact"
         ],
         "Workspace_Formatter.includePattern": ["*.mdx", "*.md"],
-        "cSpell.enableFiletypes": ["md", "mdx", "!js", "!json", "!jsonc"],
+        "#cSpell.enabledFileTypes#": ["md", "mdx", "!js", "!json", "!jsonc"],
         "cSpell.words": [
           "Chemotion",
           "helpdesk",
@@ -57,16 +57,14 @@
   "forwardPorts": [3000],
 
   // Use 'updateContentCommand' to run commands after the container is created and before the project is cloned.
-  "updateContentCommand": "npm install -g npm",
+  "updateContentCommand": "npm install -g npm svgo",
 
   // Use 'postCreateCommand' to run commands after the project has been cloned into the container.
   "postCreateCommand": "npm install",
 
-  // Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-  "remoteUser": "node",
+  // Use 'postStartCommand' to optimize all included SVG files.
+  "postStartCommand": "svgo --recursive --folder static",
 
-  //Remote env variable remoteEnv
-  "remoteEnv": {
-    "DOCUSAURUS_IGNORE_SSG_WARNINGS": "true"
-  }
+  // Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+  "remoteUser": "node"
 }
