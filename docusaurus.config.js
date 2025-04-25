@@ -1,22 +1,22 @@
-require('dotenv').config();
+require("dotenv").config();
 
 module.exports = {
   future: {
     experimental_faster: true,
   },
-  title: 'Chemotion',
-  tagline: 'Electronic Laboratory Notebook & Repository for Research Data',
-  url: 'https://chemotion.net',
-  baseUrl: '/',
-  onBrokenLinks: 'throw',
-  onBrokenAnchors: 'throw',
-  onBrokenMarkdownLinks: 'throw',
-  favicon: 'img/logos/favicon.ico',
+  title: "Chemotion",
+  tagline: "Electronic Laboratory Notebook & Repository for Research Data",
+  url: "https://docs.chemotion.net",
+  baseUrl: "/",
+  onBrokenLinks: "throw",
+  onBrokenAnchors: "throw",
+  onBrokenMarkdownLinks: "throw",
+  favicon: "img/navbar/favicon.png",
   trailingSlash: false,
-  organizationName: 'Complat', // Usually your GitHub org/user name.
-  projectName: 'chemotion_saurus', // Usually your repo name.
+  organizationName: "Complat", // Usually your GitHub org/user name.
+  projectName: "chemotion_saurus", // Usually your repo name.
   customFields: {
-    fund: 'Funded By',
+    fund: "Funded By",
   },
   markdown: {
     mdx1Compat: {
@@ -27,27 +27,29 @@ module.exports = {
   },
   themeConfig: {
     navbar: {
-      title: 'Chemotion',
+      title: "Documentation 📖",
       logo: {
-        alt: 'Chemotion',
-        src: 'img/logos/favicon.ico',
+        alt: "Chemotion",
+        src: "img/navbar/open-c.png",
       },
       items: [
         {
-          label: 'Documentation 📖',
-          position: 'left',
-          docId: 'welcome',
-          type: 'doc',
+          label: "Who we are",
+          to: "https://chemotion.net/about",
+          position: "right",
+          className: "custom-nav-link",
         },
         {
-          label: 'Helpdesk 🤝',
-          position: 'right',
-          to: '/helpdesk',
+          label: "Helpdesk",
+          to: "https://chemotion.net/helpdesk",
+          position: "right",
+          className: "custom-nav-link",
         },
         {
-          label: 'Chemotion Repository ↗️',
-          position: 'right',
-          to: 'https://www.chemotion-repository.net/',
+          label: "Chemotion.net",
+          position: "right",
+          to: "https://chemotion.net/",
+          className: "custom-nav-link",
         },
       ],
     },
@@ -58,10 +60,10 @@ module.exports = {
       },
     },
     prism: {
-      additionalLanguages: ['ruby'],
+      additionalLanguages: ["ruby"],
     },
     footer: {
-      style: 'light',
+      style: "light",
       links: [
         {
           items: [
@@ -74,7 +76,7 @@ module.exports = {
         {
           items: [
             {
-              html: '<p style="text-align:center"><a href="/about">About Us</a></p>',
+              html: '<p style="text-align:center"><a href="https://chemotion.net/about">About Us</a></p>',
             },
           ],
         },
@@ -83,36 +85,36 @@ module.exports = {
     },
 
     colorMode: {
-      defaultMode: 'light',
+      defaultMode: "light",
       disableSwitch: true,
       respectPrefersColorScheme: false,
     },
   },
 
   plugins: [
-    '@docusaurus/plugin-sitemap',
-    '@docusaurus/plugin-content-pages',
-    '@docusaurus/plugin-svgr',
+    "@docusaurus/plugin-sitemap",
+    "@docusaurus/plugin-content-pages",
+    "@docusaurus/plugin-svgr",
     [
-      '@docusaurus/plugin-content-docs',
+      "@docusaurus/plugin-content-docs",
       {
-        sidebarPath: require.resolve('./sidebars.js'),
-        editUrl: 'https://github.com/ComPlat/chemotion_saurus/edit/main/',
+        sidebarPath: require.resolve("./sidebars.js"),
+        editUrl: "https://github.com/ComPlat/chemotion_saurus/edit/main/",
         showLastUpdateTime: true,
         showLastUpdateAuthor: false,
-        routeBasePath: '/docs',
+        routeBasePath: "/",
       },
     ],
     [
-      '@docusaurus/theme-classic',
+      "@docusaurus/theme-classic",
       {
-        customCss: require.resolve('./src/css/custom.css'),
+        customCss: require.resolve("./src/css/custom.css"),
       },
     ],
   ],
   themes: [
     [
-      require.resolve('@easyops-cn/docusaurus-search-local'),
+      require.resolve("@easyops-cn/docusaurus-search-local"),
       {
         hashed: true,
         highlightSearchTermsOnTargetPage: true,
