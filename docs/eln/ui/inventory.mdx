@@ -140,6 +140,51 @@ This section contains the following fields:
   Fetched properties can be viewed by clicking the results icon <Btn mixed={[faFileText]} color={"secondary"} /> button next to fetch button. An example of fetch chemical properties process is shown below.
   ![Safety List](/img/fetch_chemical_properties_chemical.gif)
 
+### Attach Safety Sheets manually
+
+This feature allows users to manually attach Safety Data Sheets (SDS) to chemical samples. It provides a user-friendly interface for uploading files and entering relevant metadata, ensuring that safety information is properly associated with the chemical.
+
+### Overview
+
+The manual SDS attachment functionality allows users to:
+
+- Upload a PDF file as the SDS.
+- Provide metadata such as product number, vendor name, product link, and safety sheet link.
+- Validate some inputs to ensure data integrity.
+
+### Key Features
+
+- **File Upload**: Restricts file uploads to PDF format.
+- **Input Fields**:
+  - Product Number
+  - Vendor Name
+  - Product Link (optional)
+  - Safety Sheet Link (optional)
+- **Validation**:
+  - Ensures required fields are filled.
+  - Validates URLs for product and safety sheet links.
+  - Displays error messages for invalid inputs.
+
+### Workflow
+
+1. Click the "Add Attachment" button.
+2. Fill in the required fields and upload a PDF file.
+3. Click "Submit" to save the attachment.
+
+![sds attachment](/img/manual_sds_attachment.gif)
+
+### Validation Rules
+
+- **File Type**: Only PDF files are allowed.
+- **Product Number**: Must be non-empty.
+- **Vendor Name**: Must contain only letters.
+- **URLs**: Must be valid URLs if provided.
+
+### Error Handling
+
+- Displays error messages for invalid inputs.
+- Prevents submission if required fields are missing or invalid.
+
 ### Location and Information List
 
 The Location field is divided into 2 subsections `host location, host group`, which reflects information about owner of chemical and `current location, current group` in case chemical is borrowed by another group/person. Both subsections have overlapping fields.
