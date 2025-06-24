@@ -24,6 +24,7 @@ A ELN Admin can do the following:
 - (un)lock a user account
 - (de)activate a user account
 - give a user account specific privileges
+- limit the users disk usage 
 
 ## Create user accounts 
 
@@ -57,6 +58,52 @@ __The user cannot reactivate it. Only an Admin can.__
 If the user is currently logged-in, its session will be invalidated.
 The data shared by the user to other users is still accessible to them.
 
+## User Quota
+
+The __Disk Usage__ column shows how much storage a user is allowed to use
+and also shows the __percentage of allocated storage used__, if a limit has been set.
+This limit helps manage the amount of space used by uploaded attachments and generated reports.
+It can be set __when creating or updating a user__.
+Storage usage is calculated __once per day__ by adding up the total size of:
+- All attachments the user uploads
+- Any reports the user generates
+
+#### If a user exceeds their quota:
+- Uploading attachments is no longer possible.
+- If an upload would exceed the quota, a warning is shown.
+- Attempting to save the element anyway will result in a failed upload.
+- Failed uploads trigger an error notification.
+
+The user can see there quota in __Account & Profile__.
+
+:::info[Info]
+Since disk usage is only updated daily, it is possible to exceed a quota.
+Therefore the value should be set a bit lower than the actual allowed maximum
+— this gives some extra space as a buffer.
+:::
+
+### Default User Allocated Space
+
+![adminui-usermanagement-default-user-space](@site/static/img/admin_ui/admin_ui-default_user_space.png)
+
+In the dashboard the __default user allocated space__ can be set 
+by entering a value and clicking __Save__. This value will appear in the __User Management__ tab
+and is automatically assigned to all __new users__.
+
+:::info[Info]
+If both a default value and individual user quotas are set,
+only users who have __no set quota__ or a __lower quota__ will be updated.
+:::
+
+:::warning[Important]
+You cannot reduce a user's existing quota. It can only be __increased__.
+:::
+
+:::tip[Groups]
+Setting __Disk Usage__ quota for a group will apply that value to all users in the group
+who have __no set quota__ or a __lower quota__. If a user is assigned to such a group,
+their quota will be updated automatically if they meet this criteria.
+:::
 
 
 
