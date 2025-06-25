@@ -3,6 +3,9 @@ title: Settings and Preparation
 sidebar_position: 1
 ---
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+
 This repository can be used directly without any preparations. Nevertheless, a few preparations help to organize the process efficiently.
 
 ## ORCID
@@ -14,7 +17,7 @@ https://orcid.org/<br/>
 <video controls height={"100%"} width={"100%"}>
   <source
     src={
-      require("@site/static/img/docs/repo/settings_preperation/orcid_screencast.webm")
+      require("@site/static/img/docs/repo/settings_preparation/orcid_screencast.webm")
         .default
     }
   />
@@ -28,7 +31,7 @@ They can be added by ORCID
 <video controls height={"100%"} width={"100%"}>
   <source
     src={
-      require("@site/static/img/docs/repo/settings_preperation/collaborates_with_orcid.webm")
+      require("@site/static/img/docs/repo/settings_preparation/collaborates_with_orcid.webm")
         .default
     }
   />
@@ -39,11 +42,38 @@ or by the user name
 <video controls height={"100%"} width={"100%"}>
   <source
     src={
-      require("@site/static/img/docs/repo/settings_preperation/collaborates_with_name.webm")
+      require("@site/static/img/docs/repo/settings_preparation/collaborates_with_name.webm")
         .default
     }
   />
 </video>
+
+## Assign Group Lead
+
+You can assign group lead(s) using the 'My Collaboration' feature. Once assigned, they will automatically be added as reviewers and co-authors by default upon submission.
+
+
+<div
+  style={{
+    display: "flex",
+    justifyContent: "center",
+    marginTop: 0,
+    flexDirection: "column",
+  }}
+>
+  <span className="figCaption" style={{ textAlign: "left" }}>(Click to view in a new window{" "} <FontAwesomeIcon icon={faArrowUpRightFromSquare} />)</span>
+  <a
+    href="/img/repo/set_group_lead.mp4"
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{ display: "block" }}
+  >
+    <video width="100%" controls autoPlay loop muted>
+      <source src="/img/repo/set_group_lead.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </a>
+</div>
 
 ## Clarify the type of license to be used for your data
 

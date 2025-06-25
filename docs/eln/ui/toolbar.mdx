@@ -161,13 +161,13 @@ To export reactions, wellplates, or analyses, you can use **Export samples from 
 Samples can be imported easily using an Excel template that contains **SMILES**-Strings. To enable the import into a collection, the desired target collection has to be selected.
 Please see the following example which can be used as a template to import data to the Chemotion ELN. The template file can be used as a test file to check the functions of the Chemotion ELN, for a specific import, please delete the current content.
 
-<p>
+<div>
   <DownloadBtn
     text={"Download XLSX Template here "}
     files={["/files/template_sample_import.xlsx"]}
   />
-  <br></br>Please don't change the header of the template file.{" "}
-</p>
+  <br></br>Please don't change the header of the template file.
+</div>
 
 Information on the columns and requirements:
 The columns "stereo_abs" and "stereo_rel" are predefined. Valid values are:
@@ -180,6 +180,14 @@ After downloading the XLSX template, you can import it in your Chemotion ELN as 
 :::info[Recommendation]
 
 Please add either molfile or **SMILES**-Code to the import template. The import process will fail if both are entered.
+
+:::
+
+:::danger[Caution]
+
+importing melting point, boiling point, location, refractive index, flash point, density, and molarity for samples will be available with version 2.0, which will be released soon.
+
+If you are interested, please feel free to test it around in our [test server](https://unrelated.chemotion.ibcs.kit.edu/)
 
 :::
 

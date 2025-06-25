@@ -92,6 +92,7 @@ module.exports = {
   plugins: [
     '@docusaurus/plugin-sitemap',
     '@docusaurus/plugin-content-pages',
+    '@docusaurus/plugin-svgr',
     [
       '@docusaurus/plugin-content-docs',
       {

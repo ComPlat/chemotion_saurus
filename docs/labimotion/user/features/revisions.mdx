@@ -1,0 +1,47 @@
+---
+title: Revision
+author: Claire Lin
+sidebar_position: 4
+---
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faReply, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+
+import {
+  FigCaption,
+  SubTitle,
+  YouTubeFrame,
+  Reader,
+} from "@site/src/js/layout";
+
+<SubTitle text="History Tracking" />
+<Reader text="User" />
+
+The **Revision** function provides a valuable safety net, enabling users to maintain the integrity of their work, track changes over time, and ensure that accidental or unwanted modifications can be easily corrected.
+
+The **Revision** function is accessible as a button in the toolbar.
+
+![RevisionOfUserView](/img/labimotion/revision-user.png)
+
+Clicking the **Revision** button opens a modal window. By default, a version history list is displayed on the left side. Specific version can be selected to view or revert to it with a single click.
+
+The **Revision** function includes:
+
+![Revision](/img/labimotion/revision-modal-user.png)
+
+
+### Version number
+
+The version number indicates the template version, displayed in the format `X.Y`, where `X` represents the major version and `Y` the minor version, highlighted in blue.
+
+### <FontAwesomeIcon icon={faEye} /> Viewing this version
+
+Each change made to the content is recorded upon saving. This allows for easy viewing and tracing back to previous versions.
+
+### <FontAwesomeIcon icon={faReply} /> Reverting Changes
+
+You can choose to revert back to a specific version. This action restores the data to the selected version, effectively undoing any changes made after that point in time.
+
+### <FontAwesomeIcon icon={faTrashCan} /> Delete Version
+
+If the old version is no longer needed, it can be deleted. This action is irreversible and  cannot be undone once completed.

@@ -407,9 +407,12 @@ For example, you might have optimized a reaction regarding its duration.
 Or you might have conducted a reaction with varying amounts of reactant(s).
 The `variations table` facilitates recording a variety of experiments, such as catalysis, screening, or kinetics.
 
-The materials in the `variations table` always reflect the materials from the `scheme tab`.
-Whenever a material is added or removed in the `scheme tab`, the `variations table` is updated accordingly.
-Materials cannot be added or removed in the `variations table` itself.
+The columns in the `variations table` can be selected from the `column selection modal` (open the modal with <Btn mixed={["Select Columns"]} color={"primary"}/>):
+
+![reaction_variations_column_selection_modal](/img/reaction_variations_column_selection_modal.png)
+
+Whenever a material is added or removed in the `scheme tab`, the available materials in the `column selection modal` are updated accordingly.
+Materials that are removed in the `scheme tab` are removed from the `variations table` as well.
 
 When you save a reaction that has a `variations table`,
 the reactions (and its samples) that are represented by the rows of the `variations table` are not saved individually.
@@ -450,7 +453,7 @@ B) to the reaction in general (right sub-tab):
 Variations can only be linked to B), and for the remainder of this section,
 whenever we refer to an analysis, we refer to B).
 
-You can link analyses with a variation by clicking on a cell in the `Analyses` column.
+You can link analyses with a variation by clicking on a cell in the `Analyses` column (add the `Analyses` column from "Metadata" dropdown in the `column selection modal`).
 
 ![reaction_variations_analyses_column](/img/reaction_variations_analyses_column.png)
 
@@ -469,7 +472,7 @@ containing the number of linked analyses:
 
 #### Adding notes to variations
 
-Each row in the `variations table` can be annotated with notes.
+Each row in the `variations table` can be annotated with notes (add the`Notes` column from "Metadata" dropdown in the `column selection modal`).
 
 ![reaction_variations_notes](/img/reaction_variations_notes.png)
 
@@ -485,8 +488,7 @@ You can finish editing by hitting enter again.
 
 ##### Columns
 
-It's likely that not all columns fit on your screen.
-You can move to columns that are currently off-screen by using the scroll bar at the bottom of the tab.
+In case not all columns fit on your screen you can move to columns that are currently off-screen by using the horizontal scroll bar at the top of the tab.
 If you want to change the order of columns, click on a column header and drag it to the left or right.
 
 ###### Units

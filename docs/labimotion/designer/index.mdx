@@ -1,0 +1,87 @@
+---
+title: Designer Guides
+author: Claire Lin
+sidebar_position: 4
+---
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowUpRightFromSquare,
+} from "@fortawesome/free-solid-svg-icons";
+import Sections from '@site/docs/labimotion/_sections.mdx';
+import {
+  FigCaption,
+  SubTitle,
+  YouTubeFrame,
+  Reader,
+} from "@site/src/js/layout";
+import menu from "@site/static/img/labimotion/menu.png";
+import designerMenu from "@site/static/img/labimotion/designer-menu.png";
+
+<SubTitle text="Designer supports a wild range of component types, from simple text field to table, and allow to set up a workflow." />
+<Reader text="Designer" />
+
+You can work with a variety of component types, ranging from simple text fields to tables. This empowers you to construct intricate workflows tailored to your requirements.
+
+As a Designer, you can take advantage of the following capabilities:
+
+- Easily synchronize templates suitable for your application from the Template Hub. This approach allows you to benefit from the collaborative efforts of scientists and is **highly recommended**.
+- A wide variety of **[Components](designer/components/)**, allowing you to approach your design methodically, step by step.
+
+:::info[Permissions]
+
+The Designer role encompasses Element, Segment, and Dataset functions, which are accessible to individuals with designer permissions. If you cannot locate the **Generic Designer** option in the menu, kindly reach out to your system administrator for assistance.
+
+<img src={menu} alt="Menu" />
+
+:::
+
+## Recommended practices
+
+### Sync templates from Template Hub
+
+Utilize the Template Hub, a user-friendly collaboration center designed for scientists to effortlessly share templates across different applications. Synchronizing templates through the Template Hub is a streamlined process.
+
+Watch the video below to see how a designer can efficiently sync templates to your own instance.
+
+<YouTubeFrame
+  src="https://www.youtube-nocookie.com/embed/gddh2q5XYvQ"
+  title="Sync Dataset from LabIMotion Hub"
+/>
+
+<FigCaption text="LabIMotion - Sync Dataset Template from LabIMotion Hub" />
+
+:::tip
+
+Find templates that are suitable for your application in the **[LabIMotion Hub](https://www.chemotion-repository.net/home/genericHub)**.
+
+:::
+
+## Getting Started
+
+1. Select [**Generic Element Designer**](./elements/index.mdx), [**Generic Segment Designer**](./segments/index.mdx), or [**Generic Dataset Designer**](./datasets/index.mdx) from the menu.
+
+<img src={designerMenu} alt="Designer Menu" />
+
+2. Locate the template you want to work with and click the [**Template**](./template-features/index.mdx) button - the system will automatically navigate you to the [**Work Area**](./template-features/workarea.mdx).
+
+Starting with LabIMotion v2, you can use **Quick Filter** to quickly find a template by entering a piece of text.
+
+<YouTubeFrame
+  src="https://www.youtube-nocookie.com/embed/uYP60ApVTsI"
+  title="Designer, you design what you need."
+/>
+
+<FigCaption text="LabIMotion - Quick Filter" />
+
+
+3. Utilize the [**Preview Design**](./template-features/preview-design.mdx) feature to gain a visual representation of the template's appearance.
+4. Access the [**Work Area**](./template-features/workarea.mdx) to integrate essential components, arrange them to your preferences, and establish the desired layout.
+
+<YouTubeFrame
+  src="https://www.youtube-nocookie.com/embed/8o1U4QXU-B0"
+  title="Designer, you design what you need."
+/>
+
+<FigCaption text="Designer, you design what you need." />
+
+<Sections />
