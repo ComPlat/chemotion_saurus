@@ -18,7 +18,7 @@ jobs:
 
       - name: Download YT Thumbnails
         run: |
-          for file in $(grep -roP 'youtube-nocookie.com/embed/.{11}' docs | rev | cut -d / -f 1 | rev); do
+          for file in $(grep -hroP 'youtube-nocookie.com/embed/.{11}' docs | cut -d / -f 3); do
             if [ ! -f "static/img/yt_thumbnails/$file.jpg" ]; then
               wget -O "static/img/yt_thumbnails/$file.jpg" "https://img.youtube.com/vi/$file/hqdefault.jpg" || wget -O "static/img/yt_thumbnails/$file.jpg" "https://img.youtube.com/vi/$file/0.jpg"
             fi
@@ -26,6 +26,8 @@ jobs:
 
       - name: Build
         id: build
+        env:
+          DOCUSAURUS_IGNORE_SSG_WARNINGS: true
         run: |
           npm install -g npm
           npm install
