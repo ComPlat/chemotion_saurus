@@ -10,12 +10,14 @@ author: Pierre Tremouilhac
 
 The page offers a basic listing of the registered users.
 Users are of 4 types:
+
 - Person: standard ELN users have access to /mydb page but not the admin page
-- Admin: ELN adminstrators do not have access to /mydb page but to the admin page
+- Admin: ELN administrators do not have access to /mydb page but to the admin page
 - Group: a group of users
 - Device: a device (deprecated for >= v2.0.0)
 
 A ELN Admin can do the following:
+
 - create one or multiple user accounts
 - delete a user account
 - restore a deleted account
@@ -24,9 +26,9 @@ A ELN Admin can do the following:
 - (un)lock a user account
 - (de)activate a user account
 - give a user account specific privileges
-- limit the users disk usage 
+- limit the users disk usage
 
-## Create user accounts 
+## Create user accounts
 
 Press the following to open the dialogue window:
 ![adminui-usermanagement-createuser](@site/static/img/admin_ui/admin_ui-user_management-newuser.png)
@@ -37,13 +39,11 @@ Add the information for the new user account or upload a csv file containing the
 
 ## Editing or delete an existing account
 
-An existing account can be edited or deleted. 
-Press the following to open the edit/delete dialogue window for a given account: 
+An existing account can be edited or deleted.
+Press the following to open the edit/delete dialogue window for a given account:
 ![adminui-usermanagement-editing-modal](@site/static/img/admin_ui/admin_ui-user_management-editing.png)
 
 ![adminui-usermanagement-editing-modal](@site/static/img/admin_ui/admin_ui-user_management-deleting-mod.png)
-
-
 
 ## (De-)activating vs (Un-)locking an account
 
@@ -54,27 +54,29 @@ The account will be automatically unlock after 10 mins.
 Alternately an Admin can unlock it from this interface.
 
 An account can be frozen by deactivating it here. Login to this account is then not possible.
-__The user cannot reactivate it. Only an Admin can.__
+**The user cannot reactivate it. Only an Admin can.**
 If the user is currently logged-in, its session will be invalidated.
 The data shared by the user to other users is still accessible to them.
 
 ## User Quota
 
-The __Disk Usage__ column shows how much storage a user is allowed to use
-and also shows the __percentage of allocated storage used__, if a limit has been set.
+The **Disk Usage** column shows how much storage a user is allowed to use
+and also shows the **percentage of allocated storage used**, if a limit has been set.
 This limit helps manage the amount of space used by uploaded attachments and generated reports.
-It can be set __when creating or updating a user__.
-Storage usage is calculated __once per day__ by adding up the total size of:
+It can be set **when creating or updating a user**.
+Storage usage is calculated **once per day** by adding up the total size of:
+
 - All attachments the user uploads
 - Any reports the user generates
 
 #### If a user exceeds their quota:
+
 - Uploading attachments is no longer possible.
 - If an upload would exceed the quota, a warning is shown.
 - Attempting to save the element anyway will result in a failed upload.
 - Failed uploads trigger an error notification.
 
-The user can see there quota in __Account & Profile__.
+The user can see there quota in **Account & Profile**.
 
 :::info[Info]
 Since disk usage is only updated daily, it is possible to exceed a quota.
@@ -86,26 +88,21 @@ Therefore the value should be set a bit lower than the actual allowed maximum
 
 ![adminui-usermanagement-default-user-space](@site/static/img/admin_ui/admin_ui-default_user_space.png)
 
-In the dashboard the __default user allocated space__ can be set 
-by entering a value and clicking __Save__. This value will appear in the __User Management__ tab
-and is automatically assigned to all __new users__.
+In the dashboard the **default user allocated space** can be set
+by entering a value and clicking **Save**. This value will appear in the **User Management** tab
+and is automatically assigned to all **new users**.
 
 :::info[Info]
 If both a default value and individual user quotas are set,
-only users who have __no set quota__ or a __lower quota__ will be updated.
+only users who have **no set quota** or a **lower quota** will be updated.
 :::
 
 :::warning[Important]
-You cannot reduce a user's existing quota. It can only be __increased__.
+You cannot reduce a user's existing quota. It can only be **increased**.
 :::
 
 :::tip[Groups]
-Setting __Disk Usage__ quota for a group will apply that value to all users in the group
-who have __no set quota__ or a __lower quota__. If a user is assigned to such a group,
+Setting **Disk Usage** quota for a group will apply that value to all users in the group
+who have **no set quota** or a **lower quota**. If a user is assigned to such a group,
 their quota will be updated automatically if they meet this criteria.
 :::
-
-
-
-
-
