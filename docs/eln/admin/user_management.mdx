@@ -83,7 +83,7 @@ Since disk usage is only updated daily, it is possible to exceed a quota.
 Therefore the value should be set a bit lower than the actual allowed maximum
 — this gives some extra space as a buffer.
 :::
-
+                                                               
 ### Default User Allocated Space
 
 ![adminui-usermanagement-default-user-space](/img/admin_ui/admin_ui-default_user_space.png)
@@ -95,14 +95,11 @@ and is automatically assigned to all **new users**.
 :::info[Info]
 If both a default value and individual user quotas are set,
 only users who have **no set quota** or a **lower quota** will be updated.
-:::
-
-:::warning[Important]
-You cannot reduce a user's existing quota. It can only be **increased**.
+Updating the default value will also only update these users.
 :::
 
 :::tip[Groups]
-Setting **Disk Usage** quota for a group will apply that value to all users in the group
+Setting or updating **Disk Usage** quota for a group will apply that value to all users in the group
 who have **no set quota** or a **lower quota**. If a user is assigned to such a group,
 their quota will be updated automatically if they meet this criteria.
 :::
