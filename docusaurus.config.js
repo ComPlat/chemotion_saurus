@@ -2,7 +2,7 @@ require('dotenv').config();
 
 module.exports = {
   future: {
-    experimental_faster: true,
+    v4: true, // Enable future Docusaurus v4 features
   },
   title: 'Chemotion',
   tagline: 'Electronic Laboratory Notebook & Repository for Research Data',
