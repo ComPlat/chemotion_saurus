@@ -3,7 +3,7 @@ title: Using the CLI
 sidebar_position: 11
 ---
 
-ChemCLI, short for Chemotion CLI, is a tool to help you manage Chemotion ELN on a machine. The goal is to make installation, maintenance and upgradation of (multiple instances of) Chemotion as easy as possible.
+ChemCLI, short for Chemotion CLI, is a tool to help you manage Chemotion ELN on a machine. The goal is to make installation and maintenance of (multiple instances of) Chemotion as easy as possible.
 
 :::info[Important Announcements]
 
@@ -54,14 +54,18 @@ Following features have been implemented:
 
 ### Getting the tool
 
-The ChemCLI tool is a binary file called `chemCLI` and needs no installation. The only prerequisite is that you install [Docker Desktop](https://www.docker.com/products/docker-desktop/) (and, on Windows, [WSL](https://docs.microsoft.com/en-us/windows/wsl/install)). Depending on your OS, you can download the latest release of the CLI from [here](https://github.com/Chemotion/ChemCLI/releases/). Builds for the following systems are available:
+The ChemCLI tool is a binary file called `chemCLI` and needs no installation. The only prerequisite is that you install [Docker Engine](https://docs.docker.com/engine/install/) on Linux. In the rare scenario that your server is running Windows or Mac, you can make use of [Docker Desktop](https://docs.docker.com/desktop/) which comes with a GUI. Builds for the following systems are available:
+
+:::info[Download Links]
+Depending on your OS, you can go to [GitHub and download the latest release of the CLI](https://github.com/Chemotion/ChemCLI/releases/latest/).
+:::
 
 - Linux, amd64
-- Windows, amd64; remember to turn on [Docker integration with WSL](https://docs.docker.com/desktop/windows/wsl/)
+- Windows, amd64
 - macOS, apple-silicon
 - macOS, amd64
 
-Please be sure that you have both, `docker` and `docker compose` commands. This should be the case if you install Docker Desktop following the instructions [here](https://docs.docker.com/desktop/#download-and-install). If you choose to install only Docker Engine, then please make sure that you **also** have `docker compose` as a command (as opposed to `docker-compose`). On Linux, you might have to install the [`docker-compose-plugin`](https://docs.docker.com/compose/install/linux/#install-using-the-repository) to achieve this.
+Please be sure that you have both, `docker` and `docker compose` commands. This should be the case if you installed Docker Desktop. If you choose to install only Docker Engine, then please make sure that you **also** have `docker compose` as a command (as opposed to `docker-compose`). On Linux, you might have to install the [`docker-compose-plugin`](https://docs.docker.com/compose/install/linux/#install-using-the-repository) to achieve this.
 
 These binary builds should not rely on libraries of the underlying operating system: if they still do not work on your system for some reason, please create an [issue here](https://github.com/Chemotion/ChemCLI/issues) and we will try to provide you a binary build as soon as possible. If you feel like it, you can always compile the `go` source code on your own.
 
@@ -78,7 +82,7 @@ These binary builds should not rely on libraries of the underlying operating sys
 
 ^On macOS, if the there is a security pop-up when running the command, please also `Allow` the executable in `System Preferences > Security & Privacy`.
 
-#### Important Notes:
+#### Important Notes
 
 - All commands here, and all the documentation of the tool, use `./chemCLI` when describing how to run the executable. However, your specific command to run the executable is given in the table above.
 - If possible, do not rename the executable, or rename/remove files and folders created by it. All reasonable operations can be done using chemCLI; manual operations might break the chemCLI's ability to understand how things are laid out on your machine.
@@ -104,7 +108,7 @@ This will create the first (production-grade) `instance` of Chemotion on your sy
 
 > We **strongly** recommend getting in touch with the IT services for this part of the installation. Getting it wrong can have security implications for your data/network.
 
-The ELN runs inside a container and is therefore not available on your computer's network; other than on **one** exposed port. To make the installation available on the network, the container's port should be then linked an  external network. We suggest that you setup a [reverse-proxy service](#setting-up-a-reverse-proxy). Such a service forwards a domain name (e.g. https://chemotion.dept.uni.de) to your ELN so that your users can visit the domain name to use the ELN. A rough guideline on how to do so is provided here.
+The ELN runs inside a container and is therefore not available on your computer's network; other than on **one** exposed port. To make the installation available on the network, the container's port should be then linked an external network. We suggest that you setup a [reverse-proxy service](#setting-up-a-reverse-proxy). Such a service forwards a domain name (e.g. https://chemotion.dept.uni.de) to your ELN so that your users can visit the domain name to use the ELN. A rough guideline on how to do so is provided here.
 
 We suggest to run an [nginx](https://nginx.org/en/docs/) reverse-proxy server if you don’t already have one. In case you want to use Shibboleth, please use [Apache](https://httpd.apache.org/). You can also choose to run something similar like [Traefik](https://traefik.io/traefik/) if you are familiar with the process.
 
@@ -190,10 +194,10 @@ To turn on, and off, the `selected` instance, issue the commands:
 
 ### Backup an instance
 
-:::warning Warning
+:::caution WARNINGS
+This backup process does not backup data that resides outside docker volumes e.g. `services` and `shared` folders. These folder need to be backed up by you separately.
 
-This backup process does not backup data that reside out docker e.g. `services` and `shared` folders. These folder need to be backed up by you separately.
-
+By default, backups are created in a folder that will be removed if you remove the instance or if you uninstall Chemotion (using ChemCLI). Remember to move the backups before you run remove/uninstall operations.
 :::
 
 You can backup an instance of the ELN, installed using the CLI, by running the following command:
@@ -205,7 +209,7 @@ If running this as a [cron](https://en.wikipedia.org/wiki/Cron) job, remember to
 0 3 * * 2-6 cd /home/admin/installations/chemotion_ELN && ./chemCLI instance backup -i prodinstance -q
 ```
 
-Please also refer to the notes [here](manual_install#backing-up-and-restoring-your-data) for a better understanding of the backup process.
+Please also refer to the notes on [manual installation](manual_install#backing-up-and-restoring-your-data) for a better understanding of the backup process.
 
 ### Upgrading an instance (for ELN versions 1.3 and above)
 
@@ -276,10 +280,10 @@ Similarly, the CLI can be run in Debug mode when you encounter an error. This pr
 
 - Have a bug that looks as follows when trying to update?
 
-  ```sh
-  pg_dump: error: connection to server at "db" (172.21.0.2), port 5432 failed: FATAL:  database "chemotion" does not exist
-  ```
+```sh
+pg_dump: error: connection to server at "db" (172.21.0.2), port 5432 failed: FATAL:  database "chemotion" does not exist
+```
 
-  Then please have a look at the `docker-compose.cli.yml` files in the `instances` folder. The section `services.executor.image` should be changed so that it matches `services.eln.image` in the `docker-compose.yml` file. Otherwise, you will likely bug that looks as follows when trying to upgrade:
+Then please have a look at the `docker-compose.cli.yml` files in the `instances` folder. The section `services.executor.image` should be changed so that it matches `services.eln.image` in the `docker-compose.yml` file.
 
-- If you are using ChemCLI versions 0.2.11 or lower, you will have to manually update the Chemotion CLI tool.
+- If you are using ChemCLI versions 0.2.0 to 0.2.3, you will have to manually update the Chemotion CLI tool.
