@@ -160,8 +160,7 @@ server {
 
     resolver 127.0.0.11; # this bit is very important as it allows nginx and docker to cooperate
 
-    add_header Content-Security-Policy "default-src 'self' 'unsafe-inline' 'unsafe-eval';connect-src 'self' ws: blob: commonchemistry.cas.org dx.doi.org doi.org api.crossref.org; font-src 'self' data: ; frame-src 'self' nmrium.nmrxiv.org ; img-src 'self' data:" ;
-
+    add_header Content-Security-Policy "default-src 'self' 'unsafe-inline' 'unsafe-eval' ; worker-src 'self' ; connect-src 'self' ws: blob: commonchemistry.cas.org dx.doi.org doi.org api.crossref.org; font-src 'self' data: ; frame-src 'self' nmrium.nmrxiv.org ; img-src 'self' data:" ;
     location / {
         proxy_pass http://eln:4000;
     }
