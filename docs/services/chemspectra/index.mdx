@@ -54,3 +54,28 @@ can be further modified by the user.
 5. After your files were processed, click on the `Spectra Editor` button to open the analyses viewer:
    ![chemspectra button open spectra editor](/img/chemspectra/chemspectra_upload_file_6.png)
    ![chemspectra frontend](/img/chemspectra/chemspectra_upload_file_7.png)
+
+## Displaying multiple spectra in a single editor
+
+ChemSpectra supports the visualization of multiple spectra within a single editor view, as long as the spectra belong to the same analysis.
+
+This feature applies to the following types of spectra:
+
+- HPLC UV-VIS  
+- NMR  
+- UV
+
+When such spectra are grouped within one analysis, ChemSpectra will open all of them simultaneously in a tabbed interface. This allows users to switch between the spectra without leaving the editor.
+
+### Using the Multi-Spectra display
+
+Open your Sample details and select the `Analyses tab`. If an analysis contains more than one supported spectrum, clicking the `Spectra Editor button` will open all the spectra in a single editor window.
+
+Tabs at the top-right of the ChemSpectra editor allow you to switch between the different spectra. Each spectrum behaves as expected, with the full set of tools available for that specific type.
+
+![multi spectra demo](/img/chemspectra/multi-spectra-demo.gif)
+
+### Limitations
+
+- The feature only works when multiple spectra are part of one single analysis
+- Spectra across different analyses will still open in separate ChemSpectra windows
