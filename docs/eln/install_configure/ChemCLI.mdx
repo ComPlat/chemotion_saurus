@@ -5,24 +5,6 @@ sidebar_position: 11
 
 ChemCLI, short for Chemotion CLI, is a tool to help you manage Chemotion ELN on a machine. The goal is to make installation and maintenance of (multiple instances of) Chemotion as easy as possible.
 
-:::info[Important Announcements]
-
-1. You must manually update the CLI for versions 0.2.11 and lower. To do so, go to [Releases](https://github.com/Chemotion/ChemCLI/releases) and download the required executable. See [Updating the Tool](#updating-the-tool) for more.
-
-   Manually updating the tool will trigger a warning about version mismatch whenever you run ChemCLI. To get around it, run `./chemCLI advanced update --force` once after putting the new executable in place.
-
-1. Have a bug that looks as follows when trying to update an instance?
-
-   ```sh
-   pg_dump: error: connection to server at "db" (172.21.0.2), port 5432 failed: FATAL:  database "chemotion" does not exist
-   ```
-
-   Then please have a look at the `docker-compose.cli.yml` files in the `instances` folder. The section `services.executor.image` should be changed so that it matches `services.eln.image` in the `docker-compose.yml` file.
-
-1. Please note that support for version 0.1.x of the CLI has been completely deprecated on 31.12.2023. The codes that help you migrate from version 0.1 to 0.2 will be removed in next major release of the CLI.
-
-:::
-
 ## Compatibility with Chemotion ELN
 
 The ChemCLI tool supports the last three major releases and last three minor releases of the ELN. However, it possible that certain versions are not available for installation based on user feedback.
@@ -82,18 +64,22 @@ These binary builds should not rely on libraries of the underlying operating sys
 
 ^On macOS, if the there is a security pop-up when running the command, please also `Allow` the executable in `System Preferences > Security & Privacy`.
 
-#### Important Notes
+## Usage: Setting up an instance
+
+:::info[Please Note]
 
 - All commands here, and all the documentation of the tool, use `./chemCLI` when describing how to run the executable. However, your specific command to run the executable is given in the table above.
 - If possible, do not rename the executable, or rename/remove files and folders created by it. All reasonable operations can be done using chemCLI; manual operations might break the chemCLI's ability to understand how things are laid out on your machine.
+- Everything happens in the folder (and subfolders) where `./chemCLI` is executed. All files and folders are expected to be there; otherwise failures can happen. The user executing ChemCLI is expected to have all file permissions for this folder.
+- In case you need to modify `docker-compose.yml` for some reason, choose to modify `docker-compose.cli.yml` instead. The `docker-compose.cli.yml` is (in most cases) not modified during upgrades. On the other hand, `docker-compose.yml` is replaced during upgrades.
 
-## First run
+:::
 
 ### Make a dedicated folder
 
 Make a folder where you want to store installation(s) of Chemotion ELN. Ideally this folder should be in the largest drive (in terms of free space) of your system. Remember that Chemotion also uses space via Docker (docker containers, volumes etc.) and therefore you need to make sure that your system partition has abundant free space.
 
-### Install
+### Install your first instance
 
 To begin with installation, run the executable (`./chemCLI`) and follow the prompt. The first installation can take really long time (15-30 minutes depending on your download and processor speeds). Please be aware that instance names must be lowercase and cannot contain periods (`.`).
 
@@ -104,11 +90,11 @@ This will create the first (production-grade) `instance` of Chemotion on your sy
 
 > :warning: **chem_cli.yml**: Installation also creates a file called `chem_cli.yml`. This file is critical as it contains information regarding existing installations. Removing the file will render chemCLI clueless about existing installations and it will behave as if Chemotion was never installed. Please do not remove the file. Ideally there should be no need for you to modify it manually.
 
-### Setting up a Reverse-Proxy
+### Set up a Reverse-Proxy
 
 > We **strongly** recommend getting in touch with the IT services for this part of the installation. Getting it wrong can have security implications for your data/network.
 
-The ELN runs inside a container and is therefore not available on your computer's network; other than on **one** exposed port. To make the installation available on the network, the container's port should be then linked an external network. We suggest that you setup a [reverse-proxy service](#setting-up-a-reverse-proxy). Such a service forwards a domain name (e.g. https://chemotion.dept.uni.de) to your ELN so that your users can visit the domain name to use the ELN. A rough guideline on how to do so is provided here.
+The ELN runs inside a container and is therefore not available on your computer's network; other than on **one** exposed port. To make the installation available on the network, the container's port should be then linked an external network. We suggest that you setup a reverse-proxy service. Such a service forwards a domain name (e.g. https://chemotion.dept.uni.de) to your ELN so that your users can visit the domain name to use the ELN. A rough guideline on how to do so is provided here.
 
 We suggest to run an [nginx](https://nginx.org/en/docs/) reverse-proxy server if you don’t already have one. In case you want to use Shibboleth, please use [Apache](https://httpd.apache.org/). You can also choose to run something similar like [Traefik](https://traefik.io/traefik/) if you are familiar with the process.
 
@@ -167,16 +153,18 @@ server {
 }
 ```
 
-Here, you are accessing the files `....crt` and `....key`. These files are certificates that allow your connection to use encryption (i.e. use https). These certificate files should be provided to you by your IT department, or you can use a service like [Let's Encrypt](https://letsencrypt.org/) to generate them as long as your IT and firewall policies allow that. Please put these files in a folder called `ssh` and put this folder in the folder where you have your `docker-compose.yml` (and `docker-compose.cli.yml) file. The add_header block allows you to access external services e.g. allow commonchemistry.cas.org (for creating sample by cas-rn), as well as dx.doi.org, doi.org, and api.crossref.org (to fetch literature references by doi).
+Here, you are accessing the files `....crt` and `....key`. These files are certificates that allow your connection to use encryption (i.e. use https). These certificate files should be provided to you by your IT department, or you can use a service like [Let's Encrypt](https://letsencrypt.org/) to generate them as long as your IT and firewall policies allow that. Please put these files in a folder called `ssl` and put this folder in the folder where you have your `docker-compose.yml` (and `docker-compose.cli.yml) file. The add_header block allows you to access external services e.g. allow commonchemistry.cas.org (for creating sample by cas-rn), as well as dx.doi.org, doi.org, and api.crossref.org (to fetch literature references by doi).
 
 Further information on how to configure nginx, please refer to tutorials online (e.g. [here](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/) and [here](https://www.cyberciti.biz/faq/configure-nginx-to-use-only-tls-1-2-and-1-3/)).
 
-#### To summarize, you have to make sure that:
+**To summarize, you have to make sure that:**
 
 - Reverse proxy is setup properly (i.e. DNS resolves to the URL to your server's IP address).
 - Any potential firewall/networking rules do not get in the way.
 - Docker exposes and listens on the correct ports.
 - The ELN is running.
+
+## Usage: Managing Instance(s)
 
 ### The `selected` instance
 
@@ -193,10 +181,12 @@ To turn on, and off, the `selected` instance, issue the commands:
 
 ### Backup an instance
 
-:::caution WARNINGS
+:::caution[WARNINGS]
+
 This backup process does not backup data that resides outside docker volumes e.g. `services` and `shared` folders. These folder need to be backed up by you separately.
 
 By default, backups are created in a folder that will be removed if you remove the instance or if you uninstall Chemotion (using ChemCLI). Remember to move the backups before you run remove/uninstall operations.
+
 :::
 
 You can backup an instance of the ELN, installed using the CLI, by running the following command:
@@ -224,7 +214,7 @@ As long as you installed an instance of Chemotion using this tool, the upgrade p
 
 > :warning: be sure about what you want to do!
 
-You can uninstall everything created by chemCLI by running: `./chemCLI` > `advanced` > `uninstall`. Last you can simply delete the downloaded binary itself.
+You can uninstall everything created by chemCLI by running: `./chemCLI` > `advanced` > `uninstall`. Last you can simply delete the downloaded binary itself. To reiterate: By default, backups are created in a folder that will be removed if you remove the instance or if you uninstall Chemotion (using ChemCLI). Remember to move the backups before you run remove/uninstall operations.
 
 ## Updating the Tool
 
@@ -232,7 +222,7 @@ chemCLI (version 0.2 onwards) is configured to check for new releases of itself 
 
 > Respecting your privacy: You can disable this automatic checking for next 100 years by running `./chemCLI advanced update --disable-autocheck`.
 
-### Updating from version 0.1.x
+#### Updating from version 0.1.x
 
 If you are using chemCLI version 0.1 (then called `chemotion CLI`), please do the following to update to the latest version:
 
@@ -275,14 +265,18 @@ Similarly, the CLI can be run in Debug mode when you encounter an error. This pr
 
 ## Known limitations and bugs
 
-- Everything happens in the folder (and subfolders) where `./chemCLI` is executed. All files and folders are expected to be there; otherwise failures can happen. The user executing ChemCLI is expected to have all file permissions for this folder.
+1. You must manually update the CLI for versions 0.2.11 and lower. To do so, go to [Releases](https://github.com/Chemotion/ChemCLI/releases) and download the required executable. See [Updating the Tool](#updating-the-tool) for more.
 
-- Have a bug that looks as follows when trying to update?
+   Manually updating the tool will trigger a warning about version mismatch whenever you run ChemCLI. To get around it, run `./chemCLI advanced update --force` once after putting the new executable in place.
 
-```sh
-pg_dump: error: connection to server at "db" (172.21.0.2), port 5432 failed: FATAL:  database "chemotion" does not exist
-```
+1. Have a bug that looks as follows when trying to update an instance?
 
-Then please have a look at the `docker-compose.cli.yml` files in the `instances` folder. The section `services.executor.image` should be changed so that it matches `services.eln.image` in the `docker-compose.yml` file.
+   ```sh
+   pg_dump: error: connection to server at "db" (172.21.0.2), port 5432 failed: FATAL:  database "chemotion" does not exist
+   ```
 
-- If you are using ChemCLI versions 0.2.0 to 0.2.3, you will have to manually update the Chemotion CLI tool.
+   Then please have a look at the `docker-compose.cli.yml` files in the `instances` folder. The section `services.executor.image` should be changed so that it matches `services.eln.image` in the `docker-compose.yml` file.
+
+1. Please note that support for version 0.1.x of the CLI has been completely deprecated on 31.12.2023. The codes that help you migrate from version 0.1 to 0.2 will be removed in next major release of the CLI.
+
+:::
