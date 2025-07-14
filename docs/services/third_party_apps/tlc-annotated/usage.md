@@ -13,7 +13,9 @@ This guide walks through each step of using the TLC Image Annotation Tool inside
 
 ---
 
-## 1️. Load a TLC Image
+## Step by Step
+
+### 1️. Load a TLC Image
 
 You can start in two ways:
 
@@ -27,7 +29,7 @@ You can start in two ways:
 ![Image Source Selection](/img/ThirdPartyApps/Tlc/tlc-image-source.png)
 
 ---
-## 2️. Set Reference Lines
+### 2️. Set Reference Lines
 
 Before anything else, define the two key horizontal lines:
 
@@ -44,7 +46,7 @@ Click the **Min Line** button, then click on the canvas. Repeat with **Max Line*
 
 ---
 
-## 3️. Add Spots
+### 3️. Add Spots
 
 Click **Add Spots**, then click once on each spot (visible compound) on the TLC plate.
 
@@ -59,7 +61,7 @@ Click **Add Spots**, then click once on each spot (visible compound) on the TLC 
 
 ---
 
-## 4️. Add Labels (Optional)
+### 4️. Add Labels (Optional)
 
 You can add reference lines and labels to structure the image:
 
@@ -75,7 +77,7 @@ A popup will prompt for a label after placing each line.
 
 ---
 
-## 5️. Calculate RF
+### 5️. Calculate RF
 
 Click the **Calculate RF** button.
 
@@ -87,7 +89,7 @@ Rf = Distance from Min Line to Spot / Distance from Min to Max
 
 ---
 
-## 6️. Export or Save
+### 6️. Export or Save
 
 After calculation, you can:
 
@@ -95,14 +97,14 @@ After calculation, you can:
 - Save the annotated image
 - Push both to the ELN entry (if loaded from ELN)
 
-# Reset
+## Reset
 
 Click the Reset button to:
 
 - Clear all spots, lines, and table data
 - Return to a clean canvas for a fresh start
 
-# Tips for Best Results
+## Tips for Best Results
 
 - Use high-resolution, well-lit TLC images
 - Place Min/Max lines before marking spots

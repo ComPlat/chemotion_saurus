@@ -30,9 +30,9 @@ This page addresses common user questions, issues, and best practices.
 
 ###  3. Upload to ELN does not work
 
-- Upload works **only if** the image was loaded from Chemotion ELN
-- Ensure you are logged in to the ELN and CSRF token is available
-- Local uploads can’t be sent to ELN – only download is allowed
+- Upload works **only if** the image was loaded from Chemotion
+- Ensure you are logged in to the Chemotion and CSRF token is available
+- Local uploads can’t be sent to Chemotion – only download is allowed
 
 ---
 
