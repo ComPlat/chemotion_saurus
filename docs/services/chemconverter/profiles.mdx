@@ -27,6 +27,9 @@ currently include in Repo
 | UV-VIS                           |              | generic UV-Vis         | UV-VIS data from general txt, data: +, metadata: - <br /> generic data table only; ref location: ---, data: +, metadata: -                       | ???                                           | \*.txt       | Link                                                                                                                                                     |
 | UV-VIS                           |              | SPECORD 50 -> single sample | UV-VIS data from csv, data: +, metadata: - <br /> UV-VIS data from csv, data: +, metadata: -                    | UV/VIS: SPECORD 50        | \*.csv       | [Link](https://github.com/ComPlat/chemotion_saurus/blob/main/static/files/shared_ChemConverter_files/profiles/688305e6-c11c-481e-b66b-1bd78634e8fe.json)                                                                                                                                                     |
 | X-ray diffraction                |              | brml                   | X-ray diffraction data from brml, data: +, metadata: - <br /> ???; ref location: ---, data: +, metadata: -                                       | ???                                           | \*.txt       | Link                                                                                                                                                     |
+| X-ray diffraction                | v1.5.0+      | xrd xy                 | PXRD data from xy, data: +, metadata: + <br /> ???; ref location: JGU Mainz, data: +, metadata: +                                                | ???                                           | \*.xy        | Link                                                                                                                                                     |
+
+
 
 (1) The generic name follows the convention that the names should give us a hind about what the profile does (marked by a +) and the description should tell us i.a. what the file could provide. <br />
 (+) In this case, the file itself does not provide Metadata but some could be calculated by the Reader.
@@ -338,4 +341,22 @@ Otherwise please reach out to us or change it in the profile settings in your ow
 - Y Unit: ABSORBANCE, Y Value: Table#0, Column#1
 - Profile id: 688305e6-c11c-481e-b66b-1bd78634e8fe
 - Reader: CSVReader
-- [Download Link](https://github.com/ComPlat/chemotion_saurus/blob/main/static/files/shared_ChemConverter_files/profiles/688305e6-c11c-481e-b66b-1bd78634e8fe.json) 
+- [Download Link](https://github.com/ComPlat/chemotion_saurus/blob/main/static/files/shared_ChemConverter_files/profiles/688305e6-c11c-481e-b66b-1bd78634e8fe.json)
+
+### Profile: XRD from xy
+
+(P)XRD from xy; reference location: JGU Mainz, with data conversion, with metadata extraction
+
+Header (first line) must contain:
+**'Id: "XXXX" Comment: "XXXX" Operator: "Max Mustermann" Anode: "XX" Scantype: "XX TwoTheta XX" TimePerStep: "<number>"**
+*TwoTheta* is essential! XX could be your string values.
+Otherwise please reach out to us or change it in the profile settings in your own (ELN) instance. 
+
+- File Format: \*.xy
+- Data Type: X-RAY DIFFRACTION
+- Data Class: XYPOINTS
+- X Unit: 2Theta, X Value: Table#0, Column#0
+- Y Unit: relative intensity (%), Y Value: Table#0, Column#1
+- Profile id: 17f10ac7-2c64-4df8-aa12-c51b4b30e7a2
+- Reader: AsciiReader
+- [Download Link](https://github.com/ComPlat/chemotion_saurus/blob/main/static/files/shared_ChemConverter_files/profiles/17f10ac7-2c64-4df8-aa12-c51b4b30e7a2.json) 
