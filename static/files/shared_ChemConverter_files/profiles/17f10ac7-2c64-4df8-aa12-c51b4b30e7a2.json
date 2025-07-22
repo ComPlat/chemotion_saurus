@@ -1,0 +1,189 @@
+{
+  "data": {
+    "metadata": {
+      "content_type": "application/octet-stream",
+      "extension": ".xy",
+      "file_name": "PowderXRD_measured.xy",
+      "mime_type": "text/plain",
+      "reader": "AsciiReader",
+      "uploaded": "2025-07-22T08:08:29.580065"
+    },
+    "tables": [
+      {
+        "columns": [
+          {
+            "key": "0",
+            "name": "Column #0"
+          },
+          {
+            "key": "1",
+            "name": "Column #1"
+          }
+        ],
+        "header": [
+          "'Id: \"\" Comment: \"\" Operator: \"Jens-Georg\" Anode: \"Cu\" Scantype: \"Coupled TwoTheta/Theta\" TimePerStep: \"192\""
+        ],
+        "metadata": {
+          "columns": "2",
+          "rows": "1234"
+        },
+        "rows": [
+          [
+            "5",
+            "-0.20238915862214"
+          ],
+          [
+            "5.02028467133641",
+            "-0.0534663680905911"
+          ],
+          [
+            "5.04056934267282",
+            "-0.185688398178221"
+          ],
+          [
+            "5.06085401400924",
+            "0.0311530844483086"
+          ],
+          [
+            "5.08113868534565",
+            "0.0814330797889964"
+          ],
+          [
+            "5.10142335668206",
+            "0.0484849211771747"
+          ],
+          [
+            "5.12170802801847",
+            "-0.281233058053822"
+          ],
+          [
+            "5.14199269935489",
+            "-0.0642584386036109"
+          ],
+          [
+            "5.1622773706913",
+            "0.340321360227425"
+          ],
+          [
+            "5.18256204202771",
+            "0.302298005105953"
+          ]
+        ]
+      }
+    ]
+  },
+  "description": "???; ref location: JGU Mainz, data: +, metadata: +",
+  "id": "17f10ac7-2c64-4df8-aa12-c51b4b30e7a2",
+  "identifiers": [
+    {
+      "key": "extension",
+      "match": "exact",
+      "optional": false,
+      "type": "fileMetadata",
+      "value": ".xy"
+    },
+    {
+      "key": "reader",
+      "match": "exact",
+      "optional": false,
+      "type": "fileMetadata",
+      "value": "AsciiReader"
+    },
+    {
+      "lineNumber": 1,
+      "match": "regex",
+      "optional": false,
+      "tableIndex": 0,
+      "type": "tableHeader",
+      "value": "(TwoTheta)"
+    },
+    {
+      "lineNumber": 1,
+      "match": "regex",
+      "optional": true,
+      "outputKey": "operator",
+      "outputLayer": "general",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableHeader",
+      "value": "Operator:\\s*\"([^\"]+)\""
+    },
+    {
+      "lineNumber": 1,
+      "match": "regex",
+      "optional": true,
+      "outputKey": "id",
+      "outputLayer": "sample_details",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableHeader",
+      "value": "Id:\\s*\"([^\"]+)\""
+    },
+    {
+      "lineNumber": 1,
+      "match": "regex",
+      "optional": true,
+      "outputKey": "comments",
+      "outputLayer": "general",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableHeader",
+      "value": "Comment:\\s*\"([^\"]+)\""
+    },
+    {
+      "lineNumber": 1,
+      "match": "regex",
+      "optional": true,
+      "outputKey": "anode",
+      "outputLayer": "set",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableHeader",
+      "value": "Anode:\\s*\"([^\"]+)\""
+    },
+    {
+      "lineNumber": 1,
+      "match": "regex",
+      "optional": true,
+      "outputKey": "scan_type",
+      "outputLayer": "set",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableHeader",
+      "value": "Scantype:\\s*\"([^\"]+)\""
+    },
+    {
+      "lineNumber": 1,
+      "match": "regex",
+      "optional": true,
+      "outputKey": "seconds_per_step",
+      "outputLayer": "set",
+      "outputTableIndex": 0,
+      "tableIndex": 0,
+      "type": "tableHeader",
+      "value": "TimePerStep:\\s*\"([^\"]+)\""
+    }
+  ],
+  "ols": "CHMO:0000156",
+  "tables": [
+    {
+      "header": {
+        "DATA CLASS": "XYPOINTS",
+        "DATA TYPE": "X-RAY DIFFRACTION",
+        "XUNITS": "2Theta",
+        "YUNITS": "relative intensity (%)"
+      },
+      "table": {
+        "xColumn": {
+          "columnIndex": 0,
+          "tableIndex": 0
+        },
+        "yColumn": {
+          "columnIndex": 1,
+          "tableIndex": 0
+        }
+      }
+    }
+  ],
+  "title": "PXRD data from xy, data: +, metadata: +"
+}
