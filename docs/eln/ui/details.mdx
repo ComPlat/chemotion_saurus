@@ -491,21 +491,20 @@ You can finish editing by hitting enter again.
 In case not all columns fit on your screen you can move to columns that are currently off-screen by using the horizontal scroll bar at the top of the tab.
 If you want to change the order of columns, click on a column header and drag it to the left or right.
 
-###### Units
-
-You can select the unit a column by clicking on the green unit button in the column header.
-For example, switch from <Btn mixed={["mg"]} color={"success"}/> to <Btn mixed={["g"]} color={"success"}/>.
-
 ###### Material names
 
 Click on material names to change them.
 
-###### Material attributes
+###### Entries
 
-Material columns can represent different attributes of a material.
-For example, (non-reference) materials columns can represent the material's
-mass or equivalent by toggling the corresponding button in the column header
-to <Btn mixed={["mass"]} color={"secondary"}/> or <Btn mixed={["equivalent"]} color={"secondary"}/>.
+Columns can represent one or more entries.
+For example, a material column can represent the material's mass, amount, volume, and equivalent.
+You can configure which entries to display with the <Btn mixed={["Entries"]} color={"primary"}/> button, which opens the following modal:
+
+![reaction_variations_entry_selection](/img/reaction_variations_entry_selection.png)
+Select one or more entries to display, along with their units (if applicable).
+Note that one entry must always be the "Main entry", i.e., the entry that is editable and sortable.
+
 
 ##### Rows
 
