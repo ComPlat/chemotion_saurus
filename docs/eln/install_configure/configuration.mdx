@@ -195,32 +195,17 @@ For each registered device, a collection job can be set up through the administr
 
 ## Structure editor
 
+:::info
+
+For Chemotion ELN v2.x epam/ketcher will be automatically installed to a compatible version. Do not forget to enable it as a feature from the ELN adminstration interface.
+
+:::
+
 The default structure editor for Chemotion ELN is Ketcher version 1. It is seamlessly integrated through the ketcher-rails project and therefore no additional configuration is needed. If you wish to utilize other supported structure editors, such as Ketcher v2 or Marvin JS, additional configuration is required. In such cases, you'll need to adjust the necessary files and, potentially, provide a license. Please be aware that any modifications to the structure_editors.yml file will necessitate a service restart for the changes to take effect.
 
-For the detail supported versions of the structure editors, please refer to the release note of Chemotion ELN.
+For the supported versions of the structure editors, please refer to the release note of Chemotion ELN.
 
-### Setup
-
-An additional configuration is required in the `structure_editors.yml` file following the steps described [above](#optional-modify-configuration-files) to setup the additional structure editors. You will also have to put the resource files/folders/license at the required location(s). You can follow these steps to accomplish the same:
-
-1. The configuration file is called `structure_editors.yml` and is located in the `./shared/pullin/config` folder. You will also need to create a folder called `editors` in the `./shared/pullin/public` folder. The template file is called `structure_editors.yml.example`. You can get this template file quickly by running the following command.
-
-```sh
-wget  https://raw.githubusercontent.com/ComPlat/chemotion_ELN/vM.m.n/config/structure_editors.yml.example
-# Here, replace the version tag (`vM.m.n` with your current version)
-```
-
-2. To setup the supported editors, unzip the editor's zip file, and then copy the sub-folders and files to the folder which the system loads the editors. If you wish to have multiple editors available, you can create a sub-folder for each editor. For example, you can create a folder called `ketcher2` in the `./shared/pullin/public/editors` folder and copy the extracted files there. Similarly, create another folder called `editor-abc` for another editor.
-
-For example, for Ketcher2 (version 2.24.0), you can run the following commands to download and extract the source code.
-
-```sh
-wget https://github.com/epam/ketcher/releases/download/v2.24.0/ketcher-standalone-2.24.0.zip
-rm -rf shared/pullin/public/editors/ketcher2 # remove existing installation
-unzip ketcher-standalone-2.24.0.zip -d shared/pullin/public/editors/ketcher2
-```
-
-3. Edit your `structure_editors.yml` to reflect this new location. For example, its contents would be similar to the following:
+### configuration
 
 ```yaml
 ### example of structure_editors.yml
@@ -243,8 +228,9 @@ The compatibility table for recommended versions of Ketcher 2 to be used with th
 |   1.10.5    |      2.24.0       |
 |   1.10.2    |      2.21.0       |
 |    1.9.3    |      2.18.0       |
+|   2.xx      |      3.xx         |
 
-4. Restart the ELN.
+
 
 ### Enable
 
