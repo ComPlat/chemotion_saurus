@@ -4,20 +4,56 @@ author: Claire Lin
 sidebar_position: 1
 ---
 
-import { SubTitle, Reader } from "@site/src/js/layout";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+import {
+  FigCaption,
+  YouTubeFrame,
+  SubTitle,
+  Reader,
+} from "@site/src/js/layout";
 
 <SubTitle text="The detail modal displays the primary content of the element." />
 <Reader text="User" />
 
 ## Details modal for elements
 
-The details of the element are generated from the template designed by the designer. Clicking on a desired element from the list opens the details modal or window, displaying the 'Properties' tab by default.
+The details of the element are generated from the template designed by the designer. Clicking on a desired element from the list opens the details modal, displaying the 'Properties' tab by default.
 
 ![Element List](/img/labimotion/detail-modal.png)
 
 ### Properties tab
 
-The Properties Tab is the primary tab for an element; it contains essential information and allows users to drag elements, samples, or molecules from the element list.
+The Properties tab serves as the primary section for an element. It contains essential information and allows users to drag elements, samples, or molecules from the element list.
+
+By default, the first layer is expanded. An **Expand/Collapse** button is available to expand or collapse all layers simultaneously, making it easier to display the full content at once or to quickly hide sections and locate the desired layer.
+
+<div
+  style={{
+    display: "flex",
+    justifyContent: "center",
+    marginTop: 0,
+    flexDirection: "column",
+  }}
+>
+  <span className="figCaption" style={{ textAlign: "left" }}>(Click to view in a new window{" "} <FontAwesomeIcon icon={faArrowUpRightFromSquare} />)</span>
+  <a
+    href="/img/labimotion/details-expand-collapse.mp4"
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{ display: "block" }}
+  >
+    <video width="100%" controls autoPlay loop muted>
+      <source
+        src="/img/labimotion/details-expand-collapse.mp4"
+        type="video/mp4"
+      />
+      Your browser does not support the video tag.
+    </video>
+  </a>
+</div>
+
+<FigCaption text="User - Expand/Collapse Layers in Element Details" />
 
 ### Analyses tab
 
