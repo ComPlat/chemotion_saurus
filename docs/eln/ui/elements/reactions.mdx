@@ -134,3 +134,64 @@ Using the values entered for the input fields of moles for catalyst and feedstoc
 - The product yield
 
 Aside from the functionalities mentioned above, all other features of the default reaction scheme remain fully available when using the gas mode scheme.
+
+## Weight Percentage Reaction Scheme
+
+The Weight Percentage Reaction Scheme provides an alternative equivalent basis to the existing molar-equivalents workflow. It allows users to assign amounts by mass directly (for example, aiming for a 10 g product composed of 70:30 wt% B:A).
+
+![weight_percentage_scheme](/img/reaction/weight_percentage_scheme.gif)
+
+### What changes in the UI
+- Equivalent/Weight percentage selector: Every material that previously showed an equivalents selector (molar equivalents) now offers a dropdown to choose the equivalent basis:
+  - Molar equivalents (default)
+  - Mass-based equivalents / Weight percentage (wt%)
+- Mode toggle: Users must enable the Weight Percentage mode for the scheme. Enabling this mode activates the mass-based calculation UI and reveals the weight-percentage-specific controls.
+- Reference product: When weight-percentage mode is active the material sample that serves as the weight reference must be selected. The target amount of the reference material defines the combined amounts of the other materials which have wt% values applied to it.
+
+### How it works (step-by-step)
+
+1. **Activation of weight percentage mode**
+  - User  switches the scheme into Weight Percentage mode using the mode toggle. This enables the weight-percentage controls.
+
+2. **Assignment of reference material**:
+  - The user selects one material as the weight-percentage reference material, by selecting either one of the check boxes in the ref column of any of the product materials, or one of the reactant or starting materials (the outer check box of the ref column). Upon selection, it will be highlighted in green. 
+  - The user enters a target amount for that reference material. All weight percentage based calculations use this target mass as the basis.
+
+3. **Weight percentage fields**
+  - At a result, changing the weight percentage (wt%) input field is enabled for starting materials and reactants.
+  - The weight percentage input field can take value ratios between 0 and 1 (0%–100%) which indicates the fraction of the reference material mass assigned to that sample.
+
+4. **Validation rules**
+  - Weight percentage inputs accept values in the closed interval [0, 1].
+  - A warning notification will be triggered if a non allowed value (for example, < 1 or > 1) is entered in the weight percentage field input for a material.
+
+5. **Automatic recalculation of amounts**
+  - When a wt% value is entered or the reference target mass changes, the system synchronizes the mass amount for the respective materials by triggering automatic recalculation.
+  - **Formula used**: amount of sample = target amount of reference material * weight percentage of sample
+
+  - Example: For a 10 g reference material with A=0.30 and B=0.70, the system computes real and target amount of A = 10 g * 0.30 = 3 g and amount of B = 10 g * 0.70 = 7 g.
+  
+  - A material can use wt% as its equivalent basis while another material can still be defined in molar equivalents (for example, catalysts or additives defined in molar equivalents relative to a chosen reference).
+  - Assigning weight percentage value for a material will remove any assigned molar equivalents for the same material, unless this material is selected as reference for molar equivalents.
+
+
+### Example scenario
+- Target amount: 10 g polymer (weight percentage reference product)
+- Materials and inputs:
+  - A: wt% = 0.30 → computed mass = 10 g * 0.30 = 3 g
+  - B: wt% = 0.70 → computed mass = 10 g * 0.70 = 7 g
+  - C: 0.01 molar equivalents with respect to B
+
+This setup allows users to directly assign mass percentages and still keep molar relationships where required.
+
+### Notes and edge cases
+- If no reference product is selected while in weight-percentage mode, the wt% controls remain disabled and the UI prompts the user to select a reference.
+- If users enter wt% that sum to zero, or all zero, the system treats components as having no assigned mass.
+
+### Acceptance criteria
+- A dropdown exists to choose between molar and wt% equivalents for materials.
+- A mode toggle activates weight percentage mode.
+- A reference material sample can be selected and assigned a target mass.
+- wt% fields are enabled only for starting materials and reactants and accept values in [0,1].
+- Amounts get recalculatd automatically using the formula above when wt% or the reference target mass change.
+
