@@ -1,0 +1,29 @@
+---
+title: Managing Remote Devices
+sidebar_label: (Remote) Devices
+sidebar_position: 3
+---
+
+# Managing Remote Devices
+
+Administrators can assign devices and users to existing [groups](groups). The assignment triggers the visibility of a device in the remote control area of the ELN where users can access devices through the ELN UI. The assignment/access to this function is not connected to the retrieval of data from devices.
+
+![adminui-group](/img/admin_ui/group.png)
+
+
+## VNC using Websockify
+
+The concept of our implementation is as follows:
+
+![adminui-vnc](/img/ELN-VNC.png)
+
+For more details of websockify, please see this [repository](https://github.com/novnc/websockify).
+
+### Access Permissions
+Access to the remote can then be given to a user by associating it and the device within a user-group.
+
+Administrators can assign devices and users to existing group.
+
+User can assign others to the groups they manage.
+
+![adminui-vnc](/img/admin_ui/vnc.png)
