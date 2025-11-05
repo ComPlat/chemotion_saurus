@@ -10,7 +10,6 @@ module.exports = {
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenAnchors: 'throw',
-  onBrokenMarkdownLinks: 'throw',
   favicon: 'img/logos/favicon.ico',
   trailingSlash: false,
   organizationName: 'Complat', // Usually your GitHub org/user name.
@@ -23,6 +22,10 @@ module.exports = {
       comments: false,
       admonitions: false,
       headingIds: false,
+    },
+    hooks: {
+      onBrokenMarkdownLinks: 'throw',
+      onBrokenMarkdownImages: 'throw',
     },
   },
   themeConfig: {
