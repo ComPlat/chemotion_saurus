@@ -32,7 +32,37 @@ Before making any changes, it's crucial to be fully informed. It's recommended t
 
 :::
 
+### Fast Create by CAS/SMILES (fastInput)
+
+This feature allows administrators to enable or disable the `FastInput` creation of samples using CAS numbers or SMILES strings.
+
+**Supported Versions**
+
+- Chemotion ELN 2.1.1 and after
+
+**Setting**
+
+The system performs compound lookups using the CAS Common Chemistry API and the PubChem API. A valid CAS API key is required to access the CAS Common Chemistry API.
+
+:::info[Note]
+
+If no CAS API key is provided, the system will only utilize the PubChem API for lookups.
+
+To apply for a CAS API key, visit: [CAS Common Chemistry API](https://www.cas.org/services/commonchemistry-api).
+
+:::
+
+To enable CAS Common Chemistry API, add your API key in the configuration as shown below:
+
+```sh
+{
+  cas_api_key: "your_cas_api_key_here"
+}
+```
+
 ### User Authentication (userProvider)
+
+This feature allows administrators to configure third-party authentication methods for user login, such as OpenID Connect (OIDC) and Shibboleth.
 
 **Supported Versions**
 

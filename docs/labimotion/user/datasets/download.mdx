@@ -13,35 +13,33 @@ import {
   Reader,
 } from "@site/src/js/layout";
 
-<SubTitle text="Download metadata and data" />
+<SubTitle text="Download Dataset Excel and Analytical Data" />
 <Reader text="User" />
 
-After the generation of the generic dataset, you can choose to retrieve the metadata in xlsx format. Additionally, there is an option for you to download both the data and metadata collectively as a zip file.
+After generating the generic dataset, you can download it in **.xlsx** format. Additionally, you have the option to download both the dataset data and the analytical data together as a **.zip** file.
 
-![Download](/img/labimotion/download-generic-dataset-metadata.png)
+![Download](/img/labimotion/dataset-downloads.png)
 
-### Download metadata
+### Download Dataset Excel
 
-By clicking the **download metadata** <FontAwesomeIcon style={{ color: 'green' }} icon={faDownload} /> icon, you can get the Metadata Excel file in xlsx format.
+By clicking <FontAwesomeIcon style={{ color: 'green' }} icon={faDownload} /> icon, you can get the [Dataset Excel](#dataset-excel) file in **.xlsx** format.
 
-:::tip[Metadata Excel]
-
-What is **[Metadata Excel](#metadata-excel)**?
-
+:::tip[DATASET Excel]
+What is **[Dataset Excel](#dataset-excel)**?
 :::
 
-### Download metadata and data
+### Download Analytical Data and Dataset Excel
 
-You can download the metadata and data collectively as a zip file by clicking the **download data + metadata** <FontAwesomeIcon style={{ color: '#5bc0de' }} icon={faDownload} /> icon. The zip file includes **[Metadata Excel](#metadata-excel)**, **Data file list** and **Data**.
+You can download the analytical data and Dataset Excel collectively as a zip file by clicking <FontAwesomeIcon style={{ color: '#5bc0de' }} icon={faDownload} /> icon. The zip file includes [Dataset Excel](#dataset-excel), **Data file list** and **Data**.
 
-![Metadata and data in zip format](/img/labimotion/dataset-download_metadata_and_data.png)
+![Analytical Data and Dataset Excel in zip format](/img/labimotion/dataset-download.png)
 
-### Metadata Excel
+### Dataset Excel
 
-Metadata Excel is a file in xlsx format that includes the metadata of the device or the system-generated data or manually entered. A Metadata Excel includes: Description and Metadata, and we also attach the measurement data from ChemSpectra.
+Dataset Excel is a file in **.xlsx** format that includes the metadata of the device or the system-generated data or manually entered. A Dataset Excel includes: Description and Analytical Data, and we also attach the Measurement data from ChemSpectra.
 
-![Metadata in xlsx format](/img/labimotion/dataset-download_metadata.png)
+![Metadata in xlsx format](/img/labimotion/dataset-excel.png)
 
-- **Description**: A summary to provide a brief description of the fields in Metadata. Because the data of measurement are included as extra sheets/additional information, a mapping of the sheet name and file name is provided here for a better understanding of the file content structure.
-- **'Metadata'**: The data of metadata is extracted from device or system via the power of **[ChemConverter](/docs/services/chemconverter)**, or manually entered. The name of this sheet comes from the ontology terms.
-- **'Measurement'**: The measurement data from **[ChemSpectra](/docs/services/chemspectra)**.
+- **Description**: Provides a brief overview of the fields. Because measurement data are supplied as additional sheets, a mapping between sheet names and file names is included to help users understand the file content structure.
+- **Analytical Data (Ontology-Based Sheet Names)**: Contains analytical data that may be extracted from instruments or systems, or entered manually. The sheet name is derived from ontology terms.
+- **Measurement**: Includes measurement data from [ChemSpectra](/docs/services/chemspectra).
