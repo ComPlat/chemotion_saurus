@@ -3,16 +3,12 @@ title: Authentication in Chemotion
 sidebar_label: Authentication
 author: Paggy Huang
 sidebar_position: 26
-
 ---
-
 
 import { FigCaption, SubTitle } from "@site/src/js/layout";
 import designBase from "@site/static/img/labimotion/design-base.png";
 
-
 This page provides comprehensive instructions for all configurations related to user authentication.
-
 
 The default authentication method for Chemotion is database authentication, allowing users to log in with an email address or acronym. Passwords in Chemotion are encrypted.
 
@@ -20,9 +16,7 @@ The default authentication method for Chemotion is database authentication, allo
 
 This method involves hashing and storing a user's password in the database. When a user attempts to sign in, the system validates their authenticity by comparing the entered password, once hashed, with the stored hash. This process ensures that sensitive password information is never stored in plain text, enhancing the security of user data.
 
-
 ### Third-Party Authentication
-
 
 We also offer third-party authentication options, including Shibboleth, OIDC (Open ID Connect), ORCID, GitHub, and NFDI AAI. To configure these options, visit the Chemotion Administration page. On the left side, under 'UI Features', find the function labeled 'User Provider'. Click on the yellow 'Edit JSON' button to access the configuration settings.
 
@@ -30,110 +24,105 @@ We also offer third-party authentication options, including Shibboleth, OIDC (Op
 
 ### Shibboleth
 
-```sh
+```json
 {
-  shibboleth: { 
-    enable: false,
-    uid: 'pairwise-id',
-    email: 'mail',
-    last_name: 'sn',
-    first_name: 'givenName'
+  "shibboleth": {
+    "enable": false,
+    "uid": "pairwise-id",
+    "email": "mail",
+    "last_name": "sn",
+    "first_name": "givenName"
   }
 }
 ```
 
 #### Parameters
 
-| Parameters | Value             | Description          |
-| ---------- | ----------------- | -------------------- |
-| enable     | `true` or `false` |                      |
-| uid        | 'pairwise-id'     |                      |
-| email      | 'mail'            |                      |
-| last_name  | 'sn'              |                      |
-| first_name | 'givenName'       |                      |
-
+| Parameters | Value             | Description |
+| ---------- | ----------------- | ----------- |
+| enable     | `true` or `false` |             |
+| uid        | 'pairwise-id'     |             |
+| email      | 'mail'            |             |
+| last_name  | 'sn'              |             |
+| first_name | 'givenName'       |             |
 
 ### OIDC (Open ID Connect)
 
-```sh
+```json
 {
-  openid_connect: {
-    enable: true,
-    host: "oidc.address.edu",
-    icon: "path/to/image.png",
-    issuer: "https://oidc.address.edu/path/to/issuer",
-    scheme: "https",
-    client_id: "myClientID",
-    redirect_uri: "https://your-eln.edu/users/auth/openid_connect/callback",
-    client_secret: "secret",
-    token_endpoint: "/oauth2/token",
-    authorization_endpoint: "/oauth2/auth"
+  "openid_connect": {
+    "enable": true,
+    "host": "oidc.address.edu",
+    "icon": "path/to/image.png",
+    "issuer": "https://oidc.address.edu/path/to/issuer",
+    "scheme": "https",
+    "client_id": "myClientID",
+    "redirect_uri": "https://your-eln.edu/users/auth/openid_connect/callback",
+    "client_secret": "secret",
+    "token_endpoint": "/oauth2/token",
+    "authorization_endpoint": "/oauth2/auth"
   }
 }
 ```
 
 #### Parameters
 
-| Parameter              | Value                                                          | Description          |
-| ---------------------- | -------------------------------------------------------------- | -------------------- |
-| enable                 | `true` or `false`                                              |                      |
-| host                   | address of the service                                         |                      |
-| icon                   | path to a public image to display on the sign-in page          |                      |
-| issuer                 | URL of the issuer                                              |                      |
-| scheme                 | `https`                                                        |                      |
-| client_id              | client ID                                                      |                      |
-| redirect_uri           | your Chemotion ELN URL + '/users/auth/openid_connect/callback' |                      |
-| client_secret          | secret                                                         |                      |
-| token_endpoint         | `/oauth2/token`                                                |                      |
-| authorization_endpoint | `/oauth2/auth`                                                 |                      |
-
+| Parameter              | Value                                                          | Description |
+| ---------------------- | -------------------------------------------------------------- | ----------- |
+| enable                 | `true` or `false`                                              |             |
+| host                   | address of the service                                         |             |
+| icon                   | path to a public image to display on the sign-in page          |             |
+| issuer                 | URL of the issuer                                              |             |
+| scheme                 | `https`                                                        |             |
+| client_id              | client ID                                                      |             |
+| redirect_uri           | your Chemotion ELN URL + '/users/auth/openid_connect/callback' |             |
+| client_secret          | secret                                                         |             |
+| token_endpoint         | `/oauth2/token`                                                |             |
+| authorization_endpoint | `/oauth2/auth`                                                 |             |
 
 ### ORCID
 
-```sh
+```json
 {
-  orcid: {
-    enable: false
-    client_id: null
-    client_secret: null
+  "orcid": {
+    "enable": false,
+    "client_id": null,
+    "client_secret": null
   }
 }
 ```
 
 #### Parameters
 
-| Parameters | Value             | Description          |
-| ---------- | ----------------- | -------------------- |
-| enable     | `true` or `false` |                      |
-| uid        | 'pairwise-id'     |                      |
-| email      | 'mail'            |                      |
-| last_name  | 'sn'              |                      |
-| first_name | 'givenName'       |                      |
-
+| Parameters | Value             | Description |
+| ---------- | ----------------- | ----------- |
+| enable     | `true` or `false` |             |
+| uid        | 'pairwise-id'     |             |
+| email      | 'mail'            |             |
+| last_name  | 'sn'              |             |
+| first_name | 'givenName'       |             |
 
 ### GitHub
 
-
-```sh
+```json
 {
-  github: {
-    enable: false
-    client_id: null
-    client_secret: null
+  "github": {
+    "enable": false,
+    "client_id": null,
+    "client_secret": null
   }
 }
 ```
 
 #### Parameters
 
-| Parameters | Value             | Description          |
-| ---------- | ----------------- | -------------------- |
-| enable     | `true` or `false` |                      |
-| uid        | 'pairwise-id'     |                      |
-| email      | 'mail'            |                      |
-| last_name  | 'sn'              |                      |
-| first_name | 'givenName'       |                      |
-
+| Parameters | Value             | Description |
+| ---------- | ----------------- | ----------- |
+| enable     | `true` or `false` |             |
+| uid        | 'pairwise-id'     |             |
+| email      | 'mail'            |             |
+| last_name  | 'sn'              |             |
+| first_name | 'givenName'       |             |
 
 ### NFDI AAI
 
@@ -144,7 +133,7 @@ The integration of Chemotion with NFDI AAI RegAPP has been successfully tested a
 
 Instructions for applying for a client ID for Your Instance:
 
-Please **[send an email](mailto:chemotion-nfdi-aai@lists.kit.edu) to chemotion-nfdi-aai@lists.kit.edu with the following information:
+Please [send an email](mailto:chemotion-nfdi-aai@lists.kit.edu) to chemotion-nfdi-aai@lists.kit.edu with the following information:
 
 1. Your Institution name (e.g., Karlsruhe Institute of Technology)
 2. Your FQDN (Fully Qualified Domain Name) (e.g., https://your-eln.edu)
@@ -152,36 +141,35 @@ Please **[send an email](mailto:chemotion-nfdi-aai@lists.kit.edu) to chemotion-n
 
 :::
 
-
-```sh
+```json
 {
-  openid_connect: {
-    enable: true,
-    host: "regapp.nfdi-aai.de",
-    label: "NFDI AAI",
-    issuer: "https://regapp.nfdi-aai.de/oidc/realms/nfdi",
-    scheme: "https",
-    client_id: "myClientID",
-    redirect_uri: "https://https://your-eln.edu/users/auth/openid_connect/callback",
-    client_secret: "secret",
-    token_endpoint: "/oauth2/token",
-    authorization_endpoint: "/oauth2/auth"
+  "openid_connect": {
+    "enable": true,
+    "host": "regapp.nfdi-aai.de",
+    "label": "NFDI AAI",
+    "issuer": "https://regapp.nfdi-aai.de/oidc/realms/nfdi",
+    "scheme": "https",
+    "client_id": "myClientID",
+    "redirect_uri": "https://https://your-eln.edu/users/auth/openid_connect/callback",
+    "client_secret": "secret",
+    "token_endpoint": "/oauth2/token",
+    "authorization_endpoint": "/oauth2/auth"
   }
 }
 ```
 
 #### Parameters
 
-| Parameter              | Value                                                          | Description                 |
-| ---------------------- | -------------------------------------------------------------- | --------------------------- |
-| enable                 | `true` or `false`                                              |                             |
-| host                   | `regapp.nfdi-aai.de`                                           | address of the service      |
-| label                  | `NFDI AAI`                                                     | label of the login button   |
-| icon                   | path to a public image to display on the sign-in page          |                             |
-| issuer                 | `https://regapp.nfdi-aai.de/oidc/realms/nfdi`                  | URL of the issuer           |
-| scheme                 | `https`                                                        |                             |
-| client_id              | client ID                                                      |Please send an email to chemotion-nfdi-aai@lists.kit.edu                           |
-| redirect_uri           | your Chemotion ELN URL + '/users/auth/openid_connect/callback' |                             |
-| client_secret          | secret                                                         |                             |
-| token_endpoint         | `/oauth2/token`                                                |                             |
-| authorization_endpoint | `/oauth2/auth`                                                 |                             |
+| Parameter              | Value                                                          | Description                                              |
+| ---------------------- | -------------------------------------------------------------- | -------------------------------------------------------- |
+| enable                 | `true` or `false`                                              |                                                          |
+| host                   | `regapp.nfdi-aai.de`                                           | address of the service                                   |
+| label                  | `NFDI AAI`                                                     | label of the login button                                |
+| icon                   | path to a public image to display on the sign-in page          |                                                          |
+| issuer                 | `https://regapp.nfdi-aai.de/oidc/realms/nfdi`                  | URL of the issuer                                        |
+| scheme                 | `https`                                                        |                                                          |
+| client_id              | client ID                                                      | Please send an email to chemotion-nfdi-aai@lists.kit.edu |
+| redirect_uri           | your Chemotion ELN URL + '/users/auth/openid_connect/callback' |                                                          |
+| client_secret          | secret                                                         |                                                          |
+| token_endpoint         | `/oauth2/token`                                                |                                                          |
+| authorization_endpoint | `/oauth2/auth`                                                 |                                                          |
