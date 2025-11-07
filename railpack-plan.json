@@ -43,7 +43,6 @@
         "step": "build"
       }
     ],
-    "startCommand": "npm run start",
     "variables": {
       "CI": "true",
       "NODE_ENV": "production",
