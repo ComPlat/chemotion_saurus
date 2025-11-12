@@ -184,24 +184,6 @@ Internal remark TO DO: Info to be added image of the sample frame and informatio
 ![Sample properties](/img/sample_properties.png)
 The first tab (in the standard Chemotion ELN configuration) that allows the description of samples is the **Properties** tab. In the **Molecule** field, the user can pick the preferred naming convention for a molecule or write a new one. You can also specify the absolute and the relative configuration of the molecule in the fields **Stereo Abs** and **Stereo Rel** respectively from drop-downs. The descriptors for stereo information are recommended if the chemoinformatics tools of the Chemotion ELN (such as structure editors and toolkits) don't support full identification of the stereochemistry. The information on the given stereoconfiguration is added to the information that is used to structure molecules in the molecules' list. It allows e.g. the differentiation of certain paracyclophane isomers or other planar chiral molecules which are usually hard to distinguish by chemoinformatic toolkits.
 
-**Decoupled** mode: Selecting decoupled in the properties tab allows to draw structures in the embedded structure editors without the generation of identifiers and calculation of molecular mass. The user is then asked to add the molecular mass and the formula of the molecule to an additionally appearing interface. This gives the option to use the samples in the reaction table even though the automatic mass calculation is disabled. The function can be used for all types of molecules that
-
-- the structure editors fail (e.g. large structures such as macromolecules).
-- contain undefined parts which cannot be explicitly drawn (such as polymers)
-- resemble materials that contain compound mixtures
-
-:::info
-
-The decoupled mode can help to add undefined structures to the Chemotion ELN. Please add "undefined structure" (default) as **Sum formula** if the structure is not known.
-
-:::
-
-**Decoupled mode properties**
-
-![Decoupled_sample](/img/decoupled_sample.png)
-
-**Top secret** mode: In the properties tab, the users can mark their confidential data as **Top secret**. The top secret mode affects the sharing of data with others. **Top secret** samples cannot be shared with full information.
-
 If you want to assign a name (e.g. a trivial name) to a sample, you can do this by making an entry in the **Name** or **Description** fields. Please note that the **Name** field for samples from reactions is overwritten by additional information. Your created sample will have the selected name, but when a new sample is created by dragging and dropping into a reaction scheme, the **Name** field will be overwritten. Please refer to this [link](elements/samples#generation-of-samples-from-existing-samples-or-molecules) for more details on samples generation from other samples. If you want to save a second or more names for your sample permanently, use the **Description** field.
 
 :::danger[Caution]
@@ -239,6 +221,26 @@ The **Elemental composition** is automatically calculated based on the formula, 
 The information required for chemical use is supplemented by **Chemical identifiers** such as **InChI** and **InChIKey** (clicking on the InCHI/InChIkey button allows to switch), **Canonical SMILES** and **CAS** number. Molecular structure is also provided in the **Molfile** format. You can provide the **Canonical SMILES** to create a new **Sample**, but you can’t modify the SMILES after creation (vice versa, SMILES is changed if the molecular structure changes). The other identifiers can only be copied after a **Sample** is created, and they can’t be used to generate Samples.
 
 ![InChI_IncHIKey](/img/InChI_IncHIKey.gif)
+
+#### Decoupled mode
+
+:::info
+
+- For Chemotion versions 2.1.1 and below, an Admin must enable "SampleDecoupled" in the [Admin UI](../admin/features) before this feature can be used.
+- Please add "undefined structure" (default) as **Sum formula** if the structure is not known.
+
+:::
+
+The decoupled mode removes the coupling between the structure and automatically generated identifiers and properties. This can be helpful when adding structures that are difficult to add to the Chemotion ELN. Use cases include:
+
+- situations where the structure editors fail (e.g. large structures such as macromolecules)
+- sample contains undefined parts that cannot be explicitly drawn (such as polymers)
+- composites and mixtures of materials
+
+Selecting decoupled in the properties tab allows to draw structures in the embedded structure editors without the generation of identifiers and calculation of molecular mass. The user is then asked to add the molecular mass and the formula of the molecule in an additionally appearing interface. This gives the option to use the samples in the reaction table even though the automatic mass calculation is disabled.
+
+\*\*Properties for a Decoupled Sample
+![Decoupled_sample](/img/decoupled_sample.png)
 
 ### Search CAS
 
@@ -303,7 +305,7 @@ The samples are classified into **Starting materials**, **Reactants** and **Prod
 A reaction can be populated with samples in two different ways:
 
 1. Create new sample:
-   ![Reaction create smaples](/img/reaction_create_samples.gif)
+   ![Reaction create samples](/img/reaction_create_samples.gif)
 
 Press <Btn mixed={[faPlus]} color={"success"}/> in the corresponding categories **Starting materials**, **Reactants** or **Products** to create a new sample. **Starting materials** and the **Products** created this way will be added to the samples list. The **Reactants** will be saved as samples, and they are initially displayed in the samples list, but when you save the reaction and reload the page, no **Reactants** are displayed in the list anymore in order to avoid unnecessary accumulation of samples. The **Reactants** samples are still accessible from within the reaction **Scheme** by pressing the reactant name. The **Reactants** can be selected from the drop-down menu **Reagents**, and they are also not added to the samples list.
 
@@ -504,7 +506,6 @@ You can configure which entries to display with the <Btn mixed={["Entries"]} col
 ![reaction_variations_entry_selection](/img/reaction_variations_entry_selection.png)
 Select one or more entries to display, along with their units (if applicable).
 Note that one entry must always be the "Main entry", i.e., the entry that is editable and sortable.
-
 
 ##### Rows
 

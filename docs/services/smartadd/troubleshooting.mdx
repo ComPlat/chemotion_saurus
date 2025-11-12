@@ -1,0 +1,143 @@
+---
+title: Troubleshooting
+sidebar_position: 4
+---
+
+# Troubleshooting Guide
+
+Having trouble? Don't worry - most issues have simple solutions. Here are the most common problems and how to fix them.
+
+## Upload Problems
+
+### My ZIP file won't upload
+
+**Try these fixes:**
+- Make sure your file isn't too large - try splitting it into smaller ZIPs
+- Refresh your browser (`Ctrl+F5` or `Cmd+Shift+R`)
+- Try a different browser (Chrome or Firefox work best)
+- Check your internet connection
+
+If the ZIP file seems corrupted, just recreate it and try again.
+
+### I uploaded files but can't find them
+
+Here's the thing: SmartAdd doesn't automatically organize your files. After uploading, you need to:
+1. Look in the **input list** on the left - your files are there
+2. Create samples and reactions using the buttons
+3. **Drag files** from the left panel to the right tree
+
+:::warning
+Files that stay in the input list won't be exported! Make sure to drag everything you need to the assignment tree.
+:::
+
+## Editing Problems
+
+### I can't edit anything
+
+Make sure you're clicking on an actual item (like a sample or reaction), not a folder. The properties panel should appear on the right when you select something.
+
+If fields still look grayed out, try refreshing your browser or updating to the latest version.
+
+### My changes disappear
+
+This usually happens when you switch to another item too quickly. To save your edits:
+- Press `Enter` or `Tab` after typing
+- Click outside the field
+- Wait a moment before clicking somewhere else
+
+### SMILES validation shows errors
+
+The easiest fix: use a molecular structure editor like [Ketcher](https://lifescience.opensource.epam.com/KetcherDemoSA/index.html) or ChemDraw to generate valid SMILES, then copy and paste into SmartAdd.
+
+Common SMILES mistakes to avoid:
+- Mismatched brackets or parentheses
+- Typos in atom symbols
+- Unclosed rings
+
+## Export Issues
+
+### Download button doesn't work
+
+First, check if your browser is blocking the download:
+- Look for a notification about blocked pop-ups
+- Check your browser's download settings
+- Try disabling ad blockers temporarily
+- Use incognito/private mode
+
+### My export is missing data
+
+**This is the most common issue!**
+
+Before exporting, check:
+- Did you drag all files from the input list (left) to the assignment tree (right)?
+- Are all your samples and reactions created?
+- Expand the tree nodes - can you see all your files attached?
+
+Remember: Only files in the assignment tree get exported!
+
+### Direct upload to Chemotion isn't working
+
+**Connection problems:**
+- Double-check the server URL (should start with `https://`)
+- Make sure you're on the right network (VPN if needed)
+- Test the URL in your browser first
+
+**Login issues:**
+- Usernames and passwords are case-sensitive
+- Try logging into Chemotion directly to verify your credentials
+- Contact your Chemotion administrator if you're sure the credentials are correct
+
+**Upload fails or times out:**
+- Your collection might be too large - try breaking it into smaller batches
+- Check your network connection
+- As a backup, use "Download as ZIP" and import manually
+
+## Performance Issues
+
+### SmartAdd is running slow
+
+Quick fixes:
+- Close other browser tabs
+- Clear your browser cache
+- Restart your browser
+- For very large projects (100+ samples), work in smaller batches
+
+### Display looks weird
+
+- Reset your browser zoom to 100% (`Ctrl+0` or `Cmd+0`)
+- Make sure your browser window is large enough
+- Try refreshing the page
+
+## Still Stuck?
+
+### Quick fixes to try first:
+1. Refresh the page
+2. Clear your browser cache
+3. Try a different browser
+4. Check the [video tutorial](../smartadd#complete-tutorial-video) for visual guidance
+
+### Need more help?
+
+When reaching out for support, it helps to include:
+- What browser you're using
+- What you were trying to do
+- Any error messages you see (screenshots are great!)
+- An example file if relevant
+
+## Quick Reference
+
+| Problem | Quick Fix |
+|---------|-----------|
+| Upload stuck | Refresh page, try smaller files |
+| Can't find uploaded files | Check input list (left panel) |
+| Export is empty | Drag files from input list to assignment tree |
+| Can't edit fields | Click on an actual item, not a folder |
+| Changes don't save | Press Enter or click outside field first |
+| Invalid SMILES | Use Ketcher or ChemDraw to generate valid SMILES |
+| Download blocked | Check pop-up blocker settings |
+| Can't login to Chemotion | Verify credentials are case-sensitive and correct |
+| App running slow | Close browser tabs, clear cache |
+
+:::tip
+Most problems can be solved with a simple refresh or by making sure files are dragged from the input list to the assignment tree!
+:::

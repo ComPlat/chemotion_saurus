@@ -1,0 +1,300 @@
+---
+title: Complete Workflow
+sidebar_position: 2
+---
+
+# Complete SmartAdd Workflow
+
+This guide walks you through the entire workflow from uploading data to importing it into Chemotion.
+
+## Workflow Overview
+
+```mermaid
+graph LR
+    A[Upload Data] --> B[Explore & Prepare]
+    B --> C[Organize Reactions & Samples]
+    C --> D[Export ZIP]
+    D --> E[Import to Chemotion]
+```
+
+## Step 1: Upload Data
+
+### Upload Your Files
+
+Upload your analytical data and related files to SmartAdd. The files will be stored in the input area, ready for you to organize into samples and reactions.
+
+#### Option A: Upload Individual Files
+1. Drag analytical files (spectra, MOL files, images, etc.) directly into the "Drag files here" area
+2. Files are processed and appear in the input list view on the left
+3. Files are ready to be assigned to samples and reactions
+
+#### Option B: Upload a ZIP Archive
+1. Prepare a ZIP file containing your analytical data and related files
+2. Drag the ZIP file into the upload area
+3. SmartAdd extracts all contents automatically
+4. All files appear in the input list view
+
+:::info[No Pre-Organization Required]
+- ZIP files don't need to follow any specific folder structure
+- SmartAdd extracts all files regardless of how they're organized
+- You'll build the sample/reaction structure manually in the next steps
+- Focus on using clear, descriptive filenames for easier assignment later
+:::
+
+### File Naming Tips
+
+Use clear filenames to make assignment easier:
+- ✅ Good: `compound_A_1H_NMR_400MHz.jdx`
+- ✅ Good: `sample_001_structure.mol`
+- ✅ Good: `data@#$_final_v2.txt`
+- ✅ Good: `file1.jdx`
+
+### Supported File Types
+
+- **Spectra**: NMR data files
+- **Structure Files**: MOL, text files
+- **Images**: PNG, JPG
+- **Text Files**: Metadata, notes, experimental details
+- **Archives**: ZIP files containing any of the above
+
+## Step 2: Create & Organize Structure
+
+### Build Your Collection Manually
+
+Now you'll create the structure by manually adding samples and reactions, then assigning your uploaded files to them.
+
+### Understanding the Tree Hierarchy
+
+SmartAdd uses this hierarchy (as shown in the right panel):
+
+```
+📦 Collection (Assignment Tree)
+  ├─ 🧪 Reaction 1
+  │   ├─ 📋 Sample 1 (Reactant)
+  │   │   └─ 📊 Analyses
+  │   │       └─ 📊 Analysis (e.g., NMR)
+  │   │           └─ 📁 Datasets
+  │   │               └─ 📄 Files
+  │   └─ 📋 Sample 2 (Product)
+  │       └─ 📊 Analyses
+  └─ 📋 Sample 3 (Standalone)
+      └─ 📊 Analyses
+```
+
+**Typical hierarchy:** Reactions → Samples → Analyses → Analysis → Datasets → Files
+
+### How to Build Your Structure
+
+There are multiple ways to build and organize your collection:
+
+#### Method 1: Using Action Buttons
+1. **Add Samples**: Click "Add Sample" button in the right panel
+2. **Add Reactions**: Click "Add Reaction" button to create reaction nodes
+3. **Assign Files**: Drag files from the input list (left) to samples/analyses in the tree (right)
+4. **Edit Properties**: Click any node to edit its properties in the properties panel
+
+#### Method 2: Using Quick Add Buttons
+- **Plus Button Next to Reaction**: Click the `+` button next to any reaction node to quickly add samples to that reaction
+
+#### Method 3: Using Context Menu (Right-Click)
+Right-click on any node in the tree to open a context menu with options:
+- **Edit Name**: Rename the selected item
+- **Add Sample**: Add a sample (when right-clicking on reaction)
+- **Add Analysis**: Add analysis to a sample
+- **Add Dataset**: Add dataset to an analysis
+- **Delete**: Remove the selected item and its children
+
+:::tip[Multiple Ways to Work]
+Choose the method that feels most natural to you! The context menu (right-click) is especially useful for quickly adding nested items without navigating through menus.
+:::
+
+### Editing Properties
+
+Select any node in the tree to edit its properties:
+
+#### Sample Properties
+
+| Field | Description | Example |
+|-------|-------------|---------|
+| **Name** | Sample identifier | "Compound A" |
+| **SMILES** | Molecular structure (validated) | "CC(=O)OC1=CC=CC=C1C(=O)O" |
+| **Amount** | Quantity with units | "100 mg" |
+| **Purity** | Percentage | "98.5%" |
+| **Location** | Storage location | "Freezer A, Shelf 2" |
+| **Sample Type** | Category of sample | "Product" / "Starting Material" |
+| **Description** | Additional notes | "Synthesized on 2024-01-15" |
+
+:::tip[SMILES Validation]
+SmartAdd provides real-time validation for SMILES notation. When entering molecular structures:
+- Syntax is checked automatically
+- Invalid structures are highlighted
+- Prevents export of incorrect molecular data
+:::
+
+#### Reaction Properties
+
+| Field | Description | Example |
+|-------|-------------|---------|
+| **Name** | Reaction identifier | "Suzuki Coupling" |
+| **Samples** | Multiple samples supported | Add reactants, products, solvents |
+| **Sample Roles** | Reactant/Product/Solvent | Automatically sorted by role |
+| **Reaction Scheme Type** | Visual scheme format | Define for proper visualization |
+| **RF Value** | TLC reference | "0.65" |
+| **Description** | Reaction conditions | "Room temp, 24h, N2 atmosphere" |
+
+:::info[Multi-Sample Reactions]
+SmartAdd supports adding multiple samples to a single reaction with:
+- Automatic smart sorting based on roles
+- Clear organization of reactants, products, and solvents
+- Proper hierarchical structure for complex reactions
+:::
+
+#### Analysis Properties
+
+| Field | Description | Example |
+|-------|-------------|---------|
+| **Type** | Analysis technique | "NMR" / "IR" / "MS" |
+| **Type Ontology** | Standardized classification | Select from dropdown |
+| **File Attachments** | Associated data files | Spectra, logs, images |
+| **Status** | Processing status | "Complete" / "Pending" |
+| **Dataset Inclusion** | Include/exclude from export | Control export contents |
+| **Description** | Analysis notes | "400 MHz, CDCl3" |
+
+:::tip[Dataset Management]
+Use dataset inclusion/exclusion to control what gets exported to Chemotion:
+- Exclude preliminary or failed analyses
+- Include only validated data
+- Flexible organization for clean exports
+:::
+
+## Step 3: Organize Reactions & Samples
+
+### Creating Samples
+
+1. Click the **Add Sample** button in the right panel
+2. A new sample node appears in the assignment tree
+3. Edit the sample properties (name, SMILES, amount, etc.)
+4. Assign MOL files or spectra by dragging from the input list
+
+### Creating Reactions
+
+1. Click the **Add Reaction** button in the right panel
+2. A new reaction node appears in the tree
+3. Add samples to the reaction
+4. Assign sample roles (reactant/product/solvent)
+
+### Linking Files to Samples/Analyses
+
+**Drag and drop files from left panel to right panel:**
+1. Locate your file in the input list (left panel)
+2. Drag it to the appropriate sample or analysis node (right panel)
+3. The file is now attached and will be included in the export
+
+### Organizing Multiple Samples in Reactions
+
+SmartAdd supports multi-sample reactions with automatic smart sorting:
+1. Add multiple samples to a reaction
+2. Assign roles to each sample:
+   - **Reactants**: Starting materials
+   - **Products**: Desired outcomes
+   - **Solvents**: Reaction medium
+3. Samples are automatically sorted by role
+4. Define reaction scheme type for proper visualization
+
+## Step 4: Review & Validate
+
+Before exporting, verify:
+
+### Data Completeness Checklist
+
+- [ ] All samples created and have meaningful names
+- [ ] SMILES notation entered and validated for molecular structures
+- [ ] MOL files assigned to appropriate samples
+- [ ] Amounts include units (mg, g, mol, mL)
+- [ ] Reactions created with samples added
+- [ ] Reaction roles are correctly assigned (reactant/product/solvent)
+- [ ] Multi-sample reactions properly organized with smart sorting
+- [ ] Files from input list dragged to correct samples/analyses
+- [ ] Analysis types are properly categorized
+- [ ] Dataset inclusion/exclusion configured correctly
+- [ ] Descriptions provide adequate context
+
+### Quality Checks
+
+1. **Navigate through the tree** - Ensure logical structure
+2. **Check input list** - Verify all important files have been assigned (unassigned files won't be exported)
+3. **Spot-check properties** - Verify key fields are filled
+4. **Review relationships** - Confirm sample-reaction-analysis links
+5. **Expand nodes** - Ensure all files are visible under correct analyses/analysis/datasets
+
+## Step 5: Export for Chemotion
+
+You now have two export options:
+
+### Option A: Download as ZIP
+
+1. Click **Download as ZIP** in the left panel
+2. Choose a save location
+3. The ZIP file is generated with Chemotion-compatible structure
+4. Manually upload to Chemotion later
+
+### Option B: Direct Upload to Chemotion (New!)
+
+1. Click **Upload to Chemotion ELN** from the export menu
+2. **Enter Server Details**:
+   - Chemotion server URL (e.g., https://your-chemotion-server.com)
+   - Server connectivity is verified automatically
+3. **Authenticate**:
+   - Enter your Chemotion username
+   - Enter your password
+   - Secure authentication with session management
+4. **Upload**: SmartAdd uploads your collection directly to Chemotion
+   - No manual download needed
+   - Automatic session handling
+
+### What's Included in the Export?
+
+- ✅ All samples with properties and validated SMILES
+- ✅ Reactions with multiple samples and smart role sorting
+- ✅ Analyses with classifications and selected datasets
+- ✅ All attached files
+- ✅ Metadata in Chemotion format
+
+:::tip[Direct Upload Benefits]
+The direct upload feature eliminates manual steps:
+- No need to download and re-upload files
+- Faster workflow
+- Automatic authentication
+- Server connectivity verification
+:::
+
+## Step 6: Import into Chemotion
+
+### For ZIP Downloads (Option A)
+
+1. **Open Chemotion ELN**
+2. **Navigate to Import section**
+3. **Select the exported ZIP file**
+4. **Confirm and complete the import**
+
+### For Direct Uploads (Option B)
+
+The import is handled automatically! After successful upload:
+1. Open your Chemotion ELN
+2. Navigate to your collections
+3. Your data is already there after few seconds of upload - ready to use!
+
+### Post-Import Verification
+
+After importing into Chemotion:
+- Review imported samples
+- Verify reaction schemes
+- Check that all files are accessible
+- Confirm metadata integrity
+
+## Tips for Efficient Workflow
+
+1. **Work in batches**: Process similar samples together
+2. **Use templates**: Develop naming conventions for consistency
+3. **Save checkpoints**: Export intermediate ZIPs as backups
+4. **Validate early**: Check properties as you go, not at the end
