@@ -9,8 +9,9 @@ sidebar_position: 1
 The currently suggested minimum configuration is as follows:
 
 - An OS that supports Docker
-  - [Docker Engine](https://docs.docker.com/engine/) and [Docker Compose](https://docs.docker.com/compose/install/), both of which can be installed along with GUI using the [Docker Desktop](https://www.docker.com/products/docker-desktop/) suite.
-  - The Docker Daemon may be configured to run as a non-root user (Rootless mode). Please see the distribution-specific [setup instructions](https://docs.docker.com/engine/security/rootless/) for details.
+  - [Docker Engine](https://docs.docker.com/engine/install/) and [Docker Compose](https://docs.docker.com/compose/install/). On Windows, we recommend installing both of them along with the [Docker Desktop](https://docs.docker.com/desktop/setup/install/windows-install/) suite. On linux, we recommend using the [apt](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository)/[rpm](https://docs.docker.com/engine/install/fedora/#install-using-the-repository) repository.
+  - On linux, ideally Docker should then be configured to run [as a non-root user](https://docs.docker.com/engine/install/linux-postinstall/).
+  - If required, it might also be possible to run docker daemon in rootless mode. Please see the distribution-specific [setup instructions](https://docs.docker.com/engine/security/rootless/) for details.
   - Some users have reported success using [Podman](https://podman.io/). However, we currently do not test compatibility with Podman because of resource limitations.
 - 4 CPUs ([x64 instruction set](https://wikipedia.org/wiki/X86-64))
 - 8 GB memory
