@@ -91,7 +91,7 @@ SmartAdd validates SMILES in real-time:
 
 When you have a reaction with multiple samples:
 - Add all relevant samples to the reaction
-- Assign roles (reactant, product, solvent)
+- Assign roles (starting material, reactant, product, solvent)
 - SmartAdd will automatically sort them by role
 - Set the reaction scheme type for better visualization
 
@@ -121,6 +121,20 @@ Future you will thank present you for being descriptive:
 **Analyses:**
 - ❌ "NMR data"
 - ✅ "¹H NMR (400 MHz, CDCl₃)"
+
+:::tip[Use Rich Text Formatting]
+Description and content fields now support rich text editing with the Quill editor:
+- **Reaction descriptions**: Document reaction conditions with rich formatting
+- **Analysis content**: Add detailed analysis notes and observations
+- Use **bold** for important details
+- Use *italic* for emphasis
+- Create bullet lists for experimental conditions
+- Add numbered lists for procedure steps
+- Use headers to organize long descriptions
+- Add code blocks for chemical formulas
+
+Formatted text makes your data more readable and professional!
+:::
 
 ### Master the Two-Panel Layout
 
@@ -177,7 +191,7 @@ Before you click "Download as ZIP", run through this:
 **Reactions:**
 - [ ] Clear reaction names
 - [ ] All samples added
-- [ ] Roles assigned (reactant/product/solvent)
+- [ ] Roles assigned (starting material/reactant/product/solvent)
 - [ ] Samples sorted by role
 - [ ] Reaction scheme type set
 - [ ] Conditions in description
@@ -207,7 +221,106 @@ Watch out for these - they're easy to make:
 
 ## Advanced Tips
 
-**Keep track of versions:**
+### Using the Ketcher Molecular Editor
+
+**Drawing Structures:**
+1. Click **"Draw Structure"** button in MOL file fields
+2. The Ketcher editor opens in a modal window
+3. Draw your molecule using the tools:
+   - Select atoms from the periodic table
+   - Draw bonds (single, double, triple, aromatic)
+   - Add functional groups from templates
+4. Click **"Save"** to generate the MOL file automatically
+5. The MOL file is validated instantly
+
+**Editing Existing Structures:**
+- Upload a MOL file first, then click "Draw Structure"
+- Ketcher loads the existing structure for editing
+- Make changes and save to update the MOL file
+
+### Check Reaction Tooltips
+
+**Preview Reaction Schemes or sample molecule:**
+- Hover your mouse over any reaction in the tree
+- If a reaction scheme image exists, it appears in a tooltip
+- Perfect for quickly reviewing reaction structures
+- No need to open the reaction to see the scheme
+
+### Leverage Real-Time Validation
+
+**SMILES Validation:**
+- Green indicator = valid SMILES
+- Red indicator = syntax error
+- Error message shows what's wrong
+- Fix errors before exporting
+
+**MOL File Validation:**
+- Automatic validation when uploading or drawing
+- Checks file format, atom counts, bond counts
+- Shows specific errors if validation fails
+- Valid files get a green checkmark
+
+### Use Chemscanner ZIP Imports (Auto-Generate Structure)
+
+**Import from Chemscanner to create collection structure:**
+1. Export your data from Chemscanner as a ZIP file (includes `export.json`)
+2. Drag the Chemscanner ZIP into SmartAdd's upload area
+3. SmartAdd automatically recognizes the `export.json` format
+4. **Collection structure is auto-generated**:
+   - Samples created with chemical structures
+   - Reactions organized automatically
+   - Metadata populated from Chemscanner data
+5. The complete hierarchy appears in the assignment tree (right panel)
+
+**Benefits:**
+- Saves time on manual sample/reaction creation
+- Reduces errors from manual transcription
+- Preserves chemical structure data from Chemscanner
+- Automatic organization of collection hierarchy
+- No need to manually create samples and reactions
+
+**After Import:**
+- Review the auto-generated structure for accuracy
+- Edit sample names and properties as needed
+- **Assign analytical files**: Drag files from input list to the generated samples/analyses
+- Add any additional metadata
+
+### Excel Template Workflow (Auto-Generate Structure)
+
+**Getting Started with Excel Templates:**
+1. **Download the template**: Request the official SmartAdd Excel template from the Chemotion team ([chemotion-smartadd@lists.kit.edu](mailto:chemotion-smartadd@lists.kit.edu))
+2. **Follow the template format**: Use the provided column headers and structure exactly as given
+3. **Fill in your data**:
+   - Sample names
+   - SMILES notation for molecular structures
+   - Amounts, purity, descriptions
+   - Reaction information and sample roles
+4. **Use consistent formatting** throughout your data
+
+**Uploading Templates to Auto-Generate Structure:**
+1. Save your completed Excel file as .xlsx format
+2. Drag the file into SmartAdd's upload area
+3. SmartAdd validates the template format and **auto-generates collection structure**:
+   - Samples created with molecular structures
+   - Reactions created with assigned samples
+   - Complete hierarchical organization
+   - All metadata populated from spreadsheet columns
+4. The generated structure appears in the assignment tree (right panel)
+
+**After Import:**
+- Review the auto-generated samples and reactions
+- Edit properties as needed
+- **Assign analytical files**: Drag files from input list to the generated samples/analyses
+
+**Pro Tips:**
+- **Must use the official template** - custom Excel files won't be recognized
+- Don't modify the template column headers or structure
+- Validate SMILES in Excel before uploading
+- Save completed templates by project or experiment for reuse
+- Perfect for batch processing many samples at once!
+- If unsure about format, request example templates from the Chemotion team
+
+**Keep track of versions:****
 - Name files with dates for checkpoints
 - Include your initials in filenames
 - Keep a simple changelog
