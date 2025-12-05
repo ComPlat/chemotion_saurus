@@ -21,14 +21,73 @@ If the ZIP file seems corrupted, just recreate it and try again.
 
 ### I uploaded files but can't find them
 
-Here's the thing: SmartAdd doesn't automatically organize your files. After uploading, you need to:
+**For Regular File Uploads:**
+SmartAdd doesn't automatically organize your analytical files. After uploading:
 1. Look in the **input list** on the left - your files are there
-2. Create samples and reactions using the buttons
-3. **Drag files** from the left panel to the right tree
+2. Create samples and reactions using the buttons in the right panel
+3. **Drag analytical files** from the left input list to samples/analyses in the right tree
 
 :::warning
 Files that stay in the input list won't be exported! Make sure to drag everything you need to the assignment tree.
 :::
+
+**For Chemscanner ZIP and Excel Templates:**
+These work differently - they **auto-generate the collection structure**:
+- Chemscanner ZIPs (with `export.json`) create samples and reactions automatically
+- Excel templates generate the complete collection hierarchy from your spreadsheet
+- The generated structure appears in the **assignment tree (right panel)**
+- After import, drag your analytical files from the input list to the generated structure
+- You can edit and refine the auto-generated structure as needed
+
+### Chemscanner ZIP not auto-generating structure
+
+If your Chemscanner ZIP uploads but doesn't create samples/reactions:
+- Make sure it's a valid Chemscanner export containing `export.json` (not a regular ZIP)
+- Check the ZIP file isn't corrupted
+- Look for error messages in the upload area
+- Try extracting the ZIP manually to verify `export.json` exists
+- Check browser console for processing errors
+
+**Workaround:**
+If auto-processing fails, you can still work manually:
+1. Any analytical files from the ZIP will appear in the input list
+2. Manually create samples and reactions using the buttons
+3. Drag the files from input list to your manually-created structure
+
+### Excel template not auto-generating structure
+
+If your Excel file uploads but doesn't create samples/reactions:
+- **Using the official template?** You must use the SmartAdd Excel template provided by the SmartAdd
+- **Check file format**: Must be .xlsx (not .xls or .csv)
+- **Check file size**: Very large files may take time to process
+- **Check template structure**:
+  - Must follow the official template format exactly
+  - Column headers must not be modified
+  - SMILES notation should be valid
+  - Required fields should be filled
+- **Look for error messages**: They indicate what went wrong
+
+**Common Excel Template Issues:**
+- **Not using the official template** - custom Excel files won't work
+- Modified or missing required column headers
+- Invalid SMILES notation in cells
+- Merged cells or complex formatting
+- Empty rows breaking the data sequence
+- Extra columns or sheets not in the template
+
+**Fix:**
+1. **Get the official template** from the import structure modal
+2. Don't modify the template structure or column headers
+3. Use plain text formatting (no merged cells, no fancy formatting)
+4. Validate SMILES before uploading (use ChemDraw or similar)
+5. Remove empty rows and extra columns
+6. Fill all required fields
+
+**Workaround:**
+If auto-processing fails:
+1. Manually create samples and reactions using the buttons
+2. Copy data from Excel and paste into SmartAdd properties
+3. Or request a working example template from the Chemotion team
 
 ## Editing Problems
 
@@ -38,21 +97,74 @@ Make sure you're clicking on an actual item (like a sample or reaction), not a f
 
 If fields still look grayed out, try refreshing your browser or updating to the latest version.
 
-### My changes disappear
+### My changes disappear when switching items
 
-This usually happens when you switch to another item too quickly. To save your edits:
-- Press `Enter` or `Tab` after typing
-- Click outside the field
-- Wait a moment before clicking somewhere else
+This is fixed in the latest version! If you're still experiencing this:
+- Make sure you're using the current version of SmartAdd
+- Wait for the debounce delay (1 second for rich text, 0.5 seconds for regular fields)
+- Press `Tab` or click outside the field to trigger an immediate save
+- Check your browser console for any errors
+
+### Rich text editor isn't loading
+
+The Quill editor loads dynamically. If you see a gray loading box that never loads:
+- Refresh your browser (`Ctrl+F5` or `Cmd+Shift+R`)
+- Clear your browser cache
+- Check if JavaScript is enabled
+- Try a different browser (Chrome or Firefox work best)
+- Check browser console for loading errors
+
+### Ketcher modal won't open
+
+If the "Draw Structure" button doesn't work:
+- Make sure pop-ups aren't blocked for this site
+- Check if you clicked the right button (should be next to "Upload File")
+- Try refreshing the page
+- Clear your browser cache
+- Check browser console for errors
+
+### Ketcher shows blank screen
+
+If the Ketcher editor opens but shows nothing:
+- Wait a few seconds - it may still be loading
+- Check your internet connection (Ketcher loads from CDN)
+- Try closing and reopening the modal
+- Refresh the entire page and try again
 
 ### SMILES validation shows errors
 
 The easiest fix: use a molecular structure editor like [Ketcher](https://lifescience.opensource.epam.com/KetcherDemoSA/index.html) or ChemDraw to generate valid SMILES, then copy and paste into SmartAdd.
 
+**Or use SmartAdd's built-in Ketcher:**
+1. Click "Draw Structure" in the MOL file field
+2. Draw your molecule in Ketcher
+3. Save to generate a MOL file
+4. Use Ketcher's export function to generate SMILES if needed
+
 Common SMILES mistakes to avoid:
 - Mismatched brackets or parentheses
 - Typos in atom symbols
 - Unclosed rings
+
+### MOL file validation fails
+
+If your uploaded MOL file shows validation errors:
+- **Check the error message**: It tells you exactly what's wrong
+- **Common issues**:
+  - File too short (needs at least 4 lines)
+  - Invalid atom count
+  - Invalid bond count
+  - Malformed atom or bond lines
+- **Fix**: Use the "Draw Structure" button to create a valid MOL file
+- **Alternative**: Use ChemDraw or another tool to generate a proper MOL file
+
+### Formatting disappears from descriptions
+
+If your rich text formatting isn't saved:
+- The Quill editor has a 1-second debounce delay
+- Wait a moment after formatting before switching items
+- Click outside the editor to trigger immediate save
+- Check that you're not in read-only mode
 
 ## Export Issues
 
@@ -127,13 +239,21 @@ When reaching out for support, it helps to include:
 ## Quick Reference
 
 | Problem | Quick Fix |
-|---------|-----------|
+|---------|--------|
 | Upload stuck | Refresh page, try smaller files |
-| Can't find uploaded files | Check input list (left panel) |
+| Can't find uploaded files | Check input list (left) for analytical files |
+| Chemscanner ZIP not auto-generating | Verify it has export.json, check console for errors |
+| Excel template not auto-generating | Check .xlsx format, validate SMILES, simplify formatting |
 | Export is empty | Drag files from input list to assignment tree |
 | Can't edit fields | Click on an actual item, not a folder |
 | Changes don't save | Press Enter or click outside field first |
+| Changes disappear when switching | Wait for debounce delay, or press Tab |
+| Rich text editor not loading | Refresh page, clear cache, check JavaScript |
+| Ketcher won't open | Check pop-up blocker, refresh page |
+| Ketcher blank screen | Wait for loading, check internet connection |
 | Invalid SMILES | Use Ketcher or ChemDraw to generate valid SMILES |
+| MOL file validation fails | Check error message, use "Draw Structure" |
+| Formatting disappears | Wait 1 second after editing, click outside field |
 | Download blocked | Check pop-up blocker settings |
 | Can't login to Chemotion | Verify credentials are case-sensitive and correct |
 | App running slow | Close browser tabs, clear cache |
