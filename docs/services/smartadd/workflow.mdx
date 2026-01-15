@@ -7,38 +7,28 @@ sidebar_position: 2
 
 This guide walks you through the entire workflow from uploading data to importing it into Chemotion.
 
-## Workflow Overview
+## Step 1: Upload Analytical Data Files
 
-```mermaid
-graph LR
-    A[Upload Data] --> B[Explore & Prepare]
-    B --> C[Organize Reactions & Samples]
-    C --> D[Export ZIP]
-    D --> E[Import to Chemotion]
-```
+### Upload Your Analytical Files
 
-## Step 1: Upload Data
-
-### Upload Your Files
-
-Upload your analytical data and related files to SmartAdd. The files will be stored in the input area, ready for you to organize into samples and reactions.
+Upload your analytical data files to SmartAdd. These files will be stored in the input list, ready for you to assign to samples and analyses.
 
 #### Option A: Upload Individual Files
-1. Drag analytical files (spectra, MOL files, images, etc.) directly into the "Drag files here" area
+1. Drag analytical files (spectra, images, raw data, etc.) directly into the "Drag files here" area
 2. Files are processed and appear in the input list view on the left
-3. Files are ready to be assigned to samples and reactions
+3. Files are ready to be assigned to samples and analyses
 
-#### Option B: Upload a ZIP Archive
-1. Prepare a ZIP file containing your analytical data and related files
+#### Option B: Upload a ZIP Archive of Analytical Files
+1. Prepare a ZIP file containing your analytical data files
 2. Drag the ZIP file into the upload area
 3. SmartAdd extracts all contents automatically
 4. All files appear in the input list view
 
-:::info[No Pre-Organization Required]
-- ZIP files don't need to follow any specific folder structure
-- SmartAdd extracts all files regardless of how they're organized
-- You'll build the sample/reaction structure manually in the next steps
-- Focus on using clear, descriptive filenames for easier assignment later
+:::info[Analytical Data Upload]
+Options A and B are for uploading your **analytical data files** (spectra, images, raw data):
+- Files appear in the **input list (left panel)**
+- You'll manually create your collection structure (samples, reactions)
+- Then assign these files to the appropriate samples/analyses
 :::
 
 ### File Naming Tips
@@ -49,15 +39,74 @@ Use clear filenames to make assignment easier:
 - ✅ Good: `data@#$_final_v2.txt`
 - ✅ Good: `file1.jdx`
 
-### Supported File Types
+### Supported Analytical File Types
 
-- **Spectra**: NMR data files
-- **Structure Files**: MOL, text files
-- **Images**: PNG, JPG
+- **Spectra**: NMR, IR, MS data files (various formats)
+- **Images**: PNG, JPG, TIFF
+- **Raw Data**: CSV, TXT, vendor-specific formats
 - **Text Files**: Metadata, notes, experimental details
 - **Archives**: ZIP files containing any of the above
 
-## Step 2: Create & Organize Structure
+## Alternative: Auto-Generate Collection Structure
+
+Instead of manually creating your collection structure, you can automatically generate it from:
+
+### Option C: Import from Chemscanner Export (export.json)
+
+Use this to automatically create samples and reactions from Chemscanner data:
+
+1. **Export from Chemscanner**: Export your Chemscanner data as a ZIP file (includes `export.json`)
+2. **Upload to SmartAdd**: Drag the Chemscanner ZIP into the upload area
+3. **Auto-Generation**: SmartAdd automatically:
+   - Detects the `export.json` file
+   - Creates the complete collection tree structure (samples, reactions)
+   - Extracts chemical structures and metadata
+   - Populates sample properties (SMILES, names, etc.)
+4. **Review & Edit**: The generated structure appears in the assignment tree (right panel)
+5. **Assign Analytics**: Drag analytical files from input list to the auto-generated samples/analyses
+
+:::tip[Chemscanner Integration]
+This option creates your **collection structure** automatically - you don't need to manually create samples and reactions. The structure is ready to use, just assign your analytical data files to it!
+:::
+
+### Option D: Import from Excel Template
+
+Use this to automatically create samples and reactions from a structured spreadsheet:
+
+1. **Download Template**: Get the SmartAdd Excel template (provided by SmartAdd)
+2. **Fill Template**: Follow the template format and add your data in the required columns:
+   - Sample names
+   - SMILES notation or MOL file references
+   - Amounts, purity, descriptions
+   - Reaction information
+   - Sample roles (starting material/reactant/product/solvent)
+3. **Upload to SmartAdd**: Drag the completed Excel file (.xlsx) into the upload area of modal
+4. **Auto-Generation**: SmartAdd processes the template and creates:
+   - Samples with molecular structures
+   - Reactions with proper sample assignments
+   - Complete hierarchical collection structure
+   - All metadata populated from spreadsheet columns
+5. **Review & Edit**: The generated structure appears in the assignment tree (right panel and information tab)
+6. **Assign Analytics**: Drag analytical files from input list to the auto-generated samples/analyses
+
+:::tip[Excel Template Benefits]
+Perfect for batch processing multiple samples! Use our provided template format to structure your data in Excel, then import it to SmartAdd. The entire hierarchy is generated automatically - just assign your analytical files afterwards.
+:::
+
+:::warning[Template Format Required]
+The Excel file must follow the SmartAdd template format with specific column headers and structure. Contact the Chemotion team at [chemotion-smartadd@lists.kit.edu](mailto:chemotion-smartadd@lists.kit.edu) to get the template file.
+:::
+
+:::info[Auto-Generation Summary]
+**Options C and D create your collection tree structure automatically:**
+- **Chemscanner (export.json)**: Imports existing Chemscanner data with structures
+- **Excel Template**: Builds structure from spreadsheet data
+- Both methods generate samples, reactions, and hierarchy
+- After import, assign analytical files from the input list to the generated structure
+- Much faster than manually creating samples and reactions one by one!
+:::
+
+## Step 2: Create & Organize Structure (Manual Method)
 
 ### Build Your Collection Manually
 
@@ -70,14 +119,21 @@ SmartAdd uses this hierarchy (as shown in the right panel):
 ```
 📦 Collection (Assignment Tree)
   ├─ 🧪 Reaction 1
+  │   ├─ 📊 Analyses (Reaction-level)
+  │   │   └─ 📊 Analysis
+  │   │       └─ 📁 Datasets
+  │   │           └─ 📄 Files
   │   ├─ 📋 Sample 1 (Reactant)
+  │   │   ├─ 🧬 Molecule
   │   │   └─ 📊 Analyses
   │   │       └─ 📊 Analysis (e.g., NMR)
   │   │           └─ 📁 Datasets
   │   │               └─ 📄 Files
   │   └─ 📋 Sample 2 (Product)
+  │       ├─ 🧬 Molecule
   │       └─ 📊 Analyses
   └─ 📋 Sample 3 (Standalone)
+      ├─ 🧬 Molecule
       └─ 📊 Analyses
 ```
 
@@ -98,7 +154,7 @@ There are multiple ways to build and organize your collection:
 
 #### Method 3: Using Context Menu (Right-Click)
 Right-click on any node in the tree to open a context menu with options:
-- **Edit Name**: Rename the selected item
+- **Edit Name**: Right click and rename the selected item
 - **Add Sample**: Add a sample (when right-clicking on reaction)
 - **Add Analysis**: Add analysis to a sample
 - **Add Dataset**: Add dataset to an analysis
@@ -117,17 +173,20 @@ Select any node in the tree to edit its properties:
 | Field | Description | Example |
 |-------|-------------|---------|
 | **Name** | Sample identifier | "Compound A" |
-| **SMILES** | Molecular structure (validated) | "CC(=O)OC1=CC=CC=C1C(=O)O" |
+| **SMILES** | Molecular structure (validated in real-time) | "CC(=O)OC1=CC=CC=C1C(=O)O" |
+| **MOL File** | Upload or draw molecular structure | Use "Upload File" or "Draw Structure" |
 | **Amount** | Quantity with units | "100 mg" |
-| **Purity** | Percentage | "98.5%" |
+| **Purity** | Percentage | 1 |
 | **Location** | Storage location | "Freezer A, Shelf 2" |
 | **Sample Type** | Category of sample | "Product" / "Starting Material" |
-| **Description** | Additional notes | "Synthesized on 2024-01-15" |
+| **Description** | Rich text notes with formatting | Use Quill editor for formatted text |
 
-:::tip[SMILES Validation]
-SmartAdd provides real-time validation for SMILES notation. When entering molecular structures:
-- Syntax is checked automatically
-- Invalid structures are highlighted
+:::tip[SMILES & MOL File Validation]
+SmartAdd provides real-time validation for molecular structures:
+- **SMILES**: Syntax is checked automatically as you type
+- **MOL Files**: File structure and atom counts are validated
+- **Ketcher Integration**: Click "Draw Structure" to use the visual molecular editor
+- Invalid structures are highlighted with specific error messages
 - Prevents export of incorrect molecular data
 :::
 
@@ -136,17 +195,19 @@ SmartAdd provides real-time validation for SMILES notation. When entering molecu
 | Field | Description | Example |
 |-------|-------------|---------|
 | **Name** | Reaction identifier | "Suzuki Coupling" |
-| **Samples** | Multiple samples supported | Add reactants, products, solvents |
-| **Sample Roles** | Reactant/Product/Solvent | Automatically sorted by role |
+| **Samples** | Multiple samples supported | Add starting materials, reactants, products, solvents |
+| **Sample Roles** | Starting Material/Reactant/Product/Solvent | Automatically sorted by role |
+| **Reaction Scheme** | Visual representation | Hover to preview scheme image |
 | **Reaction Scheme Type** | Visual scheme format | Define for proper visualization |
 | **RF Value** | TLC reference | "0.65" |
-| **Description** | Reaction conditions | "Room temp, 24h, N2 atmosphere" |
+| **Description** | Rich text reaction conditions | Use Quill editor with formatting |
 
-:::info[Multi-Sample Reactions]
+:::info[Multi-Sample Reactions & Tooltips]
 SmartAdd supports adding multiple samples to a single reaction with:
 - Automatic smart sorting based on roles
 - Clear organization of reactants, products, and solvents
 - Proper hierarchical structure for complex reactions
+- **Reaction Tooltips**: Hover over reactions in the tree to preview reaction scheme images
 :::
 
 #### Analysis Properties
@@ -158,13 +219,18 @@ SmartAdd supports adding multiple samples to a single reaction with:
 | **File Attachments** | Associated data files | Spectra, logs, images |
 | **Status** | Processing status | "Complete" / "Pending" |
 | **Dataset Inclusion** | Include/exclude from export | Control export contents |
-| **Description** | Analysis notes | "400 MHz, CDCl3" |
+| **Description** | Rich text analysis notes | Use Quill editor for formatted notes |
 
-:::tip[Dataset Management]
-Use dataset inclusion/exclusion to control what gets exported to Chemotion:
-- Exclude preliminary or failed analyses
-- Include only validated data
-- Flexible organization for clean exports
+:::tip[Dataset Management & Rich Text]
+Advanced features for analysis documentation:
+- **Dataset Control**: Use inclusion/exclusion to control what gets exported to Chemotion
+- **Exclude** preliminary or failed analyses
+- **Include** only validated data
+- **Rich Text Descriptions**: Use the Quill editor to add formatted notes with:
+  - Bold, italic, underline formatting
+  - Bullet and numbered lists
+  - Headers and subheaders
+  - Code blocks for formulas
 :::
 
 ## Step 3: Organize Reactions & Samples
@@ -181,7 +247,7 @@ Use dataset inclusion/exclusion to control what gets exported to Chemotion:
 1. Click the **Add Reaction** button in the right panel
 2. A new reaction node appears in the tree
 3. Add samples to the reaction
-4. Assign sample roles (reactant/product/solvent)
+4. Assign sample roles (starting material/reactant/product/solvent)
 
 ### Linking Files to Samples/Analyses
 
@@ -195,6 +261,7 @@ Use dataset inclusion/exclusion to control what gets exported to Chemotion:
 SmartAdd supports multi-sample reactions with automatic smart sorting:
 1. Add multiple samples to a reaction
 2. Assign roles to each sample:
+   - **Starting Materials**: Initial materials for the reaction
    - **Reactants**: Starting materials
    - **Products**: Desired outcomes
    - **Solvents**: Reaction medium
@@ -212,7 +279,7 @@ Before exporting, verify:
 - [ ] MOL files assigned to appropriate samples
 - [ ] Amounts include units (mg, g, mol, mL)
 - [ ] Reactions created with samples added
-- [ ] Reaction roles are correctly assigned (reactant/product/solvent)
+- [ ] Reaction roles are correctly assigned (starting material/reactant/product/solvent)
 - [ ] Multi-sample reactions properly organized with smart sorting
 - [ ] Files from input list dragged to correct samples/analyses
 - [ ] Analysis types are properly categorized

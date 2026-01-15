@@ -5,10 +5,14 @@ sidebar_position: 6
 ---
 import { YouTubeFrame } from "@site/src/js/layout";
 
-# SmartAdd
+# [SmartAdd - Service](https://smartadd.chemotion.net/)
 
-SmartAdd is a web-based companion for Chemotion that helps researchers import, organize, and prepare chemical data before sending it into Chemotion.
+SmartAdd is a web-based companion service for Chemotion that helps researchers import, organize, and prepare chemical data before sending it into Chemotion.
 Instead of wrestling with complex file structures or scattered files, SmartAdd gives you a clear, visual tree view to curate your collection.
+
+**🌐 Access SmartAdd:** [https://smartadd.chemotion.net/](https://smartadd.chemotion.net/)
+
+SmartAdd is a service that does not require installation and can be directly used and managed by KIT.
 
 ## Overview
 
@@ -20,18 +24,24 @@ you can quickly organize samples, reactions, and analytical data before exportin
 - **📤 Easy Upload**: Drag & drop files or ZIP archives
 - **🌳 Visual Tree View**: See your data organized hierarchically
 - **✏️ Inline Editing**: Edit sample, reaction, and analysis properties directly
+- **✏️ Rich Text Editing**: Quill editor for formatted descriptions with full text formatting capabilities
+- **🎨 Structure Editor**: Integrated Ketcher molecular structure editor for creating and editing MOL files
 - **🔗 Multi-Sample Reaction Support**: Add multiple samples to reactions with automatic smart sorting
 - **✅ SMILES Validation**: Real-time molecular structure validation and syntax checking
-- **🚀 Direct Chemotion Integration**: Upload directly to your Chemotion ELN server without manual downloads
+- **🖼️ Reaction Tooltips**: Hover over reactions to preview reaction scheme images
+- **✅ Enhanced Validation**: Real-time SMILES and MOL file validation with detailed error reporting
+- **🌐 Excel Template Support**: Use our Excel template format to auto-generate collection structure (samples, reactions)
+- **📦 Chemscanner Integration**: Import Chemscanner export.json/zip to auto-generate collection structure
+- **🚀 Direct Chemotion Integration**: Upload directly to your Chemotion ELN server with secure authentication
 - **📊 Dataset Management**: Control which datasets are included or excluded from export
 - **📦 Export Ready**: Generate Chemotion-compatible ZIP files or upload directly
-- **🌐 No Installation**: Runs entirely in your browser
+- **🌐 No Installation**: Runs entirely in your browser with auto-save functionality
 
 ### Complete Tutorial Video
 
 <div style={{position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', maxWidth: '100%', marginTop: '1.5rem', marginBottom: '1.5rem'}}>
   <YouTubeFrame
-    src="https://www.youtube-nocookie.com/embed/9AT7H67BGlg"
+    src="https://www.youtube-nocookie.com/embed/AsqBYxL-Fv0"
     title="SmartAdd Quick Start Tutorial"
   />
 </div>
@@ -76,10 +86,18 @@ Solutions to common issues with uploads, editing, exports, and performance.
 
 New to SmartAdd? Follow these steps:
 
-1. **Upload Files**: Drag & drop your ZIP archive or individual files—they appear in the input list
-2. **Create Structure**: Use "Add Sample" and "Add Reaction" buttons to build your collection manually
-3. **Assign Files**: Drag files from the input list (left) to samples/analyses in the tree (right)
+### Manual Workflow:
+1. **Upload Analytical Files**: Drag & drop analytical data files or ZIP archives—they appear in the input list (left)
+2. **Create Structure**: Use "Add Sample" and "Add Reaction" buttons to build your collection manually (right panel)
+3. **Assign Files**: Drag analytical files from the input list (left) to samples/analyses in the tree (right)
 4. **Edit Properties**: Click nodes to edit sample/reaction properties, validate SMILES, assign roles
+5. **Export**: Download as ZIP or upload directly to Chemotion ELN
+
+### Auto-Generate Workflow:
+1. **Upload Chemscanner ZIP or Excel Template**: Drag the file to auto-generate collection structure
+2. **Review Structure**: Check auto-generated samples and reactions in the assignment tree (right)
+3. **Assign Analytics**: Drag analytical files from input list to the generated samples/analyses
+4. **Edit & Refine**: Adjust properties as needed
 5. **Export**: Download as ZIP or upload directly to Chemotion ELN
 
 :::tip
@@ -97,7 +115,7 @@ Watch the [complete tutorial video](#complete-tutorial-video) above for a visual
 - Click Clear to reset workspace
 
 ### 🌳 Right Workspace - Tree View & Editor (Data Preparation)
-- **Action Buttons**: Add Sample, Add Reaction and Download as ZIP
+- **Action Buttons**: Add Sample, Add Reaction and Export Collection
 - **Tree View**: Hierarchical display of collections (samples, reactions, analyses)
 - **Clickable Nodes**: Select items to view/edit properties
 - **Properties Editor**: Edit selected item details
@@ -108,27 +126,25 @@ Watch the [complete tutorial video](#complete-tutorial-video) above for a visual
 ## Supported Data Types
 
 SmartAdd works with various chemical data formats:
-- **Structure Files**: MOL, CDX
-- **Archives**: ZIP files containing organized datasets
-- **Metadata**: Text files with experimental details
+
+### Analytical Data Files (Input List)
+- **Spectra**: NMR, IR, data files
+- **Images**: PNG, JPG, TIFF
+- **Raw Data**: CSV, TXT, vendor-specific formats
+- **Archives**: ZIP files containing analytical data
+
+### Structure Import Files (Auto-Generate Collections)
+- **Chemscanner Exports**: ZIP files with export.json (auto-generates samples/reactions)
+- **Excel Templates**: .xlsx files following our template format with structures and metadata (auto-generates collections samples/reactions)
+- **MOL Files**: Molecular structure files
 
 ## What's Coming Next?
 
-SmartAdd is actively developed with new features on the horizon:
-
-  - 🔍 **Tree View Enhancements**: Increase tab width for improved navigation and visibility
-  - ⚡ **Direct Import**: Chemotion integration with secure login and seamless upload functionality
-  - 🛡️ **Structure Editor**: Integrated molecular structure editor for creating and importing MOL
-  files directly within SmartAdd
-  - 📄 **Chemscanner Integration**: Automated chemical data extraction from scientific literature and
-   documents
-  - 📦 **ZIP Import Support**: Import Chemotion-exported ZIP archives with export.json metadata
-  - ✍️ **Rich Text Editor**: Quill integration for enhanced text formatting in descriptions and notes
-  - 🌐 **Excel template processing**: Import Excel spreadsheets with experimental data to auto-generate complete collection hierarchies
+SmartAdd is feature-complete and ready for production use! We continue to monitor user feedback and may add enhancements based on community needs. If you have suggestions for new features or improvements, please reach out to the Chemotion team at [chemotion-smartadd@lists.kit.edu](mailto:chemotion-smartadd@lists.kit.edu).
 
 ## Need Help?
 
 - 📖 **Documentation**: Browse the guides in the sidebar
 - 🎥 **Video Tutorial**: Watch the [complete tutorial](#complete-tutorial-video) above
 - ❓ **FAQ**: Check common questions in the [Troubleshooting](smartadd/troubleshooting) guide
-- 💬 **Support**: Contact the Chemotion team for assistance
+- 💬 **Support**: Contact the Chemotion team for assistance at: [chemotion-smartadd@lists.kit.edu](mailto:chemotion-smartadd@lists.kit.edu)

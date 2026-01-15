@@ -22,7 +22,7 @@ Don't worry - the requirements are simple:
 
 Just open SmartAdd in your browser. You'll see a simple, clean interface:
 - **Left Side**: Where you'll upload files and find action buttons
-- **Right Side**: Your workspace with the tree view and editor
+- **Right Side**: Your workspace with the tree view and editor, and some action buttons
 
 ### 2. Upload Your Data
 
@@ -44,10 +44,15 @@ ZIP archives make life easier when you're working with:
 
 ### 3. Explore Your Data
 
-Once your files are uploaded, you'll see them organized as an interactive tree on the right side:
-- Click on any item to select it
-- Use the arrow icons to expand or collapse branches
-- The hierarchy usually goes: **Reactions** → **Samples** → **Analyses** → **Analysis** → **Dataset** → **Files**
+Once your files are uploaded, you'll see them in the **input list on the left side**:
+- All uploaded files appear here, organized in a simple list
+- This is your file inventory - ready to be assigned to samples and reactions analysis/datasets
+- You'll drag files from here to the assignment tree on the right
+
+On the **right side**, you'll build your collection structure:
+- Use "Add Sample" and "Add Reaction" buttons to create your hierarchy
+- The hierarchy works like this: **Reactions** → **Samples** → **Analyses** → **Analysis** → **Dataset** → **Files**
+- Drag files from the left input list to assign them to samples and reactions on the right
 
 It's intuitive - just click around and explore!
 
@@ -58,6 +63,12 @@ Ready to edit something? Here's how:
 2. A properties panel appears with fields you can edit
 3. Click on any field and start typing
 4. Your changes save automatically - no "Save" button needed!
+
+**Enhanced Editing Features:**
+- **Rich Text Editor**: Description fields use the Quill editor with formatting tools (bold, italic, lists, headers)
+- **Structure Editor**: Click "Draw Structure" to use the integrated Ketcher molecular editor for creating MOL files
+- **Real-time Validation**: SMILES and MOL files are validated as you type with instant feedback
+- **Smart Auto-Save**: Changes are automatically saved with debouncing to prevent data loss
 
 ### 5. Send Your Data to Chemotion
 
@@ -90,7 +101,7 @@ Prefer to watch? Here's a complete video tutorial showing everything in action:
 
 <div style={{position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', maxWidth: '100%', marginTop: '1rem'}}>
   <YouTubeFrame
-    src="https://www.youtube-nocookie.com/embed/9AT7H67BGlg"
+    src="https://www.youtube-nocookie.com/embed/AsqBYxL-Fv0"
     title="SmartAdd Quick Start Tutorial"
   />
 </div>
