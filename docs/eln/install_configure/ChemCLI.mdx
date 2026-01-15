@@ -124,7 +124,20 @@ networks:
     external: true
 ```
 
-This declares the proxy network as external i.e. it is allowed to talk to the host's network. To link this `proxy` network with the ELN's network, include the it as a key-value pair for the `eln` service i.e. create a new YAML key called `services.eln.networks: [proxy]`.
+This declares the proxy network as external i.e. it is allowed to talk to the host's network.
+
+To link this `proxy` network with the ELN's network, we need to include it as a key-value pair for the `eln` service i.e. in the `docker-compose.cli.yml` file, under the service called `eln`, we need to do the following:
+
+```yaml
+services:
+  ... # other entries
+  eln:
+    ... # other entries
+    labels: # labels added by chemCLI
+      - net.chemotion.cli.project=...
+    networks: # <--- this block is what needs to be included
+      - proxy
+```
 
 Additionally, you also need to create such a network explicitly by running the following command in your shell:
 
