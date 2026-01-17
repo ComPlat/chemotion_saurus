@@ -21,13 +21,14 @@ In a first step, the type of sequence-based macromolecule is chosen. At the mome
 
 ![sbmms](/img/SBMM_docu_firststep.png)
 
-Depending on how the protein is gained or where data describing the protein can be gained from, the user has the option to define SBMMs for that the characteristics correspond to UniProt entries, that are derived from Uniprot and modified, and those that are not known.
+Depending on how the protein is gained or where data describing the protein can be gained from, the user has the option to define SBMMs for that the characteristics correspond to UniProt entries, that are derived from Uniprot and modified, and those that are not known. The selection is crucial for the available functions in the whole module, therefore one should chose that property carfully. If the input is saved, it can only be changed again after enabling "reopen search functions". 
 
 ![sbmms](/img/sbmm_demo_sections.png)
 
-If a UniProt reference is available, the Uniprot entry can be used to extract all relevant information on the protein's structure and characteristics. The information is added to the Chemotion SBMM.
+If a UniProt reference is available, ine can search in the UniProt database by e.g. searching with the UniProt number. If the number is found and selected, the Uniprot entry is used to extract all relevant information on the protein's structure and characteristics. The information is added to the Chemotion SBMM in the section "protein identfiers and structral characteristics" and is saved as a SBMM concept to Chemotion database. The protein's sequence is used as characteristic pattern defining the concept. Whenever a user enters the same protein sequence to any new SBMM entry in the future, the system assigns this entry to the existing SBMM concept, the new entry is kind of a child representation of the SBMM concept. As multipe SBMM samples can be assigned to one concept, the concept's data cannnot be changed. 
 
 ![sbmms](/img/sbmm_demo_uniprot.png)
+If the SBMM concept is used as given, one can continue with the addition of sample properties. If a known SBMM sequence is further modified, then one has the option to change the structure of the SBMM and to define a new SBMM concept based on that. As a concept is defined by the chemical sequence, a new sequence defines a new SBMM concept. Changes or modification of the SBMM sequence can be introduced either via concrete change of the chemical sequence as given in the sequence field or it can be changed by defining additional information, such as the conduction of a post-treatment that modifies amino acids. 
 
 ![sbmms](/img/sbmm_demo_sample.png)
 
