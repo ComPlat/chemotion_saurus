@@ -13,11 +13,12 @@ For NMR analysis, we currently support:
 
 :::info[Data Portability between ChemSpectra (Chemotion ELN) and NMRium]
 
-- How your data will be stored in ChemotionELN?
-  When you click on `Close with Save` button, one `*.nmrium` file and one image file (a svg file) will be stored in ChemotionELN.
-  In case of your **ChemSpectra** service is available and **your data is 1D**, your analyzed data will be stored in an `*.edit.jdx` file as well, that allow you can either open your analyzed data with **ChemSpectra** or **NMRium**.
-- Can I analyze data with ChemSpectra and open it with NMRium?
-  Yes. ChemotionELN supports synchronizing data between ChemSpectra and NMRium, only when both these services are available.
+When an NMRium analysis is saved, a .nmrium file and a preview image (SVG) are stored in Chemotion ELN.   
+The `.nmrium` file contains references to the associated spectra and the analysis modifications. The raw spectral data remains stored in the original `.jdx` or `.zip` files.  
+
+When ChemSpectra is available, an additional '*.edit.jdx' file may be stored for 1D NMR data. This enables the analysed data to be opened and continued in both ChemSpectra and NMRium.  
+
+Chemotion ELN supports data synchronisation between ChemSpectra and NMRium when both services are available.  
 
 :::
 
@@ -53,6 +54,12 @@ We currently support 1H, 13C, 15N, 19F, 29Si, and 31P NMR techniques.
 :::info[Note]
 
 The official of the document of NMRium is located at https://docs.nmrium.org/
+
+NMRium analysis files in Chemotion ELN are structured to optimise performance and loading time.
+Analysis files do not embed the full spectral data. `.nmrium` files only contain references to the spectra and the analysis modifications applied by the user.
+The raw spectral data is stored separately in `.jdx` files or `.zip` archives.
+
+This separation results in smaller `.nmrium` files, faster analysis loading and reduced memory and network usage.
 
 :::
 
