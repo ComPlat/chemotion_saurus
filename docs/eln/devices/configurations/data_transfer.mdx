@@ -20,13 +20,141 @@ While the manual transfer refers to manually collecting, generally using a USB s
 approaches for the automatic transfer as follows,
 
 - transferring data through **email provider**
-- **efw (ELN File Watcher)** running as a program
-- **powershell script** running as a background service
-- macro
+- **Shuttle** running as a background service
 
-In this part we mostly discuss the configurations required to run efw (ELN File Watcher) as a program to collect the
-data automatically. Initially we have to generate an efw exe file with custom input fields specifying the source,
-destination along with other some other configuration data. We can generate the efw instances from the EFW builder. It is a server-side application which generates efw instances in a secured manner. These instances can then be installed on the target system in just a few steps. In addition, this server provides a data storage unit with an interface to receive data from your target systems.
+## Shuttle
+
+The Shuttle is a supporting service designed to facilitate data exchange and integration tasks in conjunction with ELN Chemotion.
+It is an independent tool that can be used to assist with managing data transfers to Chemotion.
+This section describes how the Shuttle interacts with Chemotion and how user authentication is handled.
+
+![ShuttleBuilder](/img/shuttle/shuttle_builder.drawio.png)
+
+The physical separation of laboratory PCs from public networks for security reasons significantly impacts
+file transfer requirements. As a result, data stored locally on laboratory devices must be forwarded to the ELN via an intermediary system.
+
+The Shuttle is one component of such an system. It sends device data to an intermediary
+data storage and allows to monitor and organize the data transmission of devices integrated with your ELN Chemotion instance.
+Additionally, it can processes data in a configurable, step-based workflow.
+
+Depending on the configuration, the data can be converted into a BagIt archive before being forwarded to Chemotion.
+Finally, the processed data is transferred to the configured target system using standard transfer protocols such as WebDAV or SFTP.
+
+In addition to its core functionality, the system provides several configurable processing steps.
+ The Shuttle workflow is outlined below to illustrate the available configuration options and the sequence in which data is handled.
+
+Shuttle workflow:
+
+1. The Shuttle monitors the configured directory and checks whether files have been fully written. A file is considered complete when the following conditions are met:
+
+    A. No operating system process (Windows or Linux) holds an open handle to the file.
+
+    B. No write access has been detected within the configured time interval.
+
+2. Depending on the configuration, all files belonging to a single measurement are collected and bundled into a single archive (e.g. .zip or .tar.xz). The Shuttle waits until all expected files are available before creating the archive.
+
+3. Optional preprocessing scripts can be executed to manipulate the files or archives. These scripts may be used to filter, enrich, split, or otherwise transform the data prior to further processing.
+
+4. If enabled, the Shuttle converts the resulting data into a BagIt archive using a local instance of ChemConverter. In this case, the BagIt archive is forwarded to the intermediary system (and subsequently to Chemotion), while the original data can be archived in a separate target system.
+
+5. Finally, the data is transferred to the target system using either WebDAV or SFTP, depending on the configured transfer method.
+
+### Configure the Shuttle
+
+The Shuttle can be configured in three different ways:
+
+1. [ShuttleBuilder](#shuttlebuilder) (recommended)
+2. .env file located in the same directory as the executable
+3. Command-line (CLI) arguments
+
+We strongly recommend using the ShuttleBuilder, as it reduces configuration errors and simplifies setup.
+Nevertheless, all available configuration options are documented below. The same arguments can be provided either via a .env file or as CLI arguments.
+
+  - **name** [string]\
+    	Name of the Shuttle instance.
+  - **transfer** [string]\
+        Allowed values: 'webdav' or 'sftp'
+        - **webdav** – Transfers files over HTTP/HTTPS using the WebDAV protocol. Useful for integration with web-based storage services that support WebDAV.
+        - **sftp** – Transfers files over a secure SSH connection. Recommended for direct server-to-server transfers with strong security.
+  - **duration** [number]\
+    	Duration in seconds that a file must remain unchanged before it is sent.
+  - **type** [string]\
+        Specifies how files and folders are handled during transfer. Allowed values: 'file', 'folder', 'tar', 'zip', or 'flat_tar'.
+        - **file** – Each file is handled individually. Folder hierarchy is ignored.
+        - **folder** – Entire folders under src are transmitted only when all files are ready. Folder hierarchy is preserved.
+        - **tar / zip** – The folder is archived (tar or zip) and sent only when all files are ready. Folder hierarchy is preserved inside the archive.
+        - **flat_tar** – All files that share a common prefix are packed into a single TAR archive with a flat folder hierarchy.
+  - **dst** [string]\
+    	WebDAV or SFTP destination URL for the converted data file. This should point to the responding directory configured in the Chemotion DataCollector for the corresponding device.
+
+        Example:
+        ```
+        WebDAV: https://example.org[:port]/[path]
+        SFTP: example.org[:port]/[path]
+        ```
+  - **src** [string]\
+    	Source directory to be watched.
+  - **user** [string]\
+    	WebDAV or SFTP user for **dst**
+  - **pass** [string]\
+    	WebDAV or SFTP Password  for **user**
+  - **preconvert** [string]\
+    	[True or 1]  Set to True if the raw files are too large and should not be archived in Chemotion. In this case, only the converted BagIt archive is stored in Chemotion, while the raw files are stored elsewhere.
+    	- You must specify two destinations
+    	    - The already configured **dst** is used for the raw data files.
+    	    - The additional **dstConverter** is used for the BagIt archive (Chemotion).
+        - An executable version of the ChemConverter must be in the same directory as the Shuttle.
+    	    - The converter must be configured with the correct profile(s) for the corresponding file type.
+    	    - To configure a profile:
+            1. Create or configure a profile in Chemotion.
+            2. Download it as a JSON file.
+            3. Store it in a directory named profiles located in the same directory as the converter executable.
+
+  Only if the **type** is 'flat_tar'
+  - **commonRegex** [string]\
+        The regular expression used to identify files that belong to the same data set.
+        - Only applicable when type is flat_tar.
+        - All files that match the same regex group (if groups are used) or that have the same overall regex match (if no groups are used) are archived together.
+        - The matched value will be used as the archive name. Therefore, make the regex as greedy as possible to capture the full common name.
+
+  Only if the **preconvert** is 'True'
+  - **dstConverter** [string]\
+    	WebDAV or SFTP destination URL for the converted BagIt archive. This should point to the responding directory configured in the Chemotion DataCollector for the corresponding device.
+        :::info[Info]
+
+    	Make sure that **dst** points to a different directory that is not monitored by Chemotion, so that the raw data files are archived safely.
+
+        :::
+
+        Example:
+        ```
+        WebDAV: https://example.org[:port]/[path]
+        SFTP: example.org[:port]/[path]
+        ```
+  - **userConverter** [string]\
+    	WebDAV or SFTP user for **dstConverter**
+  - **passConverter** [string]\
+    	WebDAV or SFTP password for **userConverter**
+  - **public** [string]\
+    	Prefix for the publicly accessible link to raw files.
+        - Must end with a trailing
+        - Only the filename is appended to this
+        Example:
+        ```
+        https://example.org/public/raw
+        ```
+
+
+
+## ShuttleBuilder
+
+The ShuttleBuilder is a service that allows you to create and manage your Shuttle instances. It operates independently of the Electronic Lab Notebook (ELN) Chemotion.
+
+However, if a ShuttleBuilder instance is configured as part of a Chemotion setup, it can function as a Chemotion service. Users can log in using their Chemotion username and password.
+
+In addition, users can register to create local accounts, or an administrator can create local users.
+
+A service is hosted at: [ShuttleBuilder](https://shuttlebuilder.deploy.chemdev.scc.kit.edu/). Simply register and create a new Shuttle executable file with all necessary inputs.
 
 :::info[Info]
 
@@ -34,33 +162,98 @@ Please [contact us](/helpdesk) if you need the service.
 
 :::
 
-The rest of the configurations are as follows,
+### ShuttleBuilder howto setup your own ShuttleBuilder instance.
 
-- Login to the EFW builder
-- Create a new EFW executable file by with all necessary inputs
+You can set up your own ShuttleBuilder instance.
+Below, we provide a docker-compose file that includes everything you need to host the ShuttleBuilder.
 
-![device_configuration_1](/img/device_configuration_1.png)
+Make sure to set the variables correctly. Below the docker-compose file, you will find a .env file that lists all required variables.
 
-- Download the executable file.
-- (Optional) Copy the efw.exe into `C:\Program Files\file_exporter`
-- Create a Scheduled Task to trigger at startup
-  - Copy the [file_exporter_task.vbs](/files/file_exporter_task.vbs) into the startup directory. You can also
-    download the file, task_example.vbs from [here](https://github.com/ComPlat/ELN_file_watcher/releases/tag/latest)
-    - Hint: Windows Key + R to open run and type shell:startup. This will open the startup directory
-  - If you are using another location to keep the exe file, replace the full path of the executable file in the
-    scheduler script.
+```yml
+x-postgres-variables: &postgres-variables
+  POSTGRES_DB: "${POSTGRES_DB:-postgres}"
+  POSTGRES_USER: "${POSTGRES_USER:-postgres}"
+  POSTGRES_PASSWORD: "${POSTGRES_PASSWORD:-q3opc3123§§!'urbn$5(#6}"
 
-:::warning[Caution]
+x-envs: &envs
+  MODE: prod
+  ALLOWED_HOST: "${ALLOWED_HOST}"
+  ELN_URL: "${ELN_URL}"
+  DJANGO_SUPERUSER_USERNAME: "${DJANGO_SUPERUSER_USERNAME}"
+  DJANGO_SUPERUSER_EMAIL: "${DJANGO_SUPERUSER_EMAIL}"
+  DJANGO_SUPERUSER_PASSWORD: "${DJANGO_SUPERUSER_PASSWORD}"
+  POSTGRES_PORT: 5432
+  POSTGRES_HOST: db
+  EMAIL_PORT: "${EMAIL_PORT}"
+  EMAIL_HOST: "${EMAIL_HOST}"
+  EMAIL_HOST_USER: "${EMAIL_HOST_USER}"
+  EMAIL_HOST_PASSWORD: "${EMAIL_HOST_PASSWORD}"
 
-Make sure the task scheduler is pointing to the correct exe file in the correct location
+services:
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    hostname: db
+    expose:
+      - 5432
+    ports:
+      - ${PROJECT_POSTGRES_PORT:-65432}:5432
+    environment:
+      <<: *postgres-variables
+    volumes:
+      - bridge_db:/var/lib/postgresql/data/
+  web:
+    image: mstarman/shuttlebuilder:0.2.18
+    build: .
+    restart: unless-stopped
+    depends_on:
+      - db
+    environment:
+      <<:
+        - *envs
+        - *postgres-variables
+    ports:
+      - ${PROJECT_WEB_PORT:-80}:80
 
-:::
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
 
-- After restarting the computer, check from Task Manager if the schedule task is created and the application
-  process is running
+  redis:
+    image: redis:7-alpine
+    container_name: django-redis
+volumes:
+  bridge_db:
 
-:::info[Info]
+```
 
-After editing the scheduling script, the computer needs to be restarted
+The following .env file includes all the variables needed to set up a ShuttleBuilder instance.
+- The instance will be created with a user specified by DJANGO_SUPERUSER_USERNAME and must be reachable at the host defined by ALLOWED_HOST.
+- If you want to connect it to a Chemotion instance, set ELN_URL to the correct URL.
+- Email settings are optional. However, without them, the “forgot password” functionality will not be available.
 
-:::
+```.env
+MODE=prod
+ALLOWED_HOST=http://0.0.0.0
+ELN_URL=https://XXXXXXXX
+DJANGO_SUPERUSER_USERNAME=Tom Riple
+DJANGO_SUPERUSER_EMAIL=tom.riple@kit.edu
+DJANGO_SUPERUSER_PASSWORD=PLEASE_CHANGE
+POSTGRES_DB=bridge
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=PLEASE_CHANGE
+PROJECT_POSTGRES_PORT=65432
+PROJECT_WEB_PORT=3222
+EMAIL_PORT=587
+EMAIL_HOST=smtp.ionos.de
+EMAIL_HOST_USER=buildern@shuttle.com
+EMAIL_HOST_PASSWORD=PLEASE_CHANGE
+PGADMIN_DEFAULT_PASSWORD=PLEASE_CHANGE
+```
