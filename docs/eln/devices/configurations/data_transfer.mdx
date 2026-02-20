@@ -97,7 +97,7 @@ Nevertheless, all available configuration options are documented below. The same
   - **user** [string]\
     	WebDAV or SFTP user for **dst**
   - **pass** [string]\
-    	WebDAV or SFTP Password  for **user**
+    	WebDAV or SFTP password  for **user**
   - **preconvert** [string]\
     	[True or 1]  Set to True if the raw files are too large and should not be archived in Chemotion. In this case, only the converted BagIt archive is stored in Chemotion, while the raw files are stored elsewhere.
     	- You must specify two destinations
@@ -137,11 +137,11 @@ Nevertheless, all available configuration options are documented below. The same
     	WebDAV or SFTP password for **userConverter**
   - **public** [string]\
     	Prefix for the publicly accessible link to raw files.
-        - Must end with a trailing
+        - Must end with a trailing "/"
         - Only the filename is appended to this
         Example:
         ```
-        https://example.org/public/raw
+        https://example.org/public/raw/
         ```
 
 
@@ -156,13 +156,8 @@ In addition, users can register to create local accounts, or an administrator ca
 
 A service is hosted at: [ShuttleBuilder](https://shuttlebuilder.deploy.chemdev.scc.kit.edu/). Simply register and create a new Shuttle executable file with all necessary inputs.
 
-:::info[Info]
 
-Please [contact us](/helpdesk) if you need the service.
-
-:::
-
-### ShuttleBuilder howto setup your own ShuttleBuilder instance.
+### How to setup your own ShuttleBuilder instance.
 
 You can set up your own ShuttleBuilder instance.
 Below, we provide a docker-compose file that includes everything you need to host the ShuttleBuilder.
@@ -214,6 +209,8 @@ services:
         - *postgres-variables
     ports:
       - ${PROJECT_WEB_PORT:-80}:80
+    volumes:
+      - bridge_media:/opt/media/
 
   pgadmin:
     image: dpage/pgadmin4:latest
@@ -231,7 +228,7 @@ services:
     container_name: django-redis
 volumes:
   bridge_db:
-
+  bridge_media:
 ```
 
 The following .env file includes all the variables needed to set up a ShuttleBuilder instance.
