@@ -151,10 +151,11 @@ There are multiple ways to build and organize your collection:
 
 #### Method 2: Using Quick Add Buttons
 - **Plus Button Next to Reaction**: Click the `+` button next to any reaction node to quickly add samples to that reaction
+- **Plus Button Next to Analyses**: Click the `+` button next to any **Analyses** node to quickly add a new analysis. Click it multiple times to add several analyses in a row without reopening a menu.
 
 #### Method 3: Using Context Menu (Right-Click)
 Right-click on any node in the tree to open a context menu with options:
-- **Edit Name**: Right click and rename the selected item
+- **Edit Name**: Right click and rename the selected item (note: the **Analyses** header itself cannot be renamed)
 - **Add Sample**: Add a sample (when right-clicking on reaction)
 - **Add Analysis**: Add analysis to a sample
 - **Add Dataset**: Add dataset to an analysis
@@ -215,11 +216,26 @@ SmartAdd supports adding multiple samples to a single reaction with:
 | Field | Description | Example |
 |-------|-------------|---------|
 | **Type** | Analysis technique | "NMR" / "IR" / "MS" |
-| **Type Ontology** | Standardized classification | Select from dropdown |
+| **Type Ontology** | Standardized classification | Select from CHMO or RXNO dropdown |
 | **File Attachments** | Associated data files | Spectra, logs, images |
 | **Status** | Processing status | "Complete" / "Pending" |
 | **Dataset Inclusion** | Include/exclude from export | Control export contents |
 | **Description** | Rich text analysis notes | Use Quill editor for formatted notes |
+
+:::tip[Reordering Analyses]
+Analyses within a sample can be **reordered by drag-and-drop**:
+- Drag any analysis node up or down within the same Analyses group
+- The new order is saved automatically and persists after page refresh
+- Useful for putting the most relevant analyses at the top
+:::
+
+:::tip[Recently Selected Ontology Terms]
+The **Type (Ontology)** dropdown (CHMO for analysis type, RXNO for reaction type) remembers your recent selections:
+- Previously selected terms appear under **"-- Recently selected --"** at the top of the dropdown
+- Saves time when repeatedly using the same analysis types (e.g. 1H NMR, 13C NMR)
+- Up to 10 recent terms are stored per ontology type
+- Persists across page refreshes
+:::
 
 :::tip[Dataset Management & Rich Text]
 Advanced features for analysis documentation:
