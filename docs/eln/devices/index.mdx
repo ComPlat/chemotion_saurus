@@ -55,6 +55,8 @@ Examples for (1): NJ-101; NJ-101-A; NJ-101-5; NJ-101_pure; ABCD-1234-B
 Also, if many groups are using the Chemotion ELN, a groupID may help to sort users and therefore their measurements according to a group ID. The measurements should then be named according to examples (2): 2NJ-101; 2NJ-101-A; 2NJ-101-5; 2NJ-101_pure; 2ABCD-1234-B.
 Please take care that the hyphen is included!
 
+If the filename contains an elements short label or name, it can be automatically or manually transferred to this elements from the inbox ([Details](../ui/inbox.mdx#moving-files-to-elements)).
+
 ### Mail-collector
 
 One of the easiest possibilities to transfer data to a management system such as the Chemotion ELN is to send data per email. The software of some analytical devices support the mailing of measurements to a user defined email address by default. This allows to implement storage routines that are independent of any additional software or hardware on the instrument’s side. The only prerequisite for a use of the MailCollector routine is fulfilled if one can set the email to be send to two addresses, to the Chemotion ELN server associated email address and to the user’s email address registered with the corresponding Chemotion ELN account (Figure 2). This is necessary to identify the target of the mailed information and the corresponding account in the Chemotion ELN. In short, four configuration steps are necessary to fetch the information via email:

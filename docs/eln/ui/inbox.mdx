@@ -37,8 +37,57 @@ Regarding the [Data collector](../../eln/devices#datacollectors-for-devices-with
 
 Along with all these, users can manually upload some files in the inbox which they can later use in further analyses.
 
-## Direct import of files from the inbox
+## Moving files to elements
 
-You can choose to drag and drop files into `Analyses`, directly from the inbox, when working with datasets.
+### Manual import of files from the inbox
+
+When working with datasets, you can drag and drop files directly from the inbox into `Analyses`.
 
 ![Drag and Drop](/img/analyses_drag_inbox_files.gif)
+
+Alternatively, you can use the buttons next to the file to open a dialog.
+In this dialog, you can select the appropriate element and assign the file to it.
+This creates a new `Analysis` with this file.
+
+The list of available elements depends on the file name.
+The system automatically searches for elements with matching or partially matching names.
+
+:::note
+
+- Currently, only samples and reactions are supported.
+- The buttons must be enabled in the user configuration.
+
+:::
+
+![Move to Sample](/img/inbox_move_to_sample.png)
+
+:::info
+
+The file name (excluding the file extension) should contain:
+- The full name of the element or a part of it
+- The short label of the element or a part of it (e.g. CU1-1)
+
+:::
+
+### Automatic transfer of files from the inbox
+
+If the filename can be uniquely assigned to an element,
+the file will be automatically assigned to that element when uploaded to the inbox.
+This creates a new `Analysis` with this file.
+
+:::note
+
+This feature can be disabled in the user configuration.
+
+:::
+
+### Reaction variations link
+
+When you assign a file to a reaction with the filename method and this reaction has one or multiple variations,
+the resulting `Analysis` can automatically be linked to a variation.
+To enable this, the filename needs to consist of:
+1. full name or short label (part)
+2. A minus (-) sign followed by **v** + variation index
+3. optional file extension
+
+Example name: CU1-R1-**v**1.dat
