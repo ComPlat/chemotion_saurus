@@ -3,7 +3,8 @@ title: Local Collectors (in docker containers)
 sidebar_label: Local Collectors (in docker containers)
 ---
 
-The ELN allows data to be collected automatically from a folder using the data-collector feature. This is useful for sharing files between e.g. an instrument and the ELN. On the instrument side, the (analyses, result etc.) files can be put in a (networked shared) older. On the ELN side, we can monitor this folder for any changes and import files from the instrument directly into the ELN.
+The ELN allows data to be collected automatically from a folder using the data-collector feature. This is useful for
+sharing files between e.g. a device and the ELN. On the device side, the (analyses, result etc.) files can be put in a (networked shared) older. On the ELN side, we can monitor this folder for any changes and import files from the device directly into the ELN.
 
 ## Configuration outside Chemotion ELN
 
@@ -19,14 +20,14 @@ Once the computer that is running the Chemotion ELN (docker container) has acces
       ...
       volumes:
         - ...
-        - /path/to/folder/with/data:/chemotion/datacollector/instrument-name
+        - /path/to/folder/with/data:/chemotion/datacollector/device-name
 
     worker:
       image: ...
       ...
       volumes:
         - ...
-        - /path/to/folder/with/data:/chemotion/datacollector/instrument-name
+        - /path/to/folder/with/data:/chemotion/datacollector/device-name
 
   ```
 
@@ -35,7 +36,7 @@ Once the computer that is running the Chemotion ELN (docker container) has acces
   config/datacollector.yml file if it does not exist.
 
   Note that, you can input multiple paths i.e. mount different instruments. For example, the second commented line here mounts the folder `/tmp/datacollector` which can point to some
-  other instrument.
+  other device.
 
   ```
   :localcollectors:
@@ -49,10 +50,10 @@ Once the computer that is running the Chemotion ELN (docker container) has acces
 
 ## Configurations in Chemotion ELN: Admin Panel
 
-We have to navigate to _Groups & Devices_ in the admin panel and create a new device instance. It will register the device
+We have to navigate to _Devices_ in the admin panel and create a new device instance. It will register the device
 information to the database of the Chemotion ELN.
 
-![collector_configuration_1](/img/collector_configuration1.png)
+![collector_configuration_1](/img/data_collector/collector_configuration1.png)
 
 ### File Collector
 
@@ -66,7 +67,7 @@ specify the following,
 In this case we will configure the watch method as `filewatcherlocal` as we intend to collect files from the
 specified Watch Directory.
 
-![collector_configuration_1](/img/collector_configuration2.png)
+![collector_configuration_1](/img/data_collector/collector_configuration2.png)
 
 As the next step, files from the `./datacollector/CV-data` will now keep being collected by the collector in the
 Chemotion ELN. We have to make sure that the name of the files start with the name abbreviation (Kürzel) of a specific
@@ -87,12 +88,19 @@ directories will be removed.
 
 :::
 
+:::info
+
+To know more about the user-level data collection, please check
+[here](https://chemotion.net/docs/eln/devices/configurations/user_level_collection)
+
+:::
+
 ### Folder Collector
 
 All the configurations are more or less the same as in the File Collector. Here we will need to configure the Watch
 Method as `folderwatcherlocal`.
 
-![collector_configuration_1](/img/collector_configuration3.png)
+![collector_configuration_1](/img/data_collector/collector_configuration3.png)
 
 Here is a new input to consider, i.e. `Number of files`. As mentioned in the info text in the Chemotion ELN, if the
 folders to be collected may contain a variable number of files, then we have to set it to 0. Otherwise if the number of
