@@ -69,9 +69,9 @@ The file name (excluding the file extension) should contain:
 
 ### Automatic transfer of files from the inbox
 
-If the filename can be uniquely assigned to an element,
-the file will be automatically assigned to that element when uploaded to the inbox.
-This creates a new `Analysis` with this file.
+If the file name of an item in the inbox can be uniquely assigned to an existing element (currently only samples and reactions),
+the file will be automatically assigned to it.
+The automatic assignment of the data to the sample or reaction creates a new `Analysis` with the file added as a dataset.
 
 :::note
 
@@ -81,7 +81,7 @@ This feature can be disabled in the user configuration.
 
 ### Reaction variations link
 
-When you assign a file to a reaction with the filename method and this reaction has one or multiple variations,
+When you assign a file to a reaction and this reaction has one or multiple variations,
 the resulting `Analysis` can automatically be linked to a variation.
 To enable this, the filename needs to consist of:
 1. full name or short label (part)
