@@ -37,8 +37,55 @@ Regarding the [Data collector](../../eln/devices#datacollectors-for-devices-with
 
 Along with all these, users can manually upload some files in the inbox which they can later use in further analyses.
 
-## Direct import of files from the inbox
+## Moving files to elements (into the analyses section)
 
-You can choose to drag and drop files into `Analyses`, directly from the inbox, when working with datasets.
+### Manual import of files from the inbox into the analyses section
+
+When working with datasets, you can drag and drop files directly from the inbox into `Analyses`.
 
 ![Drag and Drop](/img/analyses_drag_inbox_files.gif)
+
+Alternatively, you can use the buttons next to the file in the inbox to open a dialog that suggests elements to that the data should be assigned to.
+In this dialog, you can select the appropriate element and assign the file to it. A new `Analysis` is created, including this file as a dataset.
+
+The list of available elements in the list of the inbox depends on the file name as the system automatically searches for elements with matching or partially matching names.
+
+:::note
+
+- Currently, only samples and reactions are supported.
+- The function to gain suggestions to assign data has to be enabled in the user configuration.
+
+:::
+
+![Move to Sample](/img/inbox_move_to_sample.png)
+
+:::info
+
+The file name (excluding the file extension) should contain:
+- The full name of the element or a part of it
+- The short label of the element or a part of it (e.g. CU1-1)
+
+:::
+
+### Automatic transfer of files from the inbox
+
+If the file name of an item in the inbox can be uniquely assigned to an existing element (currently only samples and reactions),
+the file will be automatically assigned to it.
+The automatic assignment of the data to the sample or reaction creates a new `Analysis` with the file added as a dataset.
+
+:::note
+
+This feature can be disabled in the user configuration.
+
+:::
+
+### Reaction variations link
+
+When you assign a file to a reaction and this reaction has one or multiple variations,
+the resulting `Analysis` can automatically be linked to a variation.
+To enable this, the filename needs to consist of:
+1. full name or short label (part)
+2. A minus (-) sign followed by **v** + variation index
+3. optional file extension
+
+Example name: CU1-R1-**v**1.dat
