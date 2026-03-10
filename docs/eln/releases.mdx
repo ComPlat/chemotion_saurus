@@ -4,6 +4,8 @@ sidebar_label: Releases
 sidebar_position: 1
 ---
 
+import { YouTubeFrame } from "@site/src/js/layout";
+
 The ELN follows the [semantic versioning](https://semver.org/) scheme. We strive to make releases on a regular basis. However, not all releases are packaged for external releases. After a round of feedback from internal users at KIT, only versions that are considered stable are released via the [chemCLI](install_configure/ChemCLI) tool.
 
 ## Latest Releases
@@ -14,269 +16,29 @@ Latest releases of the ELN, that are currently supported, are:
 
 #### Version 3.0.0 (March 2026)
 
-- feat(UI): new navigation structure 
-- refactor(variations): change data structure from array to object 
-- build(db): revert accidental schema changes 
-- refactor(UI): toggle well and user-label colors 
-- chore: bump nodejs engine to 22.16.0 - bump shakapacker webpack and babel dep 
-- build(dev): bump ubuntu os 24 - asdf 18 
-- chore(dev): update RSpec debug configurations for ru
-- chore: gems update 
-- refactor: instrument field to use standard select component 
-- fix: tooltip issue while transmitting data to repository 
-- fix: history formaters 
-- feat: sample types extension - mixtures 
-- chore: update annotate gem 
-- fix(UI): make element detail tabs and header sticky 
-- feat: display multi spectra for HPLC UV-VIS, NMR and UV 
-- perf: add indices to improve sample serialization 
-- fix(UI): PrintCodeButton & Select dropdown menus being cut off 
-- fix: refine mixture element check to ensure proper instance validation 
-- fix(UI): Remove faulty z-index classes to fix Select menu 
-- fix(spectra): render one Spectra modal per analyses-list 
-- fix: persist coefficient value on material change in reaction scheme 
-- fix: message api param 
-- fix(UI): Allow weighing task inbox to be toggled from sidebar 
-- fix(UI): select menus in modals 
-- chore: remove unused files 
-- fix: checkbox state when collapsing/expanding the elements in List 
-- ci: push2deploy 
-- fix: custom labels getting deleted from reactions 
-- chore: Bump thor from 1.3.2 to 1.4.0 
-- feat(UI): show multiple quantities per reaction variation material 
-- feat(search): search sample 
-- fix: import chemical lost option 
-- ci(push2deploy): fix over reliance on cache 
-- ci(push2deploy): fix ORIG_HEAD does not exist 
-- fix(UI): menu action buttons initialized before user data is available 
-- fix: chemical export queries with select all samples 
-- fix(UI): sample measurements tab and empty measurement loading for new sample 
-- fix(search): invalid statement in advanced search 
-- refactor(api): attachment access url for third party apps 
-- style: change group name in device description list 
-- fix: no attachment handling in ImageModal to prevent crashes 
-- fix: rendering short label link in research plan table 
-- feat(history): enhance history tracker for reaction variations 
-- feat(history): track device description changes 
-- chore: bump nodejs engine from 22.16.0 to 22.17.1 
-- feat: improve dataset save action for element analysis 
-- fix(spectra): only strip last extension in fname_wo_ext to preserve internal dots 
-- ci: ensure nodejs version set in all cases 
-- ci: reset version after releasing a tag 
-- ci: fix: correct reset of env variable 
-- feat(spectra): bump react-spectra-editor to 1.4.0 
-- fix(history): reverter 
-- feat(vessel): implement api for vessel and vessel template 
-- fix: resolve research plan table column renaming and short label link… 
-- feat: make creatableselects editable across all elements 
-- fix: advanced search listing for non sample elements 
-- fix: tabs navigation in advanced search result 
-- refactor: rescue type-error when encoding thumbnails to be sent to client 
-- fix(variations): ensure safe serialization of metadata 
-- fix(build): development vessel template seeds 
-- ci(push2deploy): add ability to modify the `/shared` directory 
-- test: fix setup.js path in devcontainer 
-- fix: handle report generation request with an empty selection of items 
-- chore: bump nodejs to minor 22.18 and other packages 
-- feat: create multiple analyses 
-- fix: chemdraw loadError function missing 
-- chore: Bump tmp from 0.2.1 to 0.2.5 
-- fix(spectra): Display Unicode unit labels correctly 
-- chore: bump service dependencies 
-- chore: Bump jspdf from 3.0.0 to 3.0.1 
-- feat(vessel): UI implementation 
-- style: improve yield/conversion rate toggle button implementation 
-- feat: add metadata to attachment url for ChemLocalLink 
-- fix(UI): Make detail view tabs and headers sticky again 
-- build: bump recommended versions for services 
-- feat: Ketcher solid phase support basic 
-- build(dev): map local user id to ubuntu user in app image and avoid parallel image building 
-- chore: Bump rexml from 3.4.1 to 3.4.2 
-- chore: bump nodejs to minor 22.19 and other packages 
-- ci(push2deploy): limit CPU resources 
-- feat(variation): extend available fields with associated generic segment 
-- feat(UX): overhaul reaction scheme table & sidebar 
-- feat(Ket): add custom text to surface image nodes 
-- refactor: reaction variations 
-- ci(push2deploy): update base images 
-- feat: replace ketcherails as editor and server side rendering service with ketcher and indigo 
-- fix(spectra): missing 1H operations and crash on multi spectra 
-- feat(Ket): Solid surface Polymer basic category assets 
-- feat: refactor FastInput with new CAS API 
-- ci(test): optimize test workflow 
-- fix: ensure tiff attachment can be previewed 
-- test: fix sample api flaky specs 
-- fix(Ket): solid phase support operation and ketcher api update 
-- feat: SDS upload in chemicalTab component as attachment modal 
-- chore: node packages bump 
-- feat: improve sample class and components: molecular weight, labels, and mixture handling 
-- refactor!(Ketcher): change common templates export implementation using migration 
-- fix: set ketcher as default when system has no editor is available 
-- refactor: display account and profile page with iframe in modal 
-- ci(test): optimize test workflow 
-- fix: navigation to page `about` 
-- fix: missing gem daemons 
-- ci(Push2Deploy): change base images to point to v2.1.1 of ELN 
-- fix: drag and drop sorting of sample analyses 
-- fix: set activeTab to properties tab on create sample action 
-- feat: SMILES support to collection import. 
-- fix(datacollector): ensure recipient is a user 
-- fix(UI): selected element to match current element 
-- fix(UI): device settings for data collector 
-- chore: indigo service tagged as service dependencies 
-- feat: sample import enhanced headers mapping and data validation 
-- perf: export collection 
-- fix(UI): prevent duplicate analysis 
-- feat: labimotion-2.1.0 
-- build(storybook): setup Storybook for UI component development 
-- feat: sequence based macromolecules 
-- fix: prefer processed peaks and auto select single spectrum on load 
-- fix: split button disable 
-- fix: split button disable for cell-line - rebase issue 
-- fix(device-desc): list display grouped 
-- chore: migration to sync research plan attachments 
-- refactor: image modal 
-- fix: Reorder DnD backends to prioritize touch support on hybrid and mobile devices 
-- fix: rename migration - add_detail_level_to_collections.rb‎ 
-- fix: polymer SVG node loss, handle save prompt delay on crash, and refine SVG glyph IDs 
-- feat: reprocess reaction svg for smartadd import 
-- feat: labimotion-2.1.0 
-- fix: Ketcher, indigo and refactoring 
-- feat(UX): responsive reaction scheme tab 
-- feat: mixture samples in improved reaction scheme 
-- perf(spectra): improve the transfer of NMRium files 
-- fix: add close button to modal header in ContainerDatasetModal component 
-- refactor(tests): update Sample and Component specs for improved accuracy 
-- ci: push2deploy: revert changes 
-- ci: Push2Deploy: rebase deployments to v2.2.0 images 
-- refactor: reaction variations generic segments 
-- fix: sample's molecule-name - show origin and remove duplicates from options 
-- feat: add inventory label field in inventory tab 
-- refactor: only office integration 
-- feat: Implement improved elemental composition table display 
-- feat: Quill Editor Add keyboard shortcuts for subscript and superscript formatting 
-- refactor: update components exposure in sample_entity.rb 
-- chore: bump nodejs minor and yarn upgrade-interactive 
-- feat(UI): add tooltip to upload-add-analyses buttons 
-- fix: remove leftover handleEdit binding that caused creation error 
-- feat(UI): folder and zip upload for multi-upload and new analyses 
-- chore: quilljs editor bump to v2 
-- feat(history): tracking sample mixture 
-- refactor(UI): restructure CAS input layout in SampleDetails component 
-- fix: Update reaction variations' sample IDs when reaction is copied 
-- chore: Bump node-forge from 1.3.1 to 1.3.3 
-- chore: Bump rack from 2.2.17 to 2.2.20 
-- feat: report generation with mixture components and fix mixture issues 
-- fix: gas phase scheme calculations 
-- chore: Bump storybook from 9.1.16 to 9.1.17 
-- feat(UI): refactor analyses tab to use a dedicated hint component 
-- chore: Bump min-document from 2.19.0 to 2.19.1 
-- fix: update sample ID references in custom_column_query for consistency 
-- feat(UI): enhance analyses containers with dynamic comment visibility 
-- feat: Weight percentage reaction scheme 
-- refactor: improve collection tab editor UI with enhanced styling 
-- fix: backend conversion with quill-delta-to-html (^0.12.1) 
-- fix: dispatch error in gas phase reaction scheme UI 
-- refactor: enhance Material component's update logic for better state management 
-- feat: Change device description ontology logic, Add more fields 
-- chore: bump react-spectra-editor to 1.5.0 
-- chore: Bump httparty from 0.23.1 to 0.24.0 
-- fix: rename device type to device class 
-- feat: labimotion-2.1.0 
-- chore: Bump httparty from 0.24.0 to 0.24.2 
-- chore: Bump html2pdf.js from 0.10.3 to 0.14.0 
-- chore: add converter config data output to ui_api 
-- chore: Bump shakapacker from 8.3.0 to 9.5.0 
-- fix(spectra): enforce binary multipart uploads after httparty bump 
-- fix: undefined messages 
-- feat: enhance concentration and density handling in Component model 
-- refactor: added Id to dnd multi backend options 
-- Centralize SVG Rendering via Service Wrapper with Priority-Based Fallback 
-- chore: bump react-spectra-editor to 1.5.2 
-- fix: Molfile conversion failure caused 
-- fix: selecting text when dnd tab layout options 
-- feat: identify materials 
-- fix: conversion of generic units in reaction variations 
-- fix: clear reaction variations table after gas scheme switch 
-- refactor: mixture total volume handling to improve calculations and UI updates 
-- fix: device type and owner fields for device descriptions 
-- fix: ensure loading spinner stops when MolViewer modal is closed 
-- refactor: force SVG regeneration using rails service 
-- chore: update model annotation 
-- feat: labimotion-2.1.0 
-- fix: reaction rendering scruber for condition data & convert symbols to characters 
-- fix: adjust breakpoints to guarantee readable material title columns 
-- refactor(style): fix button and input field sizes 
-- fix: catalyst checks for gas reaction scheme 
-- fix: not available check for image thumbnail in research plan list 
-- fix: save reaction fails on creating sample from molecule data 
-- fix: literature reference in copied elements 
-- feat: import of samples from a ELN xls export with multiple sheets 
-- chore: bump service dependencies 
-- fix: loading spinner not cleared after successful analysis save 
-- fix: molecule name for copied sample 
-- fix: sync collection label in list to also display user name 
-- fix: import collection to use smiles if molefile is invalid 
-- feat: export-import of additional sample properties 
-- feat: Refresh reaction svg with services wrapper 
-- feat: ketcher epam solid surface chemistry 
-- feat: labimotion-2.1.0 
-- fix: reaction conditions with special char 
-- fix: reaction list advanced search result with proper schemes 
-- fix: material amount discrepancy on saving weight percentage reaction 
-- fix: calculate width for long labels for centering and scaling sample svg 
-- chore: yarn upgrade interactive 
-- refactor: improve total volume calculation in Sample model 
-- refactor: set amount type to real amount as a default type in reaction scheme 
-- fix: reaction refresh Graphic function missing 
-- fix(reaction): guard equivalent calc when reference material is missing 
-- fix: NMR reopen errors and spectrum handling 
-- refactor: enhancements in Reaction Scheme and the report generated 
-- refactor: enhance solvent label handling in SampleDetailsSolvents and Sample models 
-- chore: Bump lodash-es from 4.17.21 to 4.17.23 
-- fix: update redirect after obtaining SciFinder-n token in PagesController 
-- fix: load actual units system from labimotion 
-- feat: disable revert button if nothing selected 
-- fix(ui/ux): improve scroll behavior and research plan image layout 
-- refactor: streamline attachment deletion process in API and frontend 
-- fix: add Alert in history tab for new elements 
-- refactor(device): current connection status endpoint in user_api 
-- refactor: simplify derivation label text, remove extra whitespace and style refactor in MaterialGroup component 
-- refactor: add inventory tab to visible tabs on checking inventory box in sample header panel 
-- fix(UX): tab segment layout persistence across collection switches 
-- refactor: center rendered molecule svg inside svg window in sample info panel 
-- refactor: remove pre-shrine storage implementation 
-- refactor: reaction scheme equivalent handling 
-- chore: Bump webpack from 5.96.1 to 5.105.0 
-- build(fix): common template migration to create public asset files 
-- fix: minor fixes 
-- fix: ketcher api molfile fix with v2000-v3000 and solid surface SVGs 
-- fix: checksum calculation 
-- build: fix csp for office script 
-- fix: NMRium loading for legacy .nmrium files 
-- chore: Bump rack from 2.2.20 to 2.2.22 
-- chore: bump react-spectra-editor - yarn upgrade interactive 
-- chore: fix validation bypass, reaction copy behavior, and label counter issues 
-- fix: update isEdited sample property state when inventory box is checked 
-- fix: UI reaction refresg svg button group z-index 
-- feat: ketcherails polymers bead, surface shape added to ketcher/epam polymer list, paste molfile with polymers 
-- chore: Prep v3.0.0
+The new UI comes with several changes such as a new navigation structure, new UI adjustments (e.g. flexible change of the width), and changes to the reactions UI.
+
+The new navigation structure includes a new panel below the summary of collections for collection management, and is drag and drop accessible via new symbols. Inbox, weighing tasks, calendar and notification are moved to collection management.
+
+<YouTubeFrame
+  src="https://www.youtube-nocookie.com/embed/aBNr3iJZdnM"
+  title="General Changes to the UI"
+/><br/>
+
+The reactions UI now provides additional information in the reaction table if more space is given to the reaction panel. The button for changing the reaction scheme information (samples given with name or structure) is moved to the reaction image, and my labels for reactions are now in scheme (not properties tab).
+
+<YouTubeFrame
+  src="https://www.youtube-nocookie.com/embed/kHCVjNP9hys"
+  title="Changes to the Reactions UI"
+/><br/>
+
+See the detailed release notes for version 3.0.0 [here](https://github.com/ComPlat/chemotion_ELN/releases/tag/v3.0.0).
 
 ### Version 2
 
 #### Version 2.2.0 (December 2025)
 
-- fix: drag and drop sorting of sample analyses - v2.x 
-- fix: create cas with selection options list 
-- chore: v2.x - backport 2 
-- fix(UI): reaction status icons contrast - v2.x 
-- perf: add indices to improve sample serialization - port v2.x 
-- fix: split button disable for cell-line V2.x 
-- chore: v2.x - backport 3 
-- fix: ancestry issue caused 
-- chore: v2.x - backport 4 
-- fix: polymer SVG node loss, handle save prompt delay on crash, and refine SVG glyph IDs - v2.x 
-- fix(UI): split generic element button 
+See the release notes for version 2.2.0 [here](https://github.com/ComPlat/chemotion_ELN/releases/tag/v2.2.0).
 
 #### Version 2.1.1 (October 2025)
 
