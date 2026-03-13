@@ -228,9 +228,7 @@ The compatibility table for recommended versions of Ketcher 2 to be used with th
 |   1.10.5    |      2.24.0       |
 |   1.10.2    |      2.21.0       |
 |    1.9.3    |      2.18.0       |
-|   2.xx      |      3.xx         |
-
-
+|    2.xx     |       3.xx        |
 
 ### Enable
 
@@ -310,20 +308,18 @@ production:
   :chemspectra:
     :url: "http://spectra:4000"
   :nmriumwrapper:
-    :url: "https://nmrium.nmrxiv.org/v0.8.0/"
+    :url: "https://nmrium.nmrxiv.org/v1.0.0/"
 ```
 
 Here the `nmriumwrapper.url` value depends on the version of Chemotion ELN you are using. The compatibility between the ELN and the wrapper is as follows:
 
 | Version of Chemotion ELN | Version(s) of NMRium wrapper |
 | ------------------------ | ---------------------------- |
-| 1.5 & 1.6                | 0.1.0                        |
-| 1.7.0 - 1.7.2            | 0.1.0 - 0.3.0                |
-| 1.7.3 - 1.8.1            | 0.4.0                        |
-| 1.8.2                    | 0.5.0                        |
-| 1.9.3 & 1.10.5           | 0.4.0 - 0.8.0                |
+| 3.0.0                    | 1.0.0                        |
+| 2.1.1 & 2.2.0            | 1.0.0                        |
+| 1.9.3, 1.10.5 & 2.0.1    | 0.8.0                        |
 
-So, if you are using e.g. ELN version 1.10.5, please `nmriumwrapper.url` to `https://nmrium.nmrxiv.org/releases/v0.8.0/`.
+So, if you are using e.g. ELN version 3.0.0, please `nmriumwrapper.url` to `https://nmrium.nmrxiv.org/v1.0.0/`.
 
 To be able to access these URLs successfully, you must register with the hosting service. Please contact the [Helpdesk](/helpdesk) or see [here](https://github.com/NFDI4Chem/nmrium-react-wrapper#public-instance) for more details.
 
@@ -376,7 +372,6 @@ The ELN has ability to produce QR codes, Barcodes and Datamatrix codes, that can
 
 - **`code_type`**: Must be `qr_code`, `bar_code`, or `data_matrix_code`.
 - **`code_image_size`** Size ratio of the code image, between 0 and 100.
-
   - _Note_: If `code_image_size` > 30, the `text_position` is automatically set to `below`.
 
 - **`text_position`**: `below` or `right`.
