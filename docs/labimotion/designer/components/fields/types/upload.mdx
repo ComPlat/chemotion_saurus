@@ -4,12 +4,23 @@ author: Claire Lin
 sidebar_position: 16
 ---
 
-import { FigCaption, Reader } from "@site/src/js/layout";
-import designerMenu from "@site/static/img/labimotion/field-upload.png";
+import { FigCaption, Reader, YouTubeFrame } from "@site/src/js/layout";
+import fieldUpload from "@site/static/img/labimotion/field-upload.png";
+import fieldUploadPreview from "@site/static/img/labimotion/field-upload-preview.png";
 
 <Reader text="Designer" />
 
-An **Upload** type field is used for uploading and storing files. A file can be uploaded via drag & drop or browsing the computer.
+The **Upload** type field is used for uploading and storing files. A file can be uploaded via drag & drop or browsing the computer.
 
-<img src={designerMenu} alt="Generic Designer (menu)" />
+<img src={fieldUpload} alt="Generic Designer (menu)" />
 <FigCaption text="Upload field type" />
+
+For image files, an extended preview is available, allowing users to zoom in or out by adjusting the zoom percentage and to open the original image with a single click. For other file types, only the file name is displayed. All uploaded files are stored in the system and remain available for later reference or analysis.
+
+<img src={fieldUploadPreview} alt="Generic Designer (menu)" />
+<FigCaption text="Upload field type (upload image)" />
+
+<YouTubeFrame
+  src="https://www.youtube-nocookie.com/embed/FzNT2NSk_wc"
+  title="Sync Dataset from LabIMotion Hub"
+/>
