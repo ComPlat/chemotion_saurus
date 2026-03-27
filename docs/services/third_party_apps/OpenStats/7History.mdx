@@ -1,0 +1,38 @@
+---
+title: History
+---
+
+The file containing the results stores each conducted step in a *History*.
+At the beginning the history is shown in a human readable form. Thereby, it is
+easy to retrace each step with the respective configuration.
+
+<div>
+![Tables](./History.png)
+</div>
+
+At the end of the results file the same history is stored in a JSON string.
+This string can be used to replay the entire anaylsis.
+First the dataset has to be imported into OpenStats. Afterwards, the JSON string
+is pasted into the dedicated text box which can be found in the History tab.
+Subsequently, clicking the *replay button* runs each step of the anaylsis.
+
+import HistoryJSONTextBox from './HistoryJSONTextBox.png'
+import Replay from './Replay.png'
+
+<div
+  style={{
+    display: 'flex',
+    gap: '24px',
+    flexWrap: 'wrap',
+    alignItems: 'flex-start'
+  }}
+>
+
+  <div style={{ textAlign: 'center' }}>
+    <img src={HistoryJSONTextBox} style={{ maxWidth: '500px', height: 'auto' }} />
+  </div>
+
+  <div style={{ textAlign: 'center' }}>
+    <img src={Replay} style={{ maxWidth: '500px', height: 'auto' }} />
+  </div>
+</div>
