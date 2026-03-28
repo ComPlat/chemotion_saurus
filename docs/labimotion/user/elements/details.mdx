@@ -5,13 +5,14 @@ sidebar_position: 1
 ---
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+import { faArrowUpRightFromSquare, faCheck, faEdit, faComment, faUpload,faPlus } from "@fortawesome/free-solid-svg-icons";
 import {
   FigCaption,
   YouTubeFrame,
   SubTitle,
   Reader,
 } from "@site/src/js/layout";
+import { Btn } from "@site/src/js/btn.js";
 
 <SubTitle text="The detail modal displays the primary content of the element." />
 <Reader text="User" />
@@ -58,6 +59,60 @@ By default, the first layer is expanded. An **Expand/Collapse** button is availa
 ### Analyses tab
 
 The Analyses tab enables users to add analyses containing analytical data. In the **Content** field, users can input experimental results and upload experimental datasets. Users can then select the appropriate **Type (Chemical Methods Ontology)** from the provided list. For more details, please refer [Ontology](/docs/eln/ui/ontology). The uploaded files can be converted to spectra format files according to the converter profile.
+
+#### Add Analyses
+
+You can create a new analysis by clicking the <Btn mixed={["+ Add analysis"]} color={"success"}/> button. This opens a new analysis entry where you can:
+
+- Enter experimental results in the **Content** field
+- Upload associated data files as datasets using the <Btn mixed={[faPlus]} color={"success"}/> button
+- Select the measurement type from the **Type** dropdown menu using the Chemical Methods Ontology
+- Add additional information and notes about the analysis
+
+Each analysis can contain multiple datasets (files), allowing you to organize all related data for a particular measurement together.
+
+#### Add to Report
+
+:::info
+Feature available in Chemotion ELN version 4.0 or later
+:::
+
+The **Add to Report** feature allows you to selectively include analyses in generated reports. Each analysis has a checkbox button <Btn mixed={[faCheck]} color={"primary"}/> in its header that lets you toggle whether that specific analysis should be included when exporting or generating a report. This provides fine-grained control over which analytical results are included in your final documentation.
+
+To add an analysis to a report, simply click the checkbox button in the analysis header. Selected analyses will be marked with a visual indicator and will be included when you generate or export your report.
+
+#### Edit/Order Mode
+
+:::info
+
+Feature available in Chemotion ELN version 4.0 or later
+
+:::
+
+At the top of the analyses tab, you will find two mode buttons: <Btn mixed={[faEdit, "Edit mode"]} color={"primary"}/> and <Btn mixed={["Order mode"]} color={"secondary"}/>. These buttons allow you to switch between two different interaction modes:
+
+- **Edit Mode** (default): Enables editing of analysis properties, adding datasets, and other modifications. Click the <Btn mixed={[faEdit, "Edit mode"]} color={"primary"}/> button to activate this mode.
+- **Order Mode**: Activates drag-and-drop functionality for reordering analyses. Click the <Btn mixed={["Order mode"]} color={"secondary"}/> button to enter this mode. In this mode, you can easily rearrange the sequence of analyses by dragging them up or down.
+
+#### Comments on Analyses
+
+:::info
+
+Feature available in Chemotion ELN version 4.0 or later
+
+:::
+
+You can add general comments to your analyses using the comment feature. A comment box can be accessed and toggled by clicking the <Btn mixed={["Add comment"]} color={"primary"}/> button in the analyses section. This allows you to record observations, notes, or additional information about the overall analytical work without needing to add it to individual datasets. Comments are stored and displayed with the analyses group.
+
+#### File Upload for Analyses
+
+:::info
+
+Feature available in Chemotion ELN version 4.0 or later
+
+:::
+
+The **Analyses from upload** feature enables direct uploading of analysis files. You can upload associated data files (such as raw instrumental data, spectra, or other analytical results) by clicking the <Btn mixed={["Analyses from upload"]} color={"success"}/> button. Multiple files can be attached to each analysis, and they are organized as datasets.
 
 ### Attachment tab
 
