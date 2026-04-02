@@ -1,0 +1,327 @@
+---
+title: Tips & Best Practices
+sidebar_position: 3
+---
+
+# Tips & Best Practices
+
+Here's what we've learned works best for SmartAdd. These tips will save you time and headaches.
+
+## Before You Start
+
+### Name Your Files Well
+
+Here's the thing: you'll be building the folder structure manually in SmartAdd, so clear file names are your best friend.
+
+**What makes a good file name?**
+- Include the sample or compound identifier
+- Specify the analysis type
+- Add relevant parameters (like solvent or frequency)
+- Be consistent with your naming style
+
+#### File Naming Conventions
+
+| Type | Good Example | Bad Example |
+|------|--------------|-------------|
+| **NMR** | `compound_A_1H_NMR_400MHz_CDCl3.jdx` | `data.jdx` |
+| **MS** | `sample_001_ESI_MS_positive.mzML` | `new_file_final_v3.mzML` |
+| **IR** | `product_IR_KBr.jdx` | `spectrum@#$.jdx` |
+| **Metadata** | `synthesis_notes_2024-01-15.txt` | `notes.txt` |
+
+**Things to avoid:**
+- ❌ Special characters like `@`, `#`, `$`, `%`, `&`
+- ❌ Spaces (use underscores or hyphens)
+- ❌ Generic names like `data`, `file`, `new`
+- ❌ Version numbers unless you really need them (`_v1`, `_v2`, `_final`)
+
+### Gather Everything First
+
+Before you upload, collect all the files you'll need:
+- 📊 **All your spectra** (NMR, zip etc.)
+- 🧬 **Structure files** (MOL format, text)
+- 📝 **Instrument logs**
+- 📋 **Metadata** with experimental conditions
+- 📄 **Any notes** (synthesis procedures, observations)
+
+:::tip[Upload Strategy]
+Whether you upload a ZIP or individual files, SmartAdd puts everything in an input list. Then you manually drag files to assign them to samples and analyses.
+:::
+
+## While Using SmartAdd
+
+### Work One Sample at a Time
+
+Trust us on this - complete each sample fully before starting the next one:
+
+1. Click **"Add Sample"**
+2. Fill in the properties (name, SMILES, amount, etc.)
+3. Drag files from the input list to this sample
+4. Add analyses and attach the analytical files
+5. Done? Move to the next sample
+
+**Why this works better:**
+- Fewer mistakes
+- You can track your progress easily
+- Less overwhelming when you have lots of data
+- You won't forget to assign files
+
+:::tip[Don't Forget!]
+Drag files from the left panel (input list) to the right panel (assignment tree). If you don't assign a file, it won't be in your export!
+:::
+
+### Keep Names Consistent
+
+Pick a naming style and stick with it throughout your project:
+
+```
+Samples: COMP_001, COMP_002, COMP_003
+Reactions: RXN_Suzuki_001, RXN_Grignard_002
+Analyses: NMR_1H_001, MS_ESI_001
+```
+
+### Check Your SMILES
+
+SmartAdd validates SMILES in real-time:
+- Type in your molecular structure using SMILES notation
+- Look for the green indicator (valid) or red (invalid)
+- Fix any errors before moving on
+- Not sure about your SMILES? Use [ketcherDemo](https://lifescience.opensource.epam.com/KetcherDemoSA/index.html) to generate a valid molfile
+
+### Group Samples into Reactions
+
+When you have a reaction with multiple samples:
+- Add all relevant samples to the reaction
+- Assign roles (starting material, reactant, product, solvent)
+- SmartAdd will automatically sort them by role
+- Set the reaction scheme type for better visualization
+
+### Always Include Units
+
+Numbers without units are meaningless. Always add them:
+
+| Field | ❌ Without Units | ✅ With Units |
+|-------|------------------|---------------|
+| Amount | `100` | `100 mg` |
+| Volume | `5` | `5 mL` |
+| Time | `24` | `24 h` |
+| Temperature | `25` | `25 °C` |
+
+### Write Good Descriptions
+
+Future you will thank present you for being descriptive:
+
+**Samples:**
+- ❌ "Sample A"
+- ✅ "Suzuki coupling product, white solid, synthesized 2024-01-15"
+
+**Reactions:**
+- ❌ "Reaction 1"
+- ✅ "Pd-catalyzed Suzuki coupling, RT, 24h, N₂ atmosphere, THF solvent"
+
+**Analyses:**
+- ❌ "NMR data"
+- ✅ "¹H NMR (400 MHz, CDCl₃)"
+
+:::tip[Use Rich Text Formatting]
+Description and content fields now support rich text editing with the Quill editor:
+- **Reaction descriptions**: Document reaction conditions with rich formatting
+- **Analysis content**: Add detailed analysis notes and observations
+- Use **bold** for important details
+- Use *italic* for emphasis
+- Create bullet lists for experimental conditions
+- Add numbered lists for procedure steps
+- Use headers to organize long descriptions
+- Add code blocks for chemical formulas
+
+Formatted text makes your data more readable and professional!
+:::
+
+### Master the Two-Panel Layout
+
+**Left Panel (Input List):**
+- This is where all your uploaded files live
+- Drag files from here to assign them to samples
+
+**Right Panel (Assignment Tree):**
+- This is your workspace with samples and reactions
+- Drag files here to attach them
+- Click on any item to edit its properties
+
+**Pro tip:** Expand the section you're working on, and collapse the ones you've finished. Keeps things tidy!
+
+### How to Organize Your Tree
+
+A well-organized tree looks like this:
+
+```
+✅ Good:
+📦 Assignment Tree
+  ├─ 🧪 Reaction: Suzuki Coupling
+  │   ├─ 📋 Sample: Reactant A (role: reactant)
+  │   │   └─ 📊 Analyses
+  │   │       └─ 📊 1H NMR
+  │   └─ 📋 Sample: Product B (role: product)
+  │       └─ 📊 Analyses
+  │           ├─ 📊 1H NMR
+  │           └─ 📊 13C NMR
+  └─ 📋 Sample: Standalone Sample
+      └─ 📊 Analyses
+
+❌ Avoid:
+📦 Assignment Tree
+  ├─ 📋 Sample (vague name)
+  ├─ 📋 Sample (no files attached)
+  └─ 🧪 Reaction (empty)
+```
+
+## Before You Export
+
+### Quick Checklist
+
+Before you click "Download as ZIP", run through this:
+
+**Samples:**
+- [ ] Unique, descriptive names
+- [ ] SMILES validated (look for green indicator)
+- [ ] Amounts with units
+- [ ] Purity values (if applicable)
+- [ ] Sample type defined
+- [ ] Good descriptions
+
+**Reactions:**
+- [ ] Clear reaction names
+- [ ] All samples added
+- [ ] Roles assigned (starting material/reactant/product/solvent)
+- [ ] Samples sorted by role
+- [ ] Reaction scheme type set
+- [ ] Conditions in description
+
+**Analyses:**
+- [ ] Analysis types categorized correctly
+- [ ] Ontology terms selected
+- [ ] All files attached
+- [ ] Instrument parameters noted
+- [ ] Status updated
+
+### Common Mistakes
+
+Watch out for these - they're easy to make:
+
+| Mistake | The Problem | The Fix |
+|---------|-------------|---------|
+| **Invalid SMILES** | Wrong structures | Check for the green validation indicator |
+| **Missing units** | Data becomes meaningless | Always include units with numbers |
+| **Generic names** | Can't tell items apart | Use descriptive, unique names |
+| **Unassigned roles** | Unclear what's what in reactions | Assign roles to all samples |
+| **Files not assigned** | They won't be in your export | Drag all files to the tree |
+| **Empty tree** | Nothing to export | Use "Add Sample" and "Add Reaction" |
+| **No filtering** | Unwanted data in export | Use inclusion/exclusion controls |
+| **No descriptions** | Lost context later | Add brief descriptions |
+| **Skipping validation** | Errors when uploading | Review everything first |
+
+## Advanced Tips
+
+### Using the Ketcher Molecular Editor
+
+**Drawing Structures:**
+1. Click **"Draw Structure"** button in MOL file fields
+2. The Ketcher editor opens in a modal window
+3. Draw your molecule using the tools:
+   - Select atoms from the periodic table
+   - Draw bonds (single, double, triple, aromatic)
+   - Add functional groups from templates
+4. Click **"Save"** to generate the MOL file automatically
+5. The MOL file is validated instantly
+
+**Editing Existing Structures:**
+- Upload a MOL file first, then click "Draw Structure"
+- Ketcher loads the existing structure for editing
+- Make changes and save to update the MOL file
+
+### Check Reaction Tooltips
+
+**Preview Reaction Schemes or sample molecule:**
+- Hover your mouse over any reaction in the tree
+- If a reaction scheme image exists, it appears in a tooltip
+- Perfect for quickly reviewing reaction structures
+- No need to open the reaction to see the scheme
+
+### Leverage Real-Time Validation
+
+**SMILES Validation:**
+- Green indicator = valid SMILES
+- Red indicator = syntax error
+- Error message shows what's wrong
+- Fix errors before exporting
+
+**MOL File Validation:**
+- Automatic validation when uploading or drawing
+- Checks file format, atom counts, bond counts
+- Shows specific errors if validation fails
+- Valid files get a green checkmark
+
+### Use Chemscanner ZIP Imports (Auto-Generate Structure)
+
+**Import from Chemscanner to create collection structure:**
+1. Export your data from Chemscanner as a ZIP file (includes `export.json`)
+2. Drag the Chemscanner ZIP into SmartAdd's upload area
+3. SmartAdd automatically recognizes the `export.json` format
+4. **Collection structure is auto-generated**:
+   - Samples created with chemical structures
+   - Reactions organized automatically
+   - Metadata populated from Chemscanner data
+5. The complete hierarchy appears in the assignment tree (right panel)
+
+**Benefits:**
+- Saves time on manual sample/reaction creation
+- Reduces errors from manual transcription
+- Preserves chemical structure data from Chemscanner
+- Automatic organization of collection hierarchy
+- No need to manually create samples and reactions
+
+**After Import:**
+- Review the auto-generated structure for accuracy
+- Edit sample names and properties as needed
+- **Assign analytical files**: Drag files from input list to the generated samples/analyses
+- Add any additional metadata
+
+### Excel Template Workflow (Auto-Generate Structure)
+
+**Getting Started with Excel Templates:**
+1. **Download the template**: Request the official SmartAdd Excel template from the Chemotion team ([chemotion-smartadd@lists.kit.edu](mailto:chemotion-smartadd@lists.kit.edu))
+2. **Follow the template format**: Use the provided column headers and structure exactly as given
+3. **Fill in your data**:
+   - Sample names
+   - SMILES notation for molecular structures
+   - Amounts, purity, descriptions
+   - Reaction information and sample roles
+4. **Use consistent formatting** throughout your data
+
+**Uploading Templates to Auto-Generate Structure:**
+1. Save your completed Excel file as .xlsx format
+2. Drag the file into SmartAdd's upload area
+3. SmartAdd validates the template format and **auto-generates collection structure**:
+   - Samples created with molecular structures
+   - Reactions created with assigned samples
+   - Complete hierarchical organization
+   - All metadata populated from spreadsheet columns
+4. The generated structure appears in the assignment tree (right panel)
+
+**After Import:**
+- Review the auto-generated samples and reactions
+- Edit properties as needed
+- **Assign analytical files**: Drag files from input list to the generated samples/analyses
+
+**Pro Tips:**
+- **Must use the official template** - custom Excel files won't be recognized
+- Don't modify the template column headers or structure
+- Validate SMILES in Excel before uploading
+- Save completed templates by project or experiment for reuse
+- Perfect for batch processing many samples at once!
+- If unsure about format, request example templates from the Chemotion team
+
+**Keep track of versions:****
+- Name files with dates for checkpoints
+- Include your initials in filenames
+- Keep a simple changelog
+- Back up your ZIPs to shared storage

@@ -14,7 +14,7 @@ export const YouTubeFrame = ({ src, title }) =>
 (<div style={{ position: "relative", aspectRatio: 1.7778 }}>
     <VideoPrivacy customButtonClass="button button--primary" info="YouTube will track your interaction with them." width="100%" imageUrl={imageUrlForYouTube(src)}>
         <iframe src={src} title={title} position="relative" width="100%" height="100%"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" />
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
     </VideoPrivacy >
 </div>);
 export const Reader = ({ text }) => (<span className="theme-doc-version-badge badge badge--secondary reader-badge">Reader: {text}</span>);

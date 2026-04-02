@@ -23,4 +23,165 @@ For a more comprehensive import of data into Chemotion ELN based on Smiles strin
 
 ![Collection View](/img/import_samples.gif)
 
+---
+
+## Importing Data with Column Mapping and Validation
+
+:::info
+This feature will be available starting from version 3.0. If you are interested, please feel free to test it around in our
+[test server](https://next-release.chemotion.ibcs.kit.edu/)
+:::
+
+The Chemotion ELN supports an enhanced data import functionality that includes (smart) column mapping, and data validation. This feature allows users to import data more efficiently and with greater flexibility, supporting multiple file formats such as Excel, SDF, and CSV. The new functionality is designed to handle both small and large datasets, ensuring a seamless user experience.
+
+## Overview of the Import Process
+
+The import process consists of the following steps:
+1. **File Upload**: Upload the file to be imported.
+2. **Column Mapping**: Match file columns to database columns.
+3. **Data Validation**: Review and edit the data in an interactive grid with feedback loop.
+4. **Import Execution**: Upon execution of Import process, the data will be imported directly or via a backend job for large files.
+
+---
+
+## Step 1: File Upload
+
+To begin the import process:
+1. Navigate to the desired collection in Chemotion ELN & click on respective toolbar icon to open a list of options as shown below.
+2. Click on the **Import Samples to collection** button.
+3. Drag and drop your file into the upload area or select it manually. Supported file formats include:
+   - Excel (`.xlsx`)
+   - SDF (`.sdf`)
+   - CSV (`.csv`)
+4. User can download any of the templates (available in `.xlsx` and `.sdf` format), by clicking on **Download Template** button.
+
+### File Type Selection
+- **Sample Import**: For importing sample data only.
+- **Chemical Sample Import**: For importing chemical data along with sample data.
+
+Once the file is uploaded, the system will detect the file format and extract the column names.
+
+![enhanced sample file import](/img/sample_import/sample_enhanced_import_1.gif)
+
+---
+
+## Step 2: Column Mapping
+
+The column mapping interface allows you to match the columns in your file to the database fields in Chemotion ELN. This step ensures that the imported data is correctly aligned with the database schema.
+
+### Features of the Column Mapping Interface
+- **Row View and Column View**: Switch between two views for mapping:
+  - **Row View**: Displays columns in a list format.
+  - **Column View**: Displays columns in a card format.
+- **Smart Mapping**: Automatically suggests mappings based on naming similarity to database columns.
+- **Manual Mapping**: Select the appropriate database field for each column using dropdown menus.
+
+### How to Use
+1. Review and check the suggested mappings provided by the **Smart Mapping** feature.
+2. Adjust the mappings manually if needed.
+3. Click **Validate** to proceed to the validation step.
+
+![enhanced sample import column mapping](/img/sample_import/sample_import_columns_mapping.gif)
+
+---
+
+### Step 3: Data Validation
+
+The validation component ensures that the imported data adheres to the required standards before being added to the database. This step uses robust validation rules defined in the system to check for errors and inconsistencies.
+
+#### Features of the Validation Grid
+- **Interactive Editing**: Edit cell values directly in the grid.
+- **Error Highlighting**: Invalid data is highlighted with detailed error messages.
+- **Row Operations**: Add new rows or delete existing rows.
+- **Pagination**: Navigate through large datasets with grid pagination.
+- **Row Numbers**: Each row is numbered for simple navigation.
+
+#### Validation Process
+The validation process consists of two main steps:
+1. **Schema Validation**: fields in the data are validated against a predefined schema rules. The schema defines the expected data type, format, and constraints.
+2. **Field-Specific Validations**: Additional validations are applied to specific fields based on their properties. These validations ensure that the data is not only syntactically correct but also semantically meaningful.
+
+### How to Use
+1. Review the data in the grid.
+2. Correct any errors highlighted in the grid. Errors are displayed with detailed messages to guide you.
+3. Add or delete rows as needed.
+4. Click **Validate** to ensure all data is valid.
+
+![enhanced sample import data validation](/img/sample_import/enhance_sample_import_data_validation.gif)
+
+---
+#### Validation Process
+The validation process ensures that the data meets specific field requirements. This functionality provides a unified validation
+mechanism for both chemical and sample data. These functions determine the appropriate schema and validation rules based on the field type and data context. Below is a 
+detailed explanation of the validations applied:
+
+##### Numeric Fields
+- **Fields**: `target_amount_value`, `real_amount_value`, `purity`, `molecular_mass`, `refractive_index`
+- **Validation**: The value must be a valid number. Empty values are considered valid but are replaced with default values if provided.
+
+##### Boolean Fields
+- **Fields**: `dry_solvent`, `is_top_secret`, `decoupled`
+- **Validation**: The value must be a valid boolean. Accepted formats include `true/false`, `yes/no`, `1/0`, and `y/n`.
+
+##### Numrange Fields
+- **Fields**: `melting_point`, `boiling_point`
+- **Validation**: The value must be a valid numeric range. Accepted formats include single numbers (e.g., "100") and ranges (e.g., "100-200"). The lower bound must not exceed the upper bound.
+
+##### Fields with Units
+- **Fields**: `density`, `molarity`, `flash_point`
+- **Validation**: The value must include both a numeric value and a valid unit. For example:
+  - `density`: Must include units like `g/mL` or `g/cm³`.
+  - `molarity`: Must include units like `M` or `mol/L`.
+  - `flash_point`: Must include temperature units like `°C`, `°F`, or `K`.
+
+##### Solvent Field
+- **Field**: `solvent`
+- **Validation**: The value must be a slash-separated list of valid solvents (e.g., "Methanol/Water"). Each solvent must be in the predefined list of valid solvents.
+
+##### String Fields
+- **Fields**: `name`, `description`, `sum_formula`, `cas`, `location`, `external_label`, `impurities`
+- **Validation**: The value must be a string, it can also be an empty string.
+
+##### Chemical-Specific Fields
+- **Fields**: `status`, `vendor`, `order_number`, `price`, `expiration_date`
+- **Validation**: These fields are validated using rules specific to chemical data. For example:
+  - `price`: Must be a valid number with an optional currency symbol.
+  - `expiration_date`: Must be a valid date in the format `YYYY-MM-DD`.
+
+---
+
+#### Error Highlighting
+If a field fails validation, it is highlighted in the grid with a detailed error message. For example:
+- **Invalid Numeric Value**: "Value 'abc' cannot be converted to a number."
+- **Invalid Range**: "Value '200-100' is not a valid range. The lower bound must not exceed the upper bound."
+- **Missing Unit**: "Value '1.2' is missing the expected unit (e.g., 'g/mL')."
+
+Users can correct the errors directly in the grid and revalidate the data.
+
+This detailed explanation of the validation process ensures that users understand how their data is checked and how to resolve validation errors.
+
+---
+
+## Step 4: Import Execution
+
+Once the data is validated, you can proceed with the import.
+
+### Small Files
+- For smaller files, the data is imported directly into the database.
+- You will see a confirmation message once the import is complete.
+
+### Large Files
+- For larger files, the import is handled as a backend job.
+- This allows you to continue using Chemotion ELN while the import is processed in the background.
+- You will receive a notification once the import is complete.
+
+---
+
+## Additional Notes
+
+- **Backend Job Handling**: The backend job ensures that large imports do not disrupt the user experience. The system will notify you when the import is complete.
+
+---
+
+
 See further information in the section about [toolbar](toolbar).

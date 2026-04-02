@@ -66,5 +66,10 @@
   "postStartCommand": "svgo --recursive --folder static",
 
   // Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-  "remoteUser": "node"
+  "remoteUser": "node",
+
+  //Remote env variable remoteEnv
+  "remoteEnv": {
+    "DOCUSAURUS_IGNORE_SSG_WARNINGS": "true"
+  }
 }

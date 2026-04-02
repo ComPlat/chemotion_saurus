@@ -4,23 +4,36 @@ author: Claire Lin
 sidebar_position: 2
 ---
 
-## Open APIs, a REST-style service that provides programmatic access to the metadata.
+The Chemotion Repository exposes a set of **public, REST-style endpoints** that let external applications retrieve rich metadata programmatically. These endpoints are designed to facilitate interoperability, support automated data harvesting, and integrate seamlessly with external platforms such as ELNs, repositories, or data analysis tools.
 
-The below APIs are provided by the Chemotion Repository to enable programmatic access to the data. The Open APIs are designed to be simple and easy to use, and are based on the REST architecture. They are publicly accessible without the need for authentication:
+All endpoints are reachable without authentication, making integration straightforward.
 
-- Publication in JSON-LD
-- Publication JSON-LD download list
-- Published molecule
-- Published molecule list
-- Published reaction
-- Published reaction list
+## Available Endpoints
 
-Explore the capabilities of our API effortlessly by referring to the [API documentation](https://www.chemotion-repository.net/swagger_doc).
+| Endpoint          | Description |
+|-------------------|-------------|
+| `bagit-download`  | Returns a list of downloadable BagIt publication URLs filtered by instrument type.<br/>These packages follow the BagIt specification for preserving digital content. |
+| `rdf`             | Returns the RDF representation of a single publication |
+| `rdfs`            | Returns a list of downloadable RDF representations for publications |
+| `molecule`        | Returns the published molecule |
+| `molecules`       | Returns a list of published molecules |
+| `reaction`        | Returns the published reaction |
+| `reactions`       | Returns a list of published reactions |
+| ~~`jsonld`~~      | **Deprecated** – replaced by `rdf` |
+| ~~`jsonld-list`~~ | **Deprecated** – replaced by `rdfs` |
 
-:::info
+---
 
-### Questions and Feedback
+## Documentation
 
-If you have found a bug, please report it in our [issues](https://github.com/ComPlat/chemotion_REPO/issues) section. For any question and feature request, we encourage you to create a post on our **[Discussion](https://github.com/ComPlat/chemotion_REPO/discussions)** board. Alternatively, reach out to us directly by **[sending an email](mailto:chemotion-repository@lists.kit.edu)**
+Explore the full capabilities of our API effortlessly by referring to the [API documentation](https://www.chemotion-repository.net/swagger_doc). This interface provides live testing and schema details for all endpoints.
 
-:::
+---
+
+## Questions and Feedback
+
+If you encounter any issues with the API or have suggestions for improvements, we welcome your feedback:
+
+* Bug reports: [GitHub Issues](https://github.com/ComPlat/chemotion_REPO/issues)
+* Feature requests and questions: [GitHub Discussions](https://github.com/ComPlat/chemotion_REPO/discussions)
+* Direct contact: [chemotion-repository@lists.kit.edu](mailto:chemotion-repository@lists.kit.edu)

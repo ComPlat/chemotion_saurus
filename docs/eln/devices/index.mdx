@@ -1,7 +1,7 @@
 ---
 id: devices
 title: Device Integration
-sidebar_position: 7
+sidebar_position: 8
 ---
 
 ## General concept
@@ -11,7 +11,7 @@ Several descriptions and images are derived from the above mentioned manuscript 
 
 Referring to the diverse origin of data in chemistry labs, we implemented three different procedures to allow the availability of data to the Chemotion ELN server (Figure 1). The first procedure includes the transfer of data (preferably small data) by a mailing system which manages the capture of NMR data and additional information that is sent by mail to the email account of the Chemotion ELN. A second procedure was designed for the transfer of data from a local server or computer with network connection to the Chemotion ELN server. The last procedure was implemented for the transfer of data from devices without network access (due to safety standards, location issues or software-related issues). For the transfer of data from devices without network connectivity, we implemented a procedure which requires the manual collection of data (for example with a portable data storage e.g. an USB flash drive) and its transfer to the Chemotion ELN via WinSCP running on a computer with network connection.
 
-![concept_transfer_neu](/img/concept_transfer_neu.png)
+![concept_transfer](/img/devices/concept_transfer.png)
 
 **Figure 1:** Overview of the three procedures to integrate research data from
 (analytical) devices to an Chemotion ELN. The given analytical methods are chosen
@@ -55,6 +55,8 @@ Examples for (1): NJ-101; NJ-101-A; NJ-101-5; NJ-101_pure; ABCD-1234-B
 Also, if many groups are using the Chemotion ELN, a groupID may help to sort users and therefore their measurements according to a group ID. The measurements should then be named according to examples (2): 2NJ-101; 2NJ-101-A; 2NJ-101-5; 2NJ-101_pure; 2ABCD-1234-B.
 Please take care that the hyphen is included!
 
+If the filename contains an elements short label or name, it can be automatically or manually transferred to this elements from the inbox ([Details](../ui/inbox.mdx#moving-files-to-elements-into-the-analyses-section)).
+
 ### Mail-collector
 
 One of the easiest possibilities to transfer data to a management system such as the Chemotion ELN is to send data per email. The software of some analytical devices support the mailing of measurements to a user defined email address by default. This allows to implement storage routines that are independent of any additional software or hardware on the instrument’s side. The only prerequisite for a use of the MailCollector routine is fulfilled if one can set the email to be send to two addresses, to the Chemotion ELN server associated email address and to the user’s email address registered with the corresponding Chemotion ELN account (Figure 2). This is necessary to identify the target of the mailed information and the corresponding account in the Chemotion ELN. In short, four configuration steps are necessary to fetch the information via email:
@@ -71,9 +73,9 @@ The MailCollector (see Figure 2 for the used routine) screens the Chemotion ELN 
 
 Additionally, the mailing procedure is very helpful if the information to be added to an Chemotion ELN is captured with a mobile device or is available on a computer. In this manner, almost all data, independent of its origin, can be transferred to the Chemotion ELN. The only step necessary for this procedure is sending an email (using the same email address the user is registered within the Chemotion ELN) to the Chemotion ELN’s email account. Data that is attached to the email will be processed according to the MailCollector as described above and will be assigned to the user Chemotion ELN account according to the email address of the sender (Figure 2).
 
-![data_mail](/img/data_mail.png)
+![data_mail](/img/devices/data_mail.png)
 
-![config_mail](/img/config_mail.png)
+![config_mail](/img/devices/config_mail.png)
 
 **Figure 2:** Data collection via the MailCollector routine implemented exemplarily
 for Bruker NMR spectrometers and additional information sent by email. Configuring
@@ -98,9 +100,9 @@ Two different DataCollector types (FileCollector and FolderCollector) were devel
 
 To allow the assignment of the data collected by the DataCollectors to a specific Chemotion ELN user, only a few rules have to be respected: the name of the file has to start with a unique identifier registered with the Chemotion ELN user account. This identifier has to be separated from the experiment number via a hyphen or a period (e.g. JD-xyz for the registered user John Doe and a measurement xyz). If the initials can be assigned to a registered Chemotion ELN user, the data is registered in the Chemotion ELN account for the identified user. The processing of data by the DataCollectors follows the same routine “inspect – store – delete” as used in case of the MailCollector. All data that is found by the DataCollectors within the remote folders is transferred to the Chemotion ELN server and deleted from the remote folder. Deleting successfully transferred data is of high importance to maintain a good performance of the Chemotion ELN and data transfer server, as the amount and size of datasets increase with the running time and the resources required for their inspection increases as well. The deletion of the data in the remote folder is also done if no user of the Chemotion ELN can be assigned to the datasets. All changes are documented in a log file.
 
-![manual_transfer](/img/manual_transfer.png)
+![manual_transfer](/img/devices/manual_transfer.png)
 
-![config_manual](/img/config_manual.png)
+![config_manual](/img/devices/config_manual.png)
 
 **Figure 3:** Data collection via DataCollectors (FileCollector and FolderCollector)
 as implemented for the devices GC (MS), LC (MS), Raman and mass spectrometer (general

@@ -31,7 +31,7 @@ This variable is meant to set the public URL that points to your ELN installatio
 
 The variable deprecates the variables "HOST_URL" and "HOST_PROTOCOL" in previous versions. Those are now ignored and can be removed safely.
 
-> The `PUBLIC_URL` variable is a setting that tells the ELN where it _can be reached_. It's not a setting that magically makes it so that the ELN is reachable at the provided URL. Please see [this section](ChemCLI#setting-up-a-reverse-proxy) for more.
+> The `PUBLIC_URL` variable is a setting that tells the ELN where it _can be reached_. It's not a setting that magically makes it so that the ELN is reachable at the provided URL. Please see [this section](ChemCLI#set-up-a-reverse-proxy) for more.
 
 #### Variable `SECRET_KEY_BASE`
 
@@ -195,40 +195,25 @@ For each registered device, a collection job can be set up through the administr
 
 ## Structure editor
 
+:::info
+
+For Chemotion ELN v2.x epam/ketcher will be automatically installed to a compatible version. Do not forget to enable it as a feature from the ELN adminstration interface.
+
+:::
+
 The default structure editor for Chemotion ELN is Ketcher version 1. It is seamlessly integrated through the ketcher-rails project and therefore no additional configuration is needed. If you wish to utilize other supported structure editors, such as Ketcher v2 or Marvin JS, additional configuration is required. In such cases, you'll need to adjust the necessary files and, potentially, provide a license. Please be aware that any modifications to the structure_editors.yml file will necessitate a service restart for the changes to take effect.
 
-For the detail supported versions of the structure editors, please refer to the release note of Chemotion ELN.
+For the supported versions of the structure editors, please refer to the release note of Chemotion ELN.
 
-### Setup
-
-An additional configuration is required in the `structure_editors.yml` file following the steps described [above](#optional-modify-configuration-files) to setup the additional structure editors. You will also have to put the resource files/folders/license at the required location(s). You can follow these steps to accomplish the same:
-
-1. The configuration file is called `structure_editors.yml` and is located in the `./shared/pullin/config` folder. You will also need to create a folder called `editors` in the `./shared/pullin/public` folder. The template file is called `structure_editors.yml.example`. You can get this template file quickly by running the following command.
-
-```sh
-wget  https://raw.githubusercontent.com/ComPlat/chemotion_ELN/vM.m.n/config/structure_editors.yml.example
-# Here, replace the version tag (`vM.m.n` with your current version)
-```
-
-2. To setup the supported editors, unzip the editor's zip file, and then copy the sub-folders and files to the folder which the system loads the editors. If you wish to have multiple editors available, you can create a sub-folder for each editor. For example, you can create a folder called `ketcher2` in the `./shared/pullin/public/editors` folder and copy the extracted files there. Similarly, create another folder called `editor-abc` for another editor.
-
-For example, for Ketcher2 (version 2.24.0), you can run the following commands to download and extract the source code.
-
-```sh
-wget https://github.com/epam/ketcher/releases/download/v2.24.0/ketcher-standalone-2.24.0.zip
-rm -rf shared/pullin/public/editors/ketcher2 # remove existing installation
-unzip ketcher-standalone-2.24.0.zip -d shared/pullin/public/editors/ketcher2
-```
-
-3. Edit your `structure_editors.yml` to reflect this new location. For example, its contents would be similar to the following:
+### configuration
 
 ```yaml
 ### example of structure_editors.yml
 production:
   :editors:
-    :ketcher2:
-      :label: "Ketcher 2"
-      :extSrc: "/editors/ketcher2/standalone/index.html"
+    :ketcher:
+      :label: "Ketcher"
+      :extSrc: "/editors/ketcher/standalone/index.html"
     :marvinjs:
       :label: "MarvinJS"
       :license: "license file" # license file of MarvinJS
@@ -243,8 +228,7 @@ The compatibility table for recommended versions of Ketcher 2 to be used with th
 |   1.10.5    |      2.24.0       |
 |   1.10.2    |      2.21.0       |
 |    1.9.3    |      2.18.0       |
-
-4. Restart the ELN.
+|    2.xx     |       3.xx        |
 
 ### Enable
 
@@ -271,9 +255,9 @@ production:
   :url: "http://ketchersvc/render"
 ```
 
-## VNC
+## Remote Devices
 
-Access remote Desktops with VNC using websockify. A VNC server needs to be [installed](https://github.com/novnc/websockify) on each remote machine. Settings that need to be done are described in [Admin Interface > noVNC settings](../admin/novnc_settings).
+It is possible to access remote desktops with VNC using websockify. A VNC server needs to be [installed](https://github.com/novnc/websockify) on each remote machine. Settings that need to be done are described in [Admin Interface > Remote Devices](../admin/remote_devices).
 
 ## OnlyOffice
 
@@ -324,20 +308,18 @@ production:
   :chemspectra:
     :url: "http://spectra:4000"
   :nmriumwrapper:
-    :url: "https://nmrium.nmrxiv.org/releases/v0.8.0/"
+    :url: "https://nmrium.nmrxiv.org/v1.0.0/"
 ```
 
 Here the `nmriumwrapper.url` value depends on the version of Chemotion ELN you are using. The compatibility between the ELN and the wrapper is as follows:
 
 | Version of Chemotion ELN | Version(s) of NMRium wrapper |
 | ------------------------ | ---------------------------- |
-| 1.5 & 1.6                | 0.1.0                        |
-| 1.7.0 - 1.7.2            | 0.1.0 - 0.3.0                |
-| 1.7.3 - 1.8.1            | 0.4.0                        |
-| 1.8.2                    | 0.5.0                        |
-| 1.9.3 & 1.10.5           | 0.4.0 - 0.8.0                |
+| 3.0.0                    | 1.0.0                        |
+| 2.1.1 & 2.2.0            | 1.0.0                        |
+| 1.9.3, 1.10.5 & 2.0.1    | 0.8.0                        |
 
-So, if you are using e.g. ELN version 1.10.5, please `nmriumwrapper.url` to `https://nmrium.nmrxiv.org/releases/v0.8.0/`.
+So, if you are using e.g. ELN version 3.0.0, please `nmriumwrapper.url` to `https://nmrium.nmrxiv.org/v1.0.0/`.
 
 To be able to access these URLs successfully, you must register with the hosting service. Please contact the [Helpdesk](https://chemotion.net/helpdesk) or see [here](https://github.com/NFDI4Chem/nmrium-react-wrapper#public-instance) for more details.
 
@@ -390,7 +372,6 @@ The ELN has ability to produce QR codes, Barcodes and Datamatrix codes, that can
 
 - **`code_type`**: Must be `qr_code`, `bar_code`, or `data_matrix_code`.
 - **`code_image_size`** Size ratio of the code image, between 0 and 100.
-
   - _Note_: If `code_image_size` > 30, the `text_position` is automatically set to `below`.
 
 - **`text_position`**: `below` or `right`.

@@ -127,10 +127,16 @@ recalculated based on predefined conditions.
 - The sum of the volumes of all components must not exceed this total value.
 - It is only a value given manually, i.e. volume by definition - not (re)calculated. Recalculation occurs only when
 the attributes of a component with a locked total concentration are modified.
+- If the combined volume of all components is less than the specified total volume, you are expected to add solvent(s)
+to compensate for the remaining volume.
 
 ### Required volume
-- This is a calculated value based on the Reference component.
-- It is used for informational purposes only and does not directly affect other attributes.
+- Represents the calculation of the volume required to get the desired concentration of a selected component in the
+mixture.
+- This is a calculated value based on the Reference component. Please use the reference (Ref) button to select the
+component.
+- It is used for informational purposes only and does not directly affect other attributes. The calculation is a helper
+for planning the reaction's components, it does not have impact on the component table.
 - This value is determined using input from the row where the reference component is defined.
 
 ## Changes in the Solvents Table
@@ -139,6 +145,27 @@ the attributes of a component with a locked total concentration are modified.
 - **Non-Visualized Solvents:** Some buffer solutions/solvents can be excluded from the combined SVG representation.
 
 !["Demo 2"](/img/mixtures/mixture_7.png)
+
+### 💡 Total Volume and Solvent Addition
+
+The **total volume** of a sample refers to the final desired volume, including all components and any solvent(s).
+
+When the **sum of the volumes of all components** in a mixture is **less than** the specified total volume, the
+remaining volume is typically filled by adding one or more **solvents**. This ensures the mixture reaches the intended
+inal volume.
+
+#### 📘 Example
+
+```plaintext
+Total volume specified: 10 mL
+Component A volume:     3 mL
+Component B volume:     4 mL
+-----------------------------
+Total component volume: 7 mL
+Remaining volume:       3 mL
+
+In this case, 3 mL of solvent should be added to reach the total volume of 10 mL.
+```
 
 ## Future Enhancements
 

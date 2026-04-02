@@ -17,27 +17,43 @@ import designBase from "@site/static/img/labimotion/design-base.png";
 Generic **[Elements](./designer/elements/)**, **[Segments](./designer/segments/)**, and **[Datasets](./designer/datasets/)** are structured using **[Components](./designer/components/)**, which are introduced as layers and fields. Each generic element, segment, or dataset has the capacity to encompass multiple layers, and within each layer, there is the potential for multiple fields to be present. This hierarchical arrangement allows for a flexible and comprehensive organization of data and information.
 
 <img
-  src={require("@site/static/img/labimotion/labimotion_modules.png").default}
+  src={require("@site/static/img/labimotion/modules.png").default}
   alt="labimotion_modules"
 />
 <FigCaption text="Generic Elements, Segments, and Datasets are structured using Components" />
 
 :::info
 
-**What is Element, Segment, Dataset?**
+<h3>What is Element, Segment, Dataset?</h3>
 
 In case you are not familiar with the terms **Element**, **Segment**, and **Dataset**, here is a brief overview:
 
-- **Element**: An element is a fundamental enetity which represent an essential aspect within your domain. For example, the sample element or reaction element in Chemotion ELN.
+- **Element**: An element is a fundamental entity which represent an essential aspect within your domain. For example, the sample element or reaction element in Chemotion ELN.
 - **Segment**: A segment is a distinct section that usually has its own identifiable characteristics. You can use it to represent a specific subset of an element.
 - **Dataset**: Within the system, a predefined segment named "Analyses" is provided to capture analysis results. The dataset of the analysis comprises individual data points. Additionally, through **[Metadata Auto Mapper](./user/datasets/metadata-mapper)**, metadata extraction from raw files is automatically triggered, facilitating mapping into the dataset.
 
+<h3>How do they relate to each other?</h3>
+
+This diagram shows how scientists organize research information (processes, materials, devices, datasets) and how these map onto LabIMotion concepts: Generic Element, Generic Segment, and Generic Dataset. It highlights how details and datasets are linked, emphasizing that building blocks can represent experimental structures and analysis layers.
+
 <div align="center">
+  <img
+    src={require("@site/static/img/labimotion/module-concept.png").default}
+    alt="labimotion_modules"
+  />
+  <FigCaption text="Relationship between LabIMotion building blocks." />
+</div>
+
+<h3>How are they structured?</h3>
+
+The figure illustrates how templates can be structured at three levels: Element, Segment, and Dataset. Each level can contain multiple layers, and each layer can have multiple fields. This hierarchical structure allows for a flexible and comprehensive organization of data and information.
+
+<div align="center" style={{ marginTop: "1em" }}>
   <img
     src={designBase}
     alt="LabIMotion - Generic Element, Segment, and Dataset"
   />
-  <FigCaption text="Generic Element, Segment, and Dataset" />
+  <FigCaption text="Conceptual overview of LabIMotion design layers" />
 </div>
 
 :::
@@ -46,7 +62,15 @@ In case you are not familiar with the terms **Element**, **Segment**, and **Data
 
 ### 🎨 Designer Role
 
-The Designer role is dedicated to creating templates that align with specific applications. These templates serve as the foundation for user interfaces. Take a moment to explore the **[Designer Guides](./designer)** and uncover the possibilities that await you!
+Everything begins with a template - the foundation of the final visualization and output. LabIMotion provides a dedicated tool, **Designer**, based on a no-code concept that enables a flexible and efficient approach to working directly with outputs. The Designer role is responsible for developing templates that correspond to specific applications and serve as the basis for user interfaces. Explore the **[Designer Guides](./designer)** to discover the possibilities available to you.
+
+<div align="center" style={{ marginTop: "1em" }}>
+  <img
+    src={require("@site/static/img/labimotion/designer.png").default}
+    alt="LabIMotion Designer"
+  />
+  <FigCaption text="LabIMotion Designer" />
+</div>
 
 ### 🔬 User Role
 
@@ -60,4 +84,6 @@ With the transition from our beta version to the official release version, we're
 
 ### 📖 Template Hub
 
-**Template Hub**, is a platform designed to enhance resource sharing and streamline access to invaluable templates contributed by fellow researchers and professionals.
+**Template Hub**, is a platform designed to enhance resource sharing and streamline access to invaluable templates contributed by fellow researchers and professionals. The hub serves as a centralized repository where users can discover, share, and collaborate on templates that cater to various scientific applications. By fostering a collaborative environment, the Template Hub empowers users to leverage collective expertise, accelerating research and innovation across disciplines.
+
+Visit **[LabIMotion Template Hub](https://www.chemotion-repository.net/home/genericHub)** to explore the resources available.

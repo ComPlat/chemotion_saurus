@@ -1,6 +1,6 @@
 # Chemotion Docs
 
-The docs website is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator. See it live at [https://docs.chemotion.net](https://docs.chemotion.net/)
+The docs website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator. See it live at [https://docs.chemotion.net](https://docs.chemotion.net/)
 
 ## Editing these Docs
 
