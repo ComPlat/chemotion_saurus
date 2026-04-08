@@ -1,0 +1,33 @@
+---
+title: Statistical Tests
+---
+
+After checking the assumptions for parametric tests (see the *Assumptions* section),  
+we can proceed with an **Analysis of Variance (ANOVA)** to evaluate whether the predictors have an effect on CO<sub>2</sub> uptake.
+
+The results indicate that both the CO<sub>2</sub> concentration and the treatment (*chilled* vs. *non-chilled*)  
+have a statistically significant effect on CO<sub>2</sub> uptake.
+
+In contrast, no significant interaction between concentration and treatment is observed.  
+This suggests that the effect of CO<sub>2</sub> concentration on uptake is similar for both plant groups.
+
+import TestsSidebar from './TestsSidebar.png';
+import ANOVA from './ANOVA.png';
+
+<div
+  style={{
+    display: 'flex',
+    gap: '24px',
+    flexWrap: 'wrap',
+    alignItems: 'flex-start'
+  }}
+>
+  <div style={{ textAlign: 'center' }}>
+    <img src={TestsSidebar} style={{ maxWidth: '500px', height: 'auto' }} />
+  </div>
+
+  <div style={{ textAlign: 'center' }}>
+    <img src={ANOVA} style={{ maxWidth: '800px', height: 'auto' }} />
+  </div>
+</div>
+
