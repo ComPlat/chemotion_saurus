@@ -52,7 +52,7 @@ bin/rails g cypress_on_rails:install --cypress_folder=spec/cypress
 
 Make sure to start the Rails server prior to starting Cypress.
 Note that it's important to start the server with `RAILS_ENV-test`,
-Cypress won't recognize the Rails server if it's running in the `development` or `production` env; see [here](https://github.com/shakacode/cypress-on-rails/issues/25) for more.
+Cypress won't recognize the Rails server if it's running in the `development` or `production` env; see [here](https://github.com/shakacode/cypress-playwright-on-rails/issues/25) for more.
 
 ```bash
 RAILS_ENV=test $(which bundle) exec rails server -b 0.0.0.0 -p 3000
@@ -351,7 +351,7 @@ Many REST requests that request INCHI keys are already defined in [spec_helper.r
 - Methods of classes/objects
   `allow_any_instance_of(CLASS_NAME).to receive(METHOD_NAME_AS_SYMBOL).and_return(RESULT)`
   `allow_any_instance_of(CLASS_NAME).to receive(METHOD_NAME_AS_SYMBOL).and_raise(AN ERROR)`
-- for more infos: [rspec-mocks](https://relishapp.com/rspec/rspec-mocks/docs)
+- for more info: [rspec-mocks](https://rspec.info/features/3-13/rspec-mocks/)
 
 #### API - testing
 
