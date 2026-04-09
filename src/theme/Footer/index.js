@@ -1,5 +1,6 @@
 import React from "react";
 import "./footer.css";
+import useBaseUrl from "@docusaurus/useBaseUrl";
 
 export default function Footer() {
   return (
@@ -21,7 +22,7 @@ export default function Footer() {
                     alt="dfg-logo"
                     width="390"
                     height="50"
-                    src="img/footer/DFG.png"
+                    src={useBaseUrl("/img/footer/DFG.png")}
                   />
                 </a>
               </div>
@@ -35,7 +36,7 @@ export default function Footer() {
                     alt="kit-logo"
                     width="160"
                     height="80"
-                    src="img/footer/KIT.png"
+                    src={useBaseUrl("/img/footer/KIT.png")}
                   />
                 </a>
               </div>
@@ -49,7 +50,7 @@ export default function Footer() {
                     alt="bawue-logo"
                     width="185"
                     height="101"
-                    src="img/footer/bawue.png"
+                    src={useBaseUrl("/img/footer/bawue.png")}
                   />
                 </a>
               </div>
@@ -70,7 +71,7 @@ export default function Footer() {
                 alt="youtube-logo"
                 width="30"
                 height="30"
-                src="img/footer/youtube.png"
+                src={useBaseUrl("/img/footer/youtube.png")}
               />
               <span>YouTube</span>
             </a>
@@ -83,7 +84,7 @@ export default function Footer() {
                 alt="instagram-logo"
                 width="30"
                 height="30"
-                src="img/footer/instagram.png"
+                src={useBaseUrl("/img/footer/instagram.png")}
               />
               <span>Instagram</span>
             </a>
@@ -96,7 +97,7 @@ export default function Footer() {
                 alt="linkedin-logo"
                 width="30"
                 height="30"
-                src="img/footer/linkedin.png"
+                src={useBaseUrl("/img/footer/linkedin.png")}
               />
               <span>LinkedIn</span>
             </a>
@@ -109,7 +110,7 @@ export default function Footer() {
                 alt="repository-logo"
                 width="30"
                 height="30"
-                src="img/footer/flusk.png"
+                src={useBaseUrl("/img/footer/flusk.png")}
               />
               <span>Repository</span>
             </a>
@@ -122,7 +123,7 @@ export default function Footer() {
                 alt="github-logo"
                 width="30"
                 height="30"
-                src="img/footer/github.png"
+                src={useBaseUrl("/img/footer/github.png")}
               />
               <span>ELN Source Code</span>
             </a>
