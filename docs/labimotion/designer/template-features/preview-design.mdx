@@ -19,6 +19,7 @@ import {
   YouTubeFrame,
   Reader,
 } from "@site/src/js/layout";
+import useBaseUrl from "@docusaurus/useBaseUrl";
 
 <SubTitle text="A feature that allows you to preview the design before releasing it to users and manage different template versions efficiently." />
 <Reader text="Designer" />
@@ -37,13 +38,13 @@ Some components remain functional in this preview mode, such as entering text in
 >
   <span className="figCaption" style={{ textAlign: "left" }}>(Click to view in a new window{" "} <FontAwesomeIcon icon={faArrowUpRightFromSquare} />)</span>
   <a
-    href="/img/labimotion/designer-preview.mp4"
+    href={useBaseUrl("/img/labimotion/designer-preview.mp4")}
     target="_blank"
     rel="noopener noreferrer"
     style={{ display: "block" }}
   >
     <video width="100%" controls autoPlay loop muted>
-      <source src="/img/labimotion/designer-preview.mp4" type="video/mp4" />
+      <source src={useBaseUrl("/img/labimotion/designer-preview.mp4")} type="video/mp4" />
       Your browser does not support the video tag.
     </video>
   </a>

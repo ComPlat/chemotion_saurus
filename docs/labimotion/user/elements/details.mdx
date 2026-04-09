@@ -12,6 +12,7 @@ import {
   SubTitle,
   Reader,
 } from "@site/src/js/layout";
+import useBaseUrl from "@docusaurus/useBaseUrl";
 
 <SubTitle text="The detail modal displays the primary content of the element." />
 <Reader text="User" />
@@ -38,14 +39,14 @@ By default, the first layer is expanded. An **Expand/Collapse** button is availa
 >
   <span className="figCaption" style={{ textAlign: "left" }}>(Click to view in a new window{" "} <FontAwesomeIcon icon={faArrowUpRightFromSquare} />)</span>
   <a
-    href="/img/labimotion/details-expand-collapse.mp4"
+    href={useBaseUrl("/img/labimotion/details-expand-collapse.mp4")}
     target="_blank"
     rel="noopener noreferrer"
     style={{ display: "block" }}
   >
     <video width="100%" controls autoPlay loop muted>
       <source
-        src="/img/labimotion/details-expand-collapse.mp4"
+        src={useBaseUrl("/img/labimotion/details-expand-collapse.mp4")}
         type="video/mp4"
       />
       Your browser does not support the video tag.
