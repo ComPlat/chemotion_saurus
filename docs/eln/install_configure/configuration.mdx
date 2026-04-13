@@ -7,7 +7,7 @@ sidebar_position: 21
 
 This page records configuration details for ELN versions released over last one year. Versions older
 than one year are not actively supported. However, if you still need help, kindly get in touch with the
-[Helpdesk](/helpdesk). This is especially true if you are using a non-dockerized installation of the ELN.
+[Helpdesk](https://chemotion.net/helpdesk). This is especially true if you are using a non-dockerized installation of the ELN.
 
 :::
 
@@ -27,7 +27,7 @@ You can **skip these Must-Do steps** if you have installed the ELN using ChemCLI
 
 The variable called `PUBLIC_URL` must be set in the `docker-compose.yml` file. To set the variable, add it to the sections `services.worker.environment` and `services.eln.environment` just below the already present variables (such as "CONFIG_ROLE" for example) in your `docker-compose.yml`.
 
-This variable is meant to set the public URL that points to your ELN installation i.e. if you type "http://my.eln" in your browser to reach the ELN, please set this variable to `PUBLIC_URL=http://my.eln`. This variable is used whenever the ELN has to construct absolute URLs, for example when an E-Mail is send after user registration. It is also used for the file downloads links (e. g., in exporting [collections](../ui/collections)) to work correctly.
+This variable is meant to set the public URL that points to your ELN installation i.e. if you type "https://chemotion.dept.uni.de" in your browser to reach the ELN, please set this variable to `PUBLIC_URL=https://chemotion.dept.uni.de`. This variable is used whenever the ELN has to construct absolute URLs, for example when an E-Mail is send after user registration. It is also used for the file downloads links (e. g., in exporting [collections](../ui/collections)) to work correctly.
 
 The variable deprecates the variables "HOST_URL" and "HOST_PROTOCOL" in previous versions. Those are now ignored and can be removed safely.
 
@@ -322,7 +322,7 @@ Here the `nmriumwrapper.url` value depends on the version of Chemotion ELN you a
 
 So, if you are using e.g. ELN version 3.0.0, please `nmriumwrapper.url` to `https://nmrium.nmrxiv.org/v1.0.0/`.
 
-To be able to access these URLs successfully, you must register with the hosting service. Please contact the [Helpdesk](/helpdesk) or see [here](https://github.com/NFDI4Chem/nmrium-react-wrapper#public-instance) for more details.
+To be able to access these URLs successfully, you must register with the hosting service. Please contact the [Helpdesk](https://chemotion.net/helpdesk) or see [here](https://github.com/NFDI4Chem/nmrium-react-wrapper#public-instance) for more details.
 
 ## QR, Barcode and Datamatrix Stickers
 

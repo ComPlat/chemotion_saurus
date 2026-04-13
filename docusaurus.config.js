@@ -1,21 +1,21 @@
-require('dotenv').config();
+require("dotenv").config();
 
 module.exports = {
   future: {
     v4: true, // Enable future Docusaurus v4 features
   },
-  title: 'Chemotion',
-  tagline: 'Electronic Laboratory Notebook & Repository for Research Data',
-  url: 'https://chemotion.net',
-  baseUrl: '/',
-  onBrokenLinks: 'throw',
-  onBrokenAnchors: 'throw',
-  favicon: 'img/logos/favicon.ico',
+  title: "Chemotion",
+  tagline: "Electronic Laboratory Notebook & Repository for Research Data",
+  url: "https://chemotion.net",
+  baseUrl: "/docs",
+  onBrokenLinks: "throw",
+  onBrokenAnchors: "throw",
+  favicon: "img/navbar/favicon.png",
   trailingSlash: false,
-  organizationName: 'Complat', // Usually your GitHub org/user name.
-  projectName: 'chemotion_saurus', // Usually your repo name.
+  organizationName: "Complat", // Usually your GitHub org/user name.
+  projectName: "chemotion_saurus", // Usually your repo name.
   customFields: {
-    fund: 'Funded By',
+    fund: "Funded By",
   },
   markdown: {
     mdx1Compat: {
@@ -24,33 +24,35 @@ module.exports = {
       headingIds: false,
     },
     hooks: {
-      onBrokenMarkdownLinks: 'throw',
-      onBrokenMarkdownImages: 'throw',
+      onBrokenMarkdownLinks: "throw",
+      onBrokenMarkdownImages: "throw",
     },
   },
   themeConfig: {
     navbar: {
-      title: 'Chemotion',
+      title: "Documentation 📖",
       logo: {
-        alt: 'Chemotion',
-        src: 'img/logos/favicon.ico',
+        alt: "Chemotion",
+        src: "img/navbar/open-c.png",
       },
       items: [
         {
-          label: 'Documentation 📖',
-          position: 'left',
-          docId: 'welcome',
-          type: 'doc',
+          label: "Who are we",
+          to: "https://chemotion.net/about",
+          position: "right",
+          className: "custom-nav-link",
         },
         {
-          label: 'Helpdesk 🤝',
-          position: 'right',
-          to: '/helpdesk',
+          label: "Helpdesk",
+          to: "https://chemotion.net/helpdesk",
+          position: "right",
+          className: "custom-nav-link",
         },
         {
-          label: 'Chemotion Repository ↗️',
-          position: 'right',
-          to: 'https://www.chemotion-repository.net/',
+          label: "Chemotion.net",
+          position: "right",
+          to: "https://chemotion.net/",
+          className: "custom-nav-link",
         },
       ],
     },
@@ -61,10 +63,10 @@ module.exports = {
       },
     },
     prism: {
-      additionalLanguages: ['ruby'],
+      additionalLanguages: ["ruby"],
     },
     footer: {
-      style: 'light',
+      style: "light",
       links: [
         {
           items: [
@@ -77,7 +79,7 @@ module.exports = {
         {
           items: [
             {
-              html: '<p style="text-align:center"><a href="/about">About Us</a></p>',
+              html: '<p style="text-align:center"><a href="https://chemotion.net/about">About Us</a></p>',
             },
           ],
         },
@@ -86,36 +88,49 @@ module.exports = {
     },
 
     colorMode: {
-      defaultMode: 'light',
+      defaultMode: "light",
       disableSwitch: true,
       respectPrefersColorScheme: false,
     },
   },
-
-  plugins: [
-    '@docusaurus/plugin-sitemap',
-    '@docusaurus/plugin-content-pages',
-    '@docusaurus/plugin-svgr',
+  presets: [
     [
-      '@docusaurus/plugin-content-docs',
+      "@docusaurus/preset-classic",
       {
-        sidebarPath: require.resolve('./sidebars.js'),
-        editUrl: 'https://github.com/ComPlat/chemotion_saurus/edit/main/',
-        showLastUpdateTime: true,
-        showLastUpdateAuthor: false,
-        routeBasePath: '/docs',
-      },
-    ],
-    [
-      '@docusaurus/theme-classic',
-      {
-        customCss: require.resolve('./src/css/custom.css'),
+        docs: {
+          sidebarPath: require.resolve("./sidebars.js"),
+          editUrl: "https://github.com/ComPlat/chemotion_saurus/edit/main/",
+          showLastUpdateTime: true,
+          showLastUpdateAuthor: false,
+          routeBasePath: "/",
+        },
+        theme: {
+          customCss: require.resolve("./src/css/custom.css"),
+        },
       },
     ],
   ],
+  headTags: [
+    {
+      tagName: "script",
+      attributes: {
+        rel: "preconnect",
+      },
+      innerHTML: `
+              window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+              plausible.init()
+            `,
+    },
+  ],
+  scripts: [
+    {
+      async: true,
+      src: "https://track.chemserv.scc.kit.edu/js/pa-LIw7dGM8yVD9O_XZYXiXn.js",
+    },
+  ],
   themes: [
     [
-      require.resolve('@easyops-cn/docusaurus-search-local'),
+      require.resolve("@easyops-cn/docusaurus-search-local"),
       {
         hashed: true,
         highlightSearchTermsOnTargetPage: true,
