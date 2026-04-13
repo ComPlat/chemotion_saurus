@@ -110,6 +110,24 @@ module.exports = {
       },
     ],
   ],
+  headTags: [
+    {
+      tagName: "script",
+      attributes: {
+        rel: "preconnect",
+      },
+      innerHTML: `
+              window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+              plausible.init()
+            `,
+    },
+  ],
+  scripts: [
+    {
+      async: true,
+      src: "https://track.chemserv.scc.kit.edu/js/pa-LIw7dGM8yVD9O_XZYXiXn.js",
+    },
+  ],
   themes: [
     [
       require.resolve("@easyops-cn/docusaurus-search-local"),
