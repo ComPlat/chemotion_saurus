@@ -1,0 +1,43 @@
+---
+title: My Templates
+---
+
+import { faTrashAlt, faCog } from "@fortawesome/free-solid-svg-icons";
+import { Btn } from "@site/src/js/btn.js";
+
+My Templates is where you manage reusable text snippets for editors throughout the ELN.
+Everyone can create personal templates. Global templates are visible to everyone and editable only by users with the [Global Template Editor](../admin/user_management#global-text-template-editor-rights) privilege.
+
+## Opening My Templates
+
+Click **My Templates** inside the <Btn mixed={[faCog]} color={"secondary"}/> toolbar settings popover from a text editor. It opens in the same tab. When you're done, hit **Back** to return to the editor — your toolbar picks up the changes straight away, no reload needed.
+
+![My Templates page screenshot](/img/text_templates/my-template.png)
+
+
+The page has two tabs:
+
+- **Personal (My)** — your own templates, only visible to you
+- **Global** — shared templates visible to everyone; you can edit them only if you have [Global Template Editor](../admin/user_management#global-text-template-editor-rights) rights
+
+## Creating a template
+
+1. Click **New**.
+2. Give it a **Name** — this is what shows up in the MT dropdown.
+3. Optionally add a **Short Label** (shown as text on the toolbar button) and an **Icon Class** to give it an icon. Icons can come from [Font Awesome](https://fontawesome.com/v4/icons/), or the internal Chemotion ELN icon libraries. Search those libraries for a class name that matches the icon you want. For example:
+   - a thermometer: `fa fa-thermometer-quarter`
+   - a tube: `icon-residue-adsorbed`
+4. Write the content in the editor.
+5. Click **Save Template**.
+
+The icon shows when the template is pinned directly to the toolbar. When it is added to a dropdown menu, the text label is shown instead.
+
+If a template with that name already exists, you'll see an error and nothing will be saved.
+
+## Editing a template
+
+Pick a template from the list on the left, make your changes, and click **Update Template**.
+
+## Deleting a template
+
+Click the <Btn mixed={[faTrashAlt]} color={"danger"}/> button next to it in the list.
