@@ -2,22 +2,22 @@
 title: Text Editor
 ---
 
-import { faPlus, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { Btn } from "@site/src/js/btn.js";
 
-Throughout the ELN, you can work with text editors in many different contexts.
-`Text templates` are meant to help you write by providing ready-made paragraphs that can be inserted in many text editors. They can be configured by an admin in the [admin panel](../admin/text_template).
+Text editors appear throughout the ELN and text templates let you insert ready-made paragraphs with a single click — handy for content you write repeatedly.
+Everyone can create their own personal templates. Global templates (shared across the whole ELN) can be viewed by anyone and edited by users with the [Global Template Editor](../admin/user_management#global-text-template-editor-rights) privilege.
 
 ![](/img/20231013_customTextblocks.png)
 
-**Formatting utilities**: standard utilities for formatting text (like in Word)  
-**User-defined custom text templates:** icons of predefined `text templates`  
-**Configuration text templates**: Pop-up menu for configuration of `text templates` in editor
+**Formatting utilities**: standard text formatting (bold, italic, lists, etc.).<br />
+**User-defined custom text templates:** icons or dropdown menus for your templates or global templates.<br />
+**Configuration**: pop-up menu to configure `text templates` in the editor.
 
 ## Using and customizing icons
 
-You can use predefined text templates if your cursor is active in the editor.
-By clicking on an icon the `text template` content will appear at your cursor.
+You can use predefined templates and your own templates when your cursor is active in the editor.
+Click an icon to insert the `text template` content at the cursor position.
 
 The following video shows you how to customize your toolbar:
 
@@ -25,8 +25,15 @@ The following video shows you how to customize your toolbar:
 
 ## Using and customizing templates dropdown menus
 
-In addition you can organize your templates in dropdown menus:
+You can also group templates into dropdown menus instead of individual icons:
 
 ![text_template_editor](/img/20231013_configTextTemplatesDropDown.gif)
 
-You can remove all elements by clicking <Btn mixed={[faTrashAlt]} color={"danger"}/>
+Click <Btn mixed={[faTrashAlt]} color={"danger"}/> to remove any item from the toolbar or dropdown.
+
+## My Templates
+
+The **MT dropdown** in the toolbar can show predefined templates as well as your personal templates and new global templates. Open the toolbar settings menu and click [My Templates](./my_templates) to manage the templates that appear there.
+
+![MT dropdown](/img/text_templates/mt-dropdown.png)
+
