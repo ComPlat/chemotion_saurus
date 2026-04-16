@@ -18,11 +18,6 @@ module.exports = {
     fund: "Funded By",
   },
   markdown: {
-    mdx1Compat: {
-      comments: false,
-      admonitions: false,
-      headingIds: false,
-    },
     hooks: {
       onBrokenMarkdownLinks: "throw",
       onBrokenMarkdownImages: "throw",
@@ -107,6 +102,7 @@ module.exports = {
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
+        blog: false,
       },
     ],
   ],
