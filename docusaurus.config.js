@@ -7,7 +7,7 @@ module.exports = {
   title: "Chemotion",
   tagline: "Electronic Laboratory Notebook & Repository for Research Data",
   url: "https://chemotion.net",
-  baseUrl: "/docs",
+  baseUrl: "/docs/",
   onBrokenLinks: "throw",
   onBrokenAnchors: "throw",
   favicon: "img/navbar/favicon.png",
