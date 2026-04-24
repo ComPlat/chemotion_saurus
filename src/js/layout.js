@@ -5,7 +5,7 @@ import VideoPrivacy from "video-privacy"
 function imageUrlForYouTube(url) {
     let re = /(https?:\/\/)?(((m|www)\.)?(youtube(-nocookie)?|youtube.googleapis)\.com.*(v\/|v=|vi=|vi\/|e\/|embed\/|user\/.*\/u\/\d+\/)|youtu\.be\/)([_0-9a-z-]+)/i;
     let id = url.match(re)[8];
-    return `/img/yt_thumbnails/${id}.jpg`;
+    return `/docs/img/yt_thumbnails/${id}.jpg`;
 }
 
 export const SubTitle = ({ text }) => (<h3 className="subTitle">{text}</h3>);
