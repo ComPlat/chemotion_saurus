@@ -1,7 +1,7 @@
 ---
 title: TLC Image Annotation Tool
 sidebar_label: TLC Image Annotation
-sidebar_position: 3
+sidebar_position: 2
 ---
 
 # TLC Image Annotation Tool
