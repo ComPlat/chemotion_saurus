@@ -1,0 +1,122 @@
+---
+title: "Hierarchical materials: a Sample extension"
+sidebar_label: "Hierarchical Material"
+sidebar_position: 2
+---
+
+import { FigCaption, YouTubeFrame } from "@site/src/js/layout";
+
+:::info
+
+This feature is currently in development.
+
+:::
+
+:::danger[Caution]
+
+This page is still being edited and reviewed.
+
+:::
+
+## Overview
+
+**Hierarchical Material** is a sample type in Chemotion ELN designed for complex, multi-component physical materials — such as pellets, powders, or colloidal systems. It extends the standard sample with dedicated physical properties and a composition table for recording what the material is made of.
+
+It also introduces a new set of **Surface Chemistry templates** in the Ketcher editor, enabling graphical representation of surface structures directly on the canvas.
+
+**Key features:**
+- Physical property fields (state, size, shape, color, particle size, and more)
+- A composition table to record components and their contributions
+- Surface Chemistry templates for visualizing surface structures in Ketcher
+- Automatic type detection on save when a surface chemistry structure is present
+
+---
+
+## Selecting the Hierarchical Material Type
+
+1. Open (or create) a sample.
+2. In **Sample Properties**, open the **Sample Type** dropdown.
+3. Select **Hierarchical Material**.
+4. Additional fields specific to this type appear in the properties panel.
+
+:::tip
+
+When saving a sample, the type is **automatically set to Hierarchical Material** if a Surface Chemistry shape (from the Ketcher editor) is detected in the structure. You do not need to set it manually in that case.
+
+:::
+
+---
+
+## Surface Chemistry Templates in Ketcher
+
+The Ketcher editor ships with a set of pre-defined **Surface Chemistry templates** you can place onto the canvas to represent surface structures graphically.
+
+### Adding a Template
+
+1. Open the Ketcher editor on a sample.
+2. Click the **Shapes** button in the toolbar.
+3. Select a template from one of the two categories:
+   - **Basic templates**
+   - **Semantic templates**
+4. After selecting the shape, it will be placed inside the canvas.
+
+!["Shapes and label control buttons in the Ketcher toolbar"](/img/hierarchical_sample_type/537128813-c0db450a-2fd4-4963-97df-24c44d3445ae.png)
+
+### Adding Labels to Shapes
+
+Once a shape is on the canvas, you can label it using the **T** button next to the Shapes button. The **T** button is automatically enabled when a shape is selected.
+
+1. Select a single shape on the canvas — the **T** button will become active.
+2. Click the **T** button.
+3. Type the label text in the popup window.
+4. Click **Save**.
+
+!["Shape with label text applied"](/img/hierarchical_sample_type/537129274-363a8222-4a93-4170-b815-188fd57910aa.png)
+
+---
+
+## Additional Properties
+
+When the sample type is set to **Hierarchical Material**, the following extra fields become available:
+
+| Property | Type | Example / Notes |
+|---|---|---|
+| **State** | Pre-defined dropdown | Solid Powder, Solid Pellet, Solid Monolith, Solid Shape, Liquid Colloidal, Liquid Solution |
+| **Height** | Numeric (cm/mm) | e.g. `5 cm` |
+| **Width** | Numeric (cm/mm) | e.g. `3 cm` |
+| **Length** | Numeric (cm/mm) | e.g. `10 cm` |
+| **Diameter** | Numeric (cm/mm) | e.g. `2.5 cm` |
+| **Shape** | Free text | e.g. Spherical, Cubic |
+| **Material** | Free text | e.g. Glass, Plastic |
+| **Color** | Pre-defined color palette | Red, Pink, Purple, Blue, Green, Yellow, Orange, Brown, Grey, … |
+| **Particle size** | Free text | e.g. Medium, 50 µm |
+| **Sieve fraction** | Free text | e.g. 100–200 µm |
+| **CSPI** (Crystallization Set-Point Index) | Free text | e.g. 45 °C |
+| **Storage condition** | Free text | e.g. Room temperature |
+
+> Numeric size fields (Height, Width, Length, Diameter) are stored as floats. All other hierarchical fields are stored as strings.
+
+---
+
+## Composition Table
+
+Hierarchical materials include a dedicated **Composition table** to record the components that make up the material.
+
+- Each row represents one component. Select an existing sample as the **component reference**.
+- Enter the component's **contribution** to the overall material (e.g. weight percentage or molar ratio).
+- The table is saved when you save the sample.
+
+---
+
+## Demo
+
+<YouTubeFrame
+  src="https://www.youtube-nocookie.com/embed/ZczXxgT_NNw"
+  title="Hierarchical Material demo"
+/>
+<FigCaption text="Hierarchical Material: sample type and Surface Chemistry templates" />
+
+## Overview Screenshot
+
+!["Hierarchical Material overview"](/img/hierarchical_sample_type/overlook.png)
+
