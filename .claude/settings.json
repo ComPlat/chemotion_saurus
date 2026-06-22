@@ -24,7 +24,11 @@
       "Bash(sed -i 's#img/hyperlinks/#img/eln/ui/hyperlink/#g' docs/eln/ui/hyperlink.mdx)",
       "Bash(sed -i 's#img/image_annotation/#img/eln/ui/images/#g' docs/eln/ui/images.mdx)",
       "Bash(sed -i 's#img/mixtures/#img/eln/ui/elements/samples/mixtures/#g' docs/eln/ui/elements/samples/mixtures.mdx)",
-      "Bash(sed -i 's#img/collection_tabs/#img/eln/ui/collections/tabs/#g' docs/eln/ui/collections/tabs.mdx)"
+      "Bash(sed -i 's#img/collection_tabs/#img/eln/ui/collections/tabs/#g' docs/eln/ui/collections/tabs.mdx)",
+      "Bash(xargs -r sed -i 's#img/admin_ui/#img/eln/admin/#g')",
+      "Bash(xargs -r sed -i 's#img/devices/#img/eln/devices/#g')",
+      "Bash(xargs -r sed -i 's#img/install_configure/#img/eln/install-configure/#g')",
+      "Bash(xargs -r sed -i 's#img/interfaces/#img/eln/interfaces/#g')"
     ]
   }
 }
