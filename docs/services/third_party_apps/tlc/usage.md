@@ -26,7 +26,7 @@ You can start in two ways:
 
 ---
 
-![Image Source Selection](/img/ThirdPartyApps/Tlc/tlc-image-source.png)
+![Image Source Selection](/img/services/third_party_apps/tlc/usage/tlc-image-source.png)
 
 ---
 ### 2️. Set Reference Lines
@@ -42,7 +42,7 @@ Click the **Min Line** button, then click on the canvas. Repeat with **Max Line*
 
 ---
 
-![Drawing Reference Lines](/img/ThirdPartyApps/Tlc/tlc-draw-lines.png)
+![Drawing Reference Lines](/img/services/third_party_apps/tlc/usage/tlc-draw-lines.png)
 
 ---
 
@@ -57,7 +57,7 @@ Click **Add Spots**, then click once on each spot (visible compound) on the TLC 
 
 ---
 
-![Marking Spots](/img/ThirdPartyApps/Tlc/tlc-spot-annotation.png)
+![Marking Spots](/img/services/third_party_apps/tlc/usage/tlc-spot-annotation.png)
 
 ---
 
@@ -72,8 +72,8 @@ A popup will prompt for a label after placing each line.
 
 ---
 
-![Labeled Annotation Example](/img/ThirdPartyApps/Tlc/tlc-label-hlines.png)
-![Labeled Annotation Example](/img/ThirdPartyApps/Tlc/tlc-label-vlines.png)
+![Labeled Annotation Example](/img/services/third_party_apps/tlc/usage/tlc-label-hlines.png)
+![Labeled Annotation Example](/img/services/third_party_apps/tlc/usage/tlc-label-vlines.png)
 
 ---
 

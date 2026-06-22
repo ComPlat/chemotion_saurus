@@ -41,7 +41,7 @@ TLC (solvents); Rf (UV-Vis in nm, staining) = 0.72 (Spot 1)[h1], 0.53 (Spot 2)[h
 
 ---
 
-![Download CSV Button](/img/ThirdPartyApps/Tlc/tlc-csv-table.png)
+![Download CSV Button](/img/services/third_party_apps/tlc/export/tlc-csv-table.png)
 
 ---
 
@@ -57,7 +57,7 @@ Click the  **Save Image** button to download a PNG with:
 
 ---
 
-![Download Annotated Image](/img/ThirdPartyApps/Tlc/tlc-download-image.png)
+![Download Annotated Image](/img/services/third_party_apps/tlc/export/tlc-download-image.png)
 
 ---
 

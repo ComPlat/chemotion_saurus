@@ -75,4 +75,4 @@ Click the **Reset** button to:
 
 ---
 
-![RF Value Warnings](/img/ThirdPartyApps/Tlc/tlc-rf-errors.png)
+![RF Value Warnings](/img/services/third_party_apps/tlc/faq/tlc-rf-errors.png)

@@ -12,7 +12,7 @@ import {
   faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import { Btn } from "@site/src/js/btn.js";
-import Reaction from "@site/static/img/reaction.svg";
+import Reaction from "@site/static/img/eln/ui/elements/reactions/reaction.svg";
 
 :::danger[Caution]
 
@@ -43,7 +43,7 @@ More details about populating a reaction with samples can be found in the [Detai
 ## Reactions in the element panel
 
 <img
-  src={require("@site/static/img/reaction/reactions_list.png").default}
+  src={require("@site/static/img/eln/ui/elements/reactions/reactions_list.png").default}
   alt={"Reactions list"}
 />
 
@@ -62,12 +62,12 @@ In case other elements are available to drop reactions within them (such as a re
 the cross is colored in blue to indicate that it is active, otherwise, it appears in gray, and it can be used in this case.
 
 The user can filter their reaction either by creation date, or update day.
-The image above shows a calendar icon <img src={require('@site/static/img/creation_date.png').default} width={"30px"} alt={"Creation date calendar"}/>
+The image above shows a calendar icon <img src={require('@site/static/img/eln/ui/elements/reactions/creation_date.png').default} width={"30px"} alt={"Creation date calendar"}/>
 which corresponds to a **filter by creation date**.
 Next to the calendar are the fields **From** and **To**.
 Clicking on them opens a calendar for the user to pick the desired days.
 Pressing on the calendar icon switches to **filter by update date**,
-and here the calendar appears like this <img src={require('@site/static/img/update_date.png').default} width={"30px"} alt={"Update date calendar"}/>.
+and here the calendar appears like this <img src={require('@site/static/img/eln/ui/elements/reactions/update_date.png').default} width={"30px"} alt={"Update date calendar"}/>.
 
 Another method for filtering is using text search or structure search from the toolbar. More details about those methods can be found in the [Toolbar](../toolbar) page.
 
@@ -78,7 +78,7 @@ By clicking on the reaction list, a [details panel for reactions](../details#det
 The new Gas Phase Reaction Scheme feature introduces a mode to handle reactions involving gaseous reactants and products. This feature allows users to input and calculate parameters specifically for gas-phase reactions, differing from the default reaction mode that is typically used for liquid or solid phases.
 
 <img
-  src={require("@site/static/img/reaction/gas_scheme.png").default}
+  src={require("@site/static/img/eln/ui/elements/reactions/gas_scheme.png").default}
   alt={"Reactions list"}
 />
 
@@ -137,7 +137,7 @@ Aside from the functionalities mentioned above, all other features of the defaul
 
 The Weight Percentage Reaction Scheme provides an alternative equivalent basis to the existing molar-equivalents workflow. It allows users to assign amounts by mass directly (for example, aiming for a 10 g product composed of 70:30 wt% B:A).
 
-![weight_percentage_scheme](/img/reaction/weight_percentage_scheme.gif)
+![weight_percentage_scheme](/img/eln/ui/elements/reactions/weight_percentage_scheme.gif)
 
 ### What changes in the UI
 - Equivalent/Weight percentage selector: Every material that previously showed an equivalents selector (molar equivalents) now offers a dropdown to choose the equivalent basis:

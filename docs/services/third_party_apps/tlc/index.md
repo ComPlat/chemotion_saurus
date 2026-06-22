@@ -14,7 +14,7 @@ This tool supports the digitization of TLC documentation, automates Rf value cal
 
 ---
 
-![TLC Tool Overview](/img/ThirdPartyApps/Tlc/tlc-overview.png)
+![TLC Tool Overview](/img/services/third_party_apps/tlc/tlc-overview.png)
 
 ---
 
@@ -63,8 +63,8 @@ The tool bridges manual TLC processing with structured digital workflows.
 
 ---
 
-![Image Upload Example](/img/ThirdPartyApps/Tlc/tlc-localupload.png)
-![Image Upload Example](/img/ThirdPartyApps/Tlc/tlc-upload.png)
+![Image Upload Example](/img/services/third_party_apps/tlc/tlc-localupload.png)
+![Image Upload Example](/img/services/third_party_apps/tlc/tlc-upload.png)
 
 ---
 

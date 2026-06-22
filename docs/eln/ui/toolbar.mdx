@@ -24,13 +24,13 @@ import { Btn } from "@site/src/js/btn.js";
 import { DownloadBtn } from "@site/src/js/download_files.js";
 import { FigCaption, YouTubeFrame } from "@site/src/js/layout";
 
-![whole window](/img/screen.png)
+![whole window](/img/eln/ui/toolbar/screen.png)
 
 The toolbar sits above the element list in the [element panel](/docs/eln/ui#element-panel) and provides a variety of functions to control the Chemotion ELN elements. Its buttons are `Reporting`, `Export`, `Split`, `Transfer`, `Remove`, `Share` and `References`; the search bar and the green <Btn mixed={[faPlus, "CREATE"]} color={"success"}/> button are located to its right. These functions cover adding, copying, deleting, moving, sharing, filtering, importing and exporting.
 
 ## Filtering
 
-The user can filter a selected collection or even the **All** collection with the filtering bar <img src={require('@site/static/img/filter.png').default} alt={"Filter bar"} />.
+The user can filter a selected collection or even the **All** collection with the filtering bar <img src={require('@site/static/img/eln/ui/toolbar/filter.png').default} alt={"Filter bar"} />.
 
 The user can search the entire collection or selected elements by clicking on <Btn mixed={["All", faSortDown]} color={"secondary"}/> and choosing the desired element (**Samples**, **Reactions**, **Wellplates**, **Screens**) from the menu to appear, where the <Btn mixed={["All", faSortDown]} color={"secondary"}/> is replaced by the corresponding symbol of the element. The menu also shows the option of **Advanced Search**, which will be clarified later on in this chapter.
 
@@ -43,7 +43,7 @@ Possible search terms are **IUPAC** names, **InChI**, **SMILES**, **RInChI**. Th
 <FigCaption text="Substructure search" />
 
 <img
-  src={require("@site/static/img/advance_search.png").default}
+  src={require("@site/static/img/eln/ui/toolbar/advance_search.png").default}
   alt={"Advanced search"}
 />
 
@@ -64,7 +64,7 @@ Elements from one collection can be added to another one by means of moving or a
 The above mentioned action could be done by selecting the chosen elements and pressing the `Transfer` button <Btn mixed={[faArrowRight, faSortDown]} color={"success"}/>. A menu opens with two options: **Move to Collection** and **Assign to Collection**. Both options will open the following window to **Select a Collection** as a target from a drop-down menu, **or Create a new Collection** by inserting its name in the corresponding field. When the user is done, they are to press <Btn mixed={["Submit"]} color={"warning"}/>.
 
 <img
-  src={require("@site/static/img/move_to_collection.png").default}
+  src={require("@site/static/img/eln/ui/toolbar/move_to_collection.png").default}
   alt={"Move to Collection"}
 />{" "}
 
@@ -84,7 +84,7 @@ This action can be performed by pressing <Btn mixed={[faMinusSquare]} color={"wa
 
 ## Sharing collections
 
-![Collection Sharing](/img/collection_sharing.gif)
+![Collection Sharing](/img/common/collection_sharing.gif)
 
 Shared collections are collections that can be created by users if they want to share their data with a specific person or a group, so **Sharing** will make the data available to that person or group.
 
@@ -100,7 +100,7 @@ In a shared collection, only changes to existing elements are displayed to users
 
 To share a collection, press <Btn mixed={[faShareAlt]} color={"info"}/>, this will open the following window.
 
-<img src={require("@site/static/img/sharing.png").default} alt={"Sharing"} />
+<img src={require("@site/static/img/eln/ui/toolbar/sharing.png").default} alt={"Sharing"} />
 
 Collections that a Chemotion ELN user has obtained as shared collections from another user are subject to a rights system, which is always defined by the original owner. According to these system, the recipient of the shared collection can perform certain actions on it. The original owner can optionally set a **Role** to the recipient. Each role corresponds to a default **Permission level**, and means that **Everything** is being shared when it comes to the detail level for samples, reactions, wellplates, and screens. The original owner can still change those **Permission level**s and detail levels, but in this case the **Role** already set will be removed. The following table shows the possible **Role**s with the corresponding **Permission level**s.
 
@@ -128,7 +128,7 @@ The **Permission level**s are sorted in a hierarchy, where every higher level in
 
 ## Import and Export Data to and from the Chemotion ELN
 
-Importing and exporting data can be done using the icon ![Export Menu](/img/action_bar_import_export.png)
+Importing and exporting data can be done using the icon ![Export Menu](/img/eln/ui/toolbar/action_bar_import_export.png)
 
 ### Exporting data
 
@@ -137,14 +137,14 @@ The user can export either selected elements from a collection in the form of fi
 To export elements, go to the collection that contains them, and select the desired elements. From the exporting icon in the toolbar, pick **Export samples from selection**. Please pay attention that not only samples can be exported with this option but also reactions, wellplates, and analyses. If multiple types of elements were to be exported as an XLSX, they are sorted in different sheets in the file.
 
 <img
-  src={require("@site/static/img/export_samples.png").default}
+  src={require("@site/static/img/eln/ui/toolbar/export_samples.png").default}
   alt={"Export samples"}
 />{" "}
 
 The window above opens where the user picks the properties to be exported with the elements. If they want to proceed, they press <Btn mixed={["XLSX/SDF Export",faSortUp]} color={"warning"}/>, which enables the user to choose either **XLSX Export**, or **SDF Export**. Otherwise, press <Btn mixed={["Cancel"]} color={"primary"}/>. Follow this [link](https://www.youtube-nocookie.com/embed/Vr3_006Zr-s?start=30) for a video on exporting samples as xlsx files.
 
 <img
-  src={require("@site/static/img/export_reactions.png").default}
+  src={require("@site/static/img/eln/ui/toolbar/export_reactions.png").default}
   alt={"Export reactions"}
 />{" "}
 
@@ -175,7 +175,7 @@ stereo_abs: any, rac, meso, (S), (R), (Sp), (Rp), (Sa);
 stereo_rel: any, syn, anti, p-geminal, p-ortho, p-meta, p-para, cis, trans, fac
 
 After downloading the XLSX template, you can import it in your Chemotion ELN as shown below:
-![Collection View](/img/import_samples_short.gif)
+![Collection View](/img/eln/ui/toolbar/import_samples_short.gif)
 
 :::info[Recommendation]
 
@@ -191,7 +191,7 @@ Available from v2 onwards: Importing melting point, boiling point, location, ref
 
 This icon <Btn mixed={[faFileAlt, faPen, faPercentage, faSortDown,]} color={"success"}/> helps the user to produce reports and organize the literature in their data.
 
-<img src={require("@site/static/img/report.png").default} alt={"Report"} />{" "}
+<img src={require("@site/static/img/eln/ui/toolbar/report.png").default} alt={"Report"} />{" "}
 
 You can report the elements you have by selecting them and clicking on **Report**, this will open the window above. From the **config** tab, choose from **Template selection**. This choice affects the fields in the other tabs and the **File Name** that is given to the file by default. This ** File Name** includes the date of report generation which can still be edited by the user. In all the templates a field for **File description** is provided. In the **Setting** tab you can choose what properties to add to the report. In the **Order** tab you can resort your elements by using the symbol <Btn mixed={[faArrowsAlt]} color={"secondary"}/>, and you can also delete elements from the report with <Btn mixed={[faTimes]} color={"danger"}/>. Before generating the report, you can see a **Preview** in the corresponding tab. When your report is ready, press <Btn mixed={[faFileAlt, "Generate"]} color={"primary"}/> at the top of the report window. You can reset everything to its default and start a new report by pressing <Btn mixed={[faEraser, "Reset"]} color={"info"}/>, or you can leave the report by pressing <Btn mixed={[faTimes]} color={"danger"}/>.
 
@@ -227,6 +227,6 @@ When creating a new sample using the split function **Split Sample**, a new samp
 Reactions can be copied via the same copy function as described for samples. Please ensure that the reaction that you want to copy is selected. The action "copy of reaction" generates a template with the same information on the original reaction which then needs to be saved. After saving the new reaction, a new reaction number is registered and new samples assigned to the new reaction are generated in parallel.
 
 <img
-  src={require("@site/static/img/Copy a reaction.png").default}
+  src={require("@site/static/img/eln/ui/toolbar/Copy-a-reaction.png").default}
   alt={"Report"}
 />{" "}

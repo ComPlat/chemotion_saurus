@@ -105,14 +105,14 @@ Note that the image paths for Markdown and HTML differ, which is caused by diffe
 Inserting an image in Markdown:
 
 ```md
-![Export Menu](/img/export_menu.png)
+![Export Menu](/img/documentation/export_menu.png)
 ```
 
 Inserting an image in HTML (React):
 
 ```js
 <img
-  src={require("@site/static/img/export_menu.png").default}
+  src={require("@site/static/img/documentation/export_menu.png").default}
   width={"30px"}
   height={"30px"}
   alt={"replacement_title"}
@@ -124,7 +124,7 @@ Inserting an image in HTML (React):
 SVGs require special treatment. First import them as React component and then insert them in your text with `className="logo"`:
 
 ```js
-import Sample from "@site/static/img/sample.svg";
+import Sample from "@site/static/img/documentation/sample.svg";
 // more content here
 <Sample title="Sample" className="logo" width={"30px"} height={"30px"} />;
 ```
