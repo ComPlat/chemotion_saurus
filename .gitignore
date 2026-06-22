@@ -26,3 +26,6 @@ website/node_modules/*
 .idea/
 .vscode/
 .devcontainer/
+
+# Local Claude Code config
+.claude/
