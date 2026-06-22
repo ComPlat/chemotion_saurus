@@ -17,6 +17,12 @@ This page is still being edited.
 
 The main way to enter chemical structures into the Chemotion ELN is the Ketcher Editor. The editor is available via the sample detail modal and can be opened by clicking on the area framed in light blue. The Ketcher Editor is not a product of the Chemotion programming group, but it has been modified so that it can be used flexibly for a wide variety of applications. After the additions are made, the structure editor integrated within the Chemotion ELN is now unique in its functionality and, in addition to the input of small chemical molecules, it also enables the illustration of polymeric carrier materials (beads). The editor will also be supplemented by further developments in the future.
 
+:::note[New in version 3]
+
+From Chemotion ELN version 3 onwards, [EPAM Ketcher](https://lifescience.opensource.epam.com/ketcher/) is the default structure editor. It has to be enabled as a feature from the administration interface — see [Configuration](/docs/eln/install_configure/configuration).
+
+:::
+
 ## Basic functions
 
 The Ketcher Structure Editor offers all the basic functions that are necessary for chemical work and the input of structures. Drawn molecules can be rotated, optimized, copied and pasted again. The size of the displayed molecules can be changed by adjusting the zoom factor.
@@ -27,7 +33,7 @@ On the left side of the image above, some functions have a small black arrow in 
 
 ![Ketcher bonds](/img/ketcher_bonds.gif)
 
-Atoms can be added to the structure from the column on the right side of the image above. The most frequent used atoms are already displayed in the column using their symbols, while less frequent used ones can be accessed from the <FontAwesomeIcon icon={faEllipsisH} size="lg"/> icon which displays the **Periodic table** to pick from. The user can either pick a **Single** atom, a **List**, or **Not List**. The user can also use **Generics Groups** to add one of **Reaxys Generics**. When an atom is added, it is assumed to be attached with a number of Hydrogen atoms based on its valency, which can be manually modified (see [Select](#select)), so if you add a carbon atom **C**, you get CH4 unless .
+Atoms can be added to the structure from the column on the right side of the image above. The most frequent used atoms are already displayed in the column using their symbols, while less frequent used ones can be accessed from the <FontAwesomeIcon icon={faEllipsisH} size="lg"/> icon which displays the **Periodic table** to pick from. The user can either pick a **Single** atom, a **List**, or **Not List**. The user can also use **Generics Groups** to add one of **Reaxys Generics**. When an atom is added, it is assumed to be attached with a number of Hydrogen atoms based on its valency, which can be manually modified (see [Select](#select)), so if you add a carbon atom **C**, you get CH4.
 
 ### Bonds
 
