@@ -2,7 +2,9 @@
   "name": "chemotion-saurus",
   "version": "1.0.0",
   "private": true,
-  "engines": {"node": "24"},
+  "engines": {
+    "node": "24"
+  },
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start --host 127.0.0.1 --port 3000",
@@ -15,6 +17,7 @@
   "dependencies": {
     "@docusaurus/core": "^3",
     "@docusaurus/faster": "^3",
+    "@docusaurus/plugin-client-redirects": "^3.10.1",
     "@docusaurus/preset-classic": "^3",
     "@easyops-cn/docusaurus-search-local": "*",
     "@fortawesome/fontawesome-svg-core": "*",

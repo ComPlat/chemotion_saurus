@@ -1,0 +1,330 @@
+[
+  {
+    "from": "/documentation/style_guide",
+    "to": "/documentation/style-guide"
+  },
+  {
+    "from": "/eln/admin/generic_config",
+    "to": "/eln/admin/generic-config"
+  },
+  {
+    "from": "/eln/admin/remote_devices",
+    "to": "/eln/admin/remote-devices"
+  },
+  {
+    "from": "/eln/admin/third_party_apps",
+    "to": "/eln/admin/third-party-apps"
+  },
+  {
+    "from": "/eln/admin/user_management",
+    "to": "/eln/admin/user-management"
+  },
+  {
+    "from": "/eln/devices/configurations/data_transfer",
+    "to": "/eln/devices/configurations/data-transfer"
+  },
+  {
+    "from": "/eln/devices/configurations/local_collector",
+    "to": "/eln/devices/configurations/local-collector"
+  },
+  {
+    "from": "/eln/devices/configurations/remote_control",
+    "to": "/eln/devices/configurations/remote-control"
+  },
+  {
+    "from": "/eln/devices/configurations/user_level_collection",
+    "to": "/eln/devices/configurations/user-level-collection"
+  },
+  {
+    "from": "/eln/devices/dsc_tga/netzsch_dsc",
+    "to": "/eln/devices/dsc-tga/netzsch-dsc"
+  },
+  {
+    "from": "/eln/devices/dsc_tga/ta_instruments_dsc_tga",
+    "to": "/eln/devices/dsc-tga/ta-instruments-dsc-tga"
+  },
+  {
+    "from": "/eln/devices/electronic_spectroscopy/eis",
+    "to": "/eln/devices/electronic-spectroscopy/eis"
+  },
+  {
+    "from": "/eln/devices/gc_gc-ms/agilent_chemstation",
+    "to": "/eln/devices/gc-gc-ms/agilent-chemstation"
+  },
+  {
+    "from": "/eln/devices/gc_gc-ms/shimadzu_labsolutions_gc-ms",
+    "to": "/eln/devices/gc-gc-ms/shimadzu-labsolutions-gc-ms"
+  },
+  {
+    "from": "/eln/devices/gc_gc-ms/shimadzu_labsolutions_gc",
+    "to": "/eln/devices/gc-gc-ms/shimadzu-labsolutions-gc"
+  },
+  {
+    "from": "/eln/devices/hplc_lc-ms/agilent_chemstation",
+    "to": "/eln/devices/hplc-lc-ms/agilent-chemstation"
+  },
+  {
+    "from": "/eln/devices/hplc_lc-ms/agilent_openlab",
+    "to": "/eln/devices/hplc-lc-ms/agilent-openlab"
+  },
+  {
+    "from": "/eln/devices/hplc_lc-ms/agilent_pss_wingpc",
+    "to": "/eln/devices/hplc-lc-ms/agilent-pss-wingpc"
+  },
+  {
+    "from": "/eln/devices/hplc_lc-ms/shimadzu_labsolutions",
+    "to": "/eln/devices/hplc-lc-ms/shimadzu-labsolutions"
+  },
+  {
+    "from": "/eln/devices/microscopy/leica_stellaris_5",
+    "to": "/eln/devices/microscopy/leica-stellaris-5"
+  },
+  {
+    "from": "/eln/devices/ms/advion_expresion_cms",
+    "to": "/eln/devices/ms/advion-expresion-cms"
+  },
+  {
+    "from": "/eln/devices/nmr/bruker_topspin",
+    "to": "/eln/devices/nmr/bruker-topspin"
+  },
+  {
+    "from": "/eln/devices/nmr/magritek_spinsolve",
+    "to": "/eln/devices/nmr/magritek-spinsolve"
+  },
+  {
+    "from": "/eln/devices/uv_vis_nir_ir_raman/bruker_opus_dpt-format",
+    "to": "/eln/devices/uv-vis-nir-ir-raman/bruker-opus-dpt-format"
+  },
+  {
+    "from": "/eln/devices/uv_vis_nir_ir_raman/bruker_opus_ft-ir",
+    "to": "/eln/devices/uv-vis-nir-ir-raman/bruker-opus-ft-ir"
+  },
+  {
+    "from": "/eln/devices/uv_vis_nir_ir_raman/bruker_opus_raman",
+    "to": "/eln/devices/uv-vis-nir-ir-raman/bruker-opus-raman"
+  },
+  {
+    "from": "/eln/install_configure/ChemCLI",
+    "to": "/eln/install-configure/ChemCLI"
+  },
+  {
+    "from": "/eln/install_configure/authentication",
+    "to": "/eln/install-configure/authentication"
+  },
+  {
+    "from": "/eln/install_configure/configuration",
+    "to": "/eln/install-configure/configuration"
+  },
+  {
+    "from": "/eln/install_configure",
+    "to": "/eln/install-configure"
+  },
+  {
+    "from": "/eln/install_configure/manual_install",
+    "to": "/eln/install-configure/manual-install"
+  },
+  {
+    "from": "/eln/install_configure/system_check",
+    "to": "/eln/install-configure/system-check"
+  },
+  {
+    "from": "/eln/ui/elements/cell_lines",
+    "to": "/eln/ui/elements/cell-lines"
+  },
+  {
+    "from": "/eln/ui/elements/device_description",
+    "to": "/eln/ui/elements/device-description"
+  },
+  {
+    "from": "/eln/ui/first_steps",
+    "to": "/eln/ui/first-steps"
+  },
+  {
+    "from": "/eln/ui/text_editor",
+    "to": "/eln/ui/text-editor"
+  },
+  {
+    "from": "/eln/ui/text_templates",
+    "to": "/eln/ui/text-templates"
+  },
+  {
+    "from": "/repo/details_standards/MOFs/device",
+    "to": "/repo/details-standards/MOFs/device"
+  },
+  {
+    "from": "/repo/details_standards/MOFs",
+    "to": "/repo/details-standards/MOFs"
+  },
+  {
+    "from": "/repo/details_standards/MOFs/placeholder1",
+    "to": "/repo/details-standards/MOFs/placeholder1"
+  },
+  {
+    "from": "/repo/details_standards/MOFs/placeholder2",
+    "to": "/repo/details-standards/MOFs/placeholder2"
+  },
+  {
+    "from": "/repo/details_standards/MOFs/sample",
+    "to": "/repo/details-standards/MOFs/sample"
+  },
+  {
+    "from": "/repo/details_standards/MOFs/solvent",
+    "to": "/repo/details-standards/MOFs/solvent"
+  },
+  {
+    "from": "/repo/details_standards/MOFs/synthesis",
+    "to": "/repo/details-standards/MOFs/synthesis"
+  },
+  {
+    "from": "/repo/details_standards/MOFs/vessel",
+    "to": "/repo/details-standards/MOFs/vessel"
+  },
+  {
+    "from": "/repo/details_standards/abbreviations",
+    "to": "/repo/details-standards/abbreviations"
+  },
+  {
+    "from": "/repo/details_standards/analysis_test/HPLC",
+    "to": "/repo/details-standards/analysis-test/HPLC"
+  },
+  {
+    "from": "/repo/details_standards/analysis_test/SEC",
+    "to": "/repo/details-standards/analysis-test/SEC"
+  },
+  {
+    "from": "/repo/details_standards/analysis_test/cv",
+    "to": "/repo/details-standards/analysis-test/cv"
+  },
+  {
+    "from": "/repo/details_standards/analysis_test/dsc",
+    "to": "/repo/details-standards/analysis-test/dsc"
+  },
+  {
+    "from": "/repo/details_standards/analysis_test",
+    "to": "/repo/details-standards/analysis-test"
+  },
+  {
+    "from": "/repo/details_standards/analysis_test/ir_raman",
+    "to": "/repo/details-standards/analysis-test/ir-raman"
+  },
+  {
+    "from": "/repo/details_standards/analysis_test/ms",
+    "to": "/repo/details-standards/analysis-test/ms"
+  },
+  {
+    "from": "/repo/details_standards/analysis_test/nmr",
+    "to": "/repo/details-standards/analysis-test/nmr"
+  },
+  {
+    "from": "/repo/details_standards/analysis_test/pxrd",
+    "to": "/repo/details-standards/analysis-test/pxrd"
+  },
+  {
+    "from": "/repo/details_standards/analysis_test/tga",
+    "to": "/repo/details-standards/analysis-test/tga"
+  },
+  {
+    "from": "/repo/details_standards/analysis_test/uv_vis",
+    "to": "/repo/details-standards/analysis-test/uv-vis"
+  },
+  {
+    "from": "/repo/details_standards/files",
+    "to": "/repo/details-standards/files"
+  },
+  {
+    "from": "/repo/details_standards",
+    "to": "/repo/details-standards"
+  },
+  {
+    "from": "/repo/details_standards/reactions",
+    "to": "/repo/details-standards/reactions"
+  },
+  {
+    "from": "/repo/details_standards/reactions_test/in_organic",
+    "to": "/repo/details-standards/reactions-test/in-organic"
+  },
+  {
+    "from": "/repo/details_standards/reactions_test",
+    "to": "/repo/details-standards/reactions-test"
+  },
+  {
+    "from": "/repo/details_standards/reactions_test/surmof",
+    "to": "/repo/details-standards/reactions-test/surmof"
+  },
+  {
+    "from": "/repo/interfaces/oa_oai_pmh",
+    "to": "/repo/interfaces/oa-oai-pmh"
+  },
+  {
+    "from": "/repo/interfaces/oa_open_apis",
+    "to": "/repo/interfaces/oa-open-apis"
+  },
+  {
+    "from": "/repo/physical_samples",
+    "to": "/repo/physical-samples"
+  },
+  {
+    "from": "/repo/settings_preparation",
+    "to": "/repo/settings-preparation"
+  },
+  {
+    "from": "/repo/workflow/group_lead_review",
+    "to": "/repo/workflow/group-lead-review"
+  },
+  {
+    "from": "/services/chemspectra/uv_vis",
+    "to": "/services/chemspectra/uv-vis"
+  },
+  {
+    "from": "/services/ketcher/surface_chemistry",
+    "to": "/services/ketcher/surface-chemistry"
+  },
+  {
+    "from": "/services/third_party_apps/OpenStats/assumptions",
+    "to": "/services/third-party-apps/OpenStats/assumptions"
+  },
+  {
+    "from": "/services/third_party_apps/OpenStats/export",
+    "to": "/services/third-party-apps/OpenStats/export"
+  },
+  {
+    "from": "/services/third_party_apps/OpenStats/history",
+    "to": "/services/third-party-apps/OpenStats/history"
+  },
+  {
+    "from": "/services/third_party_apps/OpenStats",
+    "to": "/services/third-party-apps/OpenStats"
+  },
+  {
+    "from": "/services/third_party_apps/OpenStats/models",
+    "to": "/services/third-party-apps/OpenStats/models"
+  },
+  {
+    "from": "/services/third_party_apps/OpenStats/tests",
+    "to": "/services/third-party-apps/OpenStats/tests"
+  },
+  {
+    "from": "/services/third_party_apps/OpenStats/visualization",
+    "to": "/services/third-party-apps/OpenStats/visualization"
+  },
+  {
+    "from": "/services/third_party_apps",
+    "to": "/services/third-party-apps"
+  },
+  {
+    "from": "/services/third_party_apps/tlc/export",
+    "to": "/services/third-party-apps/tlc/export"
+  },
+  {
+    "from": "/services/third_party_apps/tlc/faq",
+    "to": "/services/third-party-apps/tlc/faq"
+  },
+  {
+    "from": "/services/third_party_apps/tlc",
+    "to": "/services/third-party-apps/tlc"
+  },
+  {
+    "from": "/services/third_party_apps/tlc/usage",
+    "to": "/services/third-party-apps/tlc/usage"
+  }
+]

@@ -1,5 +1,7 @@
 require("dotenv").config();
 
+const redirects = require("./redirects.json");
+
 module.exports = {
   future: {
     v4: true, // Enable future Docusaurus v4 features
@@ -132,6 +134,15 @@ module.exports = {
         highlightSearchTermsOnTargetPage: true,
         indexBlog: false,
         indexPages: true,
+      },
+    ],
+  ],
+  plugins: [
+    [
+      "@docusaurus/plugin-client-redirects",
+      {
+        // 301 redirects from the old underscore URLs to the new dashed ones
+        redirects,
       },
     ],
   ],
