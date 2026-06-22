@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node click.js mm-state.json /mydb/collection/all 'button:has-text\\(\"Calendar\"\\)' calendar_click.png 3500)",
+      "Bash(node click.js mm-state.json /mydb/collection/all 'button:has-text\\(\"CREATE\"\\)' create_menu.png 2500)",
+      "Bash(timeout 320 npm run build)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(node click.js adm-state.json / 'text=User Management' admin_users.png 3000)",
+      "Bash(node login.js MM thebestpasswordever mm-state.json)",
+      "Bash(node cap.js mm-state.json /mydb/collection/all main_now.png 6000)",
+      "Bash(node probe.js)",
+      "Bash(node annotate_main.js screen_new.png)",
+      "Bash(cp /tmp/claude-1000/-home-harivyasi-work-projects-website-saurus/ce446be0-6ae9-4bfc-8ada-aa7a6640d488/scratchpad/pw/screen_new.png /home/harivyasi/work/projects/website/saurus/static/img/screen.png)",
+      "Bash(node click.js mm-state.json /mydb/collection/all 'button:has-text\\(\"Manage Collections\"\\)' mgmt_new.png 3500)",
+      "Bash(node capture2.js 1 0 reactions_list_new.png)",
+      "Bash(node capture2.js 1 1 reaction_detail_new.png)",
+      "Bash(cp /tmp/claude-1000/-home-harivyasi-work-projects-website-saurus/ce446be0-6ae9-4bfc-8ada-aa7a6640d488/scratchpad/pw/reaction_detail_new.png /home/harivyasi/work/projects/website/saurus/static/img/reaction_details_modal.png)",
+      "Bash(cp /tmp/claude-1000/-home-harivyasi-work-projects-website-saurus/ce446be0-6ae9-4bfc-8ada-aa7a6640d488/scratchpad/pw/reactions_list_new.png /home/harivyasi/work/projects/website/saurus/static/img/reaction/reactions_list.png)",
+      "Bash(node capture2.js 0 0 samples_list_new.png)",
+      "Bash(git mv *)",
+      "Bash(sed -i 's#/img/calendar/#/img/eln/ui/calendar/#g' docs/eln/ui/calendar.mdx)"
+    ]
+  }
+}
