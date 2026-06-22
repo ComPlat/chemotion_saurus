@@ -26,7 +26,7 @@ import { FigCaption, YouTubeFrame } from "@site/src/js/layout";
 
 ![whole window](/img/screen.png)
 
-The toolbar sits above the element list in the [element panel](/docs/eln/ui#element-panel) and provides a variety of functions to control the Chemotion ELN elements. Its buttons are `Reporting`, `Export`, `Split`, `Transfer`, `Remove`, `Share` and `References`; the search bar and the green `CREATE` button are located to its right. These functions cover adding, copying, deleting, moving, sharing, filtering, importing and exporting.
+The toolbar sits above the element list in the [element panel](/docs/eln/ui#element-panel) and provides a variety of functions to control the Chemotion ELN elements. Its buttons are `Reporting`, `Export`, `Split`, `Transfer`, `Remove`, `Share` and `References`; the search bar and the green <Btn mixed={[faPlus, "CREATE"]} color={"success"}/> button are located to its right. These functions cover adding, copying, deleting, moving, sharing, filtering, importing and exporting.
 
 ## Filtering
 
@@ -203,7 +203,7 @@ The generation of new element-instances such as a new sample or a new reaction c
 
 ### New elements with the "CREATE" button
 
-New elements are created with the green `CREATE` button to the right of the toolbar. Clicking it opens a menu with the options **Create Sample**, **Create Reaction**, **Create Wellplate**, **Create Screen** and **Create Research Plan**. It does not matter which element list is selected, as long as you are in the right collection — choose any of these options and the corresponding element is created.
+New elements are created with the green <Btn mixed={[faPlus, "CREATE"]} color={"success"}/> button to the right of the toolbar. Clicking it opens a menu with the options **Create Sample**, **Create Reaction**, **Create Wellplate**, **Create Screen** and **Create Research Plan**. It does not matter which element list is selected, as long as you are in the right collection — choose any of these options and the corresponding element is created.
 
 To populate wellplates, the user has to drag and drop samples, and to populate screens, the user has to drag and drop wellplates. The `CREATE` menu lets the user avoid this repetitive drag-and-drop process with the functions **Create Wellplate from Samples** and **Create Screen from Wellplates**. To use either of them, go to the target collection, select the elements (samples or wellplates) to be added to the newly created element (wellplate or screen respectively), and choose the corresponding function. The menu also offers **Create Vessel Template**. Please note that you cannot create an element with this method from elements coming from another collection; you can, however, still add them to the created element with the classical drag and drop.
 

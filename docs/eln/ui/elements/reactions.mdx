@@ -9,6 +9,7 @@ import {
   faArrowsAlt,
   faList,
   faSortDown,
+  faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import { Btn } from "@site/src/js/btn.js";
 import Reaction from "@site/static/img/reaction.svg";
@@ -34,7 +35,7 @@ If you want to assign another name to the reaction, you can do this by making an
 
 ## Generation
 
-Reactions are generated with the green `CREATE` button in the [toolbar](../toolbar) by choosing **Create Reaction**.
+Reactions are generated with the green <Btn mixed={[faPlus, "CREATE"]} color={"success"}/> button in the [toolbar](../toolbar) by choosing **Create Reaction**.
 
 Once a reaction is generated, its details panel is displayed, and the user can fill the reaction with the interacting samples and the resulting products from within the **Scheme** tab.
 More details about populating a reaction with samples can be found in the [Details panel for reactions](../details#details-panel-for-reactions) chapter.

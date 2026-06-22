@@ -15,11 +15,9 @@ Wellplates <Wellplate title="Wellplate" className="logo" width={"30px"}/> repres
 ## Creation
 
 ![Create Wellplate](/img/create_wellplate.gif)
-Wellplates can be created through different options using the green `CREATE` button in the [element panel](/docs/eln/ui#element-panel).
+Wellplates are created with the green <Btn mixed={[faPlus, "CREATE"]} color={"success"}/> button in the [toolbar](../toolbar). The menu offers two ways to create a wellplate:
 
-The first element in the create button looks differently according to the tab that is selected in the [element panel](/docs/eln/ui#element-panel), for example if you are on the Sample Tab there will be a <Sample title="Sample" className="logo" width={"30px"}/> instead of <Wellplate title="Wellplate" className="logo" width={"30px"}/>.
-
-1. A blank wellplate can be created by clicking on the <button className={"button button--sm button--primary"} style={{padding:"2px", height: "50%", width: "5%"}}><FontAwesomeIcon icon={faPlus} size="lg"/></button> when the wellplate tab is selected or with the option **Create Wellplate** from the dropdown menu <button className={"button button--sm button--primary"} style={{padding:"2px", height: "50%", width: "5%"}}><FontAwesomeIcon icon={faSortDown} size="lg"/></button>. The blank wells of the plate can be filled in the **Designer** tab via drag and drop with samples from the samples list.
+1. A blank wellplate is created by choosing **Create Wellplate**. The blank wells of the plate can be filled in the **Designer** tab via drag and drop with samples from the samples list.
 
 2. A filled wellplate can be created from one or multiple sample(s) when the samples are selected in the sample list on the sample tab. Then select **Create Wellplate from Samples** in the dropdown menu. After that the wellplate in the **Designer** tab is automatically filled with the selected samples. This action is a combination of the action **split** of the selected samples together with the insertion of the created split samples in the wellplate. The wellplate will be gradually filled with the created split samples. If the number of the split samples exceeds the free positions in the wellplate, there will be a second wellplate created and filled automatically.
 
