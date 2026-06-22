@@ -26,7 +26,7 @@ import { FigCaption, YouTubeFrame } from "@site/src/js/layout";
 
 ![whole window](/img/screen.png)
 
-The toolbar (or action bar) provides a variety of functions to control the Chemotion ELN elements. Those functions include adding, copying, deleting, moving, filtering, importing and exporting.
+The toolbar sits above the element list in the [element panel](/docs/eln/ui#element-panel) and provides a variety of functions to control the Chemotion ELN elements. Its buttons are `Reporting`, `Export`, `Split`, `Transfer`, `Remove`, `Share` and `References`; the search bar and the green `CREATE` button are located to its right. These functions cover adding, copying, deleting, moving, sharing, filtering, importing and exporting.
 
 ## Filtering
 
@@ -61,7 +61,7 @@ Although the **Advanced Search** states **Sample** in its menus, e.g. **Sample N
 
 Elements from one collection can be added to another one by means of moving or assigning. The elements added to the target collection have the same properties as the original ones. If some elements already exist in the target collection with the same short label as the added elements, only the added elements are kept, i.e. the properties of already existing elements will be updated based on the added ones.
 
-The above mentioned action could be done by selecting the chosen elements, and pressing <Btn mixed={[faArrowRight, faSortDown]} color={"success"}/>. A menu opens with two options: **Move to Collection** and **Assign to Collection**. Both options will open the following window to **Select a Collection** as a target from a drop-down menu, **or Create a new Collection** by inserting its name in the corresponding field. When the user is done, they are to press <Btn mixed={["Submit"]} color={"warning"}/>.
+The above mentioned action could be done by selecting the chosen elements and pressing the `Transfer` button <Btn mixed={[faArrowRight, faSortDown]} color={"success"}/>. A menu opens with two options: **Move to Collection** and **Assign to Collection**. Both options will open the following window to **Select a Collection** as a target from a drop-down menu, **or Create a new Collection** by inserting its name in the corresponding field. When the user is done, they are to press <Btn mixed={["Submit"]} color={"warning"}/>.
 
 <img
   src={require("@site/static/img/move_to_collection.png").default}
@@ -201,19 +201,18 @@ The **Archive** tab contains all the generated reports (except the deleted ones)
 
 The generation of new element-instances such as a new sample or a new reaction can be done by three different actions: **add**, **copy** and **split**. The function add is available for all types of elements, the functions copy and split are only available for selected ones.
 
-### New Elements by using the function "add"
+### New elements with the "CREATE" button
 
-There are two buttons to create elements: <Btn mixed={[faPlus]} color={"primary"}/>, which changes its appearance based on the selected element in the element bar, e.g., if the user is already in the reactions list from the element bar, the button will look like <Btn mixed={[faFlask, faPlus]} color={"primary"}/>. If you press this button, a new reaction will be generated immediately in the collection you are already in.
-The other button is in the shape of an arrow <Btn mixed={[faSortDown]} color={"primary"}/>.
-If you are using the arrow button, a menu with the following options is opened: **Create Sample**, **Create Reaction**, **Create Wellplate**, **Create Screen**, **Create Research Plan**. It doesn’t matter in which list you are as long as you are in the right collection, choose any of the above options and the corresponding element will be created.
-To populate wellplates, the user has to drag and drop samples, and to populate screens, the user has to drag and drop wellplates. The arrow button menu enables the user to avoid this repetitive drag and drop process by offering the two functions: **Create Wellplate from Samples**, and **Create Screen from Wellplates**. To use either of them, go to the target collection, select the elements (samples or wellplates) to be added to the newly created element (wellplate or screen respectively), and choose the corresponding function (**Create Wellplate from Samples** or **Create Screen from Wellplates**). Please note that you will not be able to create an element with this method from elements coming from another collection. However, you can still add them to the created element with the classical drag and drop.
+New elements are created with the green `CREATE` button to the right of the toolbar. Clicking it opens a menu with the options **Create Sample**, **Create Reaction**, **Create Wellplate**, **Create Screen** and **Create Research Plan**. It does not matter which element list is selected, as long as you are in the right collection — choose any of these options and the corresponding element is created.
+
+To populate wellplates, the user has to drag and drop samples, and to populate screens, the user has to drag and drop wellplates. The `CREATE` menu lets the user avoid this repetitive drag-and-drop process with the functions **Create Wellplate from Samples** and **Create Screen from Wellplates**. To use either of them, go to the target collection, select the elements (samples or wellplates) to be added to the newly created element (wellplate or screen respectively), and choose the corresponding function. The menu also offers **Create Vessel Template**. Please note that you cannot create an element with this method from elements coming from another collection; you can, however, still add them to the created element with the classical drag and drop.
 
 ### Function "copy" or "split" for samples
 
 In the last section of the menu, one can find the copy and split functions.
 Generation of new samples with molecular structures that are already used by another samples can be carried out by two similar but not equal actions, **Split Sample** and **Copy Sample**.
 
-To copy a sample, first select the sample whose structure you want to copy from the Samples list and then press the <Btn mixed={[faSortDown]} color={"primary"}/> button in the action bar. The **Copy Sample** function is offered there in the lower area. When the function is selected, a details modal is opened for a new sample to be edited.
+To copy a sample, first select the sample whose structure you want to copy from the Samples list and then use the **Copy Sample** function from the toolbar. When the function is selected, a details modal is opened for a new sample to be edited.
 
 :::danger[Caution]
 
