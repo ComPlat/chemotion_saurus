@@ -19,7 +19,12 @@
       "Bash(cp /tmp/claude-1000/-home-harivyasi-work-projects-website-saurus/ce446be0-6ae9-4bfc-8ada-aa7a6640d488/scratchpad/pw/reactions_list_new.png /home/harivyasi/work/projects/website/saurus/static/img/reaction/reactions_list.png)",
       "Bash(node capture2.js 0 0 samples_list_new.png)",
       "Bash(git mv *)",
-      "Bash(sed -i 's#/img/calendar/#/img/eln/ui/calendar/#g' docs/eln/ui/calendar.mdx)"
+      "Bash(sed -i 's#/img/calendar/#/img/eln/ui/calendar/#g' docs/eln/ui/calendar.mdx)",
+      "Bash(sed -i 's#img/history/#img/eln/ui/history/#g' docs/eln/ui/history.mdx)",
+      "Bash(sed -i 's#img/hyperlinks/#img/eln/ui/hyperlink/#g' docs/eln/ui/hyperlink.mdx)",
+      "Bash(sed -i 's#img/image_annotation/#img/eln/ui/images/#g' docs/eln/ui/images.mdx)",
+      "Bash(sed -i 's#img/mixtures/#img/eln/ui/elements/samples/mixtures/#g' docs/eln/ui/elements/samples/mixtures.mdx)",
+      "Bash(sed -i 's#img/collection_tabs/#img/eln/ui/collections/tabs/#g' docs/eln/ui/collections/tabs.mdx)"
     ]
   }
 }
