@@ -16,7 +16,7 @@ import fieldFormula from "@site/static/img/labimotion/designer/components/fields
 
 A **Formula-Field** type field is used to perform calculations based on specified inputs.
 
-Incorporate other fields by simply using their unique [Field Name](../../fields#field-name) and mathematical operations like addition (+), subtraction (-), multiplication (\*), and division (/). These mathematical operations are executed automatically, and the output decimals can be limited if you have specified the number of [Decimal](#decimal). Users can adjust the calculation result if [Can Adjust?](#can-adjust) is checked.
+Incorporate other fields by simply using their unique [Field Name](../../fields#field-name) and mathematical operations like addition (+), subtraction (-), multiplication (\*), and division (/). These mathematical operations are executed automatically, and the output decimals can be limited if the designer has specified the number of [Decimal](#decimal). Users can adjust the calculation result if [Can Adjust?](#can-adjust) is checked.
 
 <div align="center">
   <img src={fieldFormula} alt="LabIMotion - Formula Field" />
@@ -29,7 +29,7 @@ For example:
 - Field B: Field Name - field_b, Type - Integer
 - Field C: Field Name - field_c, Type - Formula-Field
 
-Let's set up the formula: (field_a + field_b) / 0.33
+The designer sets up the formula: (field_a + field_b) / 0.33
 
 When an end-user enters "330" in Field A and "30" in Field B, the formula calculation (330 + 30) / 0.33 will be displayed in Field C.
 
@@ -43,7 +43,7 @@ Watch the video below to see how easy it is to use formula field.
 
 :::info
 
-When setting up the calculation formula, use the [Field Name](../../fields#field-name) if you want to use the [Integer](integer) type field.
+When setting up the calculation formula, use the [Field Name](../../fields#field-name) to reference an [Integer](integer) type field.
 
 :::
 
