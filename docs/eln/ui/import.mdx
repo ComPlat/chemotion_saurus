@@ -10,7 +10,7 @@ import { DownloadBtn } from "@site/src/js/download_files.js";
 This is the simple import method. For the enhanced, validated import introduced in version 3.0, see [Importing Data with Column Mapping and Validation](#importing-data-with-column-mapping-and-validation) below.
 
 [Samples](/docs/eln/ui/elements/samples) can be imported to Chemotion ELN by uploading a simple excel list that contains the structure of the sample as a SMILES string.
-Please add the SMILES strings in respective column of the file to be imported and please add the description "canonical smiles" as header of the column.
+Please add the SMILES strings in the respective column of the file to be imported and add the description "canonical smiles" as the header of the column.
 To enable the import into a [collection](/docs/eln/ui/collections), the desired target collection has to be selected. Import of samples is only possible for the user that created the collection.
 The export and import of samples is currently supported in the xlsx, csv, and sdf formats.
 
@@ -48,13 +48,13 @@ The import process consists of the following steps:
 ## Step 1: File Upload
 
 To begin the import process:
-1. Navigate to the desired collection in Chemotion ELN & click on respective toolbar icon to open a list of options as shown below.
+1. Navigate to the desired collection in Chemotion ELN and click on the respective toolbar icon to open a list of options as shown below.
 2. Click on the **Import Samples to collection** button.
 3. Drag and drop your file into the upload area or select it manually. Supported file formats include:
    - Excel (`.xlsx`)
    - SDF (`.sdf`)
    - CSV (`.csv`)
-4. User can download any of the templates (available in `.xlsx` and `.sdf` format), by clicking on **Download Template** button.
+4. The user can download any of the templates (available in `.xlsx` and `.sdf` format) by clicking on the **Download Template** button.
 
 ### File Type Selection
 - **Sample Import**: For importing sample data only.
@@ -99,7 +99,7 @@ The validation component ensures that the imported data adheres to the required 
 
 #### Validation Process
 The validation process consists of two main steps:
-1. **Schema Validation**: fields in the data are validated against a predefined schema rules. The schema defines the expected data type, format, and constraints.
+1. **Schema Validation**: fields in the data are validated against predefined schema rules. The schema defines the expected data type, format, and constraints.
 2. **Field-Specific Validations**: Additional validations are applied to specific fields based on their properties. These validations ensure that the data is not only syntactically correct but also semantically meaningful.
 
 ### How to Use

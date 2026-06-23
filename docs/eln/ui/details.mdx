@@ -50,7 +50,7 @@ There are three different types of fields within the details panel:
 
 Tabs were introduced to organize the information within the details panel. They enable information structuring and displaying as in folders. Different tabs are available based on the type of the element. Tabs can be made visible and invisible. This will become clear in the later chapters.
 
-Users can config their own tabs, these tabs can be hidden or shown in the user's preferred ordering. By clicking the small blue symbol <Btn mixed={[faSlidersH]} color={"info"}/> on the right of tabs, drag and drop the tab to change the ordering or into the dark block to hide the tab.
+Users can configure their own tabs; these tabs can be hidden or shown in the user's preferred ordering. By clicking the small blue symbol <Btn mixed={[faSlidersH]} color={"info"}/> on the right of tabs, drag and drop the tab to change the ordering or into the dark block to hide the tab.
 
 ![Change_Tabs](/img/eln/ui/details/change_tabs.gif)
 
@@ -97,7 +97,7 @@ The uploaded records can be supplemented with information in an input popup wind
 #### Intended structure of analytical data
 
 The hierarchy of analytical data is structured as follows. One or more `analyses` can be associated with an element (e.g., sample). Each analysis can contain one or more `datasets`. The latter can contain one or more `attachments`.
-More specifically, an `analysis` is created for every measurements type (e.g., 1H NMR).
+More specifically, an `analysis` is created for every measurement type (e.g., 1H NMR).
 A `dataset` is created for every measurement within a measurement type. For example, a user creates an analysis for a 1H NMR measurement that has been repeated once with 16 scans, and once with 64 scans. Those two scanning runs can be represented as two separate datasets in the same analysis. The latter analysis could be further extended with 1H NMR experiments that tested different solvents.
 `Attachments` are data files associated with a dataset. Different data files can be attached to a dataset (e.g., images, raw data in open or proprietary formats). Chemotion ELN offers various file conversion procedures. They result in an increased number of attachments. One example is the creation of image files to support the preview of data.
 
@@ -243,7 +243,7 @@ The decoupled mode removes the coupling between the structure and automatically 
 - sample contains undefined parts that cannot be explicitly drawn (such as polymers)
 - composites and mixtures of materials
 
-Selecting decoupled in the properties tab allows to draw structures in the embedded structure editors without the generation of identifiers and calculation of molecular mass. The user is then asked to add the molecular mass and the formula of the molecule in an additionally appearing interface. This gives the option to use the samples in the reaction table even though the automatic mass calculation is disabled.
+Selecting decoupled in the properties tab allows the user to draw structures in the embedded structure editors without the generation of identifiers and calculation of molecular mass. The user is then asked to add the molecular mass and the formula of the molecule in an additionally appearing interface. This gives the option to use the samples in the reaction table even though the automatic mass calculation is disabled.
 
 \*\*Properties for a Decoupled Sample
 ![Decoupled_sample](/img/eln/ui/details/decoupled_sample.png)

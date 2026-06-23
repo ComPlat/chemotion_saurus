@@ -34,8 +34,8 @@ The physical separation of laboratory PCs from public networks for security reas
 file transfer requirements. As a result, data stored locally on laboratory devices must be forwarded to the ELN via an intermediary system.
 
 The Shuttle is one component of such an system. It sends device data to an intermediary
-data storage and allows to monitor and organize the data transmission of devices integrated with the user's ELN Chemotion instance.
-Additionally, it can processes data in a configurable, step-based workflow.
+data storage and allows monitoring and organizing the data transmission of devices integrated with the user's ELN Chemotion instance.
+Additionally, it can process data in a configurable, step-based workflow.
 
 Depending on the configuration, the data can be converted into a BagIt archive before being forwarded to Chemotion.
 Finally, the processed data is transferred to the configured target system using standard transfer protocols such as WebDAV or SFTP.
@@ -97,7 +97,7 @@ Nevertheless, all available configuration options are documented below. The same
   - **user** [string]\
     	WebDAV or SFTP user for **dst**
   - **pass** [string]\
-    	WebDAV or SFTP password  for **user**
+    	WebDAV or SFTP password for **user**
   - **preconvert** [string]\
     	[True or 1]  Set to True if the raw files are too large and should not be archived in Chemotion. In this case, only the converted BagIt archive is stored in Chemotion, while the raw files are stored elsewhere.
     	- The user must specify two destinations

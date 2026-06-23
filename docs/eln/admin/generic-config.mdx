@@ -63,7 +63,7 @@ The segments can be edited as follows.
 
 Administrators can create as many segments as possible for an element,
 e.g., sample, reaction, or any generic element.
-Once the segment is created, it can not be re-assigned to another element.
+Once the segment is created, it cannot be re-assigned to another element.
 
 To create a segment, press the button <Btn mixed={[" New Segment ", faPlus]} color={"primary"}/>,
 fill in the segment attributes, and press <Btn mixed={["Create", faSave]} color={"primary"} />
@@ -93,7 +93,7 @@ This opens the window **New Element** to enter the following attributes:
 | attribute   | required | explanation                                                                                                                                                                                                                                   |
 | ----------- | :------: | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Klass       |   Yes    | The name used to identify the element.                                                                                                                                                                                                        |
-| Prefix      |   Yes    | A prefix for naming the generated objects that belong to the generic element, e.g., if the user name abbreviation is "user" and the **Prefix** is "t", then new "Mixture" will be called: "user-t1 New Mixture", "user-t2 New Mixture", etc.. |
+| Prefix      |   Yes    | A prefix for naming the generated objects that belong to the generic element, e.g., if the user name abbreviation is "user" and the **Prefix** is "t", then new "Mixture" will be called: "user-t1 New Mixture", "user-t2 New Mixture", etc. |
 | Label       |   Yes    | The name displayed in the UI, e.g., the labels **Sample**, **Reaction**, **Wellplate**.                                                                                                                                                       |
 | Icon        |   Yes    | The icon to be displayed in the elements list and in the toolbar for creating new objects. Icons can be obtained from [Font Awesome 4](https://fontawesome.com/v4.7/icons/).                                                                  |
 | Description |    No    | Explanation of the intended functionality of the element.                                                                                                                                                                                     |
@@ -202,12 +202,12 @@ They can be customized using the following attributes.
 | type           | availability                   | dependencies | explanation                                                                                                                                                                                                                                                  |
 | -------------- | ------------------------------ | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | checkbox       | v0.9.0+                        | ---          | A small square box to let the user make a binary choice.                                                                                                                                                                                                     |
-| drag molecule  | v0.9.0+                        | ---          | An icon with drag-and-drop function to let user add a molecule into a generic element/segment by drag-and-drop; it will display the molecule image after being added.                                                                                        |
+| drag molecule  | v0.9.0+                        | ---          | An icon with drag-and-drop function to let the user add a molecule into a generic element/segment by drag-and-drop; it will display the molecule image after being added.                                                                                        |
 | drag sample    | v0.9.0+ (generic element only) | ---          | An icon with drag-and-drop function to let the user add a sample into a generic element by drag-and-drop; it will display the sample image after adding. It also enables using the exact drag-and-dropped sample, a split of it, or a copy.                  |
 | formula field  | v0.9.0+                        | ---          | A calculation field; as an admin, define a formula using other fields, and the system does the calculation automatically.                                                                                                                                    |
 | input group    | v0.9.0+                        | ---          | A group of fields; the fields can be 'label', 'text', or 'number'. 'label' is used for display only, and the user can't modify its default value, while 'text' and 'integer' are used as an input field, but still the admins can give them a default value. |
 | integer        | v0.9.0+                        | ---          | An input field for integer entries.                                                                                                                                                                                                                          |
-| select         | v0.9.0+                        | ---          | A dropdown list to let user select an item.                                                                                                                                                                                                                  |
+| select         | v0.9.0+                        | ---          | A dropdown list to let the user select an item.                                                                                                                                                                                                                  |
 | system-defined | v0.9.0+                        | ---          | An interconvertible unit field; with a numerical input field and a button for unit conversion ([details](#field-type-system-defined)).                                                                                                                       |
 | text           | v0.9.0+                        | ---          | An input field for a single editable line of text.                                                                                                                                                                                                           |
 | text area      | v0.9.0+                        | ---          | An input field with adaptable size for multi-line text.                                                                                                                                                                                                      |
@@ -215,7 +215,7 @@ They can be customized using the following attributes.
 
 ### Field-type: System-defined
 
-The field type **System-defined** allows to add values with a unit.
+The field type **System-defined** allows adding values with a unit.
 Units are assigned to certain standards in the research field but should meet common conventions and definitions.
 Depending on the unit, different conversions are available.
 

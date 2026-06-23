@@ -11,7 +11,7 @@ sharing files between e.g. a device and the ELN. On the device side, the (analys
 Once the computer that is running the Chemotion ELN (Docker container) has access to the shared folder, this folder can then be mounted into the Chemotion ELN's containers. To do so:
 
 - Mount the shared folder in the containers using the `docker-compose.yml` file by adding the folder as a volume in the keys `services.eln.volumes` and `services.worker.volumes`. In case you are using ChemCLI, make the changes in the `docker-compose.cli.yml` file.
-- Once added, the `docker-compose(.cli).yml` file could similar to the following:
+- Once added, the `docker-compose(.cli).yml` file could look similar to the following:
 
   ```
   services:
