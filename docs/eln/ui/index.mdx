@@ -24,7 +24,7 @@ The top bar spans the top of the browser window. On its left it gives quick acce
 
 #### Collection Bar
 
-The collection bar is located on the left below the top bar and is used to navigate through the collections. Its entries are `Manage Collections` (see below), `My Collections`, `Shared by me`, `Shared with me`, `Synchronized with me` and the connected repository (`chemotion-repo`). The collection bar can be collapsed and expanded with the toggle on its right edge.
+The collection bar is located on the left below the top bar and is used to navigate through the [collections](/docs/eln/ui/collections). Its entries are `Manage Collections` (see below), `My Collections`, `Shared by me`, `Shared with me`, `Synchronized with me` and the connected repository (`chemotion-repo`). The collection bar can be collapsed and expanded with the toggle on its right edge.
 
 #### Collection Management
 
@@ -33,12 +33,12 @@ Collection management is opened with the `Manage Collections` button at the top 
 
 #### Element Panel
 
-The element panel is to the right of the collection bar. Tabs at the top let users switch between the elements ** Sample**, ** Reaction**, ** Wellplate**, ** Screen** and **Research Plan** assigned to the selected collection; each tab also shows the number of contained elements. Above the element list a toolbar provides the actions `Reporting`, `Export`, `Split`, `Transfer`, `Remove`, `Share` and `References`, and the green `CREATE` button is used to add new elements. The list can be filtered and grouped using the controls below the toolbar.
+The element panel is to the right of the collection bar. Tabs at the top let users switch between the elements ** Sample**, ** Reaction**, ** Wellplate**, ** Screen** and **Research Plan** assigned to the selected collection; each tab also shows the number of contained elements. Above the element list a [toolbar](/docs/eln/ui/toolbar) provides the actions `Reporting`, `Export`, `Split`, `Transfer`, `Remove`, `Share` and `References`, and the green `CREATE` button is used to add new elements. The list can be filtered and grouped using the controls below the toolbar.
 Users can find more details in the [`Elements` section](#elements).
 
 #### Detail Modal
 
-The detail modal or detail window is opened by clicking on the desired element. It shows the information which are stored on the corresponding element or are available through databases. The modal / window can be set to full screen mode.
+The [detail modal](/docs/eln/ui/details) or detail window is opened by clicking on the desired element. It shows the information which are stored on the corresponding element or are available through databases. The modal / window can be set to full screen mode.
 
 #### Detail Tab
 
@@ -47,11 +47,11 @@ To organize the information within the detail modals, tabs were introduced. Thes
 ## Elements
 
 - `Samples` <Sample title="Sample" className="logo" width={"30px"}/>  
-  Samples are the smallest organizational unit of this Chemotion ELN. They describe the physical unit of a chemical compound used for a synthesis or other projects. The sample is described by e.g. the molecular structure, the amount and the properties of the compound used (such as the purity). If a chemical compound with the same molecular structure is used several times, several samples are generated, each with the same molecular structure as a feature.
+  [Samples](/docs/eln/ui/elements/samples) are the smallest organizational unit of this Chemotion ELN. They describe the physical unit of a chemical compound used for a synthesis or other projects. The sample is described by e.g. the molecular structure, the amount and the properties of the compound used (such as the purity). If a chemical compound with the same molecular structure is used several times, several samples are generated, each with the same molecular structure as a feature.
 - `Reactions` <Reaction title="Reaction" className="logo" width={"30px"}/>  
-  Reactions form the core of the Chemotion ELN, as reactions can be used to plan the chemists' experiments. The reactions are characterized by the use (starting material, reagents) and the receipt of samples (products).
+  [Reactions](/docs/eln/ui/elements/reactions) form the core of the Chemotion ELN, as reactions can be used to plan the chemists' experiments. The reactions are characterized by the use (starting material, reagents) and the receipt of samples (products).
 - `Wellplates` <Wellplate title="Wellplate" className="logo" width={"30px"}/>  
-  Several samples can be arranged in wellplates so that they can be combined according to an application in biology.
+  Several samples can be arranged in [wellplates](/docs/eln/ui/elements/wellplates) so that they can be combined according to an application in biology.
 - `Screens` <Screen title="Screen" className="logo" width={"30px"}/>  
   A screen is the overview of a biological experiment that is carried out with several samples (usually organized by wellplates).
 - `Research Plan` <FontAwesomeIcon icon={faFileAlt} size="lg"/>  
