@@ -9,13 +9,13 @@ sidebar_position: 2
 The currently suggested minimum configuration is as follows:
 
 - An OS that supports Docker
-  - [Docker Engine](https://docs.docker.com/engine/install/) and [Docker Compose](https://docs.docker.com/compose/install/). On Windows, we recommend installing both of them along with the [Docker Desktop](https://docs.docker.com/desktop/setup/install/windows-install/) suite. On linux, we recommend using the [apt](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository)/[rpm](https://docs.docker.com/engine/install/fedora/#install-using-the-repository) repository.
-  - On linux, ideally Docker should then be configured to run [as a non-root user](https://docs.docker.com/engine/install/linux-postinstall/).
-  - If required, it might also be possible to run docker daemon in rootless mode. Please see the distribution-specific [setup instructions](https://docs.docker.com/engine/security/rootless/) for details.
-  - Some users have reported success using [Podman](https://podman.io/). However, we currently do not test compatibility with Podman because of resource limitations.
+  - [Docker Engine](https://docs.docker.com/engine/install/) and [Docker Compose](https://docs.docker.com/compose/install/). On Windows, the Chemotion team recommends installing both of them along with the [Docker Desktop](https://docs.docker.com/desktop/setup/install/windows-install/) suite. On Linux, the Chemotion team recommends using the [apt](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository)/[rpm](https://docs.docker.com/engine/install/fedora/#install-using-the-repository) repository.
+  - On Linux, ideally Docker should then be configured to run [as a non-root user](https://docs.docker.com/engine/install/linux-postinstall/).
+  - If required, it might also be possible to run the Docker daemon in rootless mode. Please see the distribution-specific [setup instructions](https://docs.docker.com/engine/security/rootless/) for details.
+  - Some users have reported success using [Podman](https://podman.io/). However, the Chemotion team currently does not test compatibility with Podman because of resource limitations.
 - 4 CPUs ([x64 instruction set](https://wikipedia.org/wiki/X86-64))
 - 8 GB memory
-- 300 GB disk space for OS (Linux preferred), docker and Chemotion ELN
+- 300 GB disk space for OS (Linux preferred), Docker and Chemotion ELN
 - 100 GB or more disk space for _each_ attached device depending on the attached device(s).
 - **Browser**: For the use of the Chemotion ELN (and Repository), Chrome is recommended. Other browsers such as Firefox or Edge only allow limited functionalities in some areas of the application (e.g. collection management and ChemSpectra).
 
@@ -30,24 +30,24 @@ Please use Chrome as browser for the Chemotion ELN and Repository.
 - [Using ChemCLI](install-configure/ChemCLI)
 - [Manual install](install-configure/manual-install)
 
-Installing the ELN makes it available on port 4000 (default location is `0.0.0.0:4000`) of the computer on which it is installed. To make it accessible on a domain name, e.g. `https://myeln.edu` or over a network requires you to setup proxy. Detailed instructions for this are system/network dependent (and beyond the scope of this documentation). However, some hints are provided [here](install-configure/ChemCLI#set-up-a-reverse-proxy).
+Installing the ELN makes it available on port 4000 (default location is `0.0.0.0:4000`) of the computer on which it is installed. Making it accessible on a domain name, e.g. `https://myeln.edu`, or over a network requires the administrator to set up a proxy. Detailed instructions for this are system/network dependent (and beyond the scope of this documentation). However, some hints are provided [here](install-configure/ChemCLI#set-up-a-reverse-proxy).
 
 :::warning[Single User Installation]
 
-The ELN is designed to be used by multiple users. This means that it is usually installed on a server computer that is then served on a domain name (see [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) for more) across a lab/department/institution/university. While it possible to use the ELN as a single user on private computer, this is not encouraged given the limitations that may arise in relation to device integration, deploying email service, and data sharing etc.
+The ELN is designed to be used by multiple users. This means that it is usually installed on a server computer that is then served on a domain name (see [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) for more) across a lab/department/institution/university. While it is possible to use the ELN as a single user on a private computer, this is not encouraged given the limitations that may arise in relation to device integration, deploying email service, and data sharing etc.
 
-If you still wish to install Chemotion ELN on your private computer (especially for testing etc.), we highly recommend the use of [ChemCLI](install-configure/ChemCLI) to do so. If you do not provide a web-address during installation then the ELN should start running on `http://localhost:4000` when you use the tool.
+For users who still wish to install Chemotion ELN on a private computer (especially for testing etc.), the Chemotion team highly recommends the use of [ChemCLI](install-configure/ChemCLI) to do so. If no web address is provided during installation, the ELN should start running on `http://localhost:4000` when using the tool.
 
 :::
 
 ## After Installation
 
-Please follow the configuration steps (see [here](install-configure/ChemCLI#set-up-a-reverse-proxy) and [here](install-configure/configuration) to personalize your installation and then perform a [system check](install-configure/system-check) to make sure that all features are working as intended.
+Please follow the configuration steps (see [here](install-configure/ChemCLI#set-up-a-reverse-proxy) and [here](install-configure/configuration) to personalize the installation and then perform a [system check](install-configure/system-check) to make sure that all features are working as intended.
 
 # When to upgrade?
 
-The team behind Chemotion ELN is working hard to introduce new features, bug fixes and security patches. We therefore recommend that you upgrade your ELN instance (at least) once **every three months**. To make it easy for you, most upgrade involve creating a backup (for data safety reasons), replacing a file, stopping the old ELN and starting the new one. This process is further automated if you use [ChemCLI](install-configure/ChemCLI). A summary of changes made in newer versions is available [here](releases).
+The team behind Chemotion ELN is working hard to introduce new features, bug fixes and security patches. The Chemotion team therefore recommends upgrading the ELN instance (at least) once **every three months**. For convenience, most upgrades involve creating a backup (for data safety reasons), replacing a file, stopping the old ELN and starting the new one. This process is further automated when using [ChemCLI](install-configure/ChemCLI). A summary of changes made in newer versions is available [here](releases).
 
 ## Chemotion version 1
 
-While we strive to support all instances of Chemotion, the documentation only deals actively with fresh installations and upgrades for ELN versions released in past 12 months. For anything before that, and **particularly for installations that run natively** (i.e. without docker) i.e. likely installed before April 2022: please get in touch with the [helpdesk](https://chemotion.net/helpdesk) for more personalized support.
+While the Chemotion team strives to support all instances of Chemotion, the documentation only deals actively with fresh installations and upgrades for ELN versions released in the past 12 months. For anything before that, and **particularly for installations that run natively** (i.e. without Docker) i.e. likely installed before April 2022: please get in touch with the [helpdesk](https://chemotion.net/helpdesk) for more personalized support.

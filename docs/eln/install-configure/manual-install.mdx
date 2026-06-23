@@ -8,19 +8,19 @@ sidebar_position: 12
 
 This install process involves direct interaction with Docker, and is targeted at advanced users who have some experience with Docker. For an easier experience, consider using [ChemCLI](ChemCLI).
 
-If you face problems, please let us know; we are there to support you. You may [contact us directly](https://chemotion.net/helpdesk) if you plan to install Chemotion or have problems installing/using it.
+In case of problems, please let the Chemotion team know; the team is there to provide support. Users can [contact the team directly](https://chemotion.net/helpdesk) when planning to install Chemotion or when facing problems installing/using it.
 
 :::
 
 ## Latest Version
 
-We distribute the ELN as docker images for ease of distribution and use. The latest images can be found on [DockerHub](https://hub.docker.com/r/ptrxyz/chemotion/tags) and installed using a `docker-compose.yml` file. A version of `docker-compose.yml` file that uses these latest images can be found [here](https://raw.githubusercontent.com/Chemotion/ChemCLI/main/payload/docker-compose.yml).
+The Chemotion team distributes the ELN as Docker images for ease of distribution and use. The latest images can be found on [DockerHub](https://hub.docker.com/r/ptrxyz/chemotion/tags) and installed using a `docker-compose.yml` file. A version of `docker-compose.yml` file that uses these latest images can be found [here](https://raw.githubusercontent.com/Chemotion/ChemCLI/main/payload/docker-compose.yml).
 
 ## Fresh Installations
 
 :::info[Important]
 
-Certain installations require may require additional/different steps. Please check [this section](#special-cases) to see if your desired version needs such treatment.
+Certain installations may require additional/different steps. Please check [this section](#special-cases) to see if the desired version needs such treatment.
 
 :::
 
@@ -55,19 +55,19 @@ To install the latest version of Chemotion on a blank system, follow these steps
   docker compose up -d #starts the ELN as a background service logging to the docker's log daemon
   ```
 
-  - after a short startup period, the ELN will available on port `4000` and can be accessed on `<your host IP>:4000`
+  - after a short startup period, the ELN will be available on port `4000` and can be accessed on `<host IP>:4000`
   - The application is running on `http://localhost:4000`, the seeded administration account is `ADM` (all caps!) with password `PleaseChangeYourPassword`.
   - Proceed with [Configuration](configuration)
 
 :::info
 
-We rely on docker volumes to preserve data. Your user data will be stored in the volumes `chemotion_data` and `chemotion_db`. DO NOT delete them: Having backups is essential to making your data FAIR.
+Chemotion relies on Docker volumes to preserve data. User data will be stored in the volumes `chemotion_data` and `chemotion_db`. DO NOT delete them: Having backups is essential to making the data FAIR.
 
 :::
 
 ### Controlling Services
 
-- Services automatically restart when the docker daemon restarts. This can be configured by removing the lines containing `restart: unless-stopped` in the `docker-compose.yml` file or disabling autostart of your docker daemon on your system. Please refer to the docker's [documentation](https://docs.docker.com/config/containers/start-containers-automatically/) on how this property works.
+- Services automatically restart when the Docker daemon restarts. This can be configured by removing the lines containing `restart: unless-stopped` in the `docker-compose.yml` file or disabling autostart of the Docker daemon on the system. Please refer to the Docker [documentation](https://docs.docker.com/config/containers/start-containers-automatically/) on how this property works.
 
   ```yaml
   services:
@@ -96,13 +96,13 @@ We rely on docker volumes to preserve data. Your user data will be stored in the
 
 :::info[Important]
 
-Certain upgrades require may require additional/different steps. Please check [this section](#special-cases) to see if your current version and/or desired version needs such treatment.
+Certain upgrades may require additional/different steps. Please check [this section](#special-cases) to see if the current version and/or desired version needs such treatment.
 
 :::
 
 :::warning[Before Upgrades]
 
-- ALWAYS perform a [backup](#backing-up-and-restoring-your-data) before doing upgrades. We cannot help you restore data if there is no backup and things go wrong during upgrade processes.
+- ALWAYS perform a [backup](#backing-up-and-restoring-your-data) before doing upgrades. The Chemotion team cannot help restore data if there is no backup and things go wrong during upgrade processes.
 - Inform your users of downtime that may accompany the upgrade.
 
 :::
@@ -117,7 +117,7 @@ Certain upgrades require may require additional/different steps. Please check [t
   docker volume rm chemotion_app
   ```
 
-- Follow instructions for a [fresh installation](#fresh-installations) in the same directory. However, your admin/user credentials and user data should **remain same** as they were before the upgrade.
+- Follow instructions for a [fresh installation](#fresh-installations) in the same directory. However, the admin/user credentials and user data should **remain the same** as they were before the upgrade.
 
 ## Managing your instance
 
@@ -125,7 +125,7 @@ To get access to the inside of the container, i.e to perform tasks based on the 
 
 - Getting a shell with loaded Chemotion environment variables
 
-  This will drop you to a root shell inside the container. You are now free to perform any administrative tasks in the container context, but be aware that all changes are ephemeral and lost when the container is stopped. To access the host file system, a mount point has to be used, i.e. such as the already configured `/shared` (which - by default - maps to `./shared` on the host).
+  This drops the user into a root shell inside the container. The user is now free to perform any administrative tasks in the container context, but should be aware that all changes are ephemeral and lost when the container is stopped. To access the host file system, a mount point has to be used, i.e. such as the already configured `/shared` (which - by default - maps to `./shared` on the host).
 
   ```bash
   docker compose exec eln chemotion shell
@@ -155,27 +155,27 @@ To get access to the inside of the container, i.e to perform tasks based on the 
   docker compose exec eln chemotion resetAdminPW
   ```
 
-**Furthermore**, you can use `docker compose logs` or check the `./shared/logs` folder to access docker logs of your system.
+**Furthermore**, the `docker compose logs` command can be used, or the `./shared/logs` folder checked, to access the Docker logs of the system.
 
 ### Backing up and Restoring your data
 
 :::info
 
-It is advised to setup an automatic system task (i.e. cron job) to backup regularly. This is highly system specific and thus out of the scope of this documentation. Please refer to your OS's manual to find out how to setup scheduled tasks.
+It is advised to set up an automatic system task (i.e. cron job) to backup regularly. This is highly system specific and thus out of the scope of this documentation. Please refer to the OS's manual to find out how to set up scheduled tasks.
 
-The backup process, if using ChemCLI is [described on its page](ChemCLI#backup-an-instance).
+The backup process, if using ChemCLI, is [described on its page](ChemCLI#backup-an-instance).
 
-In addition, you should always backup before upgrading your installation.
+In addition, a backup should always be performed before upgrading the installation.
 
 :::
 
 :::warning[Warning]
 
-Backup scripts do not backup data that reside outside docker volumes e.g. `services` and `shared` folders. These folders need to be backed up _separately_ by you.
+Backup scripts do not backup data that resides outside Docker volumes e.g. `services` and `shared` folders. These folders need to be backed up _separately_.
 
 :::
 
-To backup that resides inside docker volumes, it is sufficient to run the following command on your host machine in the folder where your Compose file resides:
+To backup data that resides inside Docker volumes, it is sufficient to run the following command on the host machine in the folder where the Compose file resides:
 
 ```bash
 docker compose run eln chemotion backup
@@ -183,7 +183,7 @@ docker compose run eln chemotion backup
 
 This will place two files: `backup.sql.gz` and `backup.data.tar.gz` in the `./shared/backup` folder.
 
-To restore a backup, clean out the the folder where your Compose file resides, keeping only the backup folder and its files in place. Then run the following:
+To restore a backup, clean out the folder where the Compose file resides, keeping only the backup folder and its files in place. Then run the following:
 
 ```bash
 docker compose down --remove-orphans                           # stop all services
@@ -193,27 +193,27 @@ docker compose run -e FORCE_DB_RESET=1 eln chemotion restore   # restore the lat
 <details>
   <summary>How backup and restore works?</summary>
   <div>
-    This backup script is meant to simplify your life a bit when it comes to
-    backups. However it doesn't do anything magical and if it suits your needs
-    better, you can also do manual backups. To create one, you need to dump your
+    This backup script is meant to simplify the backup process a bit. However it
+    doesn't do anything magical and, if it suits the situation better, manual
+    backups are also possible. To create one, dump the
     database, i.e. with <code>pg_dump</code> or by copying the{" "}
     <code>chemotion_db</code> volume when the database is not running.
     <br />
-    In addition, you need to save all your data, in the folders:{" "}
+    In addition, save all data in the folders:{" "}
     <code>/uploads</code> and <code>/public/images</code> (the latter being more
-    a convenience thing preventing you from having to recreate a lots of
-    thumbnails after restoration). These folders are stored in{" "}
-    <code>chemotion_data</code> volume, so you can mount it somewhere and use
-    rsync/tar/cp to copy the data. If you already have a container mounting this
+    a convenience thing that avoids the need to recreate a lot of
+    thumbnails after restoration). These folders are stored in the{" "}
+    <code>chemotion_data</code> volume, which can be mounted somewhere to use
+    rsync/tar/cp to copy the data. If a container already mounts this
     volume, such as (such as the <code>eln</code> or <code>worker</code>{" "}
-    services), you can also simply use <code>docker compose cp</code> or{" "}
-    <code>docker cp</code> to copy the data to the host machine.
+    services), then <code>docker compose cp</code> or{" "}
+    <code>docker cp</code> can simply be used to copy the data to the host machine.
     <br />
-    To restore a backup, invert the process: For restoration, you need to stop
-    your services, then remount the backed-up volumes. If you have backup
-    created using <code>pg_dump</code> then use <code>pg_restore</code> to
+    To restore a backup, invert the process: stop
+    the services, then remount the backed-up volumes. For a backup
+    created using <code>pg_dump</code>, use <code>pg_restore</code> to
     restore it. Similarly, restore the data files into their destination using
-    using cp/tar/rsync etc.
+    cp/tar/rsync etc.
   </div>
 </details>
 
@@ -264,20 +264,20 @@ EOF
 
 To upgrade from a previous version to this release, a few manual steps have to be done. In the new release, we changed to make use of docker volumes instead of bind mounts for all user data and shared storage. It is up to the user to transfer previous user data to these volumes.
 
-- You need to do is to copy/merge your old folders to/with the data volume (mounted at `/chemotion/data` in the ELN container):
+- The required action is to copy/merge the old folders to/with the data volume (mounted at `/chemotion/data` in the ELN container):
   - `./shared/eln/uploads` → `/chemotion/data/uploads`
   - `./shared/eln/public/images` → `/chemotion/data/public/images`
 
-We recommend the following steps:
+The Chemotion team recommends the following steps:
 
-- Bring down your current instance, backup everything. In case anything goes wrong, you can always fall back to this backup by simply extracting the archive.
+- Bring down the current instance and backup everything. In case anything goes wrong, the backup can always be used to fall back by simply extracting the archive.
 
   ```bash
     docker compose down --remove-orphans
     sudo tar cvzf /tmp/pre-upgrade.tar.gz ./db-data ./shared ./docker-compose.yml
   ```
 
-- clean your directory, since the new containers will also write to `./shared`.
+- clean the directory, since the new containers will also write to `./shared`.
 
   ```bash
   rm docker-compose.yml
@@ -306,7 +306,7 @@ We recommend the following steps:
             -it --rm ubuntu:latest bash
   ```
 
-- You will find yourself in the root of a fresh container. The point here is that you copy everything from your old `uploads` and `public/images` folder to the new location. By default those are stored in `./eln/`, if you configured things differently, adjust accordingly.
+- This drops the user into the root of a fresh container. The point here is to copy everything from the old `uploads` and `public/images` folder to the new location. By default those are stored in `./eln/`; if things were configured differently, adjust accordingly.
 
   ```bash
   cp -Rf /old/eln/uploads/.        /new/uploads/
@@ -314,12 +314,12 @@ We recommend the following steps:
   cp -Rf /old/db/.                 /new/db/
   ```
 
-- Your data is now stored on the data volumes. Type `exit` to quit the interactive shell.
-- start your new instances:
+- The data is now stored on the data volumes. Type `exit` to quit the interactive shell.
+- start the new instances:
 
   ```bash
   docker compose up -d
   ```
 
-- after a short startup/migration period, the ELN will available on port `<your host IP>:4000`
+- after a short startup/migration period, the ELN will be available on port `<host IP>:4000`
 - Proceed with [Configuration](configuration).
