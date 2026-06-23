@@ -10,11 +10,11 @@ import { DownloadBtn } from "@site/src/js/download_files.js";
 This is the simple import method. For the enhanced, validated import introduced in version 3.0, see [Importing Data with Column Mapping and Validation](#importing-data-with-column-mapping-and-validation) below.
 
 Samples can be imported to Chemotion ELN by uploading a simple excel list that contains the structure of the sample as a SMILES string.
-Please add the smiles strings in respective column of the file to be imported and please add the description "canonical smiles" as header of the column.
+Please add the SMILES strings in respective column of the file to be imported and please add the description "canonical smiles" as header of the column.
 To enable the import into a collection, the desired target collection has to be selected. Import of samples is only possible for the user that created the collection.
 The export and import of samples is currently supported in the xlsx, csv, and sdf formats.
 
-For a more comprehensive import of data into Chemotion ELN based on Smiles strings, please see the following example which can be used as a template to import data to the Chemotion ELN.
+For a more comprehensive import of data into Chemotion ELN based on SMILES strings, please see the following example which can be used as a template to import data to the Chemotion ELN.
 
 <p>
   <DownloadBtn
@@ -68,7 +68,7 @@ Once the file is uploaded, the system will detect the file format and extract th
 
 ## Step 2: Column Mapping
 
-The column mapping interface allows you to match the columns in your file to the database fields in Chemotion ELN. This step ensures that the imported data is correctly aligned with the database schema.
+The column mapping interface allows users to match the columns in a file to the database fields in Chemotion ELN. This step ensures that the imported data is correctly aligned with the database schema.
 
 ### Features of the Column Mapping Interface
 - **Row View and Column View**: Switch between two views for mapping:
@@ -104,7 +104,7 @@ The validation process consists of two main steps:
 
 ### How to Use
 1. Review the data in the grid.
-2. Correct any errors highlighted in the grid. Errors are displayed with detailed messages to guide you.
+2. Correct any errors highlighted in the grid. Errors are displayed with detailed messages to guide the user.
 3. Add or delete rows as needed.
 4. Click **Validate** to ensure all data is valid.
 
@@ -165,22 +165,22 @@ This detailed explanation of the validation process ensures that users understan
 
 ## Step 4: Import Execution
 
-Once the data is validated, you can proceed with the import.
+Once the data is validated, users can proceed with the import.
 
 ### Small Files
 - For smaller files, the data is imported directly into the database.
-- You will see a confirmation message once the import is complete.
+- The user will see a confirmation message once the import is complete.
 
 ### Large Files
 - For larger files, the import is handled as a backend job.
-- This allows you to continue using Chemotion ELN while the import is processed in the background.
-- You will receive a notification once the import is complete.
+- This allows users to continue using Chemotion ELN while the import is processed in the background.
+- The user will receive a notification once the import is complete.
 
 ---
 
 ## Additional Notes
 
-- **Backend Job Handling**: The backend job ensures that large imports do not disrupt the user experience. The system will notify you when the import is complete.
+- **Backend Job Handling**: The backend job ensures that large imports do not disrupt the user experience. The system will notify the user when the import is complete.
 
 ---
 

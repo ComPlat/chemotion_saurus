@@ -31,7 +31,7 @@ In general, the more carefully the Chemotion ELN user documents the use of sampl
 
 Reactions are numbered consecutively and displayed in the list of reactions in reverse order.
 The reaction name is preceded by the abbreviation of the Chemotion ELN owner such that reactions can be clearly identified.
-If you want to assign another name to the reaction, you can do this by making an entry in the **Name** field within the **Scheme** tab or **Properties** tab.
+If users want to assign another name to the reaction, they can do this by making an entry in the **Name** field within the **Scheme** tab or **Properties** tab.
 
 ## Generation
 
@@ -61,7 +61,7 @@ On the right-side of each reaction, there's a cross <Btn mixed={[faArrowsAlt]} c
 In case other elements are available to drop reactions within them (such as a research plan),
 the cross is colored in blue to indicate that it is active, otherwise, it appears in gray, and it can be used in this case.
 
-The user can filter their reaction either by creation date, or update day.
+The user can filter their reaction either by creation date, or update date.
 The image above shows a calendar icon <img src={require('@site/static/img/eln/ui/elements/reactions/creation_date.png').default} width={"30px"} alt={"Creation date calendar"}/>
 which corresponds to a **filter by creation date**.
 Next to the calendar are the fields **From** and **To**.
@@ -124,7 +124,7 @@ It is important to mention that certain calculations differ when operating in Ga
     - part per million * default temperature / purity * parts per million factor * temperature (entered in temperature field)
 
 **User Interface Functionality:**
-The system automatically recalculates and synchronizes data for the input fields as necessary information is entered. For product samples, click the **gas** button to expand the input fields. enter the Temperature, reaction vessel size, Time, and part per million value of the product gas.
+The system automatically recalculates and synchronizes data for the input fields as necessary information is entered. For product samples, click the **gas** button to expand the input fields. Enter the Temperature, reaction vessel size, Time, and part per million value of the product gas.
 Using the values entered for the input fields of moles for catalyst and feedstock samples, the system will automatically calculate:
 - The amount of the product in moles
 - The Turnover Number (TON)
@@ -149,7 +149,7 @@ The Weight Percentage Reaction Scheme provides an alternative equivalent basis t
 ### How it works (step-by-step)
 
 1. **Activation of weight percentage mode**
-  - User  switches the scheme into Weight Percentage mode using the mode toggle. This enables the weight-percentage controls.
+  - The user switches the scheme into Weight Percentage mode using the mode toggle. This enables the weight-percentage controls.
 
 2. **Assignment of reference material**:
   - The user selects one material as the weight-percentage reference material, by selecting either one of the check boxes in the ref column of any of the product materials, or one of the reactant or starting materials (the outer check box of the ref column). Upon selection, it will be highlighted in green. 
@@ -191,5 +191,5 @@ This setup allows users to directly assign mass percentages and still keep molar
 - A mode toggle activates weight percentage mode.
 - A reference material sample can be selected and assigned a target mass.
 - wt% fields are enabled only for starting materials and reactants and accept values in [0,1].
-- Amounts get recalculatd automatically using the formula above when wt% or the reference target mass change.
+- Amounts get recalculated automatically using the formula above when wt% or the reference target mass change.
 

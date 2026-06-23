@@ -152,7 +152,7 @@ To export reactions, the user has two options, either to use the above mentioned
 
 :::info[Recommendation]
 
-To export reactions, wellplates, or analyses, you can use **Export samples from selection**.
+To export reactions, wellplates, or analyses, users can use **Export samples from selection**.
 
 :::
 
@@ -174,7 +174,7 @@ The columns "stereo_abs" and "stereo_rel" are predefined. Valid values are:
 stereo_abs: any, rac, meso, (S), (R), (Sp), (Rp), (Sa);
 stereo_rel: any, syn, anti, p-geminal, p-ortho, p-meta, p-para, cis, trans, fac
 
-After downloading the XLSX template, you can import it in your Chemotion ELN as shown below:
+After downloading the XLSX template, users can import it into the Chemotion ELN as shown below:
 ![Collection View](/img/eln/ui/toolbar/import_samples_short.gif)
 
 :::info[Recommendation]
@@ -193,7 +193,7 @@ This icon <Btn mixed={[faFileAlt, faPen, faPercentage, faSortDown,]} color={"suc
 
 <img src={require("@site/static/img/eln/ui/toolbar/report.png").default} alt={"Report"} />{" "}
 
-You can report the elements you have by selecting them and clicking on **Report**, this will open the window above. From the **config** tab, choose from **Template selection**. This choice affects the fields in the other tabs and the **File Name** that is given to the file by default. This ** File Name** includes the date of report generation which can still be edited by the user. In all the templates a field for **File description** is provided. In the **Setting** tab you can choose what properties to add to the report. In the **Order** tab you can resort your elements by using the symbol <Btn mixed={[faArrowsAlt]} color={"secondary"}/>, and you can also delete elements from the report with <Btn mixed={[faTimes]} color={"danger"}/>. Before generating the report, you can see a **Preview** in the corresponding tab. When your report is ready, press <Btn mixed={[faFileAlt, "Generate"]} color={"primary"}/> at the top of the report window. You can reset everything to its default and start a new report by pressing <Btn mixed={[faEraser, "Reset"]} color={"info"}/>, or you can leave the report by pressing <Btn mixed={[faTimes]} color={"danger"}/>.
+Users can report the elements they have by selecting them and clicking on **Report**, this will open the window above. From the **config** tab, choose from **Template selection**. This choice affects the fields in the other tabs and the **File Name** that is given to the file by default. This ** File Name** includes the date of report generation which can still be edited by the user. In all the templates a field for **File description** is provided. In the **Setting** tab the user can choose what properties to add to the report. In the **Order** tab the user can resort the elements by using the symbol <Btn mixed={[faArrowsAlt]} color={"secondary"}/>, and can also delete elements from the report with <Btn mixed={[faTimes]} color={"danger"}/>. Before generating the report, the user can see a **Preview** in the corresponding tab. When the report is ready, press <Btn mixed={[faFileAlt, "Generate"]} color={"primary"}/> at the top of the report window. Users can reset everything to its default and start a new report by pressing <Btn mixed={[faEraser, "Reset"]} color={"info"}/>, or leave the report by pressing <Btn mixed={[faTimes]} color={"danger"}/>.
 
 The **Archive** tab contains all the generated reports (except the deleted ones). Here the user can reuse previous reports to generate new ones by using <Btn mixed={[faPen]} color={"warning"}/>. They can download the generated reports with <Btn mixed={[faDownload]} color={"primary"}/>, or delete them with <Btn mixed={[faTimes]} color={"danger"}/>.
 
@@ -203,20 +203,20 @@ The generation of new element-instances such as a new sample or a new reaction c
 
 ### New elements with the "CREATE" button
 
-New elements are created with the green <Btn mixed={[faPlus, "CREATE"]} color={"success"}/> button to the right of the toolbar. Clicking it opens a menu with the options **Create Sample**, **Create Reaction**, **Create Wellplate**, **Create Screen** and **Create Research Plan**. It does not matter which element list is selected, as long as you are in the right collection — choose any of these options and the corresponding element is created.
+New elements are created with the green <Btn mixed={[faPlus, "CREATE"]} color={"success"}/> button to the right of the toolbar. Clicking it opens a menu with the options **Create Sample**, **Create Reaction**, **Create Wellplate**, **Create Screen** and **Create Research Plan**. It does not matter which element list is selected, as long as the right collection is open — choose any of these options and the corresponding element is created.
 
-To populate wellplates, the user has to drag and drop samples, and to populate screens, the user has to drag and drop wellplates. The `CREATE` menu lets the user avoid this repetitive drag-and-drop process with the functions **Create Wellplate from Samples** and **Create Screen from Wellplates**. To use either of them, go to the target collection, select the elements (samples or wellplates) to be added to the newly created element (wellplate or screen respectively), and choose the corresponding function. The menu also offers **Create Vessel Template**. Please note that you cannot create an element with this method from elements coming from another collection; you can, however, still add them to the created element with the classical drag and drop.
+To populate wellplates, the user has to drag and drop samples, and to populate screens, the user has to drag and drop wellplates. The `CREATE` menu lets the user avoid this repetitive drag-and-drop process with the functions **Create Wellplate from Samples** and **Create Screen from Wellplates**. To use either of them, go to the target collection, select the elements (samples or wellplates) to be added to the newly created element (wellplate or screen respectively), and choose the corresponding function. The menu also offers **Create Vessel Template**. Please note that an element cannot be created with this method from elements coming from another collection; users can, however, still add them to the created element with the classical drag and drop.
 
 ### Function "copy" or "split" for samples
 
 In the last section of the menu, one can find the copy and split functions.
 Generation of new samples with molecular structures that are already used by another samples can be carried out by two similar but not equal actions, **Split Sample** and **Copy Sample**.
 
-To copy a sample, first select the sample whose structure you want to copy from the Samples list and then use the **Copy Sample** function from the toolbar. When the function is selected, a details modal is opened for a new sample to be edited.
+To copy a sample, first select the sample whose structure is to be copied from the Samples list and then use the **Copy Sample** function from the toolbar. When the function is selected, a details modal is opened for a new sample to be edited.
 
 :::danger[Caution]
 
-With the **Copy sample** action you only copy the molecular structure of the sample, all other information is not available and will not be adopted. Only the general data available from the molecular structure are transferred.
+With the **Copy sample** action, only the molecular structure of the sample is copied; all other information is not available and will not be adopted. Only the general data available from the molecular structure are transferred.
 
 :::
 
@@ -224,7 +224,7 @@ When creating a new sample using the split function **Split Sample**, a new samp
 
 ### Function "copy" for reactions
 
-Reactions can be copied via the same copy function as described for samples. Please ensure that the reaction that you want to copy is selected. The action "copy of reaction" generates a template with the same information on the original reaction which then needs to be saved. After saving the new reaction, a new reaction number is registered and new samples assigned to the new reaction are generated in parallel.
+Reactions can be copied via the same copy function as described for samples. Please ensure that the reaction to be copied is selected. The action "copy of reaction" generates a template with the same information on the original reaction which then needs to be saved. After saving the new reaction, a new reaction number is registered and new samples assigned to the new reaction are generated in parallel.
 
 <img
   src={require("@site/static/img/eln/ui/toolbar/Copy-a-reaction.png").default}
