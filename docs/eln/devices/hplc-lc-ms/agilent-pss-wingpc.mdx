@@ -2,7 +2,7 @@
 title: Agilent PSS WinGPC SEC/GPC
 ---
 
-In this guideline, we have explained the integration process of the SEC-THF and SEC-DMAC devices into the Chemotion
+This guideline explains the integration process of the SEC-THF and SEC-DMAC devices into the Chemotion
 ELN. This procedure enables remote access to the PC connected to the devices, which runs PSS winGPC and also the
 transfer of the experiment data to the Chemotion ELN’s inbox. Both of the devices in this situation are connected to a
 single PC that is running a single software.
@@ -29,7 +29,7 @@ likely to work on systems with different software versions as well.
 - Remote Device Control
 - Data transfer to Chemotion ELN inbox
 
-For the SEC device integration, we have decided to configure both these features.
+For the SEC device integration, the Chemotion team decided to configure both these features.
 
 # Configurations
 
@@ -49,7 +49,7 @@ before saving it to the local machine.
 
 :::info
 
-Please take care that you communicate [name conventions](../../devices#name-conventions) to all users of the Chemotion ELN.
+Please take care to communicate the [name conventions](../../devices#name-conventions) to all users of the Chemotion ELN.
 
 :::
 
@@ -59,9 +59,9 @@ The SEC PC and the Chemotion ELN both need access to a common network storage lo
 third-party storage (a NAS server, shared storage of another PC etc.) or it can be set up locally on the SEC PC. In this
 case, the LSDF storage service from KIT has been used.
 
-We need to download an executable file from the EFW builder that will run on the computer to transfer data from a predefined source (local location on the computer) to a destination (LSDF server in this case) and schedule a task at startup so that the process keeps running on the computer. Details can be found [here](../configurations/data-transfer).
+The user needs to download an executable file from the EFW builder that will run on the computer to transfer data from a predefined source (local location on the computer) to a destination (LSDF server in this case) and schedule a task at startup so that the process keeps running on the computer. Details can be found [here](../configurations/data-transfer).
 
-In this step, we have to restart the PC for the scheduler to run.
+In this step, the user has to restart the PC for the scheduler to run.
 
 ### Configurations in Chemotion ELN
 
@@ -72,7 +72,7 @@ As for the file collector mechanism, there are two options.
 - Collecting attachment files from emails
 - Collecting file or folder from local drives or over SCP
 
-Here in this guide we have used the second mechanism where the files are collected from remote storage locations and are
+This guide uses the second mechanism, where the files are collected from remote storage locations and are
 distributed to specific users based on the file-name matching the name abbreviation of the user.
 
 :::note[See details]

@@ -29,7 +29,7 @@ likely to work on systems with different software versions as well.
 - Remote Device Control
 - Data transfer to Chemotion ELN inbox
 
-For the NMR integration, we have decided to configure both these features.
+For the NMR integration, the Chemotion team decided to configure both these features.
 
 # Configurations
 
@@ -49,7 +49,7 @@ before saving it to the local machine.
 
 :::info
 
-Please take care that you communicate [name conventions](../../devices#name-conventions) to all users of the Chemotion ELN.
+Please take care to communicate the [name conventions](../../devices#name-conventions) to all users of the Chemotion ELN.
 
 :::
 
@@ -65,14 +65,14 @@ configurations.
 
 ### Configurations in Spinsolve
 
-We can see that the data is stored both locally and on a remote server when we look at Spinsolve's data storage options.
-Now as for the remote backup storage location, the network drive we created will be used. The Chemotion ELN also has
+Spinsolve's data storage options show that the data is stored both locally and on a remote server.
+For the remote backup storage location, the previously created network drive is used. The Chemotion ELN also has
 access to this storage location. The experiment data file will be automatically saved at this location besides the local
 drive and Chemotion ELN will be able to retrieve and transfer it to the appropriate user's inbox.
 
 ![devices_NMR_magritek_10](/img/eln/devices/nmr/magritek_spinsolve/devices_nmr_magritek_10.png)
 
-To make sure that Chemotion ELN is able to transfer it to the appropriate user's inbox, we have to make sure the samples are named following the [naming convention](../../devices#name-conventions).
+To make sure that Chemotion ELN is able to transfer it to the appropriate user's inbox, the user has to make sure the samples are named following the [naming convention](../../devices#name-conventions).
 
 Here the naming of the sample has started with the name abbreviation (Kürzel) of a certain user to whom the experiment data file will be sent.
 
@@ -89,7 +89,7 @@ As the file collector mechanism, there are two options.
 - Collecting attachment files from emails
 - Collecting file or folder from local drives or over SCP
 
-Here in this guide we have used the second mechanism where the files are collected from remote storage locations and are
+This guide uses the second mechanism, where the files are collected from remote storage locations and are
 distributed to specific users based on the file-name matching the name abbreviation of the user.
 
 :::note[See details]

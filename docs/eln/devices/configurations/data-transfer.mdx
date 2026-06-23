@@ -34,7 +34,7 @@ The physical separation of laboratory PCs from public networks for security reas
 file transfer requirements. As a result, data stored locally on laboratory devices must be forwarded to the ELN via an intermediary system.
 
 The Shuttle is one component of such an system. It sends device data to an intermediary
-data storage and allows to monitor and organize the data transmission of devices integrated with your ELN Chemotion instance.
+data storage and allows to monitor and organize the data transmission of devices integrated with the user's ELN Chemotion instance.
 Additionally, it can processes data in a configurable, step-based workflow.
 
 Depending on the configuration, the data can be converted into a BagIt archive before being forwarded to Chemotion.
@@ -67,7 +67,7 @@ The Shuttle can be configured in three different ways:
 2. .env file located in the same directory as the executable
 3. Command-line (CLI) arguments
 
-We strongly recommend using the ShuttleBuilder, as it reduces configuration errors and simplifies setup.
+The Chemotion team strongly recommends using the ShuttleBuilder, as it reduces configuration errors and simplifies setup.
 Nevertheless, all available configuration options are documented below. The same arguments can be provided either via a .env file or as CLI arguments.
 
   - **name** [string]\
@@ -100,7 +100,7 @@ Nevertheless, all available configuration options are documented below. The same
     	WebDAV or SFTP password  for **user**
   - **preconvert** [string]\
     	[True or 1]  Set to True if the raw files are too large and should not be archived in Chemotion. In this case, only the converted BagIt archive is stored in Chemotion, while the raw files are stored elsewhere.
-    	- You must specify two destinations
+    	- The user must specify two destinations
     	    - The already configured **dst** is used for the raw data files.
     	    - The additional **dstConverter** is used for the BagIt archive (Chemotion).
         - An executable version of the ChemConverter must be in the same directory as the Shuttle.
@@ -148,7 +148,7 @@ Nevertheless, all available configuration options are documented below. The same
 
 ## ShuttleBuilder
 
-The ShuttleBuilder is a service that allows you to create and manage your Shuttle instances. It operates independently of the Electronic Lab Notebook (ELN) Chemotion.
+The ShuttleBuilder is a service that allows users to create and manage their Shuttle instances. It operates independently of the Electronic Lab Notebook (ELN) Chemotion.
 
 However, if a ShuttleBuilder instance is configured as part of a Chemotion setup, it can function as a Chemotion service. Users can log in using their Chemotion username and password.
 
@@ -159,10 +159,10 @@ A service is hosted at: [ShuttleBuilder](https://shuttlebuilder.deploy.chemdev.s
 
 ### How to setup your own ShuttleBuilder instance.
 
-You can set up your own ShuttleBuilder instance.
-Below, we provide a docker-compose file that includes everything you need to host the ShuttleBuilder.
+Users can set up their own ShuttleBuilder instance.
+The Chemotion team provides the Docker Compose file below, which includes everything needed to host the ShuttleBuilder.
 
-Make sure to set the variables correctly. Below the docker-compose file, you will find a .env file that lists all required variables.
+Make sure to set the variables correctly. The .env file below the Docker Compose file lists all required variables.
 
 ```yml
 x-postgres-variables: &postgres-variables
@@ -233,7 +233,7 @@ volumes:
 
 The following .env file includes all the variables needed to set up a ShuttleBuilder instance.
 - The instance will be created with a user specified by DJANGO_SUPERUSER_USERNAME and must be reachable at the host defined by ALLOWED_HOST.
-- If you want to connect it to a Chemotion instance, set ELN_URL to the correct URL.
+- To connect it to a Chemotion instance, set ELN_URL to the correct URL.
 - Email settings are optional. However, without them, the “forgot password” functionality will not be available.
 
 ```.env
