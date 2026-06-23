@@ -6,7 +6,7 @@ author: Thotli, Shilpa Bai
 
 #  Export & Save – Results from TLC Tool
 
-Once you’ve annotated your TLC plate and calculated RF values, the tool offers three export options:
+Once the user has annotated the TLC plate and calculated RF values, the tool offers three export options:
 
 - Download CSV (Rf values)
 - Download annotated image (PNG)
@@ -71,7 +71,7 @@ If the image was originally loaded from the Chemotion:
 :::danger[Requirements]
 - **Image Source Restriction**
   Only images loaded from the Chemotion support cloud upload.
-  If you upload an image locally (i.e., not from the Chemotion), the annotated image cannot be uploaded back to the Chemotion.
+  If the user uploads an image locally (i.e., not from the Chemotion), the annotated image cannot be uploaded back to the Chemotion.
 
 - **CSRF Token**
   A valid CSRF token must be available. This is handled internally by the system.

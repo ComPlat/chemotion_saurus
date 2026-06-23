@@ -5,13 +5,13 @@ sidebar_position: 3
 
 # Tips & Best Practices
 
-Here's what we've learned works best for SmartAdd. These tips will save you time and headaches.
+The following practices work best for SmartAdd. These tips save users time and headaches.
 
 ## Before You Start
 
 ### Name Your Files Well
 
-Here's the thing: you'll be building the folder structure manually in SmartAdd, so clear file names are your best friend.
+Because users build the folder structure manually in SmartAdd, clear file names are essential.
 
 **What makes a good file name?**
 - Include the sample or compound identifier
@@ -36,7 +36,7 @@ Here's the thing: you'll be building the folder structure manually in SmartAdd, 
 
 ### Gather Everything First
 
-Before you upload, collect all the files you'll need:
+Before uploading, collect all the necessary files:
 - 📊 **All your spectra** (NMR, zip etc.)
 - 🧬 **Structure files** (MOL format, text)
 - 📝 **Instrument logs**
@@ -44,14 +44,14 @@ Before you upload, collect all the files you'll need:
 - 📄 **Any notes** (synthesis procedures, observations)
 
 :::tip[Upload Strategy]
-Whether you upload a ZIP or individual files, SmartAdd puts everything in an input list. Then you manually drag files to assign them to samples and analyses.
+Whether uploading a ZIP or individual files, SmartAdd puts everything in an input list. Users then manually drag files to assign them to samples and analyses.
 :::
 
 ## While Using SmartAdd
 
 ### Work One Sample at a Time
 
-Trust us on this - complete each sample fully before starting the next one:
+The Chemotion team recommends completing each sample fully before starting the next one:
 
 1. Click **"Add Sample"**
 2. Fill in the properties (name, SMILES, amount, etc.)
@@ -61,17 +61,17 @@ Trust us on this - complete each sample fully before starting the next one:
 
 **Why this works better:**
 - Fewer mistakes
-- You can track your progress easily
-- Less overwhelming when you have lots of data
-- You won't forget to assign files
+- Users can track progress easily
+- Less overwhelming with lots of data
+- Users won't forget to assign files
 
 :::tip[Don't Forget!]
-Drag files from the left panel (input list) to the right panel (assignment tree). If you don't assign a file, it won't be in your export!
+Drag files from the left panel (input list) to the right panel (assignment tree). If the user does not assign a file, it will not be in the export!
 :::
 
 ### Keep Names Consistent
 
-Pick a naming style and stick with it throughout your project:
+Pick a naming style and stick with it throughout the project:
 
 ```
 Samples: COMP_001, COMP_002, COMP_003
@@ -82,14 +82,14 @@ Analyses: NMR_1H_001, MS_ESI_001
 ### Check Your SMILES
 
 SmartAdd validates SMILES in real-time:
-- Type in your molecular structure using SMILES notation
+- Type in the molecular structure using SMILES notation
 - Look for the green indicator (valid) or red (invalid)
 - Fix any errors before moving on
-- Not sure about your SMILES? Use [ketcherDemo](https://lifescience.opensource.epam.com/KetcherDemoSA/index.html) to generate a valid molfile
+- Not sure about the SMILES? Use [ketcherDemo](https://lifescience.opensource.epam.com/KetcherDemoSA/index.html) to generate a valid molfile
 
 ### Group Samples into Reactions
 
-When you have a reaction with multiple samples:
+For a reaction with multiple samples:
 - Add all relevant samples to the reaction
 - Assign roles (starting material, reactant, product, solvent)
 - SmartAdd will automatically sort them by role
@@ -108,7 +108,7 @@ Numbers without units are meaningless. Always add them:
 
 ### Write Good Descriptions
 
-Future you will thank present you for being descriptive:
+Descriptive entries help when revisiting the data later:
 
 **Samples:**
 - ❌ "Sample A"
@@ -133,21 +133,21 @@ Description and content fields now support rich text editing with the Quill edit
 - Use headers to organize long descriptions
 - Add code blocks for chemical formulas
 
-Formatted text makes your data more readable and professional!
+Formatted text makes the data more readable and professional!
 :::
 
 ### Master the Two-Panel Layout
 
 **Left Panel (Input List):**
-- This is where all your uploaded files live
+- This is where all uploaded files live
 - Drag files from here to assign them to samples
 
 **Right Panel (Assignment Tree):**
-- This is your workspace with samples and reactions
+- This is the workspace with samples and reactions
 - Drag files here to attach them
 - Click on any item to edit its properties
 
-**Pro tip:** Expand the section you're working on, and collapse the ones you've finished. Keeps things tidy!
+**Pro tip:** Expand the section currently in progress, and collapse the finished ones. Keeps things tidy!
 
 ### How to Organize Your Tree
 
@@ -178,7 +178,7 @@ A well-organized tree looks like this:
 
 ### Quick Checklist
 
-Before you click "Download as ZIP", run through this:
+Before clicking "Download as ZIP", run through this:
 
 **Samples:**
 - [ ] Unique, descriptive names
@@ -202,7 +202,7 @@ Before you click "Download as ZIP", run through this:
 - [ ] All files attached
 - [ ] Instrument parameters noted
 - [ ] Status updated
-- [ ] Analyses reordered to your preferred sequence (drag-and-drop)
+- [ ] Analyses reordered to the preferred sequence (drag-and-drop)
 
 ### Common Mistakes
 
@@ -224,8 +224,8 @@ Watch out for these - they're easy to make:
 
 ### Speed Up Ontology Selection with Recently Selected
 
-The **Type (Ontology)** dropdown for analyses (CHMO) and reactions (RXNO) keeps a history of your recent picks:
-- Open the dropdown — your last used terms appear at the top under **"-- Recently selected --"**
+The **Type (Ontology)** dropdown for analyses (CHMO) and reactions (RXNO) keeps a history of recent picks:
+- Open the dropdown — the last used terms appear at the top under **"-- Recently selected --"**
 - Click one to reuse it instantly, without searching the full tree
 - Up to 10 terms are remembered per ontology type
 - The list persists after page refresh
@@ -237,7 +237,7 @@ Analyses within a sample can be reordered:
 2. Drag it up or down within the same **Analyses** group
 3. The order is saved automatically and survives page refresh
 
-Put your primary analyses (e.g. 1H NMR) first so reviewers see the most important data at the top.
+Put the primary analyses (e.g. 1H NMR) first so reviewers see the most important data at the top.
 
 ### Using the Ketcher Molecular Editor
 
@@ -259,7 +259,7 @@ Put your primary analyses (e.g. 1H NMR) first so reviewers see the most importan
 ### Check Reaction Tooltips
 
 **Preview Reaction Schemes or sample molecule:**
-- Hover your mouse over any reaction in the tree
+- Hover the mouse over any reaction in the tree
 - If a reaction scheme image exists, it appears in a tooltip
 - Perfect for quickly reviewing reaction structures
 - No need to open the reaction to see the scheme

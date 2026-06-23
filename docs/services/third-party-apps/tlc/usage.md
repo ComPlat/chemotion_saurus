@@ -17,10 +17,10 @@ This guide walks through each step of using the TLC Image Annotation Tool inside
 
 ### 1️. Load a TLC Image
 
-You can start in two ways:
+Users can start in two ways:
 
 - **From ELN**: Automatically fetch an image attached to a Chemotion ELN entry.
-- **Upload Local**: Drag & drop or manually upload a file from your computer.
+- **Upload Local**: Drag & drop or manually upload a file from the user's computer.
 
  Only JPG or PNG images under 10MB are supported.
 
@@ -63,7 +63,7 @@ Click **Add Spots**, then click once on each spot (visible compound) on the TLC 
 
 ### 4️. Add Labels (Optional)
 
-You can add reference lines and labels to structure the image:
+Users can add reference lines and labels to structure the image:
 
 - **Vertical Lines (V-Line):** Separate lanes (e.g., “Sample A”, “Standard”)
 - **Horizontal Lines (H-Line):** Mark zones, standards, or notes
@@ -91,7 +91,7 @@ Rf = Distance from Min Line to Spot / Distance from Min to Max
 
 ### 6️. Export or Save
 
-After calculation, you can:
+After calculation, users can:
 
 - Download results as CSV
 - Save the annotated image

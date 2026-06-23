@@ -7,23 +7,23 @@ sidebar_position: 2
 
 *OpenStats* currently supports two types of statistical models: **linear models** and **generalized linear models**.
 
-In this section, we demonstrate how to construct a simple statistical model using the CO<sub>2</sub> dataset.  
+This section demonstrates how to construct a simple statistical model using the CO<sub>2</sub> dataset.  
 The question of interest is how the CO<sub>2</sub> uptake of plants depends on the atmospheric CO<sub>2</sub> concentration.  
-Additionally, we investigate differences between *chilled* and *non-chilled* plants.
+Additionally, it investigates differences between *chilled* and *non-chilled* plants.
 
 Each statistical model is defined using the **Formula Editor**, which can be opened via the dedicated button in the top-left corner.
 
 First, select the **dependent variable** (response), here CO<sub>2</sub> uptake, using the dropdown menu that lists all columns of the dataset.
 
 Next, define the **predictors** using the buttons on the right-hand side.  
-In this example, we construct the term: *conc \* Treatment*
+This example constructs the term: *conc \* Treatment*
 
 This specifies:
 - the main effect of **conc**
 - the main effect of **Treatment**
 - and their **interaction**
 
-If you only want to include the main effects without the interaction, you can use:
+To include only the main effects without the interaction, users can use:
 *conc + Treatment*
 
 For more details, refer to the question mark buttons available in each tab of OpenStats.

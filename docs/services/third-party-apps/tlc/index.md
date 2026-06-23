@@ -31,7 +31,7 @@ The tool bridges manual TLC processing with structured digital workflows.
 ##  Features
 
 * Flexible Image Input
-  - Upload your own (local) images
+  - Upload their own (local) images
   - Load TLC images directly from the Chemotion
 * Mark reference lines, sample spots, and separation lanes
 * Automatically calculate Rf values

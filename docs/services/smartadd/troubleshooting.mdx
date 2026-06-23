@@ -22,26 +22,26 @@ If the ZIP file seems corrupted, just recreate it and try again.
 ### I uploaded files but can't find them
 
 **For Regular File Uploads:**
-SmartAdd doesn't automatically organize your analytical files. After uploading:
+SmartAdd doesn't automatically organize the analytical files. After uploading:
 1. Look in the **input list** on the left - your files are there
 2. Create samples and reactions using the buttons in the right panel
 3. **Drag analytical files** from the left input list to samples/analyses in the right tree
 
 :::warning
-Files that stay in the input list won't be exported! Make sure to drag everything you need to the assignment tree.
+Files that stay in the input list won't be exported! Make sure to drag everything needed to the assignment tree.
 :::
 
 **For Chemscanner ZIP and Excel Templates:**
 These work differently - they **auto-generate the collection structure**:
 - Chemscanner ZIPs (with `export.json`) create samples and reactions automatically
-- Excel templates generate the complete collection hierarchy from your spreadsheet
+- Excel templates generate the complete collection hierarchy from the spreadsheet
 - The generated structure appears in the **assignment tree (right panel)**
 - After import, drag your analytical files from the input list to the generated structure
-- You can edit and refine the auto-generated structure as needed
+- Users can edit and refine the auto-generated structure as needed
 
 ### Chemscanner ZIP not auto-generating structure
 
-If your Chemscanner ZIP uploads but doesn't create samples/reactions:
+If the Chemscanner ZIP uploads but doesn't create samples/reactions:
 - Make sure it's a valid Chemscanner export containing `export.json` (not a regular ZIP)
 - Check the ZIP file isn't corrupted
 - Look for error messages in the upload area
@@ -49,15 +49,15 @@ If your Chemscanner ZIP uploads but doesn't create samples/reactions:
 - Check browser console for processing errors
 
 **Workaround:**
-If auto-processing fails, you can still work manually:
+If auto-processing fails, users can still work manually:
 1. Any analytical files from the ZIP will appear in the input list
 2. Manually create samples and reactions using the buttons
 3. Drag the files from input list to your manually-created structure
 
 ### Excel template not auto-generating structure
 
-If your Excel file uploads but doesn't create samples/reactions:
-- **Using the official template?** You must use the SmartAdd Excel template provided by the SmartAdd
+If the Excel file uploads but doesn't create samples/reactions:
+- **Using the official template?** Users must use the SmartAdd Excel template provided by SmartAdd
 - **Check file format**: Must be .xlsx (not .xls or .csv)
 - **Check file size**: Very large files may take time to process
 - **Check template structure**:
@@ -93,13 +93,13 @@ If auto-processing fails:
 
 ### I can't edit anything
 
-Make sure you're clicking on an actual item (like a sample or reaction), not a folder. The properties panel should appear on the right when you select something.
+Make sure you're clicking on an actual item (like a sample or reaction), not a folder. The properties panel should appear on the right when the user selects something.
 
 If fields still look grayed out, try refreshing your browser or updating to the latest version.
 
 ### My changes disappear when switching items
 
-This is fixed in the latest version! If you're still experiencing this:
+This is fixed in the latest version! If the problem persists:
 - Make sure you're using the current version of SmartAdd
 - Wait for the debounce delay (1 second for rich text, 0.5 seconds for regular fields)
 - Press `Tab` or click outside the field to trigger an immediate save
@@ -107,7 +107,7 @@ This is fixed in the latest version! If you're still experiencing this:
 
 ### Rich text editor isn't loading
 
-The Quill editor loads dynamically. If you see a gray loading box that never loads:
+The Quill editor loads dynamically. If a gray loading box never loads:
 - Refresh your browser (`Ctrl+F5` or `Cmd+Shift+R`)
 - Clear your browser cache
 - Check if JavaScript is enabled
@@ -148,8 +148,8 @@ Common SMILES mistakes to avoid:
 
 ### MOL file validation fails
 
-If your uploaded MOL file shows validation errors:
-- **Check the error message**: It tells you exactly what's wrong
+If the uploaded MOL file shows validation errors:
+- **Check the error message**: It indicates exactly what's wrong
 - **Common issues**:
   - File too short (needs at least 4 lines)
   - Invalid atom count
@@ -160,7 +160,7 @@ If your uploaded MOL file shows validation errors:
 
 ### Formatting disappears from descriptions
 
-If your rich text formatting isn't saved:
+If the rich text formatting isn't saved:
 - The Quill editor has a 1-second debounce delay
 - Wait a moment after formatting before switching items
 - Click outside the editor to trigger immediate save
@@ -200,7 +200,7 @@ Remember: Only files in the assignment tree get exported!
 - Contact your Chemotion administrator if you're sure the credentials are correct
 
 **Upload fails or times out:**
-- Your collection might be too large - try breaking it into smaller batches
+- The collection might be too large - try breaking it into smaller batches
 - Check your network connection
 - As a backup, use "Download as ZIP" and import manually
 
