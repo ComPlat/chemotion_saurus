@@ -7,7 +7,7 @@ ChemCLI, short for Chemotion CLI, is a tool that helps administrators manage Che
 
 ## Compatibility with Chemotion ELN
 
-The ChemCLI tool supports the last three major releases and last three minor releases of the ELN. However, it possible that certain versions are not available for installation based on user feedback.
+The ChemCLI tool supports the last three major releases and last three minor releases of the ELN. However, it is possible that certain versions are not available for installation based on user feedback.
 
 Releases older than 1 year are generally not included in the CLI.
 
@@ -21,13 +21,13 @@ general: cli-executable  <resource>  <command>  <flags>
 example:    chemCLI       instance     logs     --all
 ```
 
-Following features have been implemented:
+The following features have been implemented:
 
 - ✔ Installation & Deployment: `./chemCLI` > `install` installs a production instance that is ready to use.
 - ✔ Instance life cycle commands: `./chemCLI` > `on|off|restart` and `./chemCLI` > `instance` > `stats|ping|logs`.
 - ✔ Upgrade: `./chemCLI` > `instance` > `upgrade` to upgrade an existing Chemotion instance.
 - ✔ Backups: `./chemCLI` > `instance` > `backup` to save the data associated with an instance.
-- ✔ Restore: `./chemCLI` > `instance` > `restore` to save the data associated with an instance into a new instance.
+- ✔ Restore: `./chemCLI` > `instance` > `restore` to restore the data associated with an instance into a new instance.
 - ✔ Multiple instances: `./chemCLI` > `instance` > `new|list|switch|remove` can be used to manage multiple instances.
 - ✔ Administrative consoles: `./chemCLI` > `instance` > `consoles` > `<console_name>` to drop into `shell`, `postgreSQL` and `rails` consoles.
 - ✔ Users: `./chemCLI` > `instance` > `users` > `create|list|update|describe|delete` to manage users in an instance. Particularly, `./chemCLI` > `instance` > `users` > `update` can be used to modify the password for users who forget theirs.
@@ -62,7 +62,7 @@ These binary builds should not rely on libraries of the underlying operating sys
 
 \*On Windows, it is recommended to use [Powershell 7](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell) instead of the one provided natively ([confusingly called Windows Powershell](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell)). In any case, it is necessary to have `pwsh` in the `$PATH`.
 
-^On macOS, if the there is a security pop-up when running the command, please also `Allow` the executable in `System Preferences > Security & Privacy`.
+^On macOS, if there is a security pop-up when running the command, please also `Allow` the executable in `System Preferences > Security & Privacy`.
 
 ## Usage: Setting up an instance
 

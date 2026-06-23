@@ -74,7 +74,7 @@ This configuration enables sending a welcome message as an email to the new user
 
 ### Username Abbreviation
 
-Name abbreviation, like emails, are unique in the database and can be used for sign in.
+Name abbreviations, like emails, are unique in the database and can be used for sign in.
 The length of it can be defined in the `user_props.yml` configuration file. The template file for this is called `user_props.yml.example`. The modified file needs to be put in as the `./shared/pullin/config/user_props.yml` file.
 
 ### User Authentication
@@ -120,7 +120,7 @@ This service is used to collect data files and distribute them to the Chemotion 
 
 ### eMail Attachment collection
 
-The Chemotion ELN should be given access to an email account in which it will regularly check for incoming emails and collect the attachments. The attachments are then distributed to Chemotion ELN user by matching the additional addressee present in the **To:** or **CC:** field of the email. The sender's email address should also be one of an Chemotion ELN-registered device.
+The Chemotion ELN should be given access to an email account in which it will regularly check for incoming emails and collect the attachments. The attachments are then distributed to Chemotion ELN users by matching the additional addressee present in the **To:** or **CC:** field of the email. The sender's email address should also be that of a Chemotion ELN-registered device.
 
 :::danger
 
@@ -131,7 +131,7 @@ If the sender and other addressees are unknown to the Chemotion ELN (emails regi
 
 ### Data Collection
 
-Files can be collected from remote storages and distributed to specific user based on the file-name matching the user's name abbreviation.
+Files can be collected from remote storages and distributed to specific users based on the file name matching the user's name abbreviation.
 
 Configure the frequency for collecting the files, as well as the email access in the `config/datacollectors.yml` file. After editing the `datacollectors.yml` the worker service (DelayedJob) needs to be restarted.
 The background worker will collect the files at the frequencies set.

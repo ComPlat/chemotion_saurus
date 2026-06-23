@@ -205,7 +205,7 @@ docker compose run -e FORCE_DB_RESET=1 eln chemotion restore   # restore the lat
     thumbnails after restoration). These folders are stored in the{" "}
     <code>chemotion_data</code> volume, which can be mounted somewhere to use
     rsync/tar/cp to copy the data. If a container already mounts this
-    volume, such as (such as the <code>eln</code> or <code>worker</code>{" "}
+    volume (such as the <code>eln</code> or <code>worker</code>{" "}
     services), then <code>docker compose cp</code> or{" "}
     <code>docker cp</code> can simply be used to copy the data to the host machine.
     <br />
