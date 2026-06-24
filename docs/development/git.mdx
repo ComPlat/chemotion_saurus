@@ -5,20 +5,20 @@ title: Git Workflow
 ## Introduction
 
 A shared, _explicit_ git-workflow is essential for efficient collaboration, especially for new team members.
-In this chapter we document our git-workflow in order to reduce uncertainty and ambiguity in our collaboration.
+This chapter documents the Chemotion team's git-workflow in order to reduce uncertainty and ambiguity in collaboration.
 
-We have a centralized git-workflow with feature branches.
-The workflow is centralized in the sense that internal team members have write access to our
+The team uses a centralized git-workflow with feature branches.
+The workflow is centralized in the sense that internal team members have write access to the
 online [repository](https://github.com/ComPlat/chemotion_ELN),
-and are contributing directly to the online repository, rather than contributing via forks.
+and contribute directly to the online repository, rather than contributing via forks.
 The latter is the case for external contributors who don't have write access to the online repository.
 
 All changes are contributed by opening pull requests from feature branches against the default branch of our online repository.
 The default branch is protected, only administrators can push to it directly.
-In the following, we illustrate our git-workflow by showing the life-cycle of a feature branch `feature`:
+The following illustrates the git-workflow by showing the life-cycle of a feature branch `feature`:
 from creating the branch, to opening a pull request, to eventually merging it into the default branch `main`.
 
-We start with a visual representation of the git-workflow,
+The illustration starts with a visual representation of the git-workflow,
 showing how two developers collaborate on `feature`.
 Each of the developers has a branch that's tracking `feature` locally on their machine.
 Let's assume for the remaining chapter that you have a branch `feature-dev-a` on your machine,
@@ -52,8 +52,8 @@ and you're always testing your changes against the current "ground truth" on `ma
 Ideally, you make a habit of regularly (e.g., every time you resume working on `feature-dev-a`)
 integrating the latest changes.
 
-On this project, we merge branches without separate merge commits.
-That means we're integrating changes by **rebasing** in order to maintain a clean git history.
+On this project, the team merges branches without separate merge commits.
+That means the team integrates changes by **rebasing** in order to maintain a clean git history.
 
 What does that mean in practice? Let's assume you currently have `feature-dev-a` checked out
 (i.e., `git status` returns "On branch feature-dev-a ...").
@@ -213,11 +213,11 @@ Before a PR can be merged, a number of quality checks have to be passed:
 
 Once the review is finished and all quality checks pass, a maintainer with push access
 can merge `feature` into `main`.
-We merge PRs by squashing all commits on the feature branch,
+The team merges PRs by squashing all commits on the feature branch,
 using the [Squash and merge](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/about-pull-request-merges) option in the GitHub UI.
-Consequently, we can conveniently trace which features have been merged into `main` and in which order.
+Consequently, the team can conveniently trace which features have been merged into `main` and in which order.
 The merge-commit message by default includes the PR number,
-such that we can conveniently access the full history of a PR (despite it being squashed).
+so that the full history of a PR can be accessed conveniently (despite it being squashed).
 
 :::info[Resources]
 
