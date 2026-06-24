@@ -18,7 +18,7 @@ This tool supports the digitization of TLC documentation, automates Rf value cal
 
 ---
 
-##  Purpose
+## Purpose
 
 The tool bridges manual TLC processing with structured digital workflows.
 
@@ -28,31 +28,31 @@ The tool bridges manual TLC processing with structured digital workflows.
 
 ---
 
-##  Features
+## Features
 
-* Flexible Image Input
+- Flexible Image Input
   - Upload their own (local) images
   - Load TLC images directly from Chemotion
-* Mark reference lines, sample spots, and separation lanes
-* Automatically calculate Rf values
-* Versatile Output Options
+- Mark reference lines, sample spots, and separation lanes
+- Automatically calculate Rf values
+- Versatile Output Options
   - Export to CSV or annotated PNG
   - Push results back to Chemotion seamlessly
 
 ---
 
-##  Supported Input
+## Supported Input
 
-| Feature         | Details                         |
-|----------------|----------------------------------|
-| Image Types     | JPG, PNG                         |
-| Max File Size   | 10 MB                            |
-| Image Sources   | Chemotion, Local Upload      |
-| Output Formats  | CSV, Annotated PNG, Chemotion Upload   |
+| Feature        | Details                              |
+| -------------- | ------------------------------------ |
+| Image Types    | JPG, PNG                             |
+| Max File Size  | 10 MB                                |
+| Image Sources  | Chemotion, Local Upload              |
+| Output Formats | CSV, Annotated PNG, Chemotion Upload |
 
 ---
 
-##  Example Workflow
+## Example Workflow
 
 1. **Load an Image** (from Chemotion or local)
 2. **Draw Reference Lines** (Min/Max)
@@ -68,7 +68,7 @@ The tool bridges manual TLC processing with structured digital workflows.
 
 ---
 
-##  Ideal For
+## Ideal For
 
 - Chemistry researchers
 - University teaching labs

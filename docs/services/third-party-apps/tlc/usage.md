@@ -9,33 +9,34 @@ author: Thotli, Shilpa Bai
 
 This guide walks through each step of using the TLC Image Annotation Tool inside the Chemotion ELN.
 
->  Goal: Annotate TLC plate images and calculate Rf values easily
+> Goal: Annotate TLC plate images and calculate Rf values easily
 
 ---
 
 ## Step by Step
 
-### 1️. Load a TLC Image
+### 1. Load a TLC Image
 
 Users can start in two ways:
 
 - **From ELN**: Automatically fetch an image attached to a Chemotion ELN entry.
 - **Upload Local**: Drag & drop or manually upload a file from the user's computer.
 
- Only JPG or PNG images under 10 MB are supported.
+Only JPG or PNG images under 10 MB are supported.
 
 ---
 
 ![Image Source Selection](/img/services/third_party_apps/tlc/usage/tlc-image-source.png)
 
 ---
-### 2️. Set Reference Lines
+
+### 2. Set Reference Lines
 
 Before anything else, define the two key horizontal lines:
 
-| Line Type | Description                       |
-|-----------|-----------------------------------|
-| Min Line  | The baseline (sample spotting area) |
+| Line Type | Description                                      |
+| --------- | ------------------------------------------------ |
+| Min Line  | The baseline (sample spotting area)              |
 | Max Line  | The solvent front (how far the solvent traveled) |
 
 Click the **Min Line** button, then click on the canvas. Repeat with **Max Line**.
@@ -46,7 +47,7 @@ Click the **Min Line** button, then click on the canvas. Repeat with **Max Line*
 
 ---
 
-### 3️. Add Spots
+### 3. Add Spots
 
 Click **Add Spots**, then click once on each spot (visible compound) on the TLC plate.
 
@@ -61,7 +62,7 @@ Click **Add Spots**, then click once on each spot (visible compound) on the TLC 
 
 ---
 
-### 4️. Add Labels (Optional)
+### 4. Add Labels (Optional)
 
 Users can add reference lines and labels to structure the image:
 
@@ -77,19 +78,19 @@ A popup will prompt for a label after placing each line.
 
 ---
 
-### 5️. Calculate RF
+### 5. Calculate RF
 
 Click the **Calculate RF** button.
 
 The tool computes:
 
-```
+```text
 Rf = Distance from Min Line to Spot / Distance from Min to Max
 ```
 
 ---
 
-### 6️. Export or Save
+### 6. Export or Save
 
 After calculation, users can:
 

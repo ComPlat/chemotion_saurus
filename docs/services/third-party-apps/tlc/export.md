@@ -4,7 +4,7 @@ sidebar_label: Export & Save
 author: Thotli, Shilpa Bai
 ---
 
-#  Export & Save – Results from TLC Tool
+# Export & Save – Results from TLC Tool
 
 Once the user has annotated the TLC plate and calculated RF values, the tool offers three export options:
 
@@ -14,30 +14,31 @@ Once the user has annotated the TLC plate and calculated RF values, the tool off
 
 ---
 
-##  1. Download CSV
+## 1. Download CSV
 
 Click the  **Save CSV** button to export the results table.
 
-### File Contents:
+### File Contents
+
 - Mixture labels (X axis)
 - Substance/Spot labels (Y axis)
 - RF values (0–1 range)
 
-### Format:
+### Format
 
-```
+```text
 mixture_label (X axis),substance_label (Y axis),RF value
 Sample A,Spot 1,0.72
 Sample A,Spot 2,0.53
 ```
 
-### Extras:
+### Extras
+
 Includes **inline summary notation** for lab records:
 
-```
+```text
 TLC (solvents); Rf (UV-Vis in nm, staining) = 0.72 (Spot 1)[h1], 0.53 (Spot 2)[h2]
 ```
-
 
 ---
 
@@ -45,7 +46,7 @@ TLC (solvents); Rf (UV-Vis in nm, staining) = 0.72 (Spot 1)[h1], 0.53 (Spot 2)[h
 
 ---
 
-##  2. Download Annotated Image
+## 2. Download Annotated Image
 
 Click the  **Save Image** button to download a PNG with:
 
@@ -61,7 +62,7 @@ Click the  **Save Image** button to download a PNG with:
 
 ---
 
-##  3. Upload to Chemotion
+## 3. Upload to Chemotion
 
 If the image was originally loaded from Chemotion:
 
@@ -69,12 +70,14 @@ If the image was originally loaded from Chemotion:
 - The tool sends both the annotated image and CSV to the original Chemotion URL
 
 :::danger[Requirements]
+
 - **Image Source Restriction**
   Only images loaded from Chemotion support cloud upload.
   If the user uploads an image locally (i.e., not from Chemotion), the annotated image cannot be uploaded back to Chemotion.
 
 - **CSRF Token**
   A valid CSRF token must be available. This is handled internally by the system.
+
 :::
 
 ---

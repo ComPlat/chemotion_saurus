@@ -10,9 +10,9 @@ This page addresses common user questions, issues, and best practices.
 
 ---
 
-##  Common Issues
+## Common Issues
 
-###  1. I can’t see the annotated image after clicking “Calculate RF”
+### 1. I can’t see the annotated image after clicking “Calculate RF”
 
 - Ensure both **Min Line** and **Max Line** are drawn
 - At least one spot must be marked
@@ -20,7 +20,7 @@ This page addresses common user questions, issues, and best practices.
 
 ---
 
-###  2. RF values are missing or show zero
+### 2. RF values are missing or show zero
 
 - Spot might be too close to the **Min Line** (baseline)
 - Lines may be placed in reverse order (Max below Min)
@@ -28,7 +28,7 @@ This page addresses common user questions, issues, and best practices.
 
 ---
 
-###  3. Upload to ELN does not work
+### 3. Upload to ELN does not work
 
 - Upload works **only if** the image was loaded from Chemotion
 - Ensure you are logged in to Chemotion and a CSRF token is available
@@ -36,42 +36,43 @@ This page addresses common user questions, issues, and best practices.
 
 ---
 
-### 4. I see the message "No annotated image found"...
+### 4. I see the message "No annotated image found"
 
 - You need to run RF calculation first
 
 ---
 
-### 5. I see the message "Upload failed"...
+### 5. I see the message "Upload failed"
 
 - This means the CSRF token might have been lost; try refreshing the page
 
-##  Resetting
+## Resetting
 
 Click the **Reset** button to:
+
 - Clear all annotations
 - Reset RF table and image
 - Start fresh with the same or new image
 
 ---
 
-##  Pro Tips
+## Pro Tips
 
--  **Always** draw **Min Line** and **Max Line** before placing spots
--  Click the **center of the spot** on the TLC plate
--  Use a high-resolution image in bright light
--  Use the Reset button to correct mistakes
+- **Always** draw **Min Line** and **Max Line** before placing spots
+- Click the **center of the spot** on the TLC plate
+- Use a high-resolution image in bright light
+- Use the Reset button to correct mistakes
 
 ---
 
-##  Valid RF Range Reference
+## Valid RF Range Reference
 
-| Spot Position        | Expected RF Value | Notes                            |
-|----------------------|-------------------|----------------------------------|
-| Near baseline        | ~0.00–0.10        | Slow or large molecules          |
-| Middle of plate      | ~0.40–0.60        | Good zone of separation          |
-| Near solvent front   | ~0.80–0.99        | Highly mobile compounds          |
-| Below Min Line       | ❌ Invalid         | Spot marked incorrectly          |
+| Spot Position      | Expected RF Value | Notes                   |
+| ------------------ | ----------------- | ----------------------- |
+| Near baseline      | ~0.00–0.10        | Slow or large molecules |
+| Middle of plate    | ~0.40–0.60        | Good zone of separation |
+| Near solvent front | ~0.80–0.99        | Highly mobile compounds |
+| Below Min Line     | ❌ Invalid        | Spot marked incorrectly |
 
 ---
 
