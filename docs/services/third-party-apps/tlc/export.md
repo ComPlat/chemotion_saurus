@@ -10,7 +10,7 @@ Once the user has annotated the TLC plate and calculated RF values, the tool off
 
 - Download CSV (Rf values)
 - Download annotated image (PNG)
-- Upload both (CSV and annotated image) to the Chemotion (if image was from Chemotion)
+- Upload both (CSV and annotated image) to Chemotion (if the image was from Chemotion)
 
 ---
 
@@ -63,15 +63,15 @@ Click the  **Save Image** button to download a PNG with:
 
 ##  3. Upload to Chemotion
 
-If the image was originally loaded from the Chemotion:
+If the image was originally loaded from Chemotion:
 
 - Use the  **Upload to Chemotion** button
 - The tool sends both the annotated image and CSV to the original Chemotion URL
 
 :::danger[Requirements]
 - **Image Source Restriction**
-  Only images loaded from the Chemotion support cloud upload.
-  If the user uploads an image locally (i.e., not from the Chemotion), the annotated image cannot be uploaded back to the Chemotion.
+  Only images loaded from Chemotion support cloud upload.
+  If the user uploads an image locally (i.e., not from Chemotion), the annotated image cannot be uploaded back to Chemotion.
 
 - **CSRF Token**
   A valid CSRF token must be available. This is handled internally by the system.

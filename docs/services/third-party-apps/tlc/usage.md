@@ -22,7 +22,7 @@ Users can start in two ways:
 - **From ELN**: Automatically fetch an image attached to a Chemotion ELN entry.
 - **Upload Local**: Drag & drop or manually upload a file from the user's computer.
 
- Only JPG or PNG images under 10MB are supported.
+ Only JPG or PNG images under 10 MB are supported.
 
 ---
 
@@ -36,7 +36,7 @@ Before anything else, define the two key horizontal lines:
 | Line Type | Description                       |
 |-----------|-----------------------------------|
 | Min Line  | The baseline (sample spotting area) |
-| Max Line  | The solvent front (how far solvent traveled) |
+| Max Line  | The solvent front (how far the solvent traveled) |
 
 Click the **Min Line** button, then click on the canvas. Repeat with **Max Line**.
 

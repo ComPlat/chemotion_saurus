@@ -31,7 +31,7 @@ This page addresses common user questions, issues, and best practices.
 ###  3. Upload to ELN does not work
 
 - Upload works **only if** the image was loaded from Chemotion
-- Ensure you are logged in to the Chemotion and CSRF token is available
+- Ensure you are logged in to Chemotion and a CSRF token is available
 - Local uploads can’t be sent to Chemotion – only download is allowed
 
 ---
@@ -44,7 +44,7 @@ This page addresses common user questions, issues, and best practices.
 
 ### 5. I see the message "Upload failed"...
 
-- It means the CSRF token might got lost, try to refresh the page
+- This means the CSRF token might have been lost; try refreshing the page
 
 ##  Resetting
 

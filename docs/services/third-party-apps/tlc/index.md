@@ -8,7 +8,7 @@ sidebar_position: 2
 
 # Overview
 
-The **TLC Image Annotation Tool** is a lightweight, web-based application designed for annotating Thin Layer Chromatography (TLC) plates, calculating Rf values, and exporting annotated results. It can be used as a standalone tool or integrated into the Chemotion.
+The **TLC Image Annotation Tool** is a lightweight, web-based application designed for annotating Thin Layer Chromatography (TLC) plates, calculating Rf values, and exporting annotated results. It can be used as a standalone tool or integrated into Chemotion.
 
 This tool supports the digitization of TLC documentation, automates Rf value calculations, and promotes consistent and well-structured ELN records.
 
@@ -32,12 +32,12 @@ The tool bridges manual TLC processing with structured digital workflows.
 
 * Flexible Image Input
   - Upload their own (local) images
-  - Load TLC images directly from the Chemotion
+  - Load TLC images directly from Chemotion
 * Mark reference lines, sample spots, and separation lanes
 * Automatically calculate Rf values
 * Versatile Output Options
   - Export to CSV or annotated PNG
-  - Push results back to the Chemotion seamlessly
+  - Push results back to Chemotion seamlessly
 
 ---
 
