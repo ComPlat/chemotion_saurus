@@ -1,34 +1,77 @@
-# ELN docs review assignments (v3/v4 update)
+# Human review plan — `eln-v3-docs` branch
 
-Pages under `docs/eln/` grouped into balanced batches for human reviewers. Each batch keeps
-topically-related pages together so a reviewer builds context once. Workload weight per page is
-estimated as **`lines + 5 × images`** (images carry extra verification/recapture effort). Totals are
-approximate — feel free to rebalance by swapping whole pages between adjacent batches.
+This branch is the **v3 documentation overhaul**: regenerated v3 screenshots/GIFs, an
+asset reorganisation + URL dash-renames (with redirects), and a full-repo
+language/grammar/clarity copyedit. **260 doc pages** changed across the whole site
+(ELN, LabIMotion, Repository, Services, Development).
 
-| Batch | Theme | Pages | ≈ weight |
-|-------|-------|-------|----------|
-| **1** | Element details | `ui/details.mdx` | ~840 |
-| **2** | Elements | `ui/elements/reactions.mdx`, `ui/elements/samples/index.mdx`, `ui/elements/samples/mixtures.mdx`, `ui/elements/wellplates.mdx`, `ui/elements/macromolecules.mdx`, `ui/elements/cell_lines.mdx`, `ui/elements/grouping.mdx`, `ui/elements/device_description.mdx` | ~1040 |
-| **3** | UI core & toolbar | `ui/index.mdx`, `ui/view.mdx`, `ui/toolbar.mdx`, `ui/lists.mdx`, `ui/first_steps.mdx`, `ui/history.mdx`, `ui/hyperlink.mdx` | ~790 |
-| **4** | Editors & data I/O | `ui/ketcher.mdx`, `ui/import.mdx`, `ui/inventory.mdx`, `ui/barcodes.mdx`, `ui/images.mdx` | ~920 |
-| **5** | Collections & collaboration | `ui/collections/index.mdx`, `ui/collections/tabs.mdx`, `ui/calendar.mdx`, `ui/comments.mdx`, `ui/inbox.mdx`, `ui/ontology.mdx`, `ui/text_editor.mdx`, `ui/text_templates.mdx` | ~880 |
-| **6** | Admin interface | all of `admin/*` (index, user_management, groups, features, generic_config, chemspectra, ontology, remote_devices, third_party_apps) | ~860 |
-| **7** | Installation & configuration | all of `install_configure/*` (index, ChemCLI, manual_install, authentication, configuration, system_check) | ~1360 |
-| **8** | Top-level & interfaces | `index.mdx`, `faq.mdx`, `releases.mdx`, `troubleshooting.mdx`, `videos.mdx`, `interfaces/radar.mdx` | ~430 |
-| **9** | Devices — collection & NMR/MS | `devices/index.mdx`, `devices/list.mdx`, `devices/configurations/*`, `devices/nmr/*`, `devices/ms/*` | ~1090 |
-| **10** | Devices — chromatography & spectroscopy | `devices/gc_gc-ms/*`, `devices/hplc_lc-ms/*`, `devices/uv_vis_nir_ir_raman/*`, `devices/dsc_tga/*`, `devices/microscopy/*`, `devices/electronic_spectroscopy/*` | ~1290 |
+The review is split across **12 reviewers — 9 developers (D1–D9) + 3 chemists (C1–C3)** —
+grouped by subsystem so each person owns one coherent area. Replace the D#/C# labels with
+real names before sharing.
 
-## Notes for reviewers
-- **Batches 1–6** carry the bulk of the **v3 UI changes** already updated in this branch — prioritize
-  verifying prose against the running app and checking the flagged screenshots.
-- **Batches 7, 9, 10** are dense technical-reference pages with **few v3 UI changes** (install/config
-  and device-integration steps are largely version-independent) — lighter review per line.
-- **Batch 8** is small; it can be paired with another batch if you have fewer reviewers.
-- `admin/generic_config.mdx` (batch 6) is self-marked **legacy** (superseded by LabIMotion) — flag for
-  a decision on deprecation/redirect rather than line-editing.
-- Screenshots still pending recapture are tracked separately in the image capture list; reviewers
-  should note (not block on) stale images.
+> **Sizing note:** a large fraction of the line-churn is *mechanical copyedit* (grammar,
+> articles, third-person tone) that is safe to skim. The **differentiated** effort is in
+> (a) screenshots matching the live v3 UI, (b) step-by-step accuracy, (c) technical facts.
+> The "Focus" column says where the real attention should go. Sizes (S/M/L) already
+> discount mechanical churn.
 
-## If you have N reviewers
-- **5 reviewers:** {1+8}, {2}, {3+4}, {5+6}, {7+9+10 split by availability}
-- **10 reviewers:** one batch each.
+## Assignments
+
+### Chemists — verify scientific / lab correctness against a running v3 instance
+
+| # | Area | Paths (`docs/…`) | Size | Focus |
+|---|------|------------------|------|-------|
+| **C1** | **Elements, Ketcher & SmartAdd** — creating/managing samples, reactions, wellplates, cell lines, macromolecules; drawing structures; assembling data with SmartAdd | `eln/ui/elements/**`, `eln/ui/ketcher.mdx`, `eln/ui/inventory.mdx`, `services/smartadd/**` | M–L | Do element types, properties, the reaction table, mixtures, and Ketcher drawing steps match the app and make chemical sense? |
+| **C2** | **Spectra & analytical-data standards** — ChemSpectra processing + repository metadata standards per technique | `services/chemspectra/**`, `repo/details-standards/**` | M | Are technique workflows (NMR/MS/IR/CV/…), file formats, and required-metadata standards scientifically correct? |
+| **C3** | **Repository & lab→publish workflow** — submission, review, embargo, DOIs, physical samples, RADAR | `repo/workflow/**`, `repo/{doi,labeling,physical-samples,references,viewer,faq,fundings,index}.mdx`, `repo/interfaces/**`, `repo/settings-preparation/**`, `eln/interfaces/radar.mdx` | M | Is the publish workflow (states, roles, embargo, DOI minting) accurate end-to-end? |
+
+### Developers — verify technical correctness, setup, integrations, UI mechanics, links
+
+| # | Area | Paths (`docs/…`) | Size | Focus |
+|---|------|------------------|------|-------|
+| **D1** | **Installation — ChemCLI & manual install** | `eln/install-configure/{index,ChemCLI,manual-install}.mdx` | L | Run the install paths; verify commands, ports, backup/restore, reverse-proxy. |
+| **D2** | **Configuration, auth & contributor docs** | `eln/install-configure/{configuration,authentication,system-check}.mdx`, `development/**`, `documentation/**`, `index.mdx` (root) | M | Config keys, env vars, OIDC/Shibboleth; dev-setup & docs-maintenance accuracy. |
+| **D3** | **Admin & OpenStats** | `eln/admin/**`, `services/third-party-apps/OpenStats/**`, `services/third-party-apps/index.mdx` | M (+6 shots) | Admin panels, permissions, feature toggles, third-party-app registration. |
+| **D4** | **Devices — spectroscopy & MS** (NMR, MS, UV-Vis/IR/Raman, electronic spectroscopy, microscopy, DSC/TGA) | `eln/devices/{nmr,ms,uv-vis-nir-ir-raman,electronic-spectroscopy,microscopy,dsc-tga}/**` | S–M | Per-instrument: software names, versions, file formats, transfer setup. |
+| **D5** | **Devices — chromatography & data collection** (GC, HPLC/LC-MS, collector configs, overview) | `eln/devices/{gc-gc-ms,hplc-lc-ms,configurations}/**`, `eln/devices/{index,list}.mdx` | M | Per-instrument config + the shared data-collection / transfer mechanisms. |
+| **D6** | **Core UI — shell, collections, inbox + screenshot QA** (top bar, main page, collections, calendar, view, toolbar, details, first steps, inbox) + general ELN pages | `eln/ui/{index,inbox,calendar,view,toolbar,first-steps,details}.mdx`, `eln/ui/collections/**`, `eln/{faq,index,releases,troubleshooting,videos}.mdx` | **L (+36 shots)** | **Owns the v3 screenshot/GIF sanity-check** — every shot must show v3 UI, not v2 — plus the collection-management flow. |
+| **D7** | **UI content tools & editors** (lists, import, rich-text & templates, comments, history, hyperlinks, images, barcodes, ontology) | `eln/ui/{lists,import,text-editor,text-templates,comments,history,hyperlink,images,barcodes,ontology}.mdx` | M–L | Import/column-mapping, editors, barcode config — click through each. |
+| **D8** | **LabIMotion (generic elements)** — designer + user (71 small pages) | `labimotion/**` | **L (71 files)** | Template designer (layers/fields/types) + end-user usage; mostly small pages, high file count. |
+| **D9** | **Services & integrations** — ChemConverter, ChemLocalLink, ChemScanner, ChemMobile, Ketcher service, TLC | `services/{chemconverter,chemlocallink,chemscanner,chemobile,ketcher}/**`, `services/third-party-apps/tlc/**` | M–L | Integration/setup correctness; TLC churn is mostly lint-reformatting (skimmable). |
+
+_Coverage: every routed page under `docs/` is assigned exactly once. `docs/_old_pages/**` is deprecated/unrouted — out of scope._
+
+## Suggested reviewer workflow
+
+**Setup (once)**
+1. `git checkout eln-v3-docs && git pull`
+2. `npm ci && npm run build && npm run serve` → read your pages **rendered** at `localhost:3000/docs/…` (or use the deploy preview).
+3. Open a **running v3 ELN instance** side-by-side — most checks are "does the doc match the app?".
+4. See only your changes: `git diff main...HEAD -- <your paths>`.
+
+**Per page — check in this order (stop on a blocker)**
+1. **Screenshots/GIFs** show the **v3** UI (correct buttons, panels, layout) — flag any stale v2 imagery.
+2. **Steps** are correct and in order — actually click through them in the instance.
+3. **Facts** — versions, file formats/extensions, ports, paths, parameters, device/software names.
+4. **Links & anchors** resolve and point to the *right* page (the build already blocks truly broken links).
+5. **Language** reads clearly — grammar was already passed, so only flag awkward or **meaning-wrong** wording.
+
+**Logging findings**
+- One GitHub **PR review comment per issue**, tagged **`blocker`** (wrong step/screenshot/fact) or **`minor`** (wording/polish).
+- **Don't push edits directly** (avoids conflicts) — comment instead; batch trivial typos into a single follow-up PR at the end.
+- Anything spanning areas (terminology, naming, a recurring pattern) → flag to the **coordinator**, don't fix locally.
+
+**Cross-cutting checks (everyone, lightly)**
+- Terminology consistency: "the user / users / the Chemotion team / the administrator"; product names (Ketcher, ChemSpectra, LabIMotion).
+- "version X.Y" / "from v3 onwards" markers are accurate.
+- Admonitions (`:::info/warning/danger`) and `<Btn>` UI cues render correctly.
+
+**Coordinator**
+- Track completion (use this table as a checklist), de-duplicate cross-area issues, then run a final `npm run build` and merge.
+
+## Known items already flagged (context for reviewers)
+- `services/smartadd/workflow.mdx` — two "✅ Good" filename examples are actually bad (intentionally left for an author decision → **C1**).
+
+## If you have fewer reviewers
+- **6:** merge {D1+D2}, {D4+D5}, {D6+D7}, {D8+D9}, {C1+ (C3)}, {C2}.
+- **4:** Install/Admin/Devices (devs) · UI (devs) · LabIMotion+Services (devs) · all chemistry (chemists pool C1–C3).
