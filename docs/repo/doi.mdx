@@ -10,18 +10,18 @@ sidebar_position: 6
 
 - Collection DOIs: Collection DOIs refer to a whole collection of data, including [reactions](/docs/eln/ui/elements/reactions), [samples](/docs/eln/ui/elements/samples) and analysis data. They are used to describe a study with just one DOI. Collection DOIs are generated on the basis of an embargo bundle. All reactions and samples assigned to an embargo bundle number are summarized in one collection DOI.
 - Reaction DOIs: Reaction DOIs point to one specific reaction that includes the target samples and analysis data.
-- Sample DOIs: Sample DOIs point to one specific sample that includes the analysis data. Chemotion creates DOIs for samples, not for molecules. Therefore, the same molecule can occur different times in Chemotion with different DOIs (according to different samples (=batches)).
+- Sample DOIs: Sample DOIs point to one specific sample that includes the analysis data. Chemotion creates DOIs for samples, not for molecules. Therefore, the same molecule can occur multiple times in Chemotion with different DOIs (according to different samples (=batches)).
 - Analysis (Datasets) DOIs: Analysis DOIs are the lowest DOI level that is supported by Chemotion repository. The analysis DOI refers to one analytical measurement that was conducted for a specific sample. The analysis DOI may refer to one or multiple datasets describing the measurement.
 
 **How do scientists benefit from DOIs?**
 
 The use of DOIs allows scientists to point directly to data that was generated along with their research. The users can cite not only a whole dataset but also single data on e.g. the characterization of a specific compound or the experimental details of a reaction.
 The collection DOI can be used to summarize a collection of data (ideally belonging to one publication) which allows to refer to and cite all data that describe one study. Using the DOI link in supplemental information means that every experiment can be cited. Further reuse of the full information is facilitated due to a direct link to the data - without the need to search in databases.
-In the long run, the deposit and re-use of research data will be an important factor contributing to the scientists' impact. DOIs are the most powerful measure to cite research data and therefore contributing to new indicators for science and scientists.
+In the long run, the deposit and re-use of research data will be an important factor contributing to the scientists' impact. DOIs are the most powerful measure to cite research data and therefore contribute to new indicators for science and scientists.
 
 **How to generate DOIs? When are DOIs available?**
 
-DOIs are generated automatically in the repository - there is no need for action. Users just need to know where to find DOIs and how to use them. The DOIs are created (reserved) directly when the user [submits](/docs/repo/workflow/submit) a reaction or sample. After the information in the submission panel is added, the DOIs are created. At this stage, the DOIs can be copied and used for the referencing in SIs and publications, but the DOIs don't resolve yet. Therefore, the data is not accessible to others. The DOIs will resolve at the time the dataset is release and published.
+DOIs are generated automatically in the repository - there is no need for action. Users just need to know where to find DOIs and how to use them. The DOIs are created (reserved) directly when the user [submits](/docs/repo/workflow/submit) a reaction or sample. After the information in the submission panel is added, the DOIs are created. At this stage, the DOIs can be copied and used for the referencing in SIs and publications, but the DOIs don't resolve yet. Therefore, the data is not accessible to others. The DOIs will resolve at the time the dataset is released and published.
 
 :::info
 
@@ -31,7 +31,7 @@ DOIs are created directly with the submission of data to Chemotion repository - 
 
 **Explanation of DOI-structure**
 
-DOIs consist of a prefix and a suffix. DOI links include additionally "https://". DOIs created by Chemotion repository contain the prefix "dx.doi.org/10.14272/" which is combined with a specific suffix for collections, reactions, samples and analyses. DOIs contain a numerical counter to indicate how often items are submitted, that consist of a similar content.<br />
+DOIs consist of a prefix and a suffix. DOI links include additionally "https://". DOIs created by Chemotion repository contain the prefix "dx.doi.org/10.14272/" which is combined with a specific suffix for collections, reactions, samples and analyses. DOIs contain a numerical counter to indicate how often items with similar content are submitted.<br />
 
 - **Example for a typical collection DOI:** https://dx.doi.org/10.14272/collection/AAL_2022-12-18_2. <br />
   Explanation: "https://"(link) + "dx.doi.org/10.14272"(prefix) + "/collection"(indicator for type of DOI) + "AAL_2022-12-18_2"(label of the collection).<br />
