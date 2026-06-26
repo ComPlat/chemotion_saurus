@@ -1,0 +1,46 @@
+---
+title: Affiliation Suggestions
+sidebar_position: 6
+---
+
+:::info
+This feature is available starting from version 4.0.
+:::
+
+When a user suggests a new organization, department, or working group from **Settings → Affiliations** (see [My Affiliations](/docs/eln/ui/affiliations)), it does not enter the shared registry immediately. It is queued for an administrator to review. This keeps the registry clean and prevents duplicate or misspelled entries.
+
+Open the admin panel and select **Affiliations** from the menu.
+
+![Pending affiliation suggestions](/img/eln/affiliations/aff-09-admin-pending.png)
+
+## Reviewing the queue
+
+The list is filtered by status with the **Pending**, **Approved**, and **Rejected** buttons. Pending suggestions are the ones awaiting a decision.
+
+Each row shows who submitted it, the proposed organization, department, working group and country, and the submission date. A suggestion may combine existing registry values with one or more new ones — the new values are what you are approving.
+
+## Approve
+
+Click **Approve** to accept the suggestion.
+
+- The organization, department, and working group are added to the shared registry (existing entries are reused, not duplicated). If the organization carried a ROR identifier, it is stored with it.
+- The affiliation is attached to the submitting user. If the suggestion was an **edit** of one of the user's existing affiliations, that affiliation is updated in place rather than duplicated.
+- The user is notified by email.
+
+The suggestion moves to the **Approved** tab.
+
+![Approved suggestions](/img/eln/affiliations/aff-10-admin-approved.png)
+
+## Reject
+
+Click **Reject** to decline the suggestion.
+
+- Nothing is added to the registry.
+- If the suggestion was an edit, the user's original affiliation is left unchanged.
+- The user is notified by email and keeps whatever affiliation they had before.
+
+The suggestion moves to the **Rejected** tab.
+
+:::note
+Users can also withdraw their own pending suggestions before you act on them, in which case the suggestion simply disappears from the **Pending** queue.
+:::

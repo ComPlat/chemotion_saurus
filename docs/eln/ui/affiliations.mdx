@@ -1,0 +1,88 @@
+---
+title: My Affiliations
+sidebar_position: 13
+---
+
+:::info
+This feature is available starting from version 4.0.
+:::
+
+Your affiliation describes where you work: a country, an organization, and optionally a department and a working group. The ELN reuses this information on samples, reactions, reports, and on submissions to the Chemotion Repository.
+
+You manage your affiliations under **Settings → Affiliations**. Open the user menu in the top-right corner, choose **Settings**, then select the **Affiliations** tab.
+
+![My affiliations overview](/img/eln/affiliations/aff-01-overview.png)
+
+The page has two parts:
+
+- **Cards** at the top show your existing affiliations. The one marked **Current** is the affiliation used by default. A card marked **In Review** is a value you suggested that an administrator has not approved yet.
+- **The table** below is where you add and edit affiliations.
+
+## Organizations come from a shared registry
+
+Organizations, departments, and working groups are not free text. They live in a registry shared by all users, so the same institution is spelled the same way everywhere. The organization field is backed by the [Research Organization Registry (ROR)](https://ror.org/), which provides a verified name (and identifier) for most institutions worldwide.
+
+When you start typing an organization, matching entries from ROR appear under a **ROR** heading. Picking one links your affiliation to that verified institution.
+
+![Organization search with ROR results](/img/eln/affiliations/aff-04-org-ror.png)
+
+:::tip
+ROR understands acronyms. Typing `KIT` will surface *Karlsruhe Institute of Technology* even though the letters don't appear in order. Prefer a registry match over inventing a new entry.
+:::
+
+## Add an affiliation
+
+1. Click **Add affiliation**. A new editable row appears.
+
+   ![Add affiliation row](/img/eln/affiliations/aff-02-addrow.png)
+
+2. Select a **Country**. The organization field unlocks once a country is set.
+3. Search for your **Organization** and pick the matching ROR entry. Department and Working Group unlock once an organization is selected.
+4. Select a **Department** and **Working Group** if they already exist for that organization.
+5. Click the **Save** button in the **Actions** column.
+
+If every value you chose already exists in the registry, the affiliation is saved immediately and appears as a normal card.
+
+## Suggest a value that isn't in the registry
+
+If your department, working group, or even the organization itself is missing, you can suggest it. Each column header has a **+** button that opens a small form.
+
+- The **Organization +** button is available once the row has a country selected.
+- The **Department +** and **Working Group +** buttons are available once the row has an organization selected.
+
+Click the **+**, type the new value, and click **Confirm**.
+
+![Suggestion popover](/img/eln/affiliations/aff-05-suggest-popover.png)
+
+For organizations, the form also shows possible ROR matches as you type. These are only a hint — if one fits, pick it from the dropdown instead; if your organization is genuinely new, ignore them and confirm your text.
+
+![Organization suggestion with ROR hints](/img/eln/affiliations/aff-08-org-nudge.png)
+
+### Suggestions are submitted on Save, not on Confirm
+
+Confirming the **+** form does **not** send anything yet. It only stages the new value into the row, marked **New — pending admin approval on Save**.
+
+![Staged pending value](/img/eln/affiliations/aff-06-staged-pending.png)
+
+This lets you assemble a complete row — mixing existing registry values with new ones — before anything is submitted. When you click **Save**, the whole row is sent to an administrator as a single suggestion. Until it is approved, the row is shown as a separate **In Review** card; your existing **Current** affiliation is left untouched.
+
+![In review card with withdraw button](/img/eln/affiliations/aff-07-inreview.png)
+
+:::note
+A row that contains *any* new value becomes a suggestion on Save. A row built only from existing registry values is saved directly, with no review needed.
+:::
+
+## Withdraw a suggestion
+
+An **In Review** card has a **Withdraw** button. Click it to cancel the suggestion before an administrator acts on it. The card disappears and nothing is added to the registry.
+
+## Edit an affiliation
+
+Use the pencil button in the **Actions** column to edit an existing affiliation. Editing behaves like adding:
+
+- Changing values to other existing registry entries saves directly.
+- Introducing a new value turns the change into a suggestion. Your original affiliation stays **Current** while the edit is **In Review**; once approved, the edit replaces it.
+
+## What happens after you submit
+
+A submitted suggestion is reviewed by an administrator, who can approve or reject it. You are notified of the outcome by email. See [Affiliation Suggestions](/docs/eln/admin/affiliations) for the administrator's side of this process.
