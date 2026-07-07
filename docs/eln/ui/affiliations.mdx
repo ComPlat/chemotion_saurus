@@ -7,28 +7,32 @@ sidebar_position: 13
 This feature is available starting from version 4.0.
 :::
 
-Your affiliation describes where you work: a country, an organization, and optionally a department and a working group. The ELN reuses this information on samples, reactions, reports, and on submissions to the Chemotion Repository.
+Your affiliation describes where you work: a country, an organization, and optionally a department, a working group, and a start/end date.
 
 You manage your affiliations under **Settings → Affiliations**. Open the user menu in the top-right corner, choose **Settings**, then select the **Affiliations** tab.
 
-![My affiliations overview](/img/eln/affiliations/aff-01-overview.png)
+![My affiliations overview with dates and status badges](/img/eln/affiliations/aff-11-overview-dates.png)
 
 The page has two parts:
 
-- **Cards** at the top show your existing affiliations. The one marked **Current** is the affiliation used by default. A card marked **In Review** is a value you suggested that an administrator has not approved yet.
-- **The table** below is where you add and edit affiliations.
+- **Cards** at the top show your existing affiliations. **Current** is an affiliation without an end date, or whose end date hasn't passed yet. **Past** is an affiliation whose end date has already passed. **In Review** is a value you suggested that an administrator has not approved yet.
+- **The table** below is where you add and edit affiliations, including the optional **From** and **To** dates.
+
+Blank fields — an affiliation with no department, no working group, or no end date — are shown as a dash (`—`).
 
 ## Organizations come from a shared registry
 
 Organizations, departments, and working groups are not free text. They live in a registry shared by all users, so the same institution is spelled the same way everywhere. The organization field is backed by the [Research Organization Registry (ROR)](https://ror.org/), which provides a verified name (and identifier) for most institutions worldwide.
 
-When you start typing an organization, matching entries from ROR appear under a **ROR** heading. Picking one links your affiliation to that verified institution.
+When you start typing an organization, matching entries from ROR appear under a **ROR** heading, with any existing registry matches grouped under **From registry**. Picking one links your affiliation to that verified institution.
 
-![Organization search with ROR results](/img/eln/affiliations/aff-04-org-ror.png)
+![Organization search with bold ROR and registry group headings](/img/eln/affiliations/aff-12-org-ror-bold.png)
 
 :::tip
-ROR understands acronyms. Typing `KIT` will surface *Karlsruhe Institute of Technology* even though the letters don't appear in order. Prefer a registry match over inventing a new entry.
+ROR matches on name and acronym, so typing `KIT` will surface every organization registered under that acronym worldwide, not just one institution, check the country/location shown for each result before picking one. Prefer a registry match over inventing a new entry.
 :::
+
+Once an affiliation is saved with a ROR-verified organization, a small link icon appears next to its name — click it to open that organization's page on [ror.org](https://ror.org/).
 
 ## Add an affiliation
 
@@ -39,9 +43,14 @@ ROR understands acronyms. Typing `KIT` will surface *Karlsruhe Institute of Tech
 2. Select a **Country**. The organization field unlocks once a country is set.
 3. Search for your **Organization** and pick the matching ROR entry. Department and Working Group unlock once an organization is selected.
 4. Select a **Department** and **Working Group** if they already exist for that organization.
-5. Click the **Save** button in the **Actions** column.
+5. Optionally set a **From** and/or **To** date.
+6. Click the **Save** button in the **Actions** column.
 
 If every value you chose already exists in the registry, the affiliation is saved immediately and appears as a normal card.
+
+:::note
+You can only hold one affiliation for a given combination of organization, department, working group, and country. Trying to add (or edit into) a duplicate shows an error and nothing is saved — your unsaved changes stay in the row so you can correct them instead of starting over.
+:::
 
 ## Suggest a value that isn't in the registry
 
@@ -64,7 +73,7 @@ Confirming the **+** form does **not** send anything yet. It only stages the new
 
 ![Staged pending value](/img/eln/affiliations/aff-06-staged-pending.png)
 
-This lets you assemble a complete row — mixing existing registry values with new ones — before anything is submitted. When you click **Save**, the whole row is sent to an administrator as a single suggestion. Until it is approved, the row is shown as a separate **In Review** card; your existing **Current** affiliation is left untouched.
+This lets you assemble a complete row — mixing existing registry values with new ones, and an optional date range — before anything is submitted. When you click **Save**, the whole row is sent for review as a single suggestion. Until it is approved, the row is shown as a separate **In Review** card; your existing **Current** affiliation is left untouched.
 
 ![In review card with withdraw button](/img/eln/affiliations/aff-07-inreview.png)
 
@@ -74,7 +83,7 @@ A row that contains *any* new value becomes a suggestion on Save. A row built on
 
 ## Withdraw a suggestion
 
-An **In Review** card has a **Withdraw** button. Click it to cancel the suggestion before an administrator acts on it. The card disappears and nothing is added to the registry.
+An **In Review** card has a **Withdraw** button. Click it to cancel the suggestion before it is reviewed. The card disappears and nothing is added to the registry.
 
 ## Edit an affiliation
 
@@ -83,6 +92,12 @@ Use the pencil button in the **Actions** column to edit an existing affiliation.
 - Changing values to other existing registry entries saves directly.
 - Introducing a new value turns the change into a suggestion. Your original affiliation stays **Current** while the edit is **In Review**; once approved, the edit replaces it.
 
-## What happens after you submit
+## Who reviews your suggestions
 
-A submitted suggestion is reviewed by an administrator, who can approve or reject it. You are notified of the outcome by email. See [Affiliation Suggestions](/docs/eln/admin/affiliations) for the administrator's side of this process.
+A submitted suggestion is reviewed by an administrator — or by a user your administrator has granted approval rights to. Reviewers can also correct small mistakes (a misspelled organization, the wrong ROR match) before approving, so you don't need to resubmit. You are notified of the outcome by email.
+
+If you have been granted approval rights yourself, you will see an additional **Requests** tab next to **My affiliations**.
+
+![Requests tab next to My affiliations](/img/eln/affiliations/aff-13-requests-tab.png)
+
+See [Affiliation Suggestions](/docs/eln/admin/affiliations) for the reviewer's side of this process.
