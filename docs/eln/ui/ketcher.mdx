@@ -9,17 +9,21 @@ import { Btn } from "@site/src/js/btn.js";
 
 ![Ketcher](/img/eln/ui/ketcher/ketcher.png)
 
-The main way to enter chemical structures into the Chemotion ELN is the Ketcher Editor. The editor is available via the [sample](/docs/eln/ui/elements/samples) detail modal and can be opened by clicking on the area framed in light blue. The Ketcher Editor is not a product of the Chemotion programming group, but it has been modified so that it can be used flexibly for a wide variety of applications. After the additions are made, the structure editor integrated within the Chemotion ELN is now unique in its functionality and, in addition to the input of small chemical molecules, it also enables the illustration of polymeric carrier materials (beads). The editor will also be supplemented by further developments in the future.
+The Ketcher Editor is the primary way to enter chemical structures in Chemotion ELN. It is available via the [sample](/docs/eln/ui/elements/samples) detail modal — click the structure preview area to open it.
 
 :::note[New in version 3]
 
-From Chemotion ELN version 3 onwards, [EPAM Ketcher](https://lifescience.opensource.epam.com/ketcher/) is the default structure editor. It has to be enabled as a feature from the [administration interface](/docs/eln/admin) — see [Configuration](/docs/eln/install-configure/configuration).
+From Chemotion ELN version 3 onwards, [EPAM Ketcher](https://lifescience.opensource.epam.com/ketcher/) is the default structure editor. An administrator must enable it from the [administration interface](/docs/eln/admin) — see [Configuration](/docs/eln/install-configure/configuration).
 
 :::
 
-The Ketcher Structure Editor offers all the basic functions necessary for chemical work: drawing atoms and bonds, selecting and editing structures, rotating and flipping, applying S-groups and R-group labels, and computing molecular properties. Drawn molecules can be rotated, optimized, copied, and pasted. The view can be adjusted with the zoom control.
+The Ketcher Structure Editor covers all the functions needed for chemical work: drawing atoms and bonds, selecting and editing structures, rotating and flipping, applying S-groups and R-group labels, and computing molecular properties. Drawn structures can be cleaned up, copied, and pasted. The view can be adjusted with the zoom control.
 
-Several tools have a small black arrow in the lower right corner of their icon — this indicates a sub-menu with related tool variants (for example, different bond types or selection modes).
+:::tip
+
+Several tools have a small black triangle in the lower-right corner of their icon — this indicates a sub-menu with related tool variants (for example, different bond types or selection modes). Click and hold, or click the triangle, to expand the sub-menu.
+
+:::
 
 ## Left Toolbar
 
@@ -31,7 +35,7 @@ The **Hand Tool** <img src={require("@site/static/img/eln/ui/ketcher/hand_tool.p
 
 ### Select
 
-The selection tool <img src={require("@site/static/img/eln/ui/ketcher/select.png").default} width={"20px"} alt={"Select"} /> is a group of three tools that can be switched by clicking the icon:
+The **Select** tool group <img src={require("@site/static/img/eln/ui/ketcher/select.png").default} width={"20px"} alt={"Select"} /> contains three selection modes, switched by clicking the icon:
 
 <img
   src={require("@site/static/img/eln/ui/ketcher/select_tools.png").default}
@@ -86,34 +90,41 @@ Both controls require a selection to be active. Use any of the selection tools f
 
 ### Bonds
 
+The bonds menu is usually opened by clicking this icon <img src={require('@site/static/img/eln/ui/ketcher/bond_single.png').default} width={"20px"} alt={"Single bond"}/> in the left toolbar. If a different bond type is active, the icon changes to show the active type. All available bond types are shown below.
+
 ![Bonds](/img/bondslist.png)
 
-The bonds menu can be usually opened by using this icon <img src={require('@site/static/img/eln/ui/ketcher/bond_single.png').default} width={"20px"} alt={"Single"}/> from Ketcher's left column. However, if another type of bonds is selected, the main icon changes to that type. Alongside the usual **Single**, **Double**, **Triple** bonds, Ketcher editor offers a variety of bonds to express coordination, stereochemistry, and aromaticity. All bond types can be seen in the image above. If a user draws a separate bond (not starting from an atom), it will be assumed to be between two carbon atoms, so with a **Single** bond the user gets CH3-CH3. If it starts from an atom, the end is assumed to be a carbon atom. However those carbon atoms can be replaced with the one the user chooses from the atoms column. A bond can also be used to connect two atoms or to change the type of an already existing bond to another one. If the bond is asymmetric, e.g. a stereochemical bond, the user can change its direction by re-clicking on the bond. Make sure that the right bond type is selected, otherwise the bond type changes instead of its direction.
+Key behaviours:
+
+- **Single**, **Double**, and **Triple** bonds are available alongside bonds for coordination, stereochemistry, and aromaticity.
+- Drawing a bond that does not start from an existing atom creates a C–C bond by default (e.g. a single bond produces CH₃–CH₃). Starting from an atom assumes a carbon at the other end — replace it using the atom column if needed.
+- Clicking an existing bond with a bond tool active changes its type to the selected type.
+- For asymmetric bonds (e.g. wedge bonds), re-clicking the bond reverses its direction. Ensure the correct bond type is selected first — otherwise the type changes instead of the direction.
 
 ![Ketcher bonds](/img/eln/ui/ketcher/ketcher_bonds.gif)
 
 ### Chain Tool
 
-This tool <img src={require('@site/static/img/eln/ui/ketcher/chain_tool.png').default} width={"20px"} alt={"Chain"} /> can be used to build chains of carbon (methylene groups) instead of taking time to add the groups one by one. If atoms other than carbon or bonds other than **Single** are wanted, one by one modifications are possible subsequently.
+The **Chain Tool** <img src={require('@site/static/img/eln/ui/ketcher/chain_tool.png').default} width={"20px"} alt={"Chain Tool"} /> builds a carbon chain quickly by clicking and dragging, without placing atoms one by one. Atom types and bond types can be adjusted individually afterwards using the atom column and bond tools.
 
 ### Stereochemistry
+
+The **Stereochemistry** tool <img src={require("@site/static/img/eln/ui/ketcher/stereochemistry.png").default} width={"20px"} alt={"Stereochemistry"}/> (`Alt+E`) applies enhanced stereochemistry annotations to stereocenters in the structure. After selecting the relevant atoms, the tool opens a dialog where users can assign stereo groups — **And**, **Or**, or **Absolute** — to indicate relative or absolute configuration. This is used to represent mixtures of enantiomers or diastereomers with precision beyond simple wedge bonds.
 
 :::note[Not available in v3.12]
 The Stereochemistry tool is currently disabled in Chemotion ELN v3.12 and appears greyed out in the toolbar.
 :::
 
-The **Stereochemistry** tool <img src={require("@site/static/img/eln/ui/ketcher/stereochemistry.png").default} width={"20px"} alt={"Stereochemistry"}/> (`Alt+E`) applies enhanced stereochemistry annotations to stereocenters in the structure. After selecting the relevant atoms, the tool opens a dialog where users can assign stereo groups — **And**, **Or**, or **Absolute** — to indicate relative or absolute configuration. This is used to represent mixtures of enantiomers or diastereomers with precision beyond simple wedge bonds.
-
 ### Charge
 
 ![Change Atom Charge](/img/change_atom_charge.gif)
 
-The user can modify the charge of an atom in one of two ways, both shown in the video above:
+The charge of an atom can be changed in one of two ways, both shown in the animation above:
 
-- Using the icons: increase the positivity with the icon <img src={require("@site/static/img/eln/ui/ketcher/charge_plus.png").default} width={"20px"} alt={"ChargeP"} />, or increase the negativity with the icon <img src={require("@site/static/img/eln/ui/ketcher/charge_minus.png").default} width={"20px"} alt={"ChargeM"} />. The user has to click on the desired icon and then click on the desired atom.
-- Using text: type the charge directly next to the atom, e.g. `C+` or `N-`.
+- **Using the icons:** click <img src={require("@site/static/img/eln/ui/ketcher/charge_plus.png").default} width={"20px"} alt={"Add positive charge"} /> to add a positive charge, or <img src={require("@site/static/img/eln/ui/ketcher/charge_minus.png").default} width={"20px"} alt={"Add negative charge"} /> to add a negative charge, then click the target atom.
+- **Using text:** type the charge directly next to the atom symbol, e.g. `C+` or `N-`.
 
-Either way, the change in charge is accompanied with change in the number of attached hydrogen atoms.
+Either way, the hydrogen count updates automatically to reflect the new valence.
 
 ### S-Group
 
@@ -146,11 +157,11 @@ Click the tool, then click an atom on the canvas. The **R-Group** dialog opens s
 
 ### Monomer (Bead)
 
+The **Create a Monomer** tool <img src={require("@site/static/img/eln/ui/ketcher/polymer.png").default} width={"20px"} alt={"Monomer"} /> places a bead symbol on the canvas for solid-phase syntheses. Similar to the bead symbol in ChemDraw, it represents the polymeric carrier material of a solid support. The ELN recognises this symbol and adjusts the sample input module layout accordingly. The load of the solid support is defined within the sample input model.
+
 :::note[Not available in v3.12]
 The Monomer tool is not available in Chemotion ELN v3.12. Use the **Solid Surface Templates** in the top toolbar to place solid-support structures.
 :::
-
-For solid-phase syntheses, the **Create a Monomer** tool <img src={require("@site/static/img/eln/ui/ketcher/polymer.png").default} width={"20px"} alt={"Monomer"} /> places a bead symbol on the canvas. Similar to the bead symbol in ChemDraw, it represents the polymeric carrier material of a solid support. The ELN recognises this symbol and adjusts the sample input module layout accordingly. The load of the solid support is defined within the sample input model.
 
 ### Reaction Tools
 
@@ -178,20 +189,20 @@ The top toolbar runs horizontally across the top of the canvas and contains file
 
 ### Clear Canvas
 
-The tool <img src={require("@site/static/img/eln/ui/ketcher/clear_icon.png").default} width={"20px"} alt={"Clear"} /> deletes everything on the current canvas. This action can be undone with **Undo**.
+**Clear Canvas** <img src={require("@site/static/img/eln/ui/ketcher/clear_icon.png").default} width={"20px"} alt={"Clear Canvas"} /> deletes everything on the current canvas. This action can be undone with **Undo**.
 
 ### Open
 
-The tool <img src={require("@site/static/img/eln/ui/ketcher/open_icon.png").default} width={"20px"} alt={"Open"} /> opens the **Open Structure** dialog. Structures can be loaded by:
+**Open** <img src={require("@site/static/img/eln/ui/ketcher/open_icon.png").default} width={"20px"} alt={"Open"} /> opens the **Open Structure** dialog. Structures can be loaded by:
 
 - **Pasting text** — paste a Molfile, SMILES, InChI, or other supported format directly into the text area
 - **Uploading a file** — use the file picker to browse for a structure file (`.mol`, `.sdf`, `.rxn`, etc.)
 
-The structure can optionally be loaded as a fragment to be copied to the clipboard rather than placed directly on the canvas.
+Optionally, the structure can be opened as a clipboard fragment — it will be ready to paste rather than placed on the canvas immediately.
 
 ### Save As
 
-The tool <img src={require("@site/static/img/eln/ui/ketcher/save_as_icon.png").default} width={"20px"} alt={"Save As"}/> opens the **Save Structure** dialog. The current canvas content can be exported in one of several formats, including:
+**Save As** <img src={require("@site/static/img/eln/ui/ketcher/save_as_icon.png").default} width={"20px"} alt={"Save As"}/> opens the **Save Structure** dialog. Select the desired format from the dropdown, then copy the generated text or download it as a file. Supported formats include:
 
 - **MDL Molfile V2000 / V3000**
 - **Daylight SMILES** and **Extended SMILES**
@@ -199,8 +210,6 @@ The tool <img src={require("@site/static/img/eln/ui/ketcher/save_as_icon.png").d
 - **CML**, **SDF**, and **RXN**
 
 Structures can also be saved directly as a **custom template** by selecting **Template** from the format dropdown. Saved templates become available in the **Structure Library** (bottom toolbar → Templates Library), making them reusable across sessions.
-
-Select the desired format from the dropdown, then copy the generated text or download it as a file.
 
 ### Undo/Redo
 
@@ -220,14 +229,14 @@ The **Clean Up** tool <img src={require("@site/static/img/eln/ui/ketcher/clean_i
 
 ### Calculated Values
 
-The **Calculated Values** tool <img src={require("@site/static/img/eln/ui/ketcher/show_molecule_info_icon.png").default} width={"20px"} alt={"Calculated Values"}/> opens a dialog that displays computed properties for the structure on the canvas:
+The **Calculated Values** tool <img src={require("@site/static/img/eln/ui/ketcher/calculated_values_icon.png").default} width={"20px"} alt={"Calculated Values"}/> opens a dialog that displays computed properties for the structure on the canvas:
 
 <img
-  src={require("@site/static/img/eln/ui/ketcher/molecule_info.png").default}
+  src={require("@site/static/img/eln/ui/ketcher/calculated_values_dialog.png").default}
   alt={"Calculated Values dialog"}
 />
 
-Properties shown include **Molecular Weight**, **Exact Molecular Weight**, **Molecular Formula**, **Elemental Analysis**, and **Largest Fragment** details. If elements are selected, the values reflect the selection only; otherwise the entire canvas is used.
+Properties shown include **Molecular Weight**, **Exact Molecular Weight**, **Molecular Formula**, and **Elemental Analysis**. If the canvas contains multiple disconnected structures, the **Largest Fragment** values apply to the biggest one. If atoms are selected, the values reflect the selection only; otherwise the entire canvas is used.
 
 ### Aromatize / Dearomatize
 
@@ -247,17 +256,17 @@ The **Check Structure** tool <img src={require("@site/static/img/eln/ui/ketcher/
 
 ### Add/Remove Explicit Hydrogens
 
-The **Add/Remove explicit hydrogens** tool <img src={require("@site/static/img/eln/ui/ketcher/explicit_hydrogens_icon.png").default} width={"20px"} alt={"Explicit Hydrogens"}/> toggles between showing and hiding explicit hydrogen atoms on the canvas. When hydrogens are added explicitly, each hydrogen appears as a labelled atom with a bond. When removed, they revert to the implicit representation.
+The **Add/Remove Explicit Hydrogens** tool <img src={require("@site/static/img/eln/ui/ketcher/explicit_hydrogens_icon.png").default} width={"20px"} alt={"Explicit Hydrogens"}/> toggles between showing and hiding explicit hydrogen atoms on the canvas. When hydrogens are added, each hydrogen appears as a labelled atom with a bond. When removed, explicit hydrogens revert to the implicit representation.
 
 ### 3D Viewer
 
-The **3D Viewer** <img src={require("@site/static/img/eln/ui/ketcher/3d_viewer_icon.png").default} width={"20px"} alt={"3D Viewer"}/> opens a three-dimensional view of the current structure in a separate dialog, generated by converting the 2D drawing to a 3D conformation. This is useful for a quick spatial sanity-check of a structure.
+The **3D Viewer** <img src={require("@site/static/img/eln/ui/ketcher/3d_viewer_icon.png").default} width={"20px"} alt={"3D Viewer"}/> opens a three-dimensional view of the current structure in a separate dialog, generated by converting the 2D drawing to a 3D conformation. Use it for a quick visual check of the structure's spatial arrangement.
 
 ### Solid Surface Templates
 
 The **Solid Surface Templates** tool <img src={require("@site/static/img/eln/ui/ketcher/solid_surface_icon.png").default} width={"20px"} alt={"Solid Surface Templates"}/> opens a library of pre-defined solid-support and bead templates. Select a template and place it on the canvas to represent a polymeric carrier in a solid-phase synthesis scheme.
 
-The dialog has **Basic** and **Semantic** tabs and organizes templates into three top-level categories:
+The dialog has **Basic** and **Semantic** tabs and organises templates into three top-level categories:
 
 - **Active Phase (Round)** — round bead supports, further broken down into Single-compound active phase, Multi-compound active phase, and Promotors
 - **Support (Rectangle)** — flat rectangular solid-support representations
@@ -269,7 +278,7 @@ Click a category to expand it, then click a thumbnail to insert the correspondin
 
 ### Add Label
 
-The **Add Label** tool <img src={require("@site/static/img/eln/ui/ketcher/add_label_icon.png").default} width={"20px"} alt={"Add Label"}/> inserts a predefined abbreviation or superatom label at a selected position. This provides a shorthand notation for common functional groups (e.g. Boc, Ts, Me) without drawing every atom individually.
+The **Add Label** tool <img src={require("@site/static/img/eln/ui/ketcher/add_label_icon.png").default} width={"20px"} alt={"Add Label"}/> inserts a predefined abbreviation as a chemically meaningful superatom — a shorthand for common functional groups such as Boc, Ts, or Me. Unlike **Add Text**, which places free-form annotation, an **Add Label** abbreviation is treated by Ketcher as a single atom group and participates in structure operations (selection, bond attachment, export).
 
 ### Settings
 
@@ -289,13 +298,13 @@ The right toolbar runs vertically along the right edge of the canvas and provide
 
 The most frequently used atoms are displayed directly as clickable symbols: **H**, **C**, **N**, **O**, **S**, **P**, **F**, **Cl**, **Br**, **I**. Click an atom symbol to activate it, then click anywhere on the canvas to place it, or click an existing atom to replace it.
 
-Less common elements can be accessed via the <FontAwesomeIcon icon={faEllipsisH} size="lg"/> icon, which opens the **Periodic Table**. From there the user can select a **Single** atom, define a **List** (any atom from the list matches in a query), or a **Not List** (any atom not in the list). **Generic Groups** (such as Reaxys Generics) are also available for query structures.
+Less common elements can be accessed via the <FontAwesomeIcon icon={faEllipsisH} size="lg"/> (**More**) button, which opens the **Periodic Table**. From there the user can select an **Element** (a single match), define a **List** (any element in the list matches in a query), or a **Not List** (any element not in the list). **Generic Groups** (such as Reaxys Generics) are also available for query structures.
 
 When an atom is placed on the canvas, it is assigned hydrogen atoms automatically based on its valency. For example, placing carbon **C** gives CH₄. The hydrogen count adjusts dynamically as bonds are added or the charge is changed. The valency and explicit hydrogen count can be overridden via the **Atom Properties** dialog (see [Select](#select)).
 
 ## Bottom Toolbar
 
-The bottom toolbar runs horizontally along the bottom of the left column and provides quick access to ring templates and the built-in structure library.
+The bottom toolbar is located below the left toolbar panel and provides quick access to ring templates and the built-in structure library.
 
 ### Rings
 
@@ -305,7 +314,7 @@ The rings toolbar offers quick access to common ring templates: **benzene** (aro
 
 ### Structure Library
 
-The toolbar ends with the ![Structure Library](/img/icon_structurelibrary.svg) icon, which opens the **Structure Library** built into Ketcher — a searchable collection of pre-defined structures organised into three categories:
+The **Structure Library** button ![Structure Library](/img/icon_structurelibrary.svg) at the end of the toolbar opens a searchable collection of pre-defined structures organised into three categories:
 
 - **Templates Library** — common chemical scaffolds and ring systems for quick insertion
 - **Functional Groups** — frequently used functional group fragments
@@ -315,17 +324,58 @@ Click a structure in the library to select it, then click on the canvas to place
 
 ![Structure Library UI](/img/structuredlibraryui.png)
 
-If a structure is missing from the library, contact us to request a new template.
+If a structure is missing from the library, send a MolFile or ChemDraw file to nicole.jung@kit.edu to request a new template.
 
-## Standard templates
+## Standard Templates
 
-The specified standard templates are given and cannot be changed. Users who have suggestions or guidelines for additional templates or even a new template category can send a MolFile or a ChemDraw file to nicole.jung@kit.edu. The Chemotion team will review the structure and add it to the standard templates.
-The standard templates can be found in the lower bar of the editor and are arranged according to the categories Amino Acids, Aromatics, Bicyclics, Conformers, Cycloalkanes, Functional Groups, Nucleic Acids, Paracyclophanes, Schlegel-diagrams and Solid Supports. Press on a category to open its template list, press again to close it.
+Standard templates are read-only and cannot be modified. They are accessible from the **Bottom Toolbar** and are organised into the following categories:
+
+- **Amino Acids**
+- **Aromatics**
+- **Bicyclics**
+- **Conformers**
+- **Cycloalkanes**
+- **Functional Groups**
+- **Nucleic Acids**
+- **Paracyclophanes**
+- **Schlegel-diagrams**
+- **Solid Supports**
+
+Click a category to expand its template list; click again to close it.
+
+To suggest a new template or category, send a MolFile or ChemDraw file to nicole.jung@kit.edu. The Chemotion team will review the structure and add it to the standard templates.
 
 :::danger[Caution]
 
-When creating chiral compounds in Chemotion ELN, the configuration of the unique structure is observed and registered accordingly. Planar chiral compounds are unfortunately not recognized as such yet, and therefore, they are not differentiated in lists and names, even if they were drawn accordingly by the Ketcher editor. An example is the Paracyclophanes. Please note the chirality of the samples in those cases in the **Description** field.
+Chemotion ELN records the absolute configuration of point-chiral stereocentres correctly. However, **planar chiral compounds** (such as Paracyclophanes) are not currently recognised as chiral and will not be differentiated in compound lists or names — even if the correct planar chirality was drawn in Ketcher. Record the chirality explicitly in the **Description** field for these samples.
 
-This limitation applies to the Chemotion ELN system and is not specific to the Ketcher editor.
+This is a limitation of the Chemotion ELN system, not of the Ketcher editor itself.
 
 :::
+
+## Keyboard Shortcuts
+
+| Action | Shortcut |
+|---|---|
+| Hand Tool (pan) | `Ctrl+Alt+H` |
+| Stereochemistry | `Alt+E` |
+| S-Group | `Ctrl+G` |
+| R-Group Label | `Ctrl+R` |
+| Add Text | `Alt+T` |
+| Clear Canvas | `Ctrl+Delete` |
+| Undo | `Ctrl+Z` |
+| Redo | `Ctrl+Y` / `Ctrl+Shift+Z` |
+| Cut | `Ctrl+X` |
+| Copy | `Ctrl+C` |
+| Paste | `Ctrl+V` |
+| Zoom in | `Ctrl++` |
+| Zoom out | `Ctrl+-` |
+| Zoom to fit | `Ctrl+0` |
+| Calculated Values | `Alt+C` |
+| Aromatize | `Alt+A` |
+| Dearomatize | `Ctrl+Alt+A` |
+| Layout | `Ctrl+L` |
+| Calculate CIP | `Ctrl+P` |
+| Check Structure | `Alt+S` |
+| Horizontal Flip | `Alt+H` |
+| Vertical Flip | `Alt+V` |
