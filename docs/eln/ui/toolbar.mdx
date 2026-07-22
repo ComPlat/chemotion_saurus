@@ -16,7 +16,9 @@ import {
   faEraser,
   faArrowsAlt,
   faFileAlt,
-  faPercentage,
+  faCaretSquareRight,
+  faClone,
+  faCodeFork,
   faPlus,
   faFlask,
 } from "@fortawesome/free-solid-svg-icons";
@@ -128,7 +130,7 @@ The **Permission level**s are sorted in a hierarchy, where every higher level in
 
 ## Import and Export Data to and from the Chemotion ELN
 
-Importing and exporting data can be done using the icon ![Export Menu](/img/eln/ui/toolbar/action_bar_import_export.png)
+Exporting data from the Chemotion ELN can be done using the icon ![Export Menu](/img/eln/ui/toolbar/action_bar_import_export.png); importing data does not use this icon and is described separately below.
 
 ### Exporting data
 
@@ -141,7 +143,7 @@ To export elements, go to the collection that contains them, and select the desi
   alt={"Export samples"}
 />{" "}
 
-The window above opens where the user picks the properties to be exported with the elements. If they want to proceed, they press <Btn mixed={["XLSX/SDF Export",faSortUp]} color={"warning"}/>, which enables the user to choose either **XLSX Export**, or **SDF Export**. Otherwise, press <Btn mixed={["Cancel"]} color={"primary"}/>. Follow this [link](https://www.youtube-nocookie.com/embed/Vr3_006Zr-s?start=30) for a video on exporting samples as xlsx files.
+The window above opens where the user picks the properties to be exported with the elements. If they want to proceed, they press <Btn mixed={["XLSX/SDF Export",faSortUp]} color={"warning"}/>, which enables the user to choose either **XLSX Export**, or **SDF Export**. Otherwise, press <Btn mixed={["Cancel"]} color={"primary"}/>. Follow this [link](https://www.youtube.com/watch?v=Vr3_006Zr-s&t=30s) for a video on exporting samples as xlsx files.
 
 <img
   src={require("@site/static/img/eln/ui/toolbar/export_reactions.png").default}
@@ -189,7 +191,7 @@ Available from v2 onwards: Importing melting point, boiling point, location, ref
 
 ### Report
 
-This icon <Btn mixed={[faFileAlt, faPen, faPercentage, faSortDown,]} color={"success"}/> helps the user to produce reports and organize the literature in their data.
+This icon <Btn mixed={[faCaretSquareRight, "Reporting", faSortDown]} color={"light"}/> helps the user to produce reports and organize the literature in their data. The same dropdown also offers QR code, Data Matrix code, and Bar code generation, and Format Analyses.
 
 <img src={require("@site/static/img/eln/ui/toolbar/report.png").default} alt={"Report"} />{" "}
 
@@ -209,22 +211,23 @@ To populate [wellplates](/docs/eln/ui/elements/wellplates), the user has to drag
 
 ### Function "copy" or "split" for samples
 
-In the last section of the menu, one can find the copy and split functions.
-Generation of new samples with molecular structures that are already used by other samples can be carried out by two similar but not equal actions, **Split Sample** and **Copy Sample**.
+Generation of new samples with molecular structures that are already used by other samples can be carried out by two similar but not equal actions, **Copy** and **Split Sample**.
 
-To copy a sample, first select the sample whose structure is to be copied from the Samples list and then use the **Copy Sample** function from the toolbar. When the function is selected, a details modal is opened for a new sample to be edited.
+To copy a sample, open its details view and press the clone icon <Btn mixed={[faClone]} color={"secondary"}/> in its header. A **Copy** dialog opens where the user picks the target collection and presses **Copy** to create the copy there.
 
 :::danger[Caution]
 
-With the **Copy sample** action, only the molecular structure of the sample is copied; all other information is not available and will not be adopted. Only the general data available from the molecular structure are transferred.
+With the **Copy** action, only the molecular structure of the sample is copied; all other information is not available and will not be adopted. Only the general data available from the molecular structure are transferred.
 
 :::
+
+Split is done from the collection list: select the elements whose structure is to be split, then use the `Split` button <Btn mixed={[faCodeFork, faSortDown]} color={"light"}/> from the toolbar. A menu opens with an entry for each selected element's type, e.g. **Split Sample**, **Split Wellplate**, **Split Cell line**, **Split Device Description**, or **Split Sequence Based Macromolecule Sample**.
 
 When creating a new sample using the split function **Split Sample**, a new sample is created that is directly dependent on the original sample. In contrast to copy, with split not only the structure-dependent information of the original sample is taken over for the creation of a new sample. All available data are used to generate the new sample. The action is intended to represent those cases in the laboratory in which something is removed from a batch and used for a new purpose. Examples of a split action are therefore e.g., the removal from a chemical container or the further use of a product from a reaction. For more details on Samples generation, visit this [link](elements/samples#generation).
 
 ### Function "copy" for reactions
 
-Reactions can be copied via the same copy function as described for samples. Please ensure that the reaction to be copied is selected. The action "copy of reaction" generates a template with the same information on the original reaction which then needs to be saved. After saving the new reaction, a new reaction number is registered and new samples assigned to the new reaction are generated in parallel.
+Reactions are copied the same way as samples: open the reaction's details view and press the clone icon <Btn mixed={[faClone]} color={"secondary"}/> in its header, then pick the target collection in the **Copy** dialog and press **Copy**.
 
 <img
   src={require("@site/static/img/eln/ui/toolbar/Copy-a-reaction.png").default}
