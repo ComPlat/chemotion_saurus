@@ -17,7 +17,7 @@
   "dependencies": {
     "@docusaurus/core": "^3",
     "@docusaurus/faster": "^3",
-    "@docusaurus/plugin-client-redirects": "^3.10.1",
+    "@docusaurus/plugin-client-redirects": "^3",
     "@docusaurus/preset-classic": "^3",
     "@easyops-cn/docusaurus-search-local": "*",
     "@fortawesome/fontawesome-svg-core": "*",
