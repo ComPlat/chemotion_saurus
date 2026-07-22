@@ -3,7 +3,7 @@ title: Testing Code
 sidebar_label: Testing
 ---
 
-We test the Chemotion ELN using three different kinds of tests.
+The Chemotion ELN is tested using three different kinds of tests.
 
 ## 1. JavaScript unit tests (mocha)
 
@@ -51,7 +51,7 @@ bin/rails g cypress_on_rails:install --cypress_folder=spec/cypress
 ### Usage
 
 Make sure to start the Rails server prior to starting Cypress.
-Note that it's important to start the server with `RAILS_ENV-test`,
+Note that it's important to start the server with `RAILS_ENV=test`,
 Cypress won't recognize the Rails server if it's running in the `development` or `production` env; see [here](https://github.com/shakacode/cypress-playwright-on-rails/issues/25) for more.
 
 ```bash
@@ -218,7 +218,7 @@ cy.get("@roots").then((response) => {
 });
 ```
 
-Here, were are sending a GET request to the `api/v1/collections/roots.json` endpoint and verify that its `response.status` is `200`.
+Here, we are sending a GET request to the `api/v1/collections/roots.json` endpoint and verify that its `response.status` is `200`.
 The response body can contain objects, arrays, attributes, etc. This is how we can access a specific component from its body and perform checks on it.
 
 ```javascript
@@ -264,7 +264,7 @@ expect(collectionData.label).to.eq("Col1");
 
 :::warning[Important]
 
-When testing a component which includes a store you need to explicitly import he store in the test file. The import must be before the import statement of the component to test.
+When testing a component which includes a store you need to explicitly import the store in the test file. The import must be before the import statement of the component to test.
 The linter recognizes that the store dependency is not used and tries to eliminate it. You can prevent this by manually disabling the linter rule for these lines.
 Example: [ResearchPlanDetails.spec.js](https://github.com/ComPlat/chemotion_ELN/blob/main/spec/javascripts/packs/src/apps/mydb/elements/details/researchPlans/ResearchPlanDetails.spec.js)
 
@@ -306,7 +306,7 @@ Currently no snapshot testing is applied due to lack of capacity. In addition, u
 
 :::warning[Important]
 
-The `expect` extension by mocha refers to the current test-object by `this`. Using an lambda expression at the it definition, mocha have no access to it. Using an explicit
+The `expect` extension by mocha refers to the current test-object by `this`. Using a lambda expression at the it definition, mocha has no access to it. Using an explicit
 function definition solves this problem.
 
 :::

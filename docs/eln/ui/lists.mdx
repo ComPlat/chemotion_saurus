@@ -9,12 +9,12 @@ are visible in the list generated for this entity-type.
 Entity-types that are generated via the `generic elements` function are also listed in the entities' list.
 Lists are helpful to keep an overview of all items and they help organize the entities.
 Lists can be automatically structured according to identifiers, if available.
-Currently automated structuring of lists is only enabled for samples with structures.
+Currently automated structuring of lists is only enabled for [samples](/docs/eln/ui/elements/samples) with structures.
 
 ## Lists for samples
 
 Lists for samples are sorted according to the InChI-Key of the samples.
-Each new InCHI-Key prompts the generation of a new molecule drawing (grey area in the sample list),
+Each new InChI-Key prompts the generation of a new molecule drawing (grey area in the sample list),
 that is followed by a white area referring to the sample.
 If there are several samples with the same molecular structure, they are all sorted in one molecule area.
 For the generation of the molecule image, the Chemotion ELN uses the Molfile of the latest edited sample.
@@ -35,18 +35,18 @@ date range.
 Similarly when it shows `currently filtered by update date` then it will show all the entries that were updated in the
 specified date range.
 
-![sample_filtering](/img/sample_filtering.gif)
+![sample_filtering](/img/eln/ui/lists/sample_filtering.gif)
 
 To be continued...
 
 ### Sorting of the sample list
 
-Currently, the sample list is sorted by the updated date, by default. It is in our <u>ToDo</u> to implement the
+Currently, the sample list is sorted by the updated date, by default. It is on the Chemotion team's <u>ToDo</u> list to implement the
 option to sort this list based on various other parameters, like creation date, etc.
 
 ## Lists for reactions
 
-Initially, the reaction list will remain sorted by the descending order of creation date.
+Initially, the [reaction](/docs/eln/ui/elements/reactions) list will remain sorted by the descending order of creation date.
 
 ### Sorting of the reaction list
 
@@ -55,4 +55,4 @@ of creation date, which, later on, can be changed to update date. The sorting di
 ascending or descending order. Additionally, when the reaction list has been
 [grouped](elements/grouping#reaction-grouping), then the list can be further sorted by RInChI, reaction type, etc.
 
-![reaction_sorting](/img/reaction_sorting.gif)
+![reaction_sorting](/img/eln/ui/lists/reaction_sorting.gif)

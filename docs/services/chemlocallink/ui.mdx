@@ -3,13 +3,13 @@ title: UI
 sidebar_position: 3
 ---
 
-ChemLocalLink is designed to make handling Chemotion ELN files simple and intuitive. Below is an overview of its sections.
+ChemLocalLink is designed to make handling [Chemotion ELN](/docs/eln/ui) files simple and intuitive. Below is an overview of its sections.
 
 ### Theme Toggle and Version Buttons
 
 Located in the top-left corner, the **Theme Toggle** and **App Version** buttons.
 
-![Theme Toggle and Version Button](/img/chemlocallink/topbtns.png)
+![Theme Toggle and Version Button](/img/services/chemlocallink/ui/topbtns.png)
 
 - Clicking the **Theme Toggle** button switches the application theme.
 - Hovering over the **App Version** button will display the current version of the app.
@@ -23,28 +23,28 @@ Several actions are available for managing downloaded files:
 - **Open Downloads Folder**
 - **Delete File**
 
-![File Actions](/img/chemlocallink/actionbtns.png)
+![File Actions](/img/services/chemlocallink/ui/actionbtns.png)
 
-These buttons are only enabled when a file is selected. One exception is the upload button, clicking on it will upload all the uploadable files if there is no specific file selected.
+These buttons are only enabled when a file is selected. One exception is the upload button: clicking on it will upload all the uploadable files if no specific file is selected.
 
 ### Downloads List
 
-The **Downloads List** displays all the files you've downloaded. Each entry shows:
+The **Downloads List** displays all the files the user has downloaded. Each entry shows:
 
 - **File name**
 - **File size**
 - **File path**
 - **Download timestamp**
-- **Kept** or **Edited** Badge is shown for files that have been modified or kept locally.
-- **Green** or **Red** Dot for validity of the Upload
+- A **Kept** or **Edited** badge is shown for files that have been modified or kept locally.
+- A **Green** or **Red** dot for the validity of the upload
 
 :::info
 Green means the API Upload Token is still valid, red means it is expired.
-If it is red and you want to edit and upload a file, then you will have to download it again!
+If it is red and the user wants to edit and upload a file, then the user will have to download it again!
 For more information please contact the [developer](mailto:mekky@kit.edu).
 :::
 
-![Downloads List](/img/chemlocallink/fileentries.png)
+![Downloads List](/img/services/chemlocallink/ui/fileentries.png)
 
 ### Context Menu for Downloads
 
@@ -56,7 +56,7 @@ Right-clicking on any file in the **Downloads List** opens a context menu with t
 - **Open File**
 - **Open Folder**
 
-![Context Menu](/img/chemlocallink/rightclick.png)
+![Context Menu](/img/services/chemlocallink/ui/rightclick.png)
 
 ### Status Bar
 
@@ -77,7 +77,7 @@ The **Status Bar** at the bottom of the application shows real-time updates of t
 - **"Unexpected error!"**
 
 :::info
-When reporting an issue, kindly add the respective **Status** message to your report.
+When reporting an issue, kindly add the respective **Status** message to the report.
 :::
 
 ### Notifications
@@ -85,21 +85,21 @@ When reporting an issue, kindly add the respective **Status** message to your re
 ChemLocalLink provides real-time notifications to keep users informed about file-related activities.
 Here is an example notification:
 
-![Notifications](/img/chemlocallink/notification.png)
+![Notifications](/img/services/chemlocallink/ui/notification.png)
 
 ### Tray Icon
 
-To have quick access to key functionalities even when the app is minimized or running in the background, you can use through the tray icon.
+To have quick access to key functionalities even when the app is minimized or running in the background, the user can use the tray icon.
 
-By right-clicking on the tray icon, you can access the following options:
+By right-clicking on the tray icon, the user can access the following options:
 
 - **Open App**: Restores the app from the tray.
-- **Upload All Edited Files & Delete Locally**: Uploads all the edited files and deletes them from your local machine.
+- **Upload All Edited Files & Delete Locally**: Uploads all the edited files and deletes them from the user's local machine.
 - **Upload All Edited Files & Keep Locally**: Uploads all edited files while keeping the local copies.
 - **Open Files Folder**: Opens the folder where the downloaded files are stored.
 - **Exit App**: Closes the app and removes it from the system tray.
 
-![Tray Menu](/img/chemlocallink/tray.png)
+![Tray Menu](/img/services/chemlocallink/ui/tray.png)
 
 ### No Files
 

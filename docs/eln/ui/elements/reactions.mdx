@@ -9,9 +9,10 @@ import {
   faArrowsAlt,
   faList,
   faSortDown,
+  faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import { Btn } from "@site/src/js/btn.js";
-import Reaction from "@site/static/img/reaction.svg";
+import Reaction from "@site/static/img/eln/ui/elements/reactions/reaction.svg";
 
 :::danger[Caution]
 
@@ -22,7 +23,7 @@ This page is still being edited and reviewed.
 ## Meaning
 
 The element **Reactions** can be used to summarize all actions that involve several substances, materials or chemicals.
-Samples are always an essential part of reactions.
+[Samples](/docs/eln/ui/elements/samples) are always an essential part of reactions.
 In general, the more carefully the Chemotion ELN user documents the use of samples and differentiates between the individual actions
 (e.g. use of split and copy), the easier it is to document reactions and analyze the individual influences on a successful reaction.
 
@@ -30,26 +31,23 @@ In general, the more carefully the Chemotion ELN user documents the use of sampl
 
 Reactions are numbered consecutively and displayed in the list of reactions in reverse order.
 The reaction name is preceded by the abbreviation of the Chemotion ELN owner such that reactions can be clearly identified.
-If you want to assign another name to the reaction, you can do this by making an entry in the **Name** field within the **Scheme** tab or **Properties** tab.
+If users want to assign another name to the reaction, they can do this by making an entry in the **Name** field within the **Scheme** tab or **Properties** tab.
 
 ## Generation
 
-Reactions can be generated from the action bar by pressing <Btn mixed={[faSortDown]} color={"primary"}/> and choosing **Create Reaction**.
-If the user is in the reaction tab, the action button for adding is already set up accordingly to adding reactions.
-It looks like this <img src={require('@site/static/img/add_reaction.png').default} width={"40px"} alt={"Add reaction"}/>,
-and you can make the selection directly.
+Reactions are generated with the green <Btn mixed={[faPlus, "CREATE"]} color={"success"}/> button in the [toolbar](../toolbar) by choosing **Create Reaction**.
 
 Once a reaction is generated, its details panel is displayed, and the user can fill the reaction with the interacting samples and the resulting products from within the **Scheme** tab.
 More details about populating a reaction with samples can be found in the [Details panel for reactions](../details#details-panel-for-reactions) chapter.
 
-## Reactions in the element bar
+## Reactions in the element panel
 
 <img
-  src={require("@site/static/img/reaction/reactions_list.png").default}
+  src={require("@site/static/img/eln/ui/elements/reactions/reactions_list.png").default}
   alt={"Reactions list"}
 />
 
-In the element bar, the reaction tab has the symbol <Reaction title="Reaction" className="logo" width={"30px"}/>.
+In the element panel, the reaction tab has the symbol <Reaction title="Reaction" className="logo" width={"30px"}/>.
 The number right next to the reaction symbol indicates the number of reactions within the selected collection.
 The number in parentheses shows the number of selected reactions within the collection.
 The reactions list shown in the figure above appears when the Chemotion ELN is opened if no detail level has been selected.
@@ -63,13 +61,13 @@ On the right-side of each reaction, there's a cross <Btn mixed={[faArrowsAlt]} c
 In case other elements are available to drop reactions within them (such as a research plan),
 the cross is colored in blue to indicate that it is active, otherwise, it appears in gray, and it can be used in this case.
 
-The user can filter their reaction either by creation date, or update day.
-The image above shows a calendar icon <img src={require('@site/static/img/creation_date.png').default} width={"30px"} alt={"Creation date calendar"}/>
+The user can filter their reaction either by creation date, or update date.
+The image above shows a calendar icon <img src={require('@site/static/img/eln/ui/elements/reactions/creation_date.png').default} width={"30px"} alt={"Creation date calendar"}/>
 which corresponds to a **filter by creation date**.
 Next to the calendar are the fields **From** and **To**.
 Clicking on them opens a calendar for the user to pick the desired days.
 Pressing on the calendar icon switches to **filter by update date**,
-and here the calendar appears like this <img src={require('@site/static/img/update_date.png').default} width={"30px"} alt={"Update date calendar"}/>.
+and here the calendar appears like this <img src={require('@site/static/img/eln/ui/elements/reactions/update_date.png').default} width={"30px"} alt={"Update date calendar"}/>.
 
 Another method for filtering is using text search or structure search from the toolbar. More details about those methods can be found in the [Toolbar](../toolbar) page.
 
@@ -80,7 +78,7 @@ By clicking on the reaction list, a [details panel for reactions](../details#det
 The new Gas Phase Reaction Scheme feature introduces a mode to handle reactions involving gaseous reactants and products. This feature allows users to input and calculate parameters specifically for gas-phase reactions, differing from the default reaction mode that is typically used for liquid or solid phases.
 
 <img
-  src={require("@site/static/img/reaction/gas_scheme.png").default}
+  src={require("@site/static/img/eln/ui/elements/reactions/gas_scheme.png").default}
   alt={"Reactions list"}
 />
 
@@ -126,7 +124,7 @@ It is important to mention that certain calculations differ when operating in Ga
     - part per million * default temperature / purity * parts per million factor * temperature (entered in temperature field)
 
 **User Interface Functionality:**
-The system automatically recalculates and synchronizes data for the input fields as necessary information is entered. For product samples, click the **gas** button to expand the input fields. enter the Temperature, reaction vessel size, Time, and part per million value of the product gas.
+The system automatically recalculates and synchronizes data for the input fields as necessary information is entered. For product samples, click the **gas** button to expand the input fields. Enter the Temperature, reaction vessel size, Time, and part per million value of the product gas.
 Using the values entered for the input fields of moles for catalyst and feedstock samples, the system will automatically calculate:
 - The amount of the product in moles
 - The Turnover Number (TON)
@@ -139,26 +137,26 @@ Aside from the functionalities mentioned above, all other features of the defaul
 
 The Weight Percentage Reaction Scheme provides an alternative equivalent basis to the existing molar-equivalents workflow. It allows users to assign amounts by mass directly (for example, aiming for a 10 g product composed of 70:30 wt% B:A).
 
-![weight_percentage_scheme](/img/reaction/weight_percentage_scheme.gif)
+![weight_percentage_scheme](/img/eln/ui/elements/reactions/weight_percentage_scheme.gif)
 
 ### What changes in the UI
 - Equivalent/Weight percentage selector: Every material that previously showed an equivalents selector (molar equivalents) now offers a dropdown to choose the equivalent basis:
   - Molar equivalents (default)
   - Mass-based equivalents / Weight percentage (wt%)
 - Mode toggle: Users must enable the Weight Percentage mode for the scheme. Enabling this mode activates the mass-based calculation UI and reveals the weight-percentage-specific controls.
-- Reference product: When weight-percentage mode is active the material sample that serves as the weight reference must be selected. The target amount of the reference material defines the combined amounts of the other materials which have wt% values applied to it.
+- Reference product: When weight-percentage mode is active the material sample that serves as the weight reference must be selected. The target amount of the reference material defines the combined amounts of the other materials which have wt% values applied to them.
 
 ### How it works (step-by-step)
 
 1. **Activation of weight percentage mode**
-  - User  switches the scheme into Weight Percentage mode using the mode toggle. This enables the weight-percentage controls.
+  - The user switches the scheme into Weight Percentage mode using the mode toggle. This enables the weight-percentage controls.
 
 2. **Assignment of reference material**:
   - The user selects one material as the weight-percentage reference material, by selecting either one of the check boxes in the ref column of any of the product materials, or one of the reactant or starting materials (the outer check box of the ref column). Upon selection, it will be highlighted in green. 
   - The user enters a target amount for that reference material. All weight percentage based calculations use this target mass as the basis.
 
 3. **Weight percentage fields**
-  - At a result, changing the weight percentage (wt%) input field is enabled for starting materials and reactants.
+  - As a result, the weight percentage (wt%) input field can be changed for starting materials and reactants.
   - The weight percentage input field can take value ratios between 0 and 1 (0%–100%) which indicates the fraction of the reference material mass assigned to that sample.
 
 4. **Validation rules**
@@ -193,5 +191,5 @@ This setup allows users to directly assign mass percentages and still keep molar
 - A mode toggle activates weight percentage mode.
 - A reference material sample can be selected and assigned a target mass.
 - wt% fields are enabled only for starting materials and reactants and accept values in [0,1].
-- Amounts get recalculatd automatically using the formula above when wt% or the reference target mass change.
+- Amounts get recalculated automatically using the formula above when wt% or the reference target mass change.
 

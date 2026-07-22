@@ -5,7 +5,7 @@ title: Maintaining
 :::info
 
 This page contains general information on how to set up a Docusaurus instance anywhere.
-It follows the workflow used at KIT using Linux (Ubuntu), GitHub, and npm, but the principles can be adapted to other hosts, OS, etc..
+It follows the workflow used at KIT using Linux (Ubuntu), GitHub, and npm, but the principles can be adapted to other hosts, OS, etc.
 
 :::
 
@@ -191,7 +191,7 @@ One of the important features of Docusaurus is the ability to edit a Documentati
 
 The Docusaurus development is based on npm. To change the configurations or script some JSX it is
 necessary to install Docusaurus and the [requirements](#requirements).
-There are two scenarios: 1. you are the creator and maybe admin of an Docusaurus instance, or 2. you are contributing to an existing Docusaurus instance.
+There are two scenarios: 1. you are the creator and maybe admin of a Docusaurus instance, or 2. you are contributing to an existing Docusaurus instance.
 
 #### creator (or admin) of a Docusaurus instance
 
@@ -223,7 +223,7 @@ To run the Docusaurus instance on localhost on port 3001 or another port number:
 npm start -- --port 3001
 ```
 
-Check if your Docusaurus instance could be build correctly. This command is also helpful before you push code in order solve errors and detect incorrectly resolved links:
+Check if your Docusaurus instance could be built correctly. This command is also helpful before you push code in order to solve errors and detect incorrectly resolved links:
 
 ```sh
 npm run build
@@ -251,7 +251,7 @@ usually under `presets/docs/editUrl` or `plugins/<instance>/editUrl`.
 
 ## Deployment
 
-A static Docusaurus website can be build with a npm or yarn command and then only this `build` directory needs to be pushed to a server:
+A static Docusaurus website can be built with an npm or yarn command, after which only this `build` directory needs to be pushed to a server:
 
 ```sh
 npm run build --if-present
@@ -268,6 +268,6 @@ Look in the Docusaurus documentation for solutions: [https://docusaurus.io/docs/
 
 Docusaurus can be fully built and deployed via GitHub or GitLab.
 For that a workflow file in yml is needed, where the current code is checked out (e. g. on every push),
-build via npm or yarn and the so created build directory pushed to a server via SSH.
+built via npm or yarn and the resulting build directory pushed to a server via SSH.
 An example workflow for Continuous Deployment via SSH can be found on [GitHub](https://github.com/ComPlat/chemotion_saurus/blob/main/.github/workflows/build.yml).
 For details have a look at the chapter on [continuous integration](../development/ci).

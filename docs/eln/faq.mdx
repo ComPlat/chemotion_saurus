@@ -11,23 +11,23 @@ import { Btn } from "@site/src/js/btn.js";
 
 #### Where can I try Chemotion ELN?
 
-A [test version](https://demo.chemotion.ibcs.kit.edu/) is available for demonstration purposes and time-limited applications. It is freely available to all interested users. The test version enables you to evaluate the latest version of Chemotion ELN without prior installation with regard to its suitability for your individual application. We ask you not to do any logging via the test version since data may be lost due to system updates and database changes. Some functions cannot be accessed in the test version, e.g. the SciFinder plug-in.
+A [test version](https://demo.chemotion.ibcs.kit.edu/) is available for demonstration purposes and time-limited applications. It is freely available to all interested users. The test version enables users to evaluate the latest version of Chemotion ELN without prior installation with regard to its suitability for their individual application. The Chemotion team asks users not to do any logging via the test version since data may be lost due to system updates and database changes. Some functions cannot be accessed in the test version, e.g. the SciFinder plug-in.
 
 #### How can I install Chemotion ELN?
 
-For routine use in operations, Chemotion ELN can be installed on IT facilities of your group/institution/university. Please refer to our [Installation Guide](install_configure) for more.
+For routine use in operations, Chemotion ELN can be installed on IT facilities of a group/institution/university. Please refer to the [Installation Guide](install-configure) for more.
 
 #### Is it possible to use Chemotion ELN offline?
 
-- **Answer:** Chemotion ELN is a web based application that can only be used over a network connection. PLease make sure to use Chrome browser.
+- **Answer:** Chemotion ELN is a web based application that can only be used over a network connection. Please make sure to use Chrome browser.
 
-#### Is there a standalone version from Chemotion ELN?
+#### Is there a standalone version of Chemotion ELN?
 
-- **Answer:** Currently there is no standalone version from Chemotion ELN, and there are no plans to have it in the near future.
+- **Answer:** Currently there is no standalone version of Chemotion ELN, and there are no plans to have it in the near future.
 
 #### What are the prerequisites for proper Chemotion ELN use?
 
-- **Answer:** A standard laptop/desktop, internet connection and Chrome browser is sufficient. Please do not use other browsers as they seem to function, but this functionality is never complete and/or tested.
+- **Answer:** A standard laptop/desktop, internet connection and Chrome browser are sufficient. Please do not use other browsers as they seem to function, but this functionality is never complete and/or tested.
 
 ### Collections
 
@@ -41,7 +41,7 @@ For routine use in operations, Chemotion ELN can be installed on IT facilities o
 
 #### Why can’t I find the collection that I have created in the collections bar?
 
-- **Answer:** When you create a collection, you have to make sure to press <Btn mixed={["Update"]} color={"warning"}/> in your collection management.
+- **Answer:** When creating a collection, users have to make sure to press <Btn mixed={["Update"]} color={"warning"}/> in their collection management.
 
 #### Why can’t I find the elements I have created in a collection when I look in its upper collection?
 
@@ -49,53 +49,49 @@ For routine use in operations, Chemotion ELN can be installed on IT facilities o
 
 #### Why can’t I see the elements added by my partner to the shared collection?
 
-- **Answer:** In a shared collection, only changes to existing elements are displayed to users. Elements added after sharing to the original collection will not be considered. If you want to see new elements, use collection synchronization.
+- **Answer:** In a shared collection, only changes to existing elements are displayed to users. Elements added after sharing to the original collection will not be considered. To see new elements, use collection synchronization.
 
 ### Samples
 
-#### Why can’t I find SciFinder tab in the sample’s details modal?
-
-- **Answer:** The SciFinder tab is only available in versions of ELN prior to 1.0.0. ELN 1.3 and above offers a new feature - [Search CAS](ui/details#search-cas).
-
 #### Why can’t I see any other tab in the sample’s details modal rather than **Properties**?
 
-- **Answer:** The **Properties** tab is the only tab shown by default in the details modal. The other tabs are hidden to give the user the space to organize their windows. You can add or remove tabs as you wish from your details modal as explained [here](ui/view#adjust-the-tabs-in-detail-modal).
+- **Answer:** The **Properties** tab is the only tab shown by default in the [details modal](/docs/eln/ui/details). The other tabs are hidden to give the user the space to organize their windows. Users can add or remove tabs as they wish from their details modal as explained [here](ui/view#adjust-the-tabs-in-the-detail-modal).
 
 #### Why can’t I add samples to the collection?
 
-- **Answer:** Make sure that you have already selected a collection and that you are not in the **All** collection. No action can be performed in the **All** collection because it is kind of back up.
+- **Answer:** Make sure that a collection has already been selected and that the **All** collection is not active. No action can be performed in the **All** collection because it is a kind of backup.
 
 #### Why has the name of my sample changed automatically?
 
-- **Answer:** Your sample is mostly a product from a reaction. The Name field within the product sample Properties tab is overwritten because it is required to generate a product name.
+- **Answer:** The [sample](/docs/eln/ui/elements/samples) is mostly a product from a [reaction](/docs/eln/ui/elements/reactions). The Name field within the product sample Properties tab is overwritten because it is required to generate a product name.
 
 #### I have copied a sample, and all its information except its structure is lost, why?
 
-- **Answer:** With the Copy sample action you only copy the molecular structure of the sample, all other information is not available and will not be adopted. Only the general information available from the molecular structure, e.g. molecular weight, are transferred. If you are interested in the other details, such as the concentration and others, please use **Split** action.
+- **Answer:** With the Copy sample action, only the molecular structure of the sample is copied; all other information is not available and will not be adopted. Only the general information available from the molecular structure, e.g. molecular weight, are transferred. For the other details, such as the concentration and others, please use the **Split** action.
 
 #### Why can’t I see all the samples I have created in sample list?
 
-- **Answer:** If your sample has been created in indirect way, e.g. from within a reaction, it might not appear in the samples list. In general, Reactants and Solvents don’t appear in the list, while samples that have been created as Starting material or as a Product are listed.
+- **Answer:** If a sample has been created in an indirect way, e.g. from within a reaction, it might not appear in the samples list. In general, Reactants and Solvents don’t appear in the list, while samples that have been created as Starting material or as a Product are listed.
 
 #### How can I add a **Reactant** to the samples list?
 
-- **Answer:** **Reactant**s don’t appear in the samples list. If you need to see them there, you have to change their status from **Reactant**s to **Starting material**.
+- **Answer:** **Reactant**s don’t appear in the samples list. To see them there, change their status from **Reactant**s to **Starting material**.
 
 ### Reactions
 
 #### How can I add coefficients to balance my reaction?
 
-- **Answer:** Yes, coefficients to balance your equation can be added in the reaction table (since v1.4.0). Those coefficients are not yet displayed in the reaction image but we are working on this.
+- **Answer:** Yes, coefficients to balance the equation can be added in the reaction table (since v1.4.0). Those coefficients are not yet displayed in the reaction image, but the Chemotion team is working on this.
 
 ### Tracking Changes and Making Backups
 
 #### How are changes in data (e.g., time, author) tracked? Is there a versioning / time-stamping / auditing system in place?
 
-- **Answer:** We are currently working on versioning and auditing systems.
+- **Answer:** The Chemotion team is currently working on versioning and auditing systems.
 
-#### Is it possible to to retrieve deleted data e.g. in case of accidental deletion of a collection?
+#### Is it possible to retrieve deleted data e.g. in case of accidental deletion of a collection?
 
-- **Answer:** Most of the entries are soft deleted (marked as deleted in the database but are not removed). However, there is no user interface to restore them easily. Please pay attention that deleting a collection does not remove its elements, it rather removes the association between the elements and the collection. Elements can still be picked out individually from **All** collection to (re-create) a new collection. If for some reason, you lose all your data or would like to restore the ELN to a previous state, it is necessary to have backups in place. For this reason, we recommend creating a [backup plan](install_configure/manual_install.mdx#backing-up-and-restoring-your-data) and automating a regular backup process.
+- **Answer:** Most of the entries are soft deleted (marked as deleted in the database but are not removed). However, there is no user interface to restore them easily. Please pay attention that deleting a collection does not remove its elements, it rather removes the association between the elements and the collection. Elements can still be picked out individually from **All** collection to (re-create) a new collection. If for some reason all data is lost or the ELN needs to be restored to a previous state, it is necessary to have backups in place. For this reason, the Chemotion team recommends creating a [backup plan](install-configure/manual-install.mdx#backing-up-and-restoring-your-data) and automating a regular backup process.
 
 ### Integrated Devices
 
@@ -107,8 +103,8 @@ For routine use in operations, Chemotion ELN can be installed on IT facilities o
 
 ### Can I get personalized help?
 
-- **Answer:** You can send us an email with your question or request, and we will get back to you as soon as possible. Please use the [helpdesk](https://chemotion.net/helpdesk).
+- **Answer:** Users can send an email with their question or request, and the Chemotion team will get back to them as soon as possible. Please use the [helpdesk](https://chemotion.net/helpdesk).
 
 ### What's coming next?
 
-- **Answer:** We aim to constantly improve the Chemotion ELN. To stay up-to-date about current developments, follow us on [GitHub](https://github.com/ComPlat/chemotion_ELN/).
+- **Answer:** The Chemotion team aims to constantly improve the Chemotion ELN. To stay up-to-date about current developments, follow the team on [GitHub](https://github.com/ComPlat/chemotion_ELN/).
