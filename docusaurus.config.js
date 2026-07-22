@@ -51,6 +51,14 @@ module.exports = {
           to: "https://chemotion.net/",
           className: "custom-nav-link",
         },
+        {
+          type: "docsVersionDropdown",
+          position: "right",
+          versions: {
+            current: { label: "Version 3.x" },
+            v2: { label: "Version 2.x" },
+          },
+        },
       ],
     },
 
@@ -60,7 +68,7 @@ module.exports = {
       },
     },
     prism: {
-      additionalLanguages: ["ruby"],
+      additionalLanguages: ["ruby", "bash", "python", "yaml"],
     },
     footer: {
       style: "light",
@@ -100,6 +108,15 @@ module.exports = {
           showLastUpdateTime: true,
           showLastUpdateAuthor: false,
           routeBasePath: "/",
+          lastVersion: "current",
+          versions: {
+            current: {
+              label: "3.x",
+            },
+            v2: {
+              label: "2.x",
+            },
+          },
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
