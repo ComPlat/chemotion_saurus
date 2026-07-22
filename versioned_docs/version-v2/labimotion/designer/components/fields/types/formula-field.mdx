@@ -1,0 +1,62 @@
+---
+title: Formula-Field
+author: Claire Lin
+sidebar_position: 7
+---
+
+import {
+  FigCaption,
+  SubTitle,
+  YouTubeFrame,
+  Reader,
+} from "@site/src/js/layout";
+import fieldFormula from "@site/static/img/labimotion/field-formula.png";
+
+<Reader text="Designer" />
+
+A **Formula-Field** type field is used to perform calculations based on specified inputs.
+
+Incorporate other fields by simply using their unique [Field Name](../../fields#field-name) and mathematical operations like addition (+), subtraction (-), multiplication (\*), and division (/). These mathematical operations are executed automatically, and the output decimals can be limited if you have specified the number of [Decimal](#decimal). Users can adjust the calculation result if [Can Adjust?](#can-adjust) is checked.
+
+<div align="center">
+  <img src={fieldFormula} alt="LabIMotion - Formula Field" />
+  <FigCaption text="Formula-Field" />
+</div>
+
+For example:
+
+- Field A: Field Name - field_a, Type - Integer
+- Field B: Field Name - field_b, Type - Integer
+- Field C: Field Name - field_c, Type - Formula-Field
+
+Let's set up the formula: (field_a + field_b) / 0.33
+
+When an end-user enters "330" in Field A and "30" in Field B, the formula calculation (330 + 30) / 0.33 will be displayed in Field C.
+
+Watch the video below to see how easy it is to use formula field.
+
+<YouTubeFrame
+  src="https://www.youtube-nocookie.com/embed/KQiWymP4M-g"
+  title="Designer - Formula Field"
+/>
+<FigCaption text="LabIMotion: Designer - Formula Field" />
+
+:::info
+
+When setting up the calculation formula, use the [Field Name](../../fields#field-name) if you want to use the [Integer](integer) type field.
+
+:::
+
+## Extra Field Attributes
+
+### Decimal
+
+The decimal of the calculation result.
+
+### Can adjust?
+
+When this is checked, it means that the user is allowed to change the calculation result.
+
+### Formula
+
+The calculation formula.

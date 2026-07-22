@@ -1,0 +1,80 @@
+---
+title: Electrochemical Impedance Spectroscopy (EIS)
+---
+
+In this guideline, we have explained the integration process of the Electrochemical Impedance Spectroscopy (EIS) device
+into the Chemotion ELN. This procedure enables remote access to the PC connected to the device, which runs the software,
+EC-Lab and also the transfer of the experiment data to the Chemotion ELN’s inbox.
+
+:::info
+
+General preparation aspects can be found [here](../../devices#general-preparation-aspects).
+
+:::
+
+Considering all these aspects, this procedure has been conducted on the following system configurations. However it is
+likely to work on systems with different software versions as well.
+
+## Specifications of the EIS PC
+
+- Operating system: Windows 10
+- Software Name: EC-Lab
+- Connected to Internet/Intranet: Yes
+- Data files generated: EC-Lab raw data binary file (.mpr)
+- Static IP address has been configured
+
+# Objectives
+
+- Remote Device Control
+- Data transfer to Chemotion ELN inbox
+
+For the EIS device integration, we have decided to configure both these features.
+
+# Configurations
+
+## Remote Device Control
+
+:::info
+
+General guideline regarding the configurations of remote device control can be found [here](../configurations/remote_control).
+
+:::
+
+## Data transfer
+
+Data will automatically be transferred to the Chemotion ELN once the data has been saved locally on the computer. The user only needs to make sure to name the output file according to the [naming convention](../../devices#name-conventions)
+before saving it to the local machine.
+
+:::info
+
+Please take care that you communicate [name conventions](../../devices#name-conventions) to all users of the Chemotion ELN.
+
+:::
+
+### Configurations in EIS PC
+
+The EIS PC and the Chemotion ELN both need access to a common network storage location. This can be set up on a
+third-party storage (a NAS server, shared storage of another PC etc.) or it can be set up locally on the EIS PC. In this
+case, the LSDF storage service from KIT has been used.
+
+We need to download an executable file from the EFW builder that will run on the computer to transfer data from a predefined source (local location on the computer) to a destination (LSDF server in this case) and schedule a task at startup so that the process keeps running on the computer. Details can be found [here](../configurations/data_transfer).
+
+In this step, we have to restart the PC for the scheduler to run.
+
+### Configurations in Chemotion ELN
+
+The Chemotion ELN’s data collector has to be configured to collect data of the EIS device from the network location.
+
+As for the file collector mechanism, there are two options.
+
+- Collecting attachment files from emails
+- Collecting file or folder from local drives or over SCP
+
+Here in this guide we have used the second mechanism where the files are collected from remote storage locations and are
+distributed to specific users based on the file-name matching the name abbreviation of the user.
+
+:::note[See details]
+
+[File collector setting page](../../install_configure/configuration#data-collection)
+
+:::

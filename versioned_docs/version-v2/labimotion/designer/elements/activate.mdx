@@ -1,0 +1,29 @@
+---
+title: Activate
+author: Claire Lin
+sidebar_position: 2
+---
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck, faBan } from "@fortawesome/free-solid-svg-icons";
+import {
+  FigCaption,
+  SubTitle,
+  YouTubeFrame,
+  Reader,
+} from "@site/src/js/layout";
+import elementList from "@site/static/img/labimotion/element-template-activation.png";
+
+<SubTitle text="Activate and Control." />
+<Reader text="Designer" />
+
+Upon activation (<FontAwesomeIcon icon={faCheck} size="lg" style={{ color: 'green' }}/>), the element becomes accessible exclusively to the end user. Once the element is deactivated (<FontAwesomeIcon icon={faBan} size="lg" style={{ color: 'red' }}/>), it is no longer accessible to the end user.
+
+<img src={elementList} alt="Designer - Generic Element" />
+<FigCaption text="Designer - Element Template Activation Status" />
+
+:::info
+
+The UI feature for generic elements needs to be either globally enabled or the user must be included in the allow list.
+
+:::

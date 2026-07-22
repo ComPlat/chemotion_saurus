@@ -1,0 +1,28 @@
+---
+title: ChemConverter Administrator
+author: Paggy
+sidebar_position: 1
+---
+
+import DocCardList from "@theme/DocCardList";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHourglassHalf } from "@fortawesome/free-solid-svg-icons";
+import permissionManagement from "@site/static/img/converter/permission-management.png";
+
+## Enable/Disable users as ChemConverter Administrator
+
+To assign the ChemConverter Administrator role, navigate to the User Management menu, select the desired user, and click on **Enable Converter profiles editing for this user** <FontAwesomeIcon icon={faHourglassHalf} />.
+If the button is green, it indicates that the user has Converter management permission; otherwise, they do not have the permission.
+
+<div align="center">
+  <img src={permissionManagement} alt="UI Feature" width="800" />
+</div>
+
+When you click on the **Enable Converter profiles editing for this user** button, you will receive a message confirming the granting of converter management permission to this user, displayed as _'Enable Converter profiles editing for this user'_.
+Likewise, when you grant converter management permission to this user, you will receive a message confirming the disabling of converter profiles editing, displayed as _'Disable Converter profiles editing for this user'_.
+
+:::info[Permissions]
+
+The ChemConverter Administrator permission is granted by your system administrator.
+
+:::

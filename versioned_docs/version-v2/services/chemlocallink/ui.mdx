@@ -1,0 +1,107 @@
+---
+title: UI
+sidebar_position: 3
+---
+
+ChemLocalLink is designed to make handling Chemotion ELN files simple and intuitive. Below is an overview of its sections.
+
+### Theme Toggle and Version Buttons
+
+Located in the top-left corner, the **Theme Toggle** and **App Version** buttons.
+
+![Theme Toggle and Version Button](/img/chemlocallink/topbtns.png)
+
+- Clicking the **Theme Toggle** button switches the application theme.
+- Hovering over the **App Version** button will display the current version of the app.
+
+### File Actions
+
+Several actions are available for managing downloaded files:
+
+- **Upload & Delete Locally**
+- **Open File**
+- **Open Downloads Folder**
+- **Delete File**
+
+![File Actions](/img/chemlocallink/actionbtns.png)
+
+These buttons are only enabled when a file is selected. One exception is the upload button, clicking on it will upload all the uploadable files if there is no specific file selected.
+
+### Downloads List
+
+The **Downloads List** displays all the files you've downloaded. Each entry shows:
+
+- **File name**
+- **File size**
+- **File path**
+- **Download timestamp**
+- **Kept** or **Edited** Badge is shown for files that have been modified or kept locally.
+- **Green** or **Red** Dot for validity of the Upload
+
+:::info
+Green means the API Upload Token is still valid, red means it is expired.
+If it is red and you want to edit and upload a file, then you will have to download it again!
+For more information please contact the [developer](mailto:mekky@kit.edu).
+:::
+
+![Downloads List](/img/chemlocallink/fileentries.png)
+
+### Context Menu for Downloads
+
+Right-clicking on any file in the **Downloads List** opens a context menu with the following options:
+
+- **Upload & Delete Locally**
+- **Upload & Keep Locally**
+- **Delete File Locally**
+- **Open File**
+- **Open Folder**
+
+![Context Menu](/img/chemlocallink/rightclick.png)
+
+### Status Bar
+
+The **Status Bar** at the bottom of the application shows real-time updates of the application’s status. Current possible status:
+
+- **"Downloading File..."**
+- **"Failed to download file"**
+- **"Failed to extract token!"**
+- **"Failed to upload file(s)"**
+- **"File access error!"**
+- **"File downloaded successfully!"**
+- **"File(s) uploaded successfully"**
+- **"Invalid URL format!"**
+- **"Kept files cannot be uploaded!"**
+- **"Network error!"**
+- **"No downloaded files"**
+- **"Not edited yet!"**
+- **"Unexpected error!"**
+
+:::info
+When reporting an issue, kindly add the respective **Status** message to your report.
+:::
+
+### Notifications
+
+ChemLocalLink provides real-time notifications to keep users informed about file-related activities.
+Here is an example notification:
+
+![Notifications](/img/chemlocallink/notification.png)
+
+### Tray Icon
+
+To have quick access to key functionalities even when the app is minimized or running in the background, you can use through the tray icon.
+
+By right-clicking on the tray icon, you can access the following options:
+
+- **Open App**: Restores the app from the tray.
+- **Upload All Edited Files & Delete Locally**: Uploads all the edited files and deletes them from your local machine.
+- **Upload All Edited Files & Keep Locally**: Uploads all edited files while keeping the local copies.
+- **Open Files Folder**: Opens the folder where the downloaded files are stored.
+- **Exit App**: Closes the app and removes it from the system tray.
+
+![Tray Menu](/img/chemlocallink/tray.png)
+
+### No Files
+
+If there are no files in the downloads list, the app will display the following message:  
+Nothing to show.. Do something.. Open Chemotion Files Locally!

@@ -1,0 +1,35 @@
+---
+title: Assumptions
+sidebar_position: 3
+---
+
+In the *Assumption* tab several tests can be conducted to check whether the assumptions for the parametric tests are met.
+One possibility is to create a diagnostic plots as shown below.
+The results indicate that the assumptions for parametric models are reasonably satisfied.
+
+- Residuals are approximately normally distributed.
+- Variance is relatively stable across fitted values.
+- No extreme outliers or influential observations are present.
+
+Therefore, a parametric model is appropriate for this analysis.
+
+import AssumptionSidebar from '@site/static/img/ThirdPartyApps/OpenStats/AssumptionSidebar.png';
+import DiagnosticPlot from '@site/static/img/ThirdPartyApps/OpenStats/DiagnosticPlot.png';
+
+<div
+  style={{
+    display: 'flex',
+    gap: '24px',
+    flexWrap: 'wrap',
+    alignItems: 'flex-start'
+  }}
+>
+  <div style={{ textAlign: 'center' }}>
+    <img src={AssumptionSidebar} style={{ maxWidth: '500px', height: 'auto' }} />
+  </div>
+
+  <div style={{ textAlign: 'center' }}>
+    <img src={DiagnosticPlot} style={{ maxWidth: '800px', height: 'auto' }} />
+  </div>
+</div>
+
