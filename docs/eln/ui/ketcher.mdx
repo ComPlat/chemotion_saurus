@@ -79,7 +79,7 @@ In EPAM Ketcher, rotation and flip controls appear contextually — they are not
   alt={"Selected molecule showing rotation handle and floating flip buttons"}
 />
 
-**Rotating:** Select a structure to reveal a blue rotation handle above the selection box. Click and drag the handle to rotate the selection freely around its centre.
+**Rotating:** Select a structure to reveal a blue rotation handle above the selection box. Click and drag the handle to rotate the selection freely around its center.
 
 **Flipping:** When a structure is selected, two floating action buttons appear above it:
 
@@ -94,7 +94,7 @@ The bonds menu is usually opened by clicking this icon <img src={require('@site/
 
 ![Bonds](/img/bondslist.png)
 
-Key behaviours:
+Key behaviors:
 
 - **Single**, **Double**, and **Triple** bonds are available alongside bonds for coordination, stereochemistry, and aromaticity.
 - Drawing a bond that does not start from an existing atom creates a C–C bond by default (e.g. a single bond produces CH₃–CH₃). Starting from an atom assumes a carbon at the other end — replace it using the atom column if needed.
@@ -112,7 +112,7 @@ The **Chain Tool** <img src={require('@site/static/img/eln/ui/ketcher/chain_tool
 The **Stereochemistry** tool <img src={require("@site/static/img/eln/ui/ketcher/stereochemistry.png").default} width={"20px"} alt={"Stereochemistry"}/> (`Alt+E`) applies enhanced stereochemistry annotations to stereocenters in the structure. After selecting the relevant atoms, the tool opens a dialog where users can assign stereo groups — **And**, **Or**, or **Absolute** — to indicate relative or absolute configuration. This is used to represent mixtures of enantiomers or diastereomers with precision beyond simple wedge bonds.
 
 :::note[Not available in v3.12]
-The Stereochemistry tool is currently disabled in Chemotion ELN v3.12 and appears greyed out in the toolbar.
+The Stereochemistry tool is currently disabled in Chemotion ELN v3.12 and appears grayed out in the toolbar.
 :::
 
 ### Charge
@@ -135,7 +135,7 @@ The **S-Group** tool <img src={require("@site/static/img/eln/ui/ketcher/sgroup.p
   alt={"S-Group Properties dialog"}
 />
 
-To use it: select the atoms you want to group, then press `Ctrl+G` or activate the tool and drag a rectangle around them. The **S-Group Properties** dialog opens with the following options:
+To use it: select the atoms to be grouped, then press `Ctrl+G` or activate the tool and drag a rectangle around them. The **S-Group Properties** dialog opens with the following options:
 
 - **Type** — the kind of S-group: **Data**, **Multiple Group**, **SRU Polymer**, **Superatom**, or **Query Component**
 - **Context** — the scope: **Fragment**, **Multifragment**, or **Bond** (availability depends on Type)
@@ -157,7 +157,7 @@ Click the tool, then click an atom on the canvas. The **R-Group** dialog opens s
 
 ### Monomer (Bead)
 
-The **Create a Monomer** tool <img src={require("@site/static/img/eln/ui/ketcher/polymer.png").default} width={"20px"} alt={"Monomer"} /> places a bead symbol on the canvas for solid-phase syntheses. Similar to the bead symbol in ChemDraw, it represents the polymeric carrier material of a solid support. The ELN recognises this symbol and adjusts the sample input module layout accordingly. The load of the solid support is defined within the sample input model.
+The **Create a Monomer** tool <img src={require("@site/static/img/eln/ui/ketcher/polymer.png").default} width={"20px"} alt={"Monomer"} /> places a bead symbol on the canvas for solid-phase syntheses. Similar to the bead symbol in ChemDraw, it represents the polymeric carrier material of a solid support. The ELN recognizes this symbol and adjusts the sample input module layout accordingly. The load of the solid support is defined within the sample input model.
 
 :::note[Not available in v3.12]
 The Monomer tool is not available in Chemotion ELN v3.12. Use the **Solid Surface Templates** in the top toolbar to place solid-support structures.
@@ -189,7 +189,7 @@ The top toolbar runs horizontally across the top of the canvas and contains file
 
 ### Clear Canvas
 
-**Clear Canvas** <img src={require("@site/static/img/eln/ui/ketcher/clear_icon.png").default} width={"20px"} alt={"Clear Canvas"} /> deletes everything on the current canvas. This action can be undone with **Undo**.
+**Clear Canvas** <img src={require("@site/static/img/eln/ui/ketcher/clear_icon.png").default} width={"20px"} alt={"Clear Canvas"} /> (`Ctrl+Delete`) deletes everything on the current canvas. This action can be undone with **Undo**.
 
 ### Open
 
@@ -225,11 +225,11 @@ The zoom level is controlled via the percentage indicator in the top toolbar. Cl
 
 ### Clean Up
 
-The **Clean Up** tool <img src={require("@site/static/img/eln/ui/ketcher/clean_icon.png").default} width={"20px"} alt={"Clean Up"}/> automatically improves the layout of the structure on the canvas by normalising bond lengths, angles, and atom spacing. It can be applied to the whole canvas or to a selection only.
+The **Clean Up** tool <img src={require("@site/static/img/eln/ui/ketcher/clean_icon.png").default} width={"20px"} alt={"Clean Up"}/> automatically improves the layout of the structure on the canvas by normalizing bond lengths, angles, and atom spacing. It can be applied to the whole canvas or to a selection only.
 
 ### Calculated Values
 
-The **Calculated Values** tool <img src={require("@site/static/img/eln/ui/ketcher/calculated_values_icon.png").default} width={"20px"} alt={"Calculated Values"}/> opens a dialog that displays computed properties for the structure on the canvas:
+The **Calculated Values** tool <img src={require("@site/static/img/eln/ui/ketcher/calculated_values_icon.png").default} width={"20px"} alt={"Calculated Values"}/> (`Alt+C`) opens a dialog that displays computed properties for the structure on the canvas:
 
 <img
   src={require("@site/static/img/eln/ui/ketcher/calculated_values_dialog.png").default}
@@ -248,7 +248,7 @@ The **Layout** tool <img src={require("@site/static/img/eln/ui/ketcher/layout_ic
 
 ### Calculate CIP
 
-The **Calculate CIP** tool <img src={require("@site/static/img/eln/ui/ketcher/calculate_cip_icon.png").default} width={"20px"} alt={"Calculate CIP"}/> (`Ctrl+P`) assigns Cahn–Ingold–Prelog (CIP) stereo descriptors (R/S for stereocentres, E/Z for double bonds) and displays them directly on the canvas next to the relevant atoms or bonds.
+The **Calculate CIP** tool <img src={require("@site/static/img/eln/ui/ketcher/calculate_cip_icon.png").default} width={"20px"} alt={"Calculate CIP"}/> (`Ctrl+P`) assigns Cahn–Ingold–Prelog (CIP) stereo descriptors (R/S for stereocenters, E/Z for double bonds) and displays them directly on the canvas next to the relevant atoms or bonds.
 
 ### Check Structure
 
@@ -256,7 +256,7 @@ The **Check Structure** tool <img src={require("@site/static/img/eln/ui/ketcher/
 
 ### Add/Remove Explicit Hydrogens
 
-The **Add/Remove Explicit Hydrogens** tool <img src={require("@site/static/img/eln/ui/ketcher/explicit_hydrogens_icon.png").default} width={"20px"} alt={"Explicit Hydrogens"}/> toggles between showing and hiding explicit hydrogen atoms on the canvas. When hydrogens are added, each hydrogen appears as a labelled atom with a bond. When removed, explicit hydrogens revert to the implicit representation.
+The **Add/Remove Explicit Hydrogens** tool <img src={require("@site/static/img/eln/ui/ketcher/explicit_hydrogens_icon.png").default} width={"20px"} alt={"Explicit Hydrogens"}/> toggles between showing and hiding explicit hydrogen atoms on the canvas. When hydrogens are added, each hydrogen appears as a labeled atom with a bond. When removed, explicit hydrogens revert to the implicit representation.
 
 ### 3D Viewer
 
@@ -266,13 +266,13 @@ The **3D Viewer** <img src={require("@site/static/img/eln/ui/ketcher/3d_viewer_i
 
 The **Solid Surface Templates** tool <img src={require("@site/static/img/eln/ui/ketcher/solid_surface_icon.png").default} width={"20px"} alt={"Solid Surface Templates"}/> opens a library of pre-defined solid-support and bead templates. Select a template and place it on the canvas to represent a polymeric carrier in a solid-phase synthesis scheme.
 
-The dialog has **Basic** and **Semantic** tabs and organises templates into three top-level categories:
+The dialog has **Basic** and **Semantic** tabs and organizes templates into three top-level categories:
 
 - **Active Phase (Round)** — round bead supports, further broken down into Single-compound active phase, Multi-compound active phase, and Promotors
 - **Support (Rectangle)** — flat rectangular solid-support representations
 - **Body (Rectangle)** — inert rectangular carrier bodies
 
-Click a category to expand it, then click a thumbnail to insert the corresponding bead or support onto the canvas. The placed structure includes attachment points where you can continue drawing the chemistry anchored to the solid support.
+Click a category to expand it, then click a thumbnail to insert the corresponding bead or support onto the canvas. The placed structure includes attachment points where the chemistry can be drawn anchored to the solid support.
 
 ![Solid Surface Chemistry Templates in action](/img/eln/ui/ketcher/solid_surface_chemistry.gif)
 
@@ -314,7 +314,7 @@ The rings toolbar offers quick access to common ring templates: **benzene** (aro
 
 ### Structure Library
 
-The **Structure Library** button ![Structure Library](/img/icon_structurelibrary.svg) at the end of the toolbar opens a searchable collection of pre-defined structures organised into three categories:
+The **Structure Library** button ![Structure Library](/img/icon_structurelibrary.svg) at the end of the toolbar opens a searchable collection of pre-defined structures organized into three categories:
 
 - **Templates Library** — common chemical scaffolds and ring systems for quick insertion
 - **Functional Groups** — frequently used functional group fragments
@@ -328,7 +328,7 @@ If a structure is missing from the library, send a MolFile or ChemDraw file to n
 
 ## Standard Templates
 
-Standard templates are read-only and cannot be modified. They are accessible from the **Bottom Toolbar** and are organised into the following categories:
+Standard templates are read-only and cannot be modified. They are accessible from the **Bottom Toolbar** and are organized into the following categories:
 
 - **Amino Acids**
 - **Aromatics**
@@ -347,7 +347,7 @@ To suggest a new template or category, send a MolFile or ChemDraw file to nicole
 
 :::danger[Caution]
 
-Chemotion ELN records the absolute configuration of point-chiral stereocentres correctly. However, **planar chiral compounds** (such as Paracyclophanes) are not currently recognised as chiral and will not be differentiated in compound lists or names — even if the correct planar chirality was drawn in Ketcher. Record the chirality explicitly in the **Description** field for these samples.
+Chemotion ELN records the absolute configuration of point-chiral stereocenters correctly. However, **planar chiral compounds** (such as Paracyclophanes) are not currently recognized as chiral and will not be differentiated in compound lists or names — even if the correct planar chirality was drawn in Ketcher. Record the chirality explicitly in the **Description** field for these samples.
 
 This is a limitation of the Chemotion ELN system, not of the Ketcher editor itself.
 
