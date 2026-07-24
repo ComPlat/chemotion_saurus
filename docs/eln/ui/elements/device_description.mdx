@@ -23,6 +23,20 @@ maintains it, where it stands, and how it should be cited.
 
 :::
 
+:::caution[Not linked to dataset metadata]
+
+A Device Description is **not** connected to the "Instrument" field or the generic-dataset
+metadata shown in the Metadata tab of a dataset inside a Sample's, Reaction's, etc. Analyses tab.
+That "Instrument" field is a plain free-text string (with autocomplete limited to values you
+previously typed yourself) and the generic-dataset fields there come from a separate,
+per-analysis-method template system — neither has any relation to Device Description records.
+There is currently no way to attach a specific Device Description (with its serial number,
+vendor, calibration/maintenance history, etc.) to an uploaded dataset; a Device Description only
+has its own, separate Analyses tab for analyses performed *on* the device itself (e.g. its
+qualification/calibration measurements).
+
+:::
+
 ## Model
 
 Like other elements, a Device Description belongs to collections, can carry comments, tags,
