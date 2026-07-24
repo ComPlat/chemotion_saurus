@@ -2,3 +2,197 @@
 title: Device Description
 sidebar_position: 6
 ---
+
+## Meaning
+
+A **Device Description** is a top-level ELN element used to document a piece of scientific
+equipment — an instrument, a component of an instrument, or a whole measurement setup made of
+several instruments — in the same way a Sample or a Reaction documents a chemical entity or a
+transformation. It captures identification, ownership, location, software, maintenance and
+publication-relevant information about a device, so that the device itself becomes a citable,
+searchable, versioned object in the ELN rather than free text scattered across analyses.
+
+:::info
+
+Do not confuse a **Device Description** with a **Device** in the admin area. A "Device" (see
+[Accessing Remote Devices](/docs/eln/admin/remote_devices)) is a technical account used to
+remotely control an instrument or to automatically collect measurement files from it into the
+ELN. A Device Description is optionally *linked* to such an account, but it is a separate, much
+richer record describing the physical instrument itself — its vendor, its version history, who
+maintains it, where it stands, and how it should be cited.
+
+:::
+
+## Model
+
+Like other elements, a Device Description belongs to collections, can carry comments, tags,
+attachments and analyses, and has a full edit history. Two aspects of the model are specific to
+devices:
+
+- **Device class.** Every Device Description is classified as `stand-alone`, `component`,
+  `equipment` or `setup`. A `setup` groups several `component` devices (and vice versa): the
+  Properties tab exposes a dedicated *Setup description* area where components/setups can be
+  linked to each other by dragging one Device Description onto another. This lets a complex
+  instrument (e.g. an HPLC made of a pump, a detector and a column oven) be represented both as
+  individual devices and as the combined setup that uses them.
+- **Versioning through splitting.** A Device Description can be *split* into a new, linked
+  Device Description that represents a later hardware/firmware version of the same physical
+  device (for example after a major service, an upgrade or a part replacement). The new record
+  is created as a child of the original one (an ancestry tree), inherits its short label with an
+  incremented suffix (e.g. `AB-Dev12-1`, `AB-Dev12-2`, …), and copies its properties and
+  ontology segments as a starting point. This is distinct from the *History* tab, which tracks
+  field-level edits of a single record — splitting instead creates a new, independent element to
+  represent the device at a new point in its life cycle.
+
+## Representation in ELN
+
+Device Descriptions are represented and treated analogously to other elements (Sample,
+Reaction, Cell line, …): they live in collections, can be tagged, commented on, exported and
+imported.
+
+### Tabular form
+
+In the element list, Device Descriptions can be grouped by **Serial no**, **Short label**,
+**Ontology** or **combined Ontologies**, in addition to the default sorting by update time
+available for all elements.
+
+### Detailed view
+
+The detail view of a Device Description is organized into six tabs: **Properties**, **Details**,
+**Analyses**, **Attachment**, **Maintenance** and **History**. As with other elements, the order
+and visibility of these tabs can be customized.
+
+#### Properties tab
+
+The Properties tab holds the descriptive metadata of the device, organized into a top section and
+several collapsible groups.
+
+At the top:
+
+| property name       | description                                                          |
+| -------------------- | --------------------------------------------------------------------- |
+| Name                  | free-text name of the device                                          |
+| Device class          | `stand-alone`, `component`, `equipment` or `setup`                    |
+| Device class detail   | whether the device has variable components or not                     |
+| Operation mode        | `manual - walk in`, `manual - service` or `integrated - automated`    |
+| Device type           | device type name, a device type ID and the type of that ID            |
+
+**General description**
+
+| property name          | description                                             |
+| ------------------------ | -------------------------------------------------------- |
+| Model name / Model ID / Serial no | general information on the device from the manufacturer |
+| Manufacturer name / ID / ID type  | details describing the manufacturer of the device (ID type: `MID` or `UID`) |
+| Description               | free text                                                |
+| Tags                      | one or more of `manufacturing`, `processes`, `sensors`, `analysis`, … |
+
+**Version specific information**
+
+| property name                              | description                                                                 |
+| -------------------------------------------- | ------------------------------------------------------------------------------ |
+| Version                                       | version number, typically derived from the short label (`1`, `1.1`, `1.2`, …) |
+| Started: Installation date / End date         | when this version was installed and, if applicable, taken out of service      |
+| Persistent identifier                         | an identifier type (`DOI`, `Handle`, `ARK`, `EISSN`, `IGSN`, `PURL` or `RRID`) together with the identifier value and, optionally, a resolvable link |
+| Characterization of this version              | free-text description and comments for this specific version                 |
+
+**Device operators and location**
+
+| property name                     | description                                                     |
+| ------------------------------------ | ------------------------------------------------------------------ |
+| Operators                            | one or more people, each with name, phone, e-mail, type (`technical`/`administrative`) and a comment |
+| Owner                                | owning institution, e-mail, ID and ID type                        |
+| Location                             | institution, institute, building and room                         |
+| Inventory                            | inventory ID and an alternative identifier/label                  |
+| Access options                       | infrastructure assignment, access options and comments            |
+
+**Setup description** — only shown when *Device class* is `setup` or `component`. Lets you drag
+another Device Description onto this one to declare it as a component of a setup, or as the
+setup a component belongs to; each linked entry shows its short label, name, an ELN link and its
+persistent identifier.
+
+**Software and interfaces**
+
+| property name        | description                        |
+| ----------------------- | ------------------------------------ |
+| Application name/version | the software controlling the device |
+| Vendor URL               | link to the vendor's software/device page |
+
+**Manuals, documentation and helpers** — a checkbox indicating that additional helper files were
+uploaded to the Attachment tab, plus a free-text field for policies and user information.
+
+**Information for publications** — a free-text *Description for methods part*, meant to be
+reused verbatim (or as a starting point) when describing the instrument in a manuscript's
+methods section.
+
+**Physical descriptions** — size and weight (with a unit toggle between tonnes, kilograms and
+grams).
+
+#### Details tab
+
+The Details tab is used to classify the device against controlled vocabularies and to attach any
+custom, admin-defined fields.
+
+- **Ontology Classification** lets you assign one or more terms from the *Chemical Methods
+  Ontology* (CHMO), restricted to its instrument-related branch, using the same
+  [ontology selection](/docs/eln/ui/ontology) mechanism used elsewhere in the ELN (search-as-you-type
+  against the TIB terminology service, with the full hierarchical path stored alongside the
+  selected term).
+- **Custom segments** — if the administrator has activated device-specific
+  [segments](/docs/labimotion/user/segments) (Labimotion templates), additional structured fields
+  defined for those segments appear here.
+
+#### Analyses tab
+
+Works exactly like the Analyses tab of other elements: analyses are added and grouped by method
+(again drawn from the Chemical Methods Ontology), with datasets and files attached to each
+analysis. All analyses of a Device Description can be exported together as a zip archive using
+the **Download Analysis** button in the detail view's footer.
+
+#### Attachment tab
+
+Standard attachment area shared with other elements: drag & drop files onto the device, filter
+and sort them by name, size or date, preview, download, edit/annotate images, or remove them
+(with undo).
+
+#### Maintenance tab
+
+The Maintenance tab documents how the device is kept operational.
+
+- **General aspects** — whether a maintenance contract is available, the maintenance scheduling
+  (`yearly`, `every two years`, `on request`), and one or more contacts for maintenance and
+  repair (company, contact person, e-mail, phone, comment).
+- **Planned Maintenance** — a list of planned maintenance entries (date, `internal`/`external`
+  type, details, status — `planned`/`ordered`/`done`/`ongoing`, costs, time, changes) and a
+  separate list of consumables needed for maintenance (name, type — `mandatory`/`optional`/
+  `sometimes`, number, status, costs, details).
+- **Unexpected maintenance and repair** — the same fields as planned maintenance, used to log
+  ad-hoc repairs.
+- **Unexpected Power Shutdown** — free-text measures to take after a complete power shutdown and
+  after a short shutdown of a running device.
+- **Planned offline period** — free-text measures to plan an offline period and to restart the
+  device afterwards.
+
+#### History tab
+
+Shows the complete change history of the record, as for other elements.
+
+## Creating and versioning a device description
+
+1. A new Device Description can be created in the currently active collection using the create
+   button in the top menu, the same way other elements are created. Its short label is generated
+   automatically as `<user initials>-Dev<counter>` (e.g. `AB-Dev12`).
+2. To document a new hardware/firmware version of an existing device, select it and use the
+   *split* action: a new Device Description is created as a child of the original, with a short
+   label suffixed by an incrementing number (`AB-Dev12-1`, `AB-Dev12-2`, …) and pre-filled with
+   the parent's properties and ontology segments, ready to be adjusted for the new version.
+
+## Import/Export
+
+Collections containing Device Descriptions can be exported and imported like collections of any
+other element.
+
+## Search
+
+Device Descriptions can be found using the basic search. The following properties are taken into
+account: name, short label, model name, model ID, serial number, manufacturer name, tags and
+assigned ontology terms.
