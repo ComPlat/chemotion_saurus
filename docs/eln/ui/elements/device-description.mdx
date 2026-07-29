@@ -15,7 +15,7 @@ searchable, versioned object in the ELN rather than free text scattered across a
 :::info
 
 Do not confuse a **Device Description** with a **Device** in the admin area. A "Device" (see
-[Accessing Remote Devices](/docs/eln/admin/remote_devices)) is a technical account used to
+[Accessing Remote Devices](/docs/eln/admin/remote-devices)) is a technical account used to
 remotely control an instrument or to automatically collect measurement files from it into the
 ELN. A Device Description is optionally *linked* to such an account, but it is a separate, much
 richer record describing the physical instrument itself — its vendor, its version history, who
@@ -27,8 +27,8 @@ maintains it, where it stands, and how it should be cited.
 
 A Device Description is **not** connected to the "Instrument" field or the generic-dataset
 metadata shown in the Metadata tab of a dataset inside a Sample's, Reaction's, etc. Analyses tab.
-That "Instrument" field is a plain free-text string (with autocomplete limited to values you
-previously typed yourself) and the generic-dataset fields there come from a separate,
+That "Instrument" field is a plain free-text string (with autocomplete limited to values the user
+has previously typed) and the generic-dataset fields there come from a separate,
 per-analysis-method template system — neither has any relation to Device Description records.
 There is currently no way to attach a specific Device Description (with its serial number,
 vendor, calibration/maintenance history, etc.) to an uploaded dataset; a Device Description only
@@ -119,9 +119,9 @@ At the top:
 | Inventory                            | inventory ID and an alternative identifier/label                  |
 | Access options                       | infrastructure assignment, access options and comments            |
 
-**Setup description** — only shown when *Device class* is `setup` or `component`. Lets you drag
-another Device Description onto this one to declare it as a component of a setup, or as the
-setup a component belongs to; each linked entry shows its short label, name, an ELN link and its
+**Setup description** — only shown when *Device class* is `setup` or `component`. Another Device
+Description can be dragged onto this one to declare it as a component of a setup, or as the setup
+a component belongs to; each linked entry shows its short label, name, an ELN link and its
 persistent identifier.
 
 **Software and interfaces**
@@ -146,7 +146,7 @@ grams).
 The Details tab is used to classify the device against controlled vocabularies and to attach any
 custom, admin-defined fields.
 
-- **Ontology Classification** lets you assign one or more terms from the *Chemical Methods
+- **Ontology Classification** lets the user assign one or more terms from the *Chemical Methods
   Ontology* (CHMO), restricted to its instrument-related branch, using the same
   [ontology selection](/docs/eln/ui/ontology) mechanism used elsewhere in the ELN (search-as-you-type
   against the TIB terminology service, with the full hierarchical path stored alongside the
