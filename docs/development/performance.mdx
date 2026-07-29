@@ -3,15 +3,19 @@ title: Investigating Performance
 sidebar_label: Performance
 ---
 
+import { YouTubeFrame } from "@site/src/js/layout";
+
 Poor performance is bad for user experience.
 If you notice that parts of the ELN don't perform as well as you'd like,
 it might be helpful to find out _why_ that is the case, and how you could improve it.
 This chapter provides some guidance on how to investigate performance.
 
-We follow the example of investigating the performance of creating a reaction.
-We'll only deal with the backend for the moment, meaning the performance investigation will be limited to Ruby.
+This chapter follows the example of investigating the performance of creating a reaction.
+It only deals with the backend for the moment, meaning the performance investigation will be limited to Ruby.
 
-For a good general primer on performance investigations have a look at this [YouTube video](https://youtu.be/XL51vf-XBTs).
+For a good general primer on performance investigations, have a look at this video:
+
+<YouTubeFrame src="https://www.youtube-nocookie.com/embed/XL51vf-XBTs" />
 
 ## Isolating the issue
 
@@ -102,7 +106,7 @@ The goal of a performance investigation is to eventually improve performance.
 In order for those improvements to be objective, we need a baseline:
 How long does it take (on your system) to create a reaction? If you have that number,
 you have a target for your improvements.
-You can quantifying performance by using a benchmarking tool.
+You can quantify performance by using a benchmarking tool.
 We use [`rspec-benchmark`](https://github.com/piotrmurach/rspec-benchmark) to benchmark the `rspec` test we set up earlier.
 After installing the framework (`bundle add rspec-benchmark`) you can make it available as follows.
 
@@ -114,7 +118,7 @@ RSpec.configure do |config|
 end
 ```
 
-You're now ready to include `rspec-benchmark` syntax / DSL in you test (for details head over to the `rspec-benchmark` docs):
+You're now ready to include `rspec-benchmark` syntax / DSL in your test (for details head over to the `rspec-benchmark` docs):
 
 ```ruby title="spec/api/reaction_api_performance_spec.rb"
 it 'creates reaction in under one second' do
@@ -142,7 +146,7 @@ You can use this baseline to start improving the performance.
 
 ## Profiling
 
-In order to improve performance, we now need to identify hot spots in the code that lend themselves for optimization.
+In order to improve performance, we now need to identify hot spots in the code that lend themselves to optimization.
 Profiling can help finding these hot spots by breaking down how much time (or CPU cycles) a program spends in each of its components (e.g., methods).
 We can use the [`stackprof`](https://github.com/tmm1/stackprof) gem to profile our `rspec` test.
 After installing the gem with `bundle add stackprof` we need to configure it as follows.
@@ -183,7 +187,7 @@ Have a look at the following resources for details on how to read flamegraphs:
 - https://youtu.be/6uKZXIwd6M0?t=320
 - https://www.brendangregg.com/flamegraphs.html
 
-`stackprof` can also break down how much time the tests spends on each line of a function call.
+`stackprof` can also break down how much time the test spends on each line of a function call.
 This can help zooming in on hot spots.
 
 ```shell

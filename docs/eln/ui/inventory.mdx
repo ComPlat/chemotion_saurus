@@ -38,7 +38,7 @@ The registration process of that account is identical to registering any other n
 
 ### Creating a new collection
 
-In the newly created account, a collection has to be created where all chemicals can be inserted as samples. If the group is located in different buildings, or uses different chemical subsets, multiple collections can be created for the different buildings or subsets. Each collection can be shared with one or more groups independent of one another.
+In the newly created account, a [collection](/docs/eln/ui/collections) has to be created where all chemicals can be inserted as [samples](/docs/eln/ui/elements/samples). If the group is located in different buildings, or uses different chemical subsets, multiple collections can be created for the different buildings or subsets. Each collection can be shared with one or more groups independent of one another.
 Once the collection is created, the chemicals that are part of the database have to be created as samples. Importing a database is possible using the [`import samples to collection` function](toolbar#importing-data) of the Chemotion ELN. For that purpose, an XLS or XLSX Document in the right format and containing all chemicals to be imported, must be available.  
 It is advisable to create the samples with all relevant information in the `Properties` tab, such as CAS number, concentration or molarity, density, etc. However, the information can be updated later by other users, if it is shared with the group with write access (more on this in the section [synchronizing the collection with the group](#synchronizing-the-collection-with-the-group)).
 
@@ -59,7 +59,7 @@ There are three ways to create an entry in the inventory:
 
 ### Creating a new sample
 
-A chemical Entry can be created by creating a new sample as an inventory entry. Please refer to [Generate Sample](elements/samples#generation) section, to learn how to create a new sample. Once a new sample is created, user can check in the inventory check box to enable handling of a sample as a chemical entry.
+A chemical Entry can be created by creating a new sample as an inventory entry. Please refer to [Generate Sample](elements/samples#generation) section, to learn how to create a new sample. Once a new sample is created, the user can check the inventory check box to enable handling of a sample as a chemical entry.
 
 ### Splitting sample for chemical entry
 
@@ -69,22 +69,22 @@ For further information on how to utilize this feature, please consult the [Spli
 When a split sample is performed, the newly generated chemical entry inherits the data from the original entry.
 Subsequently, users are able to modify the data according to their specific requirements.
 
-![Split sample for inventory entry](/img/split_sample_for_chemical_entry.gif)
+![Split sample for inventory entry](/img/eln/ui/inventory/split_sample_for_chemical_entry.gif)
 
 ### Drag and drop chemical entry
 
-Users have the capability to employ a drag-and-drop action to transfer a chemical entry from the inventory list to a reaction, thereby generating a subsample derived from the original chemical entry.
+Users have the capability to employ a drag-and-drop action to transfer a chemical entry from the inventory list to a [reaction](/docs/eln/ui/elements/reactions), thereby generating a subsample derived from the original chemical entry.
 In this process, only safety information pertaining to the subsample is generated.
 Subsequently, users can conveniently navigate to the inventory tab of the created subsample to access and review the corresponding safety information.
 The gif below illustrates the drag-and-drop action for the generation of a subsample from a chemical entry.
 
-![drag drop chemical sample](/img/drag--drop-chemical-subsample.gif)
+![drag drop chemical sample](/img/eln/ui/inventory/drag-drop-chemical-subsample.gif)
 
 ## Managing Inventory
 
-The inventory tab will appear in the Tabs Layout. User can make the inventory tab visible by drag and drop, if it is hidden by default. Once the inventory tab is active, user can start entering chemical data in the corresponding fields.
+The inventory tab will appear in the Tabs Layout. The user can make the inventory tab visible by drag and drop, if it is hidden by default. Once the inventory tab is active, the user can start entering chemical data in the corresponding fields.
 
-![Inventory Tab](/img/inventory_tab.gif)
+![Inventory Tab](/img/eln/ui/inventory/inventory_tab.gif)
 
 ** The inventory tab is organized into a hierarchical structure consisting of three collapsible lists, outlined below: **
 
@@ -120,18 +120,18 @@ This section contains the following fields:
 - After selecting the search parameters, users can initiate the search query by clicking the <Btn mixed={["Search for SDS"]} color={"secondary"} /> button.
 - The search results will be displayed, and users can click on the results _tag link_ to open a new tab directing them to the vendor's safety data sheet.
 - It is recommended for users or administrators to first verify if the displayed results are associated with the desired chemical.
-- If results match the specific chemical, users can save the safety sheet to the Electronic Laboratory Notebook (ELN) by clicking the save button next to the relevant result tag. A green check mark icon will appear next to result element tag, if SDS is saved successfully.
+- If results match the specific chemical, users can save the safety sheet to the Electronic Laboratory Notebook (ELN) by clicking the save button next to the relevant result tag. A green check mark icon will appear next to the result element tag, if SDS is saved successfully.
 - Once saved, users can initiate additional search queries to retrieve safety phrases or search for chemical and physical properties related to the chemical.
 - Users have the option to delete the saved data sheet by clicking the delete icon <Btn mixed={[faTrash]} color={"danger"}/> button.
-- The <Btn mixed={["Search for SDS"]} color={"secondary"} /> button will be disabled, once one SDS is saved. To enable another search query, user have to delete any saved SDS first.
+- The <Btn mixed={["Search for SDS"]} color={"secondary"} /> button will be disabled, once one SDS is saved. To enable another search query, the user has to delete any saved SDS first.
 - Additionally, users can access the vendor's product webpage by clicking the external link icon <Btn mixed={[faExternalLink]} color={"secondary"} /> button.
-- User can query the safety phrases for this chemical from vendor by clicking the <Btn mixed={["fetch safety phrases"]} color={"secondary"} /> button. Results render below as depicted in the image below.
-  ![safety bar](/img/inventoryTab_safety_list.png)
+- The user can query the safety phrases for this chemical from the vendor by clicking the <Btn mixed={["fetch safety phrases"]} color={"secondary"} /> button. Results render below as depicted in the image below.
+  ![safety bar](/img/eln/ui/inventory/inventoryTab_safety_list.png)
 
-- The <Btn mixed={["fetch Chemical Properties"]} color={"secondary"} /> button enable users to make a search query for chemical and physical properties related to the chemical and save it to respective fields in sample properties tab.
-  Sometimes fetched results can not be saved automatically if fetched values can not be accepted by ELN for some fields. User in this case can view and modify entered values manually.
+- The <Btn mixed={["fetch Chemical Properties"]} color={"secondary"} /> button enables users to make a search query for chemical and physical properties related to the chemical and save them to the respective fields in the sample properties tab.
+  Sometimes fetched results cannot be saved automatically if the fetched values cannot be accepted by ELN for some fields. In this case the user can view and modify the entered values manually.
   Fetched properties can be viewed by clicking the results icon <Btn mixed={[faFileText]} color={"secondary"} /> button next to fetch button. An example of fetch chemical properties process is shown below.
-  ![Safety List](/img/fetch_chemical_properties_chemical.gif)
+  ![Safety List](/img/eln/ui/inventory/fetch_chemical_properties_chemical.gif)
 
 ### Attach Safety Sheets manually
 
@@ -164,7 +164,7 @@ The manual SDS attachment functionality allows users to:
 2. Fill in the required fields and upload a PDF file.
 3. Click "Submit" to save the attachment.
 
-![sds attachment](/img/manual_sds_attachment.gif)
+![sds attachment](/img/eln/ui/inventory/manual_sds_attachment.gif)
 
 ### Validation Rules
 
@@ -185,16 +185,16 @@ The Location field is divided into 2 subsections `host location, host group`, wh
 - `building, room, cabinet` where the chemical is stored.
 - `group:` related to the chemical.
 - `owner:` the person responsible for the chemical.
-- `by:` the person which borrowed the chemical.
+- `by:` the person who borrowed the chemical.
 
-![location and information list](/img/location_info_save_chemicalTab.png)
+![location and information list](/img/eln/ui/inventory/location_info_save_chemicalTab.png)
 
-User can use `Disposal information` field to save any information related to the disposal of the chemical or use `important notes` field to save any other relative information. User can click the save button, after making any changes or updating any field inside the inventory tab to save the changes. The save button is located at the bottom of the inventory tab.
+User can use `Disposal information` field to save any information related to the disposal of the chemical or use `important notes` field to save any other relevant information. The user can click the save button after making any changes or updating any field inside the inventory tab to save the changes. The save button is located at the bottom of the inventory tab.
 
 ## Import and Export Chemicals
 
-The Import and Export of chemical data functionality has been integrated into the core ELN export/import data feature within the Chemotion ELN platform. For a comprehensive understanding of the fundamental procedures involved in importing and exporting various elements and samples within the ELN system, you can check the [Import and Export data](toolbar?_highlight=xlsx#import-and-export-data-to-and-from-the-chemotion-eln) section.
-Users are provided with the flexibility to choose between exporting/importing individual chemical samples or multiple selected samples. This functionality is conveniently accessible through the Export/Import Menu toolbar icon ![Export Menu](/img/action_bar_import_export.png). The export and import of chemical samples is currently supported in the xlsx and csv formats.
+The Import and Export of chemical data functionality has been integrated into the core ELN export/import data feature within the Chemotion ELN platform. For a comprehensive understanding of the fundamental procedures involved in importing and exporting various elements and samples within the ELN system, users can check the [Import and Export data](toolbar?-highlight=xlsx#import-and-export-data-to-and-from-the-chemotion-eln) section.
+Users are provided with the flexibility to choose between exporting/importing individual chemical samples or multiple selected samples. This functionality is conveniently accessible through the Export/Import Menu toolbar icon ![Export Menu](/img/eln/ui/inventory/action_bar_import_export.png). The export and import of chemical samples is currently supported in the xlsx and csv formats.
 
 1. [Export Chemicals](#export-chemicals)
 1. [Import Chemicals](#import-chemicals)
@@ -204,7 +204,7 @@ Users are provided with the flexibility to choose between exporting/importing in
 To initiate the export of a chemical sample, the user is required to select the export samples selection from Export/Import Menu toolbar option. Within the Select Data to Export menu, the user is afforded the opportunity to designate their preferred chemical options for export, in conjunction with the fundamental sample properties that have already been designated.
 Additionally, the user can opt to include further sample or molecule properties to the exported sheet. An example of export chemical process is shown below.
 
-![Export Samples](/img/export_chemicals.gif)
+![Export Samples](/img/eln/ui/inventory/export_chemicals.gif)
 
 ### Import Chemicals
 
@@ -213,9 +213,9 @@ To start the import of chemical samples process, users should follow these steps
 - Access the import chemicals to collection option located within the Export/Import Selection Menu toolbar.
 - Click the import chemicals to collection menu button to open an interface for uploading the chemical sheet.
 - It is strongly recommended that users utilize the provided chemical template below, as importing chemicals necessitates specific data points. In order to import a sample into Chemotion ELN, it is generally required to have at least one of the following columns present in the import data:
-  Canonical Smiles (Smiles) or Molfile. while the remaining columns are optional, providing more details is encouraged for comprehensive record-keeping.
+  Canonical SMILES (SMILES) or Molfile. While the remaining columns are optional, providing more details is encouraged for comprehensive record-keeping.
 - Additionally, users have the capability to import safety data sheets into Chemotion ELN by entering relevant information into the designated fields such as safety data sheet and vendor. Please note that this option is presently compatible only with the Merck vendor.
-- Importing is also feasible for samples and chemicals that do not possess a chemical structure (referred to as decoupled samples). In such instances, users should indicate the value yes in the column of decoupled. If the sample has chemical structure, it is imperative to ensure that any of the columns relevant to the chemical structure, such as molfile and canonical smiles contain valid data.
+- Importing is also feasible for samples and chemicals that do not possess a chemical structure (referred to as decoupled samples). In such instances, users should indicate the value yes in the column of decoupled. If the sample has chemical structure, it is imperative to ensure that any of the columns relevant to the chemical structure, such as molfile and canonical SMILES contain valid data.
 
 :::info[Recommendation]
 
@@ -234,4 +234,4 @@ The **Target/Real Amount** column headers, however, refers to the **Amount** fie
 
 Following these steps enables the comprehensive import of chemical samples while maintaining the integrity of essential data for efficient management within the Chemotion ELN system. An example of import chemical process is shown below.
 
-![Import Samples](/img/import_chemicals.gif)
+![Import Samples](/img/eln/ui/inventory/import_chemicals.gif)

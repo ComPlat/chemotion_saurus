@@ -1,0 +1,39 @@
+---
+title: Open APIs
+author: Claire Lin
+sidebar_position: 2
+---
+
+The [Chemotion Repository](/docs/repo) exposes a set of **public, REST-style endpoints** that let external applications retrieve rich metadata programmatically. These endpoints are designed to facilitate interoperability, support automated data harvesting, and integrate seamlessly with external platforms such as ELNs, repositories, or data analysis tools.
+
+All endpoints are reachable without authentication, making integration straightforward.
+
+## Available Endpoints
+
+| Endpoint          | Description |
+|-------------------|-------------|
+| `bagit-download`  | Returns a list of downloadable BagIt publication URLs filtered by instrument type.<br/>These packages follow the BagIt specification for preserving digital content. |
+| `rdf`             | Returns the RDF representation of a single publication |
+| `rdfs`            | Returns a list of downloadable RDF representations for publications |
+| `molecule`        | Returns the published molecule |
+| `molecules`       | Returns a list of published molecules |
+| `reaction`        | Returns the published reaction |
+| `reactions`       | Returns a list of published reactions |
+| ~~`jsonld`~~      | **Deprecated** – replaced by `rdf` |
+| ~~`jsonld-list`~~ | **Deprecated** – replaced by `rdfs` |
+
+---
+
+## Documentation
+
+Users can explore the full capabilities of the API effortlessly by referring to the [API documentation](https://www.chemotion-repository.net/swagger_doc). This interface provides live testing and schema details for all endpoints.
+
+---
+
+## Questions and Feedback
+
+If users encounter any issues with the API or have suggestions for improvements, the Chemotion team welcomes their feedback:
+
+* Bug reports: [GitHub Issues](https://github.com/ComPlat/chemotion_REPO/issues)
+* Feature requests and questions: [GitHub Discussions](https://github.com/ComPlat/chemotion_REPO/discussions)
+* Direct contact: [chemotion-repository@lists.kit.edu](mailto:chemotion-repository@lists.kit.edu)

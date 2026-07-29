@@ -5,13 +5,13 @@ sidebar_position: 2
 
 # Complete SmartAdd Workflow
 
-This guide walks you through the entire workflow from uploading data to importing it into Chemotion.
+This guide walks users through the entire workflow from uploading data to importing it into Chemotion.
 
 ## Step 1: Upload Analytical Data Files
 
 ### Upload Your Analytical Files
 
-Upload your analytical data files to SmartAdd. These files will be stored in the input list, ready for you to assign to samples and analyses.
+Upload the analytical data files to SmartAdd. These files will be stored in the input list, ready for the user to assign to [samples](/docs/eln/ui/elements/samples) and analyses.
 
 #### Option A: Upload Individual Files
 1. Drag analytical files (spectra, images, raw data, etc.) directly into the "Drag files here" area
@@ -25,9 +25,9 @@ Upload your analytical data files to SmartAdd. These files will be stored in the
 4. All files appear in the input list view
 
 :::info[Analytical Data Upload]
-Options A and B are for uploading your **analytical data files** (spectra, images, raw data):
+Options A and B are for uploading the **analytical data files** (spectra, images, raw data):
 - Files appear in the **input list (left panel)**
-- You'll manually create your collection structure (samples, reactions)
+- Users manually create the collection structure (samples, reactions)
 - Then assign these files to the appropriate samples/analyses
 :::
 
@@ -49,11 +49,11 @@ Use clear filenames to make assignment easier:
 
 ## Alternative: Auto-Generate Collection Structure
 
-Instead of manually creating your collection structure, you can automatically generate it from:
+Instead of manually creating the collection structure, users can automatically generate it from:
 
 ### Option C: Import from Chemscanner Export (export.json)
 
-Use this to automatically create samples and reactions from Chemscanner data:
+Use this to automatically create samples and [reactions](/docs/eln/ui/elements/reactions) from [Chemscanner](/docs/services/chemscanner) data:
 
 1. **Export from Chemscanner**: Export your Chemscanner data as a ZIP file (includes `export.json`)
 2. **Upload to SmartAdd**: Drag the Chemscanner ZIP into the upload area
@@ -66,7 +66,7 @@ Use this to automatically create samples and reactions from Chemscanner data:
 5. **Assign Analytics**: Drag analytical files from input list to the auto-generated samples/analyses
 
 :::tip[Chemscanner Integration]
-This option creates your **collection structure** automatically - you don't need to manually create samples and reactions. The structure is ready to use, just assign your analytical data files to it!
+This option creates the **collection structure** automatically - there is no need to manually create samples and reactions. The structure is ready to use; just assign the analytical data files to it!
 :::
 
 ### Option D: Import from Excel Template
@@ -90,7 +90,7 @@ Use this to automatically create samples and reactions from a structured spreads
 6. **Assign Analytics**: Drag analytical files from input list to the auto-generated samples/analyses
 
 :::tip[Excel Template Benefits]
-Perfect for batch processing multiple samples! Use our provided template format to structure your data in Excel, then import it to SmartAdd. The entire hierarchy is generated automatically - just assign your analytical files afterwards.
+Perfect for batch processing multiple samples! Use the provided template format to structure the data in Excel, then import it to SmartAdd. The entire hierarchy is generated automatically - just assign the analytical files afterwards.
 :::
 
 :::warning[Template Format Required]
@@ -98,7 +98,7 @@ The Excel file must follow the SmartAdd template format with specific column hea
 :::
 
 :::info[Auto-Generation Summary]
-**Options C and D create your collection tree structure automatically:**
+**Options C and D create the collection tree structure automatically:**
 - **Chemscanner (export.json)**: Imports existing Chemscanner data with structures
 - **Excel Template**: Builds structure from spreadsheet data
 - Both methods generate samples, reactions, and hierarchy
@@ -110,7 +110,7 @@ The Excel file must follow the SmartAdd template format with specific column hea
 
 ### Build Your Collection Manually
 
-Now you'll create the structure by manually adding samples and reactions, then assigning your uploaded files to them.
+Now users create the structure by manually adding samples and reactions, then assigning the uploaded files to them.
 
 ### Understanding the Tree Hierarchy
 
@@ -141,7 +141,7 @@ SmartAdd uses this hierarchy (as shown in the right panel):
 
 ### How to Build Your Structure
 
-There are multiple ways to build and organize your collection:
+There are multiple ways to build and organize the collection:
 
 #### Method 1: Using Action Buttons
 1. **Add Samples**: Click "Add Sample" button in the right panel
@@ -162,7 +162,7 @@ Right-click on any node in the tree to open a context menu with options:
 - **Delete**: Remove the selected item and its children
 
 :::tip[Multiple Ways to Work]
-Choose the method that feels most natural to you! The context menu (right-click) is especially useful for quickly adding nested items without navigating through menus.
+Choose the method that feels most natural. The context menu (right-click) is especially useful for quickly adding nested items without navigating through menus.
 :::
 
 ### Editing Properties
@@ -184,7 +184,7 @@ Select any node in the tree to edit its properties:
 
 :::tip[SMILES & MOL File Validation]
 SmartAdd provides real-time validation for molecular structures:
-- **SMILES**: Syntax is checked automatically as you type
+- **SMILES**: Syntax is checked automatically as the user types
 - **MOL Files**: File structure and atom counts are validated
 - **Ketcher Integration**: Click "Draw Structure" to use the visual molecular editor
 - Invalid structures are highlighted with specific error messages
@@ -230,7 +230,7 @@ Analyses within a sample can be **reordered by drag-and-drop**:
 :::
 
 :::tip[Recently Selected Ontology Terms]
-The **Type (Ontology)** dropdown (CHMO for analysis type, RXNO for reaction type) remembers your recent selections:
+The **Type (Ontology)** dropdown (CHMO for analysis type, RXNO for reaction type) remembers the user's recent selections:
 - Previously selected terms appear under **"-- Recently selected --"** at the top of the dropdown
 - Saves time when repeatedly using the same analysis types (e.g. 1H NMR, 13C NMR)
 - Up to 10 recent terms are stored per ontology type
@@ -312,7 +312,7 @@ Before exporting, verify:
 
 ## Step 5: Export for Chemotion
 
-You now have two export options:
+Users now have two export options:
 
 ### Option A: Download as ZIP
 
@@ -363,9 +363,9 @@ The direct upload feature eliminates manual steps:
 ### For Direct Uploads (Option B)
 
 The import is handled automatically! After successful upload:
-1. Open your Chemotion ELN
-2. Navigate to your collections
-3. Your data is already there after few seconds of upload - ready to use!
+1. Open the Chemotion ELN
+2. Navigate to the collections
+3. The data is already there after a few seconds of upload - ready to use!
 
 ### Post-Import Verification
 

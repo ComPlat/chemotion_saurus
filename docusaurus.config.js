@@ -1,5 +1,7 @@
 require("dotenv").config();
 
+const redirects = require("./redirects.json");
+
 module.exports = {
   future: {
     v4: true, // Enable future Docusaurus v4 features
@@ -49,6 +51,14 @@ module.exports = {
           to: "https://chemotion.net/",
           className: "custom-nav-link",
         },
+        {
+          type: "docsVersionDropdown",
+          position: "right",
+          versions: {
+            current: { label: "Version 3.x" },
+            v2: { label: "Version 2.x" },
+          },
+        },
       ],
     },
 
@@ -58,7 +68,7 @@ module.exports = {
       },
     },
     prism: {
-      additionalLanguages: ["ruby"],
+      additionalLanguages: ["ruby", "bash", "python", "yaml"],
     },
     footer: {
       style: "light",
@@ -98,6 +108,15 @@ module.exports = {
           showLastUpdateTime: true,
           showLastUpdateAuthor: false,
           routeBasePath: "/",
+          lastVersion: "current",
+          versions: {
+            current: {
+              label: "3.x",
+            },
+            v2: {
+              label: "2.x",
+            },
+          },
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
@@ -132,6 +151,15 @@ module.exports = {
         highlightSearchTermsOnTargetPage: true,
         indexBlog: false,
         indexPages: true,
+      },
+    ],
+  ],
+  plugins: [
+    [
+      "@docusaurus/plugin-client-redirects",
+      {
+        // 301 redirects from the old underscore URLs to the new dashed ones
+        redirects,
       },
     ],
   ],

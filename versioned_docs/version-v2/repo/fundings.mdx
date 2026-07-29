@@ -1,0 +1,124 @@
+---
+title: Fundings & Awards
+author: Claire Lin
+sidebar_position: 5
+---
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faTrashAlt,
+  faTrophy,
+} from "@fortawesome/free-solid-svg-icons";
+import MdxButton from "@site/src/js/MdxButton";
+import { FigCaption, SubTitle, YouTubeFrame } from "@site/src/js/layout";
+
+This guide explains how to add, view, and manage funding information for your Reactions, Samples, and Embargoed data in the Chemotion Repository.
+
+---
+
+## What are Funding References?
+
+Funding references allow you to document which organizations or grants supported your research. This information is essential for:
+
+- Acknowledging financial support,
+- Ensuring compliance with funding agency requirements,
+- Improving data transparency and reproducibility, and
+- Supporting publication and data-sharing practices.
+
+---
+
+## Where Can I Add Funding Information?
+
+You can attach funding references to the following data entities:
+
+- **Reactions**
+- **Samples**
+- **Embargos**
+  {/* - Funding references can also be added to data that is under embargo. This ensures that funding information is preserved and visible once the embargo is lifted. */}
+
+**Item-specific (Reaction or Sample) funding:**
+If a Reaction or Sample needs its own specific funding reference, you can add or remove it individually - separately from the embargo.
+
+**Embargo-level funding:**
+When you add a funding reference to an embargo, it will automatically apply to all the Reactions and Samples under that embargo. This means you don't need to add the same funding to each item manually. If you later remove the funding reference from the embargo, it will also be removed from all the associated Reactions and Samples.
+
+In short:
+- Add/remove funding from a Reaction or Sample → only affects that specific entity.
+- Add/remove funding from embargo → applies to all entities under it.
+
+---
+
+## How to Add or Edit Funding References
+
+### 1. Locate the Funding References Feature
+
+* **For Reactions and Samples:**
+
+  In the **"My DB"** details view, navigate to the **"Fundings & Awards"** tab. Click this tab to open the **Funding References** window.
+
+  ![tab](@site/static/img/repo/fundings/tab.png)
+
+* **For Embargos:**
+
+  - Go to the "Embargoed Publications" page, select the embargo you want to edit from the embargo dropdown list.
+  - Click the <MdxButton><FontAwesomeIcon icon={faTrophy} /></MdxButton> button in the embargo toolbar to open the **Funding References** window.
+
+  <span style={{ display: 'flex', justifyContent: 'center', margin: '12px 0px 0px 0px' }}>
+    ![funding_embargo](@site/static/img/repo/fundings/embargo.png)
+  </span>
+
+*Funding References* window:
+
+  ![funding_references](@site/static/img/repo/fundings/window.png)
+
+### 2. View Existing Funding
+  In the **Funding References** window, all existing funding entries are listed - whether you are viewing a Reaction, Sample, or Embargo. Use this window to review the current funder and award information already linked to the item.
+
+### 3. Add New Funding
+  - **Choose the Funding Source Type:**
+    - **Crossref** - Search for funders in the Crossref's Open Funder Registry (OFR).
+    - **ROR** - Search the Research Organization Registry (ROR).
+    - **Other** - Enter the funder information manually.
+  - **Search and Select:**
+    - When using Crossref or ROR, type at least **3 characters** to search. (click on <MdxButton variant="primary">Search Crossref (Open Funder Registry)</MdxButton> or <MdxButton variant="primary">Search ROR (Research Organizations)</MdxButton>).
+    - Choose the correct entry from the search results and then click the <MdxButton variant="success">Confirm Selection</MdxButton> button.
+    - If you select "Other", you will need to manually enter the organization details.
+  - **Fill in Details**:
+    - **Organization Name** (required)
+    - **Organization Identifier**
+      - Crossref Funder ID
+      - ROR ID
+      - Or a custom identifier if entered manually
+    - **Award Number** – Grant or funding number
+      - **Award Title** – Name or description of the award
+      - **Award URI** – Link to the grant details
+  - **Save**:
+    - Click the <MdxButton variant="success">Add Funding Reference</MdxButton> button to save the funding entry. It will appear in the funding table associated with your item.
+
+4. **Remove Funding**
+   - Click the <MdxButton variant="danger"><FontAwesomeIcon icon={faTrashAlt} /></MdxButton> next to a funding entry to delete it.
+
+---
+
+## Viewing Funding Information
+
+- Funding details are shown in the **Funding References** window.
+- You will see the funder name, type (Crossref, ROR, or Other), identifier, and any award information.
+- Award URIs are clickable links.
+- Once a Reaction or Sample is published, or the embargo is released, the associated funding references will become publicly visible.
+
+---
+
+## Tips and Troubleshooting
+- The **Organization Name is required** for every funding entry, regardless of source.
+- If you cannot find your funder in Crossref or ROR, use the "Other" option to enter details manually.
+- All search modals show loading indicators and error messages if something goes wrong.
+- You may add **multiple funding references** to a single entity, if supported by more than one funder.
+- If you have questions or encounter issues, please contact us at chemotion-repository@lists.kit.edu.
+
+A video tutorial demonstrating how to add funding references to an embargo is available below.
+
+<YouTubeFrame
+  src="https://www.youtube-nocookie.com/embed/40vLgkSzFYs"
+  title="Funding References (Embargo)"
+/>
