@@ -40,7 +40,9 @@ import { Btn } from "@site/src/js/btn.js";
 
 The details panel or details window is opened by clicking on the desired element from element lists. It shows the information about the element that is stored or available through external databases such as PubChem. The panel/window can be set to full screen mode. Its frame is identified by two colors: dark blue and light blue. The color light blue means that changes have been made within the panel, but they have not been saved yet. If this is the case, a small save symbol also appears in the panel bar <Btn mixed={[faSave]} color={"warning"}/>. As soon as you have saved all the entered data, the frame color changes to dark blue and the symbol disappears. This can be observed in the animation below.
 
-![Frame](/img/eln/ui/details/frame.gif)
+<video controls>
+  <source src={require("@site/static/img/eln/ui/details/frame.webm").default} />
+</video>
 
 There are three different types of fields within the details panel:
 
@@ -52,7 +54,9 @@ Tabs were introduced to organize the information within the details panel. They 
 
 Users can config their own tabs, these tabs can be hidden or shown in the user's preferred ordering. By clicking the small blue symbol <Btn mixed={[faSlidersH]} color={"info"}/> on the right of tabs, drag and drop the tab to change the ordering or into the dark block to hide the tab.
 
-![Change_Tabs](/img/eln/ui/details/change_tabs.gif)
+<video controls>
+  <source src={require("@site/static/img/eln/ui/details/change_tabs.webm").default} />
+</video>
 
 There are some tabs which are common for multiple elements while some tabs are specific to each element.
 
@@ -66,7 +70,9 @@ Chemotion ELN uses **analyses**, **datasets** and **attachments** to structure a
 
 :::
 
-![Analyses](/img/eln/ui/details/analyses_tab.gif)
+<video controls>
+  <source src={require("@site/static/img/eln/ui/details/analyses_tab.webm").default} />
+</video>
 
 The **Analyses** tab allows you to add analytics to the Chemotion ELN. You can enter experimental results (field **Content**) and upload associated files (see **Dataset**). The **Content** field supports the validation according to specific data types (data types are confirmed by the ontology terms). For 1H NMR and 13C NMR, the **Content** field is checked for the entered amount of 1H NMR or 13C NMR signals and compares the given number with the number of signals expected according to the amount of H- or C-atoms.
 
@@ -82,11 +88,15 @@ A green checkmark indicates if the **Content** of the analysis matches the expec
 
 #### 1H NMR analysis
 
-![1H Green Checkmark](/img/eln/ui/details/sample_analysis_green_hook.gif)
+<video controls>
+  <source src={require("@site/static/img/eln/ui/details/sample_analysis_green_hook.webm").default} />
+</video>
 
 #### 13C NMR analysis
 
-![13C Green Checkmark](/img/eln/ui/details/sample_analysis_13c.gif)
+<video controls>
+  <source src={require("@site/static/img/eln/ui/details/sample_analysis_13c.webm").default} />
+</video>
 
 For reference, see [here](https://dx.doi.org/10.14272/HGMIATOQJCNPOO-UHFFFAOYSA-N.1)
 
@@ -127,7 +137,9 @@ You shouldn't forget one important property of the Chemotion ELN: the uploaded d
 
 You can choose to drag and drop files directly from the inbox when working with datasets.
 
-![Drag and Drop](/img/common/analyses_drag_inbox_files.gif)
+<video controls>
+  <source src={require("@site/static/img/common/analyses_drag_inbox_files.webm").default} />
+</video>
 
 #### Edit and Order mode
 
@@ -136,7 +148,9 @@ At the top of the analyses tab there is a toggle with two options: **Edit mode**
 - **Edit mode** (default) — analyses are shown as expandable accordion cards. Click a card to expand it and edit the analysis details.
 - **Order mode** — analyses are shown as rich summary cards displaying a preview image, name, type, status, instrument, and content preview. Drag and drop the cards to rearrange the order. The defined order is preserved after saving and reloading the element.
 
-![Ordering Analyses](/img/eln/ui/details/analyses_ordering.gif)
+<video controls>
+  <source src={require("@site/static/img/eln/ui/details/analyses_ordering.webm").default} />
+</video>
 
 #### Comment box
 
@@ -150,7 +164,9 @@ Don’t forget to save your changes with <Btn mixed={["Save"]} color={"warning"}
 
 ### References tab
 
-![Literature](/img/eln/ui/details/literature_tab.gif)
+<video controls>
+  <source src={require("@site/static/img/eln/ui/details/literature_tab.webm").default} />
+</video>
 
 The **References** tab of the sample allows you to manage your literature and link it to your **Sample**. You can specify as many references as you think are needed. It is possible to specify the reference either by its DOI or ISBN, or by giving it a title and a URL. In both cases, you can add whether this reference is citing you or cited by you. When all details of a reference are entered, press <Btn mixed={[faPlus]} color={"success"}/>. Once a reference is created, it cannot be edited, it can only be deleted instead, so if you need to edit a reference, delete it and create a new one.
 
@@ -226,7 +242,9 @@ The **Elemental composition** is automatically calculated based on the formula, 
 
 The information required for chemical use is supplemented by **Chemical identifiers** such as **InChI** and **InChIKey** (clicking on the InCHI/InChIkey button allows to switch), **Canonical SMILES** and **CAS** number. Molecular structure is also provided in the **Molfile** format. You can provide the **Canonical SMILES** to create a new **Sample**, but you can’t modify the SMILES after creation (vice versa, SMILES is changed if the molecular structure changes). The other identifiers can only be copied after a **Sample** is created, and they can’t be used to generate Samples.
 
-![InChI_IncHIKey](/img/eln/ui/details/InChI_IncHIKey.gif)
+<video controls>
+  <source src={require("@site/static/img/eln/ui/details/InChI_IncHIKey.webm").default} />
+</video>
 
 #### Decoupled mode
 
@@ -258,11 +276,15 @@ If you have not used this feature before, please read [SciFinder/SciFindern Cred
 
 The Search CAS function (query information in SciFinder<sup>n</sup> by using an API) is available in Samples and Reactions. Four different search types - substances, reactions, references, suppliers - help you to find the data that match your query.
 
-![SciFiner-n search](/img/eln/ui/details/scifindern_search.gif)
+<video controls>
+  <source src={require("@site/static/img/eln/ui/details/scifindern_search.webm").default} />
+</video>
 
 If your SciFinder<sup>n</sup> token is not set up properly, or has expired, there will be a warning message "Unauthorized. Please refresh your token" prompt. You can get your token by going to "Accounts and profiles" and then clicking the <Btn mixed={["Get token"]} color={"primary"} /> button in SciFinder-n Credential.
 
-![SciFiner-n refresh token](/img/eln/ui/details/scifindern_token.gif)
+<video controls>
+  <source src={require("@site/static/img/eln/ui/details/scifindern_token.webm").default} />
+</video>
 
 ### Results tab
 
@@ -311,7 +333,9 @@ The samples are classified into **Starting materials**, **Reactants** and **Prod
 A reaction can be populated with samples in two different ways:
 
 1. Create new sample:
-   ![Reaction create samples](/img/eln/ui/details/reaction_create_samples.gif)
+   <video controls>
+     <source src={require("@site/static/img/eln/ui/details/reaction_create_samples.webm").default} />
+   </video>
 
 Press <Btn mixed={[faPlus]} color={"success"}/> in the corresponding categories **Starting materials**, **Reactants** or **Products** to create a new sample. **Starting materials** and the **Products** created this way will be added to the samples list. The **Reactants** will be saved as samples, and they are initially displayed in the samples list, but when you save the reaction and reload the page, no **Reactants** are displayed in the list anymore in order to avoid unnecessary accumulation of samples. The **Reactants** samples are still accessible from within the reaction **Scheme** by pressing the reactant name. The **Reactants** can be selected from the drop-down menu **Reagents**, and they are also not added to the samples list.
 
@@ -324,7 +348,9 @@ If you want to see a reactant displayed in the samples list, change its status f
 :::
 
 2. Select samples from the samples list:
-   ![Reaction drag samples](/img/eln/ui/details/reaction_drag_sample.gif)
+   <video controls>
+     <source src={require("@site/static/img/eln/ui/details/reaction_drag_sample.webm").default} />
+   </video>
 
 Select samples from the samples list and drag and drop them by using the <Btn mixed={[faArrowsAlt]} color={"secondary"}/> symbol next to its molecular structure or next to the sample name and place the sample in the reaction. If you only want to adopt the molecular structure, use the <Btn mixed={[faArrowsAlt]} color={"secondary"}/> symbol next to the molecular structure in the sample list for the drag & drop action. The internal process corresponds to the **copy** action. If you want to carry out a reaction that uses existing samples, e.g. a subsequent reaction including a product from a previous reaction as starting material or a chemical from a chemical container, you should use the symbol <Btn mixed={[faArrowsAlt]} color={"secondary"}/> next to a sample name in the sample list and place the sample into the reaction using drag & drop. A **split** of the sample is generated internally by the system (recognizable by the generation of the sample number). This applies only to the **Starting materials** as dragging and dropping of samples to the **Reactants** section does not add anything to the samples list. Splitting is not possible for products, as they always have to be recreated, but **copy** is possible.
 
@@ -389,7 +415,9 @@ Users can toggle between the **Yield** and **Conversion** fields for products by
 Both fields are displayed as percentages. The yield percentage is calculated automatically, while the conversion percentage must be manually entered by the user.
 It is important to note that the **Yield** field is the default for this column, meaning users will need to manually switch to the conversion field if they wish to display it.
 
-![Reaction properties](/img/eln/ui/details/conversion_field.gif)
+<video controls>
+  <source src={require("@site/static/img/eln/ui/details/conversion_field.webm").default} />
+</video>
 
 ### Properties tab
 
@@ -575,7 +603,9 @@ Internal remark TO DO: gif showing export functions
 
 You can add or remove columns and rows by right-clicking on the table body. Then you can choose the action you want to make.
 
-![Research plan](/img/eln/ui/details/manage_column_row.gif)
+<video controls>
+  <source src={require("@site/static/img/eln/ui/details/manage_column_row.webm").default} />
+</video>
 
 #### Reorder/sort columns and rows
 
@@ -589,13 +619,17 @@ Sort:
 
 - You can sort by column by clicking on the column header.
 
-![Research plan](/img/eln/ui/details/reorder_column_row.gif)
+<video controls>
+  <source src={require("@site/static/img/eln/ui/details/reorder_column_row.webm").default} />
+</video>
 
 #### Rename columns
 
 You can rename columns by right-clicking on the column cell and choose 'Rename column', the rename popup will appear. Then input the new name and click 'Rename column' button.
 
-![Research plan](/img/eln/ui/details/rename_column.gif)
+<video controls>
+  <source src={require("@site/static/img/eln/ui/details/rename_column.webm").default} />
+</video>
 
 #### Manage table schemes
 
@@ -607,7 +641,9 @@ You can rename columns by right-clicking on the column cell and choose 'Rename c
 
   - Then input the scheme name and click 'Save' button.
 
-![Research plan](/img/eln/ui/details/Table_Schema_Save.gif)
+<video controls>
+  <source src={require("@site/static/img/eln/ui/details/Table_Schema_Save.webm").default} />
+</video>
 
 - When you want to apply a table scheme:
 
@@ -617,4 +653,6 @@ You can rename columns by right-clicking on the column cell and choose 'Rename c
 
   - Click 'Use' button to apply the table scheme name.
 
-![Research plan](/img/eln/ui/details/Table_Schema_Apply.gif)
+<video controls>
+  <source src={require("@site/static/img/eln/ui/details/Table_Schema_Apply.webm").default} />
+</video>
