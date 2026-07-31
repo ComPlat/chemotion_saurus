@@ -3,10 +3,14 @@ name: Build (CI)
 # Deploys are handled by deploy.yml on push to main. This workflow is the
 # build-only check for everything else — it proves the site still compiles and
 # that onBrokenLinks: "throw" is satisfied before a change reaches main.
+#
+# pull_request only, deliberately. Adding `push` as well ran this twice on every
+# SHA in a PR branch — once per event — and a concurrency group cannot dedupe
+# them, because github.ref differs between the two (refs/heads/… vs
+# refs/pull/N/merge). workflow_dispatch covers the gap for a branch with no PR yet.
 on:
   pull_request:
-  push:
-    branches-ignore: [main]
+  workflow_dispatch:
 
 jobs:
   build:
