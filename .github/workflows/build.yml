@@ -1,17 +1,27 @@
-name: chemotion_saurus GitHub Actions
+name: Build (CI)
 
+# Deploys are handled by deploy.yml on push to main. This workflow is the
+# build-only check for everything else — it proves the site still compiles and
+# that onBrokenLinks: "throw" is satisfied before a change reaches main.
 on:
+  pull_request:
   push:
+    branches-ignore: [main]
 
 jobs:
-  build_deploy:
+  build:
+    name: Build
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v5
+      - name: Check out
+        uses: actions/checkout@v6
         with:
+          # docusaurus.config.js sets showLastUpdateTime, which reads git history.
           fetch-depth: 0
 
-      - uses: actions/setup-node@v6
+      - name: Setup Node
+        uses: actions/setup-node@v6
         with:
           node-version: 24
           cache: "npm"
@@ -24,29 +34,10 @@ jobs:
             fi
           done
 
+      - name: Install deps
+        run: npm ci
+
       - name: Build
-        id: build
         env:
           DOCUSAURUS_IGNORE_SSG_WARNINGS: true
-        run: |
-          npm install -g npm
-          npm install
-          npm run build
-
-      - name: Deploy
-        if: steps.build.outcome == 'success' && github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message, 'skip deploy')
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        run: |
-          #!/usr/bin/env bash
-          set -euo pipefail
-          eval $(ssh-agent -s);
-          mkdir ~/.ssh/
-          chmod 700 ~/.ssh
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-add ~/.ssh/id_rsa
-          touch ~/.ssh/known_hosts
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
-          chmod 600 ~/.ssh/known_hosts
-          rsync -e "ssh -o StrictHostKeyChecking=no" -az --delete ./build/ saurus@chemotion.net:docs/chemotion_saurus/.
+        run: npm run build
