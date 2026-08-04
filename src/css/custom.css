@@ -92,6 +92,11 @@ button[name="downloadBtn"]:hover {
   height: 23.5rem;
 }
 
+video {
+  max-width: 100%;
+  height: auto;
+}
+
 @media screen and (max-width: 966px) {
   .card_u {
     margin: 1rem;
