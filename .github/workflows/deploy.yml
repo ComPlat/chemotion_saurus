@@ -1,0 +1,119 @@
+name: Build & Deploy (docs site)
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: "deploy-production"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out
+        uses: actions/checkout@v6
+        with:
+          # docusaurus.config.js sets showLastUpdateTime, which reads git history.
+          # A shallow clone silently degrades every page's "Last updated" date.
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: "npm"
+
+      - name: Download YT Thumbnails
+        run: |
+          for file in $(grep -hroP 'youtube-nocookie.com/embed/.{11}' docs | cut -d / -f 3); do
+            if [ ! -f "static/img/yt_thumbnails/$file.jpg" ]; then
+              wget -O "static/img/yt_thumbnails/$file.jpg" "https://img.youtube.com/vi/$file/hqdefault.jpg" || wget -O "static/img/yt_thumbnails/$file.jpg" "https://img.youtube.com/vi/$file/0.jpg"
+            fi
+          done
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Build
+        env:
+          DOCUSAURUS_IGNORE_SSG_WARNINGS: true
+        run: npm run build
+
+      - name: Prepare artifact
+        run: |
+          test -f build/index.html || { echo "build/ is missing or empty — aborting"; exit 1; }
+          tar -czf site-artifact.tgz -C build .
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: site-out
+          path: site-artifact.tgz
+          retention-days: 1
+          if-no-files-found: error
+          # The payload is ~1 GB, already gzipped and mostly GIFs — re-zipping it
+          # on upload costs minutes of CPU and saves nothing.
+          compression-level: 0
+
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v7
+        with:
+          name: site-out
+          path: artifact
+
+      - name: Unpack artifact
+        run: |
+          mkdir -p site-out
+          tar -xzf artifact/site-artifact.tgz -C site-out
+          test -f site-out/index.html || { echo "unpacked artifact has no index.html — aborting"; exit 1; }
+
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Verify host fingerprint
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
+          SSH_HOST_FINGERPRINT: ${{ secrets.SSH_HOST_FINGERPRINT }}
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          PORT=${SSH_PORT:-22}
+          ssh-keyscan -p "$PORT" -H "$SSH_HOST" >> ~/.ssh/known_hosts
+          ssh-keygen -l -f ~/.ssh/known_hosts | grep -qF "$SSH_HOST_FINGERPRINT" \
+            || { echo "Host fingerprint mismatch — aborting"; exit 1; }
+
+      - name: Push artifact to remote
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
+        run: |
+          PORT=${SSH_PORT:-22}
+          SSH_OPTS="-p $PORT -o StrictHostKeyChecking=yes"
+
+          # The deploy account's home is the docroot. --delete prunes stale pages, but
+          # would also remove login files if the account is ever un-jailed, so guard
+          # the usual dotfiles explicitly.
+          rsync -az --delete \
+            --exclude='.ssh/' \
+            --exclude='.cache/' \
+            --exclude='.bashrc' \
+            --exclude='.bash_logout' \
+            --exclude='.bash_history' \
+            --exclude='.profile' \
+            -e "ssh $SSH_OPTS" \
+            site-out/ "$SSH_USER@$SSH_HOST:."
