@@ -54,6 +54,7 @@ module.exports = {
         {
           type: "docsVersionDropdown",
           position: "right",
+          docsPluginId: "default",
           versions: {
             current: { label: "Version 3.x" },
             v2: { label: "Version 2.x" },
@@ -104,6 +105,7 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
+          sidebarItemsGenerator: require("./sidebarItemsGenerator.js"),
           editUrl: "https://github.com/ComPlat/chemotion_saurus/edit/main/",
           showLastUpdateTime: true,
           showLastUpdateAuthor: false,
@@ -151,6 +153,12 @@ module.exports = {
         highlightSearchTermsOnTargetPage: true,
         indexBlog: false,
         indexPages: true,
+        // Explicit rather than relying on the default (["docs"]) happening
+        // to match: the default instance's routeBasePath is "/" (so its
+        // pages fall under docsRouteBasePath "") and the "repo" instance's
+        // is "repo". If the default instance's routeBasePath ever changes,
+        // this stops Repository silently dropping out of search.
+        docsRouteBasePath: ["/", "repo"],
       },
     ],
   ],
@@ -160,6 +168,21 @@ module.exports = {
       {
         // 301 redirects from the old underscore URLs to the new dashed ones
         redirects,
+      },
+    ],
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "repo",
+        path: "repo-docs",
+        routeBasePath: "repo",
+        sidebarPath: require.resolve("./sidebars-repo.js"),
+        sidebarItemsGenerator: require("./sidebarItemsGeneratorRepo.js"),
+        editUrl: "https://github.com/ComPlat/chemotion_saurus/edit/main/",
+        showLastUpdateTime: true,
+        showLastUpdateAuthor: false,
+        // Chemotion Repository is a separate product from the ELN with its
+        // own release cycle -- intentionally unversioned (no `versions`).
       },
     ],
   ],
