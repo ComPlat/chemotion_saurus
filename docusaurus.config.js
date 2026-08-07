@@ -25,6 +25,7 @@ module.exports = {
       onBrokenMarkdownImages: "throw",
     },
   },
+  clientModules: [require.resolve("./src/clientModules/hideVersionDropdownOnRepo.js")],
   themeConfig: {
     navbar: {
       title: "Documentation 📖",
@@ -55,6 +56,7 @@ module.exports = {
           type: "docsVersionDropdown",
           position: "right",
           docsPluginId: "default",
+          className: "docs-version-dropdown",
           versions: {
             current: { label: "Version 3.x" },
             v2: { label: "Version 2.x" },
