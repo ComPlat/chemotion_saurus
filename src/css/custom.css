@@ -97,6 +97,13 @@ video {
   height: auto;
 }
 
+/* The ELN version dropdown is meaningless on /docs/repo/* pages (Chemotion
+ * Repository is a separate, unversioned docs instance) -- hidden there by
+ * src/clientModules/hideVersionDropdownOnRepo.js toggling this body class. */
+body.is-repo-instance .docs-version-dropdown {
+  display: none;
+}
+
 @media screen and (max-width: 966px) {
   .card_u {
     margin: 1rem;
