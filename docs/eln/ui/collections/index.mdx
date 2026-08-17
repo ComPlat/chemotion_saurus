@@ -1,7 +1,7 @@
 ---
 id: collections
 title: Collections
-sidebar_position: 3
+sidebar_position: 1
 ---
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,117 +16,167 @@ import { Btn } from "@site/src/js/btn.js";
 
 ## Collections: Organization, Function and Usage
 
-### Collection Bar
+A **collection** groups the elements you work with — samples, reactions, wellplates,
+screens, research plans and others — usually along the lines of a project or a
+sub-project. Collections are the backbone of the ELN: without at least one of your own,
+there is nowhere to put your work.
 
-The collection bar is used to organize the Chemotion ELN. Some symbols are defined below:
+### The collection bar
 
-| symbol                                          | meaning                                                                                                                                                                                                                                                                                                                             |
-| ----------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <FontAwesomeIcon icon={faList} size="sm"/>      | toggle collections on/of                                                                                                                                                                                                                                                                                                            |
-| <Btn mixed={[faCog]} color={"danger"}/>         | switch between Collection and Element View                                                                                                                                                                                                                                                                                          |
-| <Btn mixed={[faPlus]} color={"success"}/>       | open subcollections                                                                                                                                                                                                                                                                                                                 |
-| <Btn mixed={[faMinus]} color={"success"}/>      | close subcollections                                                                                                                                                                                                                                                                                                                |
-| <Btn mixed={[faShareAlt]} color={"secondary"}/> | Your own collections are listed in the collection bar. Collections that you have shared with other researchers (**My shared collections**) or that have been shared with you (**Shared with me**) are also listed. Collections can also be created that are permanently accessible by several users (**Synchronized collections**). |
+The collection bar sits on the left of the main window and is used to navigate between
+collections. Some of its symbols:
 
-### Standard Collections All and chemotion-repository.net
+| symbol | meaning |
+| ------ | ------- |
+| <FontAwesomeIcon icon={faList} size="sm"/> | toggle the collection bar on/off |
+| <Btn mixed={[faCog]} color={"danger"}/> | open collection management |
+| <Btn mixed={[faPlus]} color={"success"}/> | open sub-collections |
+| <Btn mixed={[faMinus]} color={"success"}/> | close sub-collections |
+| <Btn mixed={[faShareAlt]} color={"secondary"}/> | this collection is shared — hover it to see with whom, or who shared it with you |
 
-Users find the two pre-installed collections **All** and **chemotion.net** in their ELN. These are not meant to be removed as they represent an important functionality.
+![The collection bar with its three groups](/img/collections/tree_overview.png)
 
-#### `All`: The All collection
+The bar is organized into up to three groups:
 
-In the **All** collection, all elements from the other collections and subcollections are gathered. The **All** collection provides access to all other collections. It is very important if the assignment of an element is accidentally deleted (e.g. **remove**). The collection **All** has been created as a security collection so that an element would still be available and able to be re-assigned if it is no longer associated with a certain collection (this should not actually happen).
+- **My Collections** — the collections you own. Selecting the group header itself opens
+  the [**All**](#system-collections) collection.
+- **Shared with me** — collections other people or groups have shared with you, listed
+  under a row naming each owner. See [Sharing Collections](./sharing.mdx#shared-with-me).
+- **chemotion-repo** — the repository collections, described
+  [below](#system-collections).
 
-:::danger[Caution]
+:::info[There is no separate branch for collections you share out]
 
-No action can be performed within the **All** collection because it is a kind of backup. Please change to your work collections to edit your samples or experiments.
+A collection that you own and have shared with someone else stays where it is, in **My
+Collections**. It is marked with the share icon
+<Btn mixed={[faShareAlt]} color={"secondary"}/>, and hovering that icon lists the people
+and groups you shared it with, together with what each of them may do.
 
 :::
+
+### System collections
+
+Some collections are provided by the ELN itself, because each has a job to do. They are
+**locked**: their name, position and place in the tree are fixed, and they can never be
+renamed, moved, deleted, or nested inside another collection.
+
+Two of them, **All** and **chemotion-repository.net**, exist from the moment your account
+is created. The third, **transferred**, appears inside the repository subtree the first
+time you hand data over to the repository.
+
+#### `All`
+
+**All** gathers every element you own, across all of your collections. It is a safety net:
+if an element ever loses its assignment to a working collection, it is still reachable
+here and can be assigned again.
+
+It is also the one place that searches across everything you own — useful when you are not
+sure which collection an entry belongs to.
+
+:::caution
+
+**All** is a backup view, not a workspace. While you are in **All**, moving elements and
+*Remove from current Collection* are disabled — there is no "current collection" to move
+them out of. Switch to one of your working collections to reorganize your elements.
+
+:::
+
+#### `chemotion-repository.net`
+
+The **[chemotion-repository.net](https://www.chemotion-repository.net/home/welcome)**
+collection is the staging area for publishing to the Chemotion repository.
+
+On its own it is just a folder for structuring your own work — nothing in it is visible
+from outside. When you are ready to publish, you select the data in this collection and
+confirm their release to the repository. If the release falls within the term of a
+competition (announced regularly on
+[chemotion-repository.net](https://www.chemotion-repository.net/home/welcome)), the
+entries are registered for it.
+
+#### `transferred`
+
+**transferred** holds the elements that have already been handed over to the repository. It
+sits inside the repository subtree and is created for you the first time data is
+transferred, so you will not see it before then.
+
+#### Working with system collections
+
+Although they cannot be restructured, system collections are not read-only. In collection
+management they appear in a pinned **System collections** section above your editable
+tree, where you can:
+
+- **Add share** and **Manage shares** — share them like any other collection, and
+- **Edit collection tabs** — set the element tabs shown for them.
+
+Two particularities are worth knowing:
+
+- Sharing **All** hands the recipient access to *every element you own*, including
+  elements you add later, so the ELN asks you to confirm first.
+- *Edit collection tabs* on **All** edits your **default** tab layout — the one used
+  wherever no collection-specific layout applies.
+
+![System collections in collection management](/img/collections/management_system.png)
+
+Ownership of a system collection can never be passed on.
+
+### Sorting and organizing
+
+Collections are created and organized in **collection management**, opened with the
+<Btn mixed={[faCog]} color={"danger"}/> button in the collection bar. Press
+<Btn mixed={[faPlus]} color={"success"}/> to add a **New Collection** under **My
+Collections**, give it a name, and save it with
+<Btn mixed={["Update"]} color={"warning"}/>.
+
+:::caution
+
+Remember to press <Btn mixed={["Update"]} color={"warning"}/>. Without that confirmation,
+no collection is created and no reordering is kept.
+
+:::
+
+Think about a meaningful structure before you start. You can create as many collections as
+you like, but a journal you can still find your way around matters more. As a rule it
+makes sense to begin with one collection as your electronic journal, and perhaps a second
+one reproducing your chemical database.
+
+Each collection can be organized into sub-collections, which in turn can contain further
+sub-collections — much like folders on your computer. A sub-collection is created the same
+way as a collection, and becomes a sub-collection by being indented to the right, by hand
+or by drag and drop. Again, the change takes effect only after
+<Btn mixed={["Update"]} color={"warning"}/>.
 
 :::info
 
-The **All** collection might help with the search for certain information in the ELN as it is the only collection that gathers information from other collections automatically. Hint: use the search function in **All** if you are not sure to which collection your desired entry belongs to.
+Sub-collections structure your work, but their contents are **not** mirrored into the
+collection above them. Keep this in mind when acting on a collection as a whole — when
+sharing it, for instance, where a separate option exists to include the whole branch.
 
 :::
 
-#### `chemotion-repository.net`: The public collection
-
-The **[chemotion-repository.net](https://www.chemotion-repository.net/home/welcome)** collection enables sorting elements for publishing within the Chemotion repository.
-
-The collection is pre-installed to make every user aware of the possibility of easily providing their data. The repository can be used to store the data at any time, and these data can be useful for other scientists later on.
-
-The **[chemotion-repository.net](https://www.chemotion-repository.net/home/welcome)** collection should be used when the ELN user wants to make data on samples, reactions or results available to other researchers. Initially, the collection is just a folder that is used for structuring within one's own journal. There is no access to these data from outside. If the journal user is ready to provide their information, then they can share the data from within the **[chemotion-repository.net](https://www.chemotion-repository.net/home/welcome)** collection by re-selecting and confirming their release to the repository. If this release is made within the term of a competition (periods are regularly announced on [chemotion-repository.net](https://www.chemotion-repository.net/home/welcome)), the entries will be registered for the competition.
-
-### Sorting and Organizing
-
-![First](/img/collection_organisation.gif)
-
-Creating, sorting, and organizing collections are carried out in collection management (accessible via the collection button <Btn mixed={[faCog]} color={"danger"}/> in the collection bar). A new collection can be generated through collection management. By pressing <Btn mixed={[faPlus]} color={"success"}/>, a new entry **New Collection** is created under **My Collections**. Give your collection a name and save it by pressing <Btn mixed={["Update"]} color={"warning"}/>.
-
-:::danger[Caution]
-
-Without the creation of collections, the use of the Chemotion ELN is not possible! Remember to <Btn mixed={["Update"]} color={"warning"}/>! Without this confirmation, no collection will be generated.
-
-:::
-
-Think about a meaningful structuring and create your collections accordingly. You can create as many collections as you want, but the overview of your journal should be in the foreground. As a rule, it makes sense to initially have a collection as your electronic journal, and possibly a second collection e.g. to reproduce your chemical database. Another way to structure your Chemotion ELN is to create sub-collections. Each collection can be organized by creating subcollections which, in turn, can include subcollections. This allows you to create a folder system that is very similar to the Windows folder system. Please note: Subcollections are suitable for structuring, but the contents of a subcollection are not available to the collection. This fact must be taken into account in particular when carrying out actions such as **Sharing**.
-
-The creation of a subcollection is done in the same way as the creation of a collection.The collection obtains the function assignment as a subfolder within collection management by manually indenting the folder to the right. Drag & Drop can turn the collection into a subcollection. Again, this change will not take effect until the action is confirmed by <Btn mixed={["Update"]} color={"warning"}/>.
-
-:::info
-
-Each collection can be organized by creating subcollections. These, in turn, can include subcollections. Subcollections are not mirrored in the upper collection, they are rather just an optical structuring tool.
-
-:::
-
-Sorting and organizing your collections and subcollections is always feasible.
-The function assignment as collection or subcollection can also be changed at any time via collection management.
-In addition to the ability to organize your own created collections through **My Collections**,
-collection management also enables you to sort your own collections that have been shared with other people.
-This can be done within the **My shared Collections** tab.
-The meaning of this function will become clear in the chapter [Shared Collections](#shared-collections).
-Organizing synchronized collections through collection management is not possible because they directly represent the original collections.
-This is explained in more detail in chapter [Synchronized Collections](#synchronized-collections).
-
-### Shared Collections
-
-![Collection Sharing](/img/collection_sharing.gif)
-Shared collections are collections that can be created by users, if they want to share their data with a specific person or a group, so **Sharing** will make the data available to that person or group.
-
-The definition of this access and the associated functions is decided by the user of the ENL (the original owner of the data). A detailed explanation of the functions and possibilities of the **Sharing** action is given in the page Sharing. Collections shared by the user appear as **My shared Collections** in the collections bar and can be sorted through collection management. An ELN user who receives information in the form of a shared collection from another ELN user cannot sort that shared collection.
-
-Collections that an Chemotion ELN user has obtained as shared collections from another user are subject to a rights system, which is always defined by the original owner. According to these definitions, the recipient of the shared collection can perform certain actions on it (such as reading and editing).
-
-An important feature of the shared collections that the user, whether a creator or a recipient of the shared collection, must be aware of changes to the shared collection can only be made to existing elements. When new elements are added within the original collection, this is not reflected in the shared collection. Only changes within existing elements are transferred to the shared collection. This is a significant difference from the synchronized collections (see chapter [Synchronized Collections](#synchronized-collections)).
-
-:::info
-
-In a shared collection, only changes to existing elements are displayed to users. Elements added after sharing to the original collection will not be considered.
-
-:::
-
-### Synchronized Collections
-
-![Collection Sync](/img/collection_sync.gif)
-Synchronized collections are very similar to shared collections in many respects, e.g. information can be shared with other groups or people after selecting the rights system. The available gradations show no difference from shared collections.
-Shared and synchronized collections differ only in a few aspects:
-
-1. A synchronized collection is not created by a synchronizing action from the action bar, but through collection management (see later in this chapter).
-2. It is not possible to organize synchronized collections through collection management because they directly represent the original collection.
-3. Since the synchronized collections are identical to the original ones, the creation of new elements and their processing are also displayed in the synchronized collection.
-
-:::info
-
-A synchronized collection also displays the creation of new elements.
-
-:::
-
-#### Create a synchronized collection:
-
-Synchronized collections can be created in the collection management. In **My Collections** management, in the chosen collection to be synchronized,
-use the button <Btn mixed={[faPlus, faShareAlt]} color={"primary"}/> to initiate a corresponding assignment and define the assignment of rights.
-
-The successful creation of a synchronized collection can be indicated by the assignment within the management. After the update, a reference is set within the collection bar so that the user can understand which of their collections (with corresponding rights assignment) are directly visible to others.
+Collections you own can be sorted and restructured at any time. Collections that were
+shared with you cannot: they belong to their owner, and only the owner can rename, move or
+delete them.
 
 ### Visibility
 
-Own collections are always visible directly in the collection bar. The collections shared by a user are listed separately again in order to increase their visibility and thus transparency. Synchronized collections are directly marked by the icon <Btn mixed={[faShareAlt]} color={"secondary"}/> in the collection bar (see chapter [Synchronized Collections](#synchronized-collections)).
+Your own collections are always visible in the collection bar. Collections you have shared
+out are marked with <Btn mixed={[faShareAlt]} color={"secondary"}/> so that it stays
+obvious which of your data other people can reach, and collections shared with you appear
+separately under **Shared with me**, grouped by their owner.
+
+![Shared collections marked in the collection bar](/img/collections/tree.png)
+
+How to share a collection, what each permission level allows, and what recipients can and
+cannot do, is described in [Sharing Collections](./sharing.mdx).
+
+:::info["My projects with others"]
+
+After an upgrade from version 3, you may find a collection named **My projects with
+others**. Earlier versions listed collections you had shared in a separate branch of the
+tree; version 4 does not, so the upgrade gathered those collections under this one node to
+keep them together.
+
+It is an ordinary collection — you can rename it, move its contents, or delete it once you
+have reorganized things to your liking.
+
+:::
