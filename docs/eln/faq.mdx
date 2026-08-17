@@ -33,11 +33,11 @@ For routine use in operations, Chemotion ELN can be installed on IT facilities o
 
 #### How to share elements from Chemotion ELN with others? Especially to limit the access of trainees, for role assignment and access rights?
 
-- **Answer:** Everyone is the owner of their account. Accounts are not shared and can't be controlled by, e.g., a supervisor, but they can be deleted by Chemotion admins. However, sharing of certain elements of the Chemotion ELN, and assigning roles is still possible through collections sharing and synchronizing. For more details on those two functions, please refer to [Shared collections](ui/collections#shared-collections) and [Synchronized collections](ui/collections#synchronized-collections).
+- **Answer:** Everyone is the owner of their account. Accounts are not shared and can't be controlled by, e.g., a supervisor, but they can be deleted by Chemotion admins. Sharing data and assigning roles is done through collections: you share a collection with individual users or with a group, and pick the permission level and the level of detail each of them gets. For details, please refer to [Sharing Collections](ui/collections/sharing.mdx).
 
-#### How many people can work on a shared or synchronized collection at the same time?
+#### How many people can work on a shared collection at the same time?
 
-- **Answer:** Any number of users in the real world can work simultaneously on a shared or synchronized collection.
+- **Answer:** Any number of users in the real world can work simultaneously on a shared collection.
 
 #### Why can’t I find the collection that I have created in the collections bar?
 
@@ -47,9 +47,25 @@ For routine use in operations, Chemotion ELN can be installed on IT facilities o
 
 - **Answer:** Sub-collections are not mirrored in the upper collection, they are rather just an optical structuring tool.
 
-#### Why can’t I see the elements added by my partner to the shared collection?
+#### Will I see the elements my partner adds to a collection they shared with me?
 
-- **Answer:** In a shared collection, only changes to existing elements are displayed to users. Elements added after sharing to the original collection will not be considered. If you want to see new elements, use collection synchronization.
+- **Answer:** Yes. A shared collection is the owner's own collection, shown to you live, so
+  elements they add later appear for you as well. (This differs from ELN version 3, where a
+  shared collection showed only the elements present at the time of sharing and a separate
+  *synchronized collection* was needed for live updates. Version 4 has only one kind of
+  share, and it always behaves this way.)
+
+#### Someone shared a collection with me — why can't I rename or reorganize it?
+
+- **Answer:** A shared collection stays the property of its owner, so only they can rename,
+  move, or delete it, or create sub-collections in it. What you may do inside it is set by
+  the permission level they gave you. See [Sharing Collections](ui/collections/sharing.mdx).
+
+#### I have edit permission on a shared collection, but saving my changes does nothing. Why?
+
+- **Answer:** Editing a shared element requires the full detail level for that element type
+  in addition to the *Edit elements* permission — someone who cannot see a field must not be
+  able to overwrite it. Ask the collection's owner to raise the detail level.
 
 ### Samples
 
@@ -95,7 +111,7 @@ For routine use in operations, Chemotion ELN can be installed on IT facilities o
 
 #### Is it possible to to retrieve deleted data e.g. in case of accidental deletion of a collection?
 
-- **Answer:** Most of the entries are soft deleted (marked as deleted in the database but are not removed). However, there is no user interface to restore them easily. Please pay attention that deleting a collection does not remove its elements, it rather removes the association between the elements and the collection. Elements can still be picked out individually from **All** collection to (re-create) a new collection. If for some reason, you lose all your data or would like to restore the ELN to a previous state, it is necessary to have backups in place. For this reason, we recommend creating a [backup plan](install_configure/manual_install.mdx#backing-up-and-restoring-your-data) and automating a regular backup process.
+- **Answer:** Most of the entries are soft deleted (marked as deleted in the database but are not removed). However, there is no user interface to restore them easily. Please pay attention that deleting a collection does not remove its elements, it rather removes the association between the elements and the collection. Note also that only an element's owner can destroy it: a collaborator working in a collection you shared with them can unlink elements from that collection, but cannot delete your data. Elements can still be picked out individually from **All** collection to (re-create) a new collection. If for some reason, you lose all your data or would like to restore the ELN to a previous state, it is necessary to have backups in place. For this reason, we recommend creating a [backup plan](install_configure/manual_install.mdx#backing-up-and-restoring-your-data) and automating a regular backup process.
 
 ### Integrated Devices
 

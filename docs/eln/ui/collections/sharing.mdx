@@ -1,0 +1,281 @@
+---
+id: sharing
+title: Sharing Collections
+sidebar_label: Sharing
+sidebar_position: 2
+---
+
+:::info
+
+This page describes the sharing model introduced in **ELN version 4.0**. If you are
+coming from version 3 or earlier, see [Upgrading from version 3](#upgrading-from-version-3)
+at the end of this page — the terminology changed, and synchronized collections no longer
+exist.
+
+:::
+
+## What sharing is
+
+A collection groups your samples, reactions and other elements. **Sharing** is how a
+colleague sees or works on that group without you exporting or duplicating anything.
+
+When you share a collection, nothing is copied. You grant access to **your own
+collection**, and the people you share it with see that very collection — live — under
+their **Shared with me**. Anything you add to it later is visible to them immediately, and
+anything they are allowed to change, they change in your collection.
+
+You can share with **individual users** and with **groups**. You always keep full control
+of collections you own: sharing never lets anyone delete your data (see
+[What sharing never does](#what-sharing-never-does)).
+
+## The permission ladder
+
+Every share carries **one permission level**. The levels form a ladder — each level
+includes everything below it — so you only ever pick the *highest* thing that person
+should be able to do.
+
+| Level | Name | The person you shared with can… |
+| ----: | ---- | ------------------------------- |
+| 0 | **Read elements** | Open the collection and view its elements. Nothing can be changed. |
+| 1 | **Edit elements** | …and change the content of existing elements. Every edit is recorded in the element's history. |
+| 2 | **Add elements** | …and create new elements in the collection, import samples, and move or assign existing elements into it. |
+| 3 | **Remove elements** | …and take elements back out of *this* collection. The element itself is not deleted — it stays in its owner's other collections. |
+| 4 | **Manage shares** | …and manage who else this collection is shared with, up to their own level. |
+| 5 | **Pass ownership** | …and accept full ownership of the collection, if you offer it. See [Passing and taking ownership](#passing-and-taking-ownership). |
+
+Because the levels are cumulative, **Add elements** (2) already includes Read and Edit,
+and **Manage shares** (4) includes everything from Read up to Remove.
+
+### Which level should I pick?
+
+- **"I just want them to look at my results."**
+  → **Read elements**. They can browse and open everything, but cannot change a thing.
+
+- **"We are writing up together and I want them to correct values in my samples."**
+  → **Edit elements**. They can update existing elements, but not add or remove any.
+  All their changes appear in each element's history.
+
+- **"I want my collaborator to contribute their own samples and reactions to our joint
+  project."**
+  → **Add elements**. This is the level a project collaborator usually needs.
+
+- **"Let them tidy up the collection and take out what does not belong."**
+  → **Remove elements**. Nothing is destroyed: an element they remove still lives in its
+  owner's other collections.
+
+- **"I want a co-lead who can also decide who else joins the project."**
+  → **Manage shares**. They can share the collection onward and adjust other people's
+  access — but never above their own level.
+
+- **"This is really their project now — hand it over."**
+  → **Pass ownership**. A two-step handover, not an instant transfer.
+
+## Detail levels
+
+The permission level says *what* someone may do. A second, independent setting — the
+**detail level** — says *how much of each element* they get to see. You set it per element
+type in the same dialog.
+
+| Element type | Detail levels |
+| ------------ | ------------- |
+| Sample | 0 mass and external label · 1 adds molecule and structure · 2 adds analysis results and descriptions · 3 adds analysis datasets · 10 everything |
+| Reaction | 0 restricted · 10 everything |
+| Wellplate | 0 wells · 1 adds readouts · 10 everything |
+| Screen | 0 restricted · 10 everything |
+
+Research plans, cell lines, device descriptions and sequence-based macromolecule samples
+are always shared complete.
+
+:::caution[Editing needs the full detail level]
+
+Granting **Edit elements** is not on its own enough to let someone edit. Editing a shared
+element also requires the **full detail level (10)** for that element type. This is
+deliberate: a user who cannot see a field must not be able to overwrite it with a
+placeholder. If a collaborator reports that saving does nothing, check the detail levels
+before the permission level.
+
+:::
+
+## Role shortcuts
+
+The share dialog offers a **Role** dropdown that pre-fills both the permission level and
+the detail levels. Use it as a starting point, or set both by hand.
+
+| Role | Permission level | Typical use |
+| ---- | ---------------- | ----------- |
+| User | Remove elements | Works in the collection day to day: adds, edits, unlinks. |
+| Partner | Edit elements | Edits existing content; does not add new elements. |
+| Collaborator | Read elements | Broad but shallow read access across element types. |
+| Reviewer | Read elements | Read access weighted toward reactions, for sign-off. |
+| Supervisor | Manage shares | Administers who else has access, on the owner's behalf. |
+
+Changing the permission or detail levels by hand clears the selected role — the role is
+only a preset, not a stored property of the share.
+
+## Sharing a collection
+
+1. In **My Collections**, open the collection's menu — in the collection bar or in
+   collection management — and choose **Add share**.
+2. Search for and add the people or groups to share with. You can add several at once;
+   they all receive the settings below.
+3. Pick a **Role**, or set the **Permission level** and the per-type **detail levels**
+   yourself.
+4. Optionally tick **Apply these share settings to all sub-collections** to cascade the
+   same access down the whole branch. This only reaches sub-collections you are allowed to
+   administer, and each one still passes its own checks.
+5. Confirm. Everyone you added sees the collection appear under their **Shared with me**,
+   and receives a notification.
+
+A collection you own and have shared stays where it is, in **My Collections**, marked with
+a share icon. Hovering that icon lists who you shared it with and what each of them may do.
+
+![Hovering the share icon lists the recipients](/img/collections/share_badge_tooltip.png)
+
+## Sharing a selection as a new collection
+
+You can also share elements directly, without preparing a collection first:
+
+1. Select the elements in a list, then choose **Share** from the selection actions.
+2. Give the new collection a **name**. Left empty, it falls back to
+   *My project with &lt;name&gt;*.
+3. Optionally choose a **parent collection**. Left empty, it is created at the top level.
+4. Add the people or groups and set their permission level, as above.
+5. Confirm. The collection is created with those elements and shared in one step.
+
+## Editing and revoking a share
+
+Open the collection's menu and choose **Manage shares**. Each recipient is listed with
+their name, a person or group icon, and their current permissions.
+
+- **Edit** reopens the share dialog. A cascading edit only updates sub-collections that
+  are already shared with that person; tick **Also include sub-collections not already
+  shared with this user** to extend the share to the rest of the branch.
+- **Delete** revokes the share. The collection disappears from that person's tree straight
+  away, and their access ends. Nothing of yours is deleted.
+
+Recipients can also step away themselves: in collection management, under **Collections
+shared with me**, the collection's menu offers **Remove my access**. The owner can share
+it with them again later.
+
+:::info[Access through a group]
+
+If your access comes through a group you belong to, there is no personal share to remove,
+so **Remove my access** is not offered — the only way to drop that access is to leave the
+group. If a direct share *and* a group share both apply to you, the **higher** of the two
+levels wins.
+
+:::
+
+## Shared with me
+
+Everything shared with you is grouped by owner, under a row bearing that person's name,
+and mirrors the owner's real folder structure.
+
+If a shared sub-collection's parent is **not** shared with you, it is lifted to the top
+level under its owner rather than being hidden under a folder you cannot see. The branch
+is truncated at the point where your visibility ends — never hidden.
+
+![Collections shared with me, grouped by owner](/img/collections/shared_with_me.png)
+
+In this example *Tree A* keeps its sub-collection *Tree B*, because both are shared. Under
+*Truncated Tree A*, the collection *Truncated Tree C* appears directly, because the level
+between them was not shared.
+
+Hovering the share icon on a shared collection tells you **how it reaches you**: your own
+share, and each of your groups' shares, so a collection you reach through a group tells
+you which group.
+
+![Hovering shows the collection is reached through a group](/img/collections/share_provenance.png)
+
+### What a recipient cannot do
+
+Regardless of permission level, a collection shared with you remains the owner's. You
+cannot:
+
+- rename, move, reorder or delete it,
+- create a sub-collection inside it,
+- edit its metadata or publish it via RADAR.
+
+Those actions belong to the owner alone. What you *can* do is set by the permission level,
+plus rejecting your own share and — with **Manage shares** — administering its share list.
+
+## Managing shares as a delegate
+
+If a collection was shared with you at **Manage shares** or above, you can administer its
+share list yourself, from **Shared with me**, without asking the owner. **Add share** and
+**Manage shares** appear next to the collection just as they do for an owner.
+
+Two limits always apply: you can neither grant nor leave standing a share **above your own
+level** — so a delegate holding *Manage shares* cannot hand anyone *Pass ownership* — and
+a collection can never be shared back to its own owner.
+
+## Passing and taking ownership
+
+Transferring a collection is a deliberate two-step handshake:
+
+1. **Offer.** The owner shares the collection with one specific person at the **Pass
+   ownership** level. Ownership can only be offered to a **single person** — never to a
+   group — and a [system collection](./index.mdx#system-collections) can never be offered.
+2. **Accept.** That person sees a swap icon on the collection in **Shared with me** and
+   chooses **Take ownership**, confirming the transfer of the collection and every
+   sub-collection beneath it.
+
+![The swap icon offering ownership](/img/collections/take_ownership.png)
+
+Afterwards:
+
+- The new owner has full control of the collection and its whole subtree, which is
+  re-rooted at the top level of their own collections.
+- The former owner keeps working access: wherever they held a matching share with the new
+  owner, they are left a **Manage shares** delegate.
+- The elements move with the collection into the new owner's **All**. An element that is
+  still in one of the former owner's other collections stays with them too — it is then in
+  both people's collections.
+
+## Exporting a shared collection
+
+Collection management can export collections as a ZIP archive, and the export dialog lists
+**Shared with me** alongside your own collections.
+
+A collection shared with you can only be exported if you hold the **full detail level for
+every element type**. Otherwise the export is refused — an export at a reduced detail level
+would silently produce an incomplete archive.
+
+## What sharing never does
+
+- **It never lets someone delete your elements.** Destroying an element is reserved for
+  its **owner**. Someone with *Remove elements* can only unlink an element from the shared
+  collection; the element and its data stay safe in your own collections.
+- **"Remove from all Collections" only removes from collections you own.** It unlinks your
+  selection from your own collections and deletes only the elements left with no
+  collection at all. It never reaches into another owner's collection, including one
+  shared with you.
+- **The rules apply to every element type alike** — research plans, cell lines, device
+  descriptions and sequence-based macromolecule samples follow the same checks as samples,
+  reactions, wellplates and screens.
+- **The owner always keeps full control**, no matter which levels are handed out.
+
+## Upgrading from version 3
+
+Version 4 replaced two separate mechanisms — shared collections and *synchronized*
+collections — with the single sharing model described on this page.
+
+| Version 3 | Version 4 |
+| --------- | --------- |
+| Synchronized collection | *gone* — every share now behaves the way synchronized collections used to: the recipient sees the live collection |
+| Shared collection (a separate collection created for the recipient) | A share on your own collection; the recipient sees the original |
+| **My shared collections** tree branch | *gone* — collections you share stay in **My Collections** with a share icon |
+| Permission `write` / `share` / `delete` / `import` | **Edit elements** / **Manage shares** / **Remove elements** / **Add elements** |
+| Unshare | **Manage shares → delete** (owner) or **Remove my access** (recipient) |
+
+:::info[Your existing shares were migrated for you]
+
+The levels were renamed and reordered so that they now run strictly from least to most
+powerful. Existing shares were migrated automatically and were **never raised to a more
+powerful level** than they already held. You do not need to re-share anything.
+
+Two changes are worth knowing about: **destroying an element is now owner-only** — a
+collaborator who could previously delete can now only unlink — and **creating an element
+now requires *Add elements*** rather than edit access.
+
+:::
