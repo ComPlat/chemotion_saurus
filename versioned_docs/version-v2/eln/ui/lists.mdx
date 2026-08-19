@@ -1,0 +1,62 @@
+---
+title: Lists
+sidebar_position: 4
+---
+
+Lists form one main organization instrument in the Chemotion ELN.
+All main entities `sample`, `reaction`, `research plan`, `wellplate` and `screens`,
+are visible in the list generated for this entity-type.
+Entity-types that are generated via the `generic elements` function are also listed in the entities' list.
+Lists are helpful to keep an overview of all items and they help organize the entities.
+Lists can be automatically structured according to identifiers, if available.
+Currently automated structuring of lists is only enabled for samples with structures.
+
+## Lists for samples
+
+Lists for samples are sorted according to the InChI-Key of the samples.
+Each new InCHI-Key prompts the generation of a new molecule drawing (grey area in the sample list),
+that is followed by a white area referring to the sample.
+If there are several samples with the same molecular structure, they are all sorted in one molecule area.
+For the generation of the molecule image, the Chemotion ELN uses the Molfile of the latest edited sample.
+Thus, the image representing the molecule (and therewith the samples) changes if the Molfile of the latest edited sample is changed.
+
+The list of samples contains further information.
+
+### Filtering of the sample list
+
+Filtering can be done according to a date, filtering the lists using structure search or text search.
+
+This option does not sort the sample list. It only sets a parameter for filtering and the filtering will be done based
+on the specified date range in the From and To fields.
+
+When it shows `currently filtered by creation date` then it will show all the entries that were created in the specified
+date range.
+
+Similarly when it shows `currently filtered by update date` then it will show all the entries that were updated in the
+specified date range.
+
+<video controls>
+  <source src={require("@site/static/img/eln/ui/lists/sample_filtering.webm").default} />
+</video>
+
+To be continued...
+
+### Sorting of the sample list
+
+Currently, the sample list is sorted by the updated date, by default. It is in our <u>ToDo</u> to implement the
+option to sort this list based on various other parameters, like creation date, etc.
+
+## Lists for reactions
+
+Initially, the reaction list will remain sorted by the descending order of creation date.
+
+### Sorting of the reaction list
+
+It is possible to sort the reaction list based on various parameters. Initially, it is sorted by the descending order
+of creation date, which, later on, can be changed to update date. The sorting direction can also be changed to
+ascending or descending order. Additionally, when the reaction list has been
+[grouped](elements/grouping#reaction-grouping), then the list can be further sorted by RInChI, reaction type, etc.
+
+<video controls>
+  <source src={require("@site/static/img/eln/ui/lists/reaction_sorting.webm").default} />
+</video>

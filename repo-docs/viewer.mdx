@@ -1,0 +1,34 @@
+---
+title: 3D Viewer
+author: Claire Lin
+sidebar_position: 7
+---
+
+import useBaseUrl from "@docusaurus/useBaseUrl";
+import { FigCaption, SubTitle, YouTubeFrame } from "@site/src/js/layout";
+
+The 3D Viewer function integrates the [Jmol/JSmol](https://en.wikipedia.org/wiki/Jmol) library to provide users with the capability to visualize chemical structures in three dimensions. This function offers an interactive and detailed exploration of molecular structures, allowing users to rotate, zoom, and adjust the 3D representations for a comprehensive understanding of the molecule's geometry and properties.
+
+The function supports viewing various file formats, including CIF, MOL, SDF, PDB, and MOL2, enabling users to display structures with information.
+
+Open it with the **View in 3D** button on a published record's detail page. Since version 3.0.1 the
+viewer is available to everyone — signing in is no longer required to inspect a published structure
+in three dimensions.
+
+The walkthrough below opens a published record from the **Publications** list, presses **View in 3D**,
+and rotates the structure by click-and-drag. The viewer's own header states the controls: **rotate** by
+click-and-drag, **zoom** with the mouse wheel (or Shift + drag vertically), and **right-click** for the
+JSmol menu, which can save the view as a PNG.
+
+<div align="center">
+  <video width="100%" controls muted poster={useBaseUrl("/img/repo/v3/3d-viewer.png")}>
+    <source src={useBaseUrl("/img/repo/v3/3d-viewer.mp4")} type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+  <FigCaption text="Publications → a published record → View in 3D, then rotating the structure" />
+</div>
+
+<YouTubeFrame
+  src="https://www.youtube-nocookie.com/embed/ZXdsjsznok0"
+  title="3D Viewer"
+/>
