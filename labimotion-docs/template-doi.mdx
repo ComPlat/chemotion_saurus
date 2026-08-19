@@ -15,7 +15,7 @@ template itself — not just the data recorded with it — becomes a citable obj
 to **element**, **segment** and **dataset** templates: each Designer lists its templates with a
 **DOI Info.** column, and every row carries the same **DOI** button that opens the same dialog.
 
-From that dialog you fill in the citation metadata, **reserve** a DOI, and later **release** it.
+From that dialog, the designer fills in the citation metadata, **reserves** a DOI, and later **releases** it.
 Releasing publishes the template as its next major version to the **Template Hub**, where anyone can
 look it up, read its metadata and see what the template actually looks like.
 
@@ -58,26 +58,26 @@ The DOI itself is minted by the **Chemotion Repository**, which holds the DataCi
 the registering. The Designer collects the metadata and drives the workflow, but the identifier and
 the registry entry are the Repository's.
 
-If you would like your templates registered, write to
+Designers who would like their templates registered can write to
 **[chemotion-labimotion@lists.kit.edu](mailto:chemotion-labimotion@lists.kit.edu)**. The LabIMotion
-admins will get you set up and guide you through it.
+admins will help with setup and guide them through it.
 
 :::
 
-You also need:
+Also required:
 
 - a template that is ready to be published — an element, a segment or a dataset template;
-- the metadata you want registered with the DOI: a **title**, a **description**, at least one
-  **author**, and a **licence**.
+- the metadata to be registered with the DOI: a **title**, a **description**, at least one
+  **author**, and a **license**.
 
 ## 1. Open the Designer
 
-From the user menu at the top-right of the navigation bar (your name), choose **Generic Designer**,
-then open the Designer for the kind of template you want to publish — **Elements**, **Segments** or
-**Datasets**. Each opens a grid listing every template of that kind.
+From the user menu at the top-right of the navigation bar (showing the user's name), choose
+**Generic Designer**, then open the Designer for the kind of template to be published —
+**Elements**, **Segments** or **Datasets**. Each opens a grid listing every template of that kind.
 
 The grid's last column, **DOI Info.**, carries a **DOI** button on each row. That button is the entry
-point to the DOI workflow for that template, and its colour encodes the state: plain when no DOI is
+point to the DOI workflow for that template, and its color encodes the state: plain when no DOI is
 reserved, blue once one is reserved, green once it has been released.
 
 <img
@@ -88,7 +88,7 @@ reserved, blue once one is reserved, green once it has been released.
 
 ## 2. Open the DOI dialog
 
-In your template's row, press **DOI**. A dialog opens, titled for that template, with its current
+In the template's row, press **DOI**. A dialog opens, titled for that template, with its current
 status shown next to the title — **Not reserved**, **Reserved** or **Released**, each carrying the DOI
 version it refers to.
 
@@ -129,8 +129,8 @@ the DOI alone.
 
 A released DOI is frozen: its metadata form becomes read-only. The form unlocks — and **Reserve DOI**
 becomes **Reserve new version** — only once the template has moved on to a new major version. The
-**Versions** block tells you where you stand: which DOI version is released, which one is next, and
-where the template version currently sits.
+**Versions** block shows where the template stands: which DOI version is released, which one is next,
+and where the template version currently sits.
 
 :::
 
@@ -138,32 +138,33 @@ where the template version currently sits.
 
 - **Title** — a human-readable name for the template.
 - **Description** — what the template captures, and which standard or protocol it follows.
-- **Authors** — add yourself with **Add me**, or pull people in with **Add from my collaborators…**.
-  Each author row carries a given name, family name, ORCID and affiliation. At least one author is
-  required. Author details are drawn from your account and your
-  [collaborators](/docs/repo/settings-preparation), so keep your ORCID and affiliations up to date.
+- **Authors** — the designer can be added with **Add me**, or people can be pulled in with
+  **Add from my collaborators…**. Each author row carries a given name, family name, ORCID and
+  affiliation. At least one author is required. Author details are drawn from the account and its
+  [collaborators](/docs/repo/settings-preparation), so the ORCID and affiliations should be kept up
+  to date.
 - **Contributors** and **References** — optional.
-- **License** — choose the reuse licence: **CC BY-SA**, **CC BY** (the default), **CC0** or
+- **License** — choose the reuse license: **CC BY-SA**, **CC BY** (the default), **CC0** or
   **No License**.
 
-Press **Save metadata** to store what you have entered. You can reopen the dialog and revise the
-metadata as often as you like *before* the DOI is released.
+Press **Save metadata** to store what has been entered. The dialog can be reopened to revise the
+metadata as often as needed *before* the DOI is released.
 
 ## 4. Reserve the DOI
 
 Press **Reserve DOI**. This creates and reserves the DOI **locally**, with its **final, deterministic
-suffix** — the identifier is settled from this moment on, so you can already quote it in a manuscript
+suffix** — the identifier is settled from this moment on, so it can already be quoted in a manuscript
 or a preprint, and it is the same identifier that will later be minted.
 
-Nothing has reached DataCite yet. Reserving allocates the identifier and lets you preview the record;
-the external registry is contacted only at release.
+Nothing has reached DataCite yet. Reserving allocates the identifier and makes it possible to preview
+the record; the external registry is contacted only at release.
 
-Once a DOI is reserved, **Release DOI** and **Preview metadata XML** become available, and you can use
-**Preview metadata XML** to inspect the exact DataCite record that will be published.
+Once a DOI is reserved, **Release DOI** and **Preview metadata XML** become available — the latter
+shows the exact DataCite record that will be published.
 
 :::caution[Reserving cannot be undone]
 
-*Reserve DOI* is not a preview or a draft you can back out of — it writes a real local record and
+*Reserve DOI* is not a preview or a draft that can be backed out of — it writes a real local record and
 fixes the exact suffix that will later be minted. **There is no unreserve action.** The only thing
 reserving does *not* do is contact the external registry.
 
@@ -179,8 +180,8 @@ When the metadata is final, press **Release DOI**. This is the step that reaches
 
 :::danger[Releasing a DOI is permanent]
 
-The registry is contacted exactly once, at release — and a released DOI **cannot be deleted**. You
-can update the metadata or the target of a released DOI later, but you cannot un-publish it. Release
+The registry is contacted exactly once, at release — and a released DOI **cannot be deleted**. The
+metadata or the target of a released DOI can be updated later, but it cannot be un-published. Release
 only when the template and its metadata are genuinely final.
 
 :::
@@ -210,7 +211,7 @@ this finder, with the type, template and version pre-selected, so following the 
 straight to the publisher metadata *and* to a working preview of the template — rather than to a bare
 record.
 
-From here, any Designer on another instance can synchronise the template into their own instance — see
+From here, any Designer on another instance can synchronize the template into their own instance — see
 [Template Sync & Publish](template-sync-and-publish).
 
 ## The DOI lifecycle at a glance
@@ -219,23 +220,23 @@ Three states, and the transitions between them run one way only.
 
 | State | What exists | Reached by | Public? | Reversible? |
 | --- | --- | --- | --- | --- |
-| **Not reserved** | Citation metadata only, if you have filled any in. No identifier allocated. | — | No | Metadata can be edited and saved again |
+| **Not reserved** | Citation metadata only, if any has been filled in. No identifier allocated. | — | No | Metadata can be edited and saved again |
 | **Reserved** | A **local DOI record** with the **final, deterministic suffix**. The DOI can already be quoted in a manuscript or preprint. **DataCite has not been contacted.** | **Reserve DOI** | No — it does not resolve yet | **No — there is no unreserve** |
 | **Released** | The record is created at **DataCite**. The DOI resolves, is findable and is citable, and the template version is published to the Template Hub. | **Release DOI** | Yes | **No — a released DOI is permanent** |
 
-Because the suffix is settled at reserve time, the identifier you cite before publication is the same
+Because the suffix is settled at reserve time, the identifier cited before publication is the same
 one that ends up in DataCite afterwards.
 
 ## Questions and support
 
 Any question about this workflow — the metadata, the DOI, versioning, or finding a published
-template — reaches us at
-**[chemotion-labimotion@lists.kit.edu](mailto:chemotion-labimotion@lists.kit.edu)**. You can also
-[file an issue](https://github.com/LabIMotion/labimotion) or start a thread on the
+template — reaches the LabIMotion team at
+**[chemotion-labimotion@lists.kit.edu](mailto:chemotion-labimotion@lists.kit.edu)**. An issue can also be
+[filed](https://github.com/LabIMotion/labimotion) or a thread started on the
 [discussion board](https://github.com/LabIMotion/labimotion/discussions).
 
 :::tip
 
-Neither reserving nor releasing can be undone, so ask *before* you press them rather than after.
+Neither reserving nor releasing can be undone, so questions should be asked *before* pressing them, not after.
 
 :::
