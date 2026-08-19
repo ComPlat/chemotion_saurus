@@ -37,7 +37,7 @@ sidebar_label: Style Guide
 # Cross-links
 
 - Link the first meaningful mention of a related concept on a page to its canonical page (e.g. the first "samples" on a page → `/docs/eln/ui/elements/samples`). Don't re-link later mentions on the same page, don't link a page to itself, and link at the page level rather than to an anchor. Use the surrounding prose as the link text instead of inventing new phrasing just to create a link.
-- Within the same docs instance (ELN, Repository, or LabIMotion), prefer a relative path (`[samples](elements/samples)`) over an absolute `/docs/...` one -- a relative link stays correct regardless of which version prefix (e.g. `/next`, `/v2`) the current page is served under, while an absolute path always resolves to the *current* version even from an older one. Reserve an absolute `/docs/<instance>/...` path for links that cross into a *different* docs instance (e.g. a LabIMotion page linking to an ELN page), where a relative path can't reach.
+- Always use a relative path (`[samples](elements/samples)`) for links within the same docs instance -- never an absolute `/docs/...` one; see [This Documentation](index.mdx#links) for why (and a gotcha with index pages). Absolute `/docs/<instance>/...` paths are only for links that cross into a *different* docs instance (e.g. a LabIMotion page linking to an ELN page), where a relative path can't reach.
 
 # Terms
 
