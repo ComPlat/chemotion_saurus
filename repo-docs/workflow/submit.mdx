@@ -1,52 +1,52 @@
 ---
 title: Submitting Data
 author: Nicole Jung
-sidebar_position: 2
+sidebar_position: 3
 ---
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
-import submissionCheck from "@site/static/img/repo/workflow/submit/submission_check.png";
+import submissionCheck from "@site/static/img/repo/v3/submit/03-submission-check.png";
 
 # Publication of data
 
-To publish data (disclose data to the public), the user has to select data with the selection of the [reaction](/docs/eln/ui/elements/reactions) or the molecule the data is assigned to. Select the molecule/reaction in the area “My DB” and use the collections **"My Data"** or **"ELN Gate"**.
+To publish data (disclose data to the public), you have to select data with the selection of the reaction or the molecule the data is assigned to. Select the molecule/reaction in the area “My DB” and use the collections **"My Data"** or **"ELN Gate"**.
 
 ## Step 1: Select your data
 
-![](/img/repo/workflow/submit/d0139cda-e311-46e9-a0e6-8693fc769f8b_image_20191030-26466-1bugfxg.png)
+![Chemotion Repository - the My Data collection with one sample selected](/img/repo/v3/submit/01-select-data.png)
 
-## Step 2: “Fly” button
+## Step 2: “Submit” button
 
-![](/img/repo/workflow/submit/d0139cda-e311-46e9-a0e6-8693fc769f8b_image_20191030-26466-129koqg.png)
+![Chemotion Repository - the green Submit button in the sample detail panel](/img/repo/v3/submit/02-submit-button.png)
 
-Open the details panel of the reaction/molecule and press the green “fly” <FontAwesomeIcon icon={faPaperPlane} size="lg" style={{ color: 'green' }}/> button. A new panel opens and allows to set an embargo, to select a license, to add (co)-authors, to add references and to select the datasets.
+Open the details panel of the reaction/molecule and press the green **Submit** <FontAwesomeIcon icon={faPaperPlane} size="lg" style={{ color: 'green' }}/> button. A new panel opens and allows to set an embargo, to select a license, to add (co)-authors, to add references and to select the datasets.
 
 :::tip
 
-The system will check if all necessary information is given. If not, the system will show a **"Submission Data Check Result"** and the missing information will be highlighted in red.
+The system will check if all necessary information is given. The **"Submission Data Check"** lists every requirement with its result, and whatever is still missing is highlighted in red.
 
-<img src={submissionCheck} alt="Chemotion Repository - Submission Check Result" />
+<img src={submissionCheck} alt="Chemotion Repository - Submission Data Check" />
 
 :::
 
 ## Step 3: Select a license and add an embargo
 
-Users can choose one of the licenses CC0, CC BY, CC BY-SA, or they can publish their data as public domain data "No License". Please select carefully and in accordance with the rules of the institution or group leader. Further hints can be found [here](../faq#under-which-kind-of-license-are-the-data-of-the-chemotion-repository-available).
+You can choose one of the licenses CC0, CC BY, CC BY-SA or you can publish your data as public domain data "No License". Please select carefully and in accordance with the rules of your institution or group leader. Further hints can be found [here](../faq#under-which-kind-of-license-are-the-data-of-the-chemotion-repository-available).
 
-The publication with an embargo is desired. It allows to collect data and publish data as a data bundle. To publish with embargo, please check the [embargo page](embargo) for further details. Using the embargo is easy: just select an existing embargo from the embargo drop-down or create a new embargo bundle.
+The publication with an embargo is desired. It allows to collect data and publish data as a data bundle. If you want to publish with embargo, please check the [embargo page](embargo) for further details. Using the embargo is easy: just select an existing embargo from the embargo drop-down or create a new embargo bundle.
 
 ## Step 4: Select datasets
 
-![](/img/repo/workflow/submit/d0139cda-e311-46e9-a0e6-8693fc769f8b_image_20191030-26466-oafvny.png)
-Select the relevant datasets. Listed are all available datasets, but the unchecked ones won’t be published.
+![Chemotion Repository - the Select Analyses section of the publication panel](/img/repo/v3/submit/04-select-analyses.png)
+Select the relevant datasets. Listed are all available datasets but the unchecked ones won’t be published.
 
 ## Step 5: Add authors and literature
 
-By default, the options 'add me as author' and 'add group leads as authors' are selected. Users may deselect them if desired.
+By default, the options 'add me as author' and 'add group leads as authors' are selected. You may deselect them if desired.
 When 'add me as author' is selected, the contributor will be added to the author list.
 When 'add group leads as authors' is selected, the group lead(s) defined in **[My Collaborations](../settings-preparation#assign-group-lead)** will be added to the author list.
 
-![](/img/repo/workflow/submit/add_authors_and_literature.png)
+![Chemotion Repository - the Select Authors section of the publication panel](/img/repo/v3/submit/05-select-authors.png)
 
 Please credit all additional authors and define the authors from **[My Collaborations](../settings-preparation#add-your-collaborators)**.
 
@@ -58,16 +58,16 @@ All authors have to be registered to the repository if they should be added (ple
 
 ## Step 6: Add group lead review
 
-![](/img/repo/workflow/submit/additional_reviewers.png)
+![Chemotion Repository - the Group Lead / Additional Reviewers section of the publication panel](/img/repo/v3/submit/06-group-lead.png)
 
-Incorporate the group leader(s) into the workflow to allow them to review the submission before it is published. **By default, the user's group lead(s) will be selected as Additional Reviewers.** It is strongly recommended to add the group leader(s) to ensure that the group leader(s) can confirm that the data submission was discussed and is desired.
+Incorporate your group leader(s) into the workflow to allow him/her to review the submission before it is published. **By default, your group lead(s) will be selected as Additional Reviewers.** It is strongly recommended to add the group leader(s) to ensure that the group leader(s) can confirm that the data submission was discussed and is desired.
 
 :::info
 
-Please note that the group leader needs to be added as collaborator in the account settings **"My Collaboration"**. Please see instructions here: [Add your collaborators](../settings-preparation/index.mdx#add-your-collaborators) and [Assign Group Lead](../settings-preparation/index.mdx#assign-group-lead)
+Please note that the group leader needs to be added as collaborator in your account settings **"My Collaboration"**. Please see instructions here: [Add your collaborators](../settings-preparation#add-your-collaborators) and [Assign Group Lead](../settings-preparation#assign-group-lead)
 
 :::
 
 ## Step 7: Submission
 
-To finish the submission, press the blue publish button at the end of the panel. After this action, no further changes are possible until the data is reviewed and the feedback is sent back to the user. If there are no further comments or requests and no embargo was set, the data will be disclosed after the reviewer’s final check.
+To finish the submission, press the blue publish button at the end of the panel. After this action, no further changes are possible until your data is reviewed and the feedback is sent back to you. If there are no further comments or requests and no embargo was set, your data will be disclosed after the reviewer’s final check.
