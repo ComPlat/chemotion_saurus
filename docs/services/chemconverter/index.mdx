@@ -18,9 +18,9 @@ This page awaits a complete revision once the next ELN release ships a new Conve
 
 # Overview of the Converter functions
 
-The purpose of the Chemotion Converter (in short: ChemConverter) is to convert different file formats and types from [integrated devices](/docs/eln/devices) into a common, well-known data type, such as jcamp .jdx or .json.
+The purpose of the Chemotion Converter (in short: ChemConverter) is to convert different file formats and types from [integrated devices](../eln/devices) into a common, well-known data type, such as jcamp .jdx or .json.
 It can also extract columns for 2D data visualization and Metadata.
-Currently, the ChemConverter can handle most text-readable files like txt/csv/dta if they are properly structured, but developers can create their own [readers](/docs/services/chemconverter/readers) if a rule is notable for the newly added file type.
+Currently, the ChemConverter can handle most text-readable files like txt/csv/dta if they are properly structured, but developers can create their own [readers](chemconverter/readers) if a rule is notable for the newly added file type.
 
 Most of the time, the ChemConverter runs as a background process when the user or a measurement device uploads an analytic file to the ELN.
 The prerequisite is that an admin has created a suitable [profile](#create-your-own-profile).
@@ -115,7 +115,7 @@ Currently there are four used classes:
 
 ##### Data Type
 
-A drop-down list of ontologies (mostly chemical analytic techniques) defining the kind of layout for displaying and plotting curves and spectra in [ChemSpectra](/docs/services/chemspectra).
+A drop-down list of ontologies (mostly chemical analytic techniques) defining the kind of layout for displaying and plotting curves and spectra in [ChemSpectra](chemspectra).
 Not all ontologies known in the ELN can be found here, because this is only for layout purposes.
 If something appears to be missing, users are welcome to tell the Chemotion team.
 
