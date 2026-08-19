@@ -12,7 +12,8 @@
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "serve": "docusaurus serve",
-    "clear": "docusaurus clear"
+    "clear": "docusaurus clear",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@docusaurus/core": "^3",
@@ -36,8 +37,10 @@
     "serialize-javascript": "^7.0.4"
   },
   "devDependencies": {
-    "eslint": "*",
-    "eslint-plugin-import": "*"
+    "@eslint/js": "^9",
+    "eslint": "^9",
+    "eslint-plugin-mdx": "^3",
+    "eslint-plugin-react": "^7"
   },
   "browserslist": {
     "production": [
