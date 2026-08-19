@@ -3,15 +3,48 @@ title: Style Guide
 sidebar_label: Style Guide
 ---
 
+# Tone
+
+- Write in third person. Avoid addressing the reader directly ("you") or the writer's voice ("we") -- describe what the software does, not what the user should do with it.
+- When a sentence needs an actor, name the actual role instead of a generic "the user" catch-all where a more specific one applies (e.g. "the designer" for Designer-role LabIMotion docs).
+- Step-by-step instructions stay imperative ("Click **Save**", not "The user clicks Save") -- the tone rule applies to descriptive/explanatory prose, not to how-to steps.
+
+# Spelling
+
+- Use American English throughout (center, gray, color, organize, label, normalize, recognize, behavior, analyze, synchronization -- not the British centre/grey/colour/organise/labelled/normalise/recognise/behaviour/analyse/synchronisation).
+- "Set up" (verb, two words) vs. "setup" (noun, one word): "set up a reverse proxy", but "the setup is complete".
+- Preserve fixed acronym/product casing exactly: SMILES, InChI, GitHub, Docker, SMARTS, ChemCLI -- never re-case these when copyediting surrounding prose.
+
 # Images
 
 - If you're adding an image to illustrate a paragraph, place the image after the corresponding paragraph.
+
+# UI references
+
+- Keep inline representations of real UI controls -- `<Btn>` (from `@site/src/js/btn.js`) and bare FontAwesome icons -- next to the instructions that reference them, so readers can visually match prose to the interface.
+- When the UI changes, replace the cue with the new control's representation instead of deleting it (e.g. the v2 add/arrow button became the v3 green "+ CREATE" button, rendered as `<Btn mixed={[faPlus, "CREATE"]} color={"success"}/>`). Only drop a cue once the control it represents no longer exists.
+
+# Videos
+
+- Embed YouTube references with the `YouTubeFrame` component (`@site/src/js/layout`) using a `youtube-nocookie.com` URL, rather than a bare link -- consistent with every other video reference on the site.
+- Plain links remain fine for genuine reference-list entries (e.g. a "further reading" bullet, a channel link) that aren't meant to be watched inline.
+
+# Version markers
+
+- Don't add "available from version X onwards"-style notes to individual pages or sections -- the version dropdown already conveys which release a page belongs to, so a blanket marker is redundant with it.
+- Do keep narrower sub-version caveats (e.g. "Not available in v3.12") -- those convey real information the version selector itself doesn't capture.
+
+# Cross-links
+
+- Link the first meaningful mention of a related concept on a page to its canonical page (e.g. the first "samples" on a page → `/docs/eln/ui/elements/samples`). Don't re-link later mentions on the same page, don't link a page to itself, and link at the page level rather than to an anchor. Use the surrounding prose as the link text instead of inventing new phrasing just to create a link.
+- Within the same docs instance (ELN, Repository, or LabIMotion), prefer a relative path (`[samples](elements/samples)`) over an absolute `/docs/...` one -- a relative link stays correct regardless of which version prefix (e.g. `/next`, `/v2`) the current page is served under, while an absolute path always resolves to the *current* version even from an older one. Reserve an absolute `/docs/<instance>/...` path for links that cross into a *different* docs instance (e.g. a LabIMotion page linking to an ELN page), where a relative path can't reach.
 
 # Terms
 
 - Refer to the Chemotion Electronic Lab Notebook as ` Chemotion ELN`.
 - Refer to the Chemotion spectra editor for analytical data as `ChemSpectra`.
 - Refer to the repository as `Chemotion Repository`.
+- Refer to the generic-module extension as `Chemotion LabIMotion` (or `LabIMotion` on second mention within a page).
 
 # Titles
 
