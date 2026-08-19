@@ -97,10 +97,30 @@ video {
   height: auto;
 }
 
-/* The ELN version dropdown is meaningless on /docs/repo/* pages (Chemotion
- * Repository is a separate, unversioned docs instance) -- hidden there by
- * src/clientModules/hideVersionDropdownOnRepo.js toggling this body class. */
-body.is-repo-instance .docs-version-dropdown {
+/* Each docs plugin instance's version dropdown should only show on that
+ * instance's own pages -- body classes toggled by
+ * src/clientModules/manageVersionDropdowns.js based on route. The ELN
+ * dropdown is meaningless on /docs/repo/* (unversioned) and
+ * /docs/labimotion/* (has its own dropdown) pages; the LabIMotion dropdown
+ * is meaningless everywhere except its own pages.
+ *
+ * Hiding just the trigger link (.docs-version-dropdown--*) is not enough:
+ * Infima renders it as `<div class="dropdown dropdown--hoverable">
+ * <a class="... docs-version-dropdown--eln">...</a>
+ * <ul class="dropdown__menu">...</ul></div>`, and the className passed to
+ * the navbar item only lands on the `<a>`. Hiding only that leaves the
+ * `<ul class="dropdown__menu">` (with the *other* dropdown's version links)
+ * and the still-hoverable wrapper div behind, which is what caused the
+ * wrong version list to pop up. Target the whole `.dropdown` wrapper with
+ * `:has()` instead, so the trigger and its menu disappear together. */
+body.is-repo-instance .navbar__item.dropdown:has(.docs-version-dropdown--eln),
+body.is-labimotion-instance
+  .navbar__item.dropdown:has(.docs-version-dropdown--eln) {
+  display: none;
+}
+
+body:not(.is-labimotion-instance)
+  .navbar__item.dropdown:has(.docs-version-dropdown--labimotion) {
   display: none;
 }
 
