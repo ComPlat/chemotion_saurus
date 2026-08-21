@@ -224,9 +224,11 @@ Values such as mass/amount/volume in the sample properties are referring to the 
 
 The **Elemental composition** is automatically calculated based on the formula, but the user can still provide their experimental numbers in fields that correspond to each atom in the molecule.
 
-The information required for chemical use is supplemented by **Chemical identifiers** such as **InChI** and **InChIKey** (clicking on the InCHI/InChIkey button allows to switch), **Canonical SMILES** and **CAS** number. Molecular structure is also provided in the **Molfile** format. You can provide the **Canonical SMILES** to create a new **Sample**, but you can’t modify the SMILES after creation (vice versa, SMILES is changed if the molecular structure changes). The other identifiers can only be copied after a **Sample** is created, and they can’t be used to generate Samples.
+The information required for chemical use is supplemented by **Chemical identifiers** such as **InChI** and **InChIKey** (clicking on the InCHI/InChIkey button allows to switch), **Canonical SMILES** and **CAS** number. Molecular structure is also provided in the **Molfile** format. On a new **Sample** you can build the structure here instead of opening the editor. Type a **Canonical SMILES**, or paste a **Molfile** into its field, then press the save button at the end of the row. The **Molfile** field also accepts a `.mol` or `.sdf` file through the upload button beside it; if the file holds several structures, only the first one is read. The **Molfile** field checks the text before sending it and refuses anything that is not a structure, saying in red what it found wrong. Once the structure exists, both fields become read-only and change only when you edit the molecule itself. The remaining identifiers can be copied but never used to generate a Sample.
 
 ![InChI_IncHIKey](/img/InChI_IncHIKey.gif)
+
+![Molfile input](/img/molfile_input.png)
 
 #### Decoupled mode
 
