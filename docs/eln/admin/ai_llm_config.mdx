@@ -1,0 +1,197 @@
+---
+title: AI / LLM Configuration
+sidebar_label: AI / LLM Config
+---
+
+# AI / LLM Configuration
+
+:::caution[Feature under development]
+
+The AI / LLM infrastructure layer described here is still under development and
+is **not part of a released Chemotion ELN version**. It currently lives on a
+feature branch that has not been merged, so names of screens, fields and
+configuration files may still change, and no release date or version number can
+be given. Do not rely on this page for a production installation yet.
+
+:::
+
+The AI / LLM layer lets an ELN installation talk to a Large Language Model (LLM)
+service and use it for defined tasks inside the ELN. The first (and so far only)
+task that ships with it is the extraction of safety data from a Safety Data
+Sheet (SDS) PDF — see [AI features](../ui/ai_features) for the user-facing side.
+
+An administrator decides:
+
+- which LLM endpoints ("providers") the institution offers,
+- who may use them, down to individual models,
+- whether users may instead configure a provider and API key of their own.
+
+## Where to find it
+
+The configuration lives in the admin interface, in the **AI / LLM Config**
+section. It consists of two cards:
+
+- **Institution providers** — the endpoints the institution operates or pays for.
+- **Who may use what** — the access gates, with the tabs
+  *Institution Provider Access* and *Personal API Key Permission*.
+
+{/* TODO: screenshot of the admin AI / LLM Config page */}
+
+## Institution providers
+
+An institution provider is one endpoint that requests are sent to. Every user who
+is granted access uses it without needing a key of their own. Several providers
+can be configured side by side; users then choose which one their tasks go to.
+
+Each provider has the following fields:
+
+- **Name** — the label users see.
+- **Wire protocol** — one of:
+  - `openai`: the Chat Completions API (`/v1/chat/completions` with a bearer
+    token). This is a protocol, not a vendor — OpenAI, institution-hosted
+    gateways, vLLM, Ollama, LM Studio and the compatibility endpoints of other
+    vendors all speak it.
+  - `anthropic`: the native Anthropic Messages API.
+  - `gemini`: the native Google Gemini API.
+- **Base URL** — required for the `openai` protocol; the `anthropic` and `gemini`
+  protocols fall back to their official endpoints when it is left blank.
+- **Default model** — mandatory. A provider cannot be saved or tested without
+  one, because every protocol needs a model in the request.
+- **API key** — optional (a local endpoint may need none). It is stored
+  encrypted and is never returned by the API; the interface only ever shows a
+  masked form such as `sk-••••••••1234`.
+- **Enabled** — a disabled provider stays visible to the admin but is not used.
+- **Restrict models** — when set, only models that have an explicit access rule
+  are offered to users at all.
+
+The provider list also offers:
+
+- **Test connection**, which sends one minimal chat request to the endpoint and
+  reports whether it answered.
+- **Delete the stored API key** without deleting the provider.
+- **Delete the provider**. Task overrides pointing at it are removed with it and
+  the users routed to it fall back to the first remaining institution provider.
+
+Changing the base URL or the protocol of a provider without supplying a new key
+drops the stored key, so that a key issued for one host is never sent to another.
+
+### Provider presets
+
+To save typing, the endpoint, protocol and default model can be pre-filled from a
+list of presets defined in `config/llm_provider_profiles.yml`. The file is
+optional and fully deployment-specific: if it is missing or malformed, the preset
+picker is simply hidden and manual entry still works.
+
+```yaml
+profiles:
+  - key: my_institution
+    label: "My institution's AI service"
+    protocol: openai
+    base_url: "https://ai.example.org/api"
+    default_model: "some-model-id"
+    notes: "Requires an institution API key."
+```
+
+Fields per entry:
+
+| Field | Required | Meaning |
+| --- | --- | --- |
+| `key` | yes | unique identifier |
+| `label` | yes | name shown in the picker |
+| `protocol` | yes | `openai`, `anthropic` or `gemini` |
+| `base_url` | no | endpoint base URL |
+| `default_model` | no | pre-filled default model |
+| `models` | no | last-resort model list, used only when the endpoint itself lists none |
+| `notes` | no | short hint shown under the picker |
+
+A preset never contains a key — whoever selects it still enters one.
+
+### Model lists
+
+The models offered in the interface are read from the provider itself (its model
+listing endpoint), not from configuration. The answer is cached on the server for
+30 minutes per endpoint, protocol and key, so switching between providers in a
+form does not cause a request each time. The `models:` list of a preset is only
+consulted when the endpoint returns no models at all.
+
+## Who may use what
+
+Access is controlled by the same *enabled / include / exclude* mechanism as the
+other [UI features](../admin/features): when the gate is enabled, everybody may
+use it except the users on the exclude list; when it is disabled, only the users
+on the include list may. Group membership counts, so a group can be granted at once.
+
+Two gates are relevant:
+
+- **Institution Provider Access** (`aiGlobalProvider`) — may the user send tasks
+  to the institution providers configured above? This gate is seeded as enabled.
+- **Personal API Key Permission** (`aiUserApiKey`) — may the user configure their
+  own endpoint and API key in their profile? This gate is seeded as disabled, so
+  personal keys are opt-in.
+
+A user who is granted neither gate has no AI access at all, and the AI/LLM
+settings section is hidden from their profile.
+
+:::info
+
+A third gate, `aiFeatures`, exists in the database as a legacy master switch. It
+is currently not evaluated; access is governed by the two gates above.
+
+:::
+
+### Per-provider and per-model rules
+
+Below the institution gate, access can be narrowed further, per provider and per
+model of that provider. Each rule uses the same enabled / include / exclude
+semantics and can only narrow the institution gate, never widen it:
+
+- a rule on the **provider** decides who may use that endpoint at all;
+- a rule on a single **model** decides who may select that model.
+
+A provider or model without a rule is unrestricted — except on a provider marked
+**Restrict models**, where a model needs a rule before it is offered at all.
+
+These rules only exist for institution providers. A provider a user configured
+themselves is private to that user and has nobody to grant it to.
+
+## Server-side configuration
+
+### Environment variables
+
+| Variable | Purpose |
+| --- | --- |
+| `LLM_API_KEY_ENCRYPTION_KEY` | Secret from which the encryption key for stored API keys is derived. Outside production it falls back to the application `secret_key_base`. |
+| `LLM_ALLOW_PRIVATE_ENDPOINTS` | When set, allows *user-configured* endpoints to point at loopback and private network addresses (for example a local Ollama). |
+
+By default a user-configured endpoint may not address loopback, link-local
+(including cloud metadata addresses) or private ranges, and host names are
+re-checked when the connection is made. Institution providers configured by an
+admin are exempt from this restriction.
+
+### Task definitions
+
+Each AI task is a YAML file under `config/llm_tasks/`. The branch ships one,
+`sds_extraction.yml`, which defines the prompts, the output format (JSON), the
+sampling temperature, the token limit, the request timeout, whether the task runs
+inline or as a background job, and which validator normalises the model's answer.
+Adding a file adds a task to the registry; no code change is needed for the
+registry itself.
+
+### Requirements for SDS extraction
+
+- **Ghostscript** must be available on the ELN worker — it converts the stored
+  SDS PDF to text before anything is sent to the model.
+- Background jobs must be processed: SDS extraction runs as a delayed job on the
+  `extract_sds` queue.
+
+## Auditing and privacy
+
+Every task execution writes a structured `[LlmAudit]` line to the Rails log,
+containing timestamp, task name, user, provider, model, the (credential-stripped)
+endpoint, and success or error. There is no database-backed audit table yet.
+
+Keep in mind that the text sent to a provider leaves the ELN installation. For
+SDS extraction, that is the text of the sections *Identification*, *Hazard
+identification*, *Composition*, *Exposure controls* and *Physical and chemical
+properties* of the SDS PDF. Choose the endpoint accordingly, and inform your
+users which service their data is sent to.
