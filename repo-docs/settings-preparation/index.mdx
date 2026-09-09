@@ -1,0 +1,97 @@
+---
+title: Settings and Preparation
+sidebar_position: 1
+---
+
+import useBaseUrl from "@docusaurus/useBaseUrl";
+import { FigCaption } from "@site/src/js/layout";
+
+This repository can be used directly without any preparations. Nevertheless, a few preparations help to organize the process efficiently.
+
+## Where the settings live
+
+In version 3 the account screens are reached from the **user menu** at the right of the navigation
+bar. Two entries matter for publishing:
+
+- **Settings** — split into **Account** (log-in, password, two-factor authentication, and deleting the
+  account), **Profile** (ORCID iD), **3rd-party apps & SciFinder**, and **Affiliations**.
+- **My Collaboration** — the people who can be named as authors or reviewers, and the group lead(s).
+
+<div align="center">
+  <video width="100%" controls muted poster={useBaseUrl("/img/repo/v3/settings-orcid.png")}>
+    <source src={useBaseUrl("/img/repo/v3/settings-orcid.mp4")} type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+  <FigCaption text="The Settings tabs: Account, Profile and Affiliations" />
+</div>
+
+## ORCID
+
+(1) Please register for an ORCID here if you don't have an ORCID yet. It's fast and easy. <br/>
+https://orcid.org/<br/>
+(2) Please enter your ORCID in the repository under **Settings › Profile**.
+
+The iD must be in the format `0000-0000-0000-0000`. It is validated against orcid.org when
+**Validate & Save ORCID** is pressed, and the account name must match the name on the ORCID record.
+
+## Affiliations
+
+Affiliations are maintained under **Settings › Affiliations**. Keeping them current matters: the
+submission dialogs read this list when attributing a contributor's work, and the
+[affiliation numbering](workflow/affiliation) on a publication comes from it.
+
+## Add your collaborators
+
+Collaborators are needed to assign other people as authors to a contribution. To publish data with others as authors, those people need to be on the collaborator list.
+
+Open **My Collaboration** from the user menu. People can be added by ORCID iD, or by name and email.
+
+### By ORCID iD
+
+:::warning[Attention]
+
+Pressing **Find** adds that person to the collaborator list straight away — there is no separate
+confirmation step on this path. Check the iD before pressing it.
+
+:::
+
+<div align="center">
+  <video width="100%" controls muted poster={useBaseUrl("/img/repo/v3/collab-orcid.png")}>
+    <source src={useBaseUrl("/img/repo/v3/collab-orcid.mp4")} type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+  <FigCaption text="Adding a collaborator by ORCID iD — Find adds them at once" />
+</div>
+
+### By name or email
+
+Searching by **first name, last name or email** returns a *Search Results* table of everyone
+registered in the Repository who matches, with their department, organization and country — so
+namesakes can be told apart. Nothing is added until the **Add** button is pressed on a row.
+
+<div align="center">
+  <video width="100%" controls muted poster={useBaseUrl("/img/repo/v3/collab-name.png")}>
+    <source src={useBaseUrl("/img/repo/v3/collab-name.mp4")} type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+  <FigCaption text="Adding one collaborator by name, then another by email" />
+</div>
+
+## Assign Group Lead
+
+Group lead(s) can be assigned using the **My Collaboration** feature. Once assigned, they are automatically added as reviewers and co-authors by default upon submission, and can still be removed before submitting.
+
+The first column of the collaborator table carries the control: **Set Lead** on a row that is not yet
+a lead, and a highlighted **Lead** badge on the rows already assigned.
+
+<div align="center">
+  <video width="100%" controls muted poster={useBaseUrl("/img/repo/v3/group-lead.png")}>
+    <source src={useBaseUrl("/img/repo/v3/group-lead.mp4")} type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+  <FigCaption text="Assigning group leads with Set Lead" />
+</div>
+
+## Clarify the type of license to be used for your data
+
+The [publication workflow](workflow) requires a license to be added to the data. This decision has to be made by the user. Please have a look at the [FAQs and links given there](faq#access-and-license).

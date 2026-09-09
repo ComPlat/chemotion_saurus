@@ -1,0 +1,150 @@
+---
+title: New Entry & Quick Submission
+sidebar_position: 2
+---
+
+import useBaseUrl from "@docusaurus/useBaseUrl";
+import { FigCaption } from "@site/src/js/layout";
+import NewEntryOptions from "@site/static/img/repo/v3/new-entry-options.png";
+import QuickStep1 from "@site/static/img/repo/v3/quick-entry-step1-sample.png";
+import QuickStep1Verified from "@site/static/img/repo/v3/quick-entry-step1-verified.png";
+import QuickStep2 from "@site/static/img/repo/v3/quick-entry-step2-author.png";
+import QuickStep3 from "@site/static/img/repo/v3/quick-entry-step3-analyses.png";
+import QuickAnalysisForm from "@site/static/img/repo/v3/quick-entry-analysis-form.png";
+
+Version 3 added a **New Entry** button to the welcome page. It opens a dialog that both explains how a
+submission travels through the repository and offers three ways to start one — including a
+**quick submission** wizard that deposits a single characterized compound without opening the ELN.
+
+Signing in is required for **New Entry** to appear.
+
+The walkthrough below runs through the whole dialog — the four stages, the three routes, and each step
+of the quick wizard. It stops short of submitting.
+
+<div align="center">
+  <video width="100%" controls muted poster={useBaseUrl("/img/repo/v3/new-entry-options.png")}>
+    <source src={useBaseUrl("/img/repo/v3/repo-quick-entry.mp4")} type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+  <FigCaption text="New Entry, from the welcome page through to the analyses step" />
+</div>
+
+## How a submission works
+
+The dialog opens with a short summary of the path every submission takes:
+
+1. **Draft** in *My Data* — the entry is saved to the contributor's own collection, where the
+   structure, properties and analyses can be refined further.
+2. **Submit** for review — the entry is handed over to the Chemotion reviewers.
+3. **Review** — the reviewers check completeness, data quality and metadata, then approve the entry or
+   return it to the contributor.
+4. **Publish** with a Chemotion ID — only entries that pass review are published and receive a citable
+   identifier.
+
+:::warning[Attention]
+
+Once submitted, the entry is locked and cannot be edited. If changes are needed, the reviewer sends it
+back to the contributor for modification — see [Review Process](review).
+
+:::
+
+## Three ways to start
+
+<div align="center">
+  <img src={NewEntryOptions} alt="The New Entry dialog with its three submission routes" />
+  <FigCaption text="New Entry — pick how to start" />
+</div>
+
+| Route | What it opens | Best for |
+| --- | --- | --- |
+| **Quick sample submission** | a three-step wizard, right on the welcome page | a fast single-compound deposit when the spectra are ready |
+| **Full reaction editor** | the complete reaction form in *My Data* | full synthetic procedures or multi-step sequences |
+| **Full sample editor** | the complete sample form in *My Data* | comprehensive characterization that will keep being refined |
+
+The two *full editor* routes lead into the familiar forms described under
+[Making a New Entry](new). The rest of this page covers the quick wizard.
+
+## Quick submission, step by step
+
+The wizard has three stages — **Sample**, **Author** and **Analyses** — shown as breadcrumbs at the top
+of the dialog. A stage turns green once it is complete.
+
+### Step 1 — Sample
+
+<div align="center">
+  <img src={QuickStep1} alt="Step 1 of the quick submission wizard" />
+  <FigCaption text="Step 1 — the structure and its basic properties" />
+</div>
+
+Provide the structure in one of two ways:
+
+- upload a **molfile** — `.mol`, `.sdf`, `.cdx` or `.cdxml`, including a ChemDraw file, or
+- type a **SMILES** string, from which the server generates a molfile.
+
+If a molfile is supplied, the SMILES field is ignored.
+
+**Verify molecule** must be pressed before continuing. The server resolves the structure and
+reports back the sum formula, the exact mass and the molecular weight, so the structure can be
+confirmed to have been read as intended.
+
+<div align="center">
+  <img src={QuickStep1Verified} alt="A verified structure showing formula, exact mass and molecular weight" />
+  <FigCaption text="After verification the structure is confirmed" />
+</div>
+
+The remaining fields on this step are optional except the license: **purity** (0–1, defaulting to 1.0),
+**melting point** and **boiling point** in °C, an **external label**, a free-text **description**, and
+the **license** the data is published under. Choose the license carefully and in accordance with the
+rules of the institution — the options are explained in the
+[FAQ](../faq#access-and-license).
+
+### Step 2 — Author
+
+<div align="center">
+  <img src={QuickStep2} alt="Step 2 of the quick submission wizard" />
+  <FigCaption text="Step 2 — contributor, ORCID, affiliations, co-authors and reviewers" />
+</div>
+
+As the submitter, **the contributor is always listed as the first author** of the submission.
+Co-authors are added after them.
+
+This step shows the contributor's **ORCID** and **affiliations** as they are currently recorded. The
+ORCID is validated against orcid.org, and the account name must match the ORCID record. Affiliations
+are maintained under *Settings › Affiliations* in the user menu; the **Refresh** button reloads them
+into the dialog without losing what has already been entered.
+
+**Co-authors and reviewers** are picked from *My Collaborators* and added with **Add as author** or
+**Add as reviewer**. Only people already on the collaborator list can be selected, so they need to be
+added beforehand — see [Add your collaborators](../settings-preparation#add-your-collaborators).
+The **Also include my group leads as authors** checkbox adds the group lead(s) configured under
+[Assign Group Lead](../settings-preparation#assign-group-lead).
+
+### Step 3 — Analyses
+
+<div align="center">
+  <img src={QuickStep3} alt="Step 3 of the quick submission wizard" />
+  <FigCaption text="Step 3 — at least one analysis is required" />
+</div>
+
+**At least one analysis with an attached file is required.** The step links to the repository's
+[file standard](../details-standards/files) and
+[analysis content standard](../details-standards/analysis-test) — please follow them, as the review
+checks against these conventions.
+
+Press **+ Add analysis** to open the form for one analysis:
+
+<div align="center">
+  <img src={QuickAnalysisForm} alt="The form for a single analysis" />
+  <FigCaption text="One analysis: type, content, files and instrument" />
+</div>
+
+| Field | Notes |
+| --- | --- |
+| **Type** | the analysis method, chosen from the ontology list — required |
+| **Content** | the description of the measurement, with a rich-text editor — required |
+| **Name** | optional; defaults to the first filename |
+| **Files** | a zip archive of raw data, or JCAMP/JDX files — required |
+| **Instrument** | auto-extracted from the JCAMP/JDX headers where present, otherwise entered by hand — required |
+
+Add as many analyses as the compound needs, then press **Submit for review** to hand the entry over.
+From here it follows the normal [review process](review).

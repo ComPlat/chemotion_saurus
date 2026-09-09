@@ -1,7 +1,0 @@
-{
-  "extends": ["plugin:@docusaurus/recommended"],
-  "parserOptions": {
-    "ecmaVersion": "latest"
-  },
-  "plugins": ["react", "frontmatter"]
-}

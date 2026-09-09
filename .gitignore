@@ -22,7 +22,8 @@ yarn-debug.log*
 yarn-error.log*
 website/node_modules/*
 
-# IDEs
+# IDEs and AI related
 .idea/
 .vscode/
 .devcontainer/
+.claude/

@@ -1,0 +1,29 @@
+---
+title: Third Party Apps
+sidebar_position: 7
+---
+
+Chemotion ELN currently supports two external tools that expand the usability of the ELN and can be integrated into the user's workflow:
+
+- [OpenStats](third-party-apps/OpenStats)
+- [TLC Image Annotation Tool](third-party-apps/tlc)
+
+## How to setup a Third Party App
+
+To set up a third-party application (TPA) in Chemotion ELN, the user needs administrator access to the ELN's [admin](../eln/admin) interface.
+
+1. Navigate to the ELN Administration section in Chemotion.
+2. In the left-hand menu, select [“Third Party Apps.”](../eln/admin/third-party-apps) This section lists all currently configured external applications and allows you to manage or add new ones.
+3. To create a new TPA, click the “New ThirdPartyApp +” button.
+4. This opens a form titled “Create new third party app.” Here, the user must provide the following information:
+   - **Name**: Enter a descriptive name for the application (e.g., OpenStats or AwesomeApp). This name will be displayed in the ELN interface.
+   - **IP address**: Specify the URL where the external application is hosted. This is typically a full address including protocol and port, for example http://localhost:3838 for a locally running Shiny app or https://service.chemotion.dept.uni.de if running externally.
+   - **File types (MIME)**: Define the file types that should be sent to the application. These are given as comma-separated MIME types or extensions (e.g., text, csv). This determines which data formats the ELN will forward to the TPA.
+
+After filling in the required fields, click “Create +” to register the application. Once created, the TPA will appear in the list of available third-party apps, where it can be edited or removed if necessary.
+
+With this setup, Chemotion ELN can send compatible datasets directly to the configured application, enabling seamless integration into external analysis workflows such as OpenStats.
+
+<div style={{ textAlign: "center" }}>
+  ![Tables](@site/static/img/services/third_party_apps/tpa_setup.png)
+</div>

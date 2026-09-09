@@ -13,7 +13,7 @@ export const FigCaption = ({ text }) => (<h3 className="figCaption">{text}</h3>)
 export const YouTubeFrame = ({ src, title }) =>
 (<div style={{ position: "relative", aspectRatio: 1.7778 }}>
     <VideoPrivacy customButtonClass="button button--primary" info="YouTube will track your interaction with them." width="100%" imageUrl={imageUrlForYouTube(src)}>
-        <iframe src={src} title={title} position="relative" width="100%" height="100%"
+        <iframe src={src} title={title} width="100%" height="100%"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
     </VideoPrivacy >
 </div>);

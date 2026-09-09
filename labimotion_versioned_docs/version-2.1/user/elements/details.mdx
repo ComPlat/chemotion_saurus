@@ -1,0 +1,130 @@
+---
+title: Details
+author: Claire Lin
+sidebar_position: 1
+---
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowUpRightFromSquare, faCheck, faEdit, faComment, faUpload,faPlus } from "@fortawesome/free-solid-svg-icons";
+import {
+  FigCaption,
+  YouTubeFrame,
+  SubTitle,
+  Reader,
+} from "@site/src/js/layout";
+import useBaseUrl from "@docusaurus/useBaseUrl";
+import { Btn } from "@site/src/js/btn.js";
+
+<SubTitle text="The detail modal displays the primary content of the element." />
+<Reader text="User" />
+
+## Details modal for elements
+
+The details of the element are generated from the template designed by the designer. Clicking on a desired element from the list opens the details modal, displaying the 'Properties' tab by default.
+
+![Element Details](/img/labimotion/user/elements/details/details-modal.png)
+
+### Properties tab
+
+The Properties tab serves as the primary section for an element. It contains essential information and allows users to drag elements, [samples](/docs/eln/ui/elements/samples), or molecules from the element list.
+
+By default, the first layer is expanded. An **Expand/Collapse** button is available to expand or collapse all layers simultaneously, making it easier to display the full content at once or to quickly hide sections and locate the desired layer.
+
+<div
+  style={{
+    display: "flex",
+    justifyContent: "center",
+    marginTop: 0,
+    flexDirection: "column",
+  }}
+>
+  <span className="figCaption" style={{ textAlign: "left" }}>(Click to view in a new window{" "} <FontAwesomeIcon icon={faArrowUpRightFromSquare} />)</span>
+  <a
+    href={useBaseUrl("/img/labimotion/details-expand-collapse.mp4")}
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{ display: "block" }}
+  >
+    <video controls autoPlay loop muted>
+      <source
+        src={useBaseUrl("/img/labimotion/details-expand-collapse.mp4")}
+        type="video/mp4"
+      />
+      Your browser does not support the video tag.
+    </video>
+  </a>
+</div>
+
+<FigCaption text="User - Expand/Collapse Layers in Element Details" />
+
+### Analyses tab
+
+The Analyses tab enables users to add analyses containing analytical data. In the **Content** field, users can input experimental results and upload experimental datasets. Users can then select the appropriate **Type (Chemical Methods Ontology)** from the provided list. For more details, please refer to [Ontology](/docs/eln/ui/ontology). The uploaded files can be converted to spectra format files according to the converter profile.
+
+#### Add Analyses
+
+Users can create a new analysis by clicking the <Btn mixed={["+ Add analysis"]} color={"success"}/> button. This opens a new analysis entry where users can:
+
+- Enter experimental results in the **Content** field
+- Upload associated data files as datasets using the <Btn mixed={[faPlus]} color={"success"}/> button
+- Select the measurement type from the **Type** dropdown menu using the Chemical Methods Ontology
+- Add additional information and notes about the analysis
+
+Each analysis can contain multiple datasets (files), allowing users to organize all related data for a particular measurement together.
+
+#### Add to Report
+
+:::info
+Feature available in Chemotion ELN version 4.0 or later
+:::
+
+The **Add to Report** feature allows users to selectively include analyses in generated reports. Each analysis has a checkbox button <Btn mixed={[faCheck]} color={"primary"}/> in its header that lets users toggle whether that specific analysis should be included when exporting or generating a report. This provides fine-grained control over which analytical results are included in the final documentation.
+
+To add an analysis to a report, simply click the checkbox button in the analysis header. Selected analyses are marked with a visual indicator and are included when the user generates or exports a report.
+
+#### Edit/Order Mode
+
+:::info
+
+Feature available in Chemotion ELN version 4.0 or later
+
+:::
+
+At the top of the analyses tab, users will find two mode buttons: <Btn mixed={[faEdit, "Edit mode"]} color={"primary"}/> and <Btn mixed={["Order mode"]} color={"secondary"}/>. These buttons allow users to switch between two different interaction modes:
+
+- **Edit Mode** (default): Enables editing of analysis properties, adding datasets, and other modifications. Click the <Btn mixed={[faEdit, "Edit mode"]} color={"primary"}/> button to activate this mode.
+- **Order Mode**: Activates drag-and-drop functionality for reordering analyses. Click the <Btn mixed={["Order mode"]} color={"secondary"}/> button to enter this mode. In this mode, users can easily rearrange the sequence of analyses by dragging them up or down.
+
+#### Comments on Analyses
+
+:::info
+
+Feature available in Chemotion ELN version 4.0 or later
+
+:::
+
+Users can add general comments to their analyses using the comment feature. A comment box can be accessed and toggled by clicking the <Btn mixed={["Add comment"]} color={"primary"}/> button in the analyses section. This allows users to record observations, notes, or additional information about the overall analytical work without needing to add it to individual datasets. Comments are stored and displayed with the analyses group.
+
+#### File Upload for Analyses
+
+:::info
+
+Feature available in Chemotion ELN version 4.0 or later
+
+:::
+
+The **Analyses from upload** feature enables direct uploading of analysis files. Users can upload associated data files (such as raw instrumental data, spectra, or other analytical results) by clicking the <Btn mixed={["Analyses from upload"]} color={"success"}/> button. Multiple files can be attached to each analysis, and they are organized as datasets.
+
+### Attachment tab
+
+The Attachment tab allows users to attach additional files/images to this element. If a user uploads images in the Attachment tab, the first image will be shown in the list.
+
+By uploading Word files, Excel files, and presentation files, users can directly edit the files using the OnlyOffice service.
+
+### Segments tab
+
+If segments are released and activated for this element, each will appear as its own tab, named according to the segment (for example, e-Chemistry tab, MOF and SURMOF tab). These tabs display the specific content and data defined in each segment.
+
+![Element Segments](/img/labimotion/user/elements/details/details-segments.png)
+
+For more details, please refer to the **[Segments](../segments)** section.

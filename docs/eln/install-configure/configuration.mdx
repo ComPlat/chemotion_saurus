@@ -1,0 +1,388 @@
+---
+title: Configuration
+sidebar_position: 21
+---
+
+:::info[Info]
+
+This page records configuration details for ELN versions released over the last one year. Versions older
+than one year are not actively supported. However, if help is still needed, kindly get in touch with the
+[Helpdesk](https://chemotion.net/helpdesk). This is especially true for a non-dockerized installation of the ELN.
+
+:::
+
+## Getting Started
+
+The default password to the administrative account (username: `ADM`) of a freshly installed instance is `PleaseChangeYourPassword`. Please change this password as soon as possible.
+
+### Must-Do: Access URL and Secret Keys
+
+:::important[Used ChemCLI?]
+
+These **Must-Do steps can be skipped** if the ELN was installed using ChemCLI.
+
+:::
+
+#### Variable `PUBLIC_URL`
+
+The variable called `PUBLIC_URL` must be set in the `docker-compose.yml` file. To set the variable, add it to the sections `services.worker.environment` and `services.eln.environment` just below the already present variables (such as "CONFIG_ROLE" for example) in the `docker-compose.yml`.
+
+This variable is meant to set the public URL that points to the ELN installation i.e. if "https://chemotion.dept.uni.de" is typed in the browser to reach the ELN, please set this variable to `PUBLIC_URL=https://chemotion.dept.uni.de`. This variable is used whenever the ELN has to construct absolute URLs, for example when an E-Mail is sent after user registration. It is also used for the file download links (e. g., in exporting [collections](../ui/collections)) to work correctly.
+
+The variable deprecates the variables "HOST_URL" and "HOST_PROTOCOL" in previous versions. Those are now ignored and can be removed safely.
+
+> The `PUBLIC_URL` variable is a setting that tells the ELN where it _can be reached_. It's not a setting that magically makes it so that the ELN is reachable at the provided URL. Please see [this section](ChemCLI#set-up-a-reverse-proxy) for more.
+
+#### Variable `SECRET_KEY_BASE`
+
+The variable line `- SECRET_KEY_BASE=pleasechangeme` in sections `services.worker.environment` and `services.eln.environment` needs to be modified. The string `pleasechangeme` needs to be replaced by a random password-type string of the administrator's choice.
+
+#### Variable `SECRET_KEY`
+
+The variable line `- SECRET_KEY=imsupersecretandwanttobechanged` in section `services.converter.environment` needs to be changed as well. The string `imsupersecretandwanttobechanged` needs to be replaced by a random password-type string of the administrator's choice.
+
+### Optional: Modify Configuration Files
+
+In most of the following cases, the configuration has to be modified following the instructions in this section.
+
+To keep the installation clean, Chemotion uses an overlay-based configuration system. This means that the ELN instance has a (reasonable) set of defaults that can be overwritten by user-provided settings files. This is accomplished by overlaying all files found in `./shared/pullin/` onto the internal settings files.
+
+Files that might need to be configured, their locations in the `./shared/pullin` folder, and the name of their template file, are as follows:
+
+| Filename             | Folder path + filename                      | Folder path + filename of the template |
+| -------------------- | ------------------------------------------- | -------------------------------------- |
+| `.env`               | `./shared/pullin/.env`                      | `.env.production.example`              |
+| `database.yml`       | `./shared/pullin/config/database.yml`       | `config/database.yml.example`          |
+| `editors.yml`        | `./shared/pullin/config/editors.yml`        | `config/editors.yml.example`           |
+| `welcome-message.md` | `./shared/pullin/public/welcome-message.md` | `public/welcome-message-sample.md`     |
+| `editors` (folder)   | `./shared/pullin/public/editors`            | `public/editors`                       |
+
+The template files, i.e. files to be used as a template, can be found in the Chemotion [repository](https://github.com/ComPlat/chemotion_ELN). Please find the [release](https://github.com/ComPlat/chemotion_ELN/releases) corresponding to the version of ELN in use. Then extract the compressed source code file into a folder. In this folder, the template files can be found at the specified location; remember to rename the file as suggested.
+
+For example, to configure the `.env` file, its folder path + filename would be `./shared/pullin/.env`. (Here `.` is the current working folder, from where the `docker compose` command is run; in case of the [ChemCLI](ChemCLI), a `shared` folder should already exist inside the `instances/instance-name` folder).
+The template file, called `.env.production.example` should be renamed to `.env` and placed in the `./shared/pullin` folder.
+
+> **In most cases, restarting the instance is recommended to fully apply any configuration changes.**
+
+## Dynamic Welcome Email and Message
+
+This configuration enables sending a welcome message as an email to the new users upon registration. It also displays the same content as a welcome message at the home page. The content is dynamic and can be modified and updated anytime.
+
+![adminui-welcomemessage](/img/eln/install-configure/welcomemessage.png)
+
+## User Settings
+
+### Username Abbreviation
+
+Name abbreviations, like emails, are unique in the database and can be used for sign in.
+The length of it can be defined in the `user_props.yml` configuration file. The template file for this is called `user_props.yml.example`. The modified file needs to be put in as the `./shared/pullin/config/user_props.yml` file.
+
+### User Authentication
+
+External authentication service providers can be used from ELN v1.6. The configuration is done through the [Admin Interface](../admin/features#user-authentication-userprovider).
+
+### User Authorization
+
+This feature requires authorized access. A system administrator can grant or deny users access to the various features and functions. Please see [Admin Interface > UI features](../admin/features)
+
+## eMail Service
+
+This service is used for sending email confirmation requests, reset password instructions, or other notifications to Users. eMail configuration parameters are set as environment variables in the `./shared/pullin/.env` file. Below is the list of available parameters:
+
+```sh
+# default url of your Chemotion ELN for http links in emails:
+PUBLIC_URL='https://sld.tld'
+# senders email:
+DEVISE_SENDER='no-reply@sld.tld'
+
+## SMTP config
+# Remote mail server
+SMTP_ADDRESS='smtp.sld.tld'
+SMTP_PORT=587
+# login user name & password if applicable:
+SMTP_USERNAME='no-reply@sld.tld'
+SMTP_PASSWORD='s3cr3tPW'
+# optional, HELO domain
+SMTP_DOMAIN='sld.tld'
+# detect STARTTLS
+SMTP_TLS=true
+# authentication type ('plain' 'login' (Base64 encoded) or 'cram_md5')
+SMTP_AUTH='plain'
+# how OpenSSL checks the certificate  ('none' or 'peer')
+SMTP_SSL_MODE='none'
+```
+
+See [rails docs](https://guides.rubyonrails.org/action_mailer_basics.html#action-mailer-configuration) for an explanation of the parameters.
+
+## File collectors
+
+This service is used to collect data files and distribute them to the Chemotion ELN inbox of the respective users. See [devices overview](../devices) or this [publication](https://doi.org/10.1016/j.acax.2019.100007) for more details. The following two options are currently available:
+
+### eMail Attachment collection
+
+The Chemotion ELN should be given access to an email account in which it will regularly check for incoming emails and collect the attachments. The attachments are then distributed to Chemotion ELN users by matching the additional addressee present in the **To:** or **CC:** field of the email. The sender's email address should also be that of a Chemotion ELN-registered device.
+
+:::danger
+
+All new incoming emails are processed and discarded.
+If the sender and other addressees are unknown to the Chemotion ELN (emails registered to Chemotion ELN accounts), then the email will be directly deleted.
+
+:::
+
+### Data Collection
+
+Files can be collected from remote storages and distributed to specific users based on the file name matching the user's name abbreviation.
+
+Configure the frequency for collecting the files, as well as the email access in the `config/datacollectors.yml` file. After editing the `datacollectors.yml` the worker service (DelayedJob) needs to be restarted.
+The background worker will collect the files at the frequencies set.
+If login credentials are needed, those are set in the configuration file as well.
+
+:::danger
+
+The directories watched by the collector service will be emptied at each collection i. e. all files within the watched directories will be removed.
+
+:::
+
+### Example of `configdatacollector.yml`
+
+The following is an example of the content for the `configdatacollector.yml`.
+
+```yaml
+production:
+  :services:
+    - :name: "mailcollector"
+      :cron: "5,20,35,50 * * * *" # every 15 minutes starting a xx:05
+    - :name: "folderwatchersftp"
+      :every: 5 # minutes
+      :watcher_sleep: 30 # seconds
+    - :name: "folderwatcherlocal"
+      :every: 5 # minutes
+      :watcher_sleep: 30 # seconds
+    - :name: "filewatchersftp"
+      :every: 2 # minutes
+    - :name: "filewatcherlocal"
+      :every: 2 # minutes
+
+  ## Chemotion ELN email account
+  :mailcollector:
+    :server: "imap.server.de"
+    :mail_address: "service@mail"
+    :password: "password"
+    # :port: 993 default
+    # :ssl: true default
+    :aliases:
+      - "alias_one@kit.edu"
+      - "alias_two@kit.edu"
+
+  ## File collection over ssh with password
+  :sftpusers:
+    - :user: "user1"
+      :password: "pass"
+    - :user: "user2"
+      :password: "pass"
+
+  # Dir of ssh keys for data collection over sftp
+  :keydir: "config/data_collector_keys"
+
+  # Allowlist of dir paths for local data collection
+  :localcollectors:
+    - :path: "<%= Rails.root.join(*%w[tmp datacollector]).to_s %>"
+```
+
+For each registered device, a collection job can be set up through the administrator interface:
+
+![adminui-datacollector](@site/static/img/eln/install-configure/datacollector.png)
+
+## Structure editor
+
+:::info
+
+From Chemotion ELN v3 onwards, [EPAM Ketcher](https://lifescience.opensource.epam.com/ketcher/) is the default structure editor. Do not forget to enable it as a feature from the ELN administration interface.
+
+To utilize other supported structure editors, such as Marvin JS, additional configuration is required. In such cases, the necessary files need to be adjusted and, potentially, a license provided. Please be aware that any modifications to the structure_editors.yml file will necessitate a service restart for the changes to take effect.
+
+:::
+
+For the supported versions of the structure editors, please refer to the release note of Chemotion ELN.
+
+### configuration
+
+```yaml
+### example of structure_editors.yml
+production:
+  :editors:
+    :ketcher:
+      :label: "Ketcher"
+      :extSrc: "/editors/ketcher/standalone/index.html"
+    :marvinjs:
+      :label: "MarvinJS"
+      :license: "license file" # license file of MarvinJS
+      :extJs: ["external javascript files to be included"] # js of MarvinJS
+      :extSrc: "external file" # file of MarvinJS
+```
+
+The compatibility table for recommended versions of EPAM Ketcher (v2 or v3) to be used with the ELN is as follows:
+
+| ELN version |     Ketcher release      |
+| :---------: | :----------------------: |
+|   1.10.5    |          2.24.0          |
+|   1.10.2    |          2.21.0          |
+|    1.9.3    |          2.18.0          |
+|    2.x.x    |          3.x.x           |
+|    3.x.x    | Included, do not install |
+
+### Enable
+
+Given that the supported editor is disabled by default, administrators have the capability to enable it once the setting is completed. For further information, please refer to the [Admin Interface > UI features](../admin/features) for further information.
+
+## ChemSpectra
+
+In the Docker production setup, the service is already installed and configured, but administrators can still decide to overwrite the configuration file and use another instance of this service. The instructions to install another instance are available [here](https://github.com/ComPlat/chem-spectra-app/blob/master/INSTALL.md). The `spectra.yml` file located in the `./shared/pullin/config` folder can then be modified. After following the aforementioned installation guide, edit the `spectra.yml` to look as follows. Then, as always, restart the ELN.
+
+```yaml
+production:
+  :url: "127.0.0.1"
+  :port: "3007"
+```
+
+## Ketcher Renderer
+
+The Ketcher backend render service is used to render molecules on the backend. It is optional and the ELN will fall back to a different rendering mechanism if the service can not be reached. However, this might result in less uniform visuals. By default, the render service is already configured when using the default `docker-compose.yml` file (or the ChemCLI installation).
+
+To configure the Ketcher backend render service differently, create a new configuration file called `ketcher_service.yml` in the `./shared/pullin/config` folder and modify the URL to point towards a different location.
+
+```yaml
+production:
+  :url: "http://ketchersvc/render"
+```
+
+## Remote Devices
+
+It is possible to access remote desktops with VNC using websockify. A VNC server needs to be [installed](https://github.com/novnc/websockify) on each remote machine. Settings that need to be done are described in [Admin Interface > Remote Devices](../admin/remote-devices).
+
+## OnlyOffice
+
+Install [OnlyOffice](https://helpcenter.onlyoffice.com/installation/docs-community-install-ubuntu.aspx?_ga=2.2091185.1060566386.1612303438-123622021.1612303437) instance on a server. Then modify the `editors.yml` in the `./shared/pullin/config` folder.
+
+## SciFinder<sup>n</sup>
+
+Chemotion ELN provides users with an easy way to query information in SciFinder<sup>n</sup> by using an API. To enable the use of the API, the institute needs to have a regular SciFinder<sup>n</sup> license. For each ELN instance, a registration at CAS is needed.
+
+:::info[Important]
+
+At the moment, CAS offers a process for Chemotion users in Germany to request SciFinder access through the API. This is managed by the consortium HBZ. For all other institutions not located in Germany: please let the Chemotion team know about the need to integrate the SciFinder API - the team will try to clarify the options with CAS.
+
+:::
+
+#### Instance Registration
+
+For requesting a license for SciFinder<sup>n</sup> API use in Chemotion, please send a short request including the following information to [nicole.jung@kit.edu](mailto:nicole.jung@kit.edu).
+
+- Institution
+- Redirect URL pattern list
+  - _The URL patterns represent the domain names used to host the ELN server. The patterns may use standard wildcard characters (for example, '\*' for 0 or more characters).  Be sure to include all environments (including dev, test, etc.) that might be provisioned._
+- Contact information
+
+Once the process is complete, a Client ID will be issued, after which the feature can be enabled by following the "Settings" section below.
+
+#### Settings
+
+To enable this feature, the necessary information needs to be configured in the `scifinder_n.yml` file in the `./shared/pullin/config` folder.
+
+```yaml
+### example of scifinder_n.yml
+production:
+  :provider:
+    :metadata: "api/oauth2/metadata" # DON'T CHANGE
+    :host: "https://scifinder-n.cas.org" # DON'T CHANGE
+    :client_id: "" # the client id you received
+    :redirect: "sfn_cb" # DON'T CHANGE
+    :redirect_host: "localhost" # your server
+```
+
+## NMRium
+
+Starting from Chemotion ELN version 1.5, to integrate [NMRium](https://nmrium.nmrxiv.org/) into an instance, please add the following to the `spectra.yml` in the `./shared/pullin/config` folder.
+
+```yaml
+production:
+  :chemspectra:
+    :url: "http://spectra:4000"
+  :nmriumwrapper:
+    :url: "https://nmrium.nmrxiv.org/v1.0.0/"
+```
+
+Here the `nmriumwrapper.url` value depends on the version of Chemotion ELN in use. The compatibility between the ELN and the wrapper is as follows:
+
+| Version of Chemotion ELN | Version(s) of NMRium wrapper |
+| ------------------------ | ---------------------------- |
+| 3.0.0                    | 1.0.0                        |
+| 2.1.1 & 2.2.0            | 1.0.0                        |
+| 1.9.3, 1.10.5 & 2.0.1    | 0.8.0                        |
+
+So, for e.g. ELN version 3.0.0, please set `nmriumwrapper.url` to `https://nmrium.nmrxiv.org/v1.0.0/`.
+
+To be able to access these URLs successfully, registration with the hosting service is required. Please contact the [Helpdesk](https://chemotion.net/helpdesk) or see [here](https://github.com/NFDI4Chem/nmrium-react-wrapper#public-instance) for more details.
+
+## QR, Barcode and Datamatrix Stickers
+
+The ELN has ability to produce [QR codes, Barcodes and Datamatrix codes](../ui/barcodes), that can then be laid out on a PDF for printing on paper and stickers. A configuration file defines how each code type is displayed. Below is an example of the entire configuration file, which includes settings for QR code, DataMatrix code, and Barcode:
+
+```json
+{
+  "QR code": {
+    "code_type": "qr_code",
+    "code_image_size": 30,
+    "name": true,
+    "short_label": true,
+    "external_label": true,
+    "code_log": true,
+    "molecule_name": true,
+    "displaySample": true,
+    "text_position": "below",
+    "width": 100
+  },
+  "Data Matrix code": {
+    "code_type": "data_matrix_code",
+    "code_image_size": 30,
+    "name": true,
+    "short_label": true,
+    "external_label": true,
+    "code_log": true,
+    "molecule_name": true,
+    "displaySample": true,
+    "text_position": "below",
+    "width": 100
+  },
+  "Bar code": {
+    "code_type": "bar_code",
+    "code_image_size": 100,
+    "name": true,
+    "short_label": true,
+    "external_label": true,
+    "code_log": true,
+    "molecule_name": true,
+    "displaySample": true,
+    "text_position": "below",
+    "width": 100
+  }
+}
+```
+
+### Main parameters
+
+- **`code_type`**: Must be `qr_code`, `bar_code`, or `data_matrix_code`.
+- **`code_image_size`** Size ratio of the code image, between 0 and 100.
+  - _Note_: If `code_image_size` > 30, the `text_position` is automatically set to `below`.
+
+- **`text_position`**: `below` or `right`.
+- **`width`**: Page `width` in millimeters.
+- **`name`**, **`short_label`**, **`external_label`**, **`molecule_name`**, **`code_log`**, **`displaySample`**: Boolean flags to include or exclude specific elements.
+
+> N.B. The variable `displaySample` will be renamed to `display_sample` in future releases (releases after v1.10.5).
+
+### Validation rules
+
+Invalid values (e.g., `code_image_size` > 100 or unsupported `code_type`) trigger warnings and are replaced with default values.
+
+To customize the configuration, edit the following file in the Chemotion ELN installation: `./shared/pullin/public/json/printingConfig/defaultConfig.json`.
