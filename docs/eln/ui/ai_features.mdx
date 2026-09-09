@@ -1,0 +1,197 @@
+---
+title: AI Features
+sidebar_label: AI Features
+---
+
+# AI features
+
+:::caution[Feature under development]
+
+The AI features described here are still under development and are **not part of
+a released Chemotion ELN version**. They currently live on a feature branch that
+has not been merged, so screens, labels and behaviour may still change, and no
+release date or version number can be given.
+
+:::
+
+The Chemotion ELN can send defined tasks to a Large Language Model (LLM). Which
+LLM service is used is decided by your administrator, or — if your administrator
+allows it — by yourself in your user profile. The first task available is the
+extraction of safety data from a Safety Data Sheet (SDS) PDF.
+
+:::info
+
+Results produced by an LLM are generated automatically and may contain
+inaccuracies. Always review them before relying on them.
+
+:::
+
+## Your AI settings
+
+AI settings live in the user profile, in the section **AI/LLM Settings**. The
+section is only shown when your administrator has granted you at least one of the
+two permissions: using the institution's AI service, or configuring a provider of
+your own.
+
+![AI/LLM settings in the user profile](/img/ai_llm_user_settings.png)
+
+### Default provider
+
+At the top you choose which provider answers tasks that do not name one
+themselves:
+
+- **Use my institution's AI service (managed by admin)** — no key of your own is
+  needed.
+- **Use one of my own providers** — an endpoint you configured yourself. This
+  option is only offered when your administrator has enabled personal API keys.
+
+### Institution providers
+
+The providers your administrator has configured are listed read-only, with their
+name, wire protocol, endpoint URL and default model — so it is always visible
+which service a task's data would be sent to. A **Test** button next to a provider sends a minimal
+request using the key your administrator stored and reports whether the service
+answered. If several institution providers are available, you can mark the one
+your tasks should use by default; individual tasks can still be routed elsewhere
+further down.
+
+If your administrator has not configured any provider yet, a note tells you so —
+in that case contact your administrator.
+
+### Your own providers
+
+When personal API keys are permitted, the section **My providers** lets you keep
+a list of your own endpoints and route different tasks to different ones. Each
+entry has:
+
+- a **name**,
+- a **wire protocol**: the Chat Completions API (used by OpenAI, self-hosted
+  servers and many gateways), the Anthropic Messages API, or the Google Gemini
+  API,
+- a **base URL** (required for the Chat Completions API; the other two default to
+  their official endpoints),
+- a **default model** (mandatory),
+- an **API key**, stored encrypted and never shown again in full — only a masked
+  form. Endpoints that need no key (a local Ollama, for example) can be left
+  without one.
+
+Where your installation provides them, a preset picker pre-fills endpoint,
+protocol and default model for common services; you still supply the key. Each
+provider can be tested with a single minimal request, and the model dropdown is
+filled from the models the endpoint itself reports.
+
+The first provider you add becomes the one your tasks default to. Note that
+adding a provider does not by itself switch you away from the institution
+service — select the corresponding option above for that.
+
+:::note
+
+Endpoints inside the ELN's own network (for example `localhost` or a private
+address) are refused for personal providers unless your administrator has
+explicitly allowed them.
+
+:::
+
+### Task routing
+
+The **Task routing** table lists the AI tasks registered in your installation —
+currently *SDS Extraction* — and lets you send a single task to a specific
+provider, a specific model, or both. A row that names neither falls back to your
+default provider and its default model.
+
+If a task-specific model fails (for example because it is busy, rate-limited or
+times out), the task is retried once on the default model of the same provider.
+The request is never re-sent to a different provider.
+
+## AI-assisted SDS extraction
+
+Safety data can be extracted from a Safety Data Sheet PDF that is stored with the
+sample. You find the control in the **Safety** area of a sample's chemical tab,
+in the row of the stored safety data sheet.
+
+![The AI extraction controls in the chemical tab](/img/ai_sds_extraction_button.png)
+
+The screenshot shows a sample for which only the AI route is available, so no
+route toggle is drawn — just the extraction button and, next to it, the button
+that opens the extracted data.
+
+### Running an extraction
+
+1. Open the sample and go to the chemical / safety tab.
+2. In the row of the stored SDS, make sure the extraction method **AI** is
+   selected. The toggle between **AI** and **Vendor site** only appears when both
+   routes are possible for that row; otherwise the only usable route is shown
+   directly.
+3. Click **Extract Safety Data** (the sparkle button).
+
+The extraction runs in the background. A notification confirms that it has
+started, the button shows *Extracting…* while the job runs, and the chemical tab
+refreshes by itself once the result is stored — the browser asks the server for
+the result every three seconds while you wait. After sixty of those attempts,
+about three minutes, the button is reset and a message asks you to check back
+later; the job itself continues, and its result appears the next time the tab is
+opened.
+
+![Running an AI-assisted SDS extraction](/img/ai_sds_extraction.gif)
+
+The recording starts on a chemical whose safety lists are still empty and ends
+with the statements and pictograms the model read out of the stored sheet; the
+wait itself — around twenty seconds in that run — is cut out. Re-running an
+extraction on a chemical that already carries phrases usually returns the same
+statements, so there is much less to see.
+
+The button is disabled when:
+
+- no AI provider is configured for you (set one up in your profile, or ask your
+  administrator), or
+- the safety data sheet was attached manually, in which case there is no stored
+  PDF the extraction could read.
+
+Starting an extraction requires the same permission as editing the sample.
+
+### What is extracted
+
+Only the relevant parts of the PDF are read and sent to the model: the sections
+*Identification*, *Hazard identification*, *Composition/ingredients*, *Exposure
+controls* and *Physical and chemical properties*. Section headings are recognised
+in several languages (English, German, French, Italian and others), and the text
+is truncated when it exceeds the configured limit.
+
+From the answer, the ELN writes back:
+
+- **H, EUH and P statements**, mapped to the standard phrase texts,
+- **GHS pictograms**, derived from the GHS codes,
+- **physico-chemical properties** (boiling point, melting point, flash point,
+  density, vapour pressure, solubility, viscosity, pH, explosive limits, form,
+  colour, refractive index, purity), which are also copied into the properties
+  of the sample where they fit.
+
+Mixtures are handled as such: instead of a single CAS number, the components with
+their names, CAS numbers and concentrations are recorded.
+
+### Viewing the raw result
+
+The document icon next to the extraction button opens the **Extracted Data using
+LLM** dialog. It shows what the extraction returned, together with the time of
+the extraction and the model that produced it — including a note when a
+task-specific model was unavailable and the default model answered instead. The
+icon stays disabled until an extraction has run for that sample.
+
+![The Extracted Data using LLM dialog](/img/ai_extracted_data_modal.png)
+
+The dialog reports what the model read out of the attached PDF, which is not
+necessarily the substance the sample is named after: in the example above the
+safety data sheet stored with the sample is the one for p-xylene, and the
+extracted metadata describes that substance. Check the extracted values against
+the sheet before accepting them.
+
+## Limitations
+
+- Extraction depends entirely on what is legible in the stored PDF; scanned
+  sheets without a text layer yield nothing usable.
+- The model is instructed to omit anything it cannot find rather than to guess,
+  but mistakes remain possible — review hazard statements and properties before
+  using them.
+- Text from the SDS leaves the ELN installation and is sent to the configured LLM
+  service. If in doubt about which service that is, ask your administrator, or
+  check the provider shown in your AI settings.
