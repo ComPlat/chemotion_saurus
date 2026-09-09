@@ -17,6 +17,7 @@ import { DownloadBtn } from "@site/src/js/download_files.js";
 
 Available from ELN v1.1.1 onwards: Using the inventory collection with different users that can move items into or create items in the inventory.
 Available from ELN v2 onwards: Importing storage temperature, expiration date, and volume fields for chemical samples.
+Available from ELN v4 onwards: Adding, editing and removing safety phrases (H- and P-statements, GHS pictograms) manually in the inventory tab.
 
 :::
 
@@ -127,11 +128,74 @@ This section contains the following fields:
 - Additionally, users can access the vendor's product webpage by clicking the external link icon <Btn mixed={[faExternalLink]} color={"secondary"} /> button.
 - User can query the safety phrases for this chemical from vendor by clicking the <Btn mixed={["fetch safety phrases"]} color={"secondary"} /> button. Results render below as depicted in the image below.
   ![safety bar](/img/inventoryTab_safety_list.png)
+  The fetched phrases are written into the safety phrases editor described in [Adding safety phrases manually](#adding-safety-phrases-manually), where they can be reviewed and corrected.
 
 - The <Btn mixed={["fetch Chemical Properties"]} color={"secondary"} /> button enable users to make a search query for chemical and physical properties related to the chemical and save it to respective fields in sample properties tab.
   Sometimes fetched results can not be saved automatically if fetched values can not be accepted by ELN for some fields. User in this case can view and modify entered values manually.
   Fetched properties can be viewed by clicking the results icon <Btn mixed={[faFileText]} color={"secondary"} /> button next to fetch button. An example of fetch chemical properties process is shown below.
   ![Safety List](/img/fetch_chemical_properties_chemical.gif)
+
+### Adding safety phrases manually
+
+Safety phrases do not have to come from a vendor query. The safety section contains an editor that lets
+users curate the safety phrases of a chemical entry by hand, which is useful when no safety data sheet can
+be found, when the vendor returns incomplete results, or when a substance is prepared in-house.
+
+The editor is always shown at the bottom of the safety section and is organised into three parts:
+
+- **Hazard Statements** — the H-codes of the chemical (for example `H225`).
+- **Precautionary Statements** — the P-codes of the chemical (for example `P210`).
+- **Pictograms** — the GHS hazard pictograms (`GHS01` to `GHS09`), displayed as images.
+
+![Safety phrases editor](/img/safety_phrases_editor.png)
+
+The editor panel is limited in height and scrolls internally, so a chemical with
+many statements does not push the rest of the inventory tab out of view. The
+screenshot above shows all three sections at once; in the running ELN the lower
+sections may have to be scrolled to.
+
+#### Adding a phrase
+
+1. Open the inventory tab of the chemical entry and expand the safety list.
+1. Click the search field of the section that should be extended (hazard statements, precautionary
+   statements, or pictograms).
+1. Type a code or a part of the phrase text. The drop-down filters the list of available entries while
+   typing; codes that are already assigned to the chemical are not offered again.
+1. Select the desired entry from the drop-down. It is added to the list below the search field
+   immediately.
+1. Click the save button at the bottom of the inventory tab to persist the changes together with the rest
+   of the inventory data.
+
+![Adding safety phrases manually](/img/add_safety_phrase_manually.gif)
+
+New entries are appended to the end of their list rather than sorted into it, so
+the order of the list reflects the order in which the phrases were added.
+
+The selectable codes are taken from the GHS dictionaries shipped with the ELN. Besides the plain H- and
+P-codes, these dictionaries also contain the combined codes (for example `H300+H310` or `P301+P310`) and
+the European supplemental hazard statements (`EUH` codes), so these can be selected as a single entry
+instead of being assembled from their parts.
+
+#### Removing a phrase
+
+Each entry in the hazard and precautionary lists carries a delete button
+<Btn mixed={[faTrash]} color={"danger"} />, and each pictogram card carries the same button in its upper
+right corner. Clicking it removes that entry from the chemical entry. As with adding a phrase, the removal
+becomes permanent only after the inventory tab is saved.
+
+![Removing safety phrases](/img/remove_safety_phrase.gif)
+
+:::caution
+
+A **successful** vendor query replaces the complete content of the editor: clicking
+<Btn mixed={["fetch safety phrases"]} color={"secondary"} /> and receiving phrases back overwrites the
+lists, so manual additions and removals made before the query are lost. It is therefore advisable to run
+the vendor query first and to refine the result by hand afterwards.
+
+A query that returns nothing leaves the existing phrases untouched — if the vendor has no data for the
+chemical, or the lookup fails, only a warning is shown and the editor keeps its content.
+
+:::
 
 ### Attach Safety Sheets manually
 
