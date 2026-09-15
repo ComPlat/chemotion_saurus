@@ -3,7 +3,7 @@ title: AI / LLM Configuration
 sidebar_label: AI / LLM Config
 ---
 
-# AI / LLM Configuration
+# Setting up AI / LLM
 
 :::caution[Feature under development]
 
@@ -15,206 +15,272 @@ be given. Do not rely on this page for a production installation yet.
 
 :::
 
-The AI / LLM layer lets an ELN installation talk to a Large Language Model (LLM)
-service and use it for defined tasks inside the ELN. The first (and so far only)
-task that ships with it is the extraction of safety data from a Safety Data
-Sheet (SDS) PDF — see [AI features](../ui/ai_features) for the user-facing side.
+This page is for administrators. It covers connecting your ELN to a Large
+Language Model (LLM) service and deciding who may use it. For what your users
+then see and do, see [AI features](../ui/ai_features).
 
-An administrator decides:
+As an administrator you decide three things:
 
-- which LLM endpoints ("providers") the institution offers,
-- who may use them, down to individual models,
-- whether users may instead configure a provider and API key of their own.
+1. **Which LLM services the institution offers** — the endpoints requests are
+   sent to, and the keys that pay for them.
+2. **Who may use them** — everyone, or named people and groups, down to
+   individual models.
+3. **Whether users may bring their own** service and API key instead.
+
+Nothing works until at least one provider exists and at least one person is
+granted access, so the order below is the order to do it in.
+
+## Before you start
+
+You will need:
+
+- **An endpoint URL and an API key** for the service you intend to offer. Your
+  institution may already run one; otherwise this is an account with a
+  commercial provider, or a model server you host yourself.
+- **A model name** the endpoint serves. Every provider must name a default
+  model — it cannot be saved without one.
+- **Ghostscript on the ELN worker**, for SDS extraction. It converts the stored
+  PDF to text before anything is sent to the model.
+- **A running background worker.** SDS extraction is a delayed job on the
+  `extract_sds` queue. Without a worker the button spins and nothing happens.
 
 ## Where to find it
 
-The configuration lives in the admin interface, in the **AI / LLM Config**
-section. It consists of two cards:
-
-- **Institution providers** — the endpoints the institution operates or pays for.
-- **Who may use what** — the access gates, with the tabs
-  *Institution Provider Access* and *Personal API Key Permission*.
+Open the admin interface and click **AI / LLM Config**, the last entry in the
+sidebar. The admin interface is a single page whose sections have no individual
+URLs, so there is no direct link to this screen.
 
 ![The AI / LLM Config section of the admin interface](/img/ai_llm_admin_config.png)
 
-## Institution providers
+There are two cards: **Institution providers** at the top, and **Who may use
+what** below it, which holds both access gates and the per-model rules.
 
-An institution provider is one endpoint that requests are sent to. Every user who
-is granted access uses it without needing a key of their own. Several providers
-can be configured side by side; users then choose which one their tasks go to.
+## Step 1 — Add a provider
 
-Each row of the list shows the provider's name and protocol, and below them a
-single line with its endpoint, its default model and its key in masked form.
-**Test**, an edit pencil and a delete bin sit at the right of the row.
+An institution provider is one endpoint that requests are sent to. Everyone
+granted access uses it without needing a key of their own, and you can offer
+several side by side.
 
-**+ Add provider** and the edit pencil open the same form:
+Click **Add provider**. If your installation ships presets, start by choosing
+one — it fills in the endpoint, the protocol and a default model for you.
 
-- **Use a preset** — pre-fills the fields below from a list of known services;
-  see [Provider presets](#provider-presets).
-- **Name** — how the provider is labelled in the list and in per-task routing.
-  Required.
-- **API protocol** — the request format the endpoint speaks, not who runs it:
-  - *Chat Completions API* — `/v1/chat/completions` with a bearer token. Spoken
-    by OpenAI, institution gateways, vLLM, Ollama, LM Studio, Azure and the
-    compatibility endpoints of other vendors.
-  - *Anthropic Messages API*.
-  - *Google Gemini API*.
-- **API endpoint URL** — required for the Chat Completions protocol; the other
-  two fall back to their official endpoints when it is left blank.
-- **Default model** — a free-text field, used by every task that does not name a
-  model of its own. Required: a provider cannot be saved or tested without one.
-- **API key** — optional, for endpoints that need none (a local Ollama, say). It
-  is encrypted at rest and never returned in API responses; the interface only
-  shows a masked form such as `sk-••••••••0dde`. When editing an existing
-  provider the form shows the masked current key and keeps it if the field is
-  left blank, and a bin icon beside the field deletes the stored key without
-  deleting the provider.
+![Adding an institution provider](/img/ai_llm_admin_add_provider.webp)
 
-The form cannot be submitted until **Name** and **Default model** are filled.
-Deleting a provider also removes the task overrides pointing at it, and the
-users routed to it fall back to the first remaining institution provider.
+The fields that matter:
 
-Changing the endpoint URL or the protocol of a provider without supplying a new
-key drops the stored key, so that a key issued for one host is never sent to
-another.
+- **Name** — how the provider appears to users. Pick something they will
+  recognise, such as *KIT KI-Toolbox*, not *openai-prod-2*.
+- **API protocol** — the request format the endpoint speaks, *not* who runs it.
+  *Chat Completions* is the default and covers OpenAI, institution gateways,
+  vLLM, Ollama, LM Studio and Azure. The other two are Anthropic's Messages API
+  and Google's Gemini API.
+- **API endpoint URL** — required for Chat Completions. Anthropic and Gemini
+  fall back to their official endpoints if you leave it blank.
+- **Default model** — used by every task that does not name its own. Free text,
+  not a dropdown.
+- **API key** — optional. A locally hosted model server usually needs none. It
+  is encrypted at rest and never shown again in full, only masked as
+  `sk-••••••••0dde`.
 
-**Test** sends one minimal request to the endpoint and reports the outcome in a
-dismissible alert below the provider list: a green *Connection verified
-successfully.* when the endpoint answers, or a red alert quoting the upstream
-message verbatim when it does not. The quoted message is usually enough to tell
-an expired key from a model name the endpoint no longer serves.
+**Three fields are required, not two.** With the default protocol the endpoint
+URL is required alongside the name and the model. Until all three are filled,
+both **Test connection** and the save button stay disabled and the form tells
+you which one is missing:
 
-Occasionally a provider that works fails this check, because the probe is a
-single tiny request and some reasoning models spend its whole token budget
-before producing any text. Retry once, and judge a provider by whether real
-tasks succeed rather than by one failed probe.
+![The provider form stating what is still missing](/img/ai_llm_admin_provider_validation.png)
+
+:::tip[Two things that catch people out]
+
+Choosing a preset overwrites the **Name** field too, so pick the preset first
+and rename afterwards. Changing the **API protocol** clears the endpoint, model
+and key in the open form, because those values are protocol-specific.
+
+:::
 
 ### Provider presets
 
-The **Use a preset** picker at the top of the provider form pre-fills the
-endpoint, protocol and default model for a known service, and shows the preset's
-note underneath. A preset never carries a key — whoever selects it still enters
-one.
-
-The entries come from `config/llm_provider_profiles.yml`. The file is optional
-and fully deployment-specific: if it is missing or malformed, the picker is
-simply hidden and manual entry still works. Edit it to match the services your
-institution actually offers.
+The preset picker comes from `config/llm_provider_profiles.yml`. The file is
+optional and entirely yours to edit — if it is missing or malformed the picker
+is simply hidden and manual entry still works. A preset never carries a key.
 
 ```yaml
 profiles:
   - key: my_institution
     label: "My institution's AI service"
-    protocol: openai
+    protocol: openai              # openai | anthropic | gemini
     base_url: "https://ai.example.org/api"
     default_model: "some-model-id"
     notes: "Requires an institution API key."
 ```
 
-Fields per entry:
+Fill in `default_model` wherever you can: a provider cannot be used without
+one, and leaving it blank just moves the work to whoever picks the preset.
 
-| Field | Required | Meaning |
-| --- | --- | --- |
-| `key` | yes | unique identifier |
-| `label` | yes | name shown in the picker |
-| `protocol` | yes | `openai`, `anthropic` or `gemini` |
-| `base_url` | no | endpoint base URL |
-| `default_model` | no | pre-filled default model |
-| `models` | no | last-resort model list, used only when the endpoint itself lists none |
-| `notes` | no | short hint shown under the picker |
+## Step 2 — Check it works
 
+**Test** sends one minimal request using the stored key and reports back below
+the list. Green means the endpoint answered; red quotes what came back
+instead — usually enough to tell an expired key from a host that no longer
+resolves.
 
-### Model lists
+![Testing a provider that answers, and one that does not](/img/ai_llm_admin_test.webp)
 
-The models offered in the interface are read from the provider itself (its model
-listing endpoint), not from configuration. The answer is cached on the server for
-30 minutes per endpoint, protocol and key, so switching between providers in a
-form does not cause a request each time. The `models:` list of a preset is only
-consulted when the endpoint returns no models at all.
+The provider form has its own **Test connection** button for values you have
+typed but not yet saved. Use that one before saving something new.
 
-## Who may use what
+:::note
 
-Access is controlled by the same *enabled / include / exclude* mechanism as the
-other [UI features](../admin/features): when the gate is enabled, everybody may
-use it except the users on the exclude list; when it is disabled, only the users
-on the include list may. Group membership counts, so a group can be granted at once.
-
-Two gates are relevant:
-
-- **Institution Provider Access** (`aiGlobalProvider`) — may the user send tasks
-  to the institution providers configured above? This gate is seeded as enabled.
-- **Personal API Key Permission** (`aiUserApiKey`) — may the user configure their
-  own endpoint and API key in their profile? This gate is seeded as disabled, so
-  personal keys are opt-in until an administrator turns them on.
-
-A user who is granted neither gate has no AI access at all, and the AI/LLM
-settings section is hidden from their profile.
-
-:::info
-
-A third gate, `aiFeatures`, exists in the database as a legacy master switch. It
-is currently not evaluated; access is governed by the two gates above.
+The check passes on any answer from the endpoint, including an empty one. It
+proves the endpoint is reachable and accepts the key. It does not prove the
+configured model will produce useful output for a real task.
 
 :::
 
-### Per-provider and per-model rules
+## Step 3 — Decide who may use AI
 
-Below the institution gate, the **Per provider and per model** section narrows
-access further. Each provider gets a collapsible row, labelled with how many
-rules it carries; expanding it reveals those rules and an **+ Add rule** button,
-with **Save access rules** underneath.
+Open the **Who may use what** card. Each tab is one permission, and each saves
+independently — switching tabs does not carry unsaved edits with you.
 
-A rule names what it **applies to** — either *The provider itself (all models)*,
-or one specific model out of those the endpoint reports — and then either
-*Everyone, except…* or *Only these users*, with a picker for the users and groups
-concerned. The semantics are the same as the gate above, and a rule can only
-narrow the institution gate, never widen it.
+Both work the same way: tick the box to allow everyone and use **Exclude
+Users** for exceptions, or leave it unticked and name the only people who may
+in **Include Users**. Groups count, so you can grant a whole group at once. The
+pickers search as you type and offer a handful of matches; an empty box offers
+nothing.
 
-A provider or model without a rule is unrestricted. The per-provider checkbox
-**Offer only the models a rule below names** inverts that for one provider: with
-it set, a model has to be named by a rule before it is offered to anyone at all.
+**Institution Provider Access** — may this person use the providers you
+configured above? Enabled by default.
 
-These rules only exist for institution providers. A provider a user configured
-themselves is private to that user and has nobody to grant it to.
+![Excluding a user from the institution providers](/img/ai_llm_admin_gate_institution.webp)
 
-## Server-side configuration
+**Personal API Key Permission** — may this person configure their own endpoint
+and key in their profile? **Disabled by default**, so bringing your own key is
+opt-in until you turn it on.
+
+![Allowing named users to bring their own API key](/img/ai_llm_admin_gate_personal.webp)
+
+Someone granted neither permission has no AI access, and the AI section is
+hidden from their profile entirely.
+
+:::info
+
+A third entry, `aiFeatures`, still exists in the database as a legacy master
+switch. It has no control on this screen and is not evaluated — access is
+decided by the two permissions above.
+
+:::
+
+## Step 4 — Narrow it further (optional)
+
+Most installations can stop at step 3. Use this step when one provider carries
+an expensive model, or a model only one group should reach.
+
+Below the institution permission, **Per provider and per model** lists each
+provider as an expandable row. Expanding one asks the endpoint which models it
+offers, then lets you add rules.
+
+A rule says what it **applies to** — the whole provider, or one of its models —
+and then either *Everyone, except…* or *Only these users*. A rule can only
+narrow the permission above it, never widen it.
+
+![Adding a rule that limits one model to named users](/img/ai_llm_admin_access_rules.webp)
+
+:::tip
+
+**Add rule** does not ask what the rule is for. It fills the first target that
+has none — the whole provider first, then the first model without a rule — and
+you retarget it afterwards with **Applies to**. So to restrict a single model,
+click **Add rule** twice.
+
+:::
+
+Anything without a rule is unrestricted. The checkbox **Offer only the models a
+rule below names** inverts that for one provider: a model must then be named by
+a rule before anyone is offered it, and until one is, the provider is marked
+*Restricted, no rule yet*.
+
+![Restricting a provider to the models its rules name](/img/ai_llm_admin_restrict_models.png)
+
+**Save access rules** replaces every rule on that provider with what is on
+screen, so edit the whole card and save once.
+
+These rules apply only to institution providers. A provider a user configured
+themselves is private to them and has nobody to grant it to.
+
+## Keeping providers up to date
+
+### Changing a provider
+
+The edit pencil reopens the same form. The key field is empty and the stored
+key is shown masked above it, with the rule attached: leave it blank and the
+key is kept, type in it and the key is replaced.
+
+![Editing a provider and keeping its stored key](/img/ai_llm_admin_edit_provider.webp)
+
+Changing the endpoint or the protocol without supplying a new key **drops the
+stored key**, so that a key issued for one host is never sent to another.
+
+### Removing a key without removing the provider
+
+The bin beside the key field does this — useful when a key is withdrawn and its
+replacement has not arrived yet. It warns you first: the provider stops working
+for everyone until a new key is entered.
+
+![Removing a stored API key](/img/ai_llm_admin_delete_key.webp)
+
+### Deleting a provider
+
+The bin at the end of a row asks in the row itself, not in a dialog, and states
+the consequence: its key is removed and everyone routed to it falls back to the
+first remaining provider. Its access rules and any per-task routing pointing at
+it go too.
+
+![Deleting an institution provider](/img/ai_llm_admin_delete_provider.webp)
+
+## Assigning a model to a task
+
+There is **no task-to-model control on this screen.** Sending a particular task
+to a particular provider or model is each user's own choice, in their profile —
+see [Task routing](../ui/ai_features#send-one-task-to-a-specific-model). What
+you control is which models they may choose from, through the rules in step 4.
+
+## Reference
+
+### Where model lists come from
+
+The models offered in the rules and in each user's task routing are read from
+the provider itself, not from configuration. The answer is cached for 30
+minutes per endpoint, protocol and key. A preset's `models:` list is consulted
+only when the endpoint reports none at all.
 
 ### Environment variables
 
 | Variable | Purpose |
 | --- | --- |
-| `LLM_API_KEY_ENCRYPTION_KEY` | Secret from which the encryption key for stored API keys is derived. Outside production it falls back to the application `secret_key_base`. |
-| `LLM_ALLOW_PRIVATE_ENDPOINTS` | When set, allows *user-configured* endpoints to point at loopback and private network addresses (for example a local Ollama). |
+| `LLM_API_KEY_ENCRYPTION_KEY` | Secret the encryption key for stored API keys is derived from. Outside production it falls back to `secret_key_base`. |
+| `LLM_ALLOW_PRIVATE_ENDPOINTS` | Allows *user-configured* endpoints to point at loopback and private addresses, for example a local Ollama. |
 
 By default a user-configured endpoint may not address loopback, link-local
 (including cloud metadata addresses) or private ranges, and host names are
-re-checked when the connection is made. Institution providers configured by an
-admin are exempt from this restriction.
+re-checked when the connection is made. **Institution providers you configure
+are exempt**, which is the intended way to offer a locally hosted model.
 
 ### Task definitions
 
 Each AI task is a YAML file under `config/llm_tasks/`. The branch ships one,
-`sds_extraction.yml`, which defines the prompts, the output format (JSON), the
-sampling temperature, the token limit, the request timeout, whether the task runs
-inline or as a background job, and which validator normalises the model's answer.
-Adding a file adds a task to the registry; no code change is needed for the
-registry itself.
+`sds_extraction.yml`, defining the prompts, the JSON output format, the
+sampling temperature, token limit and timeout, whether it runs inline or as a
+background job, and which validator normalises the answer. Adding a file adds a
+task; no code change is needed.
 
-### Requirements for SDS extraction
+## Privacy and auditing
 
-- **Ghostscript** must be available on the ELN worker — it converts the stored
-  SDS PDF to text before anything is sent to the model.
-- Background jobs must be processed: SDS extraction runs as a delayed job on the
-  `extract_sds` queue.
+Every task execution writes a structured `[LlmAudit]` line to the Rails log:
+timestamp, task, user, provider, model, the credential-stripped endpoint, and
+the outcome. There is no database-backed audit table yet.
 
-## Auditing and privacy
-
-Every task execution writes a structured `[LlmAudit]` line to the Rails log,
-containing timestamp, task name, user, provider, model, the (credential-stripped)
-endpoint, and success or error. There is no database-backed audit table yet.
-
-Keep in mind that the text sent to a provider leaves the ELN installation. For
-SDS extraction, that is the text of the sections *Identification*, *Hazard
-identification*, *Composition*, *Exposure controls* and *Physical and chemical
-properties* of the SDS PDF. Choose the endpoint accordingly, and inform your
-users which service their data is sent to.
+**Text sent to a provider leaves the ELN installation.** For SDS extraction
+that is the *Identification*, *Hazard identification*, *Composition*, *Exposure
+controls* and *Physical and chemical properties* sections of the stored PDF.
+Choose the endpoint accordingly, and tell your users which service their data
+goes to — their AI settings show them the endpoint, but not your contract with
+it.

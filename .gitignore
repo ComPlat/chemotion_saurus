@@ -26,3 +26,8 @@ website/node_modules/*
 .idea/
 .vscode/
 .devcontainer/
+
+# Capture workspace for documentation media: the ELN environment, the scripted
+# flows, their fixtures and the provenance sidecars. Working material - only
+# the finished files it produces are copied into static/img.
+/capture/
