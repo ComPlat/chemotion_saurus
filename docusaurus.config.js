@@ -58,7 +58,8 @@ module.exports = {
           docsPluginId: "default",
           className: "docs-version-dropdown docs-version-dropdown--eln",
           versions: {
-            current: { label: "ELN v3.x" },
+            current: { label: "ELN v4.x" },
+            v3: { label: "ELN v3.x" },
             v2: { label: "ELN v2.x" },
           },
         },
@@ -122,19 +123,32 @@ module.exports = {
           showLastUpdateTime: true,
           showLastUpdateAuthor: false,
           routeBasePath: "/",
-          // ELN's "current" tree is the latest release itself (unlike
-          // LabIMotion's below, where "current" is the in-progress next
-          // version) -- so cutting a new major version means snapshotting
-          // today's "current" as the new old version *before* moving on:
+          // Cutting a new major version snapshots today's docs/ tree as the
+          // version that is *ending*, before work on the next one begins:
           //   npm run docusaurus -- docs:version <version-that-is-ending, e.g. v3>
-          // That freezes today's docs/ tree into versioned_docs/version-<id>
-          // and adds <id> to versions.json. Then update the `versions` map
-          // below (and the matching navbar dropdown entry) to add the new
-          // frozen version's label and relabel "current" for the version
-          // now being developed.
-          lastVersion: "current",
+          // That freezes docs/ into versioned_docs/version-<id> and adds <id>
+          // to versions.json. Then update the `versions` map below (and the
+          // matching navbar dropdown entry) to add the frozen version's label
+          // and relabel "current" for the version now being developed.
+          //
+          // `lastVersion` is the version served at the root (/docs/...) and
+          // offered as the default; every other version gets a path prefix.
+          // Keep it pointing at the latest *shipped* release:
+          //   - while the next version is unreleased, that is the newest
+          //     frozen snapshot (today: "v3"), and the in-progress docs/ tree
+          //     is served under /docs/next/ as ELN v4.x.
+          //   - once v4 ships, move lastVersion to "current".
+          // This is the same arrangement LabIMotion uses below. Note that
+          // moving lastVersion changes which tree is served without a prefix,
+          // which in turn changes what the relative links in each tree's root
+          // index.mdx resolve to -- see the note in AGENTS.md; the build does
+          // not catch that class of error.
+          lastVersion: "v3",
           versions: {
             current: {
+              label: "ELN v4.x",
+            },
+            v3: {
               label: "ELN v3.x",
             },
             v2: {
