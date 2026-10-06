@@ -58,8 +58,8 @@ module.exports = {
           docsPluginId: "default",
           className: "docs-version-dropdown docs-version-dropdown--eln",
           versions: {
-            current: { label: "Version 3.x" },
-            v2: { label: "Version 2.x" },
+            current: { label: "ELN v3.x" },
+            v2: { label: "ELN v2.x" },
           },
         },
         {
@@ -68,8 +68,8 @@ module.exports = {
           docsPluginId: "labimotion",
           className: "docs-version-dropdown docs-version-dropdown--labimotion",
           versions: {
-            current: { label: "Version 2.2" },
-            "2.1": { label: "Version 2.1" },
+            current: { label: "LabIMotion v2.2" },
+            "2.1": { label: "LabIMotion v2.1" },
           },
         },
       ],
@@ -135,10 +135,10 @@ module.exports = {
           lastVersion: "current",
           versions: {
             current: {
-              label: "3.x",
+              label: "ELN v3.x",
             },
             v2: {
-              label: "2.x",
+              label: "ELN v2.x",
             },
           },
         },
