@@ -10,7 +10,6 @@
     "start": "docusaurus start --host 127.0.0.1 --port 3000",
     "build": "docusaurus build && node scripts/prune-build-img.js",
     "swizzle": "docusaurus swizzle",
-    "deploy": "docusaurus deploy",
     "serve": "docusaurus serve",
     "clear": "docusaurus clear",
     "lint": "eslint ."
