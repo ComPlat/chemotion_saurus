@@ -147,6 +147,10 @@ docker network create proxy
 
 2. Then, create the `nginx.conf` file in the same folder as the `docker-compose` file. The contents of the file should look as follows:
 
+{/* TODO(v4) ASSUMPTION: nmrium.nmrxiv.org was removed from frame-src below, as
+    a bundled NMRium wrapper is served same-origin. Restore it if the ELN still
+    frames the hosted instance. */}
+
 ```nginx
 server {
     listen 443 ssl;
@@ -159,7 +163,7 @@ server {
 
     resolver 127.0.0.11; # this bit is very important as it allows nginx and docker to cooperate
 
-    add_header Content-Security-Policy "default-src 'self' 'unsafe-inline' 'unsafe-eval' ; worker-src 'self' blob: ; connect-src 'self' ws: blob: commonchemistry.cas.org dx.doi.org doi.org api.crossref.org; font-src 'self' data: ; frame-src 'self' nmrium.nmrxiv.org ; img-src 'self' data: ; upgrade-insecure-requests;" ;
+    add_header Content-Security-Policy "default-src 'self' 'unsafe-inline' 'unsafe-eval' ; worker-src 'self' blob: ; connect-src 'self' ws: blob: commonchemistry.cas.org dx.doi.org doi.org api.crossref.org; font-src 'self' data: ; frame-src 'self' ; img-src 'self' data: ; upgrade-insecure-requests;" ;
 
     location / {
         proxy_pass http://eln:4000;

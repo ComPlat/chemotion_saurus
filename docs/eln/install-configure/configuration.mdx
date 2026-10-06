@@ -302,27 +302,40 @@ production:
 
 ## NMRium
 
-Starting from Chemotion ELN version 1.5, to integrate [NMRium](https://nmrium.nmrxiv.org/) into an instance, please add the following to the `spectra.yml` in the `./shared/pullin/config` folder.
+{/* TODO(v4) ASSUMPTION: this section is rewritten on the basis that v4 ships the
+    NMRium wrapper in-built. Each assumption is marked below -- please correct
+    any that do not match what ships.
+    Open questions:
+      1. Does `nmriumwrapper.url` survive as an optional override, for pointing
+         at a self-hosted or pinned wrapper? Documented below as "no longer
+         required", which leaves room for it to still be honoured.
+      2. Is NMRium still disableable at all, and if so how?
+      3. Which exact v4 release introduces this? "4.0" is assumed.
+*/}
+
+From Chemotion ELN version 4.0 onwards, the [NMRium](https://nmrium.nmrxiv.org/)
+wrapper ships with the ELN. No external wrapper service has to be reached, and
+**no registration with a hosting service is required**.
+
+{/* ASSUMPTION: bundled, so no spectra.yml entry is needed. */}
+Nothing has to be added to `spectra.yml` in `./shared/pullin/config` for NMRium
+itself. The ChemSpectra entry is still configured as before:
 
 ```yaml
 production:
   :chemspectra:
     :url: "http://spectra:4000"
-  :nmriumwrapper:
-    :url: "https://nmrium.nmrxiv.org/v1.0.0/"
 ```
 
-Here the `nmriumwrapper.url` value depends on the version of Chemotion ELN in use. The compatibility between the ELN and the wrapper is as follows:
+:::note[Upgrading from 3.x or earlier]
 
-| Version of Chemotion ELN | Version(s) of NMRium wrapper |
-| ------------------------ | ---------------------------- |
-| 3.0.0                    | 1.0.0                        |
-| 2.1.1 & 2.2.0            | 1.0.0                        |
-| 1.9.3, 1.10.5 & 2.0.1    | 0.8.0                        |
+Earlier versions reached an externally hosted wrapper, configured through a
+`:nmriumwrapper:` block in `spectra.yml` and matched to the ELN version through a
+compatibility table. That block is no longer required. For the configuration
+that applies to those versions, see the
+[3.x documentation](/docs/eln/install-configure/configuration#nmrium).
 
-So, for e.g. ELN version 3.0.0, please set `nmriumwrapper.url` to `https://nmrium.nmrxiv.org/v1.0.0/`.
-
-To be able to access these URLs successfully, registration with the hosting service is required. Please contact the [Helpdesk](https://chemotion.net/helpdesk) or see [here](https://github.com/NFDI4Chem/nmrium-react-wrapper#public-instance) for more details.
+:::
 
 ## QR, Barcode and Datamatrix Stickers
 

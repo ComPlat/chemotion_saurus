@@ -88,9 +88,15 @@ Chemotion relies on Docker volumes to preserve data. User data will be stored in
   | Chemotion file format `converter`     | 1.4.1                 | Yes      |
   | Ketcher render backend (`ketchersvc`) | 1.4.1                 | Yes      |
   | Spectra (`spectra`)                   | 1.1.2p220401          | Yes      |
-  | [NMRium](configuration#nmrium)        | 1.5.0                 | Yes      |
 
   Optional services can be disabled by removing/commenting-out their entry in the `docker-compose.yml` file.
+
+  {/* TODO(v4) ASSUMPTION: NMRium is dropped from this table because the wrapper
+      now ships in-built rather than running as a separate compose service. If
+      it is still a compose service -- or still disableable -- restore a row for
+      it and say how. */}
+  [NMRium](configuration#nmrium) was an optional service up to version 3.x. From
+  4.0 it ships with the ELN and is no longer configured here.
 
 ## Upgrades
 
