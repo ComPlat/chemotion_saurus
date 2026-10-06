@@ -23,13 +23,22 @@ owns one coherent area. Replace the R# labels with real names before sharing.
 | **R3** | **Admin & OpenStats** | `eln/admin/**`, `services/third-party-apps/OpenStats/**`, `services/third-party-apps/index.mdx` | M (+6 shots) | Admin panels, permissions, feature toggles, third-party-app registration. |
 | **R4** | **Devices — spectroscopy & MS** (NMR, MS, UV-Vis/IR/Raman, electronic spectroscopy, microscopy, DSC/TGA) | `eln/devices/{nmr,ms,uv-vis-nir-ir-raman,electronic-spectroscopy,microscopy,dsc-tga}/**` | S–M | Per-instrument: software names, versions, file formats, transfer setup. |
 | **R5** | **Devices — chromatography & data collection** (GC, HPLC/LC-MS, collector configs, overview) | `eln/devices/{gc-gc-ms,hplc-lc-ms,configurations}/**`, `eln/devices/{index,list}.mdx` | M | Per-instrument config + the shared data-collection / transfer mechanisms. |
-| **R6** | **Core UI — shell, collections, inbox + screenshot QA** (top bar, main page, collections, calendar, view, toolbar, details, first steps, inbox) + general ELN pages | `eln/ui/{index,inbox,calendar,view,toolbar,first-steps,details}.mdx`, `eln/ui/collections/**`, `eln/{faq,index,releases,troubleshooting,videos}.mdx` | **L (+36 shots)** | **Owns the v3 screenshot/GIF sanity-check** — every shot must show v3 UI, not v2 — plus the collection-management flow. |
+| **R6** | **Core UI — shell, collections, inbox + screenshot QA** (top bar, main page, collections, calendar, view, toolbar, details, first steps, inbox) + general ELN pages | `eln/ui/{index,inbox,calendar,view,toolbar,first-steps,details}.mdx`, `eln/ui/collections/**`, `eln/{faq,index,releases,troubleshooting,videos}.mdx` | **L (+36 shots)** | **Owns the v3 screenshot/GIF sanity-check** — every shot under `docs/` must show v3 UI, not v2 — plus the collection-management flow. Scope is `docs/` only; see the note below on the v2 mirror. |
 | **R7** | **UI content tools & editors** (lists, import, rich-text & templates, comments, history, hyperlinks, images, barcodes, ontology) | `eln/ui/{lists,import,text-editor,text-templates,comments,history,hyperlink,images,barcodes,ontology}.mdx` | M–L | Import/column-mapping, editors, barcode config — click through each. |
 | **R8** | **Elements, Ketcher & SmartAdd** — samples, reactions, wellplates, cell lines, macromolecules; drawing structures; assembling data with SmartAdd | `eln/ui/elements/**`, `eln/ui/ketcher.mdx`, `eln/ui/inventory.mdx`, `services/smartadd/**` | M–L | Do element types, properties, the reaction table, mixtures, and Ketcher steps match the app and make chemical sense? |
 | **R9** | **LabIMotion (generic elements)** — designer + user (71 small pages) | `labimotion/**` | **L (71 files)** | Template designer (layers/fields/types) + end-user usage; mostly small pages, high file count. |
 | **R10** | **Spectra & analytical-data standards** — ChemSpectra processing + repository metadata standards per technique | `services/chemspectra/**`, `repo/details-standards/**` | M | Are technique workflows (NMR/MS/IR/CV/…), file formats, and required-metadata standards correct? |
 | **R11** | **Repository & lab→publish workflow** — submission, review, embargo, DOIs, physical samples, RADAR | `repo/workflow/**`, `repo/{doi,labeling,physical-samples,references,viewer,faq,fundings,index}.mdx`, `repo/interfaces/**`, `repo/settings-preparation/**`, `eln/interfaces/radar.mdx` | M | Is the publish workflow (states, roles, embargo, DOI minting) accurate end-to-end? |
 | **R12** | **Services & integrations** — ChemConverter, ChemLocalLink, ChemScanner, ChemMobile, Ketcher service, TLC | `services/{chemconverter,chemlocallink,chemscanner,chemobile,ketcher}/**`, `services/third-party-apps/tlc/**` | M–L | Integration/setup correctness; the TLC churn is mostly lint-reformatting (skimmable). |
+
+> **The v2 mirror is out of scope.** `versioned_docs/version-v2/**` is a frozen
+> snapshot of the v2 release and deliberately keeps **v2-era** imagery — a
+> snapshot that showed v3 screenshots would misrepresent the release it
+> documents. So "every shot must show v3 UI" below means every shot in
+> `docs/` (the current release). Where a v2 page genuinely needs its own
+> media, it lives under `static/img/v2/…` mirroring the docs path; otherwise
+> the v2 tree simply reuses the current `static/img/…` files. Do not file
+> "this is v2 imagery" against a page under `versioned_docs/`.
 
 _Coverage: every routed page under `docs/` is assigned exactly once. `docs/_old_pages/**` is deprecated/unrouted — out of scope. The two heaviest are **R6** (owns the ~36 v3 screenshots) and **R9** (71 small LabIMotion files)._
 
@@ -42,7 +51,7 @@ _Coverage: every routed page under `docs/` is assigned exactly once. `docs/_old_
 4. See only your changes: `git diff main...HEAD -- <your paths>`.
 
 **Per page — check in this order (stop on a blocker)**
-1. **Screenshots/GIFs** show the **v3** UI (correct buttons, panels, layout) — flag any stale v2 imagery.
+1. **Screenshots/GIFs** show the **v3** UI (correct buttons, panels, layout) — flag any stale v2 imagery. This applies to `docs/` only (see below).
 2. **Steps** are correct and in order — actually click through them in the instance.
 3. **Facts** — versions, file formats/extensions, ports, paths, parameters, device/software names.
 4. **Links & anchors** resolve and point to the *right* page (the build already blocks truly broken links).
