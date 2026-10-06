@@ -14,12 +14,12 @@ Welcome to the development documentation of the Chemotion ELN.
 
 ## Setting up a development environment
 
-We recommend setting up a development environment in a Visual Studio Code devcontainer.
+The Chemotion team recommends setting up a development environment in a Visual Studio Code devcontainer.
 You can find more information [here](development/environment).
 
 ## Learning resources
 
-To learn more about the technologies we're using on the project, have a look at the following
+To learn more about the technologies used on the project, have a look at the following
 [resources](development/learn).
 
 ## Technologies
@@ -44,8 +44,8 @@ The assets are compiled with [Webpacker](https://github.com/rails/webpacker).
 There are currently multiple directories containing **assets** (e.g., under `app`, `public`, `vendor`, `tmp`).
 The **app/assets** directory was the main directory for storing assets in the previous version with Rails 4.
 With the implementation of Webpacker the assets moved to **app/packs**.
-For example, the JavaScript files with all React components formerly lived in `app/assets/javascripts` and now moved to `app/packs/src`.
-`app/packs/src` contains a directory for each single-page application (SPA). For example, the user-facing SPA lives in is the `app/packs/src/components`.
+For example, the JavaScript files with all React components formerly lived in `app/assets/javascripts` and have now moved to `app/packs/src`.
+`app/packs/src` contains a directory for each single-page application (SPA). For example, the user-facing SPA lives in `app/packs/src/components`.
 The **stylesheets** directory is still located under `app/assets`.
 
 ### config
@@ -53,7 +53,7 @@ The **stylesheets** directory is still located under `app/assets`.
 Contains the configuration of the application. For example, **database.yml** contains the configuration of the database.
 The **environments** subdirectory contains the three environments provided by Rails by default (i.e., **development**, **production**, and **test**).
 The **initializers** subdirectory contains the configuration of extensions.
-For instance, in the **devise** subdirectory, we configure a [package](https://github.com/heartcombo/devise) for authentication which takes care of the mail sender and passwords.
+For instance, in the **devise** subdirectory, a [package](https://github.com/heartcombo/devise) for authentication is configured, which takes care of the mail sender and passwords.
 
 ### lib
 
@@ -70,7 +70,7 @@ When creating, e.g., a new reaction, the application will create an image for it
 
 ### spec
 
-Contains Ruby and JavaScript unit test, as well as feature/acceptance tests.
+Contains Ruby and JavaScript unit tests, as well as feature/acceptance tests.
 
 ### uploads
 
