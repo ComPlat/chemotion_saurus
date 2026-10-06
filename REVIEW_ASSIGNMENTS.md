@@ -31,14 +31,21 @@ owns one coherent area. Replace the R# labels with real names before sharing.
 | **R11** | **Repository & lab→publish workflow** — submission, review, embargo, DOIs, physical samples, RADAR | `repo/workflow/**`, `repo/{doi,labeling,physical-samples,references,viewer,faq,fundings,index}.mdx`, `repo/interfaces/**`, `repo/settings-preparation/**`, `eln/interfaces/radar.mdx` | M | Is the publish workflow (states, roles, embargo, DOI minting) accurate end-to-end? |
 | **R12** | **Services & integrations** — ChemConverter, ChemLocalLink, ChemScanner, ChemMobile, Ketcher service, TLC | `services/{chemconverter,chemlocallink,chemscanner,chemobile,ketcher}/**`, `services/third-party-apps/tlc/**` | M–L | Integration/setup correctness; the TLC churn is mostly lint-reformatting (skimmable). |
 
-> **The v2 mirror is out of scope.** `versioned_docs/version-v2/**` is a frozen
-> snapshot of the v2 release and deliberately keeps **v2-era** imagery — a
-> snapshot that showed v3 screenshots would misrepresent the release it
-> documents. So "every shot must show v3 UI" below means every shot in
-> `docs/` (the current release). Where a v2 page genuinely needs its own
-> media, it lives under `static/img/v2/…` mirroring the docs path; otherwise
-> the v2 tree simply reuses the current `static/img/…` files. Do not file
-> "this is v2 imagery" against a page under `versioned_docs/`.
+> **The v2 mirror is out of scope for screenshot QA.** "Every shot must show v3
+> UI" means every shot in `docs/` (the current release). Please don't file
+> screenshot findings against pages under `versioned_docs/` — nobody is
+> assigned to them and they are not part of this review.
+>
+> For context on what that tree actually contains: most of it reuses
+> `current`'s media rather than holding its own (as of 2026-10-06, 390 of 400
+> media references in `versioned_docs/version-v2/` point at the same
+> `static/img/…` files as `docs/`), so many v2 pages render today's
+> screenshots. Where a v2 page does need its own media — currently only the
+> inventory set — it lives under `static/img/v2/…`, mirroring the docs path.
+>
+> **If you recapture a file, check it first:**
+> `grep -rn "<basename>" versioned_docs`. Replacing a shared file in place
+> also changes the v2 page.
 
 _Coverage: every routed page under `docs/` is assigned exactly once. `docs/_old_pages/**` is deprecated/unrouted — out of scope. The two heaviest are **R6** (owns the ~36 v3 screenshots) and **R9** (71 small LabIMotion files)._
 
