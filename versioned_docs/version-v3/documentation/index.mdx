@@ -1,0 +1,143 @@
+---
+title: About this Documentation
+sidebar_label: This Documentation
+sidebar_position: 99
+---
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChartBar, faCheck, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { Btn } from "@site/src/js/btn.js";
+
+:::info
+
+This page explains how to edit content on this site (a Docusaurus instance for Chemotion, hosted at KIT): the contribution workflow, the page metadata convention, and the site-specific Markdown/MDX components. For setting up a local environment, understanding the repository structure, or cutting a documentation version, see [Maintaining](maintaining.mdx).
+
+:::
+
+This site is built with [Docusaurus](https://docusaurus.io), so content is written in Markdown with optional React/JSX (`.mdx` files). For Markdown/MDX syntax beyond what's covered here, see the [official Docusaurus Markdown guide](https://docusaurus.io/docs/markdown-features).
+
+Before editing, check the [style guide](style-guide.mdx) for this site's naming and formatting conventions (e.g. "Chemotion ELN", third-person tone).
+
+## Editing
+
+### Without write access to the repository
+
+Edit via GitHub: click **Edit this page** at the bottom of any page (including this one) to open it in GitHub's editor. On your first edit, GitHub prompts you to fork the repository -- fork once, then keep it in sync before each subsequent edit by [clicking "Fetch upstream"](https://docs.github.com/en/github/collaborating-with-pull-requests/working-with-forks/syncing-a-fork), otherwise you risk editing a stale copy.
+
+After making changes, GitHub walks you through opening a pull request against `chemotion_saurus`; a maintainer reviews and merges it.
+
+### With write access to the repository
+
+Clone the repository and edit locally (see [Maintaining](maintaining.mdx#local-setup) for setup), or edit directly on GitHub as above and push to a branch. Merged changes to `main` deploy automatically -- check [GitHub Actions](https://github.com/ComPlat/chemotion_saurus/actions/workflows/build.yml) for build status.
+
+## New page
+
+Use `.mdx` as the file extension, and start every file with a frontmatter block:
+
+```markdown
+---
+id: videos_eln
+sidebar_label: Videos
+title: Introduction Videos
+---
+```
+
+- `id`: unique document id; defaults to the filename (without extension) if omitted.
+- `title`: page heading.
+- `sidebar_label`: optional, shortened label for the sidebar.
+- `sidebar_position`: optional number controlling order among sibling pages.
+
+New pages appear in the sidebar automatically, ordered by `sidebar_position` -- no separate table-of-contents file to edit (see [Maintaining](maintaining.mdx#repository-structure) for how that works). Create the file in the right instance's folder for what you're documenting:
+
+- [new Chemotion ELN page](https://github.com/ComPlat/chemotion_saurus/new/main/docs/eln)
+- [new Chemotion Repository page](https://github.com/ComPlat/chemotion_saurus/new/main/repo-docs)
+- [new Chemotion LabIMotion page](https://github.com/ComPlat/chemotion_saurus/new/main/labimotion-docs)
+
+## Site-specific Markdown/MDX
+
+### Images, GIFs, videos, files
+
+Assets live under `static/`. The path differs depending on whether you insert the image in Markdown or in HTML/React:
+
+```md
+![Export Menu](/img/documentation/export_menu.png)
+```
+
+```js
+<img
+  src={require("@site/static/img/documentation/export_menu.png").default}
+  width={"30px"}
+  height={"30px"}
+  alt={"replacement_title"}
+/>
+```
+
+SVGs need to be imported as a React component:
+
+```js
+import Sample from "@site/static/img/documentation/sample.svg";
+// more content here
+<Sample title="Sample" className="logo" width={"30px"} height={"30px"} />;
+```
+
+### Buttons
+
+Use the shared `Btn` component for inline buttons combining text and [Font Awesome](https://fontawesome.com) icons (colors come from the [Infima](https://infima.dev/docs/components/button) palette):
+
+```javascript
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChartBar, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { Btn } from "@site/src/js/btn.js";
+
+<Btn mixed={[faChartBar, " 1", faCheck]} color={"secondary"} />;
+```
+
+...produces <Btn mixed={[faChartBar, " 1", faCheck]} color={"warning"}/>
+
+For a button that `Btn` doesn't cover (a different size, for example), use a plain `<button>` with Infima's classes directly:
+
+```javascript
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
+
+<button className={"button button--sm button--success"} style={{padding:"2px", height: "50%", width: "50%"}}>
+  <FontAwesomeIcon icon={faPlus} size="lg"/>
+</button>
+```
+
+<button
+  className={"button button--sm button--success"}
+  style={{ padding: "2px", height: "50%", width: "50%" }}
+>
+  <FontAwesomeIcon icon={faPlus} size="lg" /> long text
+</button>
+
+To let readers download a file, upload it to [`static/files`](https://github.com/ComPlat/chemotion_saurus/upload/main/static/files) and use `DownloadBtn`:
+
+```
+import { DownloadBtn } from '@site/src/js/download_files.js'
+
+<p><DownloadBtn files={['/files/template_sample_import.xlsx']} text={"Download XLSX Template here "}/></p>
+```
+
+### Links
+
+**Always link to pages on this site with a relative Markdown link** (`[samples](elements/samples)`), never with an absolute `/docs/...` path or a full `https://...` URL. An absolute path always resolves to the *current* version of the target page, even from an older one (v2, LabIMotion 2.1, or the in-progress "next") -- so it silently sends a reader on an old page to the wrong version's copy of the page they clicked through to. A relative link is resolved within whichever version the reader is already on, so it always lands on the right one.
+
+The one exception: linking from one docs instance into a *different* one (e.g. a LabIMotion page linking to an ELN page) needs an absolute `/docs/<instance>/...` path, because a relative link can't reach across instances. Since Repository and LabIMotion are unaffected by the ELN's own versioning, this is safe there; it's just non-portable if that *target* instance is later versioned too.
+
+:::warning[A gotcha on a folder's own index page]
+
+A relative link is resolved against the *rendered URL* of the page it's on, not the location of its source file on disk -- and for an `index.mdx`, those two differ by one level, because Docusaurus serves `eln/admin/index.mdx` at the URL `.../eln/admin`, not `.../eln/admin/index`. So from *inside* `docs/eln/admin/index.mdx`, a link to its own sibling `docs/eln/admin/user-management.mdx` has to be written `[...](admin/user-management)` -- **including the containing folder's own name** -- not the more intuitive-looking `[...](user-management)`, which actually escapes the folder and points at `.../eln/user-management` instead. Every other page (anything that isn't an `index.mdx`) behaves as expected, since its disk location and its URL are the same depth. When in doubt, check the built page's link with `npm run build` (`onBrokenLinks: "throw"` catches a wrong one).
+
+:::
+
+Reserve React's `<Link to="...">` for cases Markdown links can't express.
+
+### A gotcha: Markdown links inside a React/JSX block
+
+If a paragraph mixes Markdown text with React/JSX elements, Markdown-style links inside that block sometimes fail to resolve. If that happens, rewrite the link as `<Link to="...">` (`import Link from "@docusaurus/Link"`) instead.
+
+### Admonitions
+
+The highlighted info/warning/danger boxes (like the one at the top of this page) are called [admonitions](https://docusaurus.io/docs/markdown-features/admonitions) in Docusaurus.
