@@ -6,7 +6,7 @@ export function Gallery({ links, titles }) {
   return (
     <div>
       {links.map((link, idx) => (
-        <div>
+        <div key={link}>
           <h3>{titles[idx]}</h3>
           <YouTubeFrame
             src={link}
