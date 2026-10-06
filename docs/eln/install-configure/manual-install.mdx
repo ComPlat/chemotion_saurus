@@ -91,12 +91,11 @@ Chemotion relies on Docker volumes to preserve data. User data will be stored in
 
   Optional services can be disabled by removing/commenting-out their entry in the `docker-compose.yml` file.
 
-  {/* TODO(v4) ASSUMPTION: NMRium is dropped from this table because the wrapper
-      now ships in-built rather than running as a separate compose service. If
-      it is still a compose service -- or still disableable -- restore a row for
-      it and say how. */}
-  [NMRium](configuration#nmrium) was an optional service up to version 3.x. From
-  4.0 it ships with the ELN and is no longer configured here.
+  [NMRium](configuration#nmrium) was a separate optional service up to version
+  3.x. From 4.0 the ELN image serves the wrapper itself, so it is no longer a
+  compose service. It does need `PUBLIC_URL` set to the address the ELN is
+  reached at, on the `eln` service — otherwise saving from NMRium fails with
+  "Invalid Origin". See [NMRium](configuration#nmrium).
 
 ## Upgrades
 

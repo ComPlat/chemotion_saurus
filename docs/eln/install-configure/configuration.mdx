@@ -302,37 +302,75 @@ production:
 
 ## NMRium
 
-{/* TODO(v4) ASSUMPTION: this section is rewritten on the basis that v4 ships the
-    NMRium wrapper in-built. Each assumption is marked below -- please correct
-    any that do not match what ships.
-    Open questions:
-      1. Does `nmriumwrapper.url` survive as an optional override, for pointing
-         at a self-hosted or pinned wrapper? Documented below as "no longer
-         required", which leaves room for it to still be honoured.
-      2. Is NMRium still disableable at all, and if so how?
-      3. Which exact v4 release introduces this? "4.0" is assumed.
-*/}
+{/* TODO(v4): still assumed -- the exact v4 release that introduces this. "4.0"
+    is used below. Everything else here follows the ELN-side change that
+    self-hosts the wrapper. */}
 
-From Chemotion ELN version 4.0 onwards, the [NMRium](https://nmrium.nmrxiv.org/)
-wrapper ships with the ELN. No external wrapper service has to be reached, and
+From Chemotion ELN version 4.0 onwards, the ELN serves the
+[NMRium](https://nmrium.nmrxiv.org/) wrapper itself, from `public/nmrium/<version>/`
+inside the ELN image. Instances no longer depend on `nmrium.nmrxiv.org`, and
 **no registration with a hosting service is required**.
 
-{/* ASSUMPTION: bundled, so no spectra.yml entry is needed. */}
-Nothing has to be added to `spectra.yml` in `./shared/pullin/config` for NMRium
-itself. The ChemSpectra entry is still configured as before:
+The wrapper version is pinned by `NMRIUMWRAPPER_VERSION` in `.env`. It has to
+match the `NMRIUMWRAPPER` pin in the ELN's `.service-dependencies`, or the image
+build fails rather than shipping a mismatched pair.
+
+### Pointing at a different wrapper
+
+The `:nmriumwrapper:` entry in `spectra.yml` still exists; it is no longer
+something an administrator has to fill in. The image build rewrites it to the
+versioned path, so a shipped instance reads:
 
 ```yaml
 production:
   :chemspectra:
-    :url: "http://spectra:4000"
+    :url: "http://spectra:4000/"
+  :nmriumwrapper:
+    :url: "/nmrium/<version>/"
 ```
+
+The trailing slash is required — the wrapper loads its chunks relatively.
+
+To use the publicly hosted instance instead, override the file through
+`shared/pullin/config/spectra.yml`:
+
+```yaml
+production:
+  :nmriumwrapper:
+    :url: "https://nmrium.nmrxiv.org"
+```
+
+### Allowed origins
+
+The wrapper refuses messages from any parent origin that is not on its allowlist.
+A rejected message surfaces as a **failed save** with *"Invalid Origin"*, not as
+an error on opening, so it is easy to mistake for a different problem.
+
+**Set `PUBLIC_URL` to the address the ELN is reached at.** The ELN derives the
+allowlist from it at every start; nothing else has to be configured.
+
+```yaml
+services:
+  eln:
+    environment:
+      - PUBLIC_URL=https://eln.example.org
+```
+
+Include the scheme. The wrapper parses the value as a URL and silently ignores
+it if there is none, so `eln.example.org` does not work where
+`https://eln.example.org` does. The port does not matter — matching is by
+hostname.
+
+If `PUBLIC_URL` is not set the list is empty, which turns the check off and lets
+any origin drive the wrapper.
 
 :::note[Upgrading from 3.x or earlier]
 
-Earlier versions reached an externally hosted wrapper, configured through a
-`:nmriumwrapper:` block in `spectra.yml` and matched to the ELN version through a
-compatibility table. That block is no longer required. For the configuration
-that applies to those versions, see the
+Earlier versions reached an externally hosted wrapper, configured by pointing
+`:nmriumwrapper: :url:` at `https://nmrium.nmrxiv.org/<wrapper-version>/` and
+matching that version to the ELN through a compatibility table. Neither the table
+nor the registration step applies any more. For the configuration that applies to
+those versions, see the
 [3.x documentation](/docs/eln/install-configure/configuration#nmrium).
 
 :::

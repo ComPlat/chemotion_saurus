@@ -147,9 +147,9 @@ docker network create proxy
 
 2. Then, create the `nginx.conf` file in the same folder as the `docker-compose` file. The contents of the file should look as follows:
 
-{/* TODO(v4) ASSUMPTION: nmrium.nmrxiv.org was removed from frame-src below, as
-    a bundled NMRium wrapper is served same-origin. Restore it if the ELN still
-    frames the hosted instance. */}
+{/* From v4 the NMRium wrapper is served by the ELN itself, so frame-src no
+    longer needs nmrium.nmrxiv.org. Instances that override spectra.yml back to
+    the public wrapper must add it again. */}
 
 ```nginx
 server {
