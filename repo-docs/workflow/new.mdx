@@ -1,0 +1,94 @@
+---
+title: Making a New Entry
+author: Nicole Jung
+sidebar_position: 1
+---
+
+import { YouTubeFrame } from "@site/src/js/layout";
+import dataTransfer from "@site/static/img/repo/workflow/new/data_transfer.png";
+
+:::tip
+
+Since version 3, a submission can also be started straight from the welcome page with the **New Entry**
+button, without opening the ELN first. For a single characterized compound the
+[quick submission wizard](quick-entry) is the shortest route; the same dialog also opens the full
+sample and reaction editors described below.
+
+:::
+
+## Adding data without ELN support
+
+To add data to the repository, the user has to follow five steps:
+Users may have a look at this video, where the Chemotion team added an example of how to add data after step 5:
+
+<YouTubeFrame src="https://www.youtube-nocookie.com/embed/TSAuiqdkM4Y" />
+
+(1) create an account
+
+![The repository landing page, logged out, with the Sign Up link highlighted](/img/repo/v3/new-entry/01-create-account.png)
+
+(2) select “My DB”
+![The landing page once signed in, with the My DB navigation entry highlighted](/img/repo/v3/new-entry/02-select-mydb.png)
+
+(3) select “My data”
+![The My DB workspace with the My Data collection selected in the sidebar](/img/repo/v3/new-entry/03-select-my-data.png)
+
+(4) draw a molecule
+![The Create menu in the workspace toolbar, with Create Sample highlighted](/img/repo/v3/new-entry/04-draw-molecule.png)
+
+via the editor
+![The structure editor open, with a molecule drawn in it](/img/repo/v3/new-entry/05-molecule-editor.png)
+
+INFO: adding a molecule is only one example. Users can add [reactions](/docs/eln/ui/elements/reactions) as well by selecting reactions and addition of molecules in their function as starting material, reagent or product.
+
+(5) add data
+![A sample's Analyses tab, with the Add analysis button highlighted](/img/repo/v3/new-entry/06-add-data.png)
+
+Add data to the new item (e.g. analysis files) or others via the information fields. Please ensure that the mandatory information is given, otherwise, the submission will not be processed.
+
+## Transfer data from Chemotion ELN
+
+The transfer of data directly from the Chemotion ELN to the repository is the easiest way for users to disclose their data in only a few steps. The transfer of data makes the time consuming upload of data obsolete.
+
+(1) create a personal account in the repository (see issue (1) above)
+
+(2) Select data in ELN
+![](/img/repo/workflow/new/3f837263-364d-48a6-871e-2166b9316f61_image_20191030-26466-rzerea.png)
+
+Go to your ELN and select the data (data assigned to molecules or reactions) you want to disclose and select the assign to button.
+
+(3) Assign your data
+![](/img/repo/workflow/new/3f837263-364d-48a6-871e-2166b9316f61_image_20191030-26466-1s4g0m0.png)
+
+Assign the data to the collection “chemotion.net”
+
+(4) Transfer your data
+![](/img/repo/workflow/new/3f837263-364d-48a6-871e-2166b9316f61_image_20191030-26466-6itukm.png)
+
+Press the cloud button and follow the instructions given in the black box. When transferring data for the first time, the user has to click the cloud button twice. The first time creates a token to transfer data, the second click initiates the transfer.
+
+When the user returns to their account in the repository, the data can be found in the collection “ELN Gate”
+
+(5) Check in Repository
+![](/img/repo/workflow/new/3f837263-364d-48a6-871e-2166b9316f61_image_20191030-26466-919en8.png)
+
+### Status Tracking
+
+During the data transfer process, the user will receive the first message with a Job ID in Chemotion ELN once the data has been packed and sent to the Chemotion Repository. After the Chemotion Repository has received the data, the user will receive the second message with the same Job ID. As the import process runs in the background in the Chemotion Repository, the user will receive the third message with the same Job ID once the data has been processed.
+
+<div align="center">
+  <img src={dataTransfer} alt="Data Transfer from ELN to Repository" />
+</div>
+
+### Link Back to ELN
+
+Users can click on the button at the top of the detail page with the tooltip "Go to original ELN xxx," which will directly link back to the original data in ELN.
+
+### Video Tutorial
+
+Please refer to the visualized video below:
+
+<YouTubeFrame
+  src="https://www.youtube-nocookie.com/embed/PMeDUJlISVI"
+  title="Sync Dataset from LabIMotion Hub"
+/>

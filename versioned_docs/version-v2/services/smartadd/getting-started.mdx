@@ -1,0 +1,107 @@
+---
+title: Getting Started
+sidebar_position: 1
+---
+import { YouTubeFrame } from "@site/src/js/layout";
+
+# Getting Started with SmartAdd
+
+Welcome! Let's get you up and running with SmartAdd. It's easier than you think.
+
+## What You'll Need
+
+Don't worry - the requirements are simple:
+
+- **Modern Browser**: Chrome, Firefox, Safari, or Edge (any recent version works great)
+- **Your Data**: Analytical data files or ZIP archives of your datasets
+- **That's It!**: No installation needed. SmartAdd runs right in your browser, and your data is automatically saved in browser storage so you won't lose anything when you refresh the page. 
+
+## Let's Get Started
+
+### 1. Open SmartAdd
+
+Just open SmartAdd in your browser. You'll see a simple, clean interface:
+- **Left Side**: Where you'll upload files and find action buttons
+- **Right Side**: Your workspace with the tree view and editor, and some action buttons
+
+### 2. Upload Your Data
+
+You can upload data in two ways - pick whichever feels easier:
+
+#### Individual Files
+Just drag your analytical files into the "Drag files here" area. That's it! SmartAdd processes them instantly and shows you the organized structure.
+
+#### ZIP Archive (We Recommend This!)
+Got a bunch of files? Package them in a ZIP first, then drag the ZIP into SmartAdd. It'll automatically extract and organize everything for you.
+
+:::tip[Why ZIP Files?]
+ZIP archives make life easier when you're working with:
+- Lots of files at once
+- Complex folder structures you want to preserve
+- Large datasets (uploads faster as a single file)
+- Related files that need to stay together
+:::
+
+### 3. Explore Your Data
+
+Once your files are uploaded, you'll see them in the **input list on the left side**:
+- All uploaded files appear here, organized in a simple list
+- This is your file inventory - ready to be assigned to samples and reactions analysis/datasets
+- You'll drag files from here to the assignment tree on the right
+
+On the **right side**, you'll build your collection structure:
+- Use "Add Sample" and "Add Reaction" buttons to create your hierarchy
+- The hierarchy works like this: **Reactions** → **Samples** → **Analyses** → **Analysis** → **Dataset** → **Files**
+- Drag files from the left input list to assign them to samples and reactions on the right
+
+It's intuitive - just click around and explore!
+
+### 4. Make Your First Edit
+
+Ready to edit something? Here's how:
+1. Click on any sample, reaction, or analysis in the tree
+2. A properties panel appears with fields you can edit
+3. Click on any field and start typing
+4. Your changes save automatically - no "Save" button needed!
+
+**Enhanced Editing Features:**
+- **Rich Text Editor**: Description fields use the Quill editor with formatting tools (bold, italic, lists, headers)
+- **Structure Editor**: Click "Draw Structure" to use the integrated Ketcher molecular editor for creating MOL files
+- **Real-time Validation**: SMILES and MOL files are validated as you type with instant feedback
+- **Smart Auto-Save**: Changes are automatically saved with debouncing to prevent data loss
+
+### 5. Send Your Data to Chemotion
+
+When you're happy with your organized data, you have two ways to export:
+
+#### Download as ZIP
+The classic approach:
+1. Review everything looks good
+2. Click **Download as ZIP**
+3. Save the file
+4. Upload it to Chemotion whenever you're ready
+
+#### Direct Upload (The New Way!)
+Skip the middleman:
+1. Click **Upload to Chemotion ELN**
+2. Enter your Chemotion server URL
+3. Log in with your credentials
+4. SmartAdd sends everything directly - done!
+
+## What's Next?
+
+You've got the basics down! Want to learn more?
+- **[Workflow Guide](workflow)**: See the complete workflow in detail
+- **[Tips & Best Practices](tips-best-practices)**: Learn the tricks that make things easier
+- **[Troubleshooting](troubleshooting)**: Having issues? We've got you covered
+
+## Quick Start Video
+
+Prefer to watch? Here's a complete video tutorial showing everything in action:
+
+<div style={{position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', maxWidth: '100%', marginTop: '1rem'}}>
+  <YouTubeFrame
+    src="https://www.youtube-nocookie.com/embed/AsqBYxL-Fv0"
+    title="SmartAdd Quick Start Tutorial"
+  />
+</div>
