@@ -17,7 +17,7 @@ import { DownloadBtn } from "@site/src/js/download_files.js";
 
 Available from ELN v1.1.1 onwards: Using the inventory collection with different users that can move items into or create items in the inventory.
 Available from ELN v2 onwards: Importing storage temperature, expiration date, and volume fields for chemical samples.
-Available from ELN v4 onwards: Adding, editing and removing safety phrases (H- and P-statements, GHS pictograms) manually in the inventory tab.
+Available from ELN v4 onwards: Adding, editing, and removing safety phrases (H- and P-statements, GHS pictograms) manually in the inventory tab.
 
 :::
 
@@ -153,10 +153,10 @@ The <Btn mixed={["fetch Chemical Properties"]} color={"secondary"} /> function i
 ### Adding safety phrases manually
 
 Safety phrases do not have to come from a vendor query. The safety section contains an editor that lets
-users curate the safety phrases of a chemical entry by hand, which is useful when no safety data sheet can
-be found, when the vendor returns incomplete results, or when a substance is prepared in-house.
+users curate the safety phrases of a chemical entry by hand, which is useful when no safety data sheet
+(SDS) can be found, when the vendor returns incomplete results, or when a substance is prepared in-house.
 
-The editor is always shown at the bottom of the safety section and is organised into three parts:
+The editor is always shown at the bottom of the safety section and is organized into three parts:
 
 - **Hazard Statements** — the H-codes of the chemical (for example `H225`).
 - **Precautionary Statements** — the P-codes of the chemical (for example `P210`).
@@ -167,7 +167,7 @@ The editor is always shown at the bottom of the safety section and is organised 
 The editor panel is limited in height and scrolls internally, so a chemical with
 many statements does not push the rest of the inventory tab out of view. The
 screenshot above shows all three sections at once; in the running ELN the lower
-sections may have to be scrolled to.
+sections may have to be scrolled into view.
 
 #### adding a phrase
 
@@ -206,8 +206,8 @@ becomes permanent only after the inventory tab is saved.
 
 :::caution
 
-A **successful** vendor query replaces the complete content of the editor: clicking
-<Btn mixed={["fetch safety phrases"]} color={"secondary"} /> and receiving phrases back overwrites the
+A **successful** vendor query replaces the complete content of the editor: if the query run with
+<Btn mixed={["fetch safety phrases"]} color={"secondary"} /> returns phrases, they overwrite the
 lists, so manual additions and removals made before the query are lost. It is therefore advisable to run
 the vendor query first and to refine the result by hand afterwards.
 
