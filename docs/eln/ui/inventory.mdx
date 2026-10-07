@@ -155,6 +155,16 @@ vendor search finds.
 
 #### Reading a sheet
 
+:::caution[Not in a released version yet]
+
+The extraction rework described in this subsection lives on an unmerged ELN
+feature branch. It is **not in v4.0.0-rc**, which still shows the vendor
+**fetch safety phrases** and **fetch Chemical Properties** buttons described in
+the note at the end of this section. Treat what follows as what is coming, not
+as what your installation has today.
+
+:::
+
 Every saved sheet has its own **Extract from sheet** button, which fills in the
 chemical's hazard statements, pictograms and physical properties from the PDF.
 Two routes are offered:
@@ -173,12 +183,16 @@ Extracted hazard statements land in the editor described in
 [Adding safety phrases manually](#adding-safety-phrases-manually), where they
 can be reviewed and corrected.
 
-:::info[Vendor queries have been replaced]
+:::info[What replaced the vendor queries]
 
-Earlier versions offered **fetch safety phrases** and **fetch Chemical
-Properties** buttons, which queried the vendor's website. Both have been
-removed, along with the rest of the vendor-scraping route. The same information
-now comes from the stored sheet itself, through **Extract from sheet** above.
+Up to and including v4.0.0-rc the section offers **fetch safety phrases** and
+**fetch Chemical Properties**, which query the vendor's website. Fetching
+properties has not worked for some time; enter those values by hand in the
+`Properties` tab instead.
+
+Both buttons, and the whole vendor-scraping route behind them, are removed on
+the branch that introduces **Extract from sheet**: the same information then
+comes from the stored sheet itself.
 
 :::
 
