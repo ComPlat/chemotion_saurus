@@ -120,33 +120,65 @@ This section contains the following fields:
 
 ### Safety List
 
-- The Safety section is an interactive feature that allows users to search for and access safety data sheets (SDS) and safety phrases related to specific chemicals.
-- Users can select the vendor associated with their query, choosing from the <Btn mixed={["Vendor"]} color={"secondary"} /> drop-down list options such as All, Thermo Fischer, and Merck. Selecting "All" will search for SDS on both vendors' websites.
-- The <Btn mixed={["Query SDS using"]} color={"secondary"} /> button provides a dropdown list for users to select whether to search using the CAS (Chemical Abstracts Service) number or common name of the chemical.
-- The <Btn mixed={["Choose Language of SDS"]} color={"secondary"} /> dropdown list offers three language options: English, German, and French. If no results are found with the chosen language, results will be displayed with the default query language (English).
-- After selecting the search parameters, users can initiate the search query by clicking the <Btn mixed={["Search for SDS"]} color={"secondary"} /> button.
-- The search results will be displayed, and users can click on the results _tag link_ to open a new tab directing them to the vendor's safety data sheet.
-- It is recommended for users or administrators to first verify if the displayed results are associated with the desired chemical.
-- If results match the specific chemical, users can save the safety sheet to the Electronic Laboratory Notebook (ELN) by clicking the save button next to the relevant result tag. A green check mark icon will appear next to the result element tag, if SDS is saved successfully.
-- Once saved, users can initiate additional search queries to retrieve safety phrases or search for chemical and physical properties related to the chemical.
-- Users have the option to delete the saved data sheet by clicking the delete icon <Btn mixed={[faTrash]} color={"danger"}/> button.
-- The <Btn mixed={["Search for SDS"]} color={"secondary"} /> button will be disabled, once one SDS is saved. To enable another search query, the user has to delete any saved SDS first.
-- Additionally, users can access the vendor's product webpage by clicking the external link icon <Btn mixed={[faExternalLink]} color={"secondary"} /> button.
-- The user can query the safety phrases for this chemical from the vendor by clicking the <Btn mixed={["fetch safety phrases"]} color={"secondary"} /> button. Results render below as depicted in the image below.
-  ![safety bar](/img/eln/ui/inventory/inventoryTab_safety_list.png)
-  The fetched phrases are written into the safety phrases editor described in [Adding safety phrases manually](#adding-safety-phrases-manually), where they can be reviewed and corrected.
+The Safety section finds safety data sheets (SDS) for a chemical, keeps them
+with the entry, and reads the hazard information out of them.
 
-- The <Btn mixed={["fetch Chemical Properties"]} color={"secondary"} /> button is intended to make a search query for chemical and physical properties related to the chemical and save them to the respective fields in the sample properties tab.
-  Sometimes fetched results cannot be saved automatically if the fetched values cannot be accepted by ELN for some fields. In this case the user can view and modify the entered values manually.
-  Fetched properties can be viewed by clicking the results icon <Btn mixed={[faFileText]} color={"secondary"} /> button next to fetch button. The video below shows the fetch chemical properties process as it was originally designed.
+#### Finding and saving a sheet
 
-  <video controls>
-    <source src={require("@site/static/img/eln/ui/inventory/fetch_chemical_properties_chemical.webm").default} />
-  </video>
+Set the three search controls, then press
+<Btn mixed={["Search for SDS"]} color={"secondary"} />:
 
-:::caution
+- <Btn mixed={["Vendor"]} color={"secondary"} /> — **Sigma-Aldrich**,
+  **Thermofisher**, or **All vendors (PubChem)**. The last one looks the
+  substance up in PubChem rather than searching a single supplier.
+- <Btn mixed={["Query SDS using"]} color={"secondary"} /> — search by
+  **Common Name**, **CAS** number, or **Product Number**.
+- <Btn mixed={["Choose Language of SDS"]} color={"secondary"} /> — **English**,
+  **Deutsch** or **French**. If nothing is found in the chosen language, the
+  results fall back to English.
 
-The <Btn mixed={["fetch Chemical Properties"]} color={"secondary"} /> function is **currently not functional**. The button is still present in the Safety section, but retrieving chemical and physical properties from the vendor no longer works. Please enter these values manually in the `Properties` tab. The video above therefore shows the intended behaviour, not the current one. All other functions of the Safety section (SDS search, saving SDS, and fetching safety phrases) are unaffected.
+Results appear in groups, five at a time, with **Show more** to see the rest.
+Each result links to the vendor's sheet so it can be checked before keeping it.
+Check that a result really is the right substance before saving it.
+
+Save a result with the save button on its row; a green check mark confirms it.
+Saved sheets move into **Safety Sheets saved in the database**, which shows a
+counter such as `1 of 5`.
+
+![The Safety section](/img/eln/ui/inventory/inventoryTab_safety_list.png)
+
+A chemical can keep **up to five** sheets. At the limit, saving is refused
+until one is deleted with its <Btn mixed={[faTrash]} color={"danger"}/> button —
+but **searching is never blocked**, however many sheets are saved. The `+`
+button beside the search controls attaches a sheet by hand, for substances no
+vendor search finds.
+
+#### Reading a sheet
+
+Every saved sheet has its own **Extract from sheet** button, which fills in the
+chemical's hazard statements, pictograms and physical properties from the PDF.
+Two routes are offered:
+
+- the **built-in reader**, which parses the sheet on the server in seconds and
+  is the default, and
+- **AI extraction**, which is offered when an administrator has configured an
+  AI service.
+
+A sheet attached by hand can be read exactly like one found by a search. The
+document icon next to the button shows the properties the built-in reader
+found. Both routes, the choice between them and how to review the result are
+described in [AI features](ai-features#extracting-safety-data-from-an-sds).
+
+Extracted hazard statements land in the editor described in
+[Adding safety phrases manually](#adding-safety-phrases-manually), where they
+can be reviewed and corrected.
+
+:::info[Vendor queries have been replaced]
+
+Earlier versions offered **fetch safety phrases** and **fetch Chemical
+Properties** buttons, which queried the vendor's website. Both have been
+removed, along with the rest of the vendor-scraping route. The same information
+now comes from the stored sheet itself, through **Extract from sheet** above.
 
 :::
 
@@ -206,13 +238,13 @@ becomes permanent only after the inventory tab is saved.
 
 :::caution
 
-A **successful** vendor query replaces the complete content of the editor: if the query run with
-<Btn mixed={["fetch safety phrases"]} color={"secondary"} /> returns phrases, they overwrite the
-lists, so manual additions and removals made before the query are lost. It is therefore advisable to run
-the vendor query first and to refine the result by hand afterwards.
+A **successful** extraction replaces the complete content of the editor: when
+**Extract from sheet** finds hazard statements, they overwrite the lists, so
+manual additions and removals made beforehand are lost. Run the extraction
+first, then refine the result by hand.
 
-A query that returns nothing leaves the existing phrases untouched — if the vendor has no data for the
-chemical, or the lookup fails, only a warning is shown and the editor keeps its content.
+An extraction that finds nothing leaves the existing phrases untouched — only a
+warning is shown and the editor keeps its content.
 
 :::
 
@@ -281,7 +313,11 @@ User can use `Disposal information` field to save any information related to the
 The Import and Export of chemical data functionality has been integrated into the core ELN export/import data feature within the Chemotion ELN platform. For a comprehensive understanding of the fundamental procedures involved in importing and exporting various elements and samples within the ELN system, users can check the [Import and Export data](toolbar?-highlight=xlsx#import-and-export-data-to-and-from-the-chemotion-eln) section.
 Users are provided with the flexibility to choose between exporting/importing individual chemical samples or multiple selected samples. Export and import are reached through two separate paths:
 
-- **Export** uses the `Export` button in the collection toolbar ![Export Menu](/img/eln/ui/inventory/action_bar_import_export.png), which offers **Export samples from selection** and **Export reactions from selection**. Chemical entries are exported with the **Export samples from selection** option.
+- **Export** uses the <img
+    src="/img/eln/ui/inventory/action_bar_import_export.png"
+    alt="Export"
+    style={{ height: "1.9em", width: "auto", verticalAlign: "middle" }}
+  /> button in the collection toolbar, which offers **Export samples from selection** and **Export reactions from selection**. Chemical entries are exported with the **Export samples from selection** option.
 - **Import** is not part of the toolbar. It is started from the dropdown menu next to a collection's name in the collection tree on the left, using the **Import samples to collection** entry.
 
 Chemical samples are imported from an XLS/XLSX sheet and exported as XLSX or SDF.

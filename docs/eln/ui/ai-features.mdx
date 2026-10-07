@@ -137,43 +137,68 @@ retried, and the request is never sent to a different provider.
 This is the feature the rest of the page exists to support.
 
 Open the sample, go to the **Inventory** tab and find the **Safety** section.
-The row of the stored safety data sheet holds the extraction controls:
+Each safety data sheet listed there — whether it was found by a search or
+attached by hand — carries its own **Extract from sheet** button.
 
-![The AI extraction controls in the Safety section](/img/eln/ui/ai-features/ai_sds_extraction_button.png)
+![The Extract from sheet button and its mode picker](/img/eln/ui/ai-features/ai_sds_extraction_button.png)
 
-If the row can be read both ways, a toggle offers **AI** (read the stored PDF
-with a model) or **Vendor site** (the older route, which scrapes the supplier's
-page). With only one route possible, no toggle is drawn.
+There are two ways to read a sheet, and the button asks which one you want:
 
-**To run it:** make sure **AI** is selected, then click **Extract Safety
-Data** — the sparkle button.
+- **Built-in reader** — the default. The server parses the PDF itself and
+  answers in seconds. It needs no AI service and nothing leaves the
+  installation.
+- **AI extraction** — your AI provider reads the sheet. It takes up to a
+  minute, and the result is worth reviewing.
 
-<video controls>
-  <source src={require("@site/static/img/eln/ui/ai-features/ai_sds_extraction.webm").default} />
-</video>
+**To run it:** click **Extract from sheet** and choose one.
 
-The work happens in the background. The button reads *Extracting…*, and the tab
-fills in by itself when the result arrives — typically in well under a minute.
+:::note
 
-After about ninety seconds the button resets and reports that it is taking longer
-than usual. **That is a message about the button, not the job.** The page keeps
-checking quietly for around seven minutes, a notification arrives when the
-extraction finishes, and the data appears on its own. Navigating away is safe —
-the result is waiting the next time the tab is opened.
+If no AI provider is configured for you, there is nothing to choose: the button
+runs the built-in reader straight away and no picker appears. That is the
+normal state in an installation that has not set up an AI service, and it is
+not a fault.
 
-### If the button is disabled
+:::
 
-- **No AI provider is configured.** Set one up above, or ask an
-  administrator.
-- **The safety sheet was attached by hand.** Then there is no stored PDF to
-  read, and the row shows a plain disabled button with an information icon
-  instead of the sparkle. This is not a fault.
+The button is disabled only when the sheet is not saved yet — a search result
+you have not kept, where the tooltip reads *Save the safety data sheet first* —
+or while another extraction or SDS search is still running on that tab. A sheet
+you attached by hand is extractable like any other.
 
 Running an extraction needs the same permission as editing the sample.
 
+### The built-in reader
+
+The fastest route, and the one to reach for first. The button reads *Reading
+sheet…* while it works, and a notice titled **Read from the safety data sheet**
+summarises what happened: how many H and P phrases were written, which sample
+properties were set, and which values it had to skip because the sample field
+cannot hold that unit.
+
+If the sheet yields nothing, a red line appears under the controls rather than
+a notice — *Nothing could be read from this sheet*, with the reason when there
+is one.
+
+### AI extraction
+
+The button reads *Extracting with AI…* and the work continues in the
+background. A notice confirms it has started; the safety data appears on its
+own when the job finishes.
+
+After about ninety seconds the button resets and reports that it is taking
+longer than usual. **That is a message about the button, not the job.** The
+page keeps checking quietly for around seven minutes, and a notification
+arrives when the extraction completes. Navigating away is safe — the result is
+waiting the next time the tab is opened.
+
+If the extraction fails, the notification names the model and the provider that
+were used, which is usually enough to tell a bad model name from an endpoint
+that is down.
+
 ### What the extraction returns
 
-Only the useful parts of the PDF are sent: *Identification*, *Hazard
+Only the useful parts of the PDF are read: *Identification*, *Hazard
 identification*, *Composition*, *Exposure controls* and *Physical and chemical
 properties*. Headings are recognized in several languages.
 
@@ -182,24 +207,31 @@ From the answer the ELN fills in:
 - **H, EUH and P statements**, mapped to the standard phrase texts
 - **GHS pictograms**, derived from the codes
 - **physico-chemical properties** — boiling and melting point, flash point,
-  density, vapor pressure, solubility, viscosity, pH, explosive limits, form,
-  color, refractive index, purity — which are also copied into the sample's
-  own properties where they fit
+  density, solubility, form, color and refractive index — which are also copied
+  into the sample's own properties where the unit fits. Values in a unit the
+  sample field cannot take are reported as skipped rather than silently
+  dropped.
 
 Mixtures are handled as mixtures: instead of one CAS number the result lists
 the components with their names, CAS numbers and concentrations.
 
 ### Checking the result
 
-The document icon beside the extraction button opens **Extracted Data using
-LLM**: what the model returned, when, and which model produced it. It stays
-disabled until an extraction has run for that sample.
+The two routes keep their results in different places, which is easy to trip
+over:
 
-![The Extracted Data using LLM dialog](/img/eln/ui/ai-features/ai_extracted_data_modal.png)
+- **Built-in reader** — the document icon beside **Extract from sheet** opens
+  **Fetched Chemical Properties** for that sheet. It stays disabled until the
+  built-in reader has run on that row.
+- **AI extraction** — open **Extract from sheet** again and use the
+  **View last AI extraction** link at the bottom of the picker. It opens
+  **Extracted Data using AI**, showing what the model returned, when, and which
+  model produced it — including a note when the model you asked for was
+  unavailable and the default answered instead. The link only appears once an
+  AI extraction has run, and only while an AI provider is configured.
 
-Read it as *what the model found in the attached PDF*, which is not necessarily
-the substance the sample is named after. In the example above the stored sheet
-is the one for p-xylene, and the extracted data describes p-xylene.
+Read either as *what was found in the attached PDF*, which is not necessarily
+the substance the sample is named after.
 
 ## Before trusting the result
 
