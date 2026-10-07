@@ -147,6 +147,10 @@ docker network create proxy
 
 2. Then, create the `nginx.conf` file in the same folder as the `docker-compose` file. The contents of the file should look as follows:
 
+{/* From v4 the NMRium wrapper is served by the ELN itself, so frame-src no
+    longer needs nmrium.nmrxiv.org. Instances that override spectra.yml back to
+    the public wrapper must add it again. */}
+
 ```nginx
 server {
     listen 443 ssl;
@@ -159,7 +163,7 @@ server {
 
     resolver 127.0.0.11; # this bit is very important as it allows nginx and docker to cooperate
 
-    add_header Content-Security-Policy "default-src 'self' 'unsafe-inline' 'unsafe-eval' ; worker-src 'self' blob: ; connect-src 'self' ws: blob: commonchemistry.cas.org dx.doi.org doi.org api.crossref.org; font-src 'self' data: ; frame-src 'self' nmrium.nmrxiv.org ; img-src 'self' data: ; upgrade-insecure-requests;" ;
+    add_header Content-Security-Policy "default-src 'self' 'unsafe-inline' 'unsafe-eval' ; worker-src 'self' blob: ; connect-src 'self' ws: blob: commonchemistry.cas.org dx.doi.org doi.org api.crossref.org; font-src 'self' data: ; frame-src 'self' ; img-src 'self' data: ; upgrade-insecure-requests;" ;
 
     location / {
         proxy_pass http://eln:4000;
