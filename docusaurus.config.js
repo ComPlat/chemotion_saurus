@@ -210,6 +210,23 @@ module.exports = {
     [
       "@docusaurus/plugin-content-docs",
       {
+        id: "meta",
+        path: "meta-docs",
+        routeBasePath: "documentation",
+        sidebarPath: require.resolve("./sidebars-meta.js"),
+        editUrl: "https://github.com/ComPlat/chemotion_saurus/edit/main/",
+        showLastUpdateTime: true,
+        showLastUpdateAuthor: false,
+        // Documentation about this documentation site. Deliberately
+        // unversioned (no `versions`): it describes the repository, not a
+        // release of Chemotion, so versioning it only produced identical
+        // copies -- and, once lastVersion moved off "current", meant the
+        // default URL served a frozen copy that corrections never reached.
+      },
+    ],
+    [
+      "@docusaurus/plugin-content-docs",
+      {
         id: "repo",
         path: "repo-docs",
         routeBasePath: "repo",

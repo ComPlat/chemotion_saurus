@@ -1,7 +1,7 @@
 [
   {
     "from": "/documentation/style_guide",
-    "to": "/documentation/style-guide"
+    "to": "/documentation"
   },
   {
     "from": "/eln/admin/generic_config",
@@ -330,5 +330,13 @@
   {
     "from": "/services/third_party_apps/tlc/usage",
     "to": "/services/third-party-apps/tlc/usage"
+  },
+  {
+    "from": "/documentation/maintaining",
+    "to": "/documentation"
+  },
+  {
+    "from": "/documentation/style-guide",
+    "to": "/documentation"
   }
 ]
