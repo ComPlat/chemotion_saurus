@@ -6,7 +6,7 @@ sidebar_position: 1
 
 import { YouTubeFrame } from "@site/src/js/layout";
 
-The ELN follows the [semantic versioning](https://semver.org/) scheme. We strive to make releases on a regular basis. However, not all releases are packaged for external releases. After a round of feedback from internal users at KIT, only versions that are considered stable are released via the [chemCLI](install_configure/ChemCLI) tool.
+The ELN follows the [semantic versioning](https://semver.org/) scheme. The Chemotion team strives to make releases on a regular basis. However, not all releases are packaged for external releases. After a round of feedback from internal users at KIT, only versions that are considered stable are released via the [chemCLI](install-configure/ChemCLI) tool.
 
 ## Latest Releases
 
@@ -24,8 +24,8 @@ What this means in practice:
 
 - **Every collection has exactly one owner.** Existing collections are migrated
   automatically.
-- **There is one kind of share.** A share grants access to your own collection, and the
-  people you share it with see that collection live, under **Shared with me**. Synchronized
+- **There is one kind of share.** A share grants access to the owner's own collection, and
+  the people it is shared with see that collection live, under **Shared with me**. Synchronized
   collections are gone, because every share now behaves the way they did.
 - **Permission levels form a strict ladder**: *Read elements* → *Edit elements* → *Add
   elements* → *Remove elements* → *Manage shares* → *Pass ownership*. Existing shares are
@@ -36,7 +36,7 @@ What this means in practice:
 - **Ownership can be passed on**, as a two-step offer and acceptance: the owner offers
   ownership, and the recipient confirms with **Take ownership**.
 - **"Remove from all Collections" no longer deletes globally.** It unlinks the selection
-  from your own collections and deletes only the elements left in no collection at all.
+  from the user's own collections and deletes only the elements left in no collection at all.
 
 Collections that used to appear in the former *My shared collections* branch are gathered
 under an ordinary collection named **My projects with others** during the upgrade.
@@ -51,7 +51,7 @@ the full description, and the detailed release notes for version 4.0.0
 
 The new UI comes with several changes such as a new navigation structure, new UI adjustments (e.g. flexible change of the width), and changes to the reactions UI.
 
-The new navigation structure includes a new panel below the summary of collections for collection management, and is drag and drop accessible via new symbols. Inbox, weighing tasks, calendar and notification are moved to collection management.
+The new navigation structure includes a new panel below the summary of collections for collection management, and is drag and drop accessible via new symbols. [Inbox](ui/inbox), weighing tasks, [calendar](ui/calendar) and notifications are now reached from the top bar of the application.
 
 <YouTubeFrame
   src="https://www.youtube-nocookie.com/embed/aBNr3iJZdnM"
@@ -64,6 +64,8 @@ The reactions UI now provides additional information in the reaction table if mo
   src="https://www.youtube-nocookie.com/embed/kHCVjNP9hys"
   title="Changes to the Reactions UI"
 /><br/>
+
+In [ChemSpectra Cyclic Voltammetry](../services/chemspectra/cv), the Voltammetry data table moved from the right side of the panel to the bottom.
 
 See the detailed release notes for version 3.0.0 [here](https://github.com/ComPlat/chemotion_ELN/releases/tag/v3.0.0).
 

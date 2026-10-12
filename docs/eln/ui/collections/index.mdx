@@ -16,10 +16,10 @@ import { Btn } from "@site/src/js/btn.js";
 
 ## Collections: Organization, Function and Usage
 
-A **collection** groups the elements you work with — samples, reactions, wellplates,
-screens, research plans and others — usually along the lines of a project or a
-sub-project. Collections are the backbone of the ELN: without at least one of your own,
-there is nowhere to put your work.
+A **collection** groups elements — samples, reactions, wellplates, screens, research
+plans and others — usually along the lines of a project or a sub-project. Collections are
+the backbone of the ELN: without at least one of their own, a user has nowhere to put
+their work.
 
 ### The collection bar
 
@@ -32,25 +32,25 @@ collections. Some of its symbols:
 | <Btn mixed={[faCog]} color={"danger"}/> | open collection management |
 | <Btn mixed={[faPlus]} color={"success"}/> | open sub-collections |
 | <Btn mixed={[faMinus]} color={"success"}/> | close sub-collections |
-| <Btn mixed={[faShareAlt]} color={"secondary"}/> | this collection is shared — hover it to see with whom, or who shared it with you |
+| <Btn mixed={[faShareAlt]} color={"secondary"}/> | this collection is shared — hover it to see with whom, or who shared it |
 
-![The collection bar with its three groups](/img/collections/tree_overview.png)
+![The collection bar with its three groups](/img/eln/ui/collections/tree_overview.png)
 
 The bar is organized into up to three groups:
 
-- **My Collections** — the collections you own. Selecting the group header itself opens
-  the [**All**](#system-collections) collection.
-- **Shared with me** — collections other people or groups have shared with you, listed
-  under a row naming each owner. See [Sharing Collections](./sharing.mdx#shared-with-me).
+- **My Collections** — the collections the user owns. Selecting the group header itself
+  opens the [**All**](#system-collections) collection.
+- **Shared with me** — collections other people or groups have shared, listed under a row
+  naming each owner. See [Sharing Collections](./sharing.mdx#shared-with-me).
 - **chemotion-repo** — the repository collections, described
   [below](#system-collections).
 
-:::info[There is no separate branch for collections you share out]
+:::info[There is no separate branch for collections shared out]
 
-A collection that you own and have shared with someone else stays where it is, in **My
-Collections**. It is marked with the share icon
+A collection that is owned and has been shared with someone else stays where it is, in
+**My Collections**. It is marked with the share icon
 <Btn mixed={[faShareAlt]} color={"secondary"}/>, and hovering that icon lists the people
-and groups you shared it with, together with what each of them may do.
+and groups it was shared with, together with what each of them may do.
 
 :::
 
@@ -60,24 +60,24 @@ Some collections are provided by the ELN itself, because each has a job to do. T
 **locked**: their name, position and place in the tree are fixed, and they can never be
 renamed, moved, deleted, or nested inside another collection.
 
-Two of them, **All** and **chemotion-repository.net**, exist from the moment your account
+Two of them, **All** and **chemotion-repository.net**, exist from the moment an account
 is created. The third, **transferred**, appears inside the repository subtree the first
-time you hand data over to the repository.
+time data is handed over to the repository.
 
 #### `All`
 
-**All** gathers every element you own, across all of your collections. It is a safety net:
-if an element ever loses its assignment to a working collection, it is still reachable
-here and can be assigned again.
+**All** gathers every element a user owns, across all of their collections. It is a safety
+net: if an element ever loses its assignment to a working collection, it is still
+reachable here and can be assigned again.
 
-It is also the one place that searches across everything you own — useful when you are not
-sure which collection an entry belongs to.
+It is also the one place that searches across everything the user owns — useful when it is
+unclear which collection an entry belongs to.
 
 :::caution
 
-**All** is a backup view, not a workspace. While you are in **All**, moving elements and
-*Remove from current Collection* are disabled — there is no "current collection" to move
-them out of. Switch to one of your working collections to reorganize your elements.
+**All** is a backup view, not a workspace. Inside **All**, moving elements and *Remove
+from current Collection* are disabled — there is no "current collection" to move them out
+of. Switch to a working collection to reorganize elements.
 
 :::
 
@@ -86,9 +86,9 @@ them out of. Switch to one of your working collections to reorganize your elemen
 The **[chemotion-repository.net](https://www.chemotion-repository.net/home/welcome)**
 collection is the staging area for publishing to the Chemotion repository.
 
-On its own it is just a folder for structuring your own work — nothing in it is visible
-from outside. When you are ready to publish, you select the data in this collection and
-confirm their release to the repository. If the release falls within the term of a
+On its own it is just a folder for structuring work — nothing in it is visible from
+outside. To publish, select the data in this collection and confirm its release to the
+repository. If the release falls within the term of a
 competition (announced regularly on
 [chemotion-repository.net](https://www.chemotion-repository.net/home/welcome)), the
 entries are registered for it.
@@ -96,26 +96,26 @@ entries are registered for it.
 #### `transferred`
 
 **transferred** holds the elements that have already been handed over to the repository. It
-sits inside the repository subtree and is created for you the first time data is
-transferred, so you will not see it before then.
+sits inside the repository subtree and is created the first time data is transferred, so
+it does not appear before then.
 
 #### Working with system collections
 
 Although they cannot be restructured, system collections are not read-only. In collection
-management they appear in a pinned **System collections** section above your editable
-tree, where you can:
+management they appear in a pinned **System collections** section above the editable tree,
+where two actions are offered:
 
 - **Add share** and **Manage shares** — share them like any other collection, and
 - **Edit collection tabs** — set the element tabs shown for them.
 
 Two particularities are worth knowing:
 
-- Sharing **All** hands the recipient access to *every element you own*, including
-  elements you add later, so the ELN asks you to confirm first.
-- *Edit collection tabs* on **All** edits your **default** tab layout — the one used
+- Sharing **All** hands the recipient access to *every element its owner has*, including
+  elements added later, so the ELN asks for confirmation first.
+- *Edit collection tabs* on **All** edits the **default** tab layout — the one used
   wherever no collection-specific layout applies.
 
-![System collections in collection management](/img/collections/management_system.png)
+![System collections in collection management](/img/eln/ui/collections/management_system.png)
 
 Ownership of a system collection can never be passed on.
 
@@ -134,49 +134,49 @@ no collection is created and no reordering is kept.
 
 :::
 
-Think about a meaningful structure before you start. You can create as many collections as
-you like, but a journal you can still find your way around matters more. As a rule it
-makes sense to begin with one collection as your electronic journal, and perhaps a second
-one reproducing your chemical database.
+It is worth settling on a meaningful structure before starting. Any number of collections
+can be created, but a journal that stays navigable matters more. As a rule it makes sense
+to begin with one collection as the electronic journal, and perhaps a second one
+reproducing the chemical database.
 
 Each collection can be organized into sub-collections, which in turn can contain further
-sub-collections — much like folders on your computer. A sub-collection is created the same
+sub-collections — much like folders on a computer. A sub-collection is created the same
 way as a collection, and becomes a sub-collection by being indented to the right, by hand
 or by drag and drop. Again, the change takes effect only after
 <Btn mixed={["Update"]} color={"warning"}/>.
 
 :::info
 
-Sub-collections structure your work, but their contents are **not** mirrored into the
-collection above them. Keep this in mind when acting on a collection as a whole — when
-sharing it, for instance, where a separate option exists to include the whole branch.
+Sub-collections structure the work, but their contents are **not** mirrored into the
+collection above them. This matters when acting on a collection as a whole — when sharing
+it, for instance, where a separate option exists to include the whole branch.
 
 :::
 
-Collections you own can be sorted and restructured at any time. Collections that were
-shared with you cannot: they belong to their owner, and only the owner can rename, move or
+A user's own collections can be sorted and restructured at any time. Collections shared
+with them cannot: they belong to their owner, and only the owner can rename, move or
 delete them.
 
 ### Visibility
 
-Your own collections are always visible in the collection bar. Collections you have shared
-out are marked with <Btn mixed={[faShareAlt]} color={"secondary"}/> so that it stays
-obvious which of your data other people can reach, and collections shared with you appear
+A user's own collections are always visible in the collection bar. Collections they have
+shared out are marked with <Btn mixed={[faShareAlt]} color={"secondary"}/> so that it
+stays obvious which data other people can reach, and collections shared with them appear
 separately under **Shared with me**, grouped by their owner.
 
-![Shared collections marked in the collection bar](/img/collections/tree.png)
+![Shared collections marked in the collection bar](/img/eln/ui/collections/tree.png)
 
 How to share a collection, what each permission level allows, and what recipients can and
 cannot do, is described in [Sharing Collections](./sharing.mdx).
 
 :::info["My projects with others"]
 
-After an upgrade from version 3, you may find a collection named **My projects with
-others**. Earlier versions listed collections you had shared in a separate branch of the
-tree; version 4 does not, so the upgrade gathered those collections under this one node to
-keep them together.
+After an upgrade from version 3, a collection named **My projects with others** may
+appear. Earlier versions listed shared-out collections in a separate branch of the tree;
+version 4 does not, so the upgrade gathered those collections under this one node to keep
+them together.
 
-It is an ordinary collection — you can rename it, move its contents, or delete it once you
-have reorganized things to your liking.
+It is an ordinary collection — it can be renamed, its contents moved, or it can be deleted
+once things have been reorganized.
 
 :::

@@ -4,21 +4,9 @@ sidebar_label: Mixtures
 sidebar_position: 1
 ---
 
-:::info
-
-This feature is available from ELN version 3 onwards. If you are interested, please feel free to test it in our [demo ELN](https://demo.chemotion.ibcs.kit.edu/).
-
-:::
-
-:::danger[Caution]
-
-This page is still being edited and reviewed.
-
-:::
-
 ## Overview
 
-Currently, samples are treated as single molecules without categorization. However, we plan to classify samples into
+Currently, [samples](.) are treated as single molecules without categorization. However, the Chemotion team plans to classify samples into
 different types, including:
 - Mixtures
 - Polymers
@@ -39,7 +27,7 @@ Each mixture consists of multiple components, making it a powerful tool for hand
   - Allows adding, removing, and modifying components in a mixture.
 - **Advanced Calculations**
   - Computes total concentration based on individual component concentrations.
-  - Recalculate volume and amount dynamically.
+  - Recalculates volume and amount dynamically.
 - **Stock and Reference Tracking**
   - Supports stock concentration tracking and recalculations based on a reference component.
 - **Intuitive Drag-and-Drop UI**
@@ -51,18 +39,18 @@ The Mixtures module integrates seamlessly with the Sample element, offering an i
 
 ### Sample Type Selection
 
-!["Sample type selection"](/img/mixtures/mixture_1.png)
-!["Sample type selection options"](/img/mixtures/mixture_2.png)
+!["Sample type selection"](/img/eln/ui/elements/samples/mixtures/mixture_1.png)
+!["Sample type selection options"](/img/eln/ui/elements/samples/mixtures/mixture_2.png)
 
 ### Sample Element Updates
 
 Here is an overview of the default Sample interface:
 
-!["Default sample"](/img/mixtures/mixture_3.png)
+!["Default sample"](/img/eln/ui/elements/samples/mixtures/mixture_3.png)
 
 Once the Mixtures option is selected, the primary focus shifts to the **Components Table**:
 
-!["Sample with mixture"](/img/mixtures/mixture_4.png)
+!["Sample with mixture"](/img/eln/ui/elements/samples/mixtures/mixture_4.png)
 
 ### Key UI Elements
 - **Component List:** Displays all components within the mixture.
@@ -74,17 +62,21 @@ Once the Mixtures option is selected, the primary focus shifts to the **Componen
 Users can add components to a mixture using:
 
 1. **Drag-and-Drop:** Select components from the sample list and add them directly.
-2. **Drawing in Ketcher:** Draw the mixture using Ketcher 1 or 2.
+2. **Drawing in Ketcher:** Draw the mixture using [Ketcher](../../ketcher).
 3. **Hybrid Approach:** Combine both methods (e.g., draw two components and drag in a third to create a three-component
 mixture).
 
 ### Example: Creating a Mixture
 
-!["Demo 1"](/img/mixtures/mixture_5.gif)
+<video controls>
+  <source src={require("@site/static/img/eln/ui/elements/samples/mixtures/create_mixture.webm").default} />
+</video>
 
 Another example:
 
-!["Demo 2"](/img/mixtures/mixture_6.gif)
+<video controls>
+  <source src={require("@site/static/img/eln/ui/elements/samples/mixtures/create_mixture_2.webm").default} />
+</video>
 
 ## Calculations and Dependencies
 
@@ -126,7 +118,7 @@ recalculated based on predefined conditions.
 - The sum of the volumes of all components must not exceed this total value.
 - It is only a value given manually, i.e. volume by definition - not (re)calculated. Recalculation occurs only when
 the attributes of a component with a locked total concentration are modified.
-- If the combined volume of all components is less than the specified total volume, you are expected to add solvent(s)
+- If the combined volume of all components is less than the specified total volume, users are expected to add solvent(s)
 to compensate for the remaining volume.
 
 ### Required volume
@@ -135,7 +127,7 @@ mixture.
 - This is a calculated value based on the Reference component. Please use the reference (Ref) button to select the
 component.
 - It is used for informational purposes only and does not directly affect other attributes. The calculation is a helper
-for planning the reaction's components, it does not have impact on the component table.
+for planning the reaction's components; it does not have an impact on the component table.
 - This value is determined using input from the row where the reference component is defined.
 
 ## Changes in the Solvents Table
@@ -143,7 +135,7 @@ for planning the reaction's components, it does not have impact on the component
 - **Ratio Adjustments** occur automatically when volume is updated.
 - **Non-Visualized Solvents:** Some buffer solutions/solvents can be excluded from the combined SVG representation.
 
-!["Demo 2"](/img/mixtures/mixture_7.png)
+!["Demo 2"](/img/eln/ui/elements/samples/mixtures/mixture_solvents_table.png)
 
 ### 💡 Total Volume and Solvent Addition
 
@@ -151,7 +143,7 @@ The **total volume** of a sample refers to the final desired volume, including a
 
 When the **sum of the volumes of all components** in a mixture is **less than** the specified total volume, the
 remaining volume is typically filled by adding one or more **solvents**. This ensures the mixture reaches the intended
-inal volume.
+final volume.
 
 #### 📘 Example
 
@@ -166,8 +158,11 @@ Remaining volume:       3 mL
 In this case, 3 mL of solvent should be added to reach the total volume of 10 mL.
 ```
 
+## Already supported
+
+- Use mixtures in [reaction](../reactions) schemes
+- Import/export of mixture samples, including components
+
 ## Future Enhancements
 
-✅ Use mixtures in reaction schemes
-✅ Enable import/export of mixture samples, including components
 ✅ Improve searchability by mixture components

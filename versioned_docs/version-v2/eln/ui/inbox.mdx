@@ -1,0 +1,93 @@
+---
+title: Inbox Panel
+---
+
+In the Chemotion ELN, we have an inbox section. There are several ways we can have data in the User's inbox. It is
+closely linked with the integrated devices as well.
+
+## Transfer data to the inbox using email
+
+One of the easiest ways to transfer data to Chemotion ELN is to send it via email. Users can easily send themselves
+files by emailing them from their registered email addresses to some predefined email address. The email address to use
+for sending the files is now visible in the inbox popup window.
+
+![inbox_info](/img/eln/ui/inbox/inbox_info.png)
+
+Senders of files to this email address will receive them straight into their inbox.
+
+:::note[See details]
+
+Regarding the [Mail collector](../../eln/devices#mail-collector)
+
+:::
+
+## Transfer data to the inbox using data collector
+
+Data collector configurations have been done in many of the integrated devices. For these, files/folders are being
+collected automatically and when the name of the file/folder starts with a unique identifier registered with the
+Chemotion ELN user accounts, those reach the user's inbox at regular intervals of time.
+
+:::note[See details]
+
+Regarding the [Data collector](../../eln/devices#datacollectors-for-devices-with-lanwlan)
+
+:::
+
+## Manual upload
+
+Along with all these, users can manually upload some files in the inbox which they can later use in further analyses.
+
+## Moving files to elements (into the analyses section)
+
+### Manual import of files from the inbox into the analyses section
+
+When working with datasets, you can drag and drop files directly from the inbox into `Analyses`.
+
+<video controls>
+  <source src={require("@site/static/img/common/analyses_drag_inbox_files.webm").default} />
+</video>
+
+Alternatively, you can use the buttons next to the file in the inbox to open a dialog that suggests elements to that the data should be assigned to.
+In this dialog, you can select the appropriate element and assign the file to it. A new `Analysis` is created, including this file as a dataset.
+
+The list of available elements in the list of the inbox depends on the file name as the system automatically searches for elements with matching or partially matching names.
+
+:::note
+
+- Currently, only samples and reactions are supported.
+- The function to gain suggestions to assign data has to be enabled in the user configuration.
+
+:::
+
+![Move to Sample](/img/eln/ui/inbox/inbox_move_to_sample.png)
+
+:::info
+
+The file name (excluding the file extension) should contain:
+- The full name of the element or a part of it
+- The short label of the element or a part of it (e.g. CU1-1)
+
+:::
+
+### Automatic transfer of files from the inbox
+
+If the file name of an item in the inbox can be uniquely assigned to an existing element (currently only samples and reactions),
+the file will be automatically assigned to it.
+The automatic assignment of the data to the sample or reaction creates a new `Analysis` with the file added as a dataset.
+
+:::note
+
+This feature can be disabled in the user configuration.
+
+:::
+
+### Reaction variations link
+
+When you assign a file to a reaction and this reaction has one or multiple variations,
+the resulting `Analysis` can automatically be linked to a variation.
+To enable this, the filename needs to consist of:
+1. full name or short label (part)
+2. A minus (-) sign followed by **v** + variation index
+3. optional file extension
+
+Example name: CU1-R1-**v**1.dat

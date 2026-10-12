@@ -1,0 +1,10 @@
+# Normalise line endings in the repository to LF.
+#
+# Fourteen tracked files had CRLF, which produced whole-file diffs whenever an
+# editor rewrote one, and made otherwise-exact string edits fail to match.
+* text=auto eol=lf
+
+# Sample data under static/files/ is served for download and is fed to
+# instruments and to the ELN's own install check. It is kept byte-for-byte as
+# published, so git must not rewrite it.
+static/files/** -text
