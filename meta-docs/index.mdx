@@ -1,0 +1,331 @@
+---
+title: This Documentation
+sidebar_label: This Documentation
+sidebar_position: 1
+---
+
+Everything about the documentation site itself: how to edit it, how to write for
+it, and how to maintain it.
+
+This page is deliberately single and deliberately **unversioned** — it describes
+this repository rather than any release of Chemotion, so there is one copy of it
+instead of one per ELN version.
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChartBar, faCheck, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { Btn } from "@site/src/js/btn.js";
+
+:::info
+
+This page explains how to edit content on this site (a Docusaurus instance for Chemotion, hosted at KIT): the contribution workflow, the page metadata convention, and the site-specific Markdown/MDX components. For setting up a local environment, understanding the repository structure, or cutting a documentation version, see [Maintaining](#maintaining-the-site).
+
+:::
+
+This site is built with [Docusaurus](https://docusaurus.io), so content is written in Markdown with optional React/JSX (`.mdx` files). For Markdown/MDX syntax beyond what's covered here, see the [official Docusaurus Markdown guide](https://docusaurus.io/docs/markdown-features).
+
+Before editing, check the [style guide](#style-guide) for this site's naming and formatting conventions (e.g. "Chemotion ELN", third-person tone).
+
+## Editing
+
+### Without write access to the repository
+
+Edit via GitHub: click **Edit this page** at the bottom of any page (including this one) to open it in GitHub's editor. On your first edit, GitHub prompts you to fork the repository -- fork once, then keep it in sync before each subsequent edit by [clicking "Fetch upstream"](https://docs.github.com/en/github/collaborating-with-pull-requests/working-with-forks/syncing-a-fork), otherwise you risk editing a stale copy.
+
+After making changes, GitHub walks you through opening a pull request against `chemotion_saurus`; a maintainer reviews and merges it.
+
+### With write access to the repository
+
+Clone the repository and edit locally (see [Maintaining](#local-setup) for setup), or edit directly on GitHub as above and push to a branch. Merged changes to `main` deploy automatically -- check [GitHub Actions](https://github.com/ComPlat/chemotion_saurus/actions/workflows/build.yml) for build status.
+
+## New page
+
+Use `.mdx` as the file extension, and start every file with a frontmatter block:
+
+```markdown
+---
+id: videos_eln
+sidebar_label: Videos
+title: Introduction Videos
+---
+```
+
+- `id`: unique document id; defaults to the filename (without extension) if omitted.
+- `title`: page heading.
+- `sidebar_label`: optional, shortened label for the sidebar.
+- `sidebar_position`: optional number controlling order among sibling pages.
+
+New pages appear in the sidebar automatically, ordered by `sidebar_position` -- no separate table-of-contents file to edit (see [Maintaining](#repository-structure) for how that works). Create the file in the right instance's folder for what you're documenting:
+
+- [new Chemotion ELN page](https://github.com/ComPlat/chemotion_saurus/new/main/docs/eln)
+- [new Chemotion Repository page](https://github.com/ComPlat/chemotion_saurus/new/main/repo-docs)
+- [new Chemotion LabIMotion page](https://github.com/ComPlat/chemotion_saurus/new/main/labimotion-docs)
+
+## Site-specific Markdown/MDX
+
+### Images, videos, files
+
+Assets live under `static/`, outside the content tree -- images under `static/img/<section>/...` mirroring the page's own path, downloadable files under `static/files/`. The path you write differs depending on whether you insert the image in Markdown or in HTML/React:
+
+```md
+![Export Menu](/img/documentation/export_menu.png)
+```
+
+```js
+<img
+  src={require("@site/static/img/documentation/export_menu.png").default}
+  width={"30px"}
+  height={"30px"}
+  alt={"replacement_title"}
+/>
+```
+
+Short screen recordings are **webm**, not GIF, and are embedded as a video:
+
+```js
+<video controls>
+  <source src={require("@site/static/img/eln/ui/inventory/inventory_tab.webm").default} />
+</video>
+```
+
+SVGs need to be imported as a React component:
+
+```js
+import Sample from "@site/static/img/documentation/sample.svg";
+// more content here
+<Sample title="Sample" className="logo" width={"30px"} height={"30px"} />;
+```
+
+### Buttons
+
+Use the shared `Btn` component for inline buttons combining text and [Font Awesome](https://fontawesome.com) icons (colors come from the [Infima](https://infima.dev/docs/components/button) palette):
+
+```javascript
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChartBar, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { Btn } from "@site/src/js/btn.js";
+
+<Btn mixed={[faChartBar, " 1", faCheck]} color={"secondary"} />;
+```
+
+...produces <Btn mixed={[faChartBar, " 1", faCheck]} color={"warning"}/>
+
+For a button that `Btn` doesn't cover (a different size, for example), use a plain `<button>` with Infima's classes directly:
+
+```javascript
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
+
+<button className={"button button--sm button--success"} style={{padding:"2px", height: "50%", width: "50%"}}>
+  <FontAwesomeIcon icon={faPlus} size="lg"/>
+</button>
+```
+
+<button
+  className={"button button--sm button--success"}
+  style={{ padding: "2px", height: "50%", width: "50%" }}
+>
+  <FontAwesomeIcon icon={faPlus} size="lg" /> long text
+</button>
+
+To let readers download a file, upload it to [`static/files`](https://github.com/ComPlat/chemotion_saurus/upload/main/static/files) and use `DownloadBtn`:
+
+```
+import { DownloadBtn } from '@site/src/js/download_files.js'
+
+<p><DownloadBtn files={['/files/template_sample_import.xlsx']} text={"Download XLSX Template here "}/></p>
+```
+
+### Links
+
+**Always link to pages on this site with a relative Markdown link** (`[samples](elements/samples)`), never with an absolute `/docs/...` path or a full `https://...` URL. An absolute path always resolves to the *current* version of the target page, even from an older one (v2, LabIMotion 2.1, or the in-progress "next") -- so it silently sends a reader on an old page to the wrong version's copy of the page they clicked through to. A relative link is resolved within whichever version the reader is already on, so it always lands on the right one.
+
+The one exception: linking from one docs instance into a *different* one (e.g. a LabIMotion page linking to an ELN page) needs an absolute `/docs/<instance>/...` path, because a relative link can't reach across instances. Since Repository and LabIMotion are unaffected by the ELN's own versioning, this is safe there; it's just non-portable if that *target* instance is later versioned too.
+
+:::warning[A gotcha on a folder's own index page]
+
+A relative link is resolved against the *rendered URL* of the page it's on, not the location of its source file on disk -- and for an `index.mdx`, those two differ by one level, because Docusaurus serves `eln/admin/index.mdx` at the URL `.../eln/admin`, not `.../eln/admin/index`. So from *inside* `docs/eln/admin/index.mdx`, a link to its own sibling `docs/eln/admin/user-management.mdx` has to be written `[...](admin/user-management)` -- **including the containing folder's own name** -- not the more intuitive-looking `[...](user-management)`, which actually escapes the folder and points at `.../eln/user-management` instead. Every other page (anything that isn't an `index.mdx`) behaves as expected, since its disk location and its URL are the same depth. When in doubt, check the built page's link with `npm run build` (`onBrokenLinks: "throw"` catches a wrong one).
+
+:::
+
+Reserve React's `<Link to="...">` for cases Markdown links can't express.
+
+### A gotcha: Markdown links inside a React/JSX block
+
+If a paragraph mixes Markdown text with React/JSX elements, Markdown-style links inside that block sometimes fail to resolve. If that happens, rewrite the link as `<Link to="...">` (`import Link from "@docusaurus/Link"`) instead.
+
+### Admonitions
+
+The highlighted info/warning/danger boxes (like the one at the top of this page) are called [admonitions](https://docusaurus.io/docs/markdown-features/admonitions) in Docusaurus.
+
+
+## Style guide
+
+### Tone
+
+- Write in third person. Avoid addressing the reader directly ("you") or the writer's voice ("we") -- describe what the software does, not what the user should do with it.
+- When a sentence needs an actor, name the actual role instead of a generic "the user" catch-all where a more specific one applies (e.g. "the designer" for Designer-role LabIMotion docs).
+- Step-by-step instructions stay imperative ("Click **Save**", not "The user clicks Save") -- the tone rule applies to descriptive/explanatory prose, not to how-to steps.
+
+### Spelling
+
+- Use American English throughout (center, gray, color, organize, label, normalize, recognize, behavior, analyze, synchronization -- not the British centre/grey/colour/organise/labelled/normalise/recognise/behaviour/analyse/synchronisation).
+- "Set up" (verb, two words) vs. "setup" (noun, one word): "set up a reverse proxy", but "the setup is complete".
+- Preserve fixed acronym/product casing exactly: SMILES, InChI, GitHub, Docker, SMARTS, ChemCLI -- never re-case these when copyediting surrounding prose.
+
+### Images
+
+- If you're adding an image to illustrate a paragraph, place the image after the corresponding paragraph.
+- Keep media **outside** the content tree, under `static/img/<section>/...` mirroring the page's own path -- never in a folder beside the `.mdx` that uses it. A page at `docs/eln/ui/inventory.mdx` takes its media from `static/img/eln/ui/inventory/`.
+- A versioned page normally reuses the same `static/img/...` files as `current`, which means it shows today's screenshots. Only when a version genuinely needs its own media does that media go under `static/img/<version>/`, mirroring the docs path below it.
+- Before replacing an image, check whether a versioned tree references it too (`grep -rn "<basename>" versioned_docs`) -- replacing a shared file silently changes the older version's page as well.
+
+### UI references
+
+- Keep inline representations of real UI controls -- `<Btn>` (from `@site/src/js/btn.js`) and bare FontAwesome icons -- next to the instructions that reference them, so readers can visually match prose to the interface.
+- When the UI changes, replace the cue with the new control's representation instead of deleting it (e.g. the v2 add/arrow button became the v3 green "+ CREATE" button, rendered as `<Btn mixed={[faPlus, "CREATE"]} color={"success"}/>`). Only drop a cue once the control it represents no longer exists.
+
+### Videos
+
+- Embed YouTube references with the `YouTubeFrame` component (`@site/src/js/layout`) using a `youtube-nocookie.com` URL, rather than a bare link -- consistent with every other video reference on the site.
+- Plain links remain fine for genuine reference-list entries (e.g. a "further reading" bullet, a channel link) that aren't meant to be watched inline.
+- For short screen recordings, use **webm**, not GIF, and embed with `<video controls>` and a `<source src={require("...")} />`. There are no `.gif` references left in the content trees; converting the last few cut roughly 10 MB to under 600 KB.
+
+### Version markers
+
+- Don't add "available from version X onwards"-style notes to individual pages or sections -- the version dropdown already conveys which release a page belongs to, so a blanket marker is redundant with it.
+- Do keep narrower sub-version caveats (e.g. "Not available in v3.12") -- those convey real information the version selector itself doesn't capture.
+
+### Cross-links
+
+- Link the first meaningful mention of a related concept on a page to its canonical page (e.g. the first "samples" on a page → `/docs/eln/ui/elements/samples`). Don't re-link later mentions on the same page, don't link a page to itself, and link at the page level rather than to an anchor. Use the surrounding prose as the link text instead of inventing new phrasing just to create a link.
+- Always use a relative path (`[samples](elements/samples)`) for links within the same docs instance -- never an absolute `/docs/...` one; see [This Documentation](#links) for why (and a gotcha with index pages). Absolute `/docs/<instance>/...` paths are only for links that cross into a *different* docs instance (e.g. a LabIMotion page linking to an ELN page), where a relative path can't reach.
+
+### Terms
+
+- Refer to the Chemotion Electronic Lab Notebook as ` Chemotion ELN`.
+- Refer to the Chemotion spectra editor for analytical data as `ChemSpectra`.
+- Refer to the repository as `Chemotion Repository`.
+- Refer to the generic-module extension as `Chemotion LabIMotion` (or `LabIMotion` on second mention within a page).
+
+### Titles
+
+- Capitalize only the first word (except for names or abbreviations).
+- Use all low caps starting at header level 4 (`####`).
+
+### Sidebar labels
+
+- Capitalize only the first word (except for names or abbreviations).
+
+### Lists
+
+- Capitalize the first word of each list entry.
+- Use regular punctuation within list entries.
+
+### Tables
+
+- Do not capitalize words inside tables.
+
+
+## Maintaining the site
+
+For maintainers of this Docusaurus instance (`chemotion_saurus`): local setup,
+repository structure, cutting a version, and deployment.
+
+### Local setup
+
+Requires Node.js 24 (see `engines` in `package.json`). Clone the repository, then:
+
+```sh
+npm install
+npm start
+```
+
+This serves the site at `http://localhost:3000` with hot reload. Useful variants:
+
+```sh
+npm start -- --port 3001   # a different port
+npm run build               # production build; also catches broken links (onBrokenLinks: "throw")
+npm run serve                # serve the last `npm run build` output, to check the production build locally
+npm run clear                 # clear the Docusaurus cache, if a build behaves unexpectedly
+```
+
+Environment variables (e.g. for the analytics scripts in `docusaurus.config.js`) are loaded via `dotenv` from a local `.env` file, which is gitignored -- ask another maintainer for the values, or run without it for local development.
+
+### Repository structure
+
+This site actually serves **three independent documentation sets**, each its own `@docusaurus/plugin-content-docs` instance (configured in `docusaurus.config.js`), sharing one navbar and one visually continuous sidebar:
+
+| Instance                                                        | Content folder     | URL prefix         | Versioned?                                               |
+| --------------------------------------------------------------- | ------------------ | ------------------ | -------------------------------------------------------- |
+| default (Chemotion ELN + Services + Development + this section) | `docs/`            | `/docs/next/`      | Yes -- v2 / v3 / current (v4)                            |
+| `repo` (Chemotion Repository)                                   | `repo-docs/`       | `/docs/repo`       | No -- Repository ships independently and doesn't need it |
+| `labimotion` (Chemotion LabIMotion)                             | `labimotion-docs/` | `/docs/labimotion` | Yes -- 2.1 / current (2.2)                               |
+
+Because each instance owns its own sidebar, `sidebarItemsGenerator.js`, `sidebarItemsGeneratorRepo.js`, and `sidebarItemsGeneratorLabimotion.js` post-process the autogenerated output of each so the three still read as one continuous sidebar: the default instance's generator splices in links to the other two (at the position they'd occupy if they were still real folders under `docs/`), and each of the other two instances' generators wrap their own content into a single top-level category, then mirror every _other_ section as plain links via `sidebars-repo.js` / `sidebars-labimotion.js`. The shared list of top-level sections (labels + hrefs) that all of this reads from lives in `mainSiteSections.js` -- update it there first if a top-level section is renamed, reordered, or removed.
+
+Adding a new page under an existing folder needs no sidebar edit -- every instance's sidebar is `{ type: "autogenerated", dirName: "." }`, so a new file is picked up automatically, ordered by its `sidebar_position` frontmatter (see [This Documentation](#new-page)). You only touch a `sidebars*.js` file when adding a new _top-level_ section, or a new versioned/split-out instance.
+
+### Versioning
+
+Two of the three instances are versioned, and since the v3 cut they work the same way: `current` is the _in-progress next version_, and `lastVersion` stays on the latest _shipped_ release. The release therefore sits at the un-prefixed URL, and the work in progress is served under `/next/`.
+
+:::note[This changed in October 2026]
+
+The ELN used to invert this -- `docs/` _was_ the latest release, developed in place, with `lastVersion: "current"`. Older commits, comments and the v3 snapshot of this page still describe that arrangement.
+
+:::
+
+**Chemotion ELN (default instance).** `docs/` is the unreleased v4, served at `/docs/next/`; `lastVersion` is `"v3"`, so `/docs/` serves the v3 snapshot. Cutting a version freezes the one that is ending:
+
+```sh
+npm run docusaurus -- docs:version <version-that-is-ending, e.g. v3>
+```
+
+This snapshots `docs/` into `versioned_docs/version-<id>/` and adds `<id>` to `versions.json`. Afterwards, update the `versions` map in `docusaurus.config.js` (and the matching navbar `docsVersionDropdown` item) to add the new frozen version's label and relabel `current` for the version now being developed. **When v4 ships, move `lastVersion` to `"current"`.**
+
+:::caution[Fix the root index links after a cut -- the build will not catch it]
+
+`lastVersion` decides which tree is served _without_ a path prefix, and relative links resolve against the rendered URL. So moving it, or cutting a version, silently changes where a root `index.mdx` link lands. After the v3 cut these had to become:
+
+| File | Link | Served at |
+| --- | --- | --- |
+| `versioned_docs/version-v3/index.mdx` | `[...](eln)` | `/docs/` |
+| `docs/index.mdx` | `[...](next/eln)` | `/docs/next` |
+| `versioned_docs/version-v2/index.mdx` | `[...](v2/eln)` | `/docs/v2` |
+
+A wrong-version link still points at a page that exists, so `onBrokenLinks: "throw"` stays silent. Verify by building and grepping the emitted HTML -- note Docusaurus emits _unquoted_ hrefs:
+
+```sh
+npm run build
+grep -oE '<a[^>]*>[^<]*</a>' build/index.html | grep -i 'chemotion eln'
+```
+
+:::
+
+**Chemotion LabIMotion.** Uses a major.minor scheme. Shipping a new minor means snapshotting it under its own name, not under `current`:
+
+```sh
+npm run docusaurus -- docs:version:labimotion <version, e.g. 2.2>
+```
+
+This snapshots `labimotion-docs/` into `labimotion_versioned_docs/version-<id>/` and adds `<id>` to `labimotion_versions.json`, leaving `labimotion-docs/` itself as the new in-progress version. Afterwards, update `lastVersion` and the `versions` map for the `labimotion` plugin instance in `docusaurus.config.js` (and the matching navbar dropdown) to point at the new release and relabel `current` for the next one.
+
+**Chemotion Repository.** Deliberately unversioned -- it ships on its own release cycle, and there was never any real content divergence to justify tracking old snapshots (confirmed when it was split out of the default instance).
+
+### Renaming or moving a page
+
+Update `redirects.json` with a `{ "from": "<old-path>", "to": "<new-path>" }` entry -- it's consumed by the `@docusaurus/plugin-client-redirects` plugin to 301-redirect the old URL, so existing bookmarks and external links don't break.
+
+Nothing enforces this: the build checks internal links but knows nothing about URLs that used to exist, so a rename without an entry breaks inbound external links silently. There are 83 entries today, mostly from an underscore-to-dash migration.
+
+### Deployment
+
+`npm run build` produces the `build/` directory (and additionally prunes unreferenced images via `scripts/prune-build-img.js`, since `static/img` accumulates over time).
+
+The [workflow file](https://github.com/ComPlat/chemotion_saurus/blob/main/.github/workflows/build.yml) builds on every push and is also what pre-downloads the YouTube poster thumbnails into `static/img/yt_thumbnails/`.
+
+:::caution[The automated deploy is currently not working]
+
+The `rsync` step fails, and the site is being published by hand, so a red check on `main` does not mean the build is broken -- check which step failed. A build that does not run the workflow (a manual or Dokploy build) also skips the thumbnail download, so a newly embedded video needs its poster committed or it renders blank.
+
+:::

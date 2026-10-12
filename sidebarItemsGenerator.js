@@ -29,6 +29,11 @@ const EXTERNAL_SECTION_LABELS = [
   "Chemotion LabIMotion",
 ];
 
+// "This Documentation" is also its own instance now, but it sits last in
+// mainSiteSections.js rather than next to the ELN, so it is appended instead
+// of spliced.
+const TRAILING_SECTION_LABEL = "This Documentation";
+
 async function sidebarItemsGenerator({
   defaultSidebarItemsGenerator,
   ...args
@@ -41,6 +46,18 @@ async function sidebarItemsGenerator({
     const section = mainSiteSections.find((s) => s.label === label);
     return { type: "link", label: section.label, href: section.href };
   });
+  const trailingSection = mainSiteSections.find(
+    (s) => s.label === TRAILING_SECTION_LABEL,
+  );
+  const trailing = trailingSection
+    ? [
+        {
+          type: "link",
+          label: trailingSection.label,
+          href: trailingSection.href,
+        },
+      ]
+    : [];
   if (elnIndex === -1) {
     // Fallback: ELN category not found (e.g. docs/eln/index.mdx lost its
     // `id: eln` frontmatter, or the folder was restructured) -- append at the
@@ -50,12 +67,13 @@ async function sidebarItemsGenerator({
     logger.warn(
       "sidebarItemsGenerator: couldn't find the Chemotion ELN category (expected link.id \"eln/eln\") to splice external sections after. Appending them at the end of the sidebar instead.",
     );
-    return [...items, ...externalLinks];
+    return [...items, ...externalLinks, ...trailing];
   }
   return [
     ...items.slice(0, elnIndex + 1),
     ...externalLinks,
     ...items.slice(elnIndex + 1),
+    ...trailing,
   ];
 }
 
