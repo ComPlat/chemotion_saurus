@@ -29,10 +29,10 @@ const EXTERNAL_SECTION_LABELS = [
   "Chemotion LabIMotion",
 ];
 
-// "This Documentation" is also its own instance now, but it sits last in
-// mainSiteSections.js rather than next to the ELN, so it is appended instead
-// of spliced.
-const TRAILING_SECTION_LABEL = "This Documentation";
+// "Development" and "This Documentation" are their own instances too, but they
+// sit last in mainSiteSections.js rather than next to the ELN, so they are
+// appended in that order instead of spliced.
+const TRAILING_SECTION_LABELS = ["Development", "This Documentation"];
 
 async function sidebarItemsGenerator({
   defaultSidebarItemsGenerator,
@@ -46,18 +46,12 @@ async function sidebarItemsGenerator({
     const section = mainSiteSections.find((s) => s.label === label);
     return { type: "link", label: section.label, href: section.href };
   });
-  const trailingSection = mainSiteSections.find(
-    (s) => s.label === TRAILING_SECTION_LABEL,
-  );
-  const trailing = trailingSection
-    ? [
-        {
-          type: "link",
-          label: trailingSection.label,
-          href: trailingSection.href,
-        },
-      ]
-    : [];
+  const trailing = TRAILING_SECTION_LABELS.flatMap((label) => {
+    const section = mainSiteSections.find((s) => s.label === label);
+    return section
+      ? [{ type: "link", label: section.label, href: section.href }]
+      : [];
+  });
   if (elnIndex === -1) {
     // Fallback: ELN category not found (e.g. docs/eln/index.mdx lost its
     // `id: eln` frontmatter, or the folder was restructured) -- append at the

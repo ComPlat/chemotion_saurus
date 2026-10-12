@@ -210,6 +210,24 @@ module.exports = {
     [
       "@docusaurus/plugin-content-docs",
       {
+        id: "dev",
+        path: "dev-docs",
+        routeBasePath: "development",
+        sidebarPath: require.resolve("./sidebars-dev.js"),
+        sidebarItemsGenerator: require("./sidebarItemsGeneratorDev.js"),
+        editUrl: "https://github.com/ComPlat/chemotion_saurus/edit/main/",
+        showLastUpdateTime: true,
+        showLastUpdateAuthor: false,
+        // How the Chemotion ELN itself is developed (git workflow, CI,
+        // testing, linting). Deliberately unversioned (no `versions`): it
+        // tracks the ELN repository, not a release of these docs. Versioning
+        // it only produced identical copies -- v3 and the current tree
+        // differed by zero lines across all ten pages.
+      },
+    ],
+    [
+      "@docusaurus/plugin-content-docs",
+      {
         id: "meta",
         path: "meta-docs",
         routeBasePath: "documentation",
