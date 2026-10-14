@@ -29,7 +29,7 @@ collections. Some of its symbols:
 | symbol | meaning |
 | ------ | ------- |
 | <FontAwesomeIcon icon={faList} size="sm"/> | toggle the collection bar on/off |
-| <Btn mixed={[faCog]} color={"danger"}/> | open collection management |
+| <Btn mixed={[faCog, "Manage Collections"]} color={"danger"}/> | open the **Collection Management** window; while the bar is collapsed only the cog is shown, with the label as a tooltip |
 | <Btn mixed={[faPlus]} color={"success"}/> | open sub-collections |
 | <Btn mixed={[faMinus]} color={"success"}/> | close sub-collections |
 | <Btn mixed={[faShareAlt]} color={"secondary"}/> | this collection is shared — hover it to see with whom, or who shared it |
@@ -122,7 +122,8 @@ Ownership of a system collection can never be passed on.
 ### Sorting and organizing
 
 Collections are created and organized in **collection management**, opened with the
-<Btn mixed={[faCog]} color={"danger"}/> button in the collection bar. Press
+<Btn mixed={[faCog, "Manage Collections"]} color={"danger"}/> button at the top of the
+collection bar. Press
 <Btn mixed={[faPlus]} color={"success"}/> to add a **New Collection** under **My
 Collections**, give it a name, and save it with
 <Btn mixed={["Update"]} color={"warning"}/>.
