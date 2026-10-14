@@ -302,18 +302,14 @@ production:
 
 ## NMRium
 
-{/* TODO(v4): still assumed -- the exact v4 release that introduces this. "4.0"
-    is used below. Everything else here follows the ELN-side change that
-    self-hosts the wrapper. */}
-
 From Chemotion ELN version 4.0 onwards, the ELN serves the
 [NMRium](https://nmrium.nmrxiv.org/) wrapper itself, from `public/nmrium/<version>/`
 inside the ELN image. Instances no longer depend on `nmrium.nmrxiv.org`, and
 **no registration with a hosting service is required**.
 
-The wrapper version is pinned by `NMRIUMWRAPPER_VERSION` in `.env`. It has to
-match the `NMRIUMWRAPPER` pin in the ELN's `.service-dependencies`, or the image
-build fails rather than shipping a mismatched pair.
+The wrapper version is fixed when the image is built and matches the ELN
+release. There is nothing for an administrator to set, and no version to keep
+in step by hand.
 
 ### Pointing at a different wrapper
 
@@ -340,29 +336,64 @@ production:
     :url: "https://nmrium.nmrxiv.org"
 ```
 
+Doing so reinstates two requirements that the self-hosted wrapper removes. The
+public instance keeps its own list of the sites allowed to drive it, so the
+instance has to be registered with the hosting service — this is what
+registration always meant. See the
+[Helpdesk](https://chemotion.net/helpdesk) or the
+[wrapper's README](https://github.com/NFDI4Chem/nmrium-react-wrapper#public-instance).
+The nginx `frame-src` entry for `nmrium.nmrxiv.org` also has to be put back;
+see the [reverse-proxy setup](ChemCLI#set-up-a-reverse-proxy).
+
 ### Allowed origins
 
 The wrapper refuses messages from any parent origin that is not on its allowlist.
 A rejected message surfaces as a **failed save** with *"Invalid Origin"*, not as
 an error on opening, so it is easy to mistake for a different problem.
 
-**Set `PUBLIC_URL` to the address the ELN is reached at.** The ELN derives the
-allowlist from it at every start; nothing else has to be configured.
+**Set `PUBLIC_URL` to the address the ELN is reached at.** The ELN rebuilds the
+allowlist from it every time the container starts, so for an instance reached
+under a single address nothing else has to be configured.
 
 ```yaml
 services:
   eln:
     environment:
-      - PUBLIC_URL=https://eln.example.org
+      - PUBLIC_URL=https://chemotion.dept.uni.de
 ```
 
-Include the scheme. The wrapper parses the value as a URL and silently ignores
-it if there is none, so `eln.example.org` does not work where
-`https://eln.example.org` does. The port does not matter — matching is by
-hostname.
+Include the scheme. The value is parsed as a URL, and one without a scheme is
+ignored — `chemotion.dept.uni.de` does not work where
+`https://chemotion.dept.uni.de` does. The container log carries a warning when
+that happens. The port does not matter; matching is by hostname.
 
-If `PUBLIC_URL` is not set the list is empty, which turns the check off and lets
-any origin drive the wrapper.
+### More than one address
+
+`PUBLIC_URL` yields exactly one origin. An instance reached under a second
+address — an internal hostname alongside the public one, for instance — needs
+them listed explicitly, because saving from any address not on the list fails
+with *Invalid Origin*. Set `NMRIUM_ALLOWED_ORIGINS`, which takes precedence
+over `PUBLIC_URL` when it is not empty:
+
+```yaml
+services:
+  eln:
+    environment:
+      - PUBLIC_URL=https://chemotion.dept.uni.de
+      - NMRIUM_ALLOWED_ORIGINS=https://chemotion.dept.uni.de https://chemotion.internal.dept.uni.de
+```
+
+Entries are separated by spaces or commas, and each needs its own scheme.
+
+:::caution[An empty list accepts every origin]
+
+If neither variable yields a usable origin, the allowlist is empty, and an
+empty list turns the check off rather than refusing everything — any site that
+can embed the wrapper could then drive it. The container log says so at start,
+with *no NMRium origins configured*. Setting `PUBLIC_URL` correctly is
+therefore worth confirming rather than assuming.
+
+:::
 
 :::note[Upgrading from 3.x or earlier]
 
