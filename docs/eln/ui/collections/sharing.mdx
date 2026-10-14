@@ -38,14 +38,23 @@ person should be able to do.
 | Level | Name | The recipient can… |
 | ----: | ---- | ------------------ |
 | 0 | **Read elements** | Open the collection and view its elements. Nothing can be changed. |
-| 1 | **Edit elements** | …and change the content of existing elements. Every edit is recorded in the element's history. |
-| 2 | **Add elements** | …and create new elements in the collection, import samples, and move or assign existing elements into it. |
+| 1 | **Edit elements** | …and change the content of existing elements. For the element types that keep a history — samples, reactions, wellplates, screens, research plans and device descriptions — every edit is recorded there. |
+| 2 | **Add elements** | …and create new elements in the collection, and move or assign existing elements into it. |
 | 3 | **Remove elements** | …and take elements back out of *this* collection. The element itself is not deleted — it stays in its owner's other collections. |
-| 4 | **Manage shares** | …and manage who else this collection is shared with, up to their own level. |
+| 4 | **Manage shares** | …and manage who else this collection is shared with, up to their own permission level. |
 | 5 | **Pass ownership** | …and accept full ownership of the collection, if it is offered. See [Passing and taking ownership](#passing-and-taking-ownership). |
 
 Because the levels are cumulative, **Add elements** (2) already includes Read and Edit,
 and **Manage shares** (4) includes everything from Read up to Remove.
+
+:::caution[Importing samples into a shared collection fails in 4.0.0]
+
+From *Add elements* upward the menu offers **Import samples to collection**, but in
+version 4.0.0 the import only accepts collections the user owns, so the attempt ends in an
+error. Importing into a collection of one's own and then assigning the samples across
+works in the meantime.
+
+:::
 
 ### Which level to pick
 
@@ -80,9 +89,10 @@ type in the same dialog.
 | Element type | Detail levels |
 | ------------ | ------------- |
 | Sample | 0 mass and external label · 1 adds molecule and structure · 2 adds analysis results and descriptions · 3 adds analysis datasets · 10 everything |
-| Reaction | 0 restricted · 10 everything |
+| Reaction | 0 description, observation and materials · 10 everything |
 | Wellplate | 0 wells · 1 adds readouts · 10 everything |
-| Screen | 0 restricted · 10 everything |
+| Generic (LabIMotion) element | everything, the only option offered |
+| Screen | 0 name, description, conditions and requirements · 10 everything |
 
 Research plans, cell lines, device descriptions and sequence-based macromolecule samples
 are always shared complete.
@@ -105,7 +115,7 @@ the detail levels. It can be used as a starting point, or both can be set by han
 | Role | Permission level | Typical use |
 | ---- | ---------------- | ----------- |
 | User | Remove elements | Works in the collection day to day: adds, edits, unlinks. |
-| Partner | Edit elements | Edits existing content; does not add new elements. |
+| Partner | Edit elements | Edits existing content; does not add new elements. Its detail levels reach full only for samples and wellplates, so a Partner cannot edit reactions or screens. |
 | Collaborator | Read elements | Broad but shallow read access across element types. |
 | Reviewer | Read elements | Read access weighted toward reactions, for sign-off. |
 | Supervisor | Manage shares | Administers who else has access, on the owner's behalf. |
@@ -122,13 +132,16 @@ only a preset, not a stored property of the share.
 3. Pick a **Role**, or set the **Permission level** and the per-type **detail levels**
    by hand.
 4. Optionally tick **Apply these share settings to all sub-collections** to cascade the
-   same access down the whole branch. This only reaches sub-collections the owner is
-   allowed to administer, and each one still passes its own checks.
-5. Confirm. Everyone added sees the collection appear under their **Shared with me**, and
-   receives a notification.
+   same access down the whole branch. This only reaches sub-collections the person doing
+   the sharing is allowed to administer, and each one still passes its own checks. A
+   **Pass ownership** share never cascades, whatever the checkbox says.
+5. Confirm. Everyone added is shown a notice that the collection has been shared with
+   them, and it appears under their **Shared with me** when their tree next refreshes — a
+   few seconds later, not instantly.
 
 A shared collection stays where it is, in its owner's **My Collections**, marked with a
-share icon. Hovering that icon lists who it was shared with and what each of them may do.
+share icon. Hovering that icon lists who it was shared with and the permission each of
+them holds; detail levels are not shown there.
 
 ![Hovering the share icon lists the recipients](/img/eln/ui/collections/share_badge_tooltip.png)
 
@@ -139,24 +152,31 @@ Elements can also be shared directly, without preparing a collection first:
 1. Select the elements in a list, then choose **Share** from the selection actions.
 2. Give the new collection a **name**. Left empty, it falls back to
    *My project with &lt;name&gt;*.
-3. Optionally choose a **parent collection**. Left empty, it is created at the top level.
-4. Add the people or groups and set their permission level, as above.
-5. Confirm. The collection is created with those elements and shared in one step.
+3. Optionally choose a **parent collection**, from among the user's own collections. Left
+   empty, it is created at the top level.
+4. Add the people or groups and set their permission level, as above. There is no cascade
+   option in this dialog.
+5. Confirm with **Create Shared Collection**. One collection is created per recipient; if
+   several are named and a custom name was given, each gets that name with the recipient
+   appended.
 
 ## Editing and revoking a share
 
-Open the collection's menu and choose **Manage shares**. Each recipient is listed with
-their name, a person or group icon, and their current permissions.
+Open the collection's menu and choose **Manage shares** — offered once the collection has
+at least one share. Each recipient is listed with their name, a person or group icon, and
+their current permissions.
 
-- **Edit** reopens the share dialog. A cascading edit only updates sub-collections that
-  are already shared with that person; tick **Also include sub-collections not already
-  shared with this user** to extend the share to the rest of the branch.
-- **Delete** revokes the share. The collection disappears from that person's tree straight
-  away, and their access ends. Nothing of the owner's is deleted.
+- **edit** reopens the share dialog. A cascading edit only updates sub-collections that
+  are already shared with that person; once the cascade box is ticked, a second option
+  appears — **Also include sub-collections not already shared with this user** — which
+  extends the share to the rest of the branch.
+- The red button carrying a share and a trash icon revokes the share. There is no
+  confirmation step. Access ends at once, and the collection leaves that person's tree
+  when it next refreshes. Nothing of the owner's is deleted.
 
 Recipients can also step away themselves: in collection management, under **Collections
-shared with me**, the collection's menu offers **Remove my access**. The owner can share
-it with them again later.
+shared with me**, the collection's menu offers **Remove my access**, which asks for
+confirmation. The owner is not notified, and can share it with them again later.
 
 :::info[Access through a group]
 
@@ -172,9 +192,11 @@ levels wins.
 Everything shared with a user is grouped by owner, under a row bearing that person's name,
 and mirrors the owner's real folder structure.
 
-If a shared sub-collection's parent is **not** shared with the recipient, it is lifted to
-the top level under its owner rather than being hidden under a folder they cannot see. The
-branch is truncated at the point where their visibility ends — never hidden.
+If a shared sub-collection's parent is **not** shared with the recipient, the
+sub-collection moves up to the nearest ancestor that *is* shared with them, rather than
+being hidden under a folder they cannot see. Where no ancestor is shared at all, it sits
+at the top level under its owner. Either way the branch is truncated at the point where
+their visibility ends — never hidden.
 
 ![Collections shared with me, grouped by owner](/img/eln/ui/collections/shared_with_me.png)
 
@@ -205,11 +227,12 @@ administering its share list.
 
 A collection shared at **Manage shares** or above lets the recipient administer its share
 list themselves, from **Shared with me**, without asking the owner. **Add share** and
-**Manage shares** appear next to the collection just as they do for an owner.
+**Manage shares** appear in the collection row's ⋮ menu, just as they do for an owner.
 
-Two limits always apply: a delegate can neither grant nor leave standing a share **above
-their own level** — so a delegate holding *Manage shares* cannot hand anyone *Pass
-ownership* — and a collection can never be shared back to its own owner.
+Two limits always apply: a delegate can neither create, change nor revoke a share **above
+their own permission level** — so a delegate holding *Manage shares* cannot hand anyone
+*Pass ownership*, nor remove someone who holds it — and a collection can never be shared
+back to its own owner.
 
 ## Passing and taking ownership
 
@@ -217,10 +240,13 @@ Transferring a collection is a deliberate two-step handshake:
 
 1. **Offer.** The owner shares the collection with one specific person at the **Pass
    ownership** level. Ownership can only be offered to a **single person** — never to a
-   group — and a [system collection](./index.mdx#system-collections) can never be offered.
-2. **Accept.** That person sees a swap icon on the collection in **Shared with me** and
-   chooses **Take ownership**, confirming the transfer of the collection and every
-   sub-collection beneath it.
+   group, and the dialog says so — and a
+   [system collection](./index.mdx#system-collections) can never be offered. The dialog
+   also warns that the transfer will apply to every sub-collection.
+2. **Accept.** That person sees a swap icon on the collection in **Shared with me**.
+   Clicking it asks them to confirm taking ownership of the collection and all its
+   sub-collections. An offer that reaches someone only through one of their groups cannot
+   be accepted — it has to be made to them personally.
 
 ![The swap icon offering ownership](/img/eln/ui/collections/take_ownership.png)
 
@@ -228,8 +254,10 @@ Afterwards:
 
 - The new owner has full control of the collection and its whole subtree, which is
   re-rooted at the top level of their own collections.
-- The former owner keeps working access: wherever they held a matching share with the new
-  owner, they are left a **Manage shares** delegate.
+- The former owner keeps working access where the new owner already had a share: on the
+  transferred collection, and on any sub-collection that had been shared with the new
+  owner, they are left a **Manage shares** delegate at full detail. On sub-collections
+  that were never shared with the new owner they are left with no access at all.
 - The elements move with the collection into the new owner's **All**. An element that is
   still in one of the former owner's other collections stays with them too — it is then in
   both people's collections.
@@ -240,8 +268,10 @@ Collection management can export collections as a ZIP archive, and the export di
 **Shared with me** alongside the user's own collections.
 
 A collection shared with a user can only be exported if they hold the **full detail level
-for every element type**. Otherwise the export is refused — an export at a reduced detail
-level would silently produce an incomplete archive.
+for every element type**. Otherwise the whole request is refused with a 401 — and the
+refusal covers the entire selection, so one collection short of full detail stops the
+others going out with it. An export at a reduced detail level would silently produce an
+incomplete archive.
 
 ## What sharing never does
 
@@ -266,16 +296,22 @@ collections — with the single sharing model described on this page.
 | Version 3 | Version 4 |
 | --------- | --------- |
 | Synchronized collection | *gone* — every share now behaves the way synchronized collections used to: the recipient sees the live collection |
-| Shared collection (a separate collection created for the recipient) | A share on the owner's own collection; the recipient sees the original |
-| **My shared collections** tree branch | *gone* — shared collections stay in **My Collections** with a share icon |
-| Permission `write` / `share` / `delete` / `import` | **Edit elements** / **Manage shares** / **Remove elements** / **Add elements** |
+| Shared collection (a separate collection created for the recipient) | A share on the owner's own collection; the recipient sees the original. The separate copies made in version 3 were handed back to their owner and gathered under **My projects with others** |
+| **Shared by me** and **Synchronized with me** tree branches | *gone* — shared collections stay in **My Collections** with a share icon. Collections migrated out of them are gathered under a new **My projects with others** |
+| Permission `Read` / `Write` / `Share` / `Delete` / `Import Elements` | **Read elements** / **Add elements** / **Add elements** / **Remove elements** / **Remove elements** |
 | Unshare | **Manage shares → delete** (owner) or **Remove my access** (recipient) |
 
 :::info[Existing shares were migrated automatically]
 
 The levels were renamed and reordered so that they now run strictly from least to most
-powerful. Existing shares were migrated automatically and were **never raised to a more
-powerful level** than they already held. Nothing needs to be re-shared.
+powerful. Each migrated share **kept the capabilities it had**: where version 3 already
+allowed creating elements, the share now sits at **Add elements**, and nothing gained the
+right to destroy. Shares that had no detail level recorded were given the full level.
+Nothing needs to be re-shared.
+
+Note that the two new rungs, **Edit elements** and **Manage shares**, are not produced by
+the upgrade at all — no migrated share lands on either, and they exist only where someone
+grants them deliberately afterwards.
 
 Two changes are worth knowing about: **destroying an element is now owner-only** — a
 collaborator who could previously delete can now only unlink — and **creating an element
