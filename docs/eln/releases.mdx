@@ -12,6 +12,43 @@ The ELN follows the [semantic versioning](https://semver.org/) scheme. The Chemo
 
 Latest releases of the ELN, that are currently supported, are:
 
+### Version 4
+
+#### Version 4.0.0 (October 2026)
+
+Version 4.0.0 reworks how collections are shared. This is a **breaking change**: the two
+former mechanisms — shared collections and *synchronized* collections — are replaced by a
+single sharing model, and the permission levels were renamed and reordered.
+
+What this means in practice:
+
+- **Every collection has exactly one owner.** Existing collections are migrated
+  automatically.
+- **There is one kind of share.** A share grants access to the owner's own collection, and
+  the people it is shared with see that collection live, under **Shared with me**. Synchronized
+  collections are gone, because every share now behaves the way they did.
+- **Permission levels form a strict ladder**: *Read elements* → *Edit elements* → *Add
+  elements* → *Remove elements* → *Manage shares* → *Pass ownership*. Existing shares are
+  remapped automatically and keep the capabilities they had, so nothing needs to be
+  re-shared. Version 3's *Write* and *Share* both become **Add elements**, and *Delete*
+  and *Import Elements* both become **Remove elements**; the two new rungs, *Edit
+  elements* and *Manage shares*, are never produced by the upgrade.
+- **Only an element's owner can destroy it.** A collaborator with *Remove elements* unlinks
+  an element from the shared collection instead of deleting it.
+- **Ownership can be passed on**, as a two-step offer and acceptance: the owner offers
+  ownership at the top permission level, and the recipient clicks the swap icon on the
+  collection and confirms.
+- **"Remove from all Collections" no longer deletes globally.** It unlinks the selection
+  from the user's own collections and deletes only the elements left in no collection at all.
+
+Version 3's *Shared by me* and *Synchronized with me* tree branches are gone. The
+collections that used to appear in them are gathered under an ordinary collection named
+**My projects with others** during the upgrade.
+
+See [Collections](ui/collections) and [Sharing Collections](ui/collections/sharing.mdx) for
+the full description, and the detailed release notes for version 4.0.0
+[here](https://github.com/ComPlat/chemotion_ELN/releases/tag/v4.0.0).
+
 ### Version 3
 
 #### Version 3.0.0 (March 2026)
