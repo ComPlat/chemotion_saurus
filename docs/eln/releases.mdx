@@ -10,11 +10,35 @@ The ELN follows the [semantic versioning](https://semver.org/) scheme. The Chemo
 
 ## Latest Releases
 
-Latest releases of the ELN, that are currently supported, are:
+Latest releases of the ELN, that are currently supported, are listed below.
+Support means that these pages stay available for that version, and that
+[chemCLI](install-configure/ChemCLI) can keep an instance updated
+automatically. Security issues are always addressed in the release that comes
+next, never in a past one, whatever its support date. For a version past the
+date given below, please contact the
+[Helpdesk](https://chemotion.net/helpdesk).
 
 ### Version 4
 
 #### Version 4.0.0 (October 2026)
+
+Version 4.0.0 is a major release with breaking changes.
+
+:::danger[Read before upgrading]
+
+Work through [Upgrading](install-configure/upgrading) first, and take a
+database backup. Several of the changes are silent — nothing fails visibly, and
+the symptom appears days later. Support in chemCLI follows with a later release
+of the CLI; until then the published payload installs version 3.
+
+:::
+
+### What changed for users
+
+Everything below is compared with **version 3.1.2**, the last version
+distributed to users.
+
+#### Collections and sharing
 
 Version 4.0.0 reworks how collections are shared. This is a **breaking change**: the two
 former mechanisms — shared collections and *synchronized* collections — are replaced by a
@@ -46,10 +70,80 @@ collections that used to appear in them are gathered under an ordinary collectio
 **My projects with others** during the upgrade.
 
 See [Collections](ui/collections) and [Sharing Collections](ui/collections/sharing.mdx) for
-the full description, and the detailed release notes for version 4.0.0
-[here](https://github.com/ComPlat/chemotion_ELN/releases/tag/v4.0.0).
+the full description.
+
+#### Samples and mixtures
+
+- **Moisture**, **particle size** and **physical state** are recorded on the
+  [Properties tab](ui/details#properties-tab).
+- Melting and boiling points accept ranges, open-ended values and decimal
+  commas, and a **Decomposed** checkbox covers substances that decompose before
+  melting.
+- Research plans carry a generated **short label**.
+- A [mixture](ui/elements/samples/mixtures) may hold the same molecule more
+  than once, and components can be moved or merged.
+
+#### Reactions
+
+- Amounts can be shown in **μmol**.
+- A reaction has a **type**, and the new
+  [Interaction type](ui/elements/reactions#reaction-types) reshapes the scheme
+  for guest–host studies. A **pH** field is available for either type.
+- **Concentration** can be typed in, the volume it is measured against is
+  [chosen per reaction](ui/details#concentration-and-reaction-volume), and the
+  reaction volume can be locked against recalculation.
+- Reagent and solvent dropdowns gain a **Most Used** tab.
+- [Variations](ui/details#variations-tab) gain a concentration column, can be
+  filled from an analysis data file, and link analyses automatically from a
+  `-v<id>` file name.
+
+#### Chemicals and safety data sheets
+
+- Safety phrases and pictograms can be
+  [curated by hand](ui/inventory#adding-safety-phrases-manually).
+- Sheets are searched across Sigma-Aldrich, Thermo Fisher and PubChem, by CAS
+  number, name or product number, with up to five kept per sample.
+- [Extract from sheet](ui/inventory#extract-from-sheet) reads a saved sheet for
+  its H and P codes and its physical properties.
+- Amounts, volumes and temperatures accept a decimal comma.
+
+#### Wellplates
+
+- A new [wellplate](ui/elements/wellplates) starts without a size and can be
+  resized after it has been saved, as long as no filled well would be lost.
+
+#### Accounts and groups
+
+- Users can create [authentication tokens](ui/first-steps#user-settings-authentication-token)
+  for scripts and external tools, which requires two-factor authentication.
+- In a [group](admin/groups), administrators no longer have to be members, and
+  a group always keeps at least one administrator.
+
+### What changed for administrators
+
+- The three PubChem background queues became one, so a worker started with an
+  explicit queue list needs updating, and `CRON_CONFIG_PC_LCSS` is obsolete.
+- Collections owned by a group account need attention — see
+  [Upgrading](install-configure/upgrading).
+- Safety data sheet text extraction can be handed to an optional
+  [PDF text service](install-configure/configuration#safety-data-sheet-text-extraction).
+- New SMTP timeouts, and an
+  [in-app guide](install-configure/configuration#in-app-guide) with an
+  alternate logo.
+- **Weighing Tasks** and **Sample Explorer** are new and ship switched off;
+  enable them in
+  [`config/ui_components.yml`](install-configure/configuration#ui-components).
+
+The detailed release notes for version 4.0.0 are
+[on GitHub](https://github.com/ComPlat/chemotion_ELN/releases/tag/v4.0.0).
 
 ### Version 3
+
+**Supported until 31 October 2027.**
+
+Upgrading to version 3 from version 2 needs a few deliberate steps — most
+importantly setting `OTP_SECRET_KEY`, without which the ELN does not start at
+all. See [Upgrading](install-configure/upgrading).
 
 #### Version 3.0.0 (March 2026)
 
@@ -74,6 +168,8 @@ In [ChemSpectra Cyclic Voltammetry](../services/chemspectra/cv), the Voltammetry
 See the detailed release notes for version 3.0.0 [here](https://github.com/ComPlat/chemotion_ELN/releases/tag/v3.0.0).
 
 ### Version 2
+
+**Supported until 28 February 2027.**
 
 #### Version 2.2.0 (December 2025)
 

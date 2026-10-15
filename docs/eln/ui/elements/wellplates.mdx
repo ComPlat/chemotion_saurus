@@ -19,9 +19,9 @@ Wellplates <Wellplate title="Wellplate" className="logo" width={"30px"}/> repres
 </video>
 Wellplates are created with the green <Btn mixed={[faPlus, "CREATE"]} color={"success"}/> button in the [toolbar](../toolbar). The menu offers two ways to create a wellplate:
 
-1. A blank wellplate is created by choosing **Create Wellplate**. The blank wells of the plate can be filled in the **Designer** tab via drag and drop with [samples](samples) from the samples list.
+1. A blank wellplate is created by choosing **Create Wellplate**. From version 4.0 it starts without a size, shown as **Define later**, and a size has to be chosen before wells can be filled or data imported. The blank wells of the plate can then be filled in the **Designer** tab via drag and drop with [samples](samples) from the samples list.
 
-2. A filled wellplate can be created from one or multiple sample(s) when the samples are selected in the sample list on the sample tab. Then select **Create Wellplate from Samples** in the dropdown menu. After that the wellplate in the **Designer** tab is automatically filled with the selected samples. This action is a combination of the action **split** of the selected samples together with the insertion of the created split samples in the wellplate. The wellplate will be gradually filled with the created split samples. If the number of the split samples exceeds the free positions in the wellplate, there will be a second wellplate created and filled automatically.
+2. A filled wellplate, 12 × 8, can be created from one or multiple sample(s) when the samples are selected in the sample list on the sample tab. Then select **Create Wellplate from Samples** in the dropdown menu. After that the wellplate in the **Designer** tab is automatically filled with the selected samples. This action is a combination of the action **split** of the selected samples together with the insertion of the created split samples in the wellplate. The wellplate will be gradually filled with the created split samples. If the number of the split samples exceeds the free positions in the wellplate, there will be a second wellplate created and filled automatically.
 
 A wellplate can be saved, edited and deleted in the [details panel view](../details#details-panel-for-wellplates).
 
@@ -31,4 +31,27 @@ A wellplate can be saved, edited and deleted in the [details panel view](../deta
   <source src={require("@site/static/img/eln/ui/elements/wellplates/wellplate.webm").default} />
 </video>
 
-During the creation the size of a wellplate can be adjusted in the **Properties** tab by clicking on the <button className={"button button--sm button--primary"} style={{padding:"2px", height: "50%", width: "5%"}}><FontAwesomeIcon icon={faBraille} size="lg"/></button>. The size of the wellplate can be adjusted by changing the values **Width** and **Height** and pressing the **Apply** button. Be aware that once a wellplate is created, the size cannot be changed anymore.
+The size is set in the **Properties** tab, in the **Size** field. A dropdown
+offers **Define later** and the standard sizes — 384 (24×16), 96 (12×8),
+24 (6×4) and 12 (4×3) — and the
+<button className={"button button--sm button--primary"} style={{padding:"2px", height: "50%", width: "5%"}}><FontAwesomeIcon icon={faBraille} size="lg"/></button>
+button beside it opens **Wellplate Dimensions** for any other size. There,
+**Width** is the number of columns and **Height** the number of rows, each a
+whole number between 1 and 100, and **Apply** accepts them.
+
+From version 4.0 a wellplate can be resized at any time, not only before it is
+first saved. Growing a plate is always allowed. Shrinking it is allowed only
+while every well that would fall outside the new grid is empty — a well counts
+as filled if it holds a sample, a readout, a label, a color code or an
+additive. Sizes that would discard filled wells are grayed out in the dropdown
+and marked *would delete filled wells*, and the dimensions dialog names the
+wells standing in the way.
+
+:::note[Resizing is saved on its own]
+
+Changing the size of a saved wellplate is written to the server immediately,
+rather than waiting for the next **Save**. Because of that, the size controls
+are disabled while the plate has unsaved changes, with a tooltip asking for
+those to be saved first.
+
+:::

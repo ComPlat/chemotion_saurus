@@ -113,11 +113,54 @@ Additionally, users can generate a new label for existing samples by clicking th
 
 This function is not accessible to all users, please ask the instance administrator if it is not visible.
 
+### User Settings: Authentication token
+
+An **authentication token** lets a script or an external tool reach the ELN's
+API as its owner, without a browser session. Tokens are new in version 4.0 and
+are managed under Settings → **Account** → **Authentication Token**, below the
+two-factor authentication card.
+
+Creating a token requires **two-factor authentication to be enabled**. Without
+it, the card shows only a notice and no token can be created.
+
+To create one, press **New Auth token**, give it a name and a lifetime between
+1 and 600 days — 30 by default — and confirm with a one-time code from the
+authenticator app. Revoking a token asks for a code in the same way.
+
+:::caution[A token is shown once]
+
+The token is displayed only on the screen that creates it, and cannot be
+recovered afterwards. The ELN stores a fingerprint of it, not the token itself.
+A lost token has to be revoked and replaced.
+
+Tokens begin with `chemtoken_`. They act with the full rights of their owner on
+every API endpoint, so they belong in a password manager or a secrets store,
+never in a shared script or a repository.
+
+:::
+
+Listed tokens show their name and expiry. A revoked token stays in the list,
+marked **REVOKED**, until it would have expired; an expired one disappears.
+Revoking takes effect immediately and cannot be undone.
+
+Administrators cannot see or revoke another user's tokens. Deleting the user
+account removes them.
+
+To use a token, send it as a bearer token:
+
+```sh
+curl -H "Authorization: Bearer chemtoken_..." https://chemotion.dept.uni.de/api/v1/users/current
+```
+
 ### User Settings: Change Password
 
 ### User Settings: My affiliations
 
 ### User Settings: My groups
+
+Groups are created and managed here, under **My Groups & Devices**. Any user
+can create a group and becomes its first member and admin. See
+[Managing Groups](../admin/groups) for what members and admins may do.
 
 ### User Settings: Molecule Moderator
 

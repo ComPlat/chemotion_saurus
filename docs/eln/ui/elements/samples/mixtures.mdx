@@ -25,6 +25,7 @@ Each mixture consists of multiple components, making it a powerful tool for hand
 
 - **Component Management**
   - Allows adding, removing, and modifying components in a mixture.
+  - From version 4.0 the same molecule may appear as more than one component.
 - **Advanced Calculations**
   - Computes total concentration based on individual component concentrations.
   - Recalculates volume and amount dynamically.
@@ -55,8 +56,38 @@ Once the Mixtures option is selected, the primary focus shifts to the **Componen
 ### Key UI Elements
 - **Component List:** Displays all components within the mixture.
 - **Input Fields:** Allows users to modify various attributes like concentration, volume, amount, stock data etc.
-- **Drag-and-Drop Support:** Enables reordering of components.
+- **Drag-and-Drop Support:** Enables reordering of components, and moving or merging one into another.
 - **Component Category:** Separate sections for **Liquids** and **Solids** to ensure organized mixture management.
+
+### Repeating a molecule, and the move or merge dialog
+
+From version 4.0 a mixture may hold the same molecule more than once — two
+batches of the same substance, say, at different concentrations. Dropping a
+sample whose molecule is already present adds a **separate row**, and the two
+rows are kept apart: editing one leaves the other untouched. Earlier versions
+silently discarded such a drop, which is worth knowing when comparing an old
+mixture with a new one. The combined structure image still shows each distinct
+molecule once.
+
+Dragging one component row onto another opens **Move or merge component**,
+asking *Do you want to merge or move this component?*
+
+| Choice | Effect |
+| --- | --- |
+| **Move** | Reorders the components, leaving both in place |
+| **Merge**, same molecule | Removes the dragged component and resets the target's amounts — mol, mass, volume, molarity and concentration — to zero |
+| **Merge**, different molecules | Replaces both with one combined component, again with all amounts reset to zero |
+
+The dialog states the relevant warning before anything is changed. Dragging a
+row into the empty area of the other group moves it between **Liquids** and
+**Solids** without asking.
+
+:::caution[Merging resets amounts]
+
+Every merge sets the resulting component's amounts to zero, whichever variant
+applies. Note the values first if they are to be carried over.
+
+:::
 
 ## Creating Mixtures
 Users can add components to a mixture using:

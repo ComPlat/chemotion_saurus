@@ -17,9 +17,23 @@ The administration interface is organized into the following sections:
 - **Devices** — register and manage [devices](admin/remote-devices).
 - **Groups** — create and manage [groups](admin/groups) of users.
 - **UI features** — enable or disable [interface features](admin/features).
-- **Text Templates** — manage global [text templates](ui/text-templates).
 - **Message Publish** — broadcast messages to users.
 - **Load OLS Terms** — load [ontology](admin/ontology) terms (e.g. CHMO, RXNO).
 - **Delayed Jobs** — monitor background jobs.
 - **ChemSpectra Layouts** — configure [ChemSpectra](admin/chemspectra) data-type layouts.
 - **Third Party Apps** — register [third-party applications](admin/third-party-apps).
+- **Info & Support Links** — add links that appear in the navbar **Chemotion**
+  dropdown and the Support menu, below the built-in entries. Each link has a
+  label, an `http://` or `https://` address, a position and an enabled flag; the
+  list starts empty.
+
+:::info[Changed in version 4.0]
+
+**Text Templates** has been removed from this interface. Global text templates
+are now edited by users who hold the *global text template editor* permission,
+which an administrator grants per user in **User Management**; those users edit
+them under Settings → **Text Templates**.
+
+**Info & Support Links** is new.
+
+:::
