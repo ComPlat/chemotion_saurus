@@ -41,6 +41,12 @@ The variable line `- SECRET_KEY_BASE=pleasechangeme` in sections `services.worke
 
 The variable line `- SECRET_KEY=imsupersecretandwanttobechanged` in section `services.converter.environment` needs to be changed as well. The string `imsupersecretandwanttobechanged` needs to be replaced by a random password-type string of the administrator's choice.
 
+#### Variable `OTP_SECRET_KEY`
+
+The variable `OTP_SECRET_KEY` must be set in sections `services.worker.environment` and `services.eln.environment`, to a unique random string of **at least 32 characters**. It is required from version 3.1.0 onwards, and the ELN will not start without it.
+
+Once set, it must never be changed: it encrypts the users' two-factor authentication secrets, and a new value makes the stored secrets unreadable.
+
 ### Optional: Modify Configuration Files
 
 In most of the following cases, the configuration has to be modified following the instructions in this section.

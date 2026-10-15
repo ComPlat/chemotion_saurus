@@ -36,6 +36,7 @@ To install the latest version of Chemotion on a blank system, follow these steps
 
   - `services.worker.environment.SECRET_KEY_BASE` and `services.eln.environment.SECRET_KEY_BASE` (both should be same)
   - `services.converter.environment.SECRET_KEY`
+  - `services.worker.environment.OTP_SECRET_KEY` and `services.eln.environment.OTP_SECRET_KEY` (both the same, at least 32 characters, and never changed afterwards)
 
 - download all images and create the containers, data volumes and networks by running this command in the same folder you downloaded the compose file to:
 
@@ -87,10 +88,22 @@ Chemotion relies on Docker volumes to preserve data. User data will be stored in
   | ------------------------------------- | --------------------- | -------- |
   | Chemotion file format `converter`     | 1.4.1                 | Yes      |
   | Ketcher render backend (`ketchersvc`) | 1.4.1                 | Yes      |
-  | Spectra (`spectra`)                   | 1.1.2p220401          | Yes      |
-  | [NMRium](configuration#nmrium)        | 1.5.0                 | Yes      |
+  | Spectra (`spectra`)                   | 1.1.2p220401          | No       |
+  | Mass-spectrometry converter (`msconvert`) | 1.1.2p220401      | No       |
+  | Structure renderer (`indigo_service`) | 3.0.0                 | Yes      |
+  | Database upgrade helper (`dbupgrade`)  | 3.0.0                 | Yes      |
 
   Optional services can be disabled by removing/commenting-out their entry in the `docker-compose.yml` file.
+
+  :::caution
+
+  `spectra` cannot be removed on its own: both `eln` and `worker` depend on it,
+  and it in turn needs `msconvert`.
+
+  :::
+
+  NMRium is not a service in version 3. It is reached as a URL, configured in
+  `spectra.yml` — see [NMRium](configuration#nmrium).
 
 ## Upgrades
 
