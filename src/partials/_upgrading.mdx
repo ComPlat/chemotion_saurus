@@ -405,6 +405,22 @@ literal `true` counts.
 
 **Applies to** all install methods.
 
+### 8. Saved wellplate import templates stop working
+
+**Symptom.** Importing a wellplate spreadsheet that worked before the upgrade
+fails with `'Molarity' must be in cell E1.`, usually followed by further errors
+about the readout columns.
+
+**Cause.** The template gained a **Molarity** column at E, so every readout
+column moved one place to the right. A spreadsheet saved from version 3 has the
+old layout.
+
+**Fix.** Download a fresh template from the wellplate's **Attachments** tab and
+transfer the data into it, or insert a column at E headed `Molarity` and leave
+it empty. Previously imported data is unaffected.
+
+**Applies to** anyone who keeps their own copy of the import template.
+
 ## From version 2 directly to version 4
 
 The jump works. Nothing forces a stop at version 3: version 4 carries every
