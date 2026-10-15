@@ -515,9 +515,12 @@ In production, **Weighing Tasks** and **Sample Explorer** ship switched off:
 :sample_explorer: false
 ```
 
-Both are new in version 4.0. Set a value to `true` and restart to enable it;
-only the literal `true` counts. If the file cannot be read, all of these
-components stay disabled.
+Set a value to `true` and restart to enable it; only the literal `true`
+counts. If the file cannot be read, all of these components stay disabled.
+
+**Sample Explorer** is new in version 4.0. **Weighing Tasks** is not: it was
+available to everyone in version 3 without a switch, so an instance upgrading
+from there loses it until it is enabled here.
 
 ## Other parameters
 
