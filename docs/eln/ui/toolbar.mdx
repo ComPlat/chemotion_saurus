@@ -157,7 +157,7 @@ To export elements, go to the collection that contains them, and select the desi
   alt={"Export samples"}
 />{" "}
 
-The window above opens where the user picks the properties to be exported with the elements. If they want to proceed, they press <Btn mixed={["XLSX/SDF Export",faSortUp]} color={"warning"}/>, which enables the user to choose either **XLSX Export**, or **SDF Export**. Otherwise, press <Btn mixed={["Cancel"]} color={"primary"}/>.
+The window above opens where the user picks the properties to be exported with the elements. From version 4.0 the two formats are separate buttons, <Btn mixed={["XLSX Export"]} color={"warning"}/> and <Btn mixed={["SDF Export"]} color={"warning"}/>, rather than one button with a choice behind it. Otherwise, press <Btn mixed={["Cancel"]} color={"primary"}/>.
 
 <YouTubeFrame
   src="https://www.youtube-nocookie.com/embed/Vr3_006Zr-s?start=30"
@@ -203,7 +203,7 @@ After downloading the XLSX template, users can import it into the Chemotion ELN 
 
 :::info[Recommendation]
 
-Please add either molfile or **SMILES**-Code to the import template. The import process will fail if both are entered.
+Please add either molfile or **SMILES**-Code to the import template. Where a row carries both, the molfile is used and the SMILES is ignored.
 
 Available from v2 onwards: Importing melting point, boiling point, location, refractive index, flash point, density, and molarity for samples.
 
