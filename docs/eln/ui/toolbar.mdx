@@ -95,7 +95,7 @@ This action can be performed by pressing <Btn mixed={[faMinusSquare]} color={"wa
 
 `Remove from current Collection`: This action removes the selected elements only from the selected collection, but a copy is kept in the back up collection **All**. The user is asked to confirm their decision via a pop-up window by pressing <Btn mixed={["Remove"]} color={"warning"}/>, or otherwise to press <Btn mixed={["Cancel"]} color={"primary"}/>.
 
-`Remove from all Collections`: This action removes the selected elements from **all of the user's own collections**, and permanently deletes only those elements that are left in no collection at all. It never reaches into a collection owned by someone else, including one that has been shared with them — those keep their copy, and its owner goes on seeing the element. The user is asked to confirm their decision via a pop-up window by pressing <Btn mixed={["Delete"]} color={"warning"}/>, or otherwise to press <Btn mixed={["Cancel"]} color={"primary"}/>. An option is provided in case the user is trying to remove reactions, which is to choose whether to delete the samples associated with the reactions, if the user chooses not to, then only the reactants and solvents associated with the deleted reaction are deleted too.
+`Remove from all Collections`: This action removes the selected elements from **all of the user's own collections**, and permanently deletes only those elements that are left in no collection at all. It never reaches into a collection owned by someone else, including one that has been shared with them — those keep their copy, and its owner goes on seeing the element. Samples still used in a reaction or a wellplate are kept rather than deleted, and a notice says which ones. The action is not offered at all while working inside a collection someone else shared. The user is asked to confirm their decision via a pop-up window by pressing <Btn mixed={["Delete"]} color={"warning"}/>, or otherwise to press <Btn mixed={["Cancel"]} color={"primary"}/>. An option is provided in case the user is trying to remove reactions, which is to choose whether to delete the samples associated with the reactions, if the user chooses not to, then only the reactants and solvents associated with the deleted reaction are deleted too.
 
 ### My labels
 
@@ -226,7 +226,49 @@ contains a bulleted or numbered list in a rich-text analysis.
 
 :::
 
-This icon <Btn mixed={[faCaretSquareRight, "Reporting", faSortDown]} color={"light"}/> helps the user to produce reports and organize the literature in their data. The same dropdown also offers QR code, Data Matrix code, and Bar code generation, and Format Analyses.
+This icon <Btn mixed={[faCaretSquareRight, "Reporting", faSortDown]} color={"light"}/> helps the user to produce reports and organize the literature in their data. The same dropdown also offers QR code, Data Matrix code, and Bar code generation, Format Analyses, and — where the instance administrator has enabled it — the **Explorer**.
+
+### Explorer
+
+The Explorer draws the open collection as a graph, so that the relationships
+between its samples and reactions can be seen at once. It needs no selection:
+it always shows the whole collection, and opens as a card in the details pane.
+
+Reactions appear as red boxes labelled with their short label and name, newest
+first. Around each one sit its starting materials and products, joined to it by
+labelled edges, with its reactants and reagents beside it. A sample that is the
+product of one reaction and the starting material of the next is drawn once, so
+a multi-step sequence stays connected, and a split sample is joined to the one
+it came from. Samples belonging to the collection but used in none of its
+reactions are stacked in a column at the left, solvents among them.
+
+A search box matches reaction and sample labels and names, and samples by
+canonical SMILES. A match also brings in the reactions that sample takes part
+in.
+
+:::note
+
+The Explorer is new in version 4.0 and is one of the optional interface
+components, switched off by default in a production instance. It appears only
+where an administrator has enabled it.
+
+:::
+
+{/* SCREENSHOT-TODO
+  id: explorer-graph
+  target: /img/eln/ui/toolbar/explorer.png
+  replaces: (none)
+  eln: v4.0.0
+  kind: image
+  page: element list -> Reporting -> Explorer, with sample_explorer set to true
+  setup: a collection holding two chained reactions, where the product of the
+         first is the starting material of the second, one split of that
+         product, one reagent, and one sample used in no reaction
+  show: the whole Explorer card after fitting the view, search box empty
+  crop: the Explorer card only
+  notes: keep the hover popover out of the shot - its "Performed:" line is in
+         fact the last-update time, so a shot showing it would mislead
+*/}
 
 <img src={require("@site/static/img/eln/ui/toolbar/report.png").default} alt={"Report"} />{" "}
 
