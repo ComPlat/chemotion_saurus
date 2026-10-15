@@ -22,6 +22,22 @@ The Chemotion ELN consists of different panels that are combined in the main app
 
 The top bar spans the top of the browser window. On its left it gives quick access to the [`Inbox`](ui/inbox), `Weighing Tasks`, the [`Calendar`](ui/calendar) and `Notifications`. On its right it holds the search field, the `Info & Support` menu and the user menu (where users can manage their account and log out).
 
+**Weighing Tasks** is shown only if the instance administrator has enabled it. It was available to everyone in version 3; from version 4.0 it is one of the optional interface components, and is switched off by default in a production instance.
+
+##### Notifications
+
+The bell opens **Notifications**, with the number of unread ones on the badge. The window has two tabs, **Unread** and **All**, the second of which also lists notifications already read, newest first. A search box above the list matches the subject, the sender and the message text, and the list is paged five at a time.
+
+An unread notification carries **Got it**, which marks it read and moves it to **All**; **Mark all as read** appears at the foot of the window while any remain. A notification that has been read carries **Archive** instead.
+
+:::caution[Archiving cannot be undone]
+
+An archived notification is removed from the list for good. There is no view that brings it back.
+
+:::
+
+Before version 4.0 the bell showed unread notifications only, and there was no way to see one again after reading it.
+
 #### Collection Bar
 
 The collection bar is located on the left below the top bar and is used to navigate through the [collections](ui/collections). Its entries are `Manage Collections` (see below), the user's own collections under `My Collections`, the collections other people and groups have shared under `Shared with me`, and the connected repository (`chemotion-repo`). The collection bar can be collapsed and expanded with the toggle on its right edge.
@@ -33,7 +49,7 @@ Collection management is opened with the <Btn mixed={[faCog, "Manage Collections
 
 #### Element Panel
 
-The element panel is to the right of the collection bar. Tabs at the top let users switch between the elements **Sample**, **Reaction**, **Wellplate**, **Screen** and **Research Plan** assigned to the selected collection; each tab also shows the number of contained elements. Above the element list a [toolbar](ui/toolbar) provides the actions `Reporting`, `Export`, `Split`, `Transfer`, `Remove`, `Share` and `References`, and the green `CREATE` button is used to add new elements. The list can be filtered and grouped using the controls below the toolbar.
+The element panel is to the right of the collection bar. Tabs at the top let users switch between the elements **Sample**, **Reaction**, **Wellplate**, **Screen** and **Research Plan** assigned to the selected collection; each tab also shows the number of contained elements. Above the element list a [toolbar](ui/toolbar) provides the actions `Reporting`, `Export`, `Split`, `Transfer`, `Remove`, `Share`, `References` and `My labels`, and the green `CREATE` button is used to add new elements. The list can be filtered and grouped using the controls below the toolbar.
 Users can find more details in the [`Elements` section](#elements).
 
 #### Detail Modal

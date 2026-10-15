@@ -47,6 +47,24 @@ additive. Sizes that would discard filled wells are grayed out in the dropdown
 and marked *would delete filled wells*, and the dimensions dialog names the
 wells standing in the way.
 
+### Importing readouts from a spreadsheet
+
+Readouts can be imported from a spreadsheet downloaded from the wellplate's
+**Attachments** tab. The download is only offered once the wellplate has been
+saved, and a wellplate with no size cannot be imported into at all.
+
+:::caution[A template saved from version 3 no longer works]
+
+Version 4 added a **Molarity** column at E, which moves every readout column
+one place to the right. Importing an older spreadsheet fails with
+`'Molarity' must be in cell E1.`, usually followed by further errors about the
+shifted columns.
+
+Download a fresh template and transfer the data into it, or insert an empty
+column at E headed `Molarity`. Data imported before the upgrade is unaffected.
+
+:::
+
 :::note[Resizing is saved on its own]
 
 Changing the size of a saved wellplate is written to the server immediately,

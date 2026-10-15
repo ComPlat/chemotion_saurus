@@ -28,7 +28,7 @@ import { FigCaption, YouTubeFrame } from "@site/src/js/layout";
 
 ![whole window](/img/eln/ui/toolbar/screen.png)
 
-The toolbar sits above the element list in the [element panel](.#element-panel) and provides a variety of functions to control the Chemotion ELN elements. Its buttons are `Reporting`, `Export`, `Split`, `Transfer`, `Remove`, `Share` and `References`; the search bar and the green <Btn mixed={[faPlus, "CREATE"]} color={"success"}/> button are located to its right. These functions cover adding, copying, deleting, moving, sharing, filtering, importing and exporting.
+The toolbar sits above the element list in the [element panel](.#element-panel) and provides a variety of functions to control the Chemotion ELN elements. Its buttons are `Reporting`, `Export`, `Split`, `Transfer`, `Remove`, `Share`, `References` and `My labels`; the search bar and the green <Btn mixed={[faPlus, "CREATE"]} color={"success"}/> button are located to its right. These functions cover adding, copying, deleting, moving, sharing, filtering, importing and exporting.
 
 ## Filtering
 
@@ -96,6 +96,41 @@ This action can be performed by pressing <Btn mixed={[faMinusSquare]} color={"wa
 `Remove from current Collection`: This action removes the selected elements only from the selected collection, but a copy is kept in the back up collection **All**. The user is asked to confirm their decision via a pop-up window by pressing <Btn mixed={["Remove"]} color={"warning"}/>, or otherwise to press <Btn mixed={["Cancel"]} color={"primary"}/>.
 
 `Remove from all Collections`: This action removes the selected elements from **all of the user's own collections**, and permanently deletes only those elements that are left in no collection at all. It never reaches into a collection owned by someone else, including one that has been shared with them — those keep their copy, and its owner goes on seeing the element. The user is asked to confirm their decision via a pop-up window by pressing <Btn mixed={["Delete"]} color={"warning"}/>, or otherwise to press <Btn mixed={["Cancel"]} color={"primary"}/>. An option is provided in case the user is trying to remove reactions, which is to choose whether to delete the samples associated with the reactions, if the user chooses not to, then only the reactants and solvents associated with the deleted reaction are deleted too.
+
+### My labels
+
+Labels can be added to or taken off a whole selection at once. Select the
+elements, then press **My labels** at the right-hand end of the toolbar, which
+opens **Bulk edit user labels**.
+
+The window offers two lists — **Add labels** and **Remove labels** — and
+**Apply to selection** carries both out across every selected element,
+whatever their type. Only the user's own labels and any global ones are
+offered, and other people's private labels on those elements are left alone.
+
+The button needs a selection, and edit rights in the current collection.
+
+:::note
+
+The labels themselves are created and edited under **My Labels** in the user
+menu. The two names are nearly the same: the toolbar button works on a
+selection, the user-menu entry maintains the list.
+
+:::
+
+{/* SCREENSHOT-TODO
+  id: toolbar-bulk-labels
+  target: /img/eln/ui/toolbar/bulk_labels.png
+  replaces: (none)
+  eln: v4.0.0
+  kind: image
+  page: element panel -> select two or more samples -> toolbar "My labels"
+  setup: the user owns two labels, and one global label exists
+  show: the "Bulk edit user labels" window with one label chosen under Add labels
+        and one under Remove labels, plus the toolbar button that opened it
+  crop: toolbar button and window
+  notes: the button is disabled without a selection
+*/}
 
 ## Sharing collections
 
