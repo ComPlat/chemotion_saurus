@@ -125,7 +125,7 @@ Users can delete datasets from an analysis by clicking <Btn mixed={[faTrashAlt]}
 
 The analyses tab of the [reaction](elements/reactions) view differs from the analysis tab of the sample view. While samples can always have analyses, reaction **Analyses** can only contain **Products** samples that are supported by analyses. The **Analyses** tab of the reactions therefore only shows analyses by means of a link. To edit the data, the link (name of the product sample) to the analysis of the sample must be followed.
 
-The [wellplate](elements/wellplates) analysis tab is identical to the sample analysis tab.
+The [wellplate](elements/wellplates) analysis tab works much as the sample one does, with two differences: its analysis headers carry no preview image, and it has no **Analyses from upload** button.
 
 :::warning[Warning]
 
@@ -151,6 +151,40 @@ At the top of the analyses tab there is a toggle with two options: **Edit mode**
 <video controls>
   <source src={require("@site/static/img/eln/ui/details/analyses_ordering.webm").default} />
 </video>
+
+#### The preview image
+
+Each analysis shows a preview image at the left of its header. Clicking it
+opens a window with the file shown large and a rail of the analysis's saved
+images and PDFs down the left-hand side, so they can be browsed without leaving
+the page. PDFs open in a viewer inside the same window.
+
+From version 4.0 the image shown in the header can be chosen rather than picked
+automatically: **Set as preferred** at the top of the rail marks the file on
+display, and the chosen one carries a small star in the rail afterwards. Where
+nothing has been chosen the ELN falls back to its own selection, as earlier
+versions always did.
+
+Only saved images and PDFs appear. A file just dropped in is offered once the
+analysis has been saved, and other file types never appear.
+
+Wellplates and screens have no preview image in their analysis headers, so
+neither the picker nor the fallback applies to them.
+
+{/* SCREENSHOT-TODO
+  id: analyses-preview-picker
+  target: /img/eln/ui/details/analyses_preview_picker.png
+  replaces: (none)
+  eln: v4.0.0
+  kind: image
+  page: sample -> Analyses tab -> Edit mode -> click an analysis preview image
+  setup: one analysis holding three saved files - two images and one PDF - with
+         a preferred image already chosen that is not the first in the rail
+  show: the window with the rail on the left, the starred preferred tile, the
+         "Set as preferred" button, and the large preview on the right
+  crop: the window only
+  notes: -
+*/}
 
 #### Comment box
 

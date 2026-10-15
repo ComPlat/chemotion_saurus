@@ -25,9 +25,11 @@ Element specific events can be created for the following elements:
 ### Header
 
 The calendar can be moved around the Chemotion ELN window by clicking on the header.
-The header has 4 buttons:
+The header holds:
 
+- New Event (creates an event starting now, lasting an hour)
 - Show entries (toggles visibility of shared collection events in main calendar / all user events in element specific calendar)
+- Filter buttons for element type, calendar type and status — each a checklist with a **Clear** option, listing only the values actually present. The element-type filter appears on the main calendar only
 - Full screen
 - Lock calendar (keep calendar open whilst using Chemotion ELN)
 - Close calendar
@@ -42,7 +44,7 @@ The user can select between 5 different views:
 2. Week
 3. Work Week
 4. Day
-5. Agenda — shows upcoming events for a month after the currently selected date.
+5. Agenda — shows a single day, with its date and a **Today** badge, listing date, time, event name and description. **Show past events** reveals the ones already finished; Today, Back and Next move a day at a time.
 
 The main calendar shows all user created events / shared collection events.
 ![Main Calendar](/img/eln/ui/calendar/calendar.png)
@@ -61,7 +63,34 @@ The following event details can be designated:
 - Title (required)
 - Description
 - Type
+- Status — To Be Done, Follow Up, On Hold or Done
+- Notify Users
 - Duration (defaults: 24 hours if creating in month view / 15 minutes)
+
+When an existing event is edited, neither its start nor its end may be moved
+into the past, and the end must stay after the start; changing the start shifts
+the end to keep the length. Events created by someone else open read-only,
+showing who organised them and who was notified.
+
+Editing the notified users notifies only those newly added. Times in calendar
+notifications are shown in the reader's own time zone.
+
+{/* SCREENSHOT-TODO
+  id: calendar-agenda-v4
+  target: /img/eln/ui/calendar/calendar.png
+  replaces: /img/eln/ui/calendar/calendar.png
+  eln: v4.0.0
+  kind: image
+  page: top bar -> Calendar -> Agenda view
+  setup: three events today with different types and statuses, one of them
+         already finished
+  show: the header with New Event, show-entries, the three filter buttons,
+         full screen and lock; the agenda day with its Today badge and the
+         Show past events checkbox
+  crop: the whole calendar window
+  notes: the current file predates the new header buttons. A second shot of the
+         event editor showing Status would be useful
+*/}
 
 Default event types:
 
