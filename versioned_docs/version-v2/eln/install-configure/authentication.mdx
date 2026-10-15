@@ -92,23 +92,29 @@ We also offer third-party authentication options, including Shibboleth, OIDC (Op
 
 ```sh
 {
-  orcid: {
-    enable: false
-    client_id: null
-    client_secret: null
+  "orcid": {
+    "enable": false,
+    "client_id": null,
+    "client_secret": null,
+    "icon": null,
+    "label": null,
+    "member": false,
+    "sandbox": false
   }
 }
 ```
 
 #### Parameters
 
-| Parameters | Value             | Description          |
-| ---------- | ----------------- | -------------------- |
-| enable     | `true` or `false` |                      |
-| uid        | 'pairwise-id'     |                      |
-| email      | 'mail'            |                      |
-| last_name  | 'sn'              |                      |
-| first_name | 'givenName'       |                      |
+| Parameters    | Value             | Description                                              |
+| ------------- | ----------------- | -------------------------------------------------------- |
+| enable        | `true` or `false` |                                                          |
+| client_id     | string            | From the ORCID application                               |
+| client_secret | string            | From the ORCID application                               |
+| icon          | string            | Optional icon for the sign-in button                     |
+| label         | string            | Optional text for the sign-in button                     |
+| member        | `true` or `false` | Whether the ORCID account is a member account            |
+| sandbox       | `true` or `false` | Use ORCID's sandbox instead of the live service          |
 
 
 ### GitHub
@@ -116,23 +122,25 @@ We also offer third-party authentication options, including Shibboleth, OIDC (Op
 
 ```sh
 {
-  github: {
-    enable: false
-    client_id: null
-    client_secret: null
+  "github": {
+    "enable": false,
+    "client_id": null,
+    "client_secret": null,
+    "icon": null,
+    "label": null
   }
 }
 ```
 
 #### Parameters
 
-| Parameters | Value             | Description          |
-| ---------- | ----------------- | -------------------- |
-| enable     | `true` or `false` |                      |
-| uid        | 'pairwise-id'     |                      |
-| email      | 'mail'            |                      |
-| last_name  | 'sn'              |                      |
-| first_name | 'givenName'       |                      |
+| Parameters    | Value             | Description                          |
+| ------------- | ----------------- | ------------------------------------ |
+| enable        | `true` or `false` |                                      |
+| client_id     | string            | From the GitHub OAuth application    |
+| client_secret | string            | From the GitHub OAuth application    |
+| icon          | string            | Optional icon for the sign-in button |
+| label         | string            | Optional text for the sign-in button |
 
 
 ### NFDI AAI

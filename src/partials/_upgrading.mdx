@@ -1,0 +1,483 @@
+Upgrading an existing instance is covered by the tool it was installed with:
+see *Using the CLI → Upgrading an instance* for a ChemCLI install, and the
+image tag for a manual Docker install. This page collects what is specific to
+a particular version step — the things that need an action beyond pulling a
+new image.
+
+It is the same page in every version of this documentation, so that an
+administrator can read the whole path at once, including a jump across more
+than one version.
+
+## Before any upgrade
+
+1. **Back up the database, and the file volumes with it** — the attachments
+   and `public/safety_sheets`. Several migrations cannot be undone, and some of
+   them change files rather than rows.
+2. **Rehearse a major step on a copy** of the production database. This matters
+   most for a jump across two versions, where the migrations run in an order no
+   single step ever produces.
+3. **Mount the file storage while the migration runs.** More than one migration
+   reads or rewrites stored files, and anything it cannot reach is skipped.
+
+With a ChemCLI or a manual Docker install, database migrations run
+automatically when the container starts. A source install runs
+`bundle exec rake db:migrate` as part of its own upgrade. Nothing else on this
+page has to be run by hand unless it says so.
+
+## Which path applies
+
+| Running | Going to | Read |
+| --- | --- | --- |
+| 2.x | 3.x | *From version 2 to version 3* |
+| 3.x | 4.x | *From version 3 to version 4* |
+| 2.x | 4.x, in one step | both sections above, then *From version 2 directly to version 4* |
+
+The versions actually distributed to users are **2.2.0**, **3.1.2** and
+**4.0.0**, and this page is written for those.
+
+## From version 2 to version 3
+
+Version 3 has no breaking-change list of its own; everything below comes from
+what the upgrade does. The first two items are the ones that stop an upgrade or
+lose something.
+
+### 1. The ELN and worker do not start
+
+**Symptom.** Nothing comes up after the upgrade. The log shows
+`KeyError: key not found: "OTP_SECRET_KEY"`. No migration runs, so the database
+is untouched.
+
+**Cause.** From version 3.1.0 two-factor sign-in needs a server-side key, and
+it is read with no default. Version 3.0.0 does not need it.
+
+**Fix.** Set `OTP_SECRET_KEY` to at least 32 random characters, on the **eln**
+and **worker** containers and on anything else that runs rake tasks. Keep it
+stable forever: changing it later makes every stored two-factor secret
+unreadable. Never use an example value.
+
+**Applies to** manual Docker and source installs. ChemCLI generates one during
+the upgrade if it is missing.
+
+### 2. Safety data sheet links stop working
+
+**Symptom.** A chemical's stored safety data sheet opens nothing — a 404 —
+after the upgrade.
+
+**Cause.** A migration moves and renames every stored sheet under
+`public/safety_sheets/<vendor>/` and rewrites the stored links. The rewritten
+links do not always match the new file names.
+
+**Fix.** Before upgrading, back up `public/safety_sheets/`. The migration also
+copies it to `public/safety_sheets_backup` once, but do not rely on that alone.
+Afterwards, where a link fails, fetch or upload that sheet again from the
+chemical's inventory tab.
+
+**Applies to** any instance with stored sheets.
+
+### 3. Structures render differently, or worse
+
+**Symptom.** Structures from imports, and polymer or surface structures, look
+different or coarser than before. The log may show `IndigoService Error:`.
+
+**Cause.** The old ketcherails renderer is gone. Server-side rendering now
+prefers the optional Indigo service for those cases, falling back to
+`ketchersvc` and then to OpenBabel.
+
+**Fix.** Run the `indigo_service` container and create
+`config/indigo_service.yml`:
+
+```yaml
+:indigo_service_url: 'http://indigo_service/'
+```
+
+The trailing slash is required. ChemCLI's 3.1.2 payload already includes the
+service.
+
+**Applies to** manual Docker and source installs.
+
+### 4. Structure rendering falls back to OpenBabel everywhere
+
+**Symptom.** Rendering is poor across the board, not only for imports.
+
+**Cause.** The example URL in `config/ketcher_service.yml` moved to port 4000.
+
+**Fix.** Point it at the running service — `http://ketchersvc:4000/render`,
+where it used to be port 9000.
+
+**Applies to** manual Docker, and source installs keeping their own file.
+
+### 5. The structure editor does not load
+
+**Symptom.** The editor pane stays empty.
+
+**Cause.** In `config/structure_editors.yml` the key `ketcher2` became
+`ketcher`, and its path became
+`/editors/ketcher/standalone/index.html`.
+
+**Fix.** Edit the file to match.
+
+**Applies to** manual Docker, and source installs keeping their own file.
+
+### 6. A third-party editor stays blank
+
+**Symptom.** ChemDraw JS or Marvin JS, loaded from another host, shows nothing.
+The browser console reports a Content-Security-Policy `script-src-elem` error.
+
+**Cause.** Version 3 restricts which scripts a page may load.
+
+**Fix.** Host the editor's JavaScript under the ELN's own `public/`, or allow
+its origin in the policy.
+
+**Applies to** any install with additional editors.
+
+### 7. The upgrade takes far longer than usual
+
+**Symptom.** A long migration, and noticeably more disk used afterwards.
+
+**Cause.** A migration regenerates every image and PDF thumbnail at a larger
+size — 800 px, 200 dpi — and the new indexes lock large tables while they
+build.
+
+**Fix.** Nothing to correct; plan the downtime, and keep the storage mounted so
+the thumbnails can be written. Failures are logged per file and skipped.
+
+**Applies to** all install methods.
+
+### 8. Scripts reading `device_type` fail
+
+**Symptom.** A local query or report errors on `device_descriptions`.
+
+**Cause.** `device_type` became `device_class`, and `device_type_detail` became
+`device_class_detail`.
+
+**Fix.** Update the queries.
+
+**Applies to** anyone querying the database directly.
+
+### 9. Four API endpoints changed
+
+**Symptom.** An integration fails on chemicals, device descriptions, OnlyOffice
+or editor options.
+
+**Fix.** Update the client:
+
+| Version 2 | Version 3 |
+| --- | --- |
+| `PUT /chemicals/:sample_id` | `PUT /chemicals`, with `sample_id` in the body |
+| `PUT /device_descriptions/byontology/:id` | removed — use `GET /device_descriptions/ontologies` |
+| `POST /editor/start` | `GET /editor/:id/start` |
+| `…/profiles/editors/ketcher2-options` | `…/profiles/editors/ketcher-options` |
+
+**Applies to** API clients.
+
+### 10. Inbox transfer becomes manual
+
+**Symptom.** Users who had automatic inbox transfer find it switched off.
+
+**Cause.** A migration sets automatic transfer off and manual transfer on for
+any profile that had no setting recorded.
+
+**Fix.** Nothing to correct; users can turn it back on.
+
+**Applies to** all install methods.
+
+### Two things to check before starting
+
+**Keep `config/storage.yml`.** Version 3 still refuses to boot without it.
+
+**Check for pre-2021 attachments.** The old attachment storage code is gone
+from version 3, so an instance that was ever below 1.5.0 should run this
+**while still on version 2**:
+
+```sql
+SELECT count(*) FROM attachments
+WHERE attachment_data IS NULL AND deleted_at IS NULL;
+```
+
+The answer should be 0. If it is not, repair those attachments on version 2
+first. Do not go from a version below 1.5.0 straight to version 3.
+
+No job queue or scheduled-task variable changed between version 2 and
+version 3.
+
+## From version 3 to version 4
+
+Version 4.0.0 rebuilt collection sharing, merged the PubChem background jobs
+into one, and moved several API paths. Most instances need **no** action, but
+four of the changes below are silent: nothing fails visibly, and the symptom
+appears days later.
+
+:::danger[Take a database backup first]
+
+The sharing migration cannot be rolled back. Its `down` step restores the
+table structure but not the data, and several later migrations cannot be undone
+either. Some refuse to run backwards and say so. Others are more treacherous:
+rolling one back **appears to succeed** — the migration is marked as undone —
+while the change it made to the data stays, and can no longer be told apart
+from what was there before. A failed upgrade is recoverable only from a backup.
+
+Run the migration on a host where the attachment storage is mounted. One
+migration repairs image derivatives in place, and entries it cannot reach are
+dropped and regenerated the next time a preview is requested.
+
+:::
+
+### 1. The PubChem queues became one
+
+**Symptom.** Imported molecules never receive a name, a PubChem ID or safety
+(GHS) data, and samples made from them keep their sum formula as a name. No
+error appears anywhere.
+
+**Cause.** The three jobs behind `pubchem`, `pubchemLcss` and
+`single_pubchem_lcss` were merged into a single job on the queue
+`pubchem_lookup`. A worker started with an explicit queue list no longer
+matches, so the jobs are queued and never run.
+
+**Fix.** In `DELAYED_JOB_ARGS`, replace
+`pubchem,pubchemLcss,single_pubchem_lcss` with `pubchem_lookup`, or add a
+catch-all pool:
+
+```sh
+DELAYED_JOB_ARGS="--pool=transfer_to_repo --pool=collect_data --pool=* "
+```
+
+**Applies to** instances whose worker runs a queue allowlist. **No action is
+needed** if `DELAYED_JOB_ARGS` is unset, or already ends in `--pool=*` — which
+is the default for a ChemCLI install and for the documented example. A
+catch-all is the safer setting in any case, because some queue names are
+generated at run time (`report_<id>`, `remove_files_<job_id>`) and an
+allowlist cannot name them.
+
+Old rows left behind by the removed jobs are deleted automatically when the
+application boots. They do not need cleaning out by hand, and no work is lost:
+the weekly sweep works out again what is still missing.
+
+### 2. `CRON_CONFIG_PC_LCSS` is ignored
+
+**Symptom.** Safety-data lookups run again on an instance where they had been
+switched off.
+
+**Cause.** The variable no longer exists. `CRON_CONFIG_PC_CID` now schedules
+the single combined sweep, and an instance that had disabled only the LCSS
+sweep is left with the combined one enabled. The application logs a warning at
+boot if the obsolete variable is still set.
+
+**Fix.** Remove `CRON_CONFIG_PC_LCSS`. To stop the recurring sweep, set
+`CRON_CONFIG_PC_CID=disabled`. Note that this stops only the sweep — a lookup
+is still queued for each molecule as it is created.
+
+**Applies to** all install methods.
+
+### 3. The sharing tables were replaced
+
+**Symptom.** A local script, report or reporting query fails with
+`relation "sync_collections_users" does not exist`, or a comparable
+`column … does not exist`.
+
+**Cause.** Sharing was rebuilt. The table `sync_collections_users`, the view
+`v_samples_collections` and thirteen sharing columns on `collections` were
+dropped, and shares now live in `collection_shares`.
+
+**Fix.** Rewrite local queries against `collection_shares` — which carries
+`collection_id`, `shared_with_id`, `permission_level` and the per-type detail
+levels — and against `collections.user_id`, which now always holds the real
+owner.
+
+**Applies to** anyone querying the database directly. The ELN itself and its
+own interface are unaffected.
+
+:::note
+
+Two SQL functions, `collection_shared_names` and `detail_level_for_sample`,
+are left behind in an upgraded database and still reference the dropped table.
+Nothing in the ELN calls them. They fail if something else does.
+
+:::
+
+### 4. Collections owned by a group account become unreachable
+
+This is the most serious item on the page, and the only one with no fix in the
+interface.
+
+**Symptom.** After the upgrade, members of a group can no longer add elements
+to, or export, a collection that belonged to the group.
+
+**Cause.** Collection ownership is now personal. Members reach a group's
+collections only through a share addressed to the group. Shares *to* a group
+made in version 3 were converted and keep working. A collection **owned by the
+group account itself**, with no share on it, is now reachable by nobody — and
+because administering a share requires owning the collection or holding
+*Manage shares* on it, neither of which anyone now has, and because a group
+account cannot open the workspace, no screen in the ELN can repair it.
+
+**Fix.** After upgrading, list the affected collections:
+
+```sql
+SELECT c.id, c.label, u.name_abbreviation
+FROM collections c
+JOIN users u ON u.id = c.user_id
+WHERE u.type = 'Group'
+  AND c.deleted_at IS NULL
+  AND c.is_locked IS NOT TRUE
+  AND NOT EXISTS (SELECT 1 FROM collection_shares cs WHERE cs.collection_id = c.id);
+```
+
+Run it **after** the upgrade, not before. Before the migration it also returns
+the version 3 shares-to-groups, which the upgrade converts by itself.
+
+Each row then has to be repaired from the Rails console or in SQL, either by
+creating a share addressed to the group, or by setting `collections.user_id` to
+a person who can then share it.
+
+**Applies to** all install methods, and only to instances that used group
+accounts.
+
+The migration also soft-deletes the empty, automatically created **All** and
+**chemotion-repository.net** collections belonging to group accounts. Any that
+still hold content are kept, and their identifiers are printed in the
+migration output on lines beginning "keeping group" — worth reading once and
+deciding on by hand.
+
+### 5. Some API paths moved
+
+**Symptom.** An integration receives 404, or another 4xx response, on calls
+concerning user labels or groups.
+
+**Cause.** Those routes were rebuilt and no alias was left behind.
+
+**Fix.** Update the client:
+
+| Version 3 | Version 4 |
+| --- | --- |
+| `GET /api/v1/users/list_labels` | `GET /api/v1/user_labels/list_labels` |
+| `PUT /api/v1/users/save_label` | `PUT /api/v1/user_labels/save_label` |
+| `POST /api/v1/groups/create`, body wrapped in `group_param` | `POST /api/v1/groups`, body flat |
+| `GET /api/v1/groups/qrycurrent` | `GET /api/v1/groups` |
+| `PUT /api/v1/groups/upd/:id` with `destroy_group` | `DELETE /api/v1/groups/:id` |
+| `PUT /api/v1/groups/upd/:id` with `add_users` | `POST /api/v1/groups/:id/members`, body `{user_ids: […]}` |
+| `PUT /api/v1/groups/upd/:id` with `rm_users` | `DELETE /api/v1/groups/:id/members/:user_id`, one per call |
+| `PUT /api/v1/groups/upd/:id` with `add_admin` | `POST /api/v1/groups/:id/admins/:user_id`, one per call |
+| `PUT /api/v1/groups/upd/:id` with `rm_admin` | `DELETE /api/v1/groups/:id/admins/:user_id`, one per call |
+| `GET /api/v1/groups/queryCurrentDevices` | `GET /api/v1/users/devices` |
+| `GET /api/v1/groups/deviceMetadata/:device_id` | `GET /api/v1/devices/:device_id/metadata` |
+
+Two response changes come with this. Group validation errors now return 422
+where they used to return 404, and saving a label that does not belong to the
+caller returns 404. A new bulk endpoint, `POST /api/v1/user_labels/bulk`, has
+no version 3 equivalent.
+
+**Applies to** external scripts and clients. The ELN's own interface is
+updated.
+
+### 6. Long jobs are stopped after an hour
+
+**Symptom.** A very large import or export stops partway and is retried from
+the beginning.
+
+**Cause.** The limit on a single background job is now 60 minutes. It was four
+hours.
+
+**Fix.** None available without changing code. Splitting very large operations
+into smaller ones is the practical workaround.
+
+**Applies to** all install methods.
+
+### 7. Two interface components are switched off
+
+**Symptom.** *Weighing Tasks* and *Sample Explorer* do not appear.
+
+**Cause.** Both are new in version 4 and ship switched off in production.
+Nothing was lost in the upgrade.
+
+**Fix.** Set them to `true` in `config/ui_components.yml` and restart:
+
+```yaml
+:weighing_tasks: true
+:sample_explorer: true
+```
+
+The file is created from its example on first boot if it is missing. Only the
+literal `true` counts.
+
+**Applies to** all install methods.
+
+## From version 2 directly to version 4
+
+The jump works. Nothing forces a stop at version 3: version 4 carries every
+migration needed, nothing that only version 3 provided was removed, and the
+sharing rebuild handles version 2's sharing data. ChemCLI will take an
+installed 2.2.0 straight to a newer version.
+
+:::danger[Rehearse this one on a copy]
+
+Version 2.2.0 is a side branch of the history, so in a direct jump some version
+4 migrations run **before** some version 3 ones — an order that neither single
+step ever produces. Two of those interleavings could not be verified.
+
+Run the upgrade against a copy of the production database first. Stopping at
+3.1.2 and upgrading again avoids the risk entirely, at the cost of one more
+upgrade.
+
+:::
+
+Everything in the two sections above applies. In a single jump, do it in this
+order:
+
+1. **On version 2**, run the pre-2021 attachment check above. The answer must
+   be 0.
+2. **On version 2**, make sure the user records are valid. One migration
+   re-saves every user and stops the whole upgrade at the first invalid one. If
+   the upgrade halts with a validation error naming a user, correct that user
+   and start again. The same applies when stepping through version 3.
+3. **Back up** the database and every file volume, `public/safety_sheets`
+   included.
+4. **Set `OTP_SECRET_KEY`** on the eln, worker and executor containers, as in
+   item 1 of the version 2 to version 3 section.
+5. **Apply the configuration items** — items 3 to 6 of the version 2 section,
+   and from the version 3 section the PubChem queue change and any script
+   reading the old sharing tables.
+6. **Start version 4 with the file volumes mounted.** Sixty-seven migrations
+   run.
+7. **Read the migration log** for the collection-share counts and the tree-check
+   line, then work through the group-collections check in item 4 of the version
+   3 section.
+8. **Optionally**, run the duplicate-attachment cleanup described under
+   *After reaching version 4* below.
+
+The safety data sheet link problem — item 2 of the version 2 section — applies
+to the jump as well.
+
+## After reaching version 4
+
+One optional cleanup is available, whichever path was taken. It removes
+duplicate spectra attachments created before the fault that produced them was
+corrected:
+
+```sh
+rake attachments:cleanup_duplicate_derived_attachments
+```
+
+It reports what it would do and changes nothing. To apply it:
+
+```sh
+rake attachments:cleanup_duplicate_derived_attachments'[false]'
+```
+
+On a Docker install these run inside the ELN container, as
+`docker exec -it <eln container> bundle exec rake …`; on a source install,
+prefix them with `bundle exec`.
+
+## Upgrading with the CLI
+
+The CLI does not force a step through each version: an instance on 2.2.0 can be
+pointed at any newer version it offers. The rehearsal advice above still
+applies to a jump.
+
+It could not install or upgrade to version 4 at the time of writing, because
+its payload still pins version 3.1.2 images. When a CLI release ships version
+4, the steps on this page still apply — they concern the ELN itself rather than
+the tool that deploys it — with the queue setting made wherever that release
+puts `DELAYED_JOB_ARGS`.
+
+For a version 2 to version 3 upgrade the CLI handles `OTP_SECRET_KEY` by
+itself, generating one if the instance has none.
