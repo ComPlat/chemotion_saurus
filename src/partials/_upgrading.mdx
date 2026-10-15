@@ -382,12 +382,16 @@ into smaller ones is the practical workaround.
 
 **Applies to** all install methods.
 
-### 7. Two interface components are switched off
+### 7. Weighing Tasks disappears
 
-**Symptom.** *Weighing Tasks* and *Sample Explorer* do not appear.
+**Symptom.** The **Weighing Tasks** button is gone from the top bar after the
+upgrade, for everyone. *Sample Explorer*, which users may have been told to
+expect in version 4, is not there either.
 
-**Cause.** Both are new in version 4 and ship switched off in production.
-Nothing was lost in the upgrade.
+**Cause.** Version 4 puts both behind switches in `config/ui_components.yml`,
+and in production both ship switched **off**. Weighing Tasks worked in version
+3 without any switch, so upgrading takes it away until an administrator turns
+it back on. Sample Explorer is genuinely new, and off for the same reason.
 
 **Fix.** Set them to `true` in `config/ui_components.yml` and restart:
 
