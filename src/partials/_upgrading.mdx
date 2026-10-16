@@ -50,10 +50,11 @@ is untouched.
 **Cause.** From version 3.1.0 two-factor sign-in needs a server-side key, and
 it is read with no default. Version 3.0.0 does not need it.
 
-**Fix.** Set `OTP_SECRET_KEY` to at least 32 random characters, on the **eln**
-and **worker** containers and on anything else that runs rake tasks. Keep it
-stable forever: changing it later makes every stored two-factor secret
-unreadable. Never use an example value.
+**Fix.** Set `OTP_SECRET_KEY` to a unique string of at least 32 random
+characters, on the **eln** and **worker** containers and on anything else that
+runs rake tasks. Never use an example value, and never change it afterwards: a
+new value switches off two-factor login for every user who had enabled it, and
+each of them has to enable it again.
 
 **Applies to** manual Docker and source installs. ChemCLI generates one during
 the upgrade if it is missing.
