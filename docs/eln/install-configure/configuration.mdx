@@ -376,6 +376,13 @@ The wrapper refuses messages from any parent origin that is not on its allowlist
 A rejected message surfaces as a **failed save** with *"Invalid Origin"*, not as
 an error on opening, so it is easy to mistake for a different problem.
 
+The rest of this section describes an instance running a **published ELN
+image**, which is what a ChemCLI or manual Docker install uses. An instance
+built from the ELN repository installs the wrapper differently and does not
+behave the same way; see
+[installing from the repository](#installing-the-wrapper-from-the-repository)
+below.
+
 **Set `PUBLIC_URL` to the address the ELN is reached at.** The ELN rebuilds the
 allowlist from it every time the container starts, so for an instance reached
 under a single address nothing else has to be configured.
@@ -408,7 +415,10 @@ services:
       - NMRIUM_ALLOWED_ORIGINS=https://chemotion.dept.uni.de https://chemotion.internal.dept.uni.de
 ```
 
-Entries are separated by spaces or commas, and each needs its own scheme.
+Entries are separated by spaces or commas, and each needs its own scheme. The
+wrapper compares **hostnames only** — a port makes no difference, and wildcards
+are not supported, so a deployment serving several subdomains has to list each
+one.
 
 :::caution[An empty list accepts every origin]
 
@@ -419,6 +429,40 @@ with *no NMRium origins configured*. Setting `PUBLIC_URL` correctly is
 therefore worth confirming rather than assuming.
 
 :::
+
+### Installing the wrapper from the repository
+
+An instance built from the ELN repository rather than from a published image
+installs the wrapper with the `nmrium-assets` service in
+`docker-compose.services.yml`. Three things differ, and all of them matter.
+
+| | Published image | Built from the repository |
+| --- | --- | --- |
+| Which wrapper is installed | fixed when the image is built | `IMG_NMRIUMWRAPPER`, default `nfdi4chem/nmrium-react-wrapper:v1.2.0` |
+| When the allowlist is written | at every container start | **once**, when that wrapper version is first installed |
+| If `NMRIUM_ALLOWED_ORIGINS` is unset | falls back to the `PUBLIC_URL` origin | **no fallback** — the list is empty |
+
+The tag in `IMG_NMRIUMWRAPPER` becomes the folder name under
+`public/nmrium/<tag>/`, and `public/nmrium/default` is linked to it. Keep it in
+step with the `NMRIUMWRAPPER` pin in the ELN's `.service-dependencies`; unlike
+an image build, this service does not check the two against each other.
+
+:::danger[Set `NMRIUM_ALLOWED_ORIGINS` — there is no fallback here]
+
+On this path `PUBLIC_URL` is not consulted. Leaving the variable unset leaves
+the allowlist empty, and an empty list means the wrapper accepts messages from
+**any** origin. That is tolerable while developing and should not be left in
+place anywhere else.
+
+:::
+
+Because the list is written only at first install, changing it afterwards is
+not a matter of editing the variable and restarting. Delete
+`public/nmrium/<version>/` and run the service again:
+
+```sh
+docker compose -f docker-compose.services.yml --env-file .dockerenv up nmrium-assets
+```
 
 :::note[Upgrading from 3.x or earlier]
 
