@@ -431,6 +431,20 @@ those versions, see the
 
 :::
 
+## Safety data sheet vendor lookups
+
+Searching for a safety data sheet reaches out to the vendors, and from version
+4.0 only to a fixed list of https hosts. An instance whose outbound traffic
+passes through a proxy or a restrictive firewall has to allow:
+
+- `sigmaaldrich.com`
+- `fishersci.com`
+- `thermofisher.com`
+
+Where outbound access is unrestricted there is nothing to configure. Where it
+is filtered and these are not allowed, a search simply returns no results,
+without an error that points at the cause.
+
 ## Safety data sheet text extraction
 
 When a safety data sheet is attached to a chemical, the ELN extracts its text
