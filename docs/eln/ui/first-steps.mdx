@@ -21,7 +21,7 @@ Please note that you must register once with CAS to obtain your personal CAS use
 
 :::
 
-Users can register the SciFindern credential in the "Account & Profile".
+Users can register the SciFindern credential under **Settings**, in its **3rd-party apps & SciFinder** section.
 
 !["SciFinderN Profile"](/img/eln/ui/first_steps/scifindern_profile.png)
 
@@ -81,9 +81,9 @@ Please think about a smart structure for your Chemotion ELN and create your firs
 
 :::
 
-## Chemotion ELN user settings
+## Chemotion ELN settings
 
-### User Settings: Account & Profile
+### Settings: Account & Profile
 
 The account & profile settings allow the user to
 
@@ -109,11 +109,13 @@ Additionally, users can generate a new label for existing samples by clicking th
 </video>
 
 
-### User Settings: Template management
+### Settings: Text Templates
 
-This function is not accessible to all users, please ask the instance administrator if it is not visible.
+Personal text templates are managed here. Global templates, shared across the
+whole ELN, can additionally be edited by users whose administrator has granted
+them the global text template editor permission.
 
-### User Settings: Authentication token
+### Settings: Authentication token
 
 An **authentication token** lets a script or an external tool reach the ELN's
 API as its owner, without a browser session. Tokens are new in version 4.0 and
@@ -152,20 +154,20 @@ To use a token, send it as a bearer token:
 curl -H "Authorization: Bearer chemtoken_..." https://chemotion.dept.uni.de/api/v1/users/current
 ```
 
-### User Settings: Change Password
+### Settings: Change Password
 
-### User Settings: My affiliations
+### Settings: My affiliations
 
-### User Settings: My groups
+### Settings: My groups
 
 Groups are created and managed here, under **My Groups & Devices**. Any user
 can create a group and becomes its first member and admin. See
 [Managing Groups](../admin/groups) for what members and admins may do.
 
-### User Settings: Molecule Moderator
+### Settings: Molecule Moderator
 
 This function is not accessible to all users, please ask the instance administrator if it is not visible.
 
-### User Settings: My devices
+### Settings: My devices
 
 This function is not accessible to all users, please ask the instance administrator if it is not visible.
