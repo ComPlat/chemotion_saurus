@@ -43,9 +43,9 @@ The variable line `- SECRET_KEY=imsupersecretandwanttobechanged` in section `ser
 
 #### Variable `OTP_SECRET_KEY`
 
-The variable `OTP_SECRET_KEY` must be set in sections `services.worker.environment` and `services.eln.environment`, to a unique random string of **at least 32 characters**. It is required from version 3.1.0 onwards, and the ELN will not start without it.
+The variable `OTP_SECRET_KEY` must be set to a unique random string of **at least 32 characters**, in sections `services.worker.environment` and `services.eln.environment`, and on any container that runs rake tasks. It is required from version 3.1.0 onwards, and the ELN will not start without it.
 
-Once set, it must never be changed: it encrypts the users' two-factor authentication secrets, and a new value makes the stored secrets unreadable.
+Once set, it must never be changed: a new value switches off two-factor login for every user who had enabled it, and each of them has to enable it again.
 
 ### Optional: Modify Configuration Files
 
@@ -534,9 +534,8 @@ from there loses it until it is enabled here.
 Both OpenBabel values must be whole numbers. A value that is not raises an
 error at boot rather than being ignored.
 
-`OTP_SECRET_KEY` is required, as before, and should be **at least 32 bytes**.
-It has to stay stable across upgrades: changing it makes stored two-factor
-secrets unreadable.
+`OTP_SECRET_KEY` is required, as before. Its requirements are given under
+[`OTP_SECRET_KEY`](#variable-otp_secret_key) above.
 
 ## Configuration file layout
 
