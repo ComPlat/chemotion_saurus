@@ -442,6 +442,20 @@ it empty. Previously imported data is unaffected.
 
 **Applies to** anyone who keeps their own copy of the import template.
 
+### 9. Safety data sheet lookups fail behind a proxy
+
+**Symptom.** Searching for a safety data sheet returns nothing, on an instance
+whose outbound traffic passes through a proxy or a restrictive firewall.
+
+**Cause.** Version 4 restricts the vendor lookups to a fixed list of https
+hosts.
+
+**Fix.** Allow outbound https to `sigmaaldrich.com`, `fishersci.com` and
+`thermofisher.com`.
+
+**Applies to** instances with filtered outbound access. Nothing to do where
+outbound traffic is unrestricted.
+
 ## From version 2 directly to version 4
 
 The jump works. Nothing forces a stop at version 3: version 4 carries every
