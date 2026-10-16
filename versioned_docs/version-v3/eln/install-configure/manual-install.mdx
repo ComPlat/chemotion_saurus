@@ -89,16 +89,17 @@ Chemotion relies on Docker volumes to preserve data. User data will be stored in
   | Chemotion file format `converter`     | 1.4.1                 | Yes      |
   | Ketcher render backend (`ketchersvc`) | 1.4.1                 | Yes      |
   | Spectra (`spectra`)                   | 1.1.2p220401          | No       |
-  | Mass-spectrometry converter (`msconvert`) | 1.1.2p220401      | No       |
-  | Structure renderer (`indigo_service`) | 3.0.0                 | Yes      |
-  | Database upgrade helper (`dbupgrade`)  | 3.0.0                 | Yes      |
+  | Mass-spectrometry converter (`msconvert`) | 1.3.1             | No       |
+  | Structure renderer (`indigo_service`) | 3.1.1                 | Yes      |
+  | Database upgrade helper (`dbupgrade`)  | 2.0.1                 | No       |
 
   Optional services can be disabled by removing/commenting-out their entry in the `docker-compose.yml` file.
 
   :::caution
 
   `spectra` cannot be removed on its own: both `eln` and `worker` depend on it,
-  and it in turn needs `msconvert`.
+  and it in turn needs `msconvert`. `dbupgrade` cannot be removed either, as
+  `db` depends on it.
 
   :::
 

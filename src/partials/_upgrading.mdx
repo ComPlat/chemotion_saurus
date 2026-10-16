@@ -170,16 +170,37 @@ or editor options.
 
 **Applies to** API clients.
 
-### 10. Inbox transfer becomes manual
+### 10. Automatic inbox transfer arrives, switched off
 
-**Symptom.** Users who had automatic inbox transfer find it switched off.
+**Symptom.** Nothing appears to change, but a setting users have not seen
+before is now in their profile.
 
-**Cause.** A migration sets automatic transfer off and manual transfer on for
-any profile that had no setting recorded.
+**Cause.** Automatic transfer of inbox files is new in version 3. Existing
+profiles are given the setting switched off, with manual transfer on, so the
+behaviour users already know is kept.
 
-**Fix.** Nothing to correct; users can turn it back on.
+**Fix.** Nothing to correct; users who want it can turn it on themselves.
 
 **Applies to** all install methods.
+
+### 11. Rich text may lose images and formatting
+
+**Symptom.** Images, links or coloured text pasted into a description, a
+research plan or another rich-text field no longer appear after the upgrade.
+Editing and saving such a field can remove them for good.
+
+**Cause.** From version 3.1.1 the rich-text editors accept a reduced set of
+formats. Content outside that set is not carried through.
+
+**Fix.** No repair is available, so treat this as a precaution rather than a
+step: before upgrading, look over any rich text that matters — long
+descriptions and research plans especially — and keep the database backup until
+it has been checked. Avoid editing and saving an affected field until its
+content has been confirmed, since saving is what makes the loss permanent.
+
+**Applies to** all install methods. This was found by reading the code rather
+than by observing an upgrade, so the exact set of formats affected is not
+certain; images are the clearest case.
 
 ### Two things to check before starting
 
@@ -361,24 +382,23 @@ concerning user labels or groups.
 | `GET /api/v1/groups/queryCurrentDevices` | `GET /api/v1/users/devices` |
 | `GET /api/v1/groups/deviceMetadata/:device_id` | `GET /api/v1/devices/:device_id/metadata` |
 
-Two response changes come with this. Group validation errors now return 422
-where they used to return 404, and saving a label that does not belong to the
-caller returns 404. A new bulk endpoint, `POST /api/v1/user_labels/bulk`, has
-no version 3 equivalent.
+One response change comes with this: group validation errors now return 422
+where they used to return 404. A new bulk endpoint,
+`POST /api/v1/user_labels/bulk`, has no version 3 equivalent.
 
 **Applies to** external scripts and clients. The ELN's own interface is
 updated.
 
 ### 6. Long jobs are stopped after an hour
 
-**Symptom.** A very large import or export stops partway and is retried from
-the beginning.
+**Symptom.** A very large import stops partway and **fails**. Exports may be
+tried again; an import is not.
 
 **Cause.** The limit on a single background job is now 60 minutes. It was four
 hours.
 
-**Fix.** None available without changing code. Splitting very large operations
-into smaller ones is the practical workaround.
+**Fix.** None available without changing code. Split a very large import into
+smaller files.
 
 **Applies to** all install methods.
 
