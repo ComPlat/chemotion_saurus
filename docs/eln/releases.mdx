@@ -76,9 +76,9 @@ the full description.
 
 - **Moisture**, **particle size** and **physical state** are recorded on the
   [Properties tab](ui/details#properties-tab).
-- Melting and boiling points accept ranges, open-ended values and decimal
-  commas, and a **Decomposed** checkbox covers substances that decompose before
-  melting.
+- Melting and boiling points accept hyphenated ranges and decimal commas
+  alongside the space-separated ranges version 3 took, and a **Decomposed**
+  checkbox covers substances that decompose before melting.
 - Research plans carry a generated **short label**.
 - A [mixture](ui/elements/samples/mixtures) may hold the same molecule more
   than once, and components can be moved or merged.
@@ -94,8 +94,9 @@ the full description.
   reaction volume can be locked against recalculation.
 - Reagent and solvent dropdowns gain a **Most Used** tab.
 - [Variations](ui/details#variations-tab) gain a concentration column, can be
-  filled from an analysis data file, and link analyses automatically from a
-  `-v<id>` file name.
+  filled from an analysis data file, and now link an analysis from a `-v<id>`
+  file name uploaded straight into a dataset, not only one assigned from the
+  inbox.
 
 #### Chemicals and safety data sheets
 
@@ -107,10 +108,35 @@ the full description.
   its H and P codes and its physical properties.
 - Amounts, volumes and temperatures accept a decimal comma.
 
+#### Interface
+
+- [Notifications](ui#notifications) can be searched and browsed, not only the
+  unread ones, and archived.
+- [My labels](ui/toolbar#my-labels) adds or removes labels across a whole
+  selection.
+- Text templates can be kept [per user](ui/text-templates).
+- The list filters moved into a [panel that folds away](ui/lists#filtering-lists).
+- The [calendar](ui/calendar) gains a New Event button, filters, a per-day
+  agenda and a status on each event.
+- The [Explorer](ui/toolbar#explorer) draws a collection as a graph of its
+  samples and reactions.
+- [Cell lines](ui/elements/cell-lines) are found by a search across all
+  elements, and have their own advanced-search fields.
+- Ketcher is updated to 3.18.
+- An analysis's [preview image](ui/details#the-preview-image) can be chosen
+  rather than picked automatically.
+- [LC/MS](../services/chemspectra/lcms) data open in a layout of their own,
+  with a mass spectrum read off at a chosen retention time.
+- Every sample import produces an [import report](ui/import#the-import-report)
+  that can be corrected and imported again.
+
 #### Wellplates
 
 - A new [wellplate](ui/elements/wellplates) starts without a size and can be
   resized after it has been saved, as long as no filled well would be lost.
+- **Wellplate import templates saved from version 3 no longer work**: a
+  Molarity column was added at E, shifting the readout columns. Download a
+  fresh template, or insert an empty column at E headed `Molarity`.
 
 #### Accounts and groups
 

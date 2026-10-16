@@ -172,7 +172,10 @@ so.
   id: inventory-safety-control-row
   target: /img/eln/ui/inventory/inventoryTab_safety_list.png   (replace in place)
   replaces: /img/eln/ui/inventory/inventoryTab_safety_list.png
-  shared-with: none (grep found no use in versioned_docs)
+  shared-with: docs/ (v4), versioned_docs/version-v3, versioned_docs/version-v2 - all
+               three reference this same file. Copy it to static/img/v2/... and
+               static/img/v3/... and repoint those trees FIRST, or replacing it
+               silently changes the version 2 and version 3 pages too.
   eln: v4.0.0
   kind: image
   page: Sample details -> Inventory tab -> Safety panel

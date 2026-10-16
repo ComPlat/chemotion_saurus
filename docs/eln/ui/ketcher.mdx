@@ -272,7 +272,22 @@ Click a category to expand it, then click a thumbnail to insert the correspondin
 
 ### Add Label
 
-The **Add Label** tool <img src={require("@site/static/img/eln/ui/ketcher/add_label_icon.png").default} width={"20px"} alt={"Add Label"}/> inserts a predefined abbreviation as a chemically meaningful superatom — a shorthand for common functional groups such as Boc, Ts, or Me. Unlike **Add Text**, which places free-form annotation, an **Add Label** abbreviation is treated by Ketcher as a single atom group and participates in structure operations (selection, bond attachment, export).
+The **Add Label** tool <img src={require("@site/static/img/eln/ui/ketcher/add_label_icon.png").default} width={"20px"} alt={"Add Label"}/> labels a selected solid-surface template image. Select the template, then the tool, and a **Text Editor** window opens for the label text, with **Cancel** and **Apply**.
+
+{/* SCREENSHOT-TODO
+  id: ketcher-add-label
+  target: /img/eln/ui/ketcher/add_label.png
+  replaces: (none)
+  eln: v4.0.0
+  kind: image
+  page: Ketcher editor -> place a solid surface template -> select it -> Add Label
+  setup: a canvas with one solid-surface template placed and selected
+  show: the Text Editor window with text typed, and its Cancel and Apply buttons
+  crop: the canvas and the window
+  notes: this tool is not superatom abbreviation - the previous description of it
+         as inserting Boc/Ts/Me shorthand was wrong, so the shot should make the
+         surface-template context clear
+*/}
 
 ### Settings
 

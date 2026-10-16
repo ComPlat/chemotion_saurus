@@ -9,8 +9,25 @@ import { DownloadBtn } from "@site/src/js/download_files.js";
 
 This is the simple import method. For the enhanced, validated import, see [Importing Data with Column Mapping and Validation](#importing-data-with-column-mapping-and-validation) below.
 
-[Samples](elements/samples) can be imported to Chemotion ELN by uploading a simple excel list that contains the structure of the sample as a SMILES string.
+[Samples](elements/samples) can be imported to Chemotion ELN by uploading a simple excel list that identifies each sample.
 Please add the SMILES strings in the respective column of the file to be imported and add the description "canonical smiles" as the header of the column.
+
+A row can be identified in more than one way:
+
+| Column | Effect |
+| --- | --- |
+| `canonical smiles`, or a molfile | The structure, as before |
+| `cas` | From version 4.0 the structure can be looked up from a CAS number alone. The shipped templates have no such column, so one has to be added |
+| `sample id` | The row **updates an existing sample** rather than creating one, for samples the user may edit |
+
+:::caution
+
+A row with neither a structure nor a CAS number becomes a sample **without a
+structure** — a decoupled sample — rather than being rejected. A `sample id`
+column changes the import from creating samples to updating them, so check
+before importing a sheet exported from the ELN, which carries that column.
+
+:::
 To enable the import into a [collection](collections), the desired target collection has to be selected. Import of samples is only possible for the user that created the collection.
 The export and import of samples is currently supported in the xlsx, csv, and sdf formats.
 
