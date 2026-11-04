@@ -1,0 +1,70 @@
+---
+title: Multi-step reactions
+sidebar_label: Multi-step
+sidebar_position: 1
+---
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faInfoCircle, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { Btn } from "@site/src/js/btn.js";
+
+A multi-step reaction records a synthesis that runs in several steps inside one [reaction](.). Each step has its own materials, conditions and description, and the product of one step becomes the starting material of the next. The scheme shows one arrow per step, with each intermediate and its yield between the arrows.
+
+![Two-step reaction scheme](/img/eln/ui/elements/reactions/multi-step/multi_step_reaction.png)
+
+## Creating a multi-step reaction
+
+1. In the **Scheme** tab, set **Reaction type** to **Multi-step**. The existing materials and values become **Step 1**.
+2. In the **Products** group, switch on **Next** for the product that moves on to the next step.
+3. **Step 2** appears below step 1, with that product as its starting material.
+
+<video controls>
+  <source src={require("@site/static/img/eln/ui/elements/reactions/multi-step/add_step.webm").default} />
+</video>
+
+Repeat this in the last step to add more steps. More than one product of a step can move on.
+
+The carried product is shown at the top of the next step, together with its amount, molar mass and yield from the step before. It is read-only there; changes are made in the step that produced it.
+
+![Product carried into step 2](/img/eln/ui/elements/reactions/multi-step/carried_product.png)
+
+## Values per step
+
+Each step has its own **Reactants**, **Solvents**, **Products** and **Conditions**, and its own **Temperature**, **pH**, **Vessel size**, **Reaction volume**, **Start**, **Stop**, **Duration** and **Description**. Step 1 also holds the starting materials of the whole reaction.
+
+Each step also has its own reference (**Ref**). In step 1 it is the reference chosen for the reaction. In later steps it is the carried product by default, and any other material of that step can be selected as **Ref** instead. Equivalents and yields of a step are calculated against the reference of that step.
+
+A step can be collapsed with the arrow next to its name.
+
+## Deleting a step
+
+Click <Btn mixed={[faTrashAlt]} color={"danger"}/> next to the step name. If the step holds materials, a confirmation names how many will be deleted. The step is crossed out and can be restored with **Undo** until the reaction is saved. Saving deletes the step and its materials permanently.
+
+## Switching back to a standard reaction
+
+Setting **Reaction type** back to **Standard** (or **Interaction**) does not delete the steps. A confirmation explains what happens, the steps are hidden, and switching back to **Multi-step** restores them with all their materials, values and text.
+
+<video controls>
+  <source src={require("@site/static/img/eln/ui/elements/reactions/multi-step/switch_to_standard.webm").default} />
+</video>
+
+While the reaction is **Standard**:
+
+- All materials are shown together in one table. Equivalents and yields are calculated against the reference of the reaction, so the yields of later steps can differ from the values shown in **Multi-step**.
+- The temperature, pH, vessel size, reaction volume and conditions shown are those of step 1, and edits to them change step 1. A new **Stop** time changes the last step.
+- The **Description** shows the text of every step under a bold "Step 1:", "Step 2:" heading. Text added above the first heading belongs to the reaction itself. When switching back to **Multi-step**, the text is split again at the headings.
+- The scheme keeps one arrow. Each step's reactants are numbered "1.", "2." above the arrow, and each step's temperature, duration, solvents and conditions are listed as numbered lines below it.
+
+![Numbered scheme of a reaction with hidden steps](/img/eln/ui/elements/reactions/multi-step/numbered_scheme.png)
+
+- The <FontAwesomeIcon icon={faInfoCircle} /> icon next to **pH**, **Vessel size**, **Reaction volume** and **Conditions** lists the value of every step.
+
+![Reaction volume of every step](/img/eln/ui/elements/reactions/multi-step/step_values.png)
+
+- The temperature list shows the temperatures of all steps with their step number, each placed at the time its step started. Rows of step 1 can be edited and new rows are added to step 1; rows of later steps are read-only. Temperatures typed into a step's temperature field are listed, but only list rows are drawn in the chart.
+
+![Temperatures of all steps](/img/eln/ui/elements/reactions/multi-step/step_temperatures.png)
+
+## Limitations
+
+- SBMM samples (proteins, enzymes) can only be added to step 1.
