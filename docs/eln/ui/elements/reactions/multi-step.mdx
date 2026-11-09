@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { Btn } from "@site/src/js/btn.js";
 
-A multi-step reaction records a synthesis that runs in several steps inside one [reaction](.). Each step has its own materials, conditions and description, and the product of one step becomes the starting material of the next. The scheme shows one arrow per step, with each intermediate and its yield between the arrows.
+A multi-step reaction records a synthesis that runs in several steps inside one [reaction](.). Each step has its own materials, conditions and description, and the product of one step becomes the starting material of the next. The scheme shows one arrow per step, with each intermediate and its yield between the arrows. Below each arrow, the temperature of the step is shown: the typed value or, if none is typed, the lowest and highest temperature of its temperature list.
 
 ![Two-step reaction scheme](/img/eln/ui/elements/reactions/multi-step/multi_step_reaction.png)
 
@@ -48,12 +48,12 @@ Setting **Reaction type** back to **Standard** (or **Interaction**) does not del
   <source src={require("@site/static/img/eln/ui/elements/reactions/multi-step/switch_to_standard.webm").default} />
 </video>
 
-While the reaction is **Standard**:
+While the reaction is **Standard** or **Interaction**:
 
 - All materials are shown together in one table. Equivalents and yields are calculated against the reference of the reaction, so the yields of later steps can differ from the values shown in **Multi-step**.
 - The temperature, pH, vessel size, reaction volume and conditions shown are those of step 1, and edits to them change step 1. A new **Stop** time changes the last step.
-- The **Description** shows the text of every step under a bold "Step 1:", "Step 2:" heading. Text added above the first heading belongs to the reaction itself. When switching back to **Multi-step**, the text is split again at the headings.
-- The scheme keeps one arrow. Each step's reactants are numbered "1.", "2." above the arrow, and each step's temperature, duration, solvents and conditions are listed as numbered lines below it.
+- The **Description** shows the text of every step under a bold "Step 1:", "Step 2:" heading. When switching back to **Multi-step**, the text is split again at the headings, and text added above the first heading is moved to the start of step 1.
+- In **Standard**, the scheme keeps one arrow. Each step's reactants are numbered "1.", "2." above the arrow, and each step's temperature, duration, solvents and conditions are listed as numbered lines below it. In **Interaction**, the scheme shows the products only, as for any interaction reaction.
 
 ![Numbered scheme of a reaction with hidden steps](/img/eln/ui/elements/reactions/multi-step/numbered_scheme.png)
 
