@@ -30,11 +30,13 @@ The carried product is shown at the top of the next step, together with its amou
 
 ## Values per step
 
-Each step has its own **Reactants**, **Solvents**, **Products** and **Conditions**, and its own **Temperature**, **pH**, **Vessel size**, **Reaction volume**, **Start**, **Stop**, **Duration** and **Description**. Step 1 also holds the starting materials of the whole reaction.
+Each step has its own **Reactants**, **Solvents**, **Products** and **Conditions**, and its own **Temperature**, **pH**, **Type**, **Vessel size**, **Reaction volume**, **Start**, **Stop**, **Duration** and **Description**. Step 1 also holds the starting materials of the whole reaction, and its **Type** is the one used when searching for the reaction. The **Vol ratio** of the solvents is calculated within each step.
 
 Each step also has its own reference (**Ref**). In step 1 it is the reference chosen for the reaction. In later steps it is the carried product by default, and any other material of that step can be selected as **Ref** instead. Equivalents and yields of a step are calculated against the reference of that step.
 
-A step can be collapsed with the arrow next to its name.
+A step can be collapsed with the arrow next to its name, and all steps at once with **Collapse all** next to **Reaction type**. Collapsed steps stay collapsed when switching to another tab or reaction and back.
+
+The switch next to the settings button above the scheme draws all steps under one arrow, numbered as in a standard reaction (see below). The choice is saved with the reaction and also used in reports.
 
 ## Deleting a step
 
@@ -50,14 +52,14 @@ Setting **Reaction type** back to **Standard** (or **Interaction**) does not del
 
 While the reaction is **Standard** or **Interaction**:
 
-- All materials are shown together in one table. Equivalents and yields are calculated against the reference of the reaction, so the yields of later steps can differ from the values shown in **Multi-step**.
+- All materials are shown together in one table, each marked with a grey "Step 1", "Step 2" label. Equivalents and yields are calculated against the reference of the reaction, so the equivalents and yields of later steps can differ from the values shown in **Multi-step**.
 - The temperature, pH, vessel size, reaction volume and conditions shown are those of step 1, and edits to them change step 1. A new **Stop** time changes the last step.
 - The **Description** shows the text of every step under a bold "Step 1:", "Step 2:" heading. When switching back to **Multi-step**, the text is split again at the headings, and text added above the first heading is moved to the start of step 1.
-- In **Standard**, the scheme keeps one arrow. Each step's reactants are numbered "1.", "2." above the arrow, and each step's temperature, duration, solvents and conditions are listed as numbered lines below it. In **Interaction**, the scheme shows the products only, as for any interaction reaction.
+- In **Standard**, the scheme keeps one arrow and shows only the final product, not the products of the steps in between. Each step's reactants are numbered "1.", "2." above the arrow, and each step's temperature, duration, solvents and conditions are listed as numbered lines below it. In **Interaction**, the scheme shows the products only, as for any interaction reaction.
 
 ![Numbered scheme of a reaction with hidden steps](/img/eln/ui/elements/reactions/multi-step/numbered_scheme.png)
 
-- The <FontAwesomeIcon icon={faInfoCircle} /> icon next to **pH**, **Vessel size**, **Reaction volume** and **Conditions** lists the value of every step.
+- The <FontAwesomeIcon icon={faInfoCircle} /> icon next to **pH**, **Type**, **Vessel size**, **Reaction volume** and **Conditions** lists the value of every step.
 
 ![Reaction volume of every step](/img/eln/ui/elements/reactions/multi-step/step_values.png)
 
@@ -68,3 +70,4 @@ While the reaction is **Standard** or **Interaction**:
 ## Limitations
 
 - SBMM samples (proteins, enzymes) can only be added to step 1.
+- **Multi-step** needs the default scheme. It cannot be selected while the reaction uses the gas phase or weight percentage scheme.
