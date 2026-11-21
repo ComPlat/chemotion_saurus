@@ -20,6 +20,69 @@ date given below, please contact the
 
 ### Version 4
 
+#### Version 4.0.2 (November 2026)
+
+A maintenance release. ChemCLI 0.2.32 installs it, and upgrades any version 2
+or 3 instance to it in one step.
+
+:::danger[Read before upgrading]
+
+**A sample now belongs to at most one reaction.** A sample that several
+reactions shared stays with the reaction created first; every other reaction
+gets a new split of it, labelled with an extra counter and without analyses.
+This cannot be undone. See [Upgrading](install-configure/upgrading), and take a
+database backup.
+
+:::
+
+- An upgrade no longer stops at the first invalid user record.
+- Saving a reaction no longer takes over another reaction's link to the same
+  sample.
+- Triethylamine is in the solvent list.
+- Splitting a device description copies its segments.
+- The data collector carries on past a device that fails.
+- The blank last line of a text template is kept.
+- Forms uploaded in a legacy character set are read correctly.
+- The `install_ketcher2` admin task and the `bin/chem-*.sh` scripts are
+  removed.
+
+The detailed release notes for version 4.0.2 are
+[on GitHub](https://github.com/ComPlat/chemotion_ELN/releases/tag/v4.0.2).
+
+#### Version 4.0.1 (November 2026)
+
+A maintenance release, superseded by 4.0.2. Three changes need an
+administrator's attention; [Upgrading](install-configure/upgrading) describes
+each:
+
+- Reactions saved earlier may need their variations repaired, with
+  `rake reactions:repair_variation_keys`.
+- The standalone `/chemspectra` and `/chemspectra-editor` pages are removed.
+  ChemSpectra opens from an analysis.
+- Sending an IconNMR configuration from the ELN is removed, and with it the
+  global `SFTP_*` settings. Device data collection is unaffected.
+
+Fixes:
+
+- Reaction variations, and copying reactions with purification solvents.
+- Ketcher's Common Templates, and saving its settings.
+- NMR simulation, and molfiles with non-ASCII characters.
+- Copies of research plans.
+- An analysis's [preview image](ui/details#the-preview-image) follows new
+  uploads, and **Use default** clears a chosen one.
+- **Analyses from upload** unpacks every zip and keeps archives with the same
+  folder apart.
+- ChemSpectra opens with one spectrum selected when a dataset holds several.
+- Search stays within the searched collection.
+- XLSX and SDF exports fill the user-label and updated-at columns, and offer
+  the volume next to the mass.
+- The Inventory tab reports a refused save instead of showing success.
+- LabIMotion 2.3.4 and chem-generic-ui 2.3.2.
+- SciFinder-n copes with unexpected metadata.
+
+The detailed release notes for version 4.0.1 are
+[on GitHub](https://github.com/ComPlat/chemotion_ELN/releases/tag/v4.0.1).
+
 #### Version 4.0.0 (October 2026)
 
 Version 4.0.0 is a major release with breaking changes.
@@ -28,15 +91,15 @@ Version 4.0.0 is a major release with breaking changes.
 
 Work through [Upgrading](install-configure/upgrading) first, and take a
 database backup. Several of the changes are silent — nothing fails visibly, and
-the symptom appears days later. Support in chemCLI follows with a later release
-of the CLI; until then the published payload installs version 3.
+the symptom appears days later.
 
 :::
 
 ### What changed for users
 
 Everything below is compared with **version 3.1.2**, the last version
-distributed to users.
+distributed to users when 4.0.0 was released. Version 3.1.4, released later,
+has a few of these changes as well.
 
 #### Collections and sharing
 
