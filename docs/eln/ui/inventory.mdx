@@ -64,8 +64,10 @@ inventory:
   only if ordering is not centralized in the managing account.
 - **Read elements** is enough if members should only look up chemicals, never update them.
 
-Members also need the **full detail level** for samples in order to edit them, so set the
-sample detail level accordingly.
+Whatever the permission level, set the sample detail level to **full** as well. Below it,
+members cannot edit the chemicals, and from version 4.0.1 on the ELN does not hand out the
+data of a sample's **Inventory** tab to them either — not even for reading — because it
+includes amounts and storage locations.
 
 Sharing with the group rather than with each person individually means access follows group
 membership: adding someone to the group grants them access, and removing them withdraws it.
