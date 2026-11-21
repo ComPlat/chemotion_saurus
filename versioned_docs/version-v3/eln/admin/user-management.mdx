@@ -13,7 +13,7 @@ Users are of 4 types:
 - Person: standard ELN users have access to /mydb page but not the admin page
 - Admin: ELN administrators do not have access to /mydb page but to the admin page
 - Group: a group of users
-- Device: a device (deprecated for >= v2.0.0)
+- Device: a device (deprecated)
 
 ![adminui-usermanagement](@site/static/img/eln/admin/user_management/user_management.png)
 
@@ -58,17 +58,6 @@ An account can be frozen by deactivating it here. Login to this account is then 
 **The user cannot reactivate it. Only an Admin can.**
 If the user is currently logged-in, its session will be invalidated.
 The data shared by the user to other users is still accessible to them.
-
-:::info
-This feature is available starting from version 4.0.
-:::
-## Global Text Template Editor Rights
-
-Every user can create personal templates without any special permission. To allow someone to also create or edit global templates, the administrator needs to grant them the `Global Text Template Editor` privilege from this page.
-
-![global-template-editor-button](@site/static/img/eln/admin/text_template/global_template_editor_button.png)
-
-Everyone can see the **Global** tab and browse global templates through Text Templates page. This privilege only unlocks the ability to add, edit, or delete them.
 
 ## User Quota
 

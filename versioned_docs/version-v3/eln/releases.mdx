@@ -10,9 +10,50 @@ The ELN follows the [semantic versioning](https://semver.org/) scheme. The Chemo
 
 ## Latest Releases
 
-Latest releases of the ELN, that are currently supported, are:
+Latest releases of the ELN, that are currently supported, are listed below.
+Support means that these pages stay available for that version, and that
+[chemCLI](install-configure/ChemCLI) can keep an instance updated
+automatically. Security issues are always addressed in the release that comes
+next, never in a past one, whatever its support date. For a version past the
+date given below, please contact the
+[Helpdesk](https://chemotion.net/helpdesk).
 
 ### Version 3
+
+**Supported until 31 October 2027.**
+
+Upgrading to version 3 from version 2 needs a few deliberate steps — most
+importantly setting `OTP_SECRET_KEY`, without which the ELN does not start at
+all. See [Upgrading](install-configure/upgrading).
+
+#### Version 3.1.4 (November 2026)
+
+A maintenance release of fixes, most of them brought back from version 4.
+Version 3.1.3 (August 2026) was tagged but never published, so upgrading from
+3.1.2 brings its changes as well, including its one database migration, which
+frees the name abbreviation and email address of deleted devices for reuse.
+
+Among the changes:
+
+- The [in-app workshop guide](install-configure/configuration#in-app-guide)
+  (from 3.1.3).
+- New [SMTP settings](install-configure/configuration#email-service) for the
+  connection and reply timeouts, and a HELO name taken from `PUBLIC_URL` when
+  `SMTP_DOMAIN` is unset.
+- Docx reports no longer fail on [lists in rich-text analyses](ui/toolbar#report)
+  or on gas-phase schemes with a blank ppm value.
+- The [wellplate import template](ui/elements/wellplates#importing-readouts-from-a-spreadsheet)
+  can only be downloaded once the wellplate is saved.
+- The **Private Note** field of the advanced search matches only the user's own
+  notes.
+- XLSX export includes the CAS number of samples from shared and synchronized
+  collections.
+- An unexpected answer from CAS switches SciFinder<sup>n</sup> off instead of
+  stopping the ELN from starting.
+
+See the release notes for
+[version 3.1.4](https://github.com/ComPlat/chemotion_ELN/releases/tag/v3.1.4)
+and [version 3.1.3](https://github.com/ComPlat/chemotion_ELN/releases/tag/v3.1.3).
 
 #### Version 3.0.0 (March 2026)
 
@@ -37,6 +78,8 @@ In [ChemSpectra Cyclic Voltammetry](../services/chemspectra/cv), the Voltammetry
 See the detailed release notes for version 3.0.0 [here](https://github.com/ComPlat/chemotion_ELN/releases/tag/v3.0.0).
 
 ### Version 2
+
+**Supported until 28 February 2027.**
 
 #### Version 2.2.0 (December 2025)
 

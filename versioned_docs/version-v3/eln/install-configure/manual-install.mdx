@@ -14,7 +14,7 @@ In case of problems, please let the Chemotion team know; the team is there to pr
 
 ## Latest Version
 
-The Chemotion team distributes the ELN as Docker images for ease of distribution and use. The latest images can be found on [DockerHub](https://hub.docker.com/r/ptrxyz/chemotion/tags) and installed using a `docker-compose.yml` file. A version of `docker-compose.yml` file that uses these latest images can be found [here](https://raw.githubusercontent.com/Chemotion/ChemCLI/main/payload/docker-compose.yml).
+The Chemotion team distributes the ELN as Docker images for ease of distribution and use. For version 3.1.4 the ELN image is on DockerHub under [complat/chemotion](https://hub.docker.com/r/complat/chemotion/tags), and the services it needs under [ptrxyz/chemotion](https://hub.docker.com/r/ptrxyz/chemotion/tags). They are installed using a `docker-compose.yml` file; the one for version 3.1.4 can be found [here](https://raw.githubusercontent.com/Chemotion/ChemCLI/d1d181e09a3aa4494e4acbbb4f78bc04398a881f/payload/docker-compose.yml).
 
 ## Fresh Installations
 
@@ -29,13 +29,14 @@ To install the latest version of Chemotion on a blank system, follow these steps
 - download the `docker-compose.yml` to a directory of your choice:
 
   ```
-  wget https://raw.githubusercontent.com/Chemotion/ChemCLI/main/payload/docker-compose.yml
+  wget https://raw.githubusercontent.com/Chemotion/ChemCLI/d1d181e09a3aa4494e4acbbb4f78bc04398a881f/payload/docker-compose.yml
   ```
 
 - edit the file to change these keys if they exist in the downloaded file:
 
   - `services.worker.environment.SECRET_KEY_BASE` and `services.eln.environment.SECRET_KEY_BASE` (both should be same)
   - `services.converter.environment.SECRET_KEY`
+  - `services.worker.environment.OTP_SECRET_KEY` and `services.eln.environment.OTP_SECRET_KEY` (both the same, at least 32 characters, and never changed afterwards)
 
 - download all images and create the containers, data volumes and networks by running this command in the same folder you downloaded the compose file to:
 
@@ -87,10 +88,23 @@ Chemotion relies on Docker volumes to preserve data. User data will be stored in
   | ------------------------------------- | --------------------- | -------- |
   | Chemotion file format `converter`     | 1.4.1                 | Yes      |
   | Ketcher render backend (`ketchersvc`) | 1.4.1                 | Yes      |
-  | Spectra (`spectra`)                   | 1.1.2p220401          | Yes      |
-  | [NMRium](configuration#nmrium)        | 1.5.0                 | Yes      |
+  | Spectra (`spectra`)                   | 1.1.2p220401          | No       |
+  | Mass-spectrometry converter (`msconvert`) | 1.3.1             | No       |
+  | Structure renderer (`indigo_service`) | 3.1.1                 | Yes      |
+  | Database upgrade helper (`dbupgrade`)  | 2.0.1                 | No       |
 
   Optional services can be disabled by removing/commenting-out their entry in the `docker-compose.yml` file.
+
+  :::caution
+
+  `spectra` cannot be removed on its own: both `eln` and `worker` depend on it,
+  and it in turn needs `msconvert`. `dbupgrade` cannot be removed either, as
+  `db` depends on it.
+
+  :::
+
+  NMRium is not a service in version 3. It is reached as a URL, configured in
+  `spectra.yml` — see [NMRium](configuration#nmrium).
 
 ## Upgrades
 
@@ -219,47 +233,6 @@ docker compose run -e FORCE_DB_RESET=1 eln chemotion restore   # restore the lat
 
 ## Special Cases
 
-### Only when installing or upgrading to version 1.4.1
-
-**This is not applicable in any other case, e.g. when moving from version v1.3.1 to v1.5.1.**
-
-Finish your [installation](#fresh-installations) or [upgrade](#upgrades) by following the usual steps. Then configure the converter service by following the steps described here:
-
-In short, the following steps have to be taken:
-
-- create a directory to hold all its configuration
-- create a user for the ELN to authenticate at the service
-- configure the ELN to use the service and the created user
-
-These steps would boil down to this:
-
-```bash
-mkdir -p ./shared/pullin/config/
-# this makes sure a configuration directory for the ELN exists
-
-mkdir -p ./services/converter/
-# this creates a directory holding service configurations
-
-docker run --entrypoint htpasswd httpd:2 -sbn mysuser mypassword | grep ':' > ./services/converter/htpasswd
-# this creates a user in the service's authentication database
-
-cat >> ./shared/pullin/config/converter.yml <<EOF
-production:
-  :url: 'http://converter/'
-  :profile: MYUSER
-  :secret_key: MYPASS
-  :timeout: 300
-  :ext:
-    - '.xy'
-    - '.xls'
-    - '.xlsx'
-    - '.txt'
-    - '.brml'
-    - '.dta'
-    - '.pssession'
-EOF
-```
-
 ### Upgrading from 1.0.3D0.1 to higher versions
 
 To upgrade from a previous version to this release, a few manual steps have to be done. In the new release, we changed to make use of docker volumes instead of bind mounts for all user data and shared storage. It is up to the user to transfer previous user data to these volumes.
@@ -287,7 +260,7 @@ The Chemotion team recommends the following steps:
 - download the `docker-compose.yml`
 
   ```bash
-  wget https://raw.githubusercontent.com/Chemotion/ChemCLI/main/payload/docker-compose.yml
+  wget https://raw.githubusercontent.com/Chemotion/ChemCLI/d1d181e09a3aa4494e4acbbb4f78bc04398a881f/payload/docker-compose.yml
   ```
 
 - download all images and create the containers, data volumes and networks by running this command in the same folder you downloaded the compose file to
