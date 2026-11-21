@@ -10,14 +10,15 @@ import {
   faTrash,
   faExternalLink,
   faFileText,
+  faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import { DownloadBtn } from "@site/src/js/download_files.js";
 
 :::info
 
-Available from ELN v1.1.1 onwards: Using the inventory collection with different users that can move items into or create items in the inventory.
-Available from ELN v2 onwards: Importing storage temperature, expiration date, and volume fields for chemical samples.
-Available from ELN v4 onwards: Adding, editing, and removing safety phrases (H- and P-statements, GHS pictograms) manually in the inventory tab.
+- An inventory collection can be shared by several users, who can move items into it or create items in it.
+- Storage temperature, expiration date and volume can be imported for chemical samples.
+- From version 4, safety phrases (H- and P-statements, GHS pictograms) can be added and removed manually in the inventory tab.
 
 :::
 
@@ -127,55 +128,141 @@ This section contains the following fields:
 - `status:` List of 4 options for status of the chemical (available, out of stock, to be ordered, and ordered).
 - `vendor:` The vendor associated with the chemical order.
 - `order number:` The order number of the chemical.
+- `product number:` The vendor's product number for the chemical.
 - `price:` The price of the ordered chemical.
 - `person:` Contact person associated with the chemical.
 - `required date:` The date when person or entity required the chemical.
 - `ordered date:` The date when the chemical was ordered.
 - `expiration date:` The date given by vendor when the chemical will expire.
+- `delivery date:` The date the chemical was delivered.
+- `opening date:` The date the container was opened.
 - `required by:` The person or entity that required or ordered the chemical.
 - `amount:` Specifies the amount of the chemical, with unit (mg, g, or μg).
 - `volume:` Specifies the volume of the chemical, with unit (l, ml, or μl).
-- `storage temperature:` The temperature in Celsius given by vendor at which the chemical should be stored.
+- `storage temperature:` The temperature given by vendor at which the chemical should be stored. The unit button switches between °C, °F and K, converting the value.
+- `inventory label:` The label assigned to the chemical within its collection.
+
+:::info[Decimal commas, from version 4.0]
+
+The amount, volume, storage temperature and flash point fields accept a comma
+as the decimal separator, so `2,5` is stored as 2.5. Earlier versions ignored
+the comma, which made such a value impossible to enter. Thousands separators
+are not supported: `1,234` is read as 1.234, and a hint under the field says
+so.
+
+:::
 
 ### Safety List
 
 - The Safety section is an interactive feature that allows users to search for and access safety data sheets (SDS) and safety phrases related to specific chemicals.
-- Users can select the vendor associated with their query, choosing from the <Btn mixed={["Vendor"]} color={"secondary"} /> drop-down list options such as All, Thermo Fischer, and Merck. Selecting "All" will search for SDS on both vendors' websites.
-- The <Btn mixed={["Query SDS using"]} color={"secondary"} /> button provides a dropdown list for users to select whether to search using the CAS (Chemical Abstracts Service) number or common name of the chemical.
+- Users can select the vendor associated with their query, choosing from the <Btn mixed={["Vendor"]} color={"secondary"} /> drop-down list: **Sigma-Aldrich**, **Thermofisher** and **All vendors (PubChem)**. The last searches PubChem's own list of vendor sheets rather than the vendors' websites, and presents the results grouped by vendor.
+- The <Btn mixed={["Query SDS using"]} color={"secondary"} /> button provides a dropdown list for users to select whether to search using the CAS (Chemical Abstracts Service) number, the common name, or the **Product Number** of the chemical.
 - The <Btn mixed={["Choose Language of SDS"]} color={"secondary"} /> dropdown list offers three language options: English, German, and French. If no results are found with the chosen language, results will be displayed with the default query language (English).
 - After selecting the search parameters, users can initiate the search query by clicking the <Btn mixed={["Search for SDS"]} color={"secondary"} /> button.
-- The search results will be displayed, and users can click on the results _tag link_ to open a new tab directing them to the vendor's safety data sheet.
+- The search results will be displayed, each titled `Safety Data Sheet from <vendor> - <number>`, and users can click one to open a new tab directing them to the vendor's safety data sheet.
 - It is recommended for users or administrators to first verify if the displayed results are associated with the desired chemical.
-- If results match the specific chemical, users can save the safety sheet to the Electronic Laboratory Notebook (ELN) by clicking the save button next to the relevant result tag. A green check mark icon will appear next to the result element tag, if SDS is saved successfully.
-- Once saved, users can initiate additional search queries to retrieve safety phrases or search for chemical and physical properties related to the chemical.
+- If results match the specific chemical, users can save the safety sheet to the Electronic Laboratory Notebook (ELN) by clicking the save button next to the relevant result tag. A green check mark icon will appear next to the result element tag, if SDS is saved successfully, and the sheet moves into the `Safety Sheets saved in the database` list below.
+- Once saved, the sheet can be read with **Extract from sheet**, described below.
 - Users have the option to delete the saved data sheet by clicking the delete icon <Btn mixed={[faTrash]} color={"danger"}/> button.
-- The <Btn mixed={["Search for SDS"]} color={"secondary"} /> button will be disabled, once one SDS is saved. To enable another search query, the user has to delete any saved SDS first.
+- Up to **five** sheets can be saved per sample, counted as `n of 5` above the saved list. Searching stays available throughout, and a sheet already saved is not saved twice.
 - Additionally, users can access the vendor's product webpage by clicking the external link icon <Btn mixed={[faExternalLink]} color={"secondary"} /> button.
-- The user can query the safety phrases for this chemical from the vendor by clicking the <Btn mixed={["fetch safety phrases"]} color={"secondary"} /> button. Results render below as depicted in the image below.
+- Each saved sheet carries an **Extract from sheet** button, which reads the sheet itself rather than querying the vendor again.
+
   ![safety bar](/img/eln/ui/inventory/inventoryTab_safety_list.png)
-  The fetched phrases are written into the safety phrases editor described in [Adding safety phrases manually](#adding-safety-phrases-manually), where they can be reviewed and corrected.
 
-- The <Btn mixed={["fetch Chemical Properties"]} color={"secondary"} /> button is intended to make a search query for chemical and physical properties related to the chemical and save them to the respective fields in the sample properties tab.
-  Sometimes fetched results cannot be saved automatically if the fetched values cannot be accepted by ELN for some fields. In this case the user can view and modify the entered values manually.
-  Fetched properties can be viewed by clicking the results icon <Btn mixed={[faFileText]} color={"secondary"} /> button next to fetch button. The video below shows the fetch chemical properties process as it was originally designed.
+{/* SCREENSHOT-TODO
+  id: inventory-safety-control-row
+  target: /img/eln/ui/inventory/inventoryTab_safety_list.png   (replace in place)
+  replaces: /img/eln/ui/inventory/inventoryTab_safety_list.png
+  shared-with: docs/ (v4), versioned_docs/version-v3, versioned_docs/version-v2 - all
+               three reference this same file. Copy it to static/img/v2/... and
+               static/img/v3/... and repoint those trees FIRST, or replacing it
+               silently changes the version 2 and version 3 pages too.
+  eln: v4.0.2
+  kind: image
+  page: Sample details -> Inventory tab -> Safety panel
+  setup: a chemical sample with one safety data sheet already saved
+  show: the control row left to right - green + (manual upload), Vendor, Query SDS using,
+        Choose Language of SDS, Search for SDS - then the "Safety Sheets saved in the
+        database" list with its "n of 5" counter and a row's "Extract from sheet" button
+  crop: the Safety panel only
+  notes: the current file shows the v3 interface - Merck as a vendor, and the removed
+         "fetch safety phrases" / "fetch Chemical Properties" buttons. It is kept until
+         replaced because it still shows the right screen; the prose does not rely on it.
+*/}
 
-  <video controls>
-    <source src={require("@site/static/img/eln/ui/inventory/fetch_chemical_properties_chemical.webm").default} />
-  </video>
+#### Extract from sheet
 
-:::caution
+From version 4.0, **Extract from sheet** replaces the former *fetch safety
+phrases* and *fetch Chemical Properties* buttons. It reads the text of a sheet
+already saved against the chemical and takes two things from it:
 
-The <Btn mixed={["fetch Chemical Properties"]} color={"secondary"} /> function is **currently not functional**. The button is still present in the Safety section, but retrieving chemical and physical properties from the vendor no longer works. Please enter these values manually in the `Properties` tab. The video above therefore shows the intended behaviour, not the current one. All other functions of the Safety section (SDS search, saving SDS, and fetching safety phrases) are unaffected.
+- the **H and P codes** from the label-elements section, along with the
+  pictograms those codes imply, which go into the
+  [safety phrases editor](#adding-safety-phrases-manually);
+- the **physical and chemical properties** from section 9 — melting point,
+  boiling point, flash point, density, form, color, refractive index and
+  solubility among them — some of which are written straight into the sample's
+  **Properties** tab.
+
+The button sits on every row of the saved list; on a search result it is
+disabled until the sheet is saved. While it runs it reads *Reading sheet…*, and
+one sheet is read at a time. A notice afterwards says what was found, what was
+set, and what was skipped because it was not in a unit the sample accepts.
+
+Everything read is kept with that sheet and can be reviewed later with the
+document button beside it, which opens **Fetched Chemical Properties**.
+
+:::note[Properties are saved at once; phrases are not]
+
+Properties written into the **Properties** tab are sent to the server
+immediately, as a save of the whole sample — so any unsaved edits elsewhere on
+that sample are written too. The H and P phrases and the pictograms behave
+differently: they are placed in the editor and need the sample to be saved
+before they persist.
+
+:::
+
+:::caution[An extraction replaces the existing phrases]
+
+When codes are found, they replace the whole set of H and P phrases and
+pictograms, rather than being added to it. When none are found, what is already
+there is kept.
+
+:::
+
+Sheets from **Sigma-Aldrich** (also Merck and MilliporeSigma) and **Thermo
+Fisher** (also Fisher Scientific, Acros Organics and Alfa Aesar) are
+recognized, in English or German. Recognition is based on the content of the
+sheet rather than the vendor recorded at upload, so a manually uploaded sheet
+from one of those vendors is read as well. A sheet that cannot be used — a
+scanned one with no text, or another vendor's layout — is reported with the
+reason.
+
+:::note
+
+Despite the wording used on screen, no AI is involved: the ELN reads the text
+layer of the PDF. An instance may be configured to hand this to a separate
+[PDF text service](../install-configure/configuration#safety-data-sheet-text-extraction);
+where it is, and that service is unavailable, extraction reports an error
+rather than falling back to reading the sheet locally.
 
 :::
 
 ### Adding safety phrases manually
 
-Safety phrases do not have to come from a vendor query. The safety section contains an editor that lets
-users curate the safety phrases of a chemical entry by hand, which is useful when no safety data sheet
-(SDS) can be found, when the vendor returns incomplete results, or when a substance is prepared in-house.
+Safety phrases do not have to come from a safety data sheet. The safety section contains an editor that
+lets users curate the safety phrases of a chemical entry by hand, which is useful when no safety data
+sheet (SDS) can be found, when an extraction returns incomplete results, or when a substance is
+prepared in-house.
 
-The editor is always shown at the bottom of the safety section and is organized into three parts:
+The editor sits under the heading **Safety phrases and pictograms** at the foot of the safety section.
+When nothing has been set it starts collapsed, labelled *none added yet*, and each of its three parts —
+**Hazard Statements**, **Precautionary Statements** and **Pictograms** — likewise starts collapsed
+while it is empty and opens by itself once it has content. Each heading and each row carries a copy
+button.
+
+It is organized into three parts:
 
 - **Hazard Statements** — the H-codes of the chemical (for example `H225`).
 - **Precautionary Statements** — the P-codes of the chemical (for example `P210`).
@@ -190,7 +277,9 @@ sections may have to be scrolled into view.
 
 #### adding a phrase
 
-1. Open the inventory tab of the chemical entry and expand the safety list.
+1. Open the inventory tab of the chemical entry, expand the safety list, then
+   **Safety phrases and pictograms** and the part to be edited — each is
+   collapsed while it is empty.
 1. Click the search field of the section that should be extended (hazard statements, precautionary
    statements, or pictograms).
 1. Type a code or a part of the phrase text. The drop-down filters the list of available entries while
@@ -225,13 +314,13 @@ becomes permanent only after the inventory tab is saved.
 
 :::caution
 
-A **successful** vendor query replaces the complete content of the editor: if the query run with
-<Btn mixed={["fetch safety phrases"]} color={"secondary"} /> returns phrases, they overwrite the
-lists, so manual additions and removals made before the query are lost. It is therefore advisable to run
-the vendor query first and to refine the result by hand afterwards.
+A **successful** extraction replaces the complete content of the editor: if
+[Extract from sheet](#extract-from-sheet) finds H and P codes, they overwrite the lists and the
+pictograms, so manual additions and removals made before it are lost. It is therefore advisable to
+extract first and to refine the result by hand afterwards.
 
-A query that returns nothing leaves the existing phrases untouched — if the vendor has no data for the
-chemical, or the lookup fails, only a warning is shown and the editor keeps its content.
+An extraction that finds no codes leaves the existing phrases untouched — only a notice is shown and
+the editor keeps its content.
 
 :::
 
@@ -262,7 +351,7 @@ The manual SDS attachment functionality allows users to:
 
 ### Workflow
 
-1. Click the "Add Attachment" button.
+1. Click the green <Btn mixed={[faPlus]} color={"success"}/> button at the left of the safety control row, whose tooltip reads *Attach a safety data sheet from your computer*.
 2. Fill in the required fields and upload a PDF file.
 3. Click "Submit" to save the attachment.
 
@@ -272,10 +361,13 @@ The manual SDS attachment functionality allows users to:
 
 ### Validation Rules
 
-- **File Type**: Only PDF files are allowed.
-- **Product Number**: Must be non-empty.
-- **Vendor Name**: Must contain only letters.
+- **File Type**: Only PDF files are allowed, up to 10 MB.
+- **Product Number**: Between 2 and 25 characters.
+- **Vendor Name**: Between 2 and 20 characters — lowercase letters, digits and hyphens, starting with a letter, with no hyphen at either end and none doubled.
 - **URLs**: Must be valid URLs if provided.
+
+A manually attached sheet counts toward the limit of five sheets per sample,
+and can be read with [Extract from sheet](#extract-from-sheet) like any other.
 
 ### Error Handling
 

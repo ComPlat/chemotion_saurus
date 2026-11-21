@@ -22,22 +22,48 @@ Thus, the image representing the molecule (and therewith the samples) changes if
 
 The list of samples contains further information.
 
-### Filtering of the sample list
+### Filtering lists
 
-Filtering can be done according to a date, filtering the lists using structure search or text search.
+From version 4.0 the filters live in a panel that folds away. The funnel button
+in the list header opens and closes it, and turns blue while any filter is set,
+so a collapsed panel still shows that the list is filtered. The panel opens by
+itself when a filter is already in force.
 
-This option does not sort the sample list. It only sets a parameter for filtering and the filtering will be done based
-on the specified date range in the From and To fields.
+The panel holds:
 
-When it shows `currently filtered by creation date` then it will show all the entries that were created in the specified
-date range.
+- a **label** filter;
+- a **Created / Updated** select, deciding which date the range applies to;
+- **From** and **To** dates, each of which can be cleared;
+- for samples only, a **Products only** toggle;
+- **Clear**, which resets every filter at once.
 
-Similarly when it shows `currently filtered by update date` then it will show all the entries that were updated in the
-specified date range.
+Earlier versions showed these in the header at all times, and swapped between
+creation and update dates with a toggle whose tooltip named the current choice.
+That toggle is now the Created / Updated select.
 
-<video controls>
-  <source src={require("@site/static/img/eln/ui/lists/sample_filtering.webm").default} />
-</video>
+Searching respects whatever filters are active, so a quick, structure or
+advanced search returns only elements that also pass the filter. The label
+filter does not apply to cell lines, device descriptions or sequence-based
+macromolecule samples, whose lists have no labels to filter on.
+
+{/* SCREENSHOT-TODO
+  id: lists-filter-panel
+  target: /img/eln/ui/lists/filter_panel.png
+  replaces: /img/eln/ui/lists/sample_filtering.webm
+  shared-with: docs/ (v4), versioned_docs/version-v3, versioned_docs/version-v2 - all
+               three reference this same file. Copy it to static/img/v2/... and
+               static/img/v3/... and repoint those trees FIRST, or replacing it
+               silently changes the version 2 and version 3 pages too.
+  eln: v4.0.2
+  kind: image
+  page: element panel -> Samples list header
+  setup: a label filter and a From date set, so the funnel shows as active
+  show: the blue funnel button and the open filter row - label, Created/Updated,
+        From and To, Products only, Clear
+  crop: list header and filter row
+  notes: the existing video shows the version 3 header, where the filters were
+         always visible, and should be retired with this shot
+*/}
 
 ### Sorting of the sample list
 

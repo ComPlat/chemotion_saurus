@@ -17,8 +17,6 @@ If the corresponding button for carrying out an action is not activated, it may 
 
 ## Fixing Sample or Molecule SVG images
 
-**(in ELN v1.5.4 and above)**
-
 A script to reprocess the SVGs of molecules and samples is available (see [PR1308](https://github.com/ComPlat/chemotion_ELN/pull/1308/commits/868477dc91cec99b689db2ac93106d04ce8dd694)). For this to run properly, the [Ketcher backend service](../services/ketcher) has to be working. Note that depending on the situation, this could consume a lot of resources.
 To run the script from the application directory with rails environment, use `bundle exec rake 'svg:{molecule|sample}[{all|missing|openbabel}]'`;
 examples:

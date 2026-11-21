@@ -147,6 +147,10 @@ docker network create proxy
 
 2. Then, create the `nginx.conf` file in the same folder as the `docker-compose` file. The contents of the file should look as follows:
 
+{/* From v4 the NMRium wrapper is served by the ELN itself, so frame-src no
+    longer needs nmrium.nmrxiv.org. Instances that override spectra.yml back to
+    the public wrapper must add it again. */}
+
 ```nginx
 server {
     listen 443 ssl;
@@ -159,7 +163,7 @@ server {
 
     resolver 127.0.0.11; # this bit is very important as it allows nginx and docker to cooperate
 
-    add_header Content-Security-Policy "default-src 'self' 'unsafe-inline' 'unsafe-eval' ; worker-src 'self' blob: ; connect-src 'self' ws: blob: commonchemistry.cas.org dx.doi.org doi.org api.crossref.org; font-src 'self' data: ; frame-src 'self' nmrium.nmrxiv.org ; img-src 'self' data: ; upgrade-insecure-requests;" ;
+    add_header Content-Security-Policy "default-src 'self' 'unsafe-inline' 'unsafe-eval' ; worker-src 'self' blob: ; connect-src 'self' ws: blob: commonchemistry.cas.org dx.doi.org doi.org api.crossref.org; font-src 'self' data: ; frame-src 'self' ; img-src 'self' data: ; upgrade-insecure-requests;" ;
 
     location / {
         proxy_pass http://eln:4000;
@@ -258,7 +262,7 @@ A particular construct worth noting is using the `./chemCLI instance restore` co
 For example:
 
 ```bash
-./chemCLI instance restore --name first-instance --data /absolute/path/to/backup.data.tar.gz --db /absolute/path/to/backup.sql.gz --suffix 4cfcfd0c --address https://chemotion.myuni.de --use https://github.com/Chemotion/ChemCLI/releases/latest/download/docker-compose.yml
+./chemCLI instance restore --name first-instance --data /absolute/path/to/backup.data.tar.gz --db /absolute/path/to/backup.sql.gz --suffix 4cfcfd0c --address https://chemotion.dept.uni.de --use https://github.com/Chemotion/ChemCLI/releases/latest/download/docker-compose.yml
 ```
 
 ### Silent and Debug Use
@@ -268,7 +272,7 @@ Almost all features of chemCLI can be used in silent mode i.e. without any input
 To use chemCLI in silent mode, add the flag `-q`/`--quiet` to your command. The CLI will then use default values and other flags to try and accomplish the action. Examples:
 
 ```bash
-./chemCLI -q instance new --name second-instance --address https://myuni.de:3000 --use ../my/path/docker-compose.yml
+./chemCLI -q instance new --name second-instance --address https://chemotion.dept.uni.de:3000 --use ../my/path/docker-compose.yml
 ```
 
 ```bash

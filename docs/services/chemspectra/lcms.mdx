@@ -1,0 +1,60 @@
+---
+title: LC/MS
+---
+
+:::info[Supported file formats]
+
+For LC/MS analysis, the Chemotion team currently supports the
+[JCAMP-DX file](https://iupac.org/what-we-do/digital-standards/jcamp-dx/) sets
+produced by the converter from Agilent OpenLab and ChemStation data, holding
+the UV/VIS, TIC and mass traces together.
+
+:::
+
+LC/MS analysis is available from Chemotion ELN version 4.0.
+
+1. To upload and view their data, users can follow
+   [this instruction](../chemspectra#how-to-use-chemspectra). An analysis whose
+   dataset holds an LC/MS set opens in the LC/MS layout.
+
+2. The editor shows three charts, one above the other: the UV/VIS
+   chromatogram, the total ion current (TIC), and the mass spectrum.
+
+3. **Clicking the TIC chart chooses a retention time.** A red marker is drawn
+   where the click landed, and the mass spectrum for that moment is fetched and
+   drawn below. Nothing is precomputed, so a spectrum appears a moment after
+   the click rather than instantly.
+
+4. Where the data hold more than one polarity, a select labelled **TIC** offers
+   **PLUS**, **MINUS** and **NEUTRAL**, and the mass spectrum is limited to the
+   one chosen. A second select picks the **Wavelength (nm)** for the UV/VIS
+   trace.
+
+5. The retention time and polarity last used are remembered while the browser
+   session lasts, so reopening the analysis returns to the same view.
+
+6. Saving offers the usual choices — **save**, **save & close**, **write peak &
+   save** and **write peak, save & close**.
+
+:::note
+
+The curve dropdown in the window header is inactive in this layout: the chart
+to work on is chosen by clicking it.
+
+:::
+
+{/* SCREENSHOT-TODO
+  id: chemspectra-lcms-layout
+  target: /img/services/chemspectra/lcms/chemspectra_lcms_1.png
+  replaces: (none)
+  eln: v4.0.2
+  kind: image
+  page: Analyses tab -> an analysis with an LC/MS dataset -> Spectra Editor
+  setup: a converter-produced LC/MS set from Agilent OpenLab or ChemStation,
+         containing both polarities so the TIC select is shown
+  show: the three stacked charts, a red retention-time marker on the TIC, the
+        mass spectrum drawn for it, and the TIC and Wavelength selects
+  crop: the editor window
+  notes: the labels come from spectra editor 1.8.0 and version 4 ships 1.8.5,
+         so check them against what is on screen while capturing
+*/}

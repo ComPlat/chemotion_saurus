@@ -6,6 +6,88 @@ sidebar_position: 4
 
 # Managing Groups
 
-Administrators can create a **Group** of users. These **Group**s can then be used to manage multiple users together, such as when assigning them permission to [remotely control a device](remote-devices). Users can also assign others to the groups they manage.
+A **Group** collects several users so that they can be managed together — for
+example when granting permission to [remotely control a device](remote-devices),
+or when [sharing a collection](../ui/collections) with everyone in a
+project at once.
+
+Groups are managed in two places. Any user can create and run their own groups
+from the user menu, under **My Groups & Devices**. A system administrator
+manages every group on the instance from Admin → **Groups**.
 
 ![screenshot of Add Group user interface](@site/static/img/eln/admin/add-group.png)
+
+## Membership and administration
+
+A group has **members** and **admins**, and the two are independent of each
+other:
+
+- The user who creates a group becomes its first member and its first admin.
+- An admin does not have to be a member. Someone can be promoted with **Add
+  admin** without joining the group, and demoted again from the **Admin by**
+  column.
+- Removing a member does not remove their admin status.
+- A group admin, like the system administrator, can add and remove members,
+  promote and demote admins, and delete the group. A plain member can see the
+  user list and leave the group.
+
+:::info[Changed in version 4.0]
+
+Earlier versions offered admin status only to members, and only from the
+member list. From version 4.0 anyone can be made an admin with **Add admin**,
+whether or not they belong to the group.
+
+:::
+
+### A group always keeps one admin
+
+The last admin of a group cannot be removed. Attempting it is refused with
+*Cannot remove the last admin*, and the user interface says *At least one
+admin is required* before the request is even sent.
+
+The same rule reaches account deletion: a user who is the sole admin of a group
+cannot be deleted, and the system administrator is told which groups are
+blocking it. Appoint another admin first.
+
+### Members and admins are people
+
+Only individual user accounts can be members or admins. A group cannot be
+placed inside another group. An attempt to add a non-person account is ignored
+without an error message.
+
+:::info[Changed in version 4.0]
+
+Earlier versions allowed a group to be created with another group as a
+member.
+
+:::
+
+## Group accounts and collections
+
+A group is an account, and in earlier versions a collection could belong to it,
+reachable by every member. From version 4.0 **collection ownership is
+personal**: a collection belongs to one user, and members of a group reach it
+only through a share addressed to that group.
+
+Shares made *to* a group continue to work and are the supported way to give a
+whole group access to a collection. See
+[collections](../ui/collections).
+
+:::danger[Collections owned by a group account need attention when upgrading]
+
+A collection owned by the group account itself, rather than shared with the
+group, becomes reachable by nobody after an upgrade to version 4, and cannot be
+repaired from the interface. The procedure for finding and fixing these is
+under [Upgrading](../install-configure/upgrading#4-collections-owned-by-a-group-account-become-unreachable).
+
+:::
+
+## Creating a group
+
+From the user menu, open **My Groups & Devices** and use **Create new group**.
+A group needs a name and a name abbreviation; the abbreviation has to be
+between 2 and 5 characters by default, which an administrator can change in
+`config/user_props.yml`.
+
+The system administrator creates groups from Admin → **Groups** with **Add new
+group**, which additionally accepts an email address.

@@ -28,7 +28,7 @@ import { FigCaption, YouTubeFrame } from "@site/src/js/layout";
 
 ![whole window](/img/eln/ui/toolbar/screen.png)
 
-The toolbar sits above the element list in the [element panel](.#element-panel) and provides a variety of functions to control the Chemotion ELN elements. Its buttons are `Reporting`, `Export`, `Split`, `Transfer`, `Remove`, `Share` and `References`; the search bar and the green <Btn mixed={[faPlus, "CREATE"]} color={"success"}/> button are located to its right. These functions cover adding, copying, deleting, moving, sharing, filtering, importing and exporting.
+The toolbar sits above the element list in the [element panel](.#element-panel) and provides a variety of functions to control the Chemotion ELN elements. Its buttons are `Reporting`, `Export`, `Split`, `Transfer`, `Remove`, `Share`, `References` and `My labels`; the search bar and the green <Btn mixed={[faPlus, "CREATE"]} color={"success"}/> button are located to its right. These functions cover adding, copying, deleting, moving, sharing, filtering, importing and exporting.
 
 ## Filtering
 
@@ -106,7 +106,42 @@ This action can be performed by pressing <Btn mixed={[faMinusSquare]} color={"wa
 
 `Remove from current Collection`: This action removes the selected elements only from the selected collection, but a copy is kept in the back up collection **All**. The user is asked to confirm their decision via a pop-up window by pressing <Btn mixed={["Remove"]} color={"warning"}/>, or otherwise to press <Btn mixed={["Cancel"]} color={"primary"}/>.
 
-`Remove from all Collections`: This action removes the selected elements from **all of the user's own collections**, and permanently deletes only those elements that are left in no collection at all. It never reaches into a collection owned by someone else, including one that has been shared with them — those keep their copy, and its owner goes on seeing the element. The user is asked to confirm their decision via a pop-up window by pressing <Btn mixed={["Delete"]} color={"warning"}/>, or otherwise to press <Btn mixed={["Cancel"]} color={"primary"}/>. An option is provided in case the user is trying to remove reactions, which is to choose whether to delete the samples associated with the reactions, if the user chooses not to, then only the reactants and solvents associated with the deleted reaction are deleted too.
+`Remove from all Collections`: This action removes the selected elements from **all of the user's own collections**, and permanently deletes only those elements that are left in no collection at all. It never reaches into a collection owned by someone else, including one that has been shared with them — those keep their copy, and its owner goes on seeing the element. Samples still used in a reaction or a wellplate are kept rather than deleted, and a notice says how many — it does not name them. The action is not offered at all while working inside a collection someone else shared. The user is asked to confirm their decision via a pop-up window by pressing <Btn mixed={["Delete"]} color={"warning"}/>, or otherwise to press <Btn mixed={["Cancel"]} color={"primary"}/>. An option is provided in case the user is trying to remove reactions, which is to choose whether to delete the samples associated with the reactions, if the user chooses not to, then only the reactants and solvents associated with the deleted reaction are deleted too.
+
+### My labels
+
+Labels can be added to or taken off a whole selection at once. Select the
+elements, then press **My labels** at the right-hand end of the toolbar, which
+opens **Bulk edit user labels**.
+
+The window offers two lists — **Add labels** and **Remove labels** — and
+**Apply to selection** carries both out across every selected element,
+whatever their type. Only the user's own labels and any global ones are
+offered, and other people's private labels on those elements are left alone.
+
+The button needs a selection, and edit rights in the current collection.
+
+:::note
+
+The labels themselves are created and edited under **My Labels** in the user
+menu. The two names are nearly the same: the toolbar button works on a
+selection, the user-menu entry maintains the list.
+
+:::
+
+{/* SCREENSHOT-TODO
+  id: toolbar-bulk-labels
+  target: /img/eln/ui/toolbar/bulk_labels.png
+  replaces: (none)
+  eln: v4.0.2
+  kind: image
+  page: element panel -> select two or more samples -> toolbar "My labels"
+  setup: the user owns two labels, and one global label exists
+  show: the "Bulk edit user labels" window with one label chosen under Add labels
+        and one under Remove labels, plus the toolbar button that opened it
+  crop: toolbar button and window
+  notes: the button is disabled without a selection
+*/}
 
 ## Sharing collections
 
@@ -133,7 +168,7 @@ To export elements, go to the collection that contains them, and select the desi
   alt={"Export samples"}
 />{" "}
 
-The window above opens where the user picks the properties to be exported with the elements. If they want to proceed, they press <Btn mixed={["XLSX/SDF Export",faSortUp]} color={"warning"}/>, which enables the user to choose either **XLSX Export**, or **SDF Export**. Otherwise, press <Btn mixed={["Cancel"]} color={"primary"}/>.
+The window above opens where the user picks the properties to be exported with the elements. From version 4.0 the two formats are separate buttons, <Btn mixed={["XLSX Export"]} color={"warning"}/> and <Btn mixed={["SDF Export"]} color={"warning"}/>, rather than one button with a choice behind it. Otherwise, press <Btn mixed={["Cancel"]} color={"primary"}/>.
 
 <YouTubeFrame
   src="https://www.youtube-nocookie.com/embed/Vr3_006Zr-s?start=30"
@@ -179,7 +214,7 @@ After downloading the XLSX template, users can import it into the Chemotion ELN 
 
 :::info[Recommendation]
 
-Please add either molfile or **SMILES**-Code to the import template. The import process will fail if both are entered.
+Please add either molfile or **SMILES**-Code to the import template. Where a row carries both, the molfile is used and the SMILES is ignored.
 
 Available from v2 onwards: Importing melting point, boiling point, location, refractive index, flash point, density, and molarity for samples.
 
@@ -189,7 +224,62 @@ Available from v2 onwards: Importing melting point, boiling point, location, ref
 
 ### Report
 
-This icon <Btn mixed={[faCaretSquareRight, "Reporting", faSortDown]} color={"light"}/> helps the user to produce reports and organize the literature in their data. The same dropdown also offers QR code, Data Matrix code, and Bar code generation, and Format Analyses.
+
+:::note[Custom report templates]
+
+Report layouts come from template files shipped with the ELN, chosen by report
+type. Replacing one is a server-side change to the installation, and an upgrade
+overwrites it.
+
+A replacement `.docx` must define the `ListBullet` and `ListNumber` paragraph
+styles. Without them, generating a report fails whenever a selected element
+contains a bulleted or numbered list in a rich-text analysis.
+
+:::
+
+This icon <Btn mixed={[faCaretSquareRight, "Reporting", faSortDown]} color={"light"}/> helps the user to produce reports and organize the literature in their data. The same dropdown also offers QR code, Data Matrix code, and Bar code generation, Format Analyses, and — where the instance administrator has enabled it — the **Explorer**.
+
+### Explorer
+
+The Explorer draws the open collection as a graph, so that the relationships
+between its samples and reactions can be seen at once. It needs no selection:
+it always shows the whole collection, and opens as a card in the details pane.
+
+Reactions appear as red boxes labelled with their short label and name, newest
+first. Around each one sit its starting materials and products, joined to it by
+labelled edges, with its reactants and reagents beside it. A sample that is the
+product of one reaction and the starting material of the next is drawn once, so
+a multi-step sequence stays connected, and a split sample is joined to the one
+it came from. Samples belonging to the collection but used in none of its
+reactions are stacked in a column at the left, solvents among them.
+
+A search box matches reaction and sample labels and names, and samples by
+canonical SMILES. A match also brings in the reactions that sample takes part
+in.
+
+:::note
+
+The Explorer is new in version 4.0 and is one of the optional interface
+components, switched off by default in a production instance. It appears only
+where an administrator has enabled it.
+
+:::
+
+{/* SCREENSHOT-TODO
+  id: explorer-graph
+  target: /img/eln/ui/toolbar/explorer.png
+  replaces: (none)
+  eln: v4.0.2
+  kind: image
+  page: element list -> Reporting -> Explorer, with sample_explorer set to true
+  setup: a collection holding two chained reactions, where the product of the
+         first is the starting material of the second, one split of that
+         product, one reagent, and one sample used in no reaction
+  show: the whole Explorer card after fitting the view, search box empty
+  crop: the Explorer card only
+  notes: keep the hover popover out of the shot - its "Performed:" line is in
+         fact the last-update time, so a shot showing it would mislead
+*/}
 
 <img src={require("@site/static/img/eln/ui/toolbar/report.png").default} alt={"Report"} />{" "}
 

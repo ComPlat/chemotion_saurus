@@ -138,7 +138,15 @@ Collections with cell lines can be exported and imported as with other elements.
 
 ## Search
 
-Cell lines can be searched for and found using the basic search. The following properties are taken into account in the search: name of the cell line and the specific name of the sample.
+Cell lines can be searched for and found using the basic search, by the name of the cell line and the specific name of the sample.
+
+From version 4.0 they are also returned by a search across **All** elements, and the advanced search offers cell-line fields of its own — source, disease, organism, mutation, variant, tissue, growth medium, biosafety level, cryopreservation medium, optimal growth temperature, gender, cell type and material description, together with the sample's amount, passage, name and contamination.
+
+:::note
+
+Cell lines created before the upgrade appear in an **All** search only once the instance administrator has rebuilt the search index.
+
+:::
 
 <img
   src={

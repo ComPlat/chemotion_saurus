@@ -9,8 +9,25 @@ import { DownloadBtn } from "@site/src/js/download_files.js";
 
 This is the simple import method. For the enhanced, validated import, see [Importing Data with Column Mapping and Validation](#importing-data-with-column-mapping-and-validation) below.
 
-[Samples](elements/samples) can be imported to Chemotion ELN by uploading a simple excel list that contains the structure of the sample as a SMILES string.
+[Samples](elements/samples) can be imported to Chemotion ELN by uploading a simple excel list that identifies each sample.
 Please add the SMILES strings in the respective column of the file to be imported and add the description "canonical smiles" as the header of the column.
+
+A row can be identified in more than one way:
+
+| Column | Effect |
+| --- | --- |
+| `canonical smiles`, or a molfile | The structure, as before |
+| `cas` | From version 4.0 the structure can be looked up from a CAS number alone. The shipped templates have no such column, so one has to be added |
+| `sample id` | The row **updates an existing sample** rather than creating one, for samples the user may edit |
+
+:::caution
+
+A row with neither a structure nor a CAS number becomes a sample **without a
+structure** — a decoupled sample — rather than being rejected. A `sample id`
+column changes the import from creating samples to updating them, so check
+before importing a sheet exported from the ELN, which carries that column.
+
+:::
 To enable the import into a [collection](collections), the desired target collection has to be selected. Import of samples is only possible for the user that created the collection.
 The export and import of samples is currently supported in the xlsx, csv, and sdf formats.
 
@@ -158,7 +175,7 @@ detailed explanation of the validations applied:
 #### Error Highlighting
 If a field fails validation, it is highlighted in the grid with a detailed error message. For example:
 - **Invalid Numeric Value**: "Value 'abc' cannot be converted to a number."
-- **Invalid Range**: "Value '200-100' is not a valid range. The lower bound must not exceed the upper bound."
+- **Invalid Range**: "Value '200-100' is not a valid range. The lower bound must not exceed the upper bound." — this strictness applies to the column-mapping grid; an import done without the grid accepts a reversed range and swaps it.
 - **Missing Unit**: "Value '1.2' is missing the expected unit (e.g., 'g/mL')."
 
 Users can correct the errors directly in the grid and revalidate the data.
@@ -171,14 +188,51 @@ This detailed explanation of the validation process ensures that users understan
 
 Once the data is validated, users can proceed with the import.
 
-### Small Files
-- For smaller files, the data is imported directly into the database.
-- The user will see a confirmation message once the import is complete.
+From version 4.0 every sample import runs in the background, whatever the size
+of the file, so work can continue while it is processed. A notification arrives
+when it finishes.
 
-### Large Files
-- For larger files, the import is handled as a backend job.
-- This allows users to continue using Chemotion ELN while the import is processed in the background.
-- The user will receive a notification once the import is complete.
+### What the notification says
+
+The notification opens with how much was imported — *Imported 18 of 20 rows
+from 'samples.xlsx' into 'My collection'* — and lists anything that needs
+attention beneath it, one line each: rows that could not be imported, existing
+samples that were updated, rows brought in without a structure, and rows
+skipped entirely. Long lists of row numbers stop after twelve and say how many
+more there are.
+
+**The row numbers are the rows of the uploaded sheet**, counting the header as
+row 1, so they can be looked up directly.
+
+A notification reporting a problem stays until it is dismissed; a clean import
+disappears by itself.
+
+### The import report
+
+Every import that gets as far as reading the sheet produces a report workbook,
+a successful one included. It arrives in the [inbox](inbox), named after the
+uploaded file, and the notification carries a **Download** link to it.
+
+The workbook has a sheet named `import report` holding the original columns
+that were used, plus `import status`, `import notes` and `sample id`. Rows are
+coloured by what happened to them — red where nothing was imported, grey and
+italic where the row was skipped — and single cells are marked amber where a
+value could not be used as written. The `sample id` column links to the sample
+that was created.
+
+When something needs fixing, a second sheet appears, named `sample`. It holds
+the rows to correct, and importing that file again applies the corrections:
+rows that already produced a sample carry its id and are updated, while rows
+that failed carry none and are created afresh. This is the intended way to work
+through a partly failed import, rather than editing the original file.
+
+:::note
+
+After a column-mapping import the report is named
+`validated_data_import_report.xlsx`, and its row numbers refer to the data as
+the grid submitted it rather than to the original file.
+
+:::
 
 ---
 

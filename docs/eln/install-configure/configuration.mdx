@@ -41,6 +41,12 @@ The variable line `- SECRET_KEY_BASE=pleasechangeme` in sections `services.worke
 
 The variable line `- SECRET_KEY=imsupersecretandwanttobechanged` in section `services.converter.environment` needs to be changed as well. The string `imsupersecretandwanttobechanged` needs to be replaced by a random password-type string of the administrator's choice.
 
+#### Variable `OTP_SECRET_KEY`
+
+The variable `OTP_SECRET_KEY` must be set to a unique random string of **at least 32 characters**, in sections `services.worker.environment` and `services.eln.environment`, and on any container that runs rake tasks. It is required from version 3.1.0 onwards, and the ELN will not start without it.
+
+Once set, it must never be changed: a new value switches off two-factor login for every user who had enabled it, and each of them has to enable it again.
+
 ### Optional: Modify Configuration Files
 
 In most of the following cases, the configuration has to be modified following the instructions in this section.
@@ -110,9 +116,27 @@ SMTP_TLS=true
 SMTP_AUTH='plain'
 # how OpenSSL checks the certificate  ('none' or 'peer')
 SMTP_SSL_MODE='none'
+# optional, seconds to wait for the connection and for a reply
+SMTP_OPEN_TIMEOUT=10
+SMTP_READ_TIMEOUT=30
 ```
 
 See [rails docs](https://guides.rubyonrails.org/action_mailer_basics.html#action-mailer-configuration) for an explanation of the parameters.
+
+:::info[Reviewing an existing configuration]
+
+`SMTP_OPEN_TIMEOUT` and `SMTP_READ_TIMEOUT` default to 10 and 30 seconds. Four
+further points are worth knowing:
+
+- Without `SMTP_ADDRESS`, **no mail is sent at all**.
+- When `SMTP_DOMAIN` is unset, the HELO name falls back to the host part of
+  `PUBLIC_URL`, provided that is a hostname rather than a bare address.
+- `SMTP_SSL_MODE` accepts only `none` and `peer`. Any other value is ignored
+  rather than, as before, making every attempt to send mail fail.
+- Variables left blank are dropped, so the underlying defaults apply. Leaving
+  `SMTP_TLS` unset is therefore not the same as setting it to `false`.
+
+:::
 
 ## File collectors
 
@@ -221,15 +245,7 @@ production:
       :extSrc: "external file" # file of MarvinJS
 ```
 
-The compatibility table for recommended versions of EPAM Ketcher (v2 or v3) to be used with the ELN is as follows:
-
-| ELN version |     Ketcher release      |
-| :---------: | :----------------------: |
-|   1.10.5    |          2.24.0          |
-|   1.10.2    |          2.21.0          |
-|    1.9.3    |          2.18.0          |
-|    2.x.x    |          3.x.x           |
-|    3.x.x    | Included, do not install |
+EPAM Ketcher is included with the ELN, so it does not have to be installed separately.
 
 ### Enable
 
@@ -302,27 +318,291 @@ production:
 
 ## NMRium
 
-Starting from Chemotion ELN version 1.5, to integrate [NMRium](https://nmrium.nmrxiv.org/) into an instance, please add the following to the `spectra.yml` in the `./shared/pullin/config` folder.
+From Chemotion ELN version 4.0 onwards, the ELN serves the
+[NMRium](https://nmrium.nmrxiv.org/) wrapper itself, from `public/nmrium/<version>/`
+inside the ELN image. Instances no longer depend on `nmrium.nmrxiv.org`, and
+**no registration with a hosting service is required**.
+
+The wrapper version is fixed when the image is built and matches the ELN
+release. There is nothing for an administrator to set, and no version to keep
+in step by hand.
+
+### Pointing at a different wrapper
+
+The `:nmriumwrapper:` entry in `spectra.yml` still exists; it is no longer
+something an administrator has to fill in. The image build rewrites it to the
+versioned path, so a shipped instance reads:
 
 ```yaml
 production:
   :chemspectra:
-    :url: "http://spectra:4000"
+    :url: "http://spectra:4000/"
   :nmriumwrapper:
-    :url: "https://nmrium.nmrxiv.org/v1.0.0/"
+    :url: "/nmrium/<version>/"
 ```
 
-Here the `nmriumwrapper.url` value depends on the version of Chemotion ELN in use. The compatibility between the ELN and the wrapper is as follows:
+The trailing slash is required — the wrapper loads its chunks relatively.
 
-| Version of Chemotion ELN | Version(s) of NMRium wrapper |
-| ------------------------ | ---------------------------- |
-| 3.0.0                    | 1.0.0                        |
-| 2.1.1 & 2.2.0            | 1.0.0                        |
-| 1.9.3, 1.10.5 & 2.0.1    | 0.8.0                        |
+To use the publicly hosted instance instead, override the file through
+`shared/pullin/config/spectra.yml`:
 
-So, for e.g. ELN version 3.0.0, please set `nmriumwrapper.url` to `https://nmrium.nmrxiv.org/v1.0.0/`.
+```yaml
+production:
+  :nmriumwrapper:
+    :url: "https://nmrium.nmrxiv.org"
+```
 
-To be able to access these URLs successfully, registration with the hosting service is required. Please contact the [Helpdesk](https://chemotion.net/helpdesk) or see [here](https://github.com/NFDI4Chem/nmrium-react-wrapper#public-instance) for more details.
+Doing so reinstates two requirements that the self-hosted wrapper removes. The
+public instance keeps its own list of the sites allowed to drive it, so the
+instance has to be registered with the hosting service — this is what
+registration always meant. See the
+[Helpdesk](https://chemotion.net/helpdesk) or the
+[wrapper's README](https://github.com/NFDI4Chem/nmrium-react-wrapper#public-instance).
+The nginx `frame-src` entry for `nmrium.nmrxiv.org` also has to be put back;
+see the [reverse-proxy setup](ChemCLI#set-up-a-reverse-proxy).
+
+### Allowed origins
+
+The wrapper refuses messages from any parent origin that is not on its allowlist.
+A rejected message surfaces as a **failed save** with *"Invalid Origin"*, not as
+an error on opening, so it is easy to mistake for a different problem.
+
+The rest of this section describes an instance running a **published ELN
+image**, which is what a ChemCLI or manual Docker install uses. An instance
+built from the ELN repository installs the wrapper differently and does not
+behave the same way; see
+[installing from the repository](#installing-the-wrapper-from-the-repository)
+below.
+
+**Set `PUBLIC_URL` to the address the ELN is reached at.** The ELN rebuilds the
+allowlist from it every time the container starts, so for an instance reached
+under a single address nothing else has to be configured.
+
+```yaml
+services:
+  eln:
+    environment:
+      - PUBLIC_URL=https://chemotion.dept.uni.de
+```
+
+Include the scheme. The value is parsed as a URL, and one without a scheme is
+ignored — `chemotion.dept.uni.de` does not work where
+`https://chemotion.dept.uni.de` does. The container log carries a warning when
+that happens. The port does not matter; matching is by hostname.
+
+### More than one address
+
+`PUBLIC_URL` yields exactly one origin. An instance reached under a second
+address — an internal hostname alongside the public one, for instance — needs
+them listed explicitly, because saving from any address not on the list fails
+with *Invalid Origin*. Set `NMRIUM_ALLOWED_ORIGINS`, which takes precedence
+over `PUBLIC_URL` when it is not empty:
+
+```yaml
+services:
+  eln:
+    environment:
+      - PUBLIC_URL=https://chemotion.dept.uni.de
+      - NMRIUM_ALLOWED_ORIGINS=https://chemotion.dept.uni.de https://chemotion.internal.dept.uni.de
+```
+
+Entries are separated by spaces or commas, and each needs its own scheme. The
+wrapper compares **hostnames only** — a port makes no difference, and wildcards
+are not supported, so a deployment serving several subdomains has to list each
+one.
+
+:::caution[An empty list accepts every origin]
+
+If neither variable yields a usable origin, the allowlist is empty, and an
+empty list turns the check off rather than refusing everything — any site that
+can embed the wrapper could then drive it. The container log says so at start,
+with *no NMRium origins configured*. Setting `PUBLIC_URL` correctly is
+therefore worth confirming rather than assuming.
+
+:::
+
+### Installing the wrapper from the repository
+
+An instance built from the ELN repository rather than from a published image
+installs the wrapper with the `nmrium-assets` service in
+`docker-compose.services.yml`. Three things differ, and all of them matter.
+
+| | Published image | Built from the repository |
+| --- | --- | --- |
+| Which wrapper is installed | fixed when the image is built | `IMG_NMRIUMWRAPPER`, default `nfdi4chem/nmrium-react-wrapper:v1.2.0` |
+| When the allowlist is written | at every container start | **once**, when that wrapper version is first installed |
+| If `NMRIUM_ALLOWED_ORIGINS` is unset | falls back to the `PUBLIC_URL` origin | **no fallback** — the list is empty |
+
+The tag in `IMG_NMRIUMWRAPPER` becomes the folder name under
+`public/nmrium/<tag>/`, and `public/nmrium/default` is linked to it. Keep it in
+step with the `NMRIUMWRAPPER` pin in the ELN's `.service-dependencies`; unlike
+an image build, this service does not check the two against each other.
+
+:::danger[Set `NMRIUM_ALLOWED_ORIGINS` — there is no fallback here]
+
+On this path `PUBLIC_URL` is not consulted. Leaving the variable unset leaves
+the allowlist empty, and an empty list means the wrapper accepts messages from
+**any** origin. That is tolerable while developing and should not be left in
+place anywhere else.
+
+:::
+
+Because the list is written only at first install, changing it afterwards is
+not a matter of editing the variable and restarting. Delete
+`public/nmrium/<version>/` and run the service again:
+
+```sh
+docker compose -f docker-compose.services.yml --env-file .dockerenv up nmrium-assets
+```
+
+:::note[Upgrading from 3.x or earlier]
+
+Earlier versions reached an externally hosted wrapper, configured by pointing
+`:nmriumwrapper: :url:` at `https://nmrium.nmrxiv.org/<wrapper-version>/` and
+matching that version to the ELN through a compatibility table. Neither the table
+nor the registration step applies any more. For the configuration that applies to
+those versions, see the
+[3.x documentation](/docs/eln/install-configure/configuration#nmrium).
+
+:::
+
+## Safety data sheet vendor lookups
+
+Searching for a safety data sheet reaches out to the vendors, and from version
+4.0 only to a fixed list of https hosts. An instance whose outbound traffic
+passes through a proxy or a restrictive firewall has to allow:
+
+- `sigmaaldrich.com`
+- `fishersci.com`
+- `thermofisher.com`
+
+Where outbound access is unrestricted there is nothing to configure. Where it
+is filtered and these are not allowed, a search simply returns no results,
+without an error that points at the cause.
+
+## Safety data sheet text extraction
+
+When a safety data sheet is attached to a chemical, the ELN extracts its text
+to find the safety phrases. From version 4.0 this extraction can be handed to a
+separate `pdftext` service instead of being run inside the ELN container.
+
+**This is optional, and the default needs no configuration.** With no
+configuration file present, extraction runs locally with Ghostscript, as it
+always has, capped at 40 pages per sheet.
+
+To use the service, create `config/sds_text_service.yml`:
+
+```yaml
+shared:
+  :url: 'http://pdftext:8080'
+  :timeout: 30
+```
+
+- **`:url:`** — where the service is reached. Leaving it empty is the same as
+  having no file: extraction runs locally.
+- **`:timeout:`** — seconds allowed for the whole request, 30 by default. Keep
+  it comfortably above the service's own timeout.
+
+:::danger[Do not copy the example unless the service is running]
+
+There is **no fallback to local extraction while the service is configured**.
+An instance that carries this file without a reachable `pdftext` container
+answers every safety-data-sheet extraction with an error. A file that cannot be
+read — a bad URL, an unparsable timeout, invalid YAML — has the same effect: the
+ELN logs a warning at boot and refuses extraction rather than falling back.
+
+To return to local extraction, correct the file or delete it.
+
+:::
+
+The boot log reports which of the three states applies, on a line beginning
+`Initializing sds_text_service`.
+
+## In-app guide
+
+An instance can carry its own guide, shown as a drawer in the workspace and as
+a block on the home page. The content is a Git wiki repository, which the ELN
+clones into `public/workshop/`.
+
+| Variable | Default | Purpose |
+| --- | --- | --- |
+| `WORKSHOP_GUIDE_REPO` | none | The Git URL of the wiki repository. Required to enable the guide |
+| `WORKSHOP_GUIDE_BRANCH` | `master` | Branch to take |
+| `WORKSHOP_GUIDE_TITLE` | `Workshop Guide` | The title shown to users |
+
+There is no on/off switch: the guide appears once its content is present.
+
+```sh
+WORKSHOP_GUIDE_REPO='https://git.dept.uni.de/group/project.wiki.git' rake workshop_guide:sync
+```
+
+To remove it again, delete the contents of `public/workshop/`.
+
+:::caution
+
+The cloned wiki is served as public static content under `/workshop/`. Anything
+in that repository becomes readable by anyone who can reach the instance.
+
+:::
+
+### Alternate logo
+
+Placing a file at `public/logos/chemotion-alternate.svg`, or
+`chemotion-alternate.png`, replaces the Chemotion logo everywhere it appears —
+both navigation bars and the sidebar, not only in the guide. The SVG takes
+precedence if both exist.
+
+## UI components
+
+`config/ui_components.yml` switches optional parts of the interface on and off.
+It is created from its example on first boot if it is missing.
+
+In production, **Weighing Tasks** and **Sample Explorer** ship switched off:
+
+```yaml
+:weighing_tasks: false
+:sample_explorer: false
+```
+
+Set a value to `true` and restart to enable it; only the literal `true`
+counts. If the file cannot be read, all of these components stay disabled.
+
+**Sample Explorer** is new in version 4.0. **Weighing Tasks** is not: it was
+available to everyone in version 3 without a switch, so an instance upgrading
+from there loses it until it is enabled here.
+
+## Other parameters
+
+| Variable | Default | Purpose |
+| --- | --- | --- |
+| `OPENBABEL_SVG_TIMEOUT_SECONDS` | 5 | Time allowed for OpenBabel to render a structure. On expiry, rendering falls back to Indigo or Ketcher |
+| `OPENBABEL_CANONICAL_SMILES_TIMEOUT_SECONDS` | 20 | Time allowed for the canonical SMILES writer during molecule import |
+| `MESSAGE_AUTO_INTERNAL` | 6000 | Minimum 500 from version 4.0; lower values are raised to it |
+| `MESSAGE_IDLE_TIME` | 12 | Minimum 5 from version 4.0 |
+
+Both OpenBabel values must be whole numbers. A value that is not raises an
+error at boot rather than being ignored.
+
+`OTP_SECRET_KEY` is required, as before. Its requirements are given under
+[`OTP_SECRET_KEY`](#variable-otp_secret_key) above.
+
+## Configuration file layout
+
+From version 4.0 the shipped example files put values common to all
+environments in a `shared:` block:
+
+```yaml
+shared:
+  :url: 'http://service:8080'
+production:
+  :url: 'http://other:8080'
+```
+
+**Existing configuration files remain valid and need no change.** The block is
+a convenience in the examples, not a new requirement. Two details matter when
+adopting it: a value given per environment replaces the shared one rather than
+merging with it, and that includes lists — a per-environment list replaces the
+shared list entirely.
 
 ## QR, Barcode and Datamatrix Stickers
 
@@ -379,7 +659,7 @@ The ELN has ability to produce [QR codes, Barcodes and Datamatrix codes](../ui/b
 - **`width`**: Page `width` in millimeters.
 - **`name`**, **`short_label`**, **`external_label`**, **`molecule_name`**, **`code_log`**, **`displaySample`**: Boolean flags to include or exclude specific elements.
 
-> N.B. The variable `displaySample` will be renamed to `display_sample` in future releases (releases after v1.10.5).
+> N.B. The variable `displaySample` will be renamed to `display_sample` in a future release.
 
 ### Validation rules
 

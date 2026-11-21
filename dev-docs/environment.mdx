@@ -164,8 +164,21 @@ docker exec -it <NAME_OF_APP_CONTAINER_FROM_DOCKER_PS> /bin/bash
 ...and issue commands inside the container, e.g., to set up the database...
 
 ```shell
-bundle exec rake db:setup
+bundle exec rake db:create db:migrate db:seed
 ```
+
+:::caution[`db:setup` fails in 4.0.0 to 4.0.2]
+
+`rake db:setup` and `rake db:schema:load` abort on an empty database with
+`relation "sync_collections_users" does not exist`. `schema.rb` still defines a
+SQL function whose body reads a table that version 4 dropped, and PostgreSQL
+checks that body when the function is created.
+
+Use `db:create db:migrate db:seed` instead, as above, or set
+`RAKE_DB_MIGRATE=once`. Upgrading an existing database is unaffected, because
+`db:migrate` does not recreate the function.
+
+:::
 
 ...or run tests.
 

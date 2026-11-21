@@ -21,11 +21,11 @@ Please note that you must register once with CAS to obtain your personal CAS use
 
 :::
 
-Users can register the SciFindern credential in the "Account & Profile".
+Users can register the SciFindern credential under **Settings**, in its **3rd-party apps & SciFinder** section.
 
 !["SciFinderN Profile"](/img/eln/ui/first_steps/scifindern_profile.png)
 
-### ELN 1.3 and above (Search CAS)
+### Search CAS
 
 :::info[Note]
 
@@ -47,24 +47,6 @@ If a valid expiry date is shown, the user is ready to use the Search CAS feature
 
 ![SciFinderN Credential](/img/eln/ui/first_steps/scifindern_has_credential.png)
 
-### Prior to ELN 1.0.0 (SciFinder tab)
-
-![SciFinder Tab](/img/eln/ui/first_steps/scifinder_tab.png)
-
-When using a version of ELN prior to 1.0.0, users can register the SciFinder credential in the "Account & Profile".
-
-<video controls>
-  <source src={require("@site/static/img/eln/ui/first_steps/scifinder_register.webm").default} />
-</video>
-
-After pressing the <Btn mixed={["Submit"]} color={"info"}/> button, a token will show on the page if the SciFinder credential is valid.
-
-![SciFinder Token](/img/eln/ui/first_steps/scifinder_token.png)
-
-If the credential is not valid, "none" will be shown in the column "current token".
-
-![SciFinder No_Token](/img/eln/ui/first_steps/scifinder_no_token.png)
-
 ## The First Collection
 
 <video controls>
@@ -81,11 +63,12 @@ Please think about a smart structure for your Chemotion ELN and create your firs
 
 :::
 
-## Chemotion ELN user settings
+## Chemotion ELN settings
 
-### User Settings: Account & Profile
+### Settings: Account and Profile
 
-The account & profile settings allow the user to
+Version 4 splits these into two sections of the **Settings** sidebar,
+**Account** and **Profile**. Between them they allow the user to
 
 - define a reaction label and adjust the counter for reactions
 - define a sample inventory label and adjust the inventory label counter for a collection
@@ -109,20 +92,65 @@ Additionally, users can generate a new label for existing samples by clicking th
 </video>
 
 
-### User Settings: Template management
+### Settings: Text Templates
+
+Personal text templates are managed here. Global templates, shared across the
+whole ELN, can additionally be edited by users whose administrator has granted
+them the global text template editor permission.
+
+### Settings: Authentication token
+
+An **authentication token** lets a script or an external tool reach the ELN's
+API as its owner, without a browser session. Tokens are new in version 4.0 and
+are managed under Settings → **Account** → **Authentication Token**, below the
+two-factor authentication card.
+
+Creating a token requires **two-factor authentication to be enabled**. Without
+it, the card shows only a notice and no token can be created.
+
+To create one, press **New Auth token**, give it a name and a lifetime between
+1 and 600 days — 30 by default — and confirm with a one-time code from the
+authenticator app. Revoking a token asks for a code in the same way.
+
+:::caution[A token is shown once]
+
+The token is displayed only on the screen that creates it, and cannot be
+recovered afterwards. The ELN stores a fingerprint of it, not the token itself.
+A lost token has to be revoked and replaced.
+
+Tokens begin with `chemtoken_`. They act with the full rights of their owner on
+every API endpoint, so they belong in a password manager or a secrets store,
+never in a shared script or a repository.
+
+:::
+
+Listed tokens show their name and expiry. A revoked token stays in the list,
+marked **REVOKED**, until it would have expired; an expired one disappears.
+Revoking takes effect immediately and cannot be undone.
+
+Administrators cannot see or revoke another user's tokens. Deleting the user
+account removes them.
+
+To use a token, send it as a bearer token:
+
+```sh
+curl -H "Authorization: Bearer chemtoken_..." https://chemotion.dept.uni.de/api/v1/users/current
+```
+
+### Settings: Change Password
+
+### Settings: My affiliations
+
+### Settings: My groups
+
+Groups are created and managed here, under **My Groups & Devices**. Any user
+can create a group and becomes its first member and admin. See
+[Managing Groups](../admin/groups) for what members and admins may do.
+
+### Settings: Molecule Moderator
 
 This function is not accessible to all users, please ask the instance administrator if it is not visible.
 
-### User Settings: Change Password
-
-### User Settings: My affiliations
-
-### User Settings: My groups
-
-### User Settings: Molecule Moderator
-
-This function is not accessible to all users, please ask the instance administrator if it is not visible.
-
-### User Settings: My devices
+### Settings: My devices
 
 This function is not accessible to all users, please ask the instance administrator if it is not visible.
