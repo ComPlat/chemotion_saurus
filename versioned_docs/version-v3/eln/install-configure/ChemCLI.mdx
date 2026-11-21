@@ -237,26 +237,26 @@ Instance administrators can inspect, create, update, unlock, and delete user acc
   ```
 - **Inspect user details**:
   ```bash
-  ./chemCLI instance user describe --email jane.doe@dept.uni.de
+  ./chemCLI instance user describe --email max.mustermann@dept.uni.de
   ```
 - **Unlock a locked account**:
   ```bash
-  ./chemCLI instance user unlock --email jane.doe@dept.uni.de
+  ./chemCLI instance user unlock --email max.mustermann@dept.uni.de
   ```
   *(Useful when an account has been locked after 5 consecutive failed login attempts. This clears the lock but not the count of failed attempts, so one more wrong password can lock the account again; unlocking in **Administration → User Management** resets both.)*
 - **Reset or update a user's password**:
   ```bash
-  ./chemCLI instance user update --email jane.doe@dept.uni.de --password=new_password
+  ./chemCLI instance user update --email max.mustermann@dept.uni.de --password=new_password
   ```
   *(When passing a password value explicitly, `=` is required; passing `--password` without a value generates a random password and prints it. To update names or abbreviation: `--firstname=...`, `--lastname=...`, `--abbreviation=...`.)*
 - **Create a user account**:
   ```bash
-  ./chemCLI instance user create --email jane.doe@dept.uni.de --firstname First --lastname Last --abbreviation FL
+  ./chemCLI instance user create --email max.mustermann@dept.uni.de --firstname Max --lastname Mustermann --abbreviation MM
   ```
   *(Without `--password`, `create` asks for one when run interactively; with `-q`, pass `--password`.)*
 - **Delete a user account**:
   ```bash
-  ./chemCLI instance user delete --email jane.doe@dept.uni.de
+  ./chemCLI instance user delete --email max.mustermann@dept.uni.de
   ```
 
 ### Uninstallation
