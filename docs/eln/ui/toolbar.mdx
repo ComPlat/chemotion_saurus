@@ -76,10 +76,19 @@ Please note that if the user chooses to **Assign to Collection**, the title of t
 
 `Move to Collection`: This action results in moving the selected elements from the selected collection to the target one, this means that the moved elements will no longer appear in the original collection.
 
-`Assign to Collection`: This action results in creating a copy of the selected elements in the target collection, this means that the assigned elements will be present in both collections.
+`Assign to Collection`: This action adds the selected elements to the target collection as well, without copying them, so that the same elements are present in both collections.
 
-Collections that were shared with the user can also be chosen as a target, grouped under
-**Shared by \<owner\>**, provided they hold at least the *Add elements* permission on them.
+When moving, collections that were shared with the user can also be chosen as a target,
+grouped under **Shared by \<owner\>**, provided they hold at least the *Add elements*
+permission on them; **Assign to Collection** offers only the user's own collections. Both
+also offer the **chemotion-repository.net** collection, under *chemotion-repo*, but never
+**All**.
+
+Inside a collection shared with the user, elements stay within their owner's collections:
+they can only be moved to another collection of the same owner, which also has to be shared
+with the user at *Add elements* or above, and moving needs the *Remove elements* permission
+on the collection they come from. A target among the user's own collections is refused, so
+**Assign to Collection**, which offers only those, does not work from a shared collection.
 
 :::caution
 
