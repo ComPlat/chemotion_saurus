@@ -31,7 +31,7 @@ The variable deprecates the variables `HOST_URL` and `HOST_PROTOCOL` in previous
 
 :::important[Setting `PUBLIC_URL` persistently with ChemCLI]
 
-For ChemCLI-managed instances, **`docker-compose.yml` is overwritten during upgrades**, while `docker-compose.cli.yml` and `./shared/pullin/.env` are preserved.
+For ChemCLI-managed instances, **an upgrade replaces `docker-compose.yml`** with the new version's file (the old one is kept as `old.<timestamp>.docker-compose.yml`). `docker-compose.cli.yml` is kept, though the CLI updates a few entries in it, and `./shared/pullin/.env` is not touched.
 
 To keep your URL across upgrades, set `PUBLIC_URL` in `docker-compose.cli.yml` under `environment:` for `eln`, `worker`, and `executor` (if present):
 
@@ -47,7 +47,7 @@ services:
 
 Because `chemotion_ELN` loads `./shared/pullin/.env` via `Dotenv.load`, entries in `.env` do **not** override environment variables already defined in `docker-compose.cli.yml`. Updating or removing `PUBLIC_URL` in `docker-compose.cli.yml` is therefore required when changing an instance's address.
 
-**Setting `PUBLIC_URL` on the `worker` service is essential**: background jobs (such as collection ZIP exports and async mailers) execute inside `worker`. If `PUBLIC_URL` is missing or left at an old value on `worker`, generated download links fall back to Rails' default (`http://localhost:3000`) or the earlier address even when `eln` is updated.
+**Make sure the `worker` service sees the same `PUBLIC_URL`**: background jobs (such as collection ZIP exports and mail sent in the background) run inside `worker`. An old value left on `worker` in `docker-compose.cli.yml` wins over `.env`, so its download links keep the earlier address even after `eln` is updated; with `PUBLIC_URL` set nowhere, they fall back to `http://localhost:3000`.
 
 :::
 
@@ -177,7 +177,7 @@ Chemotion ELN disables mail delivery automatically when `SMTP_ADDRESS` is blank 
 To resolve:
 1. Verify the effective values loaded by Rails (including `./shared/pullin/.env`):
    ```bash
-   docker compose exec eln bundle exec rails runner 'puts ENV.select { |k, _| k.match?(/SMTP|DISABLE_MAIL/) }'
+   docker compose exec eln bundle exec rails runner 'ENV.each { |k, v| puts "#{k}=#{k.include?("PASSWORD") ? "***" : v}" if k.match?(/SMTP|DISABLE_MAIL/) }'
    ```
    *(For ChemCLI-managed instances, pass `-f docker-compose.yml -f docker-compose.cli.yml` to `docker compose` inside the instance directory, or check via `./chemCLI instance consoles rails`.)*
 2. Mail settings are read once during boot. Whenever `./shared/pullin/.env` is edited, restart both the `eln` and `worker` services (`./chemCLI restart`) to apply the changes.

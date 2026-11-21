@@ -47,7 +47,7 @@ The only solution in those cases is to open and correct those molecules in the [
 
 - **Symptoms**: ChemCLI aborts during startup or instance creation with:
   ```sh
-  FTL Failed to download file from: https://github.com/Chemotion/ChemCLI/...
+  <time> FTL Failed to download file from: https://github.com/Chemotion/ChemCLI/... Check log. ABORT!
   ```
   *(or from `https://raw.githubusercontent.com/Chemotion/ChemOrc/...`)*
 - **Cause**: The host server requires an outbound HTTP/HTTPS proxy to reach external networks.
@@ -75,7 +75,7 @@ The only solution in those cases is to open and correct those molecules in the [
 - **Cause**: To protect against brute-force attacks, Chemotion ELN locks an account after 5 consecutive failed login attempts.
 - **Solution**:
   - **Automatic unlock**: The lockout expires automatically after **10 minutes**, allowing the user to attempt login again.
-  - **Administrative unlock**: An instance administrator can unlock the account immediately in [User management](admin/user-management) (**Administration → Users**) or via ChemCLI:
+  - **Administrative unlock**: An instance administrator can unlock the account immediately in [User management](admin/user-management) (**Administration → User Management**) or via ChemCLI:
     ```bash
     ./chemCLI instance user unlock --email jane.doe@dept.uni.de
     ```
@@ -95,11 +95,11 @@ The only solution in those cases is to open and correct those molecules in the [
      ```
      *(Or `docker compose logs -f worker` for manual Docker setups.)*
 
-### Collection import fails when a reaction uses a purification solvent from another collection
+### Collection import fails when a reaction uses a sample from another collection
 
-- **Symptoms**: Exporting a collection from one Chemotion ELN instance and importing it into another instance fails during import on a reaction that references a purification solvent.
-- **Cause**: When a sample is used in a reaction as a **purification solvent**, collection export only includes samples belonging to the exported collection(s). If the purification solvent sample belongs only to a different unexported collection, the archive lacks that sample record while the reaction still references its ID, causing the import to fail on the target instance.
-- **Solution**: Add the purification solvent sample to the collection being exported (or export both collections together) before creating and importing the archive.
+- **Symptoms**: Exporting a collection from one Chemotion ELN instance and importing it into another instance fails during import on a reaction.
+- **Cause**: Collection export includes only the samples that belong to the exported collection(s), but every sample a reaction uses — starting material, reactant, solvent, purification solvent or product. If one of those samples belongs only to a collection that was not exported, the archive lacks that sample while the reaction still references it, and the import fails. Purification solvents are the most common case.
+- **Solution**: Add the missing samples to the collection being exported (or export both collections together) before creating and importing the archive.
 
 ### File import fails silently (upload closes with no feedback)
 
