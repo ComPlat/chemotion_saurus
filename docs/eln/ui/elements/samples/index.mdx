@@ -46,6 +46,14 @@ Please enter the X before the serial number.
 
 :::
 
+### Physical storage location
+
+Each sample record includes a **Location** field in the Properties tab to track where the physical substance or container is stored in the laboratory.
+
+- **Structured coordinates**: Laboratories commonly use structured strings such as `Room 101 > Shelf 2 > Box C` or `Freezer -80°C > Rack 1 > Box 4 > Slot B3` to record physical storage locations.
+- **Searching by location**: Location values can be queried through **Advanced Search**.
+- **Bulk location updates**: Existing samples can be updated in bulk through the UI by re-importing a spreadsheet containing a `sample id` column together with updated `location` values (see [Importing Data](../import)), or programmatically via `PUT /api/v1/samples/:id` and the `chemotion-api` Python client.
+
 ## Generation
 
 Samples can be generated in various ways at various points in the Chemotion ELN. The way in which samples are generated is important for the order within the Chemotion ELN, which is why this chapter goes into more details about the individual options.

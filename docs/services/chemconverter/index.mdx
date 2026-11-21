@@ -79,7 +79,7 @@ The following section is important for privileged users and admins to help them 
 ### Find existing profiles
 
 When using the standalone version, the user just enters the "converter-URL"/admin/ into the browser's address bar.
-When using the ELN-integrated version, the user has to be logged in as an admin and click on the "Converter Profiles" tab on the left side.
+When using the ELN-integrated version, users open **Converter Profile** in the top-right user menu (or navigate to `/converter_admin`) to view existing profiles; creating, editing, or restoring profiles requires the Converter Administrator role.
 In both cases, the following GUI appears, where all the profiles are listed (if there are already some, of course):
 
 ![Admin list of all current existing profiles](/img/services/chemconverter/2ndLayerAdminGUI.png)
@@ -103,15 +103,15 @@ Now a non-admin user or an automatic process can upload and convert files.
 
 ##### Data Class
 
-The "Data Class" drop down menu defines the kind of jdx output.
-Currently there are four used classes:
+The **Data Class** dropdown menu defines the JCAMP-DX table output format (`XYPOINTS`, `XYDATA`, or `PEAK TABLE`):
 
-| Data Class | description                                                                                                                                  | requirements                                                                     |
-| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| XY POINTS  | typical "modern data curves" where each data point is described by two coordinates (x and y). Difference between each x need not be equal | exactly one column with x values & one column with y values                      |
-| XY DATA    | Classical jcamp files with the intention to save hard drive space. Difference between each x is always equal.                                | exactly one column with y values and defined values for FIRSTX, LASTX and DELTAX |
-| PEAK TABLE |                                                                                                                                              |                                                                                  |
-| NTUBLES    |                                                                                                                                              |                                                                                  |
+| Data Class | description                                                                                                                                      | requirements                                                                               |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| XYPOINTS   | typical data curves where each point is defined by explicit `(x, y)` pairs and spacing between `x` values need not be uniform.                   | exactly one column with `x` values and one column with `y` values.                         |
+| XYDATA     | classical compact JCAMP-DX format where `x` steps are evenly spaced.                                                                             | `y` column plus `FIRSTX` and at least one of `LASTX` or `DELTAX` (with `x` and `y` data).  |
+| PEAK TABLE | discrete peak list data where each peak has a defined position (`x`, e.g. m/z or cm⁻¹) and intensity (`y`), formatted as `##PEAK TABLE=(XY..XY)`. | exactly one column with `x` values and one column with `y` values.                         |
+
+For multidimensional or looped tables (multiple cycles, detectors, or scans), selecting **`SINGLE FILE (NTUPLES)`** as the loop output mode groups those tables into a single JCAMP container (`##DATA CLASS=NTUPLES` and `##NTUPLES=MULTIDIMENSIONAL`), while each inner page uses its underlying data class (`XYPOINTS`, `XYDATA`, or `PEAK TABLE`).
 
 ##### Data Type
 

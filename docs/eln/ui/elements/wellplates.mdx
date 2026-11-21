@@ -73,3 +73,10 @@ are disabled while the plate has unsaved changes, with a tooltip asking for
 those to be saved first.
 
 :::
+
+## Splitting a wellplate
+
+An existing wellplate can be duplicated and split into child samples using the **Split** dropdown menu in the toolbar (**Split Wellplate**), provided the user has write permission in the active collection:
+
+- Selecting a wellplate and running **Split Wellplate** creates `<Name>-Split` inside the current collection.
+- Occupied wells generate child split samples linked to their parent samples while preserving each well's grid coordinates (`position_x`, `position_y`), readouts, and additives.

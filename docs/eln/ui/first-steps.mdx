@@ -98,6 +98,17 @@ Personal text templates are managed here. Global templates, shared across the
 whole ELN, can additionally be edited by users whose administrator has granted
 them the global text template editor permission.
 
+### Settings: Two-Factor Authentication (2FA)
+
+Two-factor authentication protects accounts with Time-based One-Time Passwords (TOTP) and is also required before generating personal authentication tokens:
+
+1. Open **Settings** → **Account**.
+2. In the **Enable Two-Factor Authentication** card, click **Request 2FA**.
+3. Open the confirmation link sent to your registered email address to display the setup QR code.
+4. Scan the QR code with an authenticator app (such as FreeOTP, Google Authenticator, Aegis, 1Password, or Bitwarden) and enter the 6-digit verification code to activate 2FA.
+
+To turn 2FA off later, return to the same card and click **Disable 2FA**; a confirmation email is sent to authorize disabling two-factor authentication.
+
 ### Settings: Authentication token
 
 An **authentication token** lets a script or an external tool reach the ELN's
@@ -139,7 +150,11 @@ curl -H "Authorization: Bearer chemtoken_..." https://chemotion.dept.uni.de/api/
 
 ### Settings: Change Password
 
-### Settings: My affiliations
+In the **Change account log-in** card under **Settings** → **Account**, users can update their account email address and password (confirming with a one-time code if 2FA is active). On instances using external identity providers such as Shibboleth or OIDC, passwords are managed through the institutional identity provider instead.
+
+### Settings: Affiliations
+
+In **Settings** → **Affiliations**, users can record their institutional affiliations: **Country**, **Organization**, **Department**, **Working Group**, and **From** / **To** dates.
 
 ### Settings: My groups
 

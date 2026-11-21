@@ -172,6 +172,16 @@ separately under **Shared with me**, grouped by their owner.
 How to share a collection, what each permission level allows, and what recipients can and
 cannot do, is described in [Sharing Collections](./sharing.mdx).
 
+### Exporting as a ZIP archive
+
+Collections (including collections shared with full details) can be archived from **collection management** (<Btn mixed={[faCog, "Manage Collections"]} color={"danger"}/>) using **Export as ZIP archive**. In the **Export Collections as ZIP archive** dialog, select one or more collections and click **Export ZIP**:
+
+- Packaging runs asynchronously as a background job (`ExportCollectionsJob`).
+- When the archive is ready, a **Download export archive** notification appears under the **Notifications** bell icon on the top left of the navigation bar, and an email notification is sent if outgoing mail is configured.
+- Generated export archives are automatically removed after **24 hours**.
+
+For sharing-specific export permissions, see [Exporting a shared collection](./sharing.mdx#exporting-a-shared-collection).
+
 :::info["My projects with others"]
 
 After an upgrade from version 3, a collection named **My projects with others** may

@@ -39,5 +39,75 @@ docker compose exec worker bundle exec rake 'svg:molecule[openbabel]'
 
 [Importing molecules into the ELN](ui/import) is supported e.g. using CAS numbers. In certain cases, the molecule generated with the CAS number is not displayed/stored correctly. In those cases, the structures contain additional protons in the displayed structure and the associated formula. E.g. known reported cases are K2CO3 or AgNO3. At the moment, the Chemotion team is not able to solve this issue as the information on the molecules is fetched from the CAS Common Chemistry API based on the CAS number. The explanation from CAS is cited here: 
 "Salts derived from oxygen-containing acids are treated as multicomponent substances represented by dot-disconnect MF with the acidic hydrogens retained in the formula. This convention has often caused confusion in molecular formula searching since even a simple compound like sodium sulfate [7757-82-6] is assigned the CAS MF 'H2O4S.2Na' [...] The reason for this goes back to the earliest days of the Registry System in the mid-1960s. Print indexes were still the only means of access to Chemical Abstracts. This convention permitted all the salts of sulfuric acid to appear in one place in the Chemical Substance Index."
-The only solution in those cases is to open and correct those molecules in the [chemical structure editor](ui/ketcher) manually. 
+The only solution in those cases is to open and correct those molecules in the [chemical structure editor](ui/ketcher) manually.
+
+## Docker setup and upgrades
+
+### ChemCLI download failures behind a proxy
+
+- **Symptoms**: ChemCLI aborts during startup or instance creation with:
+  ```sh
+  <time> FTL Failed to download file from: https://github.com/Chemotion/ChemCLI/... Check log. ABORT!
+  ```
+  *(or from `https://raw.githubusercontent.com/Chemotion/ChemOrc/...`)*
+- **Cause**: The host server requires an outbound HTTP/HTTPS proxy to reach external networks.
+- **Solution**: Export proxy variables in your shell environment before calling ChemCLI:
+  ```bash
+  export HTTP_PROXY="http://proxy.dept.uni.de:<port>"
+  export HTTPS_PROXY="http://proxy.dept.uni.de:<port>"
+  ./chemCLI
+  ```
+
+### Containers stop automatically after closing the SSH session
+
+- **Symptoms**: All Chemotion containers shut down gracefully (`Gracefully stopping...` / PostgreSQL `terminating connection due to administrator command`) shortly after the administrator logs out of their SSH session on the host.
+- **Cause**: Docker is running under a user session (rootless Docker or user-scoped `systemd` service) where `systemd` user lingering is disabled (`loginctl show-user <user> -p Linger` returns `Linger=no`). When the last login session closes, `systemd` stops the user manager and terminates its processes.
+- **Solution**: Enable `systemd` lingering for the user account on the host:
+  ```bash
+  sudo loginctl enable-linger <username>
+  ```
+
+## Accounts and authentication
+
+### Account locked after failed login attempts
+
+- **Symptoms**: A user cannot log in and reports their account has been locked.
+- **Cause**: To protect against brute-force attacks, Chemotion ELN locks an account after 5 consecutive failed login attempts.
+- **Solution**:
+  - **Automatic unlock**: The lockout expires automatically after **10 minutes**, allowing the user to attempt login again.
+  - **Administrative unlock**: An instance administrator can unlock the account immediately in [User management](admin/user-management) (**Administration → User Management**) or via ChemCLI:
+    ```bash
+    ./chemCLI instance user unlock --email max.mustermann@dept.uni.de
+    ```
+
+## Exports, imports, and uploads
+
+### Collection ZIP export does not download immediately
+
+- **Symptoms**: After selecting collections in **Export collections** and clicking **Export ZIP**, the dialog closes without starting an immediate browser file download.
+- **Cause**: Archiving collections and associated analytical data runs as an asynchronous background job on the `worker` container (`ExportCollectionsJob`).
+- **Solution**:
+  1. Check the **Notifications** bell icon on the **top left** navigation bar. When the export finishes, a notification appears with a direct link (**Download export archive**), which remains available for 24 hours.
+  2. If outgoing email (SMTP) is enabled on your instance, an email containing the download link is also sent to the user.
+  3. If the task fails or encounters an unreadable file on disk, inspect the `worker` container logs:
+     ```bash
+     ./chemCLI instance log --service worker
+     ```
+     *(Or `docker compose logs -f worker` for manual Docker setups.)*
+
+### Collection import fails when a reaction uses a sample from another collection
+
+- **Symptoms**: Exporting a collection from one Chemotion ELN instance and importing it into another instance fails during import on a reaction.
+- **Cause**: Collection export includes only the samples that belong to the exported collection(s), but every sample a reaction uses — starting material, reactant, solvent, purification solvent or product. If one of those samples belongs only to a collection that was not exported, the archive lacks that sample while the reaction still references it, and the import fails. Purification solvents are the most common case.
+- **Solution**: Add the missing samples to the collection being exported (or export both collections together) before creating and importing the archive.
+
+### File import fails silently (upload closes with no feedback)
+
+- **Symptoms**: When uploading a large `.xlsx`, `.sdf`, or ZIP archive during import, the upload modal closes after a few seconds without showing errors or importing elements.
+- **Cause**: Upstream reverse proxies (such as nginx or Apache) frequently enforce a default upload size limit (`client_max_body_size` defaults to `1m` in nginx), returning an HTTP 413 error before the request reaches the Rails application.
+- **Solution**: In your reverse proxy configuration file (e.g. `/etc/nginx/conf.d/chemotion.conf`), increase the maximum body size:
+  ```nginx
+  client_max_body_size 100m;
+  ```
+  Reload the proxy service to apply the change (`nginx -s reload`).
 

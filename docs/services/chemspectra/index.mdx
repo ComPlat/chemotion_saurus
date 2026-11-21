@@ -15,11 +15,11 @@ At the moment, the Chemotion ELN supports ChemSpectra (described here) and [NMRi
 
 ChemSpectra is a web-based software for the visualization and analysis of spectroscopic data
 and allows the analysis of data attached to a [sample](../eln/ui/elements/samples) or [reaction](../eln/ui/elements/reactions) in the Chemotion ELN.
-The focus of ChemSpectra is on analytical methods used in synthetic organic chemistry,
-such as infrared spectroscopy, mass spectrometry and NMR spectroscopy (one dimensional <sup>1</sup>H and <sup>13</sup>C). An in-depth description of ChemSpectra was published [here](https://doi.org/10.1186/s13321-020-00481-0).
+The focus of ChemSpectra is on analytical methods used in synthetic organic and physical chemistry,
+such as infrared spectroscopy, mass spectrometry, and NMR spectroscopy (one-dimensional <sup>1</sup>H, <sup>13</sup>C, <sup>15</sup>N, <sup>19</sup>F, <sup>29</sup>Si, and <sup>31</sup>P). An in-depth description of ChemSpectra was published [here](https://doi.org/10.1186/s13321-020-00481-0).
 
-The tool supports the open file formats JCAMP-DX (jdx) and mz(X)ML.
-Furthermore, it can support RAW and FID files.
+The tool supports the open file formats JCAMP-DX (`.jdx`, `.dx`, `.jcamp`), mz(X)ML (`.mzml`, `.mzxml`), and NetCDF (`.cdf`).
+Furthermore, it supports Thermo Fisher RAW (`.raw`), Bruker FID (as a zipped folder), and [BagIt](https://en.wikipedia.org/wiki/BagIt) archives (`.zip`).
 The user interface of ChemSpectra is identical for different analytical methods,
 while the tools are selected to fit the requirements of the different analytical methods.
 The user interface of ChemSpectra is shown here:
@@ -62,11 +62,11 @@ This feature applies to the following types of spectra:
 
 - HPLC UV-VIS  
 - [LC/MS](chemspectra/lcms)  
-- NMR  
+- NMR (<sup>1</sup>H and <sup>13</sup>C)  
 - UV/VIS Spectroscopy
-- Size Exclusion Chromatography
-- Cyclic Voltammetry
-- AIF
+- Size Exclusion Chromatography (SEC)
+- Cyclic Voltammetry (CV)
+- Sorption-Desorption Measurement (Advanced Isotherm Format / AIF)
 
 When such spectra are grouped within one analysis, ChemSpectra will open all of them simultaneously in a tabbed interface. This allows users to switch between the spectra without leaving the editor.
 

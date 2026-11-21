@@ -1,0 +1,28 @@
+---
+id: Integration
+title: ChemScanner Integration with Chemotion ELN
+sidebar_position: 1
+---
+
+ChemScanner extracts chemical structures (from embedded ChemDraw `.cdx` objects in `.docx` manuscripts), reactions, and associated analytical metadata (such as NMR, MS, and UV-Vis assignments classified via CHMO ontology terms).
+
+Users can transfer projects exported from ChemScanner into Chemotion ELN using the standalone **SmartAdd** web application.
+
+## Exporting from ChemScanner
+
+1. Process your manuscript or supporting information `.docx` file in ChemScanner and review the extracted molecules, reactions, and peak lists.
+2. Export the project as a ChemScanner JSON file. SmartAdd also accepts its own export format: a `.zip` archive with `export.json` at its root, including structured collections, samples with embedded `molfile` structures, reactions (`Starting material`, `Reactant`, `Product`, `Solvent`), and analysis containers.
+
+## Importing into Chemotion ELN via SmartAdd
+
+1. Open the standalone **SmartAdd** web application and click **Import Structure** in the main toolbar.
+2. In the **Import Structure** dialog, open the **JSON & ZIP Files** tab.
+3. Upload the ChemScanner `.json` file or `.zip` archive (the dialog suggests a maximum of 50 MB) and click **Import**.
+4. SmartAdd reconstructs the collection hierarchy, sample records with editable Ketcher structures, reactions with assigned roles, and analysis/dataset containers.
+
+## Reviewing and uploading to Chemotion ELN
+
+1. Review or edit molecular structures via Ketcher in SmartAdd and attach or adjust any analytical files in the assignment tree (see [SmartAdd Workflow](../smartadd/workflow)).
+2. Click **Export Collection** in SmartAdd and choose either:
+   - **Upload to Chemotion ELN** to authenticate against your Chemotion ELN server URL and upload the collection directly, or
+   - **Download as ZIP** to save a collection archive for manual import into Chemotion ELN.

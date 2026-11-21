@@ -61,9 +61,9 @@ To enable CAS Common Chemistry API, add the API key in the configuration as show
 
 ### User Authentication (userProvider)
 
-This feature allows administrators to configure [third-party authentication methods](../install-configure/authentication) for user login, such as OpenID Connect (OIDC) and Shibboleth.
+This feature allows administrators to configure [third-party authentication methods](../install-configure/authentication) for user login, such as OpenID Connect (OIDC), Shibboleth, GitHub, and ORCID.
 
-**Supported protocols:** OIDC and Shibboleth.
+**Supported protocols:** OIDC, Shibboleth, GitHub, and ORCID.
 
 **Setting**
 
@@ -98,9 +98,16 @@ Configuration example:
     authorization_endpoint: "/oauth2/auth"
   },
   github: {
-    enable: false
-    client_id: null
+    enable: false,
+    client_id: null,
     client_secret: null
+  },
+  orcid: {
+    enable: false,
+    client_id: null,
+    client_secret: null,
+    member: false,
+    sandbox: false
   }
 }
 ```
@@ -129,6 +136,28 @@ Configuration example:
 | email      | 'mail'            |
 | last_name  | 'sn'              |
 | first_name | 'givenName'       |
+
+#### GitHub Parameters
+
+| Parameter     | Value                                               |
+| ------------- | --------------------------------------------------- |
+| enable        | `true` or `false`                                   |
+| client_id     | GitHub OAuth application Client ID                  |
+| client_secret | GitHub OAuth application Client Secret              |
+| label         | Display text on login button (default: `'GitHub'`)  |
+| icon          | Path to public image to display on the sign-in page |
+
+#### ORCID Parameters
+
+| Parameter     | Value                                                  |
+| ------------- | ------------------------------------------------------ |
+| enable        | `true` or `false`                                      |
+| client_id     | ORCID application Client ID                            |
+| client_secret | ORCID application Client Secret                        |
+| member        | `true` or `false` (use ORCID Member API)               |
+| sandbox       | `true` or `false` (enables ORCID sandbox environment)  |
+| label         | Display text on login button (default: `'ORCID'`)      |
+| icon          | Path to public image to display on the sign-in page    |
 
 #### Extra Rules Parameters
 

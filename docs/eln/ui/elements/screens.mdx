@@ -1,0 +1,43 @@
+---
+title: Screens
+sidebar_position: 8
+---
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { Btn } from "@site/src/js/btn.js";
+
+The **Screen** element organizes biological assays, screening campaigns, and multi-plate experimental series in Chemotion ELN. While [wellplates](wellplates) track the layout of samples and reagents across microtiter wells, **Screens** group associated wellplates together with experimental conditions, collaborators, assay results, and linked research plans.
+
+## Creation
+
+To create a new screen:
+1. Select the target [collection](../collections) in the collection sidebar.
+2. Click the green <Btn mixed={[faPlus, "CREATE"]} color={"success"}/> button in the toolbar and choose **Create Screen** (or create a screen directly from selected wellplates using **Create Screen from Wellplates**).
+3. The new screen opens in the details panel.
+
+## Screen properties and fields
+
+The details panel for screens records key parameters of a screening campaign:
+
+- **Name**: Descriptive title for the screening assay or experimental batch.
+- **Collaborator**: Primary contact, partner laboratory, or external collaborator.
+- **Requirements**: Reagents, cell lines, biosafety levels, or prerequisites.
+- **Conditions**: Assay parameters, incubation setup, temperature, or buffer conditions.
+- **Result**: Summary of assay outcomes, hits, or qualitative observations.
+- **Description**: Narrative protocol or experimental notes.
+
+## Associating wellplates and research plans
+
+- **Wellplates**: Drag and drop one or more [wellplates](wellplates) from the element panel into the **Wellplates** section to link microtiter layouts directly to the screen.
+- **Research Plans**: Use the **Research Plans** tab to attach related research plans. A workflow graph of the linked plans is shown above the tabs; double-clicking a node opens that plan in the **Research Plans** tab.
+
+## Analyses and datasets
+
+Screens include an **Analyses** tab backed by their root container:
+- Attach raw plate reader datasets, optical density measurements, fluorescence curves, or processed screening files directly to the screen.
+- Supported spectral and analytical files can be visualized and processed in [ChemSpectra](../../../services/chemspectra).
+
+## History and sharing
+
+Changes to screen properties and descriptions are tracked and revertible via the [History tab](../history). Access and ownership follow collection-level permissions in the [collections sidebar](../collections) (see [Sharing Collections](../collections/sharing)).

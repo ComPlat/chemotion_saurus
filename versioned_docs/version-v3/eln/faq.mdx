@@ -87,11 +87,29 @@ For routine use in operations, Chemotion ELN can be installed on IT facilities o
 
 #### How are changes in data (e.g., time, author) tracked? Is there a versioning / time-stamping / auditing system in place?
 
-- **Answer:** The Chemotion team is currently working on versioning and auditing systems.
+- **Answer:** Chemotion ELN tracks element history and revisions using Logidze. Modifications to samples, reactions, wellplates, research plans, and screens create timestamped version records recording the modifying author. In an element's **History** tab, users can inspect past versions, compare attribute changes side by side, and revert fields to earlier states. See [History](ui/history) for more details.
 
 #### Is it possible to retrieve deleted data e.g. in case of accidental deletion of a collection?
 
 - **Answer:** Most of the entries are soft deleted (marked as deleted in the database but are not removed). However, there is no user interface to restore them easily. Please pay attention that deleting a collection does not remove its elements, it rather removes the association between the elements and the collection. Elements can still be picked out individually from **All** collection to (re-create) a new collection. If for some reason all data is lost or the ELN needs to be restored to a previous state, it is necessary to have backups in place. For this reason, the Chemotion team recommends creating a [backup plan](install-configure/manual-install.mdx#backing-up-and-restoring-your-data) and automating a regular backup process.
+
+### Search and workflows
+
+#### Can I search across all of my research group's projects at once?
+
+- **Answer:** Searches in Chemotion ELN are scoped to the currently selected collection (or a user's personal **All** collection). For collaborative research groups that want to search shared group data together, maintaining a shared synchronized group collection and assigning completed experiments to it allows all members with access to search across that compiled collection.
+
+#### Why didn't my collection ZIP export download immediately?
+
+- **Answer:** Collection ZIP exports are processed asynchronously as background jobs on the server. Once the background worker finishes compiling the archive, a **Download export archive** link appears under the **Notifications** bell icon on the **top left** navigation bar (retained for 24 hours) and is sent via email when outgoing mail (SMTP) is configured.
+
+#### Can I use ChemDraw files (.cdx/.cdxml) or ChemDraw JS?
+
+- **Answer:** `.cdxml` structures (as well as MOL/SDF) can be imported into the Ketcher editor, and both `.cdx` and `.cdxml` files can always be uploaded as attachments on analytical datasets. ChemDraw JS is supported for institutions that hold their own Revvity Signals / PerkinElmer ChemDraw JS license (configured via `structure_editors.yml`), though it is not bundled by default due to proprietary licensing; Ketcher is the built-in open-source structure editor.
+
+#### Does Chemotion offer central cloud hosting as a service (SaaS)?
+
+- **Answer:** Chemotion ELN is open-source academic software developed for institutional self-hosting (for example via ChemCLI), rather than a centrally hosted commercial SaaS platform. Only the public demo server is operated by the Chemotion team for evaluation.
 
 ### Integrated Devices
 

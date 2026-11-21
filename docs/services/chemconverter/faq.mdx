@@ -25,7 +25,7 @@ Users who need help with the ChemConverter can find it right here!
 
 #### I created a profile for my data file on the admin GUI but after uploading it to the ELN it will not be converted.
 
-- **Answer:** If the user is sure that the reason is not the converter itself (because the user tested it on a standalone version and it works), the Chemotion team needs to add the file extension/type to the whitelist. Please let the team know.
+- **Answer:** If the user is sure that the reason is not the converter itself (because the user tested it on a standalone version and it works), check whether the file extension is included in the ELN converter whitelist. An instance administrator can add the extension to the `:ext:` list in `config/converter.yml` (located on the server at `./shared/pullin/config/converter.yml`; note that an `:ext:` list under `production:` replaces the one under `shared:` rather than adding to it, and that changes need an ELN restart). If using a central or hosted instance, contact the administrator or helpdesk to whitelist the extension.
 
 #### Even after choosing a suitable [data type](../chemconverter#data-type) (and a correct conversion) the ELN says "Preview not available" and/or "Spectra Editor: Reprocess"
 

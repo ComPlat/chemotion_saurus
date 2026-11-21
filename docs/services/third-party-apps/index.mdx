@@ -16,13 +16,19 @@ To set up a third-party application (TPA) in Chemotion ELN, the user needs admin
 2. In the left-hand menu, select [“Third Party Apps.”](../eln/admin/third-party-apps) This section lists all currently configured external applications and allows you to manage or add new ones.
 3. To create a new TPA, click the “New ThirdPartyApp +” button.
 4. This opens a form titled “Create new third party app.” Here, the user must provide the following information:
-   - **Name**: Enter a descriptive name for the application (e.g., OpenStats or AwesomeApp). This name will be displayed in the ELN interface.
-   - **IP address**: Specify the URL where the external application is hosted. This is typically a full address including protocol and port, for example http://localhost:3838 for a locally running Shiny app or https://service.chemotion.dept.uni.de if running externally.
-   - **File types (MIME)**: Define the file types that should be sent to the application. These are given as comma-separated MIME types or extensions (e.g., text, csv). This determines which data formats the ELN will forward to the TPA.
+   - **Name**: Enter a descriptive name for the application (e.g., OpenStats or AwesomeApp). Must be unique and up to 100 characters. This name is displayed on attachment action menus in the ELN interface.
+   - **IP address**: Specify the URL where the external application is hosted (e.g., `http://localhost:3838` for a local Shiny app or `https://service.chemotion.dept.uni.de`). Must be unique, begin with `http://` or `https://`, and not exceed 100 characters.
+   - **File types (MIME)**: Define compatible MIME types (up to 100 characters). Enter `*` to allow all files, a broad MIME type such as `image`, or a comma-separated list of MIME types **without spaces** (for example `image/png,text/csv`; bare extensions like `csv` or spaces after commas will not match).
 
 After filling in the required fields, click “Create +” to register the application. Once created, the TPA will appear in the list of available third-party apps, where it can be edited or removed if necessary.
 
-With this setup, Chemotion ELN can send compatible datasets directly to the configured application, enabling seamless integration into external analysis workflows such as OpenStats.
+### Two-Way Data Exchange Protocol
+
+When a user clicks a registered third-party app in an attachment menu:
+- Chemotion ELN generates a signed HS256 JWT token valid for 48 hours (and for at most 3 downloads and 10 uploads) encoding the user, app, and attachment context.
+- The browser opens `<app_url>?url=<callback_url>` in a new tab.
+- The external application downloads the input file via a `GET` request to `<callback_url>`.
+- Once processing is complete, the application can upload the resulting file directly back into the Chemotion ELN dataset via a `POST` request to the same callback URL.
 
 <div style={{ textAlign: "center" }}>
   ![Tables](@site/static/img/services/third_party_apps/tpa_setup.png)

@@ -5,6 +5,9 @@ author: Pierre Tremouilhac
 sidebar_position: 2
 ---
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHourglassHalf, faBook, faFileText } from "@fortawesome/free-solid-svg-icons";
+
 # User management
 
 The page offers a basic listing of the registered users.
@@ -59,7 +62,19 @@ An account can be frozen by deactivating it here. Login to this account is then 
 If the user is currently logged-in, its session will be invalidated.
 The data shared by the user to other users is still accessible to them.
 
-## Global Text Template Editor Rights
+## User privileges and role assignments
+
+Administrators can toggle per-user privileges from the action buttons in the user table:
+
+| Button | Privilege / Role | Description |
+| :--- | :--- | :--- |
+| <FontAwesomeIcon icon={faHourglassHalf} /> | **ChemConverter Admin** (`converter_admin`) | Grants permission to create, edit, and restore conversion profiles under **Converter Profile** (`/converter_admin`). |
+| <FontAwesomeIcon icon={faBook} /> | **Template Moderator** (`is_templates_moderator`) | Enables moderating and publishing shared structure templates in Ketcher. |
+| Sample icon | **Molecule Moderator** (`molecule_editor`) | Authorizes moderating and maintaining canonical molecule records across the instance. |
+| <FontAwesomeIcon icon={faFileText} /> | **Global Text Template Editor** (`global_text_template_editor`) | Allows adding, editing, and deleting global text templates under the **Global** tab. |
+| Generic Designer button | **Generic Designer Admin** (`generic_admin`) | Opens a dialog to independently grant or revoke designer permissions for **Elements**, **Segments**, and **Datasets**. |
+
+### Global Text Template Editor Rights
 
 :::info
 This feature is available starting from version 4.0.

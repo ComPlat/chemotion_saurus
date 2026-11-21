@@ -29,7 +29,7 @@ before importing a sheet exported from the ELN, which carries that column.
 
 :::
 To enable the import into a [collection](collections), the desired target collection has to be selected. Import of samples is only possible for the user that created the collection.
-The export and import of samples is currently supported in the xlsx, csv, and sdf formats.
+The export and import of samples is currently supported in the xlsx, csv, tsv, and sdf formats.
 
 For a more comprehensive import of data into Chemotion ELN based on SMILES strings, please see the following example which can be used as a template to import data to the Chemotion ELN.
 
@@ -68,8 +68,8 @@ To begin the import process:
 3. Drag and drop your file into the upload area or select it manually. Supported file formats include:
    - Excel (`.xlsx`)
    - SDF (`.sdf`)
-   - CSV (`.csv`)
-4. The user can download any of the templates (available in `.xlsx` and `.sdf` format) by clicking on the **Download Template** button.
+   - CSV (`.csv`) and TSV (`.tsv`)
+4. The user can download any of the templates (available in `.xlsx`, `.tsv`, and `.sdf` format) by clicking on the **Download Template** button.
 
 ### File Type Selection
 - **Sample Import**: For importing sample data only.
@@ -239,6 +239,7 @@ the grid submitted it rather than to the original file.
 ## Additional Notes
 
 - **Backend Job Handling**: The backend job ensures that large imports do not disrupt the user experience. The system will notify the user when the import is complete.
+- **Reverse Proxy Upload Limits (HTTP 413)**: If uploading a large import file closes without triggering validation or creating an import job, check whether an upstream reverse proxy (such as nginx or Apache) enforces a low maximum body size (`client_max_body_size` defaults to `1m` in nginx) and raise it (for example, `client_max_body_size 100m;`).
 
 ---
 

@@ -46,7 +46,7 @@ Once the computer that is running the Chemotion ELN (Docker container) has acces
 
 - The ELN needs to be restarted once these changes have been made.
   For more information, for example, configuring the frequency for collecting the files, please check
-  [Data collector settings](https://www.chemotion.net/docs/eln/install_configure/configuration#data-collector-settings)
+  [Data Collection](../../install-configure/configuration#data-collection).
 
 ## Configurations in Chemotion ELN: Admin Panel
 
@@ -69,42 +69,38 @@ specified Watch Directory.
 
 ![collector_configuration_1](/img/eln/devices/configurations/local_collector/collector_configuration2.png)
 
-As the next step, files from the `./datacollector/CV-data` will now keep being collected by the collector in the
-Chemotion ELN. The administrator has to make sure that the name of the files start with the name abbreviation (Kürzel) of a specific
-user. The file will reach the inbox of that particular user. In case the name abbreviation is not valid, then the file
-will be discarded.
+Files from `./datacollector/CV-data` are collected periodically by the background collector service:
+- **Write stability**: To avoid reading incomplete transfers, the collector verifies that a file has remained unchanged for at least the configured `watcher_sleep` interval (fallback default `20` seconds in code; `30` seconds in the example `datacollectors.yml`).
+- **Temporary file filtering**: In-progress transfers ending with `.filepart` or `.part` are ignored until finished, by every file collector.
+- **Recipient and element matching**: The recipient is identified from the file name: either it begins with a valid user name abbreviation (Kürzel) followed by `-`, or, if it contains `@`, the whole name is taken as the user's email address. Files that match no user are rejected. Once matched to a user, if automatic assignment (`inbox_auto`) is enabled on that user's account and the remainder uniquely matches a Sample or Reaction, it attaches directly to that element; otherwise it is placed in the user's Inbox.
 
 :::info
 
-Please take care that you communicate [name conventions](https://www.chemotion.net/docs/eln/devices#name-conventions)
+Please take care that you communicate [name conventions](../../devices#name-conventions)
 to all users of the Chemotion ELN.
 
 :::
 
 :::danger
 
-The directories watched by the collector service will be emptied at each collection i. e. all files within the watched
-directories will be removed.
+The directories watched by the collector service are emptied at each collection run: all ready files and folders in the watched directories — **including unmatched or rejected items** — are removed after processing.
 
 :::
 
 :::info
 
 To know more about the user-level data collection, please check
-[here](https://chemotion.net/docs/eln/devices/configurations/user_level_collection)
+[here](user-level-collection).
 
 :::
 
 ### Folder Collector
 
-All the configurations are more or less the same as in the File Collector. Here the administrator configures the Watch
+All the configurations are similar to the File Collector. Here the administrator configures the Watch
 Method as `folderwatcherlocal`.
 
 ![collector_configuration_1](/img/eln/devices/configurations/local_collector/collector_configuration3.png)
 
-Here is a new input to consider, i.e. `Number of files`. As mentioned in the info text in the Chemotion ELN, if the
-folders to be collected may contain a variable number of files, then the administrator sets it to 0. Otherwise if the number of
-files within the collectable folder is known, the administrator sets it to that value.
-
-Here also the administrator has to make sure that the name of the folder to be collected starts with the name abbreviation
-(Kürzel) of a specific user.
+- **Number of files**: If the folder to be collected contains a variable number of files, set `Number of files` to `0`. If the measurement folder always contains a fixed number of files (e.g. 5 files per measurement), enter that exact number so the collector waits until all files are present before proceeding.
+- **Automatic archive packaging**: The collector bundles the directory into a `.zip` archive before creating the attachment in the user's Inbox (or auto-matching an element).
+- **Folder naming**: The folder name follows the same rule: a valid user name abbreviation (Kürzel) followed by `-`, or the user's email address.

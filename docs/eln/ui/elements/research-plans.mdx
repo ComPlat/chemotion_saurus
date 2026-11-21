@@ -1,0 +1,55 @@
+---
+title: Research Plans
+sidebar_position: 7
+---
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus, faArrowsAlt, faFileAlt } from "@fortawesome/free-solid-svg-icons";
+import { Btn } from "@site/src/js/btn.js";
+
+A **Research Plan** <FontAwesomeIcon icon={faFileAlt} size="lg"/> is a modular, multi-segment element used to document experimental procedures, synthesis workflows, project notes, and protocols. Each plan automatically receives a non-editable short label of the form `<initials>-RP<number>` (`ABC-RP3`, for example), counting up per user and shown before the plan name in the element list.
+
+Unlike single-purpose elements such as individual samples or reactions, a research plan provides a structured canvas combining narrative text, tables, molecular structures, reaction schemes, images, and embedded ELN elements.
+
+## Creation
+
+To create a new research plan:
+1. Select the desired target [collection](../collections) in the collection sidebar.
+2. Click the green <Btn mixed={[faPlus, "CREATE"]} color={"success"}/> button in the [toolbar](../toolbar) and choose **Create Research Plan**.
+3. The new plan opens in the [details panel](../details#detail-panel-for-research-plan).
+
+## Adding and managing content segments
+
+Research plans are composed of modular segments that can be added and arranged to match the workflow:
+
+### Available segment types
+
+- **Text Editor (`Add Text Editor`)**: Insert rich text segments supporting headings, lists, chemical symbols, and personal/global [text templates](../text-templates).
+- **Table Editor (`Add Table Editor`)**: Add customizable tables for experimental parameters, matrices, or measurement series. Press `Enter` to commit the active cell, then use `Tab` (`Shift+Tab`) or arrow keys to move cleanly to adjacent cells.
+- **Ketcher Editor (`Add Ketcher Editor`)**: Embed an interactive [structure editor](../ketcher) segment for molecules or reaction schemes.
+- **Image (`Add Image`)**: Upload images, spectra screenshots, or diagrams with an adjustable zoom control.
+- **Embedded Samples & Reactions (`Add Sample` / `Add Reaction`)**: Drag and drop existing [samples](samples) or [reactions](reactions) from the element panel to cross-reference experimental records.
+
+### Organizing segments
+
+- Hover over a segment header and drag the handle <FontAwesomeIcon icon={faArrowsAlt}/> to reorder segments.
+- Unwanted segments can be deleted from the segment controls.
+
+## Edit mode, view mode, and tabs
+
+Research plans support an **Edit mode** for adding, editing, and reordering segments, and a **View mode** displaying a formatted preview. In addition to the main plan content, the details panel provides **Analyses**, **Attachments**, **References**, **Wellplates**, **Metadata**, and **History** tabs, and supports scheduling via the [Calendar](../calendar).
+
+## Exporting research plans
+
+From **View mode**, saved research plans can be exported to:
+- **Microsoft Word (`.docx`)**
+- **OpenDocument Text (`.odt`)**
+- **HTML** (`.zip` archive)
+- **Markdown** (`.zip` archive)
+- **LaTeX** (`.zip` archive)
+
+Export is disabled while the research plan has unsaved edits; save changes first before exporting.
+
+## Searching research plans
+
+Within the currently selected collection (or personal **All** view), research plans can be searched via **Advanced Search** across **Name**, **Text**, **Table**, and **Private Note** fields, as well as indirectly via linked samples, reactions, wellplates, or literature.
