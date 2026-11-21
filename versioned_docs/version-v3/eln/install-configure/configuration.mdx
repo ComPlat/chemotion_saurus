@@ -322,25 +322,24 @@ production:
 
 ## NMRium
 
-Starting from Chemotion ELN version 1.5, to integrate [NMRium](https://nmrium.nmrxiv.org/) into an instance, please add the following to the `spectra.yml` in the `./shared/pullin/config` folder.
+To integrate [NMRium](https://nmrium.nmrxiv.org/) into an instance, please add the following to the `spectra.yml` in the `./shared/pullin/config` folder.
 
 ```yaml
 production:
   :chemspectra:
     :url: "http://spectra:4000"
   :nmriumwrapper:
-    :url: "https://nmrium.nmrxiv.org/v1.0.0/"
+    :url: "https://nmrium.nmrxiv.org/v1.1.0/"
 ```
 
-Here the `nmriumwrapper.url` value depends on the version of Chemotion ELN in use. The compatibility between the ELN and the wrapper is as follows:
+Here the `nmriumwrapper.url` value depends on the version of Chemotion ELN in use. Each release is tested against one version of the wrapper:
 
-| Version of Chemotion ELN | Version(s) of NMRium wrapper |
-| ------------------------ | ---------------------------- |
-| 3.0.0                    | 1.0.0                        |
-| 2.1.1 & 2.2.0            | 1.0.0                        |
-| 1.9.3, 1.10.5 & 2.0.1    | 0.8.0                        |
+| Version of Chemotion ELN | Version of NMRium wrapper |
+| ------------------------ | ------------------------- |
+| 3.1.0 to 3.1.4           | 1.1.0                     |
+| 3.0.0                    | 1.0.0                     |
 
-So, for e.g. ELN version 3.0.0, please set `nmriumwrapper.url` to `https://nmrium.nmrxiv.org/v1.0.0/`.
+So for version 3.1.4, set `nmriumwrapper.url` to `https://nmrium.nmrxiv.org/v1.1.0/`.
 
 To be able to access these URLs successfully, registration with the hosting service is required. Please contact the [Helpdesk](https://chemotion.net/helpdesk) or see [here](https://github.com/NFDI4Chem/nmrium-react-wrapper#public-instance) for more details.
 
