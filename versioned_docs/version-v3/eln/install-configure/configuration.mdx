@@ -350,6 +350,36 @@ So, for e.g. ELN version 3.0.0, please set `nmriumwrapper.url` to `https://nmriu
 
 To be able to access these URLs successfully, registration with the hosting service is required. Please contact the [Helpdesk](https://chemotion.net/helpdesk) or see [here](https://github.com/NFDI4Chem/nmrium-react-wrapper#public-instance) for more details.
 
+## In-app guide
+
+From version 3.1.4, an instance can carry its own guide, for example for a
+workshop. It is shown as a **Workshop Guide** drawer in the workspace and as a
+block on the home page. The content is a Git wiki repository, which the ELN
+clones into `public/workshop/`. Its `home.md` is the first page, and an
+optional `_sidebar.md` provides the navigation.
+
+| Variable | Default | Purpose |
+| --- | --- | --- |
+| `WORKSHOP_GUIDE_REPO` | none | The Git URL of the wiki repository. Required to enable the guide |
+| `WORKSHOP_GUIDE_BRANCH` | `master` | Branch to take |
+
+There is no on/off switch: the guide appears once `public/workshop/home.md`
+exists. The same command fetches the content the first time and updates it
+afterwards:
+
+```sh
+docker compose exec -e WORKSHOP_GUIDE_REPO='https://git.dept.uni.de/group/project.wiki.git' eln bundle exec rake workshop_guide:sync
+```
+
+To remove it again, delete the contents of `public/workshop/`.
+
+:::caution
+
+The cloned wiki is served as public static content under `/workshop/`. Anything
+in that repository becomes readable by anyone who can reach the instance.
+
+:::
+
 ## QR, Barcode and Datamatrix Stickers
 
 The ELN has ability to produce [QR codes, Barcodes and Datamatrix codes](../ui/barcodes), that can then be laid out on a PDF for printing on paper and stickers. A configuration file defines how each code type is displayed. Below is an example of the entire configuration file, which includes settings for QR code, DataMatrix code, and Barcode:
