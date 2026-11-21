@@ -60,7 +60,6 @@ module.exports = {
           versions: {
             current: { label: "ELN v4.x" },
             v3: { label: "ELN v3.x" },
-            v2: { label: "ELN v2.x" },
           },
         },
         {
@@ -151,8 +150,11 @@ module.exports = {
             v3: {
               label: "ELN v3.x",
             },
+            // Unmaintained: still built, so existing links keep working, but
+            // left out of the version dropdown above and marked with a banner.
             v2: {
               label: "ELN v2.x",
+              banner: "unmaintained",
             },
           },
         },
