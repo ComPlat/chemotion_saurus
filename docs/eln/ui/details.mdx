@@ -21,6 +21,7 @@ import {
   faArrowsAlt,
   faSyncAlt,
   faChartArea,
+  faSliders,
   faClock,
   faHourglassHalf,
   faHourglassEnd,
@@ -327,6 +328,10 @@ Edit the reaction scheme by selecting or changing the samples, the scheme cannot
 
 The button for switching how the embedded samples are displayed — **by name** or **by structure** — appears on the reaction image itself. Reaction labels (**my labels**) are set in the **Scheme** tab rather than the **Properties** tab. When the reaction panel is given more width, the reaction table also shows additional information.
 
+The button <Btn mixed={[faSliders]} color={"secondary"}/> above the reaction image opens **Graphic Settings**. Under **Scheme Arrow Display**, switches show or hide the reactants, the temperature and duration, the solvents and the conditions on the reaction arrow, which keeps busy schemes readable. The choice is saved with the reaction and also used in reports.
+
+![Arrow switches in Graphic Settings](/img/eln/ui/details/scheme_arrow_filters.png)
+
 The following figure shows a typical reaction **Scheme** with a reagent table. Solvents or reaction temperature have not been added yet. In general, users cannot edit gray fields in the reaction table.
 ![Reagents_table](/img/eln/ui/details/reaction_details_modal.png)
 
@@ -399,7 +404,7 @@ Below the **Conditions** area, specify a **Name** and describe it with a **Statu
 | <FontAwesomeIcon icon={faCheckCircle} size="lg"/>   | successful       |
 | <FontAwesomeIcon icon={faTimesCircle} size="lg"/>   | not successful   |
 
-The temperature of a reaction is specified via the **Temperature** field. If a **Temperature** has been defined, it is also displayed on the reaction arrow. When entering the temperature, users can choose between the Kelvin **K**, Celsius **°C** and Fahrenheit **°F** scale. Users can also enter a temperature profile by selecting the graph symbol for the temperature field <Btn mixed={[faChartArea]} color={"secondary"}/>. A window opens that allows users to enter temperature changes with time, and it displays those changes in a chart. Use "+" to add a temperature change and "–" to remove it.
+The temperature of a reaction is specified via the **Temperature** field. If a **Temperature** has been defined, it is also displayed on the reaction arrow. When entering the temperature, users can choose between the Kelvin **K**, Celsius **°C** and Fahrenheit **°F** scale. Users can also enter a temperature profile by selecting the graph symbol for the temperature field <Btn mixed={[faChartArea]} color={"secondary"}/>. A list of times (hh:mm:ss) and temperatures opens next to a chart. Type a time and a temperature in the last row and press **Enter** or "+" to add it, and "–" to remove a row. Rows are kept in time order. Unless a value is typed into the **Temperature** field, the field shows the lowest and highest temperature of the list.
 
 Specify the **Duration** of the reaction by adding its **Start** and **Stop** in the following format: DD/MM/YYYY hh:mm:ss or DD.MM.YYYY hh:mm:ss. The **Duration** is calculated automatically. Users can also choose the current time with the <Btn mixed={[faClock]} color={"secondary"}/> button. The calculated **Duration** can be copied with <Btn mixed={[faPaste]} color={"secondary"}/>, or rounded to the next field either in **Week(s)**, **Day(s)**, **Hour(s)**, **Minute(s)**, or **Second(s)**.
 
@@ -425,7 +430,7 @@ It is important to note that the **Yield** field is the default for this column,
 
 ![Reaction properties](/img/eln/ui/details/reaction_properties.png)
 
-The **Properties** tab allows users to enter further details on the reaction. In addition to the fields **Name**, **Status**, **Temperature**, and **Type ([Name Reaction Ontology](ontology))** that are also found in the **Scheme** tab, new fields are introduced such as **Dangerous Products** where users can list whether dangerous substances occur in the reaction and classify their hazard from a drop-down menu.
+The **Properties** tab allows users to enter further details on the reaction. In addition to the **Type ([Name Reaction Ontology](ontology))** field that is also found in the **Scheme** tab, further fields are introduced such as **Dangerous Products** where users can list whether dangerous substances occur in the reaction and classify their hazard from a drop-down menu.
 
 In order to be able to reproduce the control of a reaction via thin-layer chromatography, two fields have been developed which are supposed to store the solvents used and their ratio on the one hand, and the **Rf value** of the target product of the reaction on the other hand. Please enter the solvent information in the **Solvents (parts)** field followed by a space and the ratio of solvents to each other according to this example: ethyl acetate/hexane 2:1. Users can also provide further details about the thin-layer chromatography in the **Description** field, e.g. the shape of the spots or special features of the implementation. Users can also state how the compounds were identified, i.e. which staining solutions were used or which wavelength was selected for the UV detection.
 
