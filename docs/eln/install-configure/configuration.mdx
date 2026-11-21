@@ -25,11 +25,31 @@ These **Must-Do steps can be skipped** if the ELN was installed using ChemCLI.
 
 #### Variable `PUBLIC_URL`
 
-The variable called `PUBLIC_URL` must be set in the `docker-compose.yml` file. To set the variable, add it to the sections `services.worker.environment` and `services.eln.environment` just below the already present variables (such as "CONFIG_ROLE" for example) in the `docker-compose.yml`.
+The variable called `PUBLIC_URL` sets the public URL that points to the Chemotion ELN installation (for example, `PUBLIC_URL=https://chemotion.dept.uni.de`). This variable is used whenever the ELN constructs absolute URLs, such as user activation links, password reset emails, and file download links (e.g., when exporting [collections](../ui/collections)). For manual Docker Compose deployments, set `PUBLIC_URL` under `services.worker.environment` and `services.eln.environment` in `docker-compose.yml`.
 
-This variable is meant to set the public URL that points to the ELN installation i.e. if "https://chemotion.dept.uni.de" is typed in the browser to reach the ELN, please set this variable to `PUBLIC_URL=https://chemotion.dept.uni.de`. This variable is used whenever the ELN has to construct absolute URLs, for example when an E-Mail is sent after user registration. It is also used for the file download links (e. g., in exporting [collections](../ui/collections)) to work correctly.
+The variable deprecates the variables `HOST_URL` and `HOST_PROTOCOL` in previous versions. Those are now ignored and can be removed safely.
 
-The variable deprecates the variables "HOST_URL" and "HOST_PROTOCOL" in previous versions. Those are now ignored and can be removed safely.
+:::important[Setting `PUBLIC_URL` persistently with ChemCLI]
+
+For ChemCLI-managed instances, **`docker-compose.yml` is overwritten during upgrades**, while `docker-compose.cli.yml` and `./shared/pullin/.env` are preserved.
+
+To keep your URL across upgrades, set `PUBLIC_URL` in `docker-compose.cli.yml` under `environment:` for `eln`, `worker`, and `executor` (if present):
+
+```yaml
+services:
+  eln:
+    environment:
+      - PUBLIC_URL=https://chemotion.dept.uni.de
+  worker:
+    environment:
+      - PUBLIC_URL=https://chemotion.dept.uni.de
+```
+
+Because `chemotion_ELN` loads `./shared/pullin/.env` via `Dotenv.load`, entries in `.env` do **not** override environment variables already defined in `docker-compose.cli.yml`. Updating or removing `PUBLIC_URL` in `docker-compose.cli.yml` is therefore required when changing an instance's address.
+
+**Setting `PUBLIC_URL` on the `worker` service is essential**: background jobs (such as collection ZIP exports and async mailers) execute inside `worker`. If `PUBLIC_URL` is missing or left at an old value on `worker`, generated download links fall back to Rails' default (`http://localhost:3000`) or the earlier address even when `eln` is updated.
+
+:::
 
 > The `PUBLIC_URL` variable is a setting that tells the ELN where it _can be reached_. It's not a setting that magically makes it so that the ELN is reachable at the provided URL. Please see [this section](ChemCLI#set-up-a-reverse-proxy) for more.
 
@@ -55,13 +75,16 @@ To keep the installation clean, Chemotion uses an overlay-based configuration sy
 
 Files that might need to be configured, their locations in the `./shared/pullin` folder, and the name of their template file, are as follows:
 
-| Filename             | Folder path + filename                      | Folder path + filename of the template |
-| -------------------- | ------------------------------------------- | -------------------------------------- |
-| `.env`               | `./shared/pullin/.env`                      | `.env.production.example`              |
-| `database.yml`       | `./shared/pullin/config/database.yml`       | `config/database.yml.example`          |
-| `editors.yml`        | `./shared/pullin/config/editors.yml`        | `config/editors.yml.example`           |
-| `welcome-message.md` | `./shared/pullin/public/welcome-message.md` | `public/welcome-message-sample.md`     |
-| `editors` (folder)   | `./shared/pullin/public/editors`            | `public/editors`                       |
+| Filename                 | Folder path + filename                          | Folder path + filename of the template       |
+| ------------------------ | ----------------------------------------------- | -------------------------------------------- |
+| `.env`                   | `./shared/pullin/.env`                          | `.env.production.example`                    |
+| `database.yml`           | `./shared/pullin/config/database.yml`           | `config/database.yml.example`                |
+| `structure_editors.yml`  | `./shared/pullin/config/structure_editors.yml`  | `config/structure_editors.yml.example`       |
+| `editors.yml`            | `./shared/pullin/config/editors.yml`            | `config/editors.yml.example` (OnlyOffice)    |
+| `datacollectors.yml`     | `./shared/pullin/config/datacollectors.yml`     | `config/datacollectors.yml.example`          |
+| `converter.yml`          | `./shared/pullin/config/converter.yml`          | `config/converter.yml.example`               |
+| `welcome-message.md`     | `./shared/pullin/public/welcome-message.md`     | `public/welcome-message-sample.md`           |
+| `editors` (folder)       | `./shared/pullin/public/editors`                | `public/editors`                             |
 
 The template files, i.e. files to be used as a template, can be found in the Chemotion [repository](https://github.com/ComPlat/chemotion_ELN). Please find the [release](https://github.com/ComPlat/chemotion_ELN/releases) corresponding to the version of ELN in use. Then extract the compressed source code file into a folder. In this folder, the template files can be found at the specified location; remember to rename the file as suggested.
 
@@ -135,6 +158,25 @@ further points are worth knowing:
   rather than, as before, making every attempt to send mail fail.
 - Variables left blank are dropped, so the underlying defaults apply. Leaving
   `SMTP_TLS` unset is therefore not the same as setting it to `false`.
+
+:::
+
+:::caution[Troubleshooting: Mails not sent or `perform_deliveries is false`]
+
+If emails (such as confirmation requests or password resets) are not sent, check the logs for:
+```
+Skipped delivery of mail ... as `perform_deliveries` is false
+```
+
+Chemotion ELN disables mail delivery automatically when `SMTP_ADDRESS` is blank in Rails' environment or when `DISABLE_MAIL_DELIVERY` is set.
+
+To resolve:
+1. Verify the effective values loaded by Rails (including `./shared/pullin/.env`):
+   ```bash
+   docker compose exec eln bundle exec rails runner 'puts ENV.select { |k, _| k.match?(/SMTP|DISABLE_MAIL/) }'
+   ```
+   *(For ChemCLI-managed instances, pass `-f docker-compose.yml -f docker-compose.cli.yml` to `docker compose` inside the instance directory, or check via `./chemCLI instance consoles rails`.)*
+2. Mail settings are read once during boot. Whenever `./shared/pullin/.env` is edited, restart both the `eln` and `worker` services (`./chemCLI restart`) to apply the changes.
 
 :::
 
