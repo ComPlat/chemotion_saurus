@@ -123,11 +123,10 @@ SMTP_READ_TIMEOUT=30
 
 See [rails docs](https://guides.rubyonrails.org/action_mailer_basics.html#action-mailer-configuration) for an explanation of the parameters.
 
-:::info[Changed in version 4.0]
+:::info[Reviewing an existing configuration]
 
-`SMTP_OPEN_TIMEOUT` and `SMTP_READ_TIMEOUT` are new, and default to 10 and 30
-seconds. Four further points are worth knowing when reviewing an existing
-configuration:
+`SMTP_OPEN_TIMEOUT` and `SMTP_READ_TIMEOUT` default to 10 and 30 seconds. Four
+further points are worth knowing:
 
 - Without `SMTP_ADDRESS`, **no mail is sent at all**.
 - When `SMTP_DOMAIN` is unset, the HELO name falls back to the host part of

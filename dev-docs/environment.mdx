@@ -167,7 +167,7 @@ docker exec -it <NAME_OF_APP_CONTAINER_FROM_DOCKER_PS> /bin/bash
 bundle exec rake db:create db:migrate db:seed
 ```
 
-:::caution[`db:setup` fails in 4.0.0]
+:::caution[`db:setup` fails in 4.0.0 to 4.0.2]
 
 `rake db:setup` and `rake db:schema:load` abort on an empty database with
 `relation "sync_collections_users" does not exist`. `schema.rb` still defines a

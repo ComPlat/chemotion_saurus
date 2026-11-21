@@ -159,11 +159,23 @@ opens a window with the file shown large and a rail of the analysis's saved
 images and PDFs down the left-hand side, so they can be browsed without leaving
 the page. PDFs open in a viewer inside the same window.
 
-From version 4.0 the image shown in the header can be chosen rather than picked
-automatically: **Set as preferred** at the top of the rail marks the file on
-display, and the chosen one carries a small star in the rail afterwards. Where
-nothing has been chosen the ELN falls back to its own selection, as earlier
-versions always did.
+The image shown in the header can be chosen: **Set as preferred** at the top of
+the rail marks the file on display, and the chosen one carries a small star in
+the rail afterwards. **Use default**, shown below it once an image has been
+chosen, clears the choice again.
+
+Where nothing has been chosen, the ELN picks the image itself and follows new
+uploads: the newest file whose name contains "combined", otherwise the file
+updated most recently. Images and PDFs are preferred; office documents, videos
+and 3D files are used only when the analysis has nothing else. A chosen image
+that is later deleted is cleared, and the automatic choice takes over.
+
+:::note[Previews fixed before version 4.0.1]
+
+In 4.0.0, saving a dataset fixed its first file as the preferred image. Such an
+image stays until another one is chosen or **Use default** is clicked.
+
+:::
 
 Only saved images and PDFs appear. A file just dropped in is offered once the
 analysis has been saved, and other file types never appear.
