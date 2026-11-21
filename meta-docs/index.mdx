@@ -257,7 +257,7 @@ This site actually serves **three independent documentation sets**, each its own
 
 | Instance                                                        | Content folder     | URL prefix         | Versioned?                                               |
 | --------------------------------------------------------------- | ------------------ | ------------------ | -------------------------------------------------------- |
-| default (Chemotion ELN + Services + Development + this section) | `docs/`            | `/docs/next/`      | Yes -- v2 / v3 / current (v4)                            |
+| default (Chemotion ELN + Services + Development + this section) | `docs/`            | `/docs/`           | Yes -- v2 / v3 / current (v4)                            |
 | `repo` (Chemotion Repository)                                   | `repo-docs/`       | `/docs/repo`       | No -- Repository ships independently and doesn't need it |
 | `labimotion` (Chemotion LabIMotion)                             | `labimotion-docs/` | `/docs/labimotion` | Yes -- 2.1 / current (2.2)                               |
 
@@ -267,7 +267,7 @@ Adding a new page under an existing folder needs no sidebar edit -- every instan
 
 ### Versioning
 
-Two of the three instances are versioned, and since the v3 cut they work the same way: `current` is the _in-progress next version_, and `lastVersion` stays on the latest _shipped_ release. The release therefore sits at the un-prefixed URL, and the work in progress is served under `/next/`.
+Two of the three instances are versioned, and they work the same way: `lastVersion` stays on the latest _shipped_ release, which sits at the un-prefixed URL. While the next version is being written ahead of its release, it is `current` and is served under `/next/`; once it ships, `lastVersion` moves to `"current"`.
 
 :::note[This changed in October 2026]
 
@@ -275,22 +275,22 @@ The ELN used to invert this -- `docs/` _was_ the latest release, developed in pl
 
 :::
 
-**Chemotion ELN (default instance).** `docs/` is the unreleased v4, served at `/docs/next/`; `lastVersion` is `"v3"`, so `/docs/` serves the v3 snapshot. Cutting a version freezes the one that is ending:
+**Chemotion ELN (default instance).** `docs/` is v4, the current release; `lastVersion` is `"current"` (since November 2026), so `/docs/` serves it, and v3 and v2 are served under `/docs/v3/` and `/docs/v2/`. Links to the old `/docs/next/` paths are redirected by `createRedirects` in `docusaurus.config.js`. Cutting a version freezes the one that is ending:
 
 ```sh
 npm run docusaurus -- docs:version <version-that-is-ending, e.g. v3>
 ```
 
-This snapshots `docs/` into `versioned_docs/version-<id>/` and adds `<id>` to `versions.json`. Afterwards, update the `versions` map in `docusaurus.config.js` (and the matching navbar `docsVersionDropdown` item) to add the new frozen version's label and relabel `current` for the version now being developed. **When v4 ships, move `lastVersion` to `"current"`.**
+This snapshots `docs/` into `versioned_docs/version-<id>/` and adds `<id>` to `versions.json`. Afterwards, update the `versions` map in `docusaurus.config.js` (and the matching navbar `docsVersionDropdown` item) to add the new frozen version's label and relabel `current` for the version now being developed. When the next version is developed ahead of its release, `lastVersion` stays on the shipped one until it ships.
 
 :::caution[Fix the root index links after a cut -- the build will not catch it]
 
-`lastVersion` decides which tree is served _without_ a path prefix, and relative links resolve against the rendered URL. So moving it, or cutting a version, silently changes where a root `index.mdx` link lands. After the v3 cut these had to become:
+`lastVersion` decides which tree is served _without_ a path prefix, and relative links resolve against the rendered URL. So moving it, or cutting a version, silently changes where a root `index.mdx` link lands. With v4 as `lastVersion` they are:
 
 | File | Link | Served at |
 | --- | --- | --- |
-| `versioned_docs/version-v3/index.mdx` | `[...](eln)` | `/docs/` |
-| `docs/index.mdx` | `[...](next/eln)` | `/docs/next` |
+| `docs/index.mdx` | `[...](eln)` | `/docs/` |
+| `versioned_docs/version-v3/index.mdx` | `[...](v3/eln)` | `/docs/v3` |
 | `versioned_docs/version-v2/index.mdx` | `[...](v2/eln)` | `/docs/v2` |
 
 A wrong-version link still points at a page that exists, so `onBrokenLinks: "throw"` stays silent. Verify by building and grepping the emitted HTML -- note Docusaurus emits _unquoted_ hrefs:
