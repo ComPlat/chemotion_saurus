@@ -134,21 +134,26 @@ module.exports = {
           // offered as the default; every other version gets a path prefix.
           // Keep it pointing at the latest *shipped* release:
           //   - while the next version is unreleased, that is the newest
-          //     frozen snapshot (today: "v3"), and the in-progress docs/ tree
-          //     is served under /docs/next/ as ELN v4.x.
-          //   - once v4 ships, move lastVersion to "current".
-          // This is the same arrangement LabIMotion uses below. Note that
-          // moving lastVersion changes which tree is served without a prefix,
+          //     frozen snapshot, and the in-progress docs/ tree is served
+          //     under /docs/next/;
+          //   - once it ships, lastVersion moves to "current" -- as now, since
+          //     ELN v4 shipped and ChemCLI installs it. v3 is then served
+          //     under /docs/v3/, and old /docs/next/ links are redirected
+          //     (see createRedirects below).
+          // Moving lastVersion changes which tree is served without a prefix,
           // which in turn changes what the relative links in each tree's root
           // index.mdx resolve to -- see the note in AGENTS.md; the build does
           // not catch that class of error.
-          lastVersion: "v3",
+          lastVersion: "current",
           versions: {
             current: {
               label: "ELN v4.x",
             },
+            // Still supported, so no banner. Docusaurus would otherwise mark
+            // every version older than lastVersion "unmaintained".
             v3: {
               label: "ELN v3.x",
+              banner: "none",
             },
             // Unmaintained: still built, so existing links keep working, but
             // left out of the version dropdown above and marked with a banner.
@@ -207,6 +212,20 @@ module.exports = {
       {
         // 301 redirects from the old underscore URLs to the new dashed ones
         redirects,
+        // ELN v4 was served under /docs/next/ until it became lastVersion.
+        // Keep those links working: every page of the current ELN tree also
+        // answers at its old /next/ path. Paths of other versions and other
+        // instances are left alone.
+        createRedirects(existingPath) {
+          if (
+            /^\/(v2|v3|labimotion|repo|development|documentation|search|404\.html)(\/|$)/.test(
+              existingPath,
+            )
+          ) {
+            return undefined;
+          }
+          return [existingPath === "/" ? "/next" : `/next${existingPath}`];
+        },
       },
     ],
     [
