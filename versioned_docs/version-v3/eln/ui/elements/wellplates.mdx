@@ -32,3 +32,15 @@ A wellplate can be saved, edited and deleted in the [details panel view](../deta
 </video>
 
 During the creation the size of a wellplate can be adjusted in the **Properties** tab by clicking on the <button className={"button button--sm button--primary"} style={{padding:"2px", height: "50%", width: "5%"}}><FontAwesomeIcon icon={faBraille} size="lg"/></button>. The size of the wellplate can be adjusted by changing the values **Width** and **Height** and pressing the **Apply** button. Be aware that once a wellplate is created, the size cannot be changed anymore.
+
+### Importing readouts from a spreadsheet
+
+Readouts can be imported from a spreadsheet. The wellplate's **Attachments**
+tab offers **Download Import Template xlsx**, a template built from the
+wellplate's wells; the button beside it explains which columns may be changed.
+The filled-in spreadsheet is then added as an attachment and imported from
+there, which overwrites the existing readouts.
+
+From version 3.1.4 the template download is disabled until the wellplate has
+been saved, with a tooltip saying so. Before, the download on an unsaved
+wellplate produced a file that contained only the word `Unauthorized`.

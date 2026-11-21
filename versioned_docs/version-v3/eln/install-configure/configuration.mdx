@@ -45,6 +45,8 @@ The variable line `- SECRET_KEY=imsupersecretandwanttobechanged` in section `ser
 
 The variable `OTP_SECRET_KEY` must be set to a unique random string of **at least 32 characters**, in sections `services.worker.environment` and `services.eln.environment`, and on any container that runs rake tasks. It is required from version 3.1.0 onwards, and the ELN will not start without it.
 
+The key is used for AES-256-GCM encryption, which needs at least 32 bytes; 32 plain ASCII characters meet that. From version 3.1.3 the example files carry a placeholder of that length, `change-this-to-a-random-32-byte-or-longer-secret`, in place of the former `secret`. It is long enough to work, so it must be replaced rather than copied.
+
 Once set, it must never be changed: a new value switches off two-factor login for every user who had enabled it, and each of them has to enable it again.
 
 ### Optional: Modify Configuration Files
@@ -108,17 +110,37 @@ SMTP_PORT=587
 # login user name & password if applicable:
 SMTP_USERNAME='no-reply@sld.tld'
 SMTP_PASSWORD='s3cr3tPW'
-# optional, HELO domain
+# optional, HELO domain; defaults to the PUBLIC_URL host
 SMTP_DOMAIN='sld.tld'
 # detect STARTTLS
 SMTP_TLS=true
 # authentication type ('plain' 'login' (Base64 encoded) or 'cram_md5')
 SMTP_AUTH='plain'
-# how OpenSSL checks the certificate  ('none' or 'peer')
+# how OpenSSL checks the certificate ('none' or 'peer'); any other value is ignored
 SMTP_SSL_MODE='none'
+# optional, seconds to wait for the connection and for a reply
+SMTP_OPEN_TIMEOUT=10
+SMTP_READ_TIMEOUT=30
 ```
 
 See [rails docs](https://guides.rubyonrails.org/action_mailer_basics.html#action-mailer-configuration) for an explanation of the parameters.
+
+:::info[Changed in version 3.1.4]
+
+`SMTP_OPEN_TIMEOUT` and `SMTP_READ_TIMEOUT` are new, and default to 10 and 30
+seconds. Before, both were 5 seconds, which an authenticating remote relay
+often exceeds, so that sending failed with `Net::ReadTimeout`. Four further
+points are worth knowing when reviewing an existing configuration:
+
+- Without `SMTP_ADDRESS`, **no mail is sent at all**.
+- When `SMTP_DOMAIN` is unset, the HELO name falls back to the host part of
+  `PUBLIC_URL`, provided that is a hostname rather than a bare address.
+- `SMTP_SSL_MODE` accepts only `none` and `peer`. Any other value is ignored
+  rather than, as before, making every attempt to send mail fail.
+- Variables left blank are dropped, so the underlying defaults apply. Leaving
+  `SMTP_TLS` unset is therefore not the same as setting it to `false`.
+
+:::
 
 ## File collectors
 
@@ -329,6 +351,36 @@ Here the `nmriumwrapper.url` value depends on the version of Chemotion ELN in us
 So, for e.g. ELN version 3.0.0, please set `nmriumwrapper.url` to `https://nmrium.nmrxiv.org/v1.0.0/`.
 
 To be able to access these URLs successfully, registration with the hosting service is required. Please contact the [Helpdesk](https://chemotion.net/helpdesk) or see [here](https://github.com/NFDI4Chem/nmrium-react-wrapper#public-instance) for more details.
+
+## In-app guide
+
+From version 3.1.3, an instance can carry its own guide, for example for a
+workshop. It is shown as a **Workshop Guide** drawer in the workspace and as a
+block on the home page. The content is a Git wiki repository, which the ELN
+clones into `public/workshop/`. Its `home.md` is the first page, and an
+optional `_sidebar.md` provides the navigation.
+
+| Variable | Default | Purpose |
+| --- | --- | --- |
+| `WORKSHOP_GUIDE_REPO` | none | The Git URL of the wiki repository. Required to enable the guide |
+| `WORKSHOP_GUIDE_BRANCH` | `master` | Branch to take |
+
+There is no on/off switch: the guide appears once `public/workshop/home.md`
+exists. The same command fetches the content the first time and updates it
+afterwards:
+
+```sh
+docker compose exec -e WORKSHOP_GUIDE_REPO='https://git.dept.uni.de/group/project.wiki.git' eln bundle exec rake workshop_guide:sync
+```
+
+To remove it again, delete the contents of `public/workshop/`.
+
+:::caution
+
+The cloned wiki is served as public static content under `/workshop/`. Anything
+in that repository becomes readable by anyone who can reach the instance.
+
+:::
 
 ## QR, Barcode and Datamatrix Stickers
 

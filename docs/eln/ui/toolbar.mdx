@@ -36,6 +36,8 @@ The user can filter a selected [collection](collections) or even the **All** col
 
 The user can search the entire collection or selected elements by clicking on <Btn mixed={["All", faSortDown]} color={"secondary"}/> and choosing the desired element (**Samples**, **Reactions**, **Wellplates**, **Screens**) from the menu to appear, where the <Btn mixed={["All", faSortDown]} color={"secondary"}/> is replaced by the corresponding symbol of the element. The menu also shows the option of **Advanced Search**, which will be clarified later on in this chapter.
 
+A search, quick or advanced, only returns elements of the collection that is open, a shared one included, and the suggestions shown while typing come from that collection too. To search across everything the user owns, open **All**.
+
 Possible search terms are **IUPAC** names, **InChI**, **SMILES**, **RInChI**. The user can also use the element **Name** or **Short Label**. Enter the search term and press "Enter" which shows a list of filtered results. While the user is typing their search term, a menu of suggestions appears, and it keeps getting updated throughout typing. Another option will be to use [Ketcher editor](ketcher), which opens when pressing <Btn mixed={[faPen]} color={"primary"}/>, and to draw a structure to perform **Similarity Search** or **Substructure Search**, and to decide the degree of similarity too. When the structure is ready to be used, the user can choose <Btn mixed={["Search"]} color={"primary"}/> or simply <Btn mixed={["Cancel"]} color={"warning"}/>. To cancel the search process or delete the current search term, press <Btn mixed={[faTimes]} color={"danger"}/>
 
 <YouTubeFrame
@@ -74,10 +76,19 @@ Please note that if the user chooses to **Assign to Collection**, the title of t
 
 `Move to Collection`: This action results in moving the selected elements from the selected collection to the target one, this means that the moved elements will no longer appear in the original collection.
 
-`Assign to Collection`: This action results in creating a copy of the selected elements in the target collection, this means that the assigned elements will be present in both collections.
+`Assign to Collection`: This action adds the selected elements to the target collection as well, without copying them, so that the same elements are present in both collections.
 
-Collections that were shared with the user can also be chosen as a target, grouped under
-**Shared by \<owner\>**, provided they hold at least the *Add elements* permission on them.
+When moving, collections that were shared with the user can also be chosen as a target,
+grouped under **Shared by \<owner\>**, provided they hold at least the *Add elements*
+permission on them; **Assign to Collection** offers only the user's own collections. Both
+also offer the **chemotion-repository.net** collection, under *chemotion-repo*, but never
+**All**.
+
+Inside a collection shared with the user, elements stay within their owner's collections:
+they can only be moved to another collection of the same owner, which also has to be shared
+with the user at *Add elements* or above, and moving needs the *Remove elements* permission
+on the collection they come from. A target among the user's own collections is refused, so
+**Assign to Collection**, which offers only those, does not work from a shared collection.
 
 :::caution
 
@@ -282,7 +293,7 @@ The generation of new element-instances such as a new sample or a new reaction c
 
 ### New elements with the "CREATE" button
 
-New elements are created with the green <Btn mixed={[faPlus, "CREATE"]} color={"success"}/> button to the right of the toolbar. Clicking it opens a menu with the options **Create Sample**, **Create Reaction**, **Create Wellplate**, **Create Screen** and **Create Research Plan**. It does not matter which element list is selected, as long as the right collection is open — choose any of these options and the corresponding element is created.
+New elements are created with the green <Btn mixed={[faPlus, "CREATE"]} color={"success"}/> button to the right of the toolbar. Clicking it opens a menu with the options **Create Sample**, **Create Reaction**, **Create Wellplate**, **Create Screen** and **Create Research Plan**. It does not matter which element list is selected, as long as the right collection is open — choose any of these options and the corresponding element is created. The button is disabled in the **All** collection, which is not a working collection (see [System collections](collections/index.mdx#system-collections)). In a collection shared with the user, creating an element needs at least the *Add elements* [permission level](collections/sharing.mdx#the-permission-ladder).
 
 To populate [wellplates](elements/wellplates), the user has to drag and drop samples, and to populate screens, the user has to drag and drop wellplates. The `CREATE` menu lets the user avoid this repetitive drag-and-drop process with the functions **Create Wellplate from Samples** and **Create Screen from Wellplates**. To use either of them, go to the target collection, select the elements (samples or wellplates) to be added to the newly created element (wellplate or screen respectively), and choose the corresponding function. The menu also offers **Create Vessel Template**. Please note that an element cannot be created with this method from elements coming from another collection; users can, however, still add them to the created element with the classical drag and drop.
 
