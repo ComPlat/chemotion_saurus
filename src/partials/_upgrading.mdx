@@ -29,11 +29,13 @@ page has to be run by hand unless it says so.
 | Running | Going to | Read |
 | --- | --- | --- |
 | 2.x | 3.x | *From version 2 to version 3* |
+| 3.x, before 3.1.4 | 3.1.4 | items 12 and 13 of *From version 2 to version 3* |
 | 3.x | 4.x | *From version 3 to version 4* |
 | 2.x | 4.x, in one step | both sections above, then *From version 2 directly to version 4* |
+| 4.0.0 or 4.0.1 | 4.0.2 | the items in *From version 3 to version 4* marked as changed in 4.0.1 or 4.0.2 |
 
-The versions actually distributed to users are **2.2.0**, **3.1.2** and
-**4.0.0**, and this page is written for those.
+This page is written for the versions ChemCLI currently offers: **3.1.4** for
+version 3 and **4.0.2** for version 4.
 
 ## From version 2 to version 3
 
@@ -56,8 +58,9 @@ runs rake tasks. Never use an example value, and never change it afterwards: a
 new value switches off two-factor login for every user who had enabled it, and
 each of them has to enable it again.
 
-**Applies to** manual Docker and source installs. ChemCLI generates one during
-the upgrade if it is missing.
+**Applies to** manual Docker and source installs. ChemCLI adds one during the
+upgrade only when the setting is missing altogether, so check the value on a
+ChemCLI install as well.
 
 ### 2. Safety data sheet links stop working
 
@@ -91,7 +94,7 @@ prefers the optional Indigo service for those cases, falling back to
 :indigo_service_url: 'http://indigo_service/'
 ```
 
-The trailing slash is required. ChemCLI's 3.1.2 payload already includes the
+The trailing slash is required. A ChemCLI installation already includes the
 service.
 
 **Applies to** manual Docker and source installs.
@@ -203,6 +206,37 @@ content has been confirmed, since saving is what makes the loss permanent.
 than by observing an upgrade, so the exact set of formats affected is not
 certain; images are the clearest case.
 
+### 12. Outgoing mail behaves differently
+
+**Symptom.** Mail now goes out where an unsupported `SMTP_SSL_MODE` value used
+to make every attempt fail, and a slow authenticating relay no longer times
+out. Mail that relied on a blank variable may behave differently.
+
+**Cause.** Version 3.1.4 reads the mail settings more strictly. Variables left
+blank are dropped, so their defaults apply. `SMTP_SSL_MODE` accepts only `none` and `peer`, and any other
+value is now ignored instead of breaking delivery. When `SMTP_DOMAIN` is unset,
+the HELO name falls back to the host part of `PUBLIC_URL`. Two new settings,
+`SMTP_OPEN_TIMEOUT` and `SMTP_READ_TIMEOUT`, default to 10 and 30 seconds; both
+used to be 5, which an authenticating relay often exceeded.
+
+**Fix.** Review the `SMTP_*` settings against *Configuration*, and send a test
+mail after upgrading — a password reset will do.
+
+**Applies to** all install methods.
+
+### 13. Deleted devices lose their abbreviation and email
+
+**Symptom.** None in the interface. A query against `devices` finds
+`name_abbreviation` and `email` empty on deleted devices.
+
+**Cause.** A migration in version 3.1.4 clears both fields on every deleted
+device, so that a new device can reuse them. It cannot be undone.
+
+**Fix.** Nothing to correct. If those values matter to a local record, export
+them before upgrading.
+
+**Applies to** anyone querying the database directly.
+
 ### Two things to check before starting
 
 **Keep `config/storage.yml`.** Version 3 still refuses to boot without it.
@@ -229,6 +263,9 @@ into one, and moved several API paths. Most instances need **no** action, but
 four of the changes below are silent: nothing fails visibly, and the symptom
 appears days later.
 
+Coming from a 3.x release before 3.1.4, items 12 and 13 of the version 2 to
+version 3 section apply as well: version 4.0.2 contains both changes.
+
 :::danger[Take a database backup first]
 
 The sharing migration cannot be rolled back. Its `down` step restores the
@@ -237,6 +274,9 @@ either. Some refuse to run backwards and say so. Others are more treacherous:
 rolling one back **appears to succeed** — the migration is marked as undone —
 while the change it made to the data stays, and can no longer be told apart
 from what was there before. A failed upgrade is recoverable only from a backup.
+
+Version 4.0.2 adds one more irreversible change: samples shared between
+reactions are split, as described in item 10 below.
 
 Run the migration on a host where the attachment storage is mounted. One
 migration repairs image derivatives in place, and entries it cannot reach are
@@ -436,9 +476,10 @@ about the readout columns.
 column moved one place to the right. A spreadsheet saved from version 3 has the
 old layout.
 
-**Fix.** Download a fresh template from the wellplate's **Attachments** tab and
-transfer the data into it, or insert a column at E headed `Molarity` and leave
-it empty. Previously imported data is unaffected.
+**Fix.** Download a fresh template from the wellplate's **Attachments** tab —
+the wellplate has to be saved first — and transfer the data into it, or insert
+a column at E headed `Molarity` and leave it empty. Previously imported data is
+unaffected.
 
 **Applies to** anyone who keeps their own copy of the import template.
 
@@ -456,12 +497,104 @@ hosts.
 **Applies to** instances with filtered outbound access. Nothing to do where
 outbound traffic is unrestricted.
 
+### 10. Reactions no longer share a sample (changed in 4.0.2)
+
+**Symptom.** After the upgrade, a reaction that used to share a sample with an
+earlier reaction lists a new split of it instead, labelled with an extra
+counter — `ABC-12-1`, `ABC-12-2` — and with no analyses. The analyses are still
+on the original sample, in the earlier reaction.
+
+**Cause.** A sample now belongs to at most one reaction. The migration keeps
+each shared sample with the reaction created first, and gives every other
+reaction a new split of it, as the reaction editor does when a sample is
+dropped onto a reaction. Name, external label and composition are copied, and
+the reaction's variations are moved to the new sample with their values;
+analyses are not copied. The same migration also returns a link that an
+earlier fault had moved from one reaction to another, and removes a sample
+listed twice in the same role of one reaction.
+
+**Fix.** Nothing to correct, but it cannot be undone, so take the backup. The
+migration log reports how many links it returned, removed and split. Tell
+users before upgrading, so that a new split in an old reaction is not a
+surprise. If any split fails, the migration stops and names the links
+concerned.
+
+**Applies to** all install methods.
+
+### 11. The Variations tab fails on older reactions (changed in 4.0.1)
+
+**Symptom.** On a reaction saved before 4.0.1, the **Variations** tab does not
+open, or shows columns for materials the reaction no longer has.
+
+**Cause.** Variations stored keys naming materials, and some of those keys no
+longer match the reaction's materials.
+
+**Fix.** Run the repair task after upgrading. It reports what it would change
+and changes nothing:
+
+```sh
+rake reactions:repair_variation_keys
+```
+
+To apply the repair:
+
+```sh
+rake reactions:repair_variation_keys'[false]'
+```
+
+Run it inside the ELN container or with `bundle exec`, as described under
+*After reaching version 4*.
+
+**Applies to** all install methods, and only to instances whose reactions use
+variations.
+
+### 12. Bookmarks to the ChemSpectra pages fail (changed in 4.0.1)
+
+**Symptom.** A bookmark to `/chemspectra` or `/chemspectra-editor` returns not
+found.
+
+**Cause.** The standalone ChemSpectra pages and their API routes are removed.
+
+**Fix.** Open ChemSpectra from an analysis instead.
+
+**Applies to** all install methods.
+
+### 13. Sending an IconNMR configuration from the ELN is gone (changed in 4.0.1)
+
+**Symptom.** The legacy upload of an IconNMR experiment configuration from the
+ELN no longer exists.
+
+**Cause.** The legacy device code was removed, and with it the only use of the
+global `SFTP_HOST`, `SFTP_USER`, `SFTP_PASSWORD`, `SFTP_PORT`, `SFTP_KEYS` and
+`SFTP_UPLOAD_FOLDER` variables.
+
+**Fix.** None in the ELN; the variables can be removed. Device data collection
+is unaffected: it uses each device's own settings, on the device's **Data
+Collector** tab under **Admin → Devices**.
+
+**Applies to** instances that sent IconNMR configurations from the ELN.
+
+### 14. Analysis previews stay on an old image (changed in 4.0.1)
+
+**Symptom.** An analysis keeps showing the same preview image after new files
+are uploaded to it.
+
+**Cause.** Before 4.0.1, saving a dataset fixed its first thumbnailed file as
+the analysis's preview. The default now follows new uploads, preferring a file
+whose name contains "combined", else the most recently updated one. The
+upgrade does not change previews that were fixed before.
+
+**Fix.** In the analysis's image dialog, choose another image, or click **Use
+default** to return to the automatic choice.
+
+**Applies to** all install methods.
+
 ## From version 2 directly to version 4
 
 The jump works. Nothing forces a stop at version 3: version 4 carries every
 migration needed, nothing that only version 3 provided was removed, and the
-sharing rebuild handles version 2's sharing data. ChemCLI will take an
-installed 2.2.0 straight to a newer version.
+sharing rebuild handles version 2's sharing data. ChemCLI offers an installed
+2.2.0 both 3.1.4 and 4.0.2.
 
 :::danger[Rehearse this one on a copy]
 
@@ -470,7 +603,7 @@ Version 2.2.0 is a side branch of the history, so in a direct jump some version
 step ever produces. Two of those interleavings could not be verified.
 
 Run the upgrade against a copy of the production database first. Stopping at
-3.1.2 and upgrading again avoids the risk entirely, at the cost of one more
+3.1.4 and upgrading again avoids the risk entirely, at the cost of one more
 upgrade.
 
 :::
@@ -480,22 +613,20 @@ order:
 
 1. **On version 2**, run the pre-2021 attachment check above. The answer must
    be 0.
-2. **On version 2**, make sure the user records are valid. One migration
-   re-saves every user and stops the whole upgrade at the first invalid one. If
-   the upgrade halts with a validation error naming a user, correct that user
-   and start again. The same applies when stepping through version 3.
-3. **Back up** the database and every file volume, `public/safety_sheets`
+2. **Back up** the database and every file volume, `public/safety_sheets`
    included.
-4. **Set `OTP_SECRET_KEY`** on the eln, worker and executor containers, as in
+3. **Set `OTP_SECRET_KEY`** on the eln, worker and executor containers, as in
    item 1 of the version 2 to version 3 section.
-5. **Apply the configuration items** — items 3 to 6 of the version 2 section,
-   and from the version 3 section the PubChem queue change and any script
-   reading the old sharing tables.
-6. **Start version 4 with the file volumes mounted.** Sixty-seven migrations
+4. **Apply the configuration items** — items 3 to 6 and 12 of the version 2
+   section, and from the version 3 section the PubChem queue change and any
+   script reading the old sharing tables.
+5. **Start version 4 with the file volumes mounted.** Sixty-eight migrations
    run.
-7. **Read the migration log** for the collection-share counts and the tree-check
-   line, then work through the group-collections check in item 4 of the version
-   3 section.
+6. **Read the migration log** for the collection-share counts, the tree-check
+   line and the reaction-sample counts, then work through the group-collections
+   check in item 4 of the version 3 section.
+7. **Run the variation-key repair** from item 11 of the version 3 section, if
+   reactions use variations.
 8. **Optionally**, run the duplicate-attachment cleanup described under
    *After reaching version 4* below.
 
@@ -524,15 +655,18 @@ prefix them with `bundle exec`.
 
 ## Upgrading with the CLI
 
-The CLI does not force a step through each version: an instance on 2.2.0 can be
-pointed at any newer version it offers. The rehearsal advice above still
-applies to a jump.
+Upgrade with `chemCLI instance upgrade`. ChemCLI 0.2.32 offers every supported
+version newer than the running one — currently 3.1.4 and 4.0.2 — so a version
+2 or 3 instance moves to 4.0.2 in one step. Choose **all actions** to pull the
+images, back up and upgrade. The first start after the upgrade migrates the
+database and can take up to 20 minutes on a large instance.
 
-It could not install or upgrade to version 4 at the time of writing, because
-its payload still pins version 3.1.2 images. When a CLI release ships version
-4, the steps on this page still apply — they concern the ELN itself rather than
-the tool that deploys it — with the queue setting made wherever that release
-puts `DELAYED_JOB_ARGS`.
+Run without a terminal, or with `--use <compose URL>`, the CLI offers no menu:
+it uses the given compose file, or by default the newest release's.
 
-For a version 2 to version 3 upgrade the CLI handles `OTP_SECRET_KEY` by
-itself, generating one if the instance has none.
+The steps on this page still apply — they concern the ELN itself rather than
+the tool that deploys it. The CLI's own worker serves every queue, so the
+PubChem queue change needs no action. Make sure `OTP_SECRET_KEY` is set to a
+unique value of at least 32 characters, as in item 1 of the version 2 to
+version 3 section. The rehearsal advice above still applies to a jump from
+version 2.
