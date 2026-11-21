@@ -68,6 +68,16 @@ For routine use in operations, Chemotion ELN can be installed on IT facilities o
   in addition to the *Edit elements* permission — someone who cannot see a field must not be
   able to overwrite it. The collection's owner has to raise the detail level.
 
+#### How can I transfer ownership of a collection (e.g., when a student finishes their project)?
+
+- **Answer:** In Chemotion ELN version 4, collection ownership can be transferred using a two-step **Pass ownership** handshake:
+  1. The current owner shares the collection with one specific person (never a group) at the **Pass ownership** permission level.
+  2. The recipient sees a swap icon on the collection under **Shared with me** and confirms taking ownership of the collection and its sub-collections.
+
+  Once accepted, ownership of the collection and its entire subtree moves into the new owner's collections and **All** view. The former owner retains a **Manage shares** delegate share at full detail on the transferred collection and on any sub-collections that were already shared with the new owner, while having no access to sub-collections that were never shared with the new owner.
+
+  If an element was also linked into another separate collection owned by the former user, it remains accessible to them through that other collection. For a completely separate copy without shared element links, export the collection as an archive and re-import it under the target account. See [Passing and taking ownership](ui/collections/sharing#passing-and-taking-ownership) for full details.
+
 ### Samples
 
 #### Why can’t I see any other tab in the sample’s details modal rather than **Properties**?
@@ -104,11 +114,33 @@ For routine use in operations, Chemotion ELN can be installed on IT facilities o
 
 #### How are changes in data (e.g., time, author) tracked? Is there a versioning / time-stamping / auditing system in place?
 
-- **Answer:** The Chemotion team is currently working on versioning and auditing systems.
+- **Answer:** Chemotion ELN tracks element history and revisions using Logidze. Modifications to samples, reactions, wellplates, research plans, and screens create timestamped version records recording the modifying author. In an element's **History** tab, users can inspect past versions, compare attribute changes side by side, and revert fields to earlier states. See [History](ui/history) for more details.
 
 #### Is it possible to retrieve deleted data e.g. in case of accidental deletion of a collection?
 
 - **Answer:** Most of the entries are soft deleted (marked as deleted in the database but are not removed). However, there is no user interface to restore them easily. Please pay attention that deleting a collection does not remove its elements, it rather removes the association between the elements and the collection. Note also that only an element's owner can destroy it: a collaborator working in a shared collection can unlink elements from that collection, but cannot delete the owner's data. Elements can still be picked out individually from **All** collection to (re-create) a new collection. If for some reason all data is lost or the ELN needs to be restored to a previous state, it is necessary to have backups in place. For this reason, the Chemotion team recommends creating a [backup plan](install-configure/manual-install.mdx#backing-up-and-restoring-your-data) and automating a regular backup process.
+
+### Search and workflows
+
+#### Can I search across all of my research group's projects at once?
+
+- **Answer:** Searches in Chemotion ELN are scoped to the currently selected collection (or a user's personal **All** collection). For collaborative research groups that want to search shared group data together, maintaining a shared group repository collection and assigning completed experiments to it allows all members with access to search across that compiled collection.
+
+#### Why didn't my collection ZIP export download immediately?
+
+- **Answer:** Collection ZIP exports are processed asynchronously as background jobs on the server. Once the background worker finishes compiling the archive, a **Download export archive** link appears under the **Notifications** bell icon on the **top left** navigation bar (retained for 24 hours) and is sent via email when outgoing mail (SMTP) is configured.
+
+#### How do I generate an API token for scripts or the Python client?
+
+- **Answer:** Personal API tokens (`chemtoken_...`) are managed under **Settings → Account → Authentication Token**. Generating tokens requires Two-Factor Authentication (2FA) to be enabled on the account. See [Settings: Authentication token](ui/first-steps#settings-authentication-token) for step-by-step instructions.
+
+#### Can I use ChemDraw files (.cdx/.cdxml) or ChemDraw JS?
+
+- **Answer:** `.cdxml` structures (as well as MOL/SDF) can be imported into the Ketcher editor, and both `.cdx` and `.cdxml` files can always be uploaded as attachments on analytical datasets. ChemDraw JS is supported for institutions that hold their own Revvity Signals / PerkinElmer ChemDraw JS license (configured via `structure_editors.yml`), though it is not bundled by default due to proprietary licensing; Ketcher is the built-in open-source structure editor.
+
+#### Does Chemotion offer central cloud hosting as a service (SaaS)?
+
+- **Answer:** Chemotion ELN is open-source academic software developed for institutional self-hosting (for example via ChemCLI), rather than a centrally hosted commercial SaaS platform. Only the public demo server is operated by the Chemotion team for evaluation.
 
 ### Integrated Devices
 
