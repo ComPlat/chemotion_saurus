@@ -752,15 +752,20 @@ The **Properties** tab allows users to enter additional information about a well
 
 ## Detail panel for screens
 
-In the future, it should also be possible to use the Chemotion ELN for the documentation of biological experiments. The structure of this biological work should be possible through the element **Screen**. All descriptions and procedures of biological work for a planned experiment are recorded on a screen while the wellplates define the localization of the substances and materials used. Wellplates can therefore also be assigned to the individual screens in order to make their affiliation clear.
+The [Screen](elements/screens) element organizes biological assays, screening campaigns, and multi-wellplate experiments. All procedures and parameters for an experiment are recorded within the screen, while associated [wellplates](elements/wellplates) define the physical location of the tested compounds and reagents.
 
-So far, only a rudimentary structure for entering the screens has been programmed. The further development is an important task within the project in the coming months. The most important data of a biological study can be saved by entering free text in the **Name**, **Collaborator**, **Requirements**, **Conditions**, **Result** and **Description** fields. The allocation of the wellplates required for the examination can be done via drag & drop directly under the heading **Wellplates**. The selected wellplates are added and directly available through a link.
+Experimental details are entered in the **Name**, **Collaborator**, **Requirements**, **Conditions**, **Result**, and **Description** fields. Wellplates can be assigned via drag and drop under **Wellplates**. Screens also provide **Analyses**, **Research Plans**, and **History** tabs. For the full guide, see [Screens](elements/screens).
 
 ## Detail panel for research plan
 
 ![Research plan](/img/eln/ui/details/research_plan.png)
 
-A research plan is a generic element that can be used in a flexible manner to describe a particular process. The research plan contains a **Name**, and there are plenty of fields that can be added in the form of text (**Add Text Editor**), tables (**Add Table Editor**), images (either a molecular structure with **Add Ketcher Editor**, or a regular image with **Add Image** where users can control its **Zoom**). Users can add other elements such as samples (**Add Sample**) and reactions (**Add Reaction**) with drag and drop.
+A [Research Plan](elements/research-plans) is a modular, multi-segment element used to document experimental procedures, synthesis workflows, and protocols. Each research plan carries a **Name** and lets users compose and reorder modular segments:
+- Narrative text blocks (**Add Text Editor**) with rich typography and text templates
+- Experimental data tables (**Add Table Editor**)
+- Chemical structures and reaction schemes (**Add Ketcher Editor**)
+- Photographs and diagrams (**Add Image**) with zoom controls
+- Embedded [samples](elements/samples) (**Add Sample**) and [reactions](elements/reactions) (**Add Reaction**) via drag and drop
 
 From version 4.0 each research plan also carries a **short label**, of the form
 `<name abbreviation>-RP<number>` — `ABC-RP3`, for instance. It is generated when
@@ -768,15 +773,8 @@ the plan is created, counts up per user, and cannot be edited. It appears in
 front of the name in the research plan list rather than in the detail panel.
 Plans that existed before the upgrade were numbered per creator in the order
 they were created.
-The order of the segments added to the research plan can be changed by drag and drop.
 
-The research plan has an edit and a view mode. The view mode offers options to export the information to different file formats (.docx, .odt, HTML, Markdown, LaTeX).
-
-:::info
-
-Internal remark TO DO: gif showing export functions
-
-:::
+The order of segments can be adjusted at any time by drag and drop. A research plan provides **Edit mode** and **View mode**, and can be exported from **View mode** to `.docx`, `.odt`, HTML, Markdown, or LaTeX (`.zip`). See [Research Plans](elements/research-plans) for further details.
 
 ### Research plan table functions
 
