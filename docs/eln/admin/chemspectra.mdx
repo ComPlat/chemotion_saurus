@@ -30,3 +30,28 @@ If a data file is from a supported technique and extension but isn't processed b
 <video controls>
   <source src={require("@site/static/img/eln/admin/chemspectra/add_data_type_demo.webm").default} />
 </video>
+
+### Default layouts and data types reference
+
+The table below lists the 18 built-in spectra layouts provided by ChemSpectra and their default recognized `##DATA TYPE` strings (configured in `data_type.json`):
+
+| Layout Name | Default Recognized Data Types | Description |
+| :--- | :--- | :--- |
+| `NMR` | `NMR SPECTRUM`, `NMRSPECTRUM` | one-dimensional nuclear magnetic resonance spectra |
+| `INFRARED` | `INFRARED SPECTRUM` | infrared transmittance/absorbance spectra |
+| `RAMAN` | `RAMAN SPECTRUM` | raman scattering spectra |
+| `MS` | `MASS SPECTRUM`, `CONTINUOUS MASS SPECTRUM` | mass spectrometry stick/profile scans |
+| `HPLC UVVIS` | `HPLC UV/VIS SPECTRUM`, `HPLC UV-VIS` | high-performance liquid chromatography UV/VIS traces |
+| `UVVIS` | `UV/VIS SPECTRUM`, `UV-VIS`, `ULTRAVIOLET SPECTRUM`, `AvaSoft` | ultraviolet-visible absorption spectra |
+| `THERMOGRAVIMETRIC ANALYSIS` | `THERMOGRAVIMETRIC ANALYSIS` | TGA weight percentage vs. temperature curves |
+| `X-RAY DIFFRACTION` | `X-RAY DIFFRACTION` | XRD powder/crystal diffraction patterns (2θ) |
+| `CYCLIC VOLTAMMETRY` | `CYCLIC VOLTAMMETRY` | cyclic voltammograms (current vs. potential) |
+| `SIZE EXCLUSION CHROMATOGRAPHY` | `SIZE EXCLUSION CHROMATOGRAPHY`, `GEL PERMEATION CHROMATOGRAPHY` | SEC / GPC elution traces |
+| `CIRCULAR DICHROISM SPECTROSCOPY` | `CIRCULAR DICHROISM SPECTROSCOPY` | electronic circular dichroism spectra |
+| `SORPTION-DESORPTION MEASUREMENT` | `SORPTION-DESORPTION MEASUREMENT` | gas sorption isotherms (Advanced Isotherm Format / AIF) |
+| `Emissions` | `Emissions`, `EMISSIONS`, `FLUORESCENCE SPECTRUM`, `FL SPECTRUM` | fluorescence and emission spectra |
+| `DLS ACF` | `DLS ACF` | dynamic light scattering autocorrelation function curves |
+| `DLS intensity` | `DLS INTENSITY`, `DLS intensity` | DLS particle size intensity distributions |
+| `DIFFERENTIAL SCANNING CALORIMETRY` | `DIFFERENTIAL SCANNING CALORIMETRY` | DSC heat flow thermal transitions |
+| `GAS CHROMATOGRAPHY` | `GAS CHROMATOGRAPHY` | gas chromatography chromatograms |
+| `LC/MS` | `LC/MS`, `LCMS`, `LC-MS`, `MASS TIC`, `TOTAL ION CHROMATOGRAM`, `TOTAL ION CHROMATOGRAPHY` | LC/MS chromatograms (UV/VIS, TIC, and mass traces) |

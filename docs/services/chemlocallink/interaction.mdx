@@ -5,8 +5,16 @@ sidebar_position: 2
 
 ## Overview
 
-ChemLocalLink listens for a specific URL pattern to open files from Chemotion. For example, URLs may look like this: `chemotion://FILEURL`  
-This URL automatically triggers **ChemLocalLink** to start the download process when clicked.
+ChemLocalLink registers as the operating system protocol handler for the custom `chemotion://` URI scheme. When an attachment is opened locally, Chemotion ELN constructs a URI containing an encoded callback endpoint and path:
+
+```text
+chemotion://?url=<escaped_jwt_endpoint_url>&path=<escaped_eln_path>
+```
+
+- **`url`**: Secure callback endpoint on the Chemotion ELN instance signed with a JWT valid for 48 hours, serving both initial download (`GET`) and direct upload of edited files (`POST`).
+- **`path`**: Hierarchical location of the attachment within the ELN (for example `sample/123/analysis/45/dataset/67`).
+
+Opening this URI launches **ChemLocalLink** to download the file into its local workspace and track local changes.
 
 ## Usage with ChemLocalLink
 
