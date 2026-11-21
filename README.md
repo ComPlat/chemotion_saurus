@@ -48,9 +48,17 @@ npm run serve
 
 ## Deployment
 
-![code status](https://github.com/ComPlat/chemotion_saurus/actions/workflows/build.yml/badge.svg)
+[![deploy status](https://github.com/ComPlat/chemotion_saurus/actions/workflows/deploy.yml/badge.svg)](https://github.com/ComPlat/chemotion_saurus/actions/workflows/deploy.yml)
+[![build status](https://github.com/ComPlat/chemotion_saurus/actions/workflows/build.yml/badge.svg)](https://github.com/ComPlat/chemotion_saurus/actions/workflows/build.yml)
 
-The website is deployed with GitHub Actions [here](https://github.com/ComPlat/chemotion_saurus/blob/aa6fe5cc1ade8517f855a7df1ef4f6d648c67f26/.github/workflows/build.yml#L40).
+Every push to `main` runs [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml): the
+site is built, uploaded as an artifact, and rsynced to the hosting account from a `deploy` job
+gated on the `production` GitHub environment. Pull requests and other branches run
+[`.github/workflows/build.yml`](.github/workflows/build.yml), which builds only.
+
+The SSH credentials (`SSH_PRIVATE_KEY`, `SSH_HOST`, `SSH_USER`, `SSH_PORT`,
+`SSH_HOST_FINGERPRINT`) are stored as **environment** secrets on `production`, and the deploy
+aborts unless the remote host key matches `SSH_HOST_FINGERPRINT`.
 
 ## Acknowledgments
 
