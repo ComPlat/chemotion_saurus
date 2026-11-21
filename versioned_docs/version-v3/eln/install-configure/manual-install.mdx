@@ -233,47 +233,6 @@ docker compose run -e FORCE_DB_RESET=1 eln chemotion restore   # restore the lat
 
 ## Special Cases
 
-### Only when installing or upgrading to version 1.4.1
-
-**This is not applicable in any other case, e.g. when moving from version v1.3.1 to v1.5.1.**
-
-Finish your [installation](#fresh-installations) or [upgrade](#upgrades) by following the usual steps. Then configure the converter service by following the steps described here:
-
-In short, the following steps have to be taken:
-
-- create a directory to hold all its configuration
-- create a user for the ELN to authenticate at the service
-- configure the ELN to use the service and the created user
-
-These steps would boil down to this:
-
-```bash
-mkdir -p ./shared/pullin/config/
-# this makes sure a configuration directory for the ELN exists
-
-mkdir -p ./services/converter/
-# this creates a directory holding service configurations
-
-docker run --entrypoint htpasswd httpd:2 -sbn mysuser mypassword | grep ':' > ./services/converter/htpasswd
-# this creates a user in the service's authentication database
-
-cat >> ./shared/pullin/config/converter.yml <<EOF
-production:
-  :url: 'http://converter/'
-  :profile: MYUSER
-  :secret_key: MYPASS
-  :timeout: 300
-  :ext:
-    - '.xy'
-    - '.xls'
-    - '.xlsx'
-    - '.txt'
-    - '.brml'
-    - '.dta'
-    - '.pssession'
-EOF
-```
-
 ### Upgrading from 1.0.3D0.1 to higher versions
 
 To upgrade from a previous version to this release, a few manual steps have to be done. In the new release, we changed to make use of docker volumes instead of bind mounts for all user data and shared storage. It is up to the user to transfer previous user data to these volumes.
