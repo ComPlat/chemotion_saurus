@@ -209,6 +209,19 @@ Users can report the elements they have by selecting them and clicking on **Repo
 
 The **Archive** tab contains all the generated reports (except the deleted ones). Here the user can reuse previous reports to generate new ones by using <Btn mixed={[faPen]} color={"warning"}/>. They can download the generated reports with <Btn mixed={[faDownload]} color={"primary"}/>, or delete them with <Btn mixed={[faTimes]} color={"danger"}/>.
 
+:::note[Custom report templates]
+
+Report layouts come from template files shipped with the ELN, chosen by report
+type. Replacing one is a server-side change to the installation, and an upgrade
+overwrites it.
+
+Before version 3.1.4, generating a report failed whenever a selected element
+contained a bulleted or numbered list in a rich-text analysis. The shipped
+templates now define the `ListBullet` and `ListNumber` paragraph styles that
+such lists need, and a replacement `.docx` must define them too.
+
+:::
+
 ## Creating Elements
 
 The generation of new element-instances such as a new sample or a new reaction can be done by three different actions: **add**, **copy** and **split**. The function add is available for all types of elements, the functions copy and split are only available for selected ones.
