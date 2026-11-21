@@ -241,26 +241,26 @@ Instance administrators can inspect, create, update, unlock, and delete user acc
   ```
 - **Inspect user details**:
   ```bash
-  ./chemCLI instance user describe --email user@example.edu
+  ./chemCLI instance user describe --email jane.doe@dept.uni.de
   ```
 - **Unlock a locked account**:
   ```bash
-  ./chemCLI instance user unlock --email user@example.edu
+  ./chemCLI instance user unlock --email jane.doe@dept.uni.de
   ```
   *(Useful when an account has been locked after 5 consecutive failed login attempts.)*
 - **Reset or update a user's password**:
   ```bash
-  ./chemCLI instance user update --email user@example.edu --password=new_password
+  ./chemCLI instance user update --email jane.doe@dept.uni.de --password=new_password
   ```
   *(When passing a password value explicitly, `=` is required; passing `--password` without a value generates a random password. To update names or abbreviation: `--firstname=...`, `--lastname=...`, `--abbreviation=...`.)*
 - **Create a user account**:
   ```bash
-  ./chemCLI instance user create --email user@example.edu --firstname First --lastname Last --abbreviation FL
+  ./chemCLI instance user create --email jane.doe@dept.uni.de --firstname First --lastname Last --abbreviation FL
   ```
   *(Omitting `--password` on `create` prompts for a password interactively.)*
 - **Delete a user account**:
   ```bash
-  ./chemCLI instance user delete --email user@example.edu
+  ./chemCLI instance user delete --email jane.doe@dept.uni.de
   ```
 
 ### Uninstallation
@@ -286,7 +286,7 @@ This indicates that `chem_cli.yml` was written by a newer version of the CLI tha
 
 To recover:
 1. Manually download the latest `chemCLI` binary for your platform from GitHub Releases:
-   <https://github.com/Chemotion/ChemCLI/releases>
+   [github.com/Chemotion/ChemCLI/releases](https://github.com/Chemotion/ChemCLI/releases)
 2. Replace the existing `chemCLI` file with the downloaded binary and ensure it is executable (`chmod +x chemCLI`).
 3. Run `./chemCLI on` or `./chemCLI advanced info` to resume normal operation.
 

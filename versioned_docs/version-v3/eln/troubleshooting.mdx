@@ -53,8 +53,8 @@ The only solution in those cases is to open and correct those molecules in the [
 - **Cause**: The host server requires an outbound HTTP/HTTPS proxy to reach external networks.
 - **Solution**: Export proxy variables in your shell environment before calling ChemCLI:
   ```bash
-  export HTTP_PROXY="http://proxy.your-institution.de:port"
-  export HTTPS_PROXY="http://proxy.your-institution.de:port"
+  export HTTP_PROXY="http://proxy.dept.uni.de:<port>"
+  export HTTPS_PROXY="http://proxy.dept.uni.de:<port>"
   ./chemCLI
   ```
 
@@ -77,7 +77,7 @@ The only solution in those cases is to open and correct those molecules in the [
   - **Automatic unlock**: The lockout expires automatically after **10 minutes**, allowing the user to attempt login again.
   - **Administrative unlock**: An instance administrator can unlock the account immediately in [User management](admin/user-management) (**Administration → Users**) or via ChemCLI:
     ```bash
-    ./chemCLI instance user unlock --email user@example.edu
+    ./chemCLI instance user unlock --email jane.doe@dept.uni.de
     ```
 
 ## Exports, imports, and uploads
