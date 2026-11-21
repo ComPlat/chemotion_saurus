@@ -51,9 +51,9 @@ The detailed release notes for version 4.0.2 are
 
 #### Version 4.0.1 (November 2026)
 
-A maintenance release, superseded by 4.0.2. Three changes need an
+A maintenance release, superseded by 4.0.2. Four changes need an
 administrator's attention; [Upgrading](install-configure/upgrading) describes
-each:
+the first three:
 
 - Reactions saved earlier may need their variations repaired, with
   `rake reactions:repair_variation_keys`.
@@ -61,24 +61,39 @@ each:
   ChemSpectra opens from an analysis.
 - Sending an IconNMR configuration from the ELN is removed, and with it the
   global `SFTP_*` settings. Device data collection is unaffected.
+- The Indigo service image is pinned to `epmlsop/indigo-service:1.46.0`, in
+  place of `1.35.0-rc.2`. A manual Docker install that pins the image itself
+  should follow.
 
 Fixes:
 
 - Reaction variations, and copying reactions with purification solvents.
+- A missing or zero material coefficient counts as 1, so equivalents and
+  variation yields no longer show infinite values.
+- A new product resin in polymer surface chemistry gets its loading
+  calculated.
 - Ketcher's Common Templates, and saving its settings.
 - NMR simulation, and molfiles with non-ASCII characters.
 - Copies of research plans.
+- History shows and reverts partial changes to extended metadata correctly.
 - An analysis's [preview image](ui/details#the-preview-image) follows new
   uploads, and **Use default** clears a chosen one.
 - **Analyses from upload** unpacks every zip and keeps archives with the same
-  folder apart.
+  folder apart, and re-zipped entries keep their file names, so ChemSpectra
+  reads them again.
 - ChemSpectra opens with one spectrum selected when a dataset holds several.
-- Search stays within the searched collection.
+- Search stays within the searched collection. Advanced search for research
+  plans works again, as do structure searches with an apostrophe in the
+  molfile header and advanced-search values containing `?`.
 - XLSX and SDF exports fill the user-label and updated-at columns, and offer
   the volume next to the mass.
 - The Inventory tab reports a refused save instead of showing success.
+- Saving a measurement or a device without its required fields gives
+  validation errors instead of failing, and a failed device update in the
+  admin area keeps the device's people and groups.
 - LabIMotion 2.3.4 and chem-generic-ui 2.3.2.
-- SciFinder-n copes with unexpected metadata.
+- SciFinder-n copes with unexpected metadata, and reports a failed token
+  refresh instead of using a stale token.
 
 The detailed release notes for version 4.0.1 are
 [on GitHub](https://github.com/ComPlat/chemotion_ELN/releases/tag/v4.0.1).
