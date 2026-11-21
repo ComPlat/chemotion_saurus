@@ -36,6 +36,8 @@ The user can filter a selected [collection](collections) or even the **All** col
 
 The user can search the entire collection or selected elements by clicking on <Btn mixed={["All", faSortDown]} color={"secondary"}/> and choosing the desired element (**Samples**, **Reactions**, **Wellplates**, **Screens**) from the menu to appear, where the <Btn mixed={["All", faSortDown]} color={"secondary"}/> is replaced by the corresponding symbol of the element. The menu also shows the option of **Advanced Search**, which will be clarified later on in this chapter.
 
+A search, quick or advanced, only returns elements of the collection that is open, a shared one included, and the suggestions shown while typing come from that collection too. To search across everything the user owns, open **All**.
+
 Possible search terms are **IUPAC** names, **InChI**, **SMILES**, **RInChI**. The user can also use the element **Name** or **Short Label**. Enter the search term and press "Enter" which shows a list of filtered results. While the user is typing their search term, a menu of suggestions appears, and it keeps getting updated throughout typing. Another option will be to use [Ketcher editor](ketcher), which opens when pressing <Btn mixed={[faPen]} color={"primary"}/>, and to draw a structure to perform **Similarity Search** or **Substructure Search**, and to decide the degree of similarity too. When the structure is ready to be used, the user can choose <Btn mixed={["Search"]} color={"primary"}/> or simply <Btn mixed={["Cancel"]} color={"warning"}/>. To cancel the search process or delete the current search term, press <Btn mixed={[faTimes]} color={"danger"}/>
 
 <YouTubeFrame
@@ -74,7 +76,29 @@ Please note that if the user chooses to **Assign to Collection**, the title of t
 
 `Move to Collection`: This action results in moving the selected elements from the selected collection to the target one, this means that the moved elements will no longer appear in the original collection.
 
-`Assign to Collection`: This action results in creating a copy of the selected elements in the target collection, this means that the assigned elements will be present in both collections.
+`Assign to Collection`: This action adds the selected elements to the target collection as well, without copying them, so that the same elements are present in both collections.
+
+When moving, collections that were shared with the user can also be chosen as a target,
+grouped under **Shared by \<owner\>**, provided they hold at least the *Add elements*
+permission on them; **Assign to Collection** offers only the user's own collections. Both
+also offer the **chemotion-repository.net** collection, under *chemotion-repo*, but never
+**All**.
+
+Inside a collection shared with the user, elements stay within their owner's collections:
+they can only be moved to another collection of the same owner, which also has to be shared
+with the user at *Add elements* or above, and moving needs the *Remove elements* permission
+on the collection they come from. A target among the user's own collections is refused, so
+**Assign to Collection**, which offers only those, does not work from a shared collection.
+
+:::caution
+
+**Move to Collection** is not available from inside the **All** collection. **All**
+gathers everything the user owns rather than being a working collection, so there is
+nothing to move the elements out of — one of their own collections has to be used instead.
+See
+[System collections](collections/index.mdx#system-collections).
+
+:::
 
 ### Remove elements from a collection
 
@@ -82,53 +106,17 @@ This action can be performed by pressing <Btn mixed={[faMinusSquare]} color={"wa
 
 `Remove from current Collection`: This action removes the selected elements only from the selected collection, but a copy is kept in the back up collection **All**. The user is asked to confirm their decision via a pop-up window by pressing <Btn mixed={["Remove"]} color={"warning"}/>, or otherwise to press <Btn mixed={["Cancel"]} color={"primary"}/>.
 
-`Remove from all Collections`: This action removes all the copies there are of the selected elements. The user is asked to confirm their decision via a pop-up window by pressing <Btn mixed={["Delete"]} color={"warning"}/>, or otherwise to press <Btn mixed={["Cancel"]} color={"primary"}/>. An option is provided in case the user is trying to remove reactions, which is to choose whether to delete the samples associated with the reactions, if the user chooses not to, then only the reactants and solvents associated with the deleted reaction are deleted too.
+`Remove from all Collections`: This action removes the selected elements from **all of the user's own collections**, and permanently deletes only those elements that are left in no collection at all. It never reaches into a collection owned by someone else, including one that has been shared with them — those keep their copy, and its owner goes on seeing the element. The user is asked to confirm their decision via a pop-up window by pressing <Btn mixed={["Delete"]} color={"warning"}/>, or otherwise to press <Btn mixed={["Cancel"]} color={"primary"}/>. An option is provided in case the user is trying to remove reactions, which is to choose whether to delete the samples associated with the reactions, if the user chooses not to, then only the reactants and solvents associated with the deleted reaction are deleted too.
 
 ## Sharing collections
 
-<video controls>
-  <source src={require("@site/static/img/common/collection_sharing.webm").default} />
-</video>
+Collections can be shared with individual users and with groups, at a permission level the
+owner chooses. To share the collection currently open, press
+<Btn mixed={[faShareAlt]} color={"info"}/>; to share just a selection of elements as a new
+collection, select them and choose **Share** from the selection actions.
 
-Shared collections are collections that can be created by users if they want to share their data with a specific person or a group, so **Sharing** will make the data available to that person or group.
-
-Collections shared by the user appear as **My project with** owner/recipient in **My shared Collections** in the collections bar and can be sorted through collection management. A Chemotion ELN user who receives information in the form of a shared collection from another Chemotion ELN user cannot sort that shared collection.
-
-An important feature of the shared collections that the user, whether a creator or a recipient of the shared collection, must be aware of: Changes to the shared collection can only be made to existing elements. When new elements are added within the original collection, this is not reflected in the shared collection. Only changes within existing elements are transferred to the shared collection. This is a significant difference from the synchronized collections.
-
-:::info
-
-In a shared collection, only changes to existing elements are displayed to users. Elements added after sharing to the original collection will not be considered.
-
-:::
-
-To share a collection, press <Btn mixed={[faShareAlt]} color={"info"}/>, this will open the following window.
-
-<img src={require("@site/static/img/eln/ui/toolbar/sharing.png").default} alt={"Sharing"} />
-
-Collections that a Chemotion ELN user has obtained as shared collections from another user are subject to a rights system, which is always defined by the original owner. According to this system, the recipient of the shared collection can perform certain actions on it. The original owner can optionally set a **Role** to the recipient. Each role corresponds to a default **Permission level**, and means that **Everything** is being shared when it comes to the detail level for samples, reactions, wellplates, and screens. The original owner can still change those **Permission level**s and detail levels, but in this case the **Role** already set will be removed. The following table shows the possible **Role**s with the corresponding **Permission level**s.
-
-| Role         | Permission level |
-| ------------ | ---------------- |
-| User         | Delete           |
-| Partner      | Write            |
-| Collaborator | Read             |
-| Reviewer     | Read             |
-| Supervisor   | Import Elements  |
-
-The **Permission level**s are sorted in a hierarchy, where every higher level includes all the permissions of the lower ones.
-
-`Read`: The lowest of **Permission level**s where the recipient can only see the details of the shared collection without being able to modify anything.
-
-`Write`: The recipient can additionally modify the shared elements through the details modal.
-
-`Share`: The recipient can additionally share the elements with a third party.
-
-`Delete`:
-
-`Import Elements`: Both the owner and the recipient can’t create new samples in a shared collection. However this ** Permission level ** allows the recipient to additionally import new samples into the collection, a right that is always granted to the original owner.
-
-`Pass ownership`:
+The permission levels, the detail levels, and everything else about the sharing model are
+described in [Sharing Collections](collections/sharing).
 
 ## Import and Export Data to and from the Chemotion ELN
 
@@ -215,7 +203,7 @@ The generation of new element-instances such as a new sample or a new reaction c
 
 ### New elements with the "CREATE" button
 
-New elements are created with the green <Btn mixed={[faPlus, "CREATE"]} color={"success"}/> button to the right of the toolbar. Clicking it opens a menu with the options **Create Sample**, **Create Reaction**, **Create Wellplate**, **Create Screen** and **Create Research Plan**. It does not matter which element list is selected, as long as the right collection is open — choose any of these options and the corresponding element is created.
+New elements are created with the green <Btn mixed={[faPlus, "CREATE"]} color={"success"}/> button to the right of the toolbar. Clicking it opens a menu with the options **Create Sample**, **Create Reaction**, **Create Wellplate**, **Create Screen** and **Create Research Plan**. It does not matter which element list is selected, as long as the right collection is open — choose any of these options and the corresponding element is created. The button is disabled in the **All** collection, which is not a working collection (see [System collections](collections/index.mdx#system-collections)). In a collection shared with the user, creating an element needs at least the *Add elements* [permission level](collections/sharing.mdx#the-permission-ladder).
 
 To populate [wellplates](elements/wellplates), the user has to drag and drop samples, and to populate screens, the user has to drag and drop wellplates. The `CREATE` menu lets the user avoid this repetitive drag-and-drop process with the functions **Create Wellplate from Samples** and **Create Screen from Wellplates**. To use either of them, go to the target collection, select the elements (samples or wellplates) to be added to the newly created element (wellplate or screen respectively), and choose the corresponding function. The menu also offers **Create Vessel Template**. Please note that an element cannot be created with this method from elements coming from another collection; users can, however, still add them to the created element with the classical drag and drop.
 
