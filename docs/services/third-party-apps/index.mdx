@@ -25,7 +25,7 @@ After filling in the required fields, click “Create +” to register the appli
 ### Two-Way Data Exchange Protocol
 
 When a user clicks a registered third-party app in an attachment menu:
-- Chemotion ELN generates a signed HS256 JWT token valid for 48 hours encoding the user, app, and attachment context.
+- Chemotion ELN generates a signed HS256 JWT token valid for 48 hours (and for at most 3 downloads and 10 uploads) encoding the user, app, and attachment context.
 - The browser opens `<app_url>?url=<callback_url>` in a new tab.
 - The external application downloads the input file via a `GET` request to `<callback_url>`.
 - Once processing is complete, the application can upload the resulting file directly back into the Chemotion ELN dataset via a `POST` request to the same callback URL.
