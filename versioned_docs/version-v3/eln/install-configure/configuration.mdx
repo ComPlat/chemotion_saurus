@@ -108,17 +108,37 @@ SMTP_PORT=587
 # login user name & password if applicable:
 SMTP_USERNAME='no-reply@sld.tld'
 SMTP_PASSWORD='s3cr3tPW'
-# optional, HELO domain
+# optional, HELO domain; defaults to the PUBLIC_URL host
 SMTP_DOMAIN='sld.tld'
 # detect STARTTLS
 SMTP_TLS=true
 # authentication type ('plain' 'login' (Base64 encoded) or 'cram_md5')
 SMTP_AUTH='plain'
-# how OpenSSL checks the certificate  ('none' or 'peer')
+# how OpenSSL checks the certificate ('none' or 'peer'); any other value is ignored
 SMTP_SSL_MODE='none'
+# optional, seconds to wait for the connection and for a reply
+SMTP_OPEN_TIMEOUT=10
+SMTP_READ_TIMEOUT=30
 ```
 
 See [rails docs](https://guides.rubyonrails.org/action_mailer_basics.html#action-mailer-configuration) for an explanation of the parameters.
+
+:::info[Changed in version 3.1.4]
+
+`SMTP_OPEN_TIMEOUT` and `SMTP_READ_TIMEOUT` are new, and default to 10 and 30
+seconds. Before, both were 5 seconds, which an authenticating remote relay
+often exceeds, so that sending failed with `Net::ReadTimeout`. Four further
+points are worth knowing when reviewing an existing configuration:
+
+- Without `SMTP_ADDRESS`, **no mail is sent at all**.
+- When `SMTP_DOMAIN` is unset, the HELO name falls back to the host part of
+  `PUBLIC_URL`, provided that is a hostname rather than a bare address.
+- `SMTP_SSL_MODE` accepts only `none` and `peer`. Any other value is ignored
+  rather than, as before, making every attempt to send mail fail.
+- Variables left blank are dropped, so the underlying defaults apply. Leaving
+  `SMTP_TLS` unset is therefore not the same as setting it to `false`.
+
+:::
 
 ## File collectors
 
