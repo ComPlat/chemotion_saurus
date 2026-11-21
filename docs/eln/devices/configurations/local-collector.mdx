@@ -71,8 +71,8 @@ specified Watch Directory.
 
 Files from `./datacollector/CV-data` are collected periodically by the background collector service:
 - **Write stability**: To avoid reading incomplete transfers, the collector verifies that a file has remained unchanged for at least the configured `watcher_sleep` interval (fallback default `20` seconds in code; `30` seconds in the example `datacollectors.yml`).
-- **Temporary file filtering (`filewatcherlocal`)**: In-progress transfers ending with `.filepart` or `.part` are ignored until finished.
-- **Recipient and element matching**: The file name must begin with a valid user name abbreviation (Kürzel) or email prefix before `-` to identify the recipient; files without a valid user prefix are rejected. Once matched to a user, if automatic assignment (`inbox_auto`) is enabled on that user's account and the remainder uniquely matches a Sample or Reaction, it attaches directly to that element; otherwise it is placed in the user's Inbox.
+- **Temporary file filtering**: In-progress transfers ending with `.filepart` or `.part` are ignored until finished, by every file collector.
+- **Recipient and element matching**: The recipient is identified from the file name: either it begins with a valid user name abbreviation (Kürzel) followed by `-`, or, if it contains `@`, the whole name is taken as the user's email address. Files that match no user are rejected. Once matched to a user, if automatic assignment (`inbox_auto`) is enabled on that user's account and the remainder uniquely matches a Sample or Reaction, it attaches directly to that element; otherwise it is placed in the user's Inbox.
 
 :::info
 
@@ -103,4 +103,4 @@ Method as `folderwatcherlocal`.
 
 - **Number of files**: If the folder to be collected contains a variable number of files, set `Number of files` to `0`. If the measurement folder always contains a fixed number of files (e.g. 5 files per measurement), enter that exact number so the collector waits until all files are present before proceeding.
 - **Automatic archive packaging**: The collector bundles the directory into a `.zip` archive before creating the attachment in the user's Inbox (or auto-matching an element).
-- **Folder naming**: The folder name must begin with a valid user name abbreviation (Kürzel) or email prefix before `-`.
+- **Folder naming**: The folder name follows the same rule: a valid user name abbreviation (Kürzel) followed by `-`, or the user's email address.
