@@ -21,6 +21,14 @@ Wellplates are created with the green <Btn mixed={[faPlus, "CREATE"]} color={"su
 
 1. A blank wellplate is created by choosing **Create Wellplate**. From version 4.0 it starts without a size, shown as **Define later**, and a size has to be chosen before wells can be filled or data imported. The blank wells of the plate can then be filled in the **Designer** tab via drag and drop with [samples](samples) from the samples list.
 
+   A whole row or column is filled at once by dropping the sample on the row letter or the column number at the edge of the plate. Every empty well in that row or column receives its own split of the sample, numbered in order along the row or column. Wells that already hold a sample stay unchanged; when every well in the row or column is filled, a message asks to clear it first.
+
+   Clicking a row letter or column number clears that row or column after a confirmation. Only the samples are removed from the wells, readouts stay, and the removed split samples are deleted when the wellplate is saved.
+
+   <video controls>
+     <source src={require("@site/static/img/eln/ui/elements/wellplates/fill_row_column.webm").default} />
+   </video>
+
 2. A filled wellplate, 12 × 8, can be created from one or multiple sample(s) when the samples are selected in the sample list on the sample tab. Then select **Create Wellplate from Samples** in the dropdown menu. After that the wellplate in the **Designer** tab is automatically filled with the selected samples. This action is a combination of the action **split** of the selected samples together with the insertion of the created split samples in the wellplate. The wellplate will be gradually filled with the created split samples. If the number of the split samples exceeds the free positions in the wellplate, there will be a second wellplate created and filled automatically.
 
 A wellplate can be saved, edited and deleted in the [details panel view](../details#details-panel-for-wellplates).
